@@ -1,58 +1,59 @@
-///*
-//package com.iscas.biz;
-//
-//import cn.hutool.core.io.IoUtil;
-//import com.iscas.base.biz.aop.enable.*;
-//import com.iscas.base.biz.config.norepeat.submit.NoRepeatSubmitLockType;
-//import com.iscas.base.biz.config.stomp.WsPushType;
-//import com.iscas.base.biz.util.SpringUtils;
-//import com.iscas.biz.mp.aop.enable.EnableMybatis;
-//import com.iscas.biz.mp.aop.enable.EnableQuartz;
-//import com.iscas.common.tools.core.runtime.RuntimeUtils;
-//import com.iscas.templet.exception.Exceptions;
-//import lombok.extern.slf4j.Slf4j;
-//import org.springframework.beans.factory.annotation.Value;
-//import org.springframework.boot.SpringApplication;
-//import org.springframework.boot.actuate.autoconfigure.jdbc.DataSourceHealthContributorAutoConfiguration;
-//import org.springframework.boot.actuate.autoconfigure.metrics.amqp.RabbitMetricsAutoConfiguration;
-//import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
-//import org.springframework.boot.autoconfigure.amqp.RabbitAutoConfiguration;
-//import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration;
-//import org.springframework.boot.autoconfigure.jdbc.XADataSourceAutoConfiguration;
-//import org.springframework.boot.builder.SpringApplicationBuilder;
-//import org.springframework.boot.web.servlet.ServletComponentScan;
-//import org.springframework.boot.web.servlet.support.SpringBootServletInitializer;
-//import org.springframework.cache.annotation.EnableCaching;
-//import org.springframework.context.annotation.ComponentScan;
-//import org.springframework.context.annotation.Configuration;
-//import org.springframework.context.annotation.FilterType;
-//import org.springframework.core.env.Environment;
-//import org.springframework.retry.annotation.EnableRetry;
-//import org.springframework.transaction.annotation.EnableTransactionManagement;
-//import org.springframework.util.StopWatch;
-//
-//import java.io.FileOutputStream;
-//import java.io.IOException;
-//import java.io.OutputStream;
-//
-//*/
-///**
-// * 启动类
-// *
-// * @author zhuquanwen
-// * @version 1.0
-// * @date 2018/10/10 17:45
-// * @since jdk1.8
-// *//*
-//
+package com.iscas.biz;
+
+import cn.hutool.core.io.IoUtil;
+import com.baomidou.mybatisplus.autoconfigure.MybatisPlusAutoConfiguration;
+import com.iscas.base.biz.aop.enable.*;
+import com.iscas.base.biz.config.norepeat.submit.NoRepeatSubmitLockType;
+import com.iscas.base.biz.config.stomp.WsPushType;
+import com.iscas.base.biz.util.SpringUtils;
+import com.iscas.biz.mp.aop.enable.EnableMybatis;
+import com.iscas.biz.mp.aop.enable.EnableQuartz;
+import com.iscas.common.tools.core.runtime.RuntimeUtils;
+import com.iscas.templet.exception.Exceptions;
+import lombok.extern.slf4j.Slf4j;
+import org.mybatis.spring.boot.autoconfigure.MybatisAutoConfiguration;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.actuate.autoconfigure.jdbc.DataSourceHealthContributorAutoConfiguration;
+import org.springframework.boot.actuate.autoconfigure.metrics.amqp.RabbitMetricsAutoConfiguration;
+import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
+import org.springframework.boot.autoconfigure.amqp.RabbitAutoConfiguration;
+import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration;
+import org.springframework.boot.autoconfigure.jdbc.XADataSourceAutoConfiguration;
+import org.springframework.boot.builder.SpringApplicationBuilder;
+import org.springframework.boot.web.servlet.ServletComponentScan;
+import org.springframework.boot.web.servlet.support.SpringBootServletInitializer;
+import org.springframework.cache.annotation.EnableCaching;
+import org.springframework.context.annotation.ComponentScan;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.FilterType;
+import org.springframework.core.env.Environment;
+import org.springframework.retry.annotation.EnableRetry;
+import org.springframework.transaction.annotation.EnableTransactionManagement;
+import org.springframework.util.StopWatch;
+
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.OutputStream;
+
+/**
+ * 启动类
+ *
+ * @author zhuquanwen
+ * @version 1.0
+ * @date 2018/10/10 17:45
+ * @since jdk1.8
+ */
+
+
 //@SuppressWarnings("resource")
 //@Configuration
 ////暂时抛除rabbitmq的自动注册，如果使用代理websocket推送需要去掉
 //@EnableAutoConfiguration(exclude = {RabbitAutoConfiguration.class, RabbitMetricsAutoConfiguration.class,
-//        RabbitMetricsAutoConfiguration.class, DataSourceAutoConfiguration.class, */
-///*MybatisAutoConfiguration.class,
-//        MybatisPlusAutoConfiguration.class, *//*
-//DataSourceHealthContributorAutoConfiguration.class, XADataSourceAutoConfiguration.class})
+//        RabbitMetricsAutoConfiguration.class, DataSourceAutoConfiguration.class,
+//        MybatisAutoConfiguration.class,
+//        MybatisPlusAutoConfiguration.class,
+//        DataSourceHealthContributorAutoConfiguration.class, XADataSourceAutoConfiguration.class})
 //@ServletComponentScan //自动扫描servletBean
 //@ComponentScan(basePackages = {"com.iscas"}
 //        , excludeFilters = {
@@ -89,48 +90,47 @@
 ////@RetrofitScan("com.iscas.biz.test.retrofit") //扫描retrofit的包
 //@EnableQuartz // 允许quartz
 ////@EnableFlowable // 允许flowable工作流引擎
-//@Slf4j
-//public class BizApp extends SpringBootServletInitializer {
-//    @Value("${server.port}")
-//    private String serverPort;
-//
-//    public static void main(String[] args) throws IOException {
-//        StopWatch stopWatch = new StopWatch("appStart");
-//        stopWatch.start();
-//        SpringApplication springApplication = new SpringApplication(BizApp.class);
-//        springApplication.run(args);
-//        stopWatch.stop();
-//        log.info("服务已启动，启动耗时：{}秒,进程号:[{}],端口号:[{}]", stopWatch.getTotalTimeSeconds(), RuntimeUtils.getCurrentPid(),
-//                SpringUtils.getBean(Environment.class).getProperty("server.port"));
-//        try (OutputStream os = new FileOutputStream("newframe.pid")) {
-//            IoUtil.writeUtf8(os, true, RuntimeUtils.getCurrentPid());
-//        } catch (IOException e) {
-//            throw e;
-//        }
-//    }
-//
-//    */
-///**
-//     * 重写configure
-//     *
-//     * @param builder builder
-//     * @return SpringApplicationBuilder
-//     *//*
-//
-//    @Override
-//    protected SpringApplicationBuilder configure(SpringApplicationBuilder builder) {
-//        StopWatch stopWatch = new StopWatch("appStart");
-//        stopWatch.start();
-//        SpringApplicationBuilder sources = builder.sources(BizApp.class);
-//        stopWatch.stop();
-//        log.info("服务已启动，启动耗时：{}秒,进程号:[{}],端口号:[{}]", stopWatch.getTotalTimeSeconds(), RuntimeUtils.getCurrentPid(), serverPort);
-//        try (OutputStream os = new FileOutputStream("newframe.pid")) {
-//            IoUtil.writeUtf8(os, true, RuntimeUtils.getCurrentPid());
-//        } catch (IOException e) {
-//            throw Exceptions.runtimeException(e);
-//        }
-//        return sources;
-//    }
-//
-//}
-//*/
+@Slf4j
+public class BizApp extends SpringBootServletInitializer {
+    @Value("${server.port}")
+    private String serverPort;
+
+    public static void main(String[] args) throws IOException {
+        StopWatch stopWatch = new StopWatch("appStart");
+        stopWatch.start();
+        SpringApplication springApplication = new SpringApplication(BizApp.class);
+        springApplication.run(args);
+        stopWatch.stop();
+        log.info("服务已启动，启动耗时：{}秒,进程号:[{}],端口号:[{}]", stopWatch.getTotalTimeSeconds(), RuntimeUtils.getCurrentPid(),
+                SpringUtils.getBean(Environment.class).getProperty("server.port"));
+        try (OutputStream os = new FileOutputStream("newframe.pid")) {
+            IoUtil.writeUtf8(os, true, RuntimeUtils.getCurrentPid());
+        } catch (IOException e) {
+            throw e;
+        }
+    }
+
+    /**
+     * 重写configure
+     *
+     * @param builder builder
+     * @return SpringApplicationBuilder
+     */
+
+
+    @Override
+    protected SpringApplicationBuilder configure(SpringApplicationBuilder builder) {
+        StopWatch stopWatch = new StopWatch("appStart");
+        stopWatch.start();
+        SpringApplicationBuilder sources = builder.sources(BizApp.class);
+        stopWatch.stop();
+        log.info("服务已启动，启动耗时：{}秒,进程号:[{}],端口号:[{}]", stopWatch.getTotalTimeSeconds(), RuntimeUtils.getCurrentPid(), serverPort);
+        try (OutputStream os = new FileOutputStream("newframe.pid")) {
+            IoUtil.writeUtf8(os, true, RuntimeUtils.getCurrentPid());
+        } catch (IOException e) {
+            throw Exceptions.runtimeException(e);
+        }
+        return sources;
+    }
+
+}
