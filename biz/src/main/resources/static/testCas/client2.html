@@ -1,0 +1,40 @@
+<!-- client2 页面代码 -->
+<html>
+<head>
+    <meta charset="utf-8">
+    <title></title>
+    <script src="corss-middle.js"></script>
+</head>
+<body>
+<script src="corss-client.js"></script>
+<button id="get-data">获取数据哦</button>
+<button id="set-data">设置</button>
+<button id="del-data">删除数据</button>
+<button id="test-connet">测试连接</button>
+
+<script type="text/javascript">
+    const crossStorage = new CorssClient('http://127.0.0.1:8080/testCas/corss-middle.html')
+
+    //在 client2 中，获取 client1存储的数据
+    document.getElementById('get-data').addEventListener('click', () => {
+        crossStorage.getItem(['job', 'money'], (result, data) => {
+            console.log('client-1 getItem result: ', result)
+        })
+    }, false);
+
+    //设置数据
+    document.getElementById('set-data').addEventListener('click', () => {
+        crossStorage.setItem({
+            home: '深圳'
+        }, null, (result) => {
+        })
+    }, false);
+
+    //删除数据
+    document.getElementById('del-data').addEventListener('click', () => {
+        crossStorage.delItem(['job', 'money', 'home'], (result) => {
+        })
+    }, false);
+</script>
+</body>
+</html>

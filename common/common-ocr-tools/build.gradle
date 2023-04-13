@@ -1,0 +1,3 @@
+dependencies {
+    api "net.sourceforge.tess4j:tess4j"
+}

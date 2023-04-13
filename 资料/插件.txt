@@ -1,0 +1,38 @@
+1、TranslationPlugin 快捷键 Ctrl + Alt + 1
+
+2、Grep Console  设置：settings->Other Settings->Grep Console
+
+3、Nyan Progress Bar
+
+4、Activate-power-mode 设置：window->activate-power-mode->去掉shake和combo
+
+5、VisualVM Launcher 设置：运行时设置jvisualvm的路径和jdk的路径
+
+6、JUnitGenerator V2.0 设置参考https://blog.csdn.net/yanxilou/article/details/85773406
+ settings->Other settings->Junit Generator
+ 将OutputPath改为：${SOURCEPATH}/../../test/java/${PACKAGE}/${FILENAME}
+ 将Default Template改为 JUnit4
+ Junit4选项卡中去掉 package test.$entry.packageName 中的test.
+ 使用方法： Generator->JUnit Test->JUnit4
+
+7、Alibaba Java Coding Guidelines
+
+8、GenerateAllSetter 使用方法：选中对象：Alt+Enter->Generate all setter with default value
+
+9、RestfulToolkit 使用方法：ctrl + \ 根据URL搜索，在controller类的方法上
+    右键 copy full url
+
+10、Key Promoter X
+
+11、Codota
+
+12、rainbow brackets
+
+13、spring-assistant
+    社区版spring的yaml提示
+    
+14、translation
+
+15、spring boot assistant
+
+16、mybatisx

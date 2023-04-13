@@ -1,0 +1,76 @@
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>test-cas</title>
+    <script src="jquery-3.4.1.min.js" charset="utf-8"></script>
+    <script src="common.js" charset="utf-8"></script>
+
+
+</head>
+
+<body>
+    <script src="corss-client.js" charset="utf-8"></script>
+    <script>
+
+        // let backendUrlPrefix='http://localhost:7901/demo/';
+        // let casServerPrefix='http://localhost:8080/cas/';
+        // //后台校验st的url
+        // let backendValidUrl='cas/valid';
+        const crossStorage = new CorssClient('http://127.0.0.1:8080/testCas/corss-middle.html')
+        /**登陆*/
+        function getTicket() {
+            //使用用户名、密码获取ticket
+            $.ajax({
+                url: casServerPrefix + "v1/tickets",
+                data: $('#loginForm').serialize(),
+                type: "POST",
+                dataType: "json",
+                contentType:'application/x-www-form-urlencoded',
+                xhrFields: {
+                    withCredentials: true //允许跨域带Cookie
+                },
+                crossDomain: true,
+                // beforeSend: function(request) {
+                //     request.setRequestHeader("Access-Control-Allow-Origin","http://127.0.0.1:8080");
+                //     request.setRequestHeader("access-control-allow-origin","http://127.0.0.1:8080");
+                // },
+                success: function(data) {
+                    console.log(data);
+                },
+                error: function (res) {
+                    if (res.status == 401) {
+                        //登陆失败,给与用户提示
+                        let error = res.responseJSON.authentication_exceptions;
+                        console.log(error);
+                        alert(error[1][0]);
+                    } else if (res.status == 201) {
+                        //登陆成功
+                        //获取TGT
+                        console.log(res);
+                        let tgt = res.responseText;
+                        console.log(tgt);
+                        let location = casServerPrefix + "v1/tickets/" + (tgt == null ? "" : tgt);
+                        //获取location，存入跨域存储corss-middle中
+                        // let location = res.getResponseHeader('Location');
+                        console.log(location);
+                        crossStorage.setItem({
+                            location: location
+                        }, null, (result) => {
+                            console.log('完成跨域存储location')
+                            //通过TGT获取ST
+                            getST(location);
+                        })
+
+                    }
+                }
+            });
+        }
+    </script>
+    <form id = "loginForm", type="application/x-www-form-urlencoded">
+        用户名:<input type="text" name="username"/><br/>
+        密码：<input type="password" name="password"/>
+        <input type="button" value="登陆" onclick="getTicket();"/>
+    </form>
+</body>
+
+</html>

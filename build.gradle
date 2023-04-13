@@ -1,0 +1,458 @@
+buildscript {
+    repositories {
+//        maven {
+//            url "${localMavenUrl}"
+//            allowInsecureProtocol = true
+//        }
+        maven {
+            url "${nexusUrl}"
+            allowInsecureProtocol = true
+        }
+        maven {
+            url "${aliyunUrl}"
+            allowInsecureProtocol = true
+        }
+        maven {
+            url "${aliyunGoogleUrl}"
+            allowInsecureProtocol = true
+        }
+        maven {
+            url "${aliyunGradlePluginUrl}"
+            allowInsecureProtocol = true
+        }
+        gradlePluginPortal()
+        maven {
+            url "${aliyunSpringUrl}"
+            allowInsecureProtocol = true
+        }
+        maven {
+            url "${aliyunSpringPluginUrl}"
+            allowInsecureProtocol = true
+        }
+//        maven {
+//            url "${springUrl}"
+//            allowInsecureProtocol = true
+//        }
+        maven {
+            url "${spring2Url}"
+            allowInsecureProtocol = true
+        }
+        maven {
+            url "${aliyunGrailsUrl}"
+            allowInsecureProtocol = true
+        }
+        maven {
+            url "${gradlePluginUrl}"
+            allowInsecureProtocol = true
+        }
+        mavenCentral()
+
+    }
+    dependencies {
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+        classpath("com.google.protobuf:protobuf-gradle-plugin:${gradleProtobufGenerateVersion}")
+//        classpath "gradle.plugin.com.github.jengelman.gradle.plugins:shadow:${shadowJarVersion}"
+        classpath "com.github.johnrengelman.shadow:com.github.johnrengelman.shadow.gradle.plugin:${shadowJarVersion}"
+        classpath "com.bmuschko:gradle-docker-plugin:${gradleDockerVersion}"
+
+    }
+}
+
+
+subprojects {
+    apply plugin: 'java'
+    apply plugin: 'org.springframework.boot'
+    apply plugin: 'idea'
+    apply plugin: 'io.spring.dependency-management'
+//    apply plugin: 'maven'
+    apply plugin: 'maven-publish'
+    apply plugin: 'signing'
+    apply plugin: 'java-library'
+    apply plugin: 'com.bmuschko.docker-remote-api'
+    apply plugin: 'com.bmuschko.docker-spring-boot-application'
+//    apply plugin: 'application'
+
+//    apply plugin: 'com.bmuschko.docker-java-application'
+
+//    group = 'cn.ac.iscas.newframe'
+    //发布至maven中央仓库必须与gitee的子域名一致，所以暂时智能用这个group
+    group = 'io.gitee.quanwenz'
+    //版本号定义规则：开发中： <版本号(x.x.x)>-<当天日期>-<当天更新的小序号>
+    //发布版本：x.x.x-RELEASE
+    version = "${newframeVersion}"
+    sourceCompatibility = "${javaVersion}"
+    targetCompatibility = "${javaVersion}"
+
+    configurations {
+        compileOnly {
+            extendsFrom annotationProcessor
+        }
+    }
+
+    repositories {
+//        maven {
+//            url "${localMavenUrl}"
+//            allowInsecureProtocol = true
+//        }
+        maven {
+            url "${nexusUrl}"
+            allowInsecureProtocol = true
+        }
+        maven {
+            url "${aliyunUrl}"
+            allowInsecureProtocol = true
+        }
+        maven {
+            url "${aliyunGoogleUrl}"
+            allowInsecureProtocol = true
+        }
+        maven {
+            url "${aliyunSpringUrl}"
+            allowInsecureProtocol = true
+        }
+//        maven {
+//            url "${springUrl}"
+//            allowInsecureProtocol = true
+//        }
+        maven {
+            url "${spring2Url}"
+            allowInsecureProtocol = true
+        }
+        maven {
+            url "${spring3Url}"
+            allowInsecureProtocol = true
+        }
+        maven {
+            url "${aliyunGrailsUrl}"
+            allowInsecureProtocol = true
+        }
+        maven {
+            url "${asposeUrl}"
+            allowInsecureProtocol = true
+        }
+//        maven {
+//            url "${iceBlueUrl}"
+//            allowInsecureProtocol = true
+//        }
+        mavenCentral()
+    }
+//    applicationDefaultJvmArgs = [
+//            '--add-opens java.base/java.lang=ALL-UNNAMED',
+//            '--add-opens java.base/java.lang.reflect=ALL-UNNAMED']
+    tasks.withType(JavaCompile) {
+        options.encoding = "UTF-8"
+    }
+    tasks.withType(Javadoc) {
+        options.encoding = "UTF-8"
+    }
+
+    dependencies {
+//        compile 'org.projectlombok:lombok'
+
+        annotationProcessor "org.projectlombok:lombok"
+        compileOnly "org.projectlombok:lombok"
+        testAnnotationProcessor "org.projectlombok:lombok"
+        testCompileOnly "org.projectlombok:lombok"
+
+        //junit
+        testImplementation("junit:junit:${junitVersion}")
+
+        testImplementation group: 'org.junit.jupiter', name: 'junit-jupiter-api', version: "${jupiterVersion}"
+        testImplementation group: 'org.junit.jupiter', name: 'junit-jupiter-engine', version: "${jupiterVersion}"
+        testImplementation group: 'org.junit.jupiter', name: 'junit-jupiter-params', version: "${jupiterVersion}"
+        testImplementation group: 'org.junit.vintage', name: 'junit-vintage-engine', version: "${jupiterVersion}"
+        testImplementation group: 'org.junit.platform', name: 'junit-platform-launcher', version: "${junitPlatformVersion}"
+        testImplementation group: 'org.junit.platform', name: 'junit-platform-runner', version: "${junitPlatformVersion}"
+        testImplementation group: 'org.junit.platform', name: 'junit-platform-suite-api', version: "${junitPlatformVersion}"
+
+    }
+
+    dependencyManagement {
+        dependencies {
+            dependency "cn.hutool:hutool-all:${hutoolVersion}"
+            dependency "cn.hutool:hutool-core:${hutoolVersion}"
+            dependency "cglib:cglib:${cglibVersion}"
+            dependency "com.alibaba:fastjson:${fastJsonVersion}"
+            dependency "org.ow2.asm:asm:${asmVersion}"
+            dependency "com.googlecode.aviator:aviator:${aviatorVersion}"
+            dependency "com.fasterxml.jackson.core:jackson-core:${jacksonVersion}"
+            dependency "com.fasterxml.jackson.core:jackson-databind:${jacksonVersion}"
+            dependency "com.fasterxml.jackson.datatype:jackson-datatype-jsr310:${jacksonVersion}"
+            dependency "org.slf4j:slf4j-api:${slf4jApiVersion}"
+            dependency "com.github.jsqlparser:jsqlparser:${jsqlparserVersion}"
+            dependency "org.apache.httpcomponents:httpmime:${httpcomponentsVersion}"
+            dependency "javax.servlet:javax.servlet-api:${servletApiVersion}"
+            dependency "org.javatuples:javatuples:${javatuplesVersion}"
+            dependency "org.zeromq:jeromq:${zeromqVersion}"
+            dependency "com.jcraft:jsch:${jschVersion}"
+            dependency "org.rocksdb:rocksdbjni:${rocksdbjniVersion}"
+            dependency "org.luaj:luaj-jse:${luajJseVersion}"
+            dependency "org.ehcache:ehcache:${ehcacheVersion}"
+            dependency "javax.xml.bind:jaxb-api:${jaxbApiVersion}"
+            dependency "javax.xml:jaxb-impl:${jaxbImplVersion}"
+            dependency "net.sf.ucanaccess:ucanaccess:${ucanaccessVersion}"
+            dependency "jakarta.servlet:jakarta.servlet-api:${jakartaServletApiVersion}"
+            dependency "cn.miludeer:jsoncode:${jsoncodeVersion}"
+            dependency "org.json:json:${orgJsonVersion}"
+            dependency "xom:xom:${xomVersion}"
+            dependency "eu.bitwalker:UserAgentUtils:${UserAgentUtilsVersion}"
+            dependency "commons-beanutils:commons-beanutils:${commonsBeanutilsVersion}"
+            dependency "com.github.abel533:ECharts:${echartsVersion}"
+            dependency "com.google.code.gson:gson:${gsonVersion}"
+            dependency "commons-codec:commons-codec:${codecVersion}"
+            dependency "org.ostermiller:utils:${ostermillerVersion}"
+            dependency "org.apache.commons:commons-lang3:${commonLang3Version}"
+            dependency "org.apache.xmlbeans:xmlbeans:${xmlbeansVersion}"
+            dependency "commons-io:commons-io:${commonsIoVersion}"
+            dependency "stax:stax-api:${staxVersion}"
+            dependency "com.itextpdf:itext-asian:${itextAsianVersion}"
+            dependency "com.lowagie:itext:${itextVersion}"
+            dependency "com.google.zxing:core:${zxingCoreVersion}"
+            dependency "org.apache.ant:ant:${apacheAntVersion}"
+            dependency "org.lionsoul:ip2region:${ip2regionVersion}"
+            dependency "com.belerweb:pinyin4j:${pingyin4jVersion}"
+            dependency "com.vdurmont:emoji-java:${emojiJavaVersion}"
+            dependency "org.freemarker:freemarker:${freemarkerVersion}"
+            dependency "com.yahoo.platform.yui:yuicompressor:${yuicompressorVersion}"
+            dependency "com.rnkrsoft.bopomofo4j:bopomofo4j:${bopomofo4jVersion}"
+            dependency "com.github.junrar:junrar:${junrarVersion}"
+            dependency "net.oschina.htmlsucker:HtmlSucker:${htmlsuckerVersion}"
+            dependency "org.jsoup:jsoup:${jsoupVersion}"
+            dependency "com.esotericsoftware:kryo:${kryoVersion}"
+            dependency "org.yaml:snakeyaml:${snakeyamlVersion}"
+            dependency "net.openhft:affinity:${affinityVersion}"
+            dependency "org.apache.commons:commons-exec:${commonsExecVersion}"
+            dependency "com.esotericsoftware:reflectasm:${reflectasmVersion}"
+            dependency "com.esotericsoftware:minlog:${minlogVersion}"
+            dependency "com.lmax:disruptor:${disruptorVersion}"
+            dependency "de.schlichtherle.truelicense:truelicense-core:${truelicenseVersion}"
+            dependency "javax.activation:activation:${activationVersion}"
+            dependency "redis.clients:jedis:${jedisVersion}"
+            dependency "com.redislabs:jrejson:${jrejsonVersion}"
+            dependency "com.redislabs:jredisearch:${jredisearchVersion}"
+            dependency "com.hankcs:hanlp:${hanlpVersion}"
+            dependency "net.sourceforge.tess4j:tess4j:${tess4jVersion}"
+            dependency "io.minio:minio:${minioVersion}"
+            dependency "org.eclipse.jgit:org.eclipse.jgit:${gjitVersion}"
+            dependency "javax.ws.rs:javax.ws.rs-api:${javaxWsRsApiVersion}"
+            dependency "javax.annotation:javax.annotation-api:${annotationApiVersion}"
+            dependency "com.baomidou:mybatis-plus-boot-starter:${mybatis_plus_boot_starter_version}"
+            dependency "com.baomidou:mybatis-plus-generator:${mybatis_plus_generator_version}"
+            dependency "com.baomidou:mybatis-plus-dts:${mybatis_plus_dts_version}"
+            dependency "org.apache.velocity:velocity-engine-core:${velocity_engine_core_version}"
+            dependency "mysql:mysql-connector-java:${mysqlVersion}"
+            dependency "com.csicit.thirdparty:oscar:${oscarVersion}"
+            dependency "com.oracle.database.jdbc:ojdbc6:${ojdbc6Version}"
+            dependency "com.github.pagehelper:pagehelper-spring-boot-starter:${pagehelperVersion}"
+            dependency "com.alibaba:druid:${druidVersion}"
+            dependency "cn.smallbun.screw:screw-core:${screwCoreVersion}"
+            dependency "org.mybatis.generator:mybatis-generator-core:${mybatisGeneratorVersion}"
+            dependency "p6spy:p6spy:${p6spyVersion}"
+            dependency "com.auth0:java-jwt:${jwtVersion}"
+            dependency "com.github.penggle:kaptcha:${kaptchaVersion}"
+            dependency "org.apache.commons:commons-dbcp2:${dbcp2Version}"
+            dependency "io.github.openfeign:feign-core:${feignVersion}"
+            dependency "io.github.openfeign:feign-jackson:${feignVersion}"
+            dependency "io.github.openfeign.form:feign-form:${feignFormVersion}"
+            dependency "org.springdoc:springdoc-openapi-starter-webmvc-ui:${springDocStarterVersion}"
+            dependency "jakarta.transaction:jakarta.transaction-api:${jakartaTransactionVersion}"
+            dependency "org.eweb4j:fel:${felVersion}"
+            dependency "xerces:xercesImpl:${xercesImplVersion}"
+            dependency "org.openjdk.jol:jol-core:${jolCoreVersion}"
+            dependency "jakarta.el:jakarta.el-api:${jakartaElAapiVersion}"
+            dependency "org.glassfish:jakarta.el:${jakartaElVersion}"
+            dependency "javax.validation:validation-api:${javaxValidationVersion}"
+            dependency "org.bouncycastle:bcprov-jdk15on:${bcprovVersion}"
+
+
+        }
+    }
+
+    test {
+        useJUnitPlatform()
+        jvmArgs('--add-opens', 'java.base/java.lang=ALL-UNNAMED')
+        jvmArgs('--add-opens', 'java.base/java.lang.reflect=ALL-UNNAMED')
+    }
+
+    tasks.withType(JavaExec) {
+        jvmArgs('--add-opens', 'java.base/java.lang=ALL-UNNAMED')
+        jvmArgs('--add-opens', 'java.base/java.lang.reflect=ALL-UNNAMED')
+//        jvmArgs('-Dfile.encoding=UTF-8')
+    }
+
+
+//    bootRun {
+//        jvmArgs('--add-opens', 'java.base/java.lang=ALL-UNNAMED')
+//        jvmArgs('--add-opens', 'java.base/java.lang.reflect=ALL-UNNAMED')
+//    }
+
+
+//    dependencyManagement {
+//        imports {
+//            //依赖管理
+//            mavenBom "io.spring.platform:platform-bom:${platformVersion}"
+//        }
+//    }
+    //这里一定得要。在多模块下，不然编译失败，因为不会把依赖模块给打包。
+    jar {
+        enabled = true
+    }
+    task sourcesJar(type: Jar) {
+        from sourceSets.main.allJava
+        archiveClassifier = 'sources'
+    }
+    task javadocJar(type: Jar) {
+        from javadoc
+        archiveClassifier = 'javadoc'
+    }
+    sourceSets.main.resources.srcDirs = ["src/main/java", "src/main/resources"]
+
+//    processResources {
+//        from('src/main/java') {
+//            include '**/*'
+//        }
+//    }
+
+    //上传至nexus
+//    publishing {
+//        publications {
+//            maven(MavenPublication) {
+//                groupId project.group
+//                artifactId project.name
+//                version project.version
+//                //若是war包，就写components.web,若是jar包，就写components.java
+//                from components.java
+////                artifact shadowJar
+//                artifact sourcesJar
+//            }
+//        }
+//        repositories {
+//            maven {
+//                allowInsecureProtocol = true
+//                if (project.version.endsWith('-SNAPSHOT')) {
+//                    url = "http://172.16.10.190:8081/repository/maven-snapshots/"
+//                } else {
+//                    url = "http://172.16.10.190:8081/repository/maven-releases/"
+//                }
+//
+//                credentials {
+//                    username 'admin'
+//                    password 'admin123'
+//                }
+//            }
+//        }
+//    }
+
+    publishing {
+        publications {
+            mavenJava(MavenPublication) {
+                groupId project.group
+                artifactId project.name
+                version project.version
+                //若是war包，就写components.web,若是jar包，就写components.java
+                from components.java
+//                artifact shadowJar
+                artifact sourcesJar
+                artifact javadocJar
+                pom {
+                    // 构件名称
+                    // 区别于artifactId，可以理解为artifactName
+                    name = 'newframe'
+//                    packaging = 'jar'
+                    // 构件描述
+                    description = 'newframe快速开发框架'
+                    // 构件主页
+                    url = 'https://gitee.com/quanwenz/newframe'
+                    // 许可证名称和地址
+                    licenses {
+                        license {
+                            name = 'The Apache License, Version 2.0'
+                            url = 'http://www.apache.org/licenses/LICENSE-2.0.txt'
+                        }
+                    }
+                    // 开发者信息
+                    developers {
+                        developer {
+                            name = 'iscas'
+                            email = 'quanwen@iscas.ac.cn'
+                        }
+                    }
+                    // 版本控制仓库地址
+                    scm {
+                        url = 'https://gitee.com/quanwenz/newframe'
+                        connection = 'scm:git:https://gitee.com/quanwenz/newframe.git'
+                        developerConnection = 'scm:git:https://gitee.com/quanwenz/newframe.git'
+                    }
+                }
+            }
+        }
+        // 定义发布到哪里
+        repositories {
+            maven {
+                name 'newframeRepository'
+//                url "https://oss.sonatype.org/service/local/staging/deploy/maven2"
+                url "https://s01.oss.sonatype.org/service/local/staging/deploy/maven2/"
+                credentials {
+                    // 这里就是之前在issues.sonatype.org注册的账号
+                    username = "${sonatypeUsername}"
+                    password = "${sonatypePassword}"
+                }
+            }
+        }
+    }
+
+    signing {
+        sign publishing.publications.mavenJava
+    }
+
+
+    javadoc {
+        // <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        // 防止本地打开中文乱码
+//        options.addStringOption("charset", "UTF-8")
+        options.encoding = "UTF-8"
+        failOnError = false
+    }
+}
+
+def bootJarModules() {
+    subprojects.findAll { (it.name == 'biz')/* || it.name.equals("rule-engine")*/ }
+}
+
+task bootApp {
+    dependsOn /*subprojects.clean,*/ bootJarModules().bootJar
+    doLast {
+        println "bootApp执行结束"
+    }
+}
+
+def publishModules() {
+    subprojects.findAll {
+        it.name == 'templet' || it.name == 'common-tools' ||
+                it.name == 'common-web-tools' || it.name == 'common-redis-tools' ||
+                it.name == 'common-rpc-tools' || it.name == 'common-k8s-tools' ||
+                it.name == 'biz-mp' || it.name == 'biz-base' ||
+                it.name == 'common-ssh-tools' || it.name == 'common-harbor-tools'
+    }
+}
+
+task publishNeedModules {
+    dependsOn /*subprojects.clean,*/ publishModules().publish
+    doLast {
+        println "publishNeedModules执行结束"
+    }
+}
+
+//将gradle缓存安装到maven仓库
+task cacheToLocalMavenRepository(type: Copy) {
+    from new File(gradle.gradleUserHomeDir, 'caches/modules-2/files-2.1')
+//    into repositories.mavenLocal().url
+    into "file:/E:/coding/maven/repo2"
+    eachFile {
+        List<String> parts = it.path.split('/')
+        it.path = (parts[0] + '/' + parts[1]).replace('.', '/') + '/' + parts[2] + '/' + parts[4]
+    }
+    includeEmptyDirs false
+}
+
+

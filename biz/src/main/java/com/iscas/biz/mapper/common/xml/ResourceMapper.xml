@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.iscas.biz.mapper.common.ResourceMapper">
+  <resultMap id="BaseResultMap" type="com.iscas.biz.domain.common.Resource">
+    <id column="resource_id" jdbcType="INTEGER" property="resourceId" />
+    <result column="resource_url" jdbcType="VARCHAR" property="resourceUrl" />
+    <result column="resource_create_time" jdbcType="TIMESTAMP" property="resourceCreateTime" />
+    <result column="resource_update_time" jdbcType="TIMESTAMP" property="resourceUpdateTime" />
+  </resultMap>
+  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.iscas.biz.domain.common.Resource">
+    <result column="resource_desc" jdbcType="LONGVARCHAR" property="resourceDesc" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    resource_id, resource_url, resource_create_time, resource_update_time
+  </sql>
+  <sql id="Blob_Column_List">
+    resource_desc
+  </sql>
+
+</mapper>

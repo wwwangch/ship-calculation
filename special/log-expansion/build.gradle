@@ -1,0 +1,100 @@
+apply plugin: 'com.github.johnrengelman.shadow'
+apply plugin: 'maven-publish'
+//apply plugin: 'maven'
+buildscript {
+    repositories {
+        maven {
+            url "${nexusUrl}"
+            allowInsecureProtocol = true
+        }
+        maven {
+            url "${aliyunUrl}"
+            allowInsecureProtocol = true
+        }
+        mavenCentral()
+        maven {url "https://plugins.gradle.org/m2/"}
+    }
+    dependencies {
+        classpath "com.github.jengelman.gradle.plugins:shadow:${shadowVersion}"
+    }
+}
+
+group 'com.iscas.log'
+version '0.0.2.RELEASE'
+
+sourceCompatibility = "${javaVersion}"
+//sourceCompatibility = 1.11
+targetCompatibility = "${javaVersion}"
+
+repositories {
+    maven {
+        url "${nexusUrl}"
+        allowInsecureProtocol = true
+    }
+    maven {
+        url "${aliyunUrl}"
+        allowInsecureProtocol = true
+    }
+    mavenCentral()
+}
+
+dependencies {
+//    testCompile group: 'junit', name: 'junit', version: '4.12'
+//    api group:"org.slf4j", name:"slf4j-api",version: "1.7.1"
+    api group:"ch.qos.logback", name:"logback-core",version: "${logbackVersion}"
+    api group:"ch.qos.logback", name:"logback-access",version: "${logbackVersion}"
+    api fileTree(dir:'libs',include:['*.jar'])
+}
+
+tasks.withType(JavaCompile) {
+    options.encoding = "UTF-8"
+}
+
+shadowJar {
+    archiveBaseName = 'log-expansion'
+    archiveClassifier = null
+    archiveVersion = null
+    dependencies {
+        include(dependency("ch.qos.logback:logback-core:${logbackVersion}"))
+        include(dependency("ch.qos.logback:logback-access:${logbackVersion}"))
+        include(dependency(files('libs/logback-classic-1.1.11.jar')))
+        include(dependency(files('libs/slf4j-api-1.7.9.jar')))
+    }
+}
+//打入本地maven库配置
+//install {
+//    repositories.mavenInstaller {
+//        pom.version="${project.version}"
+//        pom.artifactId="${project.archivesBaseName}"
+//        pom.groupId="${project.group}"
+//    }
+//}
+
+//上传至nexus
+publishing {
+    publications {
+        maven(MavenPublication) {
+            groupId project.group
+            artifactId project.name
+            version project.version
+            //若是war包，就写components.web,若是jar包，就写components.java
+//            from components.java
+            artifact shadowJar
+        }
+    }
+    repositories {
+        maven {
+
+            if (project.version.endsWith('-SNAPSHOT')) {
+                url = "http://172.16.10.190:8081/repository/maven-snapshots/"
+            } else {
+                url = "http://172.16.10.190:8081/repository/maven-releases/"
+            }
+
+            credentials {
+                username 'admin'
+                password 'admin123'
+            }
+        }
+    }
+}

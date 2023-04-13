@@ -1,0 +1,8 @@
+
+dependencies {
+    api "org.apache.rocketmq:rocketmq-client:${rocketmqClientVersion}"
+    api 'com.alibaba:fastjson'
+    api 'commons-beanutils:commons-beanutils'
+    implementation 'org.slf4j:slf4j-api'
+}
+

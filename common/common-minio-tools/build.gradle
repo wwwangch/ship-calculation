@@ -1,0 +1,6 @@
+
+dependencies {
+    api 'io.minio:minio'
+    api "com.squareup.okio:okio:${okioVersion}"
+}
+

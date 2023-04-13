@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8" />
+    <script type="text/javascript" src="CryptoJS/rollups/aes.js"></script>
+    <script type="text/javascript" src="CryptoJS/components/mode-ecb.js"></script>
+    <script type="text/javascript" src="CryptoJS/components/enc-base64.js"></script>
+    <script type="text/javascript" src="CryptoJS/components/core.js"></script>
+    <script>
+        var $1 = function(id) {
+            return document.getElementById(id);
+        };
+        var aesKey = "aaaaaaaaaaaaaaaa"; //加密码
+        var storeKey = "xxxx";
+        var iv = CryptoJS.enc.Utf8.parse('encryptionIntVec');
+
+        window.onload = function(){
+            getAesKey();
+        }
+        function getAesKey(){
+            var ajax = new XMLHttpRequest();
+            ajax.withCredentials = true;
+            ajax.open('get','http://127.0.0.1:7901/demo/prelogin' );
+            ajax.setRequestHeader("Content-Type","application/json;charset=utf-8");
+            ajax.setRequestHeader("Accept","application/json;charset=utf-8");
+            ajax.send();
+            ajax.onreadystatechange = function () {
+                if (ajax.readyState==4 &&ajax.status==200) {
+                    var json = JSON.parse(ajax.responseText);
+                    var resData = json.value;
+                    aesKey = resData.encryKey;
+                    storeKey = resData.key;
+                    console.log("加密码:" + aesKey);
+                }
+            }
+        }
+        /*aes加密*/
+        //function Encrypt(word, key){
+         //   var key = CryptoJS.enc.Utf8.parse(key);
+          //  var srcs = CryptoJS.enc.Utf8.parse(word);
+           // var encrypted = CryptoJS.AES.encrypt(srcs, key, {mode:CryptoJS.mode.ECB,padding: CryptoJS.pad.Pkcs7});
+            //return encrypted.toString();
+       // }
+        /*aes解密*/
+        //function Decrypt(word, key){
+       //     var key = CryptoJS.enc.Utf8.parse(key);
+         //   var decrypt = CryptoJS.AES.decrypt(word, key, {mode:CryptoJS.mode.ECB,padding: CryptoJS.pad.Pkcs7});
+          //  return CryptoJS.enc.Utf8.stringify(decrypt).toString();
+        //}
+
+         /*aes加密*/
+        function Encrypt(word, key){
+            var key = CryptoJS.enc.Utf8.parse(key);
+            var srcs = CryptoJS.enc.Utf8.parse(word);
+            var encrypted = CryptoJS.AES.encrypt(srcs, key, {iv: iv, mode:CryptoJS.mode.CBC,padding: CryptoJS.pad.Pkcs7});
+            return encrypted.toString();
+        }
+        /*aes解密*/
+        function Decrypt(word, key){
+            var key = CryptoJS.enc.Utf8.parse(key);
+            var decrypt = CryptoJS.AES.decrypt(word, key, {iv: iv, mode:CryptoJS.mode.CBC,padding: CryptoJS.pad.Pkcs7});
+            return CryptoJS.enc.Utf8.stringify(decrypt).toString();
+        }
+
+        function tosubmit(){
+            var username = $1("user").value;
+            var password = $1("pwd").value;
+            username = Encrypt(username, aesKey);
+            password = Encrypt(password, aesKey);
+            var xhr = new XMLHttpRequest();
+            xhr.withCredentials = true;
+            xhr.open('post', 'http://localhost:7901/demo/login');
+            xhr.setRequestHeader("Content-type", "application/json;charset=utf-8");
+            //发送请求
+            var data = {
+                "username": username,
+                "password": password,
+                "key": storeKey
+            }
+            xhr.send(JSON.stringify(data));
+            xhr.onreadystatechange = function () {
+                if (xhr.readyState == 4 && xhr.status == 200) {
+                    var json = JSON.parse(xhr.responseText);
+                    if(json.status != 200){
+                        console.log(json.message);
+                        aesKey = json.value;
+                    }else{
+                        console.log(json.data);
+                    }
+                }else{
+                    // var json = JSON.parse(xhr.responseText);
+                    console.log(xhr.responseText);
+                }
+            };
+        }
+    </script>
+    <title>登录</title>
+</head>
+<body>
+用户名:<input type="text" value="" id="user"/> <br/>
+密码:<input type="text" id="pwd" /><br/>
+<!--验证码:<img src="http://localhost:7901/demo/verification/code" onclick="this.src=this.src+'?m='+Math.random();"/><br/>-->
+<input type="button" value="提交" onclick="tosubmit();"/>
+</body>
+</html>

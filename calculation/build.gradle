@@ -1,0 +1,49 @@
+apply plugin: 'war'
+
+configurations {
+    api.exclude group: 'org.springframework.boot', module: 'spring-boot-starter-tomcat'
+    api.exclude group: 'org.apache.tomcat'
+    api.exclude group: 'org.apache.tomcat.embed'
+    api.exclude group: 'org.springframework.boot', module: 'spring-boot-starter-logging'
+//    api.exclude group: 'ch.qos.logback', module: 'logback-access'
+    api.exclude group: 'ch.qos.logback', module: 'logback-classic'
+//    api.exclude group: 'ch.qos.logback', module: 'logback-core'
+}
+
+
+dependencies {
+    testImplementation(platform("org.junit:junit-bom:5.9.1"))
+    testImplementation("org.junit.jupiter:junit-jupiter")
+    api project(":biz")
+}
+
+// 打胖包配置
+bootJar {
+    duplicatesStrategy = DuplicatesStrategy.EXCLUDE
+    manifest {
+        attributes 'Start-Class': 'com.iscas.biz.calculation.CalculationApp'
+    }
+//    launchScript()
+}
+
+bootWar {
+    duplicatesStrategy = DuplicatesStrategy.EXCLUDE
+    manifest {
+        attributes 'Start-Class': 'com.iscas.biz.calculation.CalculationApp'
+    }
+    rootSpec.exclude("**/undertow-*.jar")
+//    launchScript()
+}
+
+bootRun {
+    mainClass = 'com.iscas.biz.calculation.CalculationApp'
+//    jvmArgs('-Dfile.encoding=UTF-8')
+}
+
+tasks.test {
+    useJUnitPlatform()
+}
+
+task prepareKotlinBuildScriptModel {
+
+}

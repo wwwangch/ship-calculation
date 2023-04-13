@@ -1,0 +1,179 @@
+log-expansion在springboot的MAVEN项目中配置方式说明：
+
+在log-example中我配置了例子，可以按照这个方式配置
+
+*****自定义日志记录方式已经采用了异步（默认线程池2个线程）+队列的方式，所以不太用担心我jar包内做的一些额外处理以及要存库的时间消耗问题
+
+
+1、将jar包打入本地MAVEN库
+    将Dfile后面换成log-expansion-0.0.1.SNAPSHOT的路径
+    mvn install:install-file -Dfile=H:\ideaProjects\southsea\south-sea\log-expansion\build\libs\log-expansion.jar -DgroupId=com.iscas -DartifactId=log-expansion -Dversion=0.0.1-SNAPSHOT -Dpackaging=jar
+
+2、POM中引入springboot-starter-web的依赖中去掉slf4j和logback的依赖
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+            <exclusions>
+                <exclusion>
+                    <groupId>ch.qos.logback</groupId>
+                    <artifactId>logback-access</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>ch.qos.logback</groupId>
+                    <artifactId>logback-classic</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>ch.qos.logback</groupId>
+                    <artifactId>logback-core</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>org.slf4j</groupId>
+                    <artifactId>slf4j-api</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+
+3、引入第一步打的Jar 以及其他依赖（注册时用到了对象的拷贝，使用了第三方依赖）
+     <dependency>
+        <groupId>com.iscas</groupId>
+        <artifactId>log-expansion</artifactId>
+        <version>0.0.1-SNAPSHOT</version>
+     </dependency>
+     <dependency>
+        <groupId>cn.hutool</groupId>
+        <artifactId>hutool-all</artifactId>
+        <version>4.5.3</version>
+     </dependency>
+     <dependency>
+         <groupId>org.projectlombok</groupId>
+         <artifactId>lombok</artifactId>
+         <version>1.18.6</version>
+         <scope>provided</scope>
+     </dependency>
+
+4、自定义监听，注入自定义的日志方式.
+    详见com.iscas.log.example.log.register.MyApplicationBeforeStartListener
+
+        //注册第一个自定义方式，添加一个模块名参数
+        LogRegister.addStyle(new LogParam("模块名", String.class));
+        //注册第二个自定义方式，添加一个模块名参数,以及一个异常参数
+        LogRegister.addStyle(new LogParam("模块名", String.class),
+                            new LogParam("异常", Throwable.class));
+        InitConfig.loadFromResource();
+        如上，注入了两种自定义记录日志方式，第一种添加了一个模块名参数；
+        第二种添加了一个异常参数
+        自定义参数类型支持String, Float, Double,Integer,Throwable,其中Throwable只能有一个
+
+        InitConfig.loadFromResource(),表示读取logback配置，可以指定文件名，默认读取resources下的log-config.xml
+
+5、自定义日志实体
+    详见com.iscas.log.example.register.MyLogEntity
+    这里的日志实体就是最终要保存到数据库的数据结构，LogBaseEntity中已经定义了能够自动获取到的数据，
+    比如日志级别、包、类名等
+    @Data
+    public class MyLogEntity extends LogBaseEntity {
+        private String modelName;
+        private String appName;
+    }
+    如上，这里与第四部自定义的参数配合，我添加了一个modelName，异常的信息已经定义在LogBaseEntity里了不用特殊定义，
+    appName与配置log-config.xml中的配置结合，后面会说明。
+
+6、自定义配置类
+   这里定义了从log-config.xml配置文件获取的属性
+    @Data
+    public class CustomConfig {
+        private String appName;
+    }
+    比如这里的appName需要在log-config.xml有对应的appName，如下：
+    <appender name="dbinfo" class="com.iscas.biz.log.register.MyCustomAppender">
+            <customConfig>
+                <appName>南海专项-后台</appName>
+            </customConfig>
+    </appender>
+
+7、自定义一个Appender，注入CustomConfig,并重写saveToDb()方法，将日志信息持久化到想要存储的库中
+    这里的Appender与log-config.xml中dbinfo标签内的class对应
+
+    @Data
+    public class MyCustomAppender extends CustomAppender {
+        private CustomConfig customConfig;
+        @Override
+        public void saveToDb() {
+            try {
+                LogBaseEntity logBaseEntity = super.getBaseInfo();
+                MyLogEntity myLogEntity = new MyLogEntity();
+                //拷贝logBaseEntity 到自定义的Log对象
+                BeanUtil.copyProperties(logBaseEntity, myLogEntity);
+                String appName = customConfig.getAppName();
+                myLogEntity.setAppName(appName);
+                Map params = myLogEntity.getParams();
+                String modelName = (String) params.get("模块名");
+                myLogEntity.setModelName(modelName);
+
+                //TODO 存储MyLogEntity
+
+
+            } catch (InterruptedException var2) {
+                var2.printStackTrace();
+            }
+        }
+    }
+    如上，saveToDb()的大致逻辑是：
+        1）调用super.getBaseInfo()注入基础数据，
+        2）将基础数据拷贝至第5步自定义的实体MyLogEntity
+        3）设置从log-config.xml配置文件读取的全局参数，如appName
+        4) 获取除异常外的第4步自定义的属性并注入MyLogEntity
+        5) 存入数据库，获取了MyLogEntity后就可以把这条记录用自己想要的方式存储了
+
+8、log-config.xml配置
+    log-config.xml的配置除dbinfo外，与logback的配置完全一致，可以查阅相关资料，这里我只是配置了一个例子，可以按照自己的要求配置文件存储策略等
+    tips:
+        可以将存储数据的信息配置在dbinfo的customConfig标签中
+
+9、注册监听
+   @SpringBootApplication
+   public class com.iscas.sso.mix.frontend.samples.App extends SpringBootServletInitializer {
+
+       //Jar包运行
+       public static void main(String[] args) {
+           SpringApplication springApplication = new SpringApplication(com.iscas.sso.mix.frontend.samples.App.class);
+           springApplication.addListeners(new MyApplicationBeforeStartListener());
+           springApplication.run(args);
+       }
+
+       //WAR包运行
+       @Override
+       protected SpringApplicationBuilder configure(SpringApplicationBuilder builder) {
+           builder.application().addListeners(new MyApplicationBeforeStartListener());
+           return builder.sources(com.iscas.sso.mix.frontend.samples.App.class);
+       }
+   }
+
+10、测试使用
+    log的使用方法与logback(slf4j)的使用方式一致，只是在其基础上做扩展
+    如第三步注入的两种日志记录方式，我们可以使用log.debug[或info、warn、error](msg,modelName);log.debug[或info、warn、error](msg,modelName,exception);
+    没有对trace做扩展，trace无法使用
+
+    由于没找到方式在单元测试注入监听器，我写了一个service，在controller调用
+    @Service
+    @Slf4j
+    public class LogTestService {
+        public void useLog() {
+            Exception exception = new Exception("这是一个异常测试啦啦啦啦啦啦啦");
+            String modelName = "算法模块";
+            log.debug("这是debug的描述信息啦啦啦", modelName);
+            log.debug("这是debug的描述信息啦啦啦", modelName, exception);
+
+            log.info("这是info的描述信息啦啦啦", modelName);
+            log.info("这是info的描述信息啦啦啦", modelName, exception);
+
+            log.warn("这是warn的描述信息啦啦啦", modelName);
+            log.warn("这是warn的描述信息啦啦啦", modelName, exception);
+
+            log.error("这是error的描述信息啦啦啦", modelName);
+            log.error("这是error的描述信息啦啦啦", modelName, exception);
+
+        }
+    }
+
+    调用localhost:8080/test，在MyCustomAppender内打断点发现可以获取到对应信息，文件或控制台也能输出对应的信息。

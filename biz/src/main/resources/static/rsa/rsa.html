@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8" />
+    <!--引入jsencrypt.js-->
+    <script src="https://cdn.bootcss.com/jsencrypt/3.0.0-beta.1/jsencrypt.js"></script>
+    <script>
+
+
+        //公钥
+        var PUBLIC_KEY = 'MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQCu13zNU/bODBZOM7veQxDde9kn\
+        wDljH7D6Wp2Ab5uJdeCwt2/9DDzmyk8CyLsMrNSTSvN7VdpGZMJWOHwu06hVv9uI\
+        KvCB9x5EyYpDx+2z4cqg2CNiAJIEcvx4VV9AT+/6TGQvujMX5wgPqlYnO0as6Wch\
+        MVUbwmKtyLcSoFKhGQIDAQAB';
+        //私钥
+        var PRIVATE_KEY = 'MIICeAIBADANBgkqhkiG9w0BAQEFAASCAmIwggJeAgEAAoGBAK7XfM1T9s4MFk4z' +
+            'u95DEN172SfAOWMfsPpanYBvm4l14LC3b/0MPObKTwLIuwys1JNK83tV2kZkwlY4' +
+            'fC7TqFW/24gq8IH3HkTJikPH7bPhyqDYI2IAkgRy/HhVX0BP7/pMZC+6MxfnCA+q' +
+            'Vic7RqzpZyExVRvCYq3ItxKgUqEZAgMBAAECgYEAmOztwgIQuwQjdl8VkUADvlWX' +
+            'CIe/Kg4ME82yOSZlWoP59Vdc4m4TzqFhHkRIJrv8aqCB+nyLIEr9F8DsDWEft/4/' +
+            'BgeTGIC2H6rCTEUOq3kI59Zh9U2adW6d778QPmH8OEfa+/UF4uhIau5oHCPqE1sW' +
+            'xRZqGzk3J2xm2SiNp4kCQQDeNKC2SjaRA2ek9NXoNYdsqXj7L+67FO3pbvFI36Zo' +
+            'n+NSY0c9qUqTKT6S9ABaclNvDSr4gByfkfGpmKPc24hnAkEAyW7KxbhmOz8U1sJl' +
+            'r6bzTZFov5DMOies9xkCDAHZnU79a/qoFjSAdUUneBFQmXiF3WFCKl2j08P32hB7' +
+            'nESafwJBAML55vNNV2gTVsSV2YSyQ6yDYJb4TkB2cvRb1vic1oYDlhJa7s4aWEec' +
+            '7z0/QXgbzT4qjcQTlgomo6ivOUm4kI0CQQDElr2NdGdJ4UncQ0Nsx9pi1MxPUekP' +
+            'xNMZIa4Ou+t/jKzmKm7LpRfN290mYHeyIJ89LQOfR15xeau2himtnILPAkBUyZPv' +
+            'SglOUk8WK/ozTy0RsQyqvEt2TJ1CnqONp20r26RhyOxiTNYl4dVl0Mt6i5szzwsu' +
+            'uEcvVHYzAesj7OdQ';
+        function getResponse() {
+            var ajax = new XMLHttpRequest();
+            ajax.open('get','http://192.168.100.88:7601/demo/rsaencryt/encryption' );
+            ajax.setRequestHeader("dataType","json");
+            ajax.send();
+            ajax.onreadystatechange = function () {
+                if (ajax.readyState==4 &&ajax.status==200) {
+                    var responseText = ajax.responseText;
+                    //使用私钥解密
+                    var decrypt = new JSEncrypt();
+                    //decrypt.setPublicKey('-----BEGIN PUBLIC KEY-----' + PUBLIC_KEY + '-----END PUBLIC KEY-----');
+                    decrypt.setPrivateKey('-----BEGIN RSA PRIVATE KEY-----'+PRIVATE_KEY+'-----END RSA PRIVATE KEY-----');
+                    var uncrypted = decrypt.decrypt(responseText);
+                    console.log(uncrypted);
+                }
+            }
+        }
+        function sendRequest() {
+            var ajax = new XMLHttpRequest();
+            ajax.open('post','http://192.168.100.88:7601/demo/rsaencryt/decryption' );
+            ajax.setRequestHeader("dataType","json");
+            ajax.setRequestHeader("Content-type","application/json;charset=UTF-8");//可以发送json格式字符串
+            var data={
+                "username":"汤姆",
+                "password":"123"
+            };
+            var stringData=JSON.stringify(data);
+            // stringData = "1";
+            var encrypt = new JSEncrypt();
+            // encrypt.setPrivateKey('-----BEGIN RSA PRIVATE KEY-----'+PRIVATE_KEY+'-----END RSA PRIVATE KEY-----');
+            encrypt.setPublicKey('-----BEGIN PUBLIC KEY-----' + PUBLIC_KEY + '-----END PUBLIC KEY-----');
+            var encrypted = encrypt.encrypt(stringData);
+            console.log(encrypted);
+            ajax.send(encrypted);
+            ajax.onreadystatechange = function () {
+                if (ajax.readyState==4 &&ajax.status==200) {
+                    var responseText = ajax.responseText;
+                    //使用私钥解密
+                    var decrypt = new JSEncrypt();
+                    //decrypt.setPublicKey('-----BEGIN PUBLIC KEY-----' + PUBLIC_KEY + '-----END PUBLIC KEY-----');
+                    decrypt.setPrivateKey('-----BEGIN RSA PRIVATE KEY-----'+PRIVATE_KEY+'-----END RSA PRIVATE KEY-----');
+                    var uncrypted = decrypt.decrypt(responseText);
+                    console.log(uncrypted);
+                }
+            }
+        }
+
+        function norsa() {
+            var ajax = new XMLHttpRequest();
+            ajax.open('post','http://192.168.100.88:7601/demo/rsaencryt/norsa' );
+            ajax.setRequestHeader("dataType","json");
+            ajax.setRequestHeader("Content-type","application/json;charset=UTF-8");//可以发送json格式字符串
+            var data={
+                "username":"汤姆",
+                "password":"123"
+            };
+            var stringData=JSON.stringify(data);
+            ajax.send(stringData);
+            ajax.onreadystatechange = function () {
+                if (ajax.readyState==4 &&ajax.status==200) {
+                    var responseText = ajax.responseText;
+                    console.log(responseText);
+                }
+            }
+        }
+
+    </script>
+    <title>登录</title>
+</head>
+<body>
+获取返回值并解密：<input type="button" value="点我" onclick="getResponse();"/><br/>
+加密请求参数：<input type="button" value="点我" onclick="sendRequest();"/><br/>
+不使用加密：<input type="button" value="点我" onclick="norsa();"/>
+</body>
+</html>

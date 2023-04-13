@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.iscas.biz.mapper.common.MenuMapper">
+    <resultMap id="BaseResultMap" type="com.iscas.biz.domain.common.Menu">
+        <id column="menu_id" jdbcType="INTEGER" property="menuId"/>
+        <result column="menu_pid" jdbcType="INTEGER" property="menuPid"/>
+        <result column="menu_page" jdbcType="VARCHAR" property="menuPage"/>
+        <result column="menu_create_time" jdbcType="TIMESTAMP" property="menuCreateTime"/>
+        <result column="menu_update_time" jdbcType="TIMESTAMP" property="menuUpdateTime"/>
+        <result column="menu_name" jdbcType="VARCHAR" property="menuName"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+        menu_id, menu_pid, menu_page, menu_create_time, menu_update_time, menu_name
+    </sql>
+    <select id="selectMenuOpration" resultType="java.util.Map">
+        SELECT t1.menu_id, t2.op_id, t3.op_name FROM menu t1, menu_opration t2, opration t3 WHERE t1.menu_id =
+        t2.menu_id AND t2.op_id = t3.op_id
+    </select>
+    <select id="selectMenuRole" resultType="java.util.Map">
+        SELECT t1.role_id, t3.* FROM role t1, role_menu t2, menu t3 where t1.role_id = t2.role_id AND t2.menu_id =
+        t3.menu_id
+    </select>
+</mapper>

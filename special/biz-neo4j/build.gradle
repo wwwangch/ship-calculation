@@ -1,0 +1,9 @@
+
+
+dependencies {
+    api project(":biz-base")
+    testImplementation group: 'junit', name: 'junit', version: "${junitVersion}"
+    api group: 'org.springframework.boot', name: 'spring-boot-starter-data-neo4j'
+    api group: 'com.alibaba', name: 'fastjson', version: "${fastJsonVersion}"
+
+}

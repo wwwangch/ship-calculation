@@ -1,0 +1,32 @@
+
+apply plugin: "com.google.protobuf"
+
+protobuf {
+    protoc {
+        artifact = "com.google.protobuf:protoc:${protocVersion}"
+    }
+    plugins {
+        grpc {
+            artifact = "io.grpc:protoc-gen-grpc-java:${protocGenGrpcJavaVersion}"
+        }
+    }
+
+//    generatedFilesBaseDir = "src"
+    generateProtoTasks.generatedFilesBaseDir = "src"
+    generateProtoTasks {
+        all()*.plugins {
+            grpc {
+                setOutputSubDir 'java'
+//                outputSubDir = "java"
+            }
+        }
+    }
+
+}
+
+dependencies {
+    api "com.alipay.sofa:sofa-rpc-all:${sofaVersion}"
+    api "io.grpc:grpc-all:${grpcVersion}"
+    api "org.apache.thrift:libthrift:${libthriftVersion}"
+    api "com.squareup.okio:okio:${okioVersion}"
+}

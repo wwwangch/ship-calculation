@@ -1,0 +1,9 @@
+dependencies {
+
+    api ("io.etcd:jetcd-core:${jetcdVersion}"){
+        exclude module: "netty-handler"
+    }
+
+    api "io.netty:netty-tcnative-boringssl-static:${nettyBoringSslVersion}"
+    api "io.netty:netty-handler:${nettyHandlerVersion}"
+}

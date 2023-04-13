@@ -1,0 +1,11 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>这是一个测试的模板</title>
+</head>
+<body>
+您的账号存在异常，请点击下面链接进行安全验证<br/>
+<a href="#" th:href="@{http://www.lalalala.com/{userid}(userid=${userid})}">安全验证</a>
+</body>
+</html>

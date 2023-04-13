@@ -1,0 +1,6 @@
+
+dependencies {
+    api 'org.ehcache:ehcache'
+    implementation 'javax.xml.bind:jaxb-api'
+    implementation 'javax.xml:jaxb-impl'
+}

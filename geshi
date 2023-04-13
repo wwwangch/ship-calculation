@@ -1,0 +1,17 @@
+方法注释：
+/**
+ *
+ * @since jdk1.8
+ * @date $date$
+ * @param $param$
+ * @return $return$
+ */
+
+
+类注释：
+ /**
+ *
+ * @version 1.0
+ * @author zhuquanwen
+ * @date ${DATE} ${TIME}
+ */

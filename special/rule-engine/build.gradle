@@ -1,0 +1,8 @@
+
+dependencies {
+    api project(":common:common-tools")
+    api 'com.googlecode.aviator:aviator'
+    api 'com.fasterxml.jackson.core:jackson-core'
+    api 'com.fasterxml.jackson.core:jackson-databind'
+    api "org.slf4j:slf4j-api:${slf4jApiVersion}"
+}

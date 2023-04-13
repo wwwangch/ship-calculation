@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<datasource>
+    <url>aaaa</url>
+    <username>root</username>
+    <test prefix="xxx">bbbb</test>
+</datasource>

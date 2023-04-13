@@ -1,0 +1,9 @@
+spring:
+  boot:
+    admin:
+      ui:
+        title: SpringBootAdmin-Server
+  application:
+    name: admin-server
+server:
+  port: 8769

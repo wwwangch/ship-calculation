@@ -1,0 +1,101 @@
+
+apply plugin: 'war'
+
+
+configurations {
+
+    api.exclude group: 'org.springframework.boot', module: 'spring-boot-starter-logging'
+//    api.exclude group: 'ch.qos.logback', module: 'logback-access'
+    api.exclude group: 'ch.qos.logback', module: 'logback-classic'
+//    api.exclude group: 'ch.qos.logback', module: 'logback-core'
+}
+
+
+dependencies {
+    api project (":common:common-tools")
+    api project (":common:common-web-tools")
+    api project (":common:common-redis-tools")
+    api project (":templet")
+    api fileTree(dir:'libs',include:['*.jar'])
+    testImplementation "org.springframework.boot:spring-boot-starter-test"
+    api ("org.springframework.boot:spring-boot-starter-web")
+            {
+                exclude group: "org.springframework.boot", module: "spring-boot-starter-logging"
+            }
+    api "org.springframework.boot:spring-boot-starter-undertow"
+    api "org.springframework.boot:spring-boot-starter-aop"
+    api "org.springframework.boot:spring-boot-starter-cache"
+    api "org.springframework.boot:spring-boot-starter-websocket"
+    api 'org.springframework.boot:spring-boot-starter-log4j2'
+//    api "org.springframework.boot:spring-boot-starter-mail"
+    api "org.springframework.boot:spring-boot-starter-thymeleaf"
+    api "org.springframework:spring-tx"
+    api 'org.springframework.boot:spring-boot-starter-validation'
+    api "com.squareup.okhttp3:okhttp"
+    api "com.github.ben-manes.caffeine:caffeine"
+    api "com.google.code.gson:gson"
+    api "com.auth0:java-jwt"
+    api "org.jsoup:jsoup"
+    api "cn.shuibo:rsa-encrypt-body-spring-boot:${rsaEncryVersion}"
+    api "de.codecentric:spring-boot-admin-starter-client:${bootAdminVersion}"
+    api "com.github.penggle:kaptcha"
+    api "org.springframework.boot:spring-boot-starter-data-redis"
+    api "org.springframework.boot:spring-boot-starter-amqp"
+    api "org.springframework.boot:spring-boot-starter-reactor-netty"
+//    api "com.github.oshi:oshi-core:5.3.7"
+    api "com.github.oshi:oshi-core:${oshiCoreVersion}"
+    api "com.github.jsqlparser:jsqlparser"
+    api "org.apache.thrift:libthrift:${libthriftVersion}"
+    api "com.corundumstudio.socketio:netty-socketio:${nettySocketioVersion}"
+    api "org.apache.shardingsphere.elasticjob:elasticjob-lite-core:${elasticJobVersionV3}"
+    api "com.github.ulisesbocchio:jasypt-spring-boot-starter:${jasyptStarterVersion}"
+    api "mysql:mysql-connector-java"
+    api "org.apache.commons:commons-dbcp2"
+    api "io.github.openfeign:feign-core"
+    api "io.github.openfeign:feign-jackson"
+    api "io.github.openfeign.form:feign-form"
+    api "org.springdoc:springdoc-openapi-starter-webmvc-ui"
+    api "org.springframework.retry:spring-retry"
+    api "net.javacrumbs.shedlock:shedlock-spring:${shedlockVersion}"
+    api "net.javacrumbs.shedlock:shedlock-provider-jdbc-template:${shedlockVersion}"
+    api "jakarta.el:jakarta.el-api"
+    api "org.glassfish:jakarta.el"
+    api "javax.validation:validation-api"
+    api "com.github.scribejava:scribejava-apis:${scribejavaVersion}"
+    api "org.springframework.boot:spring-boot-configuration-processor"
+    api "io.micrometer:micrometer-registry-prometheus"
+    api ("org.springframework.boot:spring-boot-starter-actuator")
+            {
+                exclude group: 'org.springframework.boot', module: 'spring-boot-starter-logging'
+            }
+    api "io.github.resilience4j:resilience4j-spring-boot2:${resilience4jSpringBoot2Version}"
+    api "jakarta.transaction:jakarta.transaction-api"
+    api group: 'com.alibaba', name: 'transmittable-thread-local', version: '2.14.2'
+
+//    api "com.github.kuhn-he:elastic-job-lite-spring-boot-starter:${elasticJobVersion}"
+    /**knife4j与springdoc整合后有些参数显示不出来，兼容有些问题，暂时先去掉*/
+//    api "com.github.xiaoymin:knife4j-springdoc-ui:3.0.3"
+//    //使用mongo锁
+//    api "net.javacrumbs.shedlock:shedlock-provider-mongo:${shedlockVersion}"
+//    //使用zookeeper锁
+//    api "net.javacrumbs.shedlock:shedlock-provider-zookeeper-curator:"${shedlockVersion}"
+//    //使用redis
+//    api "net.javacrumbs.shedlock:shedlock-provider-redis-jedis:${shedlockVersion}"
+//    api "org.jasig.cas.client:cas-client-core:${casClientVersion}"
+    //retrofit 当前没有能与springboot3.0匹配的版本，先注释掉
+//    api "com.github.lianjiatech:retrofit-spring-boot-starter:${retrofitVersion}"
+//    annotationProcessor 'org.springframework:spring-context-indexer'
+    //    api "com.iscas.log:log-expansion: ${logExpansionVersion}"
+    //    api "org.springframework.boot:spring-boot-starter-amqp"
+//    api "org.springframework.cloud:spring-cloud-starter-config:${springCloudConfigVersion}"
+}
+
+//打入本地maven库配置
+//install {
+//    repositories.mavenInstaller {
+//        pom.version="${project.version}"
+//        pom.artifactId="${project.archivesBaseName}"
+//        pom.groupId="${project.group}"
+//    }
+//}
+

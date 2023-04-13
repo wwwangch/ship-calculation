@@ -1,0 +1,60 @@
+
+dependencies {
+    api 'commons-codec:commons-codec'
+    api 'org.ostermiller:utils'
+    api 'org.apache.commons:commons-lang3'
+    api "dom4j:dom4j:${dom4jVersion}"
+    api "org.apache.poi:poi:${poiVersion}"
+    api "org.apache.poi:poi-ooxml:${poiOoxmlVersion}"
+    api 'org.apache.xmlbeans:xmlbeans'
+    api 'commons-io:commons-io'
+    api 'stax:stax-api'
+    api 'commons-beanutils:commons-beanutils'
+    api 'com.itextpdf:itext-asian'
+    api 'com.lowagie:itext'
+    api 'com.google.zxing:core'
+    api fileTree(dir: 'libs', include: '*.jar')
+    api 'org.apache.ant:ant'
+    api 'org.lionsoul:ip2region'
+    api "cn.hutool:hutool-all"
+    api "cglib:cglib"
+    api "com.google.guava:guava:${guavaVersion}"
+    api 'com.belerweb:pinyin4j'
+    api 'com.vdurmont:emoji-java'
+    api "com.squareup.okio:okio:${okioVersion}"
+    api 'org.freemarker:freemarker'
+    api 'com.yahoo.platform.yui:yuicompressor'
+    api 'com.rnkrsoft.bopomofo4j:bopomofo4j'
+    api 'com.github.junrar:junrar'
+    api ("net.oschina.htmlsucker:HtmlSucker") {
+        exclude group:"org.jsoup", module:"jsoup"
+    }
+    api "org.jsoup:jsoup"
+    api "com.alibaba:easyexcel:${easyexcelVersion}"
+    api 'com.esotericsoftware:kryo'
+    api "org.yaml:snakeyaml"
+    api 'org.javatuples:javatuples'
+    api 'net.openhft:affinity'
+    api 'org.apache.commons:commons-exec'
+    api "org.mapstruct:mapstruct:${mapStructVersion}"
+    annotationProcessor "org.mapstruct:mapstruct-processor:${mapStructVersion}"
+    testAnnotationProcessor "org.mapstruct:mapstruct-processor:${mapStructVersion}"
+    api "org.mapstruct:mapstruct-jdk8:${mapStructVersion}"
+    testImplementation 'org.slf4j:slf4j-api'
+    implementation "ch.qos.logback:logback-core:${logbackVersion}"
+    implementation "ch.qos.logback:logback-classic:${logbackVersion}"
+    api 'com.esotericsoftware:reflectasm'
+    api 'com.esotericsoftware:minlog'
+    api "com.deepoove:poi-tl:${poiTlVersion}"
+    api "com.github.jsqlparser:jsqlparser"
+    api "com.lmax:disruptor"
+    api 'de.schlichtherle.truelicense:truelicense-core'
+    api "javax.activation:activation:${activationVersion}"
+    api 'javax.xml:jaxb-impl'
+    api 'javax.xml.bind:jaxb-api'
+    api "org.bouncycastle:bcprov-jdk15on"
+//    api "com.github.liaochong:myexcel:${myexcelVersion}"
+//    api "net.sourceforge.javacsv:javacsv:${javacsvVersion}"
+//    api "e-iceblue:spire.doc.free:${spireDocFreeVersion}"
+//    api 'e-iceblue:spire.doc:3.11.6'
+}

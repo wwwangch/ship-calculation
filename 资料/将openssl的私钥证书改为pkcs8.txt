@@ -1,0 +1,1 @@
+openssl pkcs8 -topk8 -inform PEM -outform DER -in rsa-private-key.pem -out pkcs8_private.key -nocrypt

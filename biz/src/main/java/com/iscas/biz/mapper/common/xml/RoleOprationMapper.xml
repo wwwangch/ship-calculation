@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.iscas.biz.mapper.common.RoleOprationMapper">
+
+    <insert id="insertBatch" parameterType="java.util.List">
+        insert into role_opration (role_id, op_id) values
+        <foreach collection="roleOprationKeys" item="roleOpration" separator=",">
+            (#{roleOpration.roleId,jdbcType=INTEGER}, #{roleOpration.opId,jdbcType=INTEGER})
+        </foreach>
+    </insert>
+</mapper>

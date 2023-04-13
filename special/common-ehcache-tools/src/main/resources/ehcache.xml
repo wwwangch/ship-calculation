@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance'
+        xmlns='http://www.ehcache.org/v3'
+        xsi:schemaLocation="http://www.ehcache.org/v3 http://www.ehcache.org/schema/ehcache-core.xsd">
+
+    <!--配置硬盘持久化目录-->
+    <persistence directory="d:/tmp/ehcache" />
+
+    <!--缓存配置方式1：直接配置一个cache节点-->
+    <cache alias="myCache1">
+        <!--储存条目索引和储存值类型配置-->
+        <key-type>java.lang.String</key-type>      <!--缓存条目索引-->
+        <value-type>java.lang.String</value-type>  <!--缓存条目类型-->
+        <!--储存层配置-->
+        <resources>
+            <heap unit="entries">2000</heap>       <!--配置堆储存-->
+            <offheap unit="MB">20</offheap>        <!--配置堆外储存-->
+        </resources>
+    </cache>
+
+    <!--缓存配置方式2：通过缓存模板配置cache节点-->
+    <!--配置一个缓存模板-->
+    <cache-template name="defaultCache">
+        <key-type>java.lang.String</key-type>
+        <value-type>java.lang.String</value-type>
+        <!--缓存到期配置-->
+        <expiry>
+            <tti unit="seconds">20</tti>   <!--使用 TTI(time to idle) 策略-->
+        </expiry>
+        <!--储存层配置-->
+        <resources>
+            <heap unit="entries">2000</heap>       <!--配置堆储存-->
+            <offheap unit="MB">20</offheap>        <!--配置堆外储存-->
+            <disk unit="MB" persistent="true">500</disk>   <!--配置磁盘持久化储存-->
+        </resources>
+    </cache-template>
+    <!--使用缓存模板配置缓存-->
+    <cache alias="myCache2" uses-template="defaultCache" />
+    <cache alias="myCache3" uses-template="defaultCache">
+        <!--缓存到期配置-->
+        <expiry>
+            <tti unit="seconds">10</tti>   <!--使用 TTI(time to idle) 策略， 缓存创建以后，最后一次访问缓存的日期至失效之时的时间间隔10秒；-->
+        </expiry>
+    </cache>
+
+    <cache alias="myCache4" uses-template="defaultCache">
+        <!--缓存到期配置-->
+        <expiry>
+            <ttl unit="seconds">10</ttl>   <!--使用 TTI(time to live) 策略, 缓存自创建日期起至失效时的间隔时间10秒；-->
+        </expiry>
+    </cache>
+</config>

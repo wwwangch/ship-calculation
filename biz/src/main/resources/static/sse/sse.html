@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Sse测试</title>
+    <meta charset="utf-8"/>
+</head>
+<body>
+<div>sse测试</div>
+<div id="result"></div>
+</body>
+</html>
+<script>
+    var source = new EventSource('http://localhost:7901/demo/sse/test/subscribe?id=qwe');
+    //source.onmessage = function (event) {
+     //   text = document.getElementById('result').innerText;
+      //  text += '\n' + event.data;
+       // document.getElementById('result').innerText = text;
+    //};
+    source.addEventListener("msg", function(e) {
+        text = document.getElementById('result').innerText;
+        text += '\n' + e.data;
+        console.log(e);
+        document.getElementById('result').innerText = text;
+        //source.close();
+    })
+    source.onerror = function(e) {
+        if (e.readyState == EventSource.CLOSE) {
+            text = document.getElementById('result').innerText;
+            text += '\n' + "连接关闭";
+        }
+    }
+    <!-- 添加一个开启回调 -->
+    source.onopen = function (event) {
+        text = document.getElementById('result').innerText;
+        text += '\n 开启: ';
+        console.log(event);
+        document.getElementById('result').innerText = text;
+    };
+</script>

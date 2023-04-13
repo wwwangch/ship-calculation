@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.iscas.biz.mapper.common.OrgRoleMapper">
+  <resultMap id="BaseResultMap" type="com.iscas.biz.domain.common.OrgRoleKey">
+    <id column="org_id" jdbcType="INTEGER" property="orgId" />
+    <id column="role_id" jdbcType="INTEGER" property="roleId" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    org_id, role_id
+  </sql>
+  <insert id="insert" parameterType="com.iscas.biz.domain.common.OrgRoleKey">
+    insert into org_role (org_id, role_id)
+    values (#{orgId,jdbcType=INTEGER}, #{roleId,jdbcType=INTEGER})
+  </insert>
+</mapper>

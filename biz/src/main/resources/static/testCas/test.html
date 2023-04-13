@@ -1,0 +1,88 @@
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>test-cas</title>
+    <script src="jquery-3.4.1.min.js" charset="utf-8"></script>
+    <script src="common.js" charset="utf-8"></script>
+
+
+
+</head>
+
+<body>
+    <script src="corss-client.js" charset="utf-8"></script>
+    <script>
+        const corssStorage = new CorssClient('http://127.0.0.1:8080/testCas/corss-middle.html')
+
+        // let backendUrlPrefix='http://localhost:7901/demo/';
+        // let casServerPrefix='http://localhost:8080/cas';
+
+        /**测试*/
+        function test() {
+            //发送一个请求，给后端
+            $.ajax({
+                url: backendUrlPrefix + "test/cas/post",
+                data: {name: 'jenny'},
+                type: "POST",
+                dataType: "json",
+                xhrFields: {
+                    withCredentials: true //允许跨域带Cookie
+                },
+                crossDomain: true,
+                success: function(data) {
+                    // data = jQuery.parseJSON(data);  //dataType指明了返回数据为json类型，故不需要再反序列化
+                },
+                error: function (res, error) {
+                    if (res.status == 401) {
+                        //尝试单点登录
+                        toSSO(corssStorage);
+
+                        //如果未登陆，登陆
+                        // window.location.href = "ticket.html";
+                    }
+                    if (res.status == 403) {
+                        alert("鉴权失败");
+                    }
+                }
+            });
+        }
+
+        /**登出*/
+        function logout() {
+            corssStorage.getItem(['location'], (result, data) => {
+                console.log('client-1 getItem result: ', result);
+                if (result['location'] != null && result['location'] != 'null') {
+                    //使用location获取ST
+                    $.ajax({
+                        url: result['location'],
+                        type: "DELETE",
+                        dataType: "json",
+                        xhrFields: {
+                            withCredentials: true //允许跨域带Cookie
+                        },
+                        crossDomain: true,
+                        success: function(data) {
+                            // data = jQuery.parseJSON(data);  //dataType指明了返回数据为json类型，故不需要再反序列化
+                        },
+                        error: function (res, error) {
+                            console.log(res);
+                            if (res.status == 200) {
+                                alert("退出成功");
+                                corssStorage.delItem(['location'], (result) => {});
+                            } else {
+                                alert("退出失败");
+                            }
+                        }
+                    });
+                } else {
+                    alert("无需登出");
+                }
+            })
+        }
+
+    </script>
+<button onclick="test();">点我测试</button><br/>
+<button onclick="logout();">退出登录</button><br/>
+</body>
+
+</html>

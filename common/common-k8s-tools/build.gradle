@@ -1,0 +1,8 @@
+
+dependencies {
+    api project (":common:common-tools")
+    api project (":templet")
+    api "io.fabric8:kubernetes-client:${kubernetesClientVersion}"
+    api "io.kubernetes:client-java:${k8sJavaClientVersion}"
+    api "org.yaml:snakeyaml"
+}

@@ -1,0 +1,27 @@
+<html>
+    <head>
+        <meta charset="utf-8"/>
+        <!--<script src="jquery-3.4.1.min.js"></script>-->
+        <script src="../webjars/jquery/3.4.1/jquery.min.js"></script>
+        <script>
+            let url = "http://localhost:7901/demo/test/image/base64";
+            $(function() {
+                toget();
+            })
+            function toget() {
+                $.get(url, null, function(data) {
+                    $("#img2").attr("src", data);
+                });
+            }
+        </script>
+    </head>
+    <body>
+        测试stream的IMG：<br/>
+        <img style="height: 200px; width: 200px;" src ="http://localhost:7901/demo/test/image/stream"/>
+        <br/>
+        测试IMG,使用JS：<br/>
+        <img style="height: 200px; width: 200px;" id = "img2" />
+        <br/>
+
+    </body>
+</html>

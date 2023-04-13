@@ -1,0 +1,9 @@
+指南名称 title
+指南编号 code
+指南密级 classification
+专业领域 field
+意向申请截止时间 applyTime
+材料提交截止时间 deadline
+目标要求 content
+经费（万元） funds
+研制周期（月） cycle

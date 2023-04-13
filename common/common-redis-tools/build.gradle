@@ -1,0 +1,16 @@
+
+dependencies {
+    //jedis
+    api 'redis.clients:jedis'
+    //fastjson
+    api 'com.alibaba:fastjson'
+    //lettuce
+    api "io.lettuce:lettuce-core:${lettuceCoreVersion}"
+    //hutool-all
+    api "cn.hutool:hutool-all"
+    //jrejson
+    api 'com.redislabs:jrejson'
+    //jredisearch
+    api 'com.redislabs:jredisearch'
+    api 'com.hankcs:hanlp'
+}

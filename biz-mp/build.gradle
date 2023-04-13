@@ -1,0 +1,42 @@
+
+dependencies {
+    api project (":common:common-tools")
+    api project (":common:common-web-tools")
+    api project (":templet")
+    api fileTree(dir:'libs',include:['*.jar'])
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+    api ('org.springframework.boot:spring-boot-starter-web')
+            {
+                exclude group: 'ch.qos.logback', module: 'logback-access'
+                exclude group: 'ch.qos.logback', module: 'logback-classic'
+                exclude group: 'ch.qos.logback', module: 'logback-core'
+                exclude group: 'org.slf4j', module: 'slf4j-api'
+            }
+    api 'org.springframework.boot:spring-boot-starter-aop'
+    api 'org.springframework.boot:spring-boot-starter-cache'
+    api 'com.baomidou:mybatis-plus-boot-starter'
+    api "com.baomidou:mybatis-plus-generator"
+    api "com.baomidou:mybatis-plus-dts"
+    api 'org.apache.velocity:velocity-engine-core'
+    api 'org.freemarker:freemarker'
+    api 'mysql:mysql-connector-java'
+    api 'com.csicit.thirdparty:oscar'
+    api 'com.oracle.database.jdbc:ojdbc6'
+    api 'com.github.pagehelper:pagehelper-spring-boot-starter'
+    api 'com.alibaba:druid'
+    api 'cn.smallbun.screw:screw-core'
+    api 'org.mybatis.generator:mybatis-generator-core'
+    api 'org.springframework.boot:spring-boot-starter-quartz'
+    api 'org.springframework:spring-jdbc'
+    api "org.apache.shardingsphere:sharding-jdbc-core:${shardingJdbcCoreVersion}"
+    api 'com.alibaba:fastjson'
+    api 'com.github.jsqlparser:jsqlparser'
+    api 'p6spy:p6spy'
+//    annotationProcessor 'org.springframework:spring-context-indexer'
+//    api "org.springframework.cloud:spring-cloud-starter-config:${springCloudConfigVersion}"
+//    api 'org.springframework.boot:spring-boot-starter-validation'
+//    api "com.alibaba:druid-spring-boot-starter:${druidVersion}"
+
+}
+
+

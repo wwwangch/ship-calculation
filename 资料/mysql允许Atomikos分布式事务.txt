@@ -1,0 +1,5 @@
+GRANT XA_RECOVER_ADMIN ON *.* TO root@'%' ;
+flush PRIVILEGES
+
+
+show grants for 用户名@'主机地址(%代表任意ip)'

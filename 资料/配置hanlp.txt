@@ -1,0 +1,13 @@
+1、下载hanlp
+	下载地址：https://github.com/hankcs/HanLP/releases/tag/v1.8.2
+	下载handp-1.8.2-release.zip
+
+2、解压
+	将hanlp.properties拷贝到resources下
+
+3、当前data目录下没有model，从另一个地址下载
+    https://github.com/hankcs/HanLP/releases 这个页面中会有下载地址，数据兼容包data-for-1.7.5.zip
+    也就是地址：https://file.hankcs.com/hanlp/data-for-1.7.5.zip
+    将解压后的data放在任意位置
+4、配置
+	在hanlp.properties中配置root=HanLP-1.8.2的路径

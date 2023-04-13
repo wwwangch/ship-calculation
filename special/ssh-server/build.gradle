@@ -1,0 +1,7 @@
+
+dependencies {
+    api project (":special:common-ssh-tools")
+    api project (":biz-base")
+    api 'com.alibaba:fastjson'
+
+}

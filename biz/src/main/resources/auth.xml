@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<permission>
+    <menus>
+        <menu key="menu1" >这是一个menu1描述</menu>
+        <menu key="menu2" >这是一个menu2描述</menu>
+        <menu key="menu3" >这是一个menu3描述</menu>
+    </menus>
+    <urls>
+        <!--用户部分-->
+        <!--后台-manager-->
+        <url key="1" >/user/t1</url>
+        <!--<url key="2" >/user/getDetailHeader</url>-->
+        <url key="3" >/user/findBusiness</url>
+        <url key="4" >/user/findApply</url>
+        <url key="5" >/user/getDetails</url>
+        <url key="6" >/user/updateStatus</url>
+        <url key="7" >/user/examineFalse</url>
+        <url key="8" >/user/registerForBusiness</url>
+        <url key="9" >/user/deleteForBusiness</url>
+        <url key="10" >/user/exportApply</url>
+        <url key="11" >/user/exportBusiness</url>
+        <url key="12" >/user/resetPassword</url>
+        <!--申请单位apply和业务部门web-->
+        <url key="13" >/user/updatePassword</url>
+        <url key="14" >/user/updateApplyUser</url>
+
+
+
+        <!--信息公告-->
+        <!--manager-->
+        <url key="15" >/notice/insert</url>
+        <url key="16" >/notice/findBy</url>
+        <url key="17" >/notice/update</url>
+        <url key="18" >/notice/UpDown</url>
+        <url key="19" >/notice/deleteNotice</url>
+        <url key="20" >/notice/getNoticeHeader</url>
+
+        <!--U盾-manager-->
+        <url key="21" >/usbkey/**</url>
+
+        <!--企业信息 apply-->
+        <url key="22" >/unit/updateUnit</url>
+
+        <!--联系人apply-->
+        <url key="23" >/contact/updateContactForUnit</url>
+        <url key="24" >/contact/delete</url>
+        <!--联系人-业务部门-->
+        <url key="25" >/contact/updateContactForBusiness</url>
+
+        <!--申请-apply-->
+        <url key="26" >/apply/save</url>
+        <url key="27" >/apply/detail/**</url>
+        <url key="28" >/apply/header/**</url>
+        <url key="29" >/apply/data/**</url>
+        <!--业务部门-->
+        <url key="30" >/apply/detailForBusiness/**</url>
+        <url key="31" >/apply/to/data/**</url>
+        <url key="32" >/apply/export/**</url>
+        <url key="33" >/apply/to/header</url>
+
+        <!--批次-->
+        <!--申请 业务部门-->
+        <url key="34" >/batch/save</url>
+        <url key="35" >/batch/data</url>
+        <url key="36" >/batch/detail/**</url>
+        <url key="45" >/batch/header/**</url>
+
+        <!--我的关注-->
+        <!--申请单位 apply-->
+        <url key="37" >/follow/**</url>
+
+        <!--指南-->
+        <!--业务部门-->
+        <url key="38" >/guide/publish/header</url>
+        <url key="39" >/guide/publish/data</url>
+        <url key="40" >/guide/save</url>
+        <url key="41" >/guide/field</url>
+        <url key="42" >/guide/import</url>
+        <!--申请单位和业务部门-->
+        <url key="43" >/guide/export/**</url>
+
+
+        <url key="44" >/statistic/apply/**</url>
+        <url key="46" >/statistic/system/**</url>
+        <url key="47" >/statistic/web/**</url>
+    </urls>
+
+    <roles>
+
+        <role key="manager" name="普通管理员">
+            <ref-urls>
+                1,3,4,5,6,7,8,9,10,11,12,15,16,17,18,19,20,21,44,46,47
+            </ref-urls>
+            <ref-menus>
+                menu1,menu2,menu3
+            </ref-menus>
+        </role>
+
+        <role key="super" name="超级管理员">
+            <ref-urls>
+
+            </ref-urls>
+            <ref-menus>
+                menu1,menu2
+            </ref-menus>
+        </role>
+        <role key="apply" name="apply">
+            <ref-urls>
+                5,13,14,23,24,26,27,28,29,37,43
+            </ref-urls>
+            <ref-menus>
+                menu1,menu2
+            </ref-menus>
+        </role>
+        <role key="web" name="web">
+            <ref-urls>
+                5,13,14,25,30,31,32,33,34,35,36,38,39,40,41,42,43,45
+            </ref-urls>
+            <ref-menus>
+                menu1,menu2
+            </ref-menus>
+        </role>
+
+        <role key="unCheck" name="未审核通过的用户角色">
+            <ref-urls>
+
+            </ref-urls>
+            <ref-menus>
+                menu1,menu2
+            </ref-menus>
+        </role>
+        <!-- <role key="super">超级管理员</role>       -->
+    </roles>
+
+</permission>

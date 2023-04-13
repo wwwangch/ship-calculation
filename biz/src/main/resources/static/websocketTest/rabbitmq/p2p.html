@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="http://cdn.bootcss.com/stomp.js/2.3.3/stomp.min.js"></script>
+    <script src="https://cdn.bootcss.com/sockjs-client/1.1.4/sockjs.min.js"></script>
+    <script>
+        var socket = new SockJS("http://192.168.100.88:7901/demo/webSocketServer");
+        // var socket = new SockJS("http://127.0.0.1:15674/stomp");
+        var stompClient = Stomp.over(socket);
+        window.onload = function () {
+            connect();
+        }
+        //订阅消息
+        function subscribe() {
+            stompClient.subscribe('/user/queue/message', function (response) {
+                console.log("/user/queue/message 你接收到的消息为:" + response);
+            });
+        }
+
+        /**
+         * 发送用户信息
+         * */
+        function send0() {
+            stompClient.send("/app/principal", {},
+                {});
+        }
+
+        /**
+         * 发送JSON数据体
+         * */
+        function send() {
+            stompClient.send("/app/P2P", {},
+                JSON.stringify({ 'name': 'test' }));
+        }
+
+        /**
+         * 发送路径参数
+         * */
+        function send2() {
+            stompClient.send("/app/path/zhangsan/XXX公司", {},
+                {});
+        }
+
+        /**
+         * 发送header参数
+         * */
+        function send3() {
+            stompClient.send("/app/header", {"one":"lalala", "two":"中国"},
+                {});
+        }
+
+        /**
+         * 发送httpsession
+         * */
+        function send4() {
+            stompClient.send("/app/httpsession", {},
+                {});
+        }
+
+        // /**
+        //  * 发送URL中?&参数
+        //  * */
+        // function send5() {
+        //     stompClient.send("/app/param?name=张三", {},
+        //         {});
+        // }
+
+        function connect() {
+
+            stompClient.connect({
+                Authorization:"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjIxOTg1NjQxNjAsImlhdCI6MTUzMTg5NzUwMCwidXNlcm5hbWUiOiJ6cXcxMSJ9.VFR2EKUx5BTYLDkDogiLA9LfNVoPjOzQ3rTWoEy7He4"
+                    //这里可以改成token
+                    // name: 'admin' // 携带客户端信息
+                },
+                function connectCallback(frame) {
+                    // 连接成功时（服务器响应 CONNECTED 帧）的回调方法
+                    alert("success");
+                    subscribe();
+                },
+                function errorCallBack(error) {
+                    // 连接失败时（服务器响应 ERROR 帧）的回调方法
+                    alert("error");
+                });
+        }
+        function disconnect() {
+            if (stompClient != null) {
+                stompClient.disconnect();
+            }
+//            setConnected(false);
+            console.log("Disconnected");
+        }
+    </script>
+</head>
+<body>
+    <input type="text" id="info"/><button onclick="send5();">发送</button>
+</body>
+</html>

@@ -1,0 +1,25 @@
+参考：http://www.coder55.com/article/56315
+
+1、在main下创建一个proto文件，编写proto文件，例如本模块下的Person.proto
+
+2、在此模块的gradle插件中运行generateProto任务，或运行命令gradle generateProto，
+运行后会在proto文件中配置的package下生成对应的Java文件，可以拷贝到别的目录下，注意java_package要对，
+服务端和客户端都生成一下或拷贝一下
+
+3、在服务端编写一个实现类，实现xxxGrpc.xxxImplBase,本例为PersonServiceImpl extends PersonServiceGrpc.PersonServiceImplBase
+重写其函数
+
+4、服务端发布方式：
+    PersonServiceImpl psi = new PersonServiceImpl();
+    Server server = GrpcServerUtils.start(psi, 8888);
+    GrpcServerUtils.awaitTermination(server);
+
+5、客户端调用方式：
+     ManagedChannel managedChannel = GrpcClientUtils.getManagedChannel("127.0.0.1", 8888);
+     PersonServiceGrpc.PersonServiceBlockingStub psbs = PersonServiceGrpc.newBlockingStub(managedChannel);
+     MyRequest req = MyRequest.newBuilder().setUsername("张三").build();
+     MyResponse res = psbs.getRealNameByUsername(req);
+
+6、服务端关闭方式：
+    server.shutdownNow();
+

@@ -1,0 +1,6 @@
+
+dependencies {
+    api "com.squareup.okhttp3:okhttp"
+    api project (":common:common-web-tools")
+    api project (":common:common-tools")
+}

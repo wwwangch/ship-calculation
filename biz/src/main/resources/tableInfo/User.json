@@ -1,0 +1,134 @@
+{
+  "cols": [
+    {
+      "field": "no",
+      "header": "no",
+      "editable": false,
+      "addable": false,
+      "sortable": false,
+      "search": false,
+      "link": false,
+      "type": "text"
+    },
+    {
+      "field": "id",
+      "header": "id",
+      "editable": true,
+      "addable": true,
+      "sortable": false,
+      "search": false,
+      "link": false,
+      "type": "text"
+    },
+    {
+      "field": "code",
+      "header": "学号",
+      "editable": true,
+      "addable": true,
+      "sortable": false,
+      "search": false,
+      "link": false,
+      "type": "text"
+    },
+    {
+      "field": "username",
+      "header": "用户名",
+      "editable": true,
+      "addable": true,
+      "sortable": false,
+      "search": false,
+      "link": false,
+      "type": "text",
+      "rule":{
+          "required":true
+      }
+    },
+    {
+      "field": "name",
+      "header": "姓名",
+      "editable": true,
+      "addable": true,
+      "sortable": false,
+      "search": false,
+      "link": false,
+      "type": "text"
+    },
+    {
+      "field": "sex",
+      "header": "性别",
+      "editable": true,
+      "addable": true,
+      "sortable": false,
+      "search": false,
+      "link": false,
+      "type": "text"
+    },
+    {
+      "field": "password",
+      "header": "密码",
+      "editable": true,
+      "addable": true,
+      "sortable": false,
+      "search": false,
+      "link": false,
+      "type": "text"
+    },
+    {
+      "field": "age",
+      "header": "年龄",
+      "editable": true,
+      "addable": true,
+      "sortable": false,
+      "search": false,
+      "link": false,
+      "type": "text"
+    },
+    {
+      "field": "createtime",
+      "header": "创建时间",
+      "editable": true,
+      "addable": true,
+      "sortable": false,
+      "search": false,
+      "link": false,
+      "type": "text"
+    },
+    {
+      "field": "classinfo",
+      "header": "班级信息",
+      "editable": true,
+      "addable": true,
+      "sortable": false,
+      "search": false,
+      "link": false,
+      "type": "text"
+    },
+    {
+      "field": "role",
+      "header": "角色",
+      "editable": true,
+      "addable": true,
+      "sortable": false,
+      "search": false,
+      "link": false,
+      "type": "text"
+    },
+    {
+      "field": "description",
+      "header": "描述",
+      "editable": true,
+      "addable": true,
+      "sortable": false,
+      "search": false,
+      "link": false,
+      "type": "text"
+    }
+  ],
+  "setting": {
+    "viewType": "multi",
+    "checkbox": true,
+    "frontInfo": "",
+    "backInfo": "",
+    "title": ""
+  }
+}

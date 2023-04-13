@@ -1,0 +1,1 @@
+docker pull shoutstar/spring-boot-jre-min-11:jdk-11.0.11-9

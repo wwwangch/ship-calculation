@@ -1,0 +1,16 @@
+
+dependencies {
+    api 'jakarta.servlet:jakarta.servlet-api'
+    api 'com.fasterxml.jackson.core:jackson-core'
+    api 'com.fasterxml.jackson.core:jackson-databind'
+    api "com.fasterxml.jackson.datatype:jackson-datatype-jsr310"
+    api 'cn.miludeer:jsoncode'
+    api "net.sf.json-lib:json-lib:${jsonlibVersion}"
+    api 'org.json:json'
+    api "xom:xom"
+    api "org.apache.httpcomponents:httpmime"
+    api "eu.bitwalker:UserAgentUtils"
+    api 'commons-beanutils:commons-beanutils'
+    api 'com.github.abel533:ECharts'
+    api 'com.google.code.gson:gson'
+}

@@ -1,0 +1,139 @@
+
+
+//buildscript {
+//    repositories {
+//        maven { url "http://192.168.100.88:8081/repository/maven-public/" }
+//        maven {url "http://maven.aliyun.com/nexus/content/groups/public"}
+//        maven { url "https://repo.spring.io/libs-milestone/" }
+//        jcenter()
+//        mavenCentral()
+//
+//    }
+//    dependencies {
+//        classpath "se.transmode.gradle:gradle-docker:${gradle_docker_version}"
+//    }
+//}
+//apply plugin: 'docker'
+apply plugin: 'java'
+apply plugin: 'war'
+
+
+configurations {
+    compile.exclude group: 'org.springframework.boot', module: 'spring-boot-starter-tomcat'
+    compile.exclude group: 'org.apache.tomcat'
+    compile.exclude group: 'org.apache.tomcat.embed'
+}
+
+
+bootJar {
+    manifest {
+        attributes 'Start-Class': 'com.iscas.biz.BizApp'
+    }
+//    launchScript()
+}
+
+dependencies {
+    compile project(":biz-base")
+
+//    compile project(":biz-ssh-server")
+//    compile project(":special:biz-neo4j")
+
+
+    //SSH客户端
+//    compile project(":special:common-ssh-tools")
+
+    //引入mybatis,如果引入了这个模块，
+    compile project(":biz-mp")
+    
+    //引入jpa,如果引入了这个模块
+//    compile project(":biz-jpa")
+
+    testCompile group: 'org.springframework.boot', name: 'spring-boot-starter-test'
+}
+
+//打入本地maven库配置
+install {
+    repositories.mavenInstaller {
+        pom.version="${project.version}"
+        pom.artifactId="${project.archivesBaseName}"
+        pom.groupId="${project.group}"
+    }
+}
+bootBuildImage {
+    imageName = "192.168.100.96:80/library/${project.name}:${project.version}"
+    publish = true
+    docker {
+        host = "tcp://192.168.100.91:2375"
+        tlsVerify = false
+//        certPath = "/home/users/.minikube/certs"
+        publishRegistry {
+            username = "admin"
+            password = "Harbor12345"
+            url = "http://192.168.100.96"
+            email = "76775081@qq.com"
+        }
+    }
+}
+
+////docker打包例子
+//docker {
+//    maintainer = 'zqw <quanwenz@sina.cn>'
+////    baseImage 'openjdk'
+//    baseImage = 'java:8-alpine'
+//    useApi true
+//    hostUrl 'http://192.168.100.96'
+//    apiUsername 'admin'
+//    apiPassword 'Harbor12345'
+//    apiEmail '76775081@qq.com'
+//
+//}
+//task dockerBuild(type: Docker, dependsOn: bootJar) {
+//    applicationName = project.name
+//    tag = "library/${applicationName}"
+//    tagVersion = jar.archiveVersion
+//    bindVolume('/tmp')
+//    addFile("${jar.archiveBaseName}-${jar.archiveVersion}.jar", "app.jar")
+//    entryPoint(["java", "-Djava.security.egd=file:/dev/./urandom", "-jar", 'app.jar'])
+//    exposePort(8080)
+//    doFirst {
+//        copy {
+//            from jar
+//            into stageDir
+//        }
+//    }
+//    addFile {
+//        from configurations.archives.artifacts.files
+//        into '/data/workspace/' + project.name
+//    }
+//    workingDir '/data/workspace/' + project.name
+////    setEnvironment('HOST_MACHINE_IP', hostMachineIp)
+//    defaultCommand(['java', '-jar', '-Dspring.profiles.active=docker', "${project.name}-${project.version}.jar"])
+//}
+
+
+//===============================打瘦包的方式=====================================================
+
+////清除lib的jar
+//task clearJar(type: Delete) {
+//    delete "$buildDir/libs/lib"
+//}
+////复制jar到lib里面去
+//task copyJar(type: Copy) {
+//    from configurations.runtime
+//    into "$buildDir/libs/lib"
+//}
+//
+//
+//bootJar {
+//    // 例外所有的jar
+//    excludes = ["*.jar"]
+//    // lib目录的清除和复制任务
+//    dependsOn clearJar
+//    dependsOn copyJar
+//    //  指定依赖包的路径
+//    manifest {
+//        attributes "Manifest-Version": 1.0,
+//                'Class-Path': configurations.runtime.files.collect { "lib/$it.name" }.join(' ')
+//
+//    }
+//}

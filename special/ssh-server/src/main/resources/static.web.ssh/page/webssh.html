@@ -1,0 +1,434 @@
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>WebSSH</title>
+    <link rel="stylesheet" href="../css/xterm.css"/>
+    <!--<script src="../js/jquery-3.4.1.min.js"></script>-->
+
+    <script src="../js/xterm.js" charset="utf-8"></script>
+    <!--<script src="../js/fit.min.js" charset="utf-8"></script>-->
+    <script src="../js/stomp.min.js"></script>
+    <script src="../js/sockjs.min.js"></script>
+
+    <link href="../easyui/themes/default/easyui.css" rel="stylesheet"/>
+    <link href="../easyui/themes/icon.css" rel="stylesheet"/>
+    --图片样式
+    <link rel="stylesheet" type="text/css" href="../easyui/demo/demo.css">
+    <script src="../easyui/jquery.min.js"></script>
+    <script src="../js/element-listener.js"></script>
+    <script src="../easyui/jquery.easyui.min.js"></script>
+    <script src="../easyui/locale/easyui-lang-zh_CN.js"></script>
+    --使用语言
+
+    <script src="../js/webssh.js" charset="utf-8"></script>
+    <style>
+        .icon-upload {
+            background: url('upload.png') no-repeat center center;
+        }
+
+        .icon-download {
+            background: url('download.png') no-repeat center center;
+        }
+
+        tr.on td {
+            background-color: #4482cc;
+        / 背景颜色 /
+        }
+    </style>
+    <script>
+        let terminalIndex = 1;
+        let map = new Map();
+        $(function () {
+            $('#w').window('close');
+            $('#w2').window('close');
+
+
+            $('#searchbox').searchbox({
+                searcher: function (value, name) {
+                    search(value);
+                },
+            });
+
+            $('#tabs').tabs({
+                onBeforeClose: function (title) {
+                    clearFiles();
+                },
+                onUnselect: function (title) {
+                    clearFiles();
+                },
+                onClose: function (title) {
+                    clearFiles();
+                }
+            });
+        })
+
+        function back() {
+            // let value = $("#searchbox").val();
+            let value = $('#searchbox').searchbox('getValue');
+            if (value == "/" || value.indexOf("/") < 0) {
+                value = "/";
+            } else {
+                value = value.substring(0, value.lastIndexOf("/"));
+                value = value == "" ? "/" : value;
+            }
+            $('#searchbox').searchbox('setValue', value);
+            search(value);
+
+        }
+
+        function addDir() {
+            $.messager.prompt("新建目录", "请输入目录名称", function (res) {
+                if (res) {
+                    // let value = $("#searchbox").val();
+                    let value = $('#searchbox').searchbox('getValue');
+                    var pp = $('#tabs').tabs('getSelected');
+                    var title = pp.panel('options').title;
+                    var connectionId = map.get(title);
+                    $.ajax({
+                        url: "http://localhost:7901/demo/ssh/connect/dir?connectionId=" + connectionId + "&path=" + value + "&dirName=" + res,
+                        data: null,
+                        type: "PUT",
+                        dataType: "json",
+                        success: function (res) {
+                            search(value);
+                        }
+                    });
+                }
+            })
+        }
+
+        function removeFile() {
+            let pathNode = $("#files").find('.on').find(".pathclass");
+            if (pathNode == null || pathNode.length == 0) {
+                alert("未选择文件");
+            }
+            var pp = $('#tabs').tabs('getSelected');
+            var title = pp.panel('options').title;
+            var connectionId = map.get(title);
+            $.messager.confirm("删除文件", "确定要删除此文件?", function (res) {
+                if (res) {
+                    $.ajax({
+                        url: "http://localhost:7901/demo/ssh/connect/path?connectionId=" + connectionId + "&path=" + pathNode.text(),
+                        data: null,
+                        type: "DELETE",
+                        dataType: "json",
+                        success: function (res) {
+                            // let value = $("#searchbox").val();
+                            let value = $('#searchbox').searchbox('getValue');
+                            search(value);
+                        }
+                    });
+                }
+            });
+        }
+
+        function refresh() {
+            // let value = $("#searchbox").val();
+            let value = $('#searchbox').searchbox('getValue');
+            search(value);
+        }
+
+        function search(value) {
+            var pp = $('#tabs').tabs('getSelected');
+            var title = pp.panel('options').title;
+            var connectionId = map.get(title);
+            clearFiles();
+            if (connectionId != null) {
+                $.ajax({
+                    url: "http://localhost:7901/demo/ssh/connect/list?connectionId=" + connectionId + "&dir=" + value,
+                    data: null,
+                    type: "GET",
+                    dataType: "json",
+                    success: function (res) {
+                        let data = res.value;
+                        for (var i = 0; i < data.length; i++) {
+                            let n = data[i].name;
+                            let s = data[i].size;
+                            let f = data[i].file;
+                            let p = data[i].path;
+                            let imgSrc = 'folder.png';
+                            if (f == true) {
+                                imgSrc = 'file.png';
+                            }
+                            var html = "<tr>" +
+                                "<td><img src='" + imgSrc + "'/></td>" +
+                                "<td><span>" + n + "</span></td>" +
+                                "<td class = 'pathclass' style='display: none;'>" + p + "</td>" +
+                                "<td>" + s + "</td>" +
+                                "</tr>"
+                            $("#files").append(html);
+                            $("#files tr").click(function () {
+                                var trs = $("#files").find('tr'); //获取所有tr
+                                if (trs.hasClass('on')) { //判断这些tr 有没有Class ‘on’’
+                                    trs.removeClass('on');//把class on 移除
+                                }
+                                $(this).addClass('on');//点击的tr 添加 on class 用于改变样式
+                            });
+                        }
+                    }
+                });
+            }
+            $('#searchbox').searchbox('setValue', value);
+        }
+
+        function upload() {
+            let pathNode = $("#files").find('.on').find(".pathclass");
+            if (pathNode == null || pathNode.length == 0) {
+                alert("未选择文件夹");
+            }
+            $('#w2').window('open');
+        }
+
+        function download() {
+            let pathNode = $("#files").find('.on').find(".pathclass");
+            if (pathNode == null || pathNode.length == 0) {
+                alert("未选择文件");
+            }
+            var pp = $('#tabs').tabs('getSelected');
+            var title = pp.panel('options').title;
+            var connectionId = map.get(title);
+            window.open('http://localhost:7901/demo/ssh/connect/download?connectionId=' + connectionId + '&path=' + pathNode.text());
+        }
+
+        function toUpload(e) {
+            let pathNode = $("#files").find('.on').find(".pathclass");
+            var pp = $('#tabs').tabs('getSelected');
+            var title = pp.panel('options').title;
+            var connectionId = map.get(title);
+
+            $('#fileForm').form('submit', {
+                url: "http://localhost:7901/demo/ssh/connect/upload?connectionId=" + connectionId + "&dest=" + pathNode.text(),
+                onSubmit: function () {
+
+                },
+                success: function (result) {
+                    alert("上传成功");
+                    $('#w2').window('close');
+                }
+            });
+        }
+
+        function toConnect() {
+            $('#w').window('open');
+        }
+
+        function submitConnect() {
+            let ip = document.getElementById('ip').value;
+            $('#w').window('close');
+            let terminalId = "terminal" + terminalIndex++;
+            let tabHtml = '<div id="terminal" style="width: 100%;height: 100%;" ></div>';
+            tabHtml = tabHtml.replace("terminal", terminalId)
+            $('#tabs').tabs('add', {
+                title: ip + "-" + terminalIndex,
+                content: tabHtml,
+                closable: true
+            });
+
+            let connectionId = randomString(6);
+            map.put(ip + "-" + terminalIndex, connectionId);
+            connect(terminalId, connectionId);
+
+        }
+
+
+        function clearFiles() {
+            console.log("clear");
+            // $("#searchbox").attr("value", "/");
+            $('#searchbox').searchbox('setValue', '/');
+
+            $("#files").html("");
+        }
+
+        function connect(terminalId, connectionId) {
+            let ip = document.getElementById('ip').value;
+            let port = document.getElementById('port').value;
+            let username = document.getElementById('username').value;
+            let pwd = document.getElementById('pwd').value;
+
+            openTerminal({
+                operate: 'connect',
+                host: ip,//IP
+                port: port,//端口号
+                username: username,//用户名
+                password: pwd,  //密码
+                connectionId: connectionId,
+                terminalId: terminalId
+            });
+
+        }
+
+        function openTerminal(options) {
+            var client = new WSSHClient();
+            let size = getColsAndRows(options.terminalId);
+            options.size = size;
+            var term = new Terminal({
+                cols: size.cols,
+                rows: size.rows,
+                cursorBlink: true, // 光标闪烁
+                cursorStyle: "block", // 光标样式  null | 'block' | 'underline' | 'bar'
+                scrollback: 800, //回滚
+                tabStopWidth: 8, //制表宽度
+                screenKeys: true
+            });
+            let terminalId = options.terminalId;
+            //窗口大小变化
+            $("#" + terminalId).resize(function(){
+                let changedSize = getColsAndRows(terminalId);
+                client.sendSize(options.connectionId, changedSize);
+                term.resize(changedSize.cols, changedSize.rows);
+            })
+
+            term.on('data', function (data) {
+                //键盘输入时的回调函数
+                client.sendClientData(options.connectionId, data);
+            });
+            term.open(document.getElementById(terminalId));
+            term.resize(size.cols, size.rows);
+            //在页面上显示连接中...
+            term.write('Connecting...');
+            //执行连接操作
+            client.connect({
+                connectInfo: options,
+                onError: function (error) {
+                    //连接失败回调
+                    term.write('Error: ' + error + '\r\n');
+                },
+                onConnect: function () {
+                    //连接成功回调
+                    client.sendInitData(options);
+                },
+                onClose: function () {
+                    //连接关闭回调
+                    term.write("\rconnection closed");
+                },
+                onData: function (data) {
+                    //收到数据时回调
+                    term.write(data);
+                }
+            });
+        }
+
+        function getColsAndRows(id) {
+          // 暂时不用
+          let element = document.getElementById(id);
+          let width = element.clientWidth;
+          let height = element.clientHeight;
+          return {
+            "width": width,
+            "height": height,
+            "cols": parseInt(width/10),
+            "rows": parseInt(height/17)
+          }
+        }
+    </script>
+
+</head>
+
+<body class="easyui-layout">
+
+<div data-options="region:'north',title:'SSH远程连接工具',split:true" style="height:75px;" collapsible="false" border="false"
+     split="false">
+
+    <div class="easyui-panel" style="padding:5px;width: 100%;">
+        <a href="javascript:toConnect();" class="easyui-linkbutton"
+           data-options="menu:'#mm1',iconCls:'icon-add'">新建连接</a>
+    </div>
+
+
+</div>
+
+<!--        <div data-options="region:'south',title:'South Title',split:true" style="height:100px;"></div>-->
+
+<!--        <div data-options="region:'east',iconCls:'icon-reload',title:'East',split:true" style="width:100px;"></div>-->
+
+<div data-options="region:'west',title:'',split:true" style="width:250px;">
+    <div class="easyui-panel" style="padding-left:5px;width: 100%;">
+        <a href="javascript:back();" class="easyui-linkbutton" data-options="iconCls:'icon-back'"></a>
+        <a href="javascript:upload();" class="easyui-linkbutton" data-options="iconCls:'icon-upload'"></a>
+        <a href="javascript:download();" class="easyui-linkbutton" data-options="iconCls:'icon-download'"></a>
+        <a href="javascript:refresh();" class="easyui-linkbutton" data-options="iconCls:'icon-reload'"></a>
+        <a href="javascript:addDir();" class="easyui-linkbutton" data-options="iconCls:'icon-add'"></a>
+        <a href="javascript:removeFile();" class="easyui-linkbutton" data-options="iconCls:'icon-remove'"></a>
+    </div>
+    <div>
+        <input id="searchbox" class="easyui-searchbox" style="width: 100%;" data-options="" value="/"/>
+        <!--                <input id = "searchbox"  style="width: 100%;" value="/"/>-->
+    </div>
+    <div style="padding-top: 10px;">
+        <table id="files" border="0">
+            <tr>
+
+            </tr>
+        </table>
+    </div>
+    <!--<div class="easyui-panel" style="padding:5px;width: 100%;">
+        <input class="easyui-searchbox" data-options="prompt:'服务器的路径',searcher:doSearch" style="width:100%;height: 30px;"></input>
+    </div>-->
+</div>
+
+<div data-options="region:'center',title:''" style="padding:0px;background:#000000;">
+
+    <div id="tabs" class="easyui-tabs" style="width:100%;height:100%;">
+
+    </div>
+</div>
+
+<div id="w" class="easyui-window" title="新建连接" data-options="iconCls:'icon-save',minimizable:false,tools:'#tt'"
+     style="width:300px;height:300px;padding:10px;">
+    <form id="ff" method="post">
+        <table cellpadding="5">
+            <tr>
+                <td>Ip:</td>
+                <td><input id="ip" class="easyui-textbox" type="text" name="ip" data-options="required:true"
+                           value="192.168.100.97"/></td>
+            </tr>
+            <tr>
+                <td>端口:</td>
+                <td><input id="port" class="easyui-textbox" type="text" name="port" data-options="required:true"
+                           value="22"/></td>
+            </tr>
+            <tr>
+                <td>用户名:</td>
+                <td><input id="username" class="easyui-textbox" type="text" name="username" data-options="required:true"
+                           value="root"/></td>
+            </tr>
+            <tr>
+                <td>密码:</td>
+                <td><input id="pwd" class="easyui-passwordbox" name="password" data-options="required:true"
+                           value="root"/></td>
+            </tr>
+
+        </table>
+    </form>
+    <input type="button" onclick="javascript:submitConnect();"
+           style="margin-left: 100px; height: 30px; width: 60px;font-size: 16px;" name="connect" value="连接"/>
+</div>
+
+<div id="w2" class="easyui-window" title="文件上传" data-options="iconCls:'icon-save',minimizable:false"
+     style="width:300px;height:120px;padding:10px;">
+    <form enctype="multipart/form-data" method="post" id="fileForm">
+        <input name="files" class="easyui-filebox" data-options="buttonText:'选择文件', onChange:toUpload"
+               style="width:250px"/>
+    </form>
+</div>
+</body>
+
+<!--<body>-->
+
+<!--<div class="div_admin_left">-->
+
+<!--</div>-->
+<!--<div class="div_admin_right">-->
+<!--    <div id="terminal" style="width: 100%;height: 100%; display: none;" ></div>-->
+
+<!--    <div id = "input" style="display:block;">-->
+<!--        IP：<input id = "ip" value="localhost"/><br/>-->
+<!--        端口：<input id="port" value="22"/><br/>-->
+<!--        用户名：<input id="username" value="root"/><br/>-->
+<!--        密码：<input id="pwd" value=""/><br/>-->
+<!--        <input type="submit" value="连接" onclick="connect();"/>-->
+<!--    </div>-->
+<!--</div>-->
+
+<!--</body>-->
+</html>

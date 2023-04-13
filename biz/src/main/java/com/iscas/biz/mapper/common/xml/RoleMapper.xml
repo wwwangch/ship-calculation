@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.iscas.biz.mapper.common.RoleMapper">
+  <resultMap id="BaseResultMap" type="com.iscas.biz.domain.common.Role">
+    <id column="role_id" jdbcType="INTEGER" property="roleId" />
+    <result column="role_name" jdbcType="VARCHAR" property="roleName" />
+    <result column="role_create_time" jdbcType="TIMESTAMP" property="roleCreateTime" />
+    <result column="role_update_time" jdbcType="TIMESTAMP" property="roleUpdateTime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    role_id, role_name, role_create_time, role_update_time
+  </sql>
+</mapper>

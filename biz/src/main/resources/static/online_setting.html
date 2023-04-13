@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8" />
+    <script>
+        var $1 = function(id) {
+            return document.getElementById(id);
+        };
+
+        function refreshScope(){
+            $1("but").disable = true;
+            var xhr = new XMLHttpRequest();
+            xhr.open('post', 'actuator/refresh');
+            xhr.send(null);
+            xhr.onreadystatechange = function () {
+                if (xhr.readyState == 4 && xhr.status == 200) {
+                    alert("刷新成功");
+                    $1("but").disable = false;
+                }else if(xhr.readyState == 4 && xhr.status != 200){
+                    alert("刷新失败");
+                    $1("but").disable = false;
+                }
+            };
+        }
+
+        function getLogLevel(){
+            $1("getLogBut").disable = true;
+            var packageName = $1("input1").value;
+            $1("input2").value = "";
+            var xhr = new XMLHttpRequest();
+            xhr.open('get', 'actuator/loggers/'+ packageName);
+            xhr.send(null);
+            xhr.onreadystatechange = function () {
+                if (xhr.readyState == 4 && xhr.status == 200) {
+                    alert("获取成功");
+                    var json = JSON.parse(xhr.responseText);
+                    $1("input2").value = json.effectiveLevel;
+                    $1("getLogBut").disable = false;
+
+                }else if(xhr.readyState == 4 && xhr.status != 200){
+                    alert("获取失败");
+                    $1("getLogBut").disable = false;
+                }
+            };
+        }
+
+        function setLogLevel(){
+            $1("setLogBut").disable = true;
+            var packageName = $1("input3").value;
+            var logLevel = $1("select1").value;
+            $1("input3").value = "";
+            var xhr = new XMLHttpRequest();
+            xhr.open('post', 'actuator/loggers/'+ packageName);
+            xhr.setRequestHeader("Content-type", "application/json;charset=utf-8");
+            //发送请求
+            var data = {
+                "configuredLevel": logLevel
+            }
+            xhr.send(JSON.stringify(data));
+            xhr.onreadystatechange = function () {
+                if (xhr.readyState == 4 && (xhr.status == 200 || xhr.status == 204)) {
+                    alert("设置成功");
+                    $1("setLogBut").disable = false;
+                    console.log(xhr.responseText);
+
+                }else if(xhr.readyState == 4 && xhr.status != 200){
+                    alert("设置失败");
+                    $1("setLogBut").disable = false;
+                    console.log(xhr.responseText);
+                }
+            };
+        }
+    </script>
+    <title>登录</title>
+</head>
+<body>
+    <input type="button" value="刷新配置信息" onclick="refreshScope();" id = "but"/>
+    <br/><br/><br/>
+    包名:&nbsp;&nbsp;&nbsp; <input type = "text" id = "input1"/><br/>
+    日志级别:<input type = "text" id = "input2"/><br/>
+    <input type="button" value="获取某个包的日志级别" onclick="getLogLevel();" id = "getLogBut"/>
+    <br/><br/><br/>
+    包名:&nbsp;&nbsp;&nbsp; <input type = "text" id = "input3"/><br/>
+    日志级别:
+        <select id = "select1">
+            <option value="DEBUG">DEBUG</option>
+            <option value="INFO">INFO</option>
+            <option value="WARN">WARN</option>
+            <option value="ERROR">ERROR</option>
+        </select>
+    <br/>
+    <input type="button" value="设置某个包的日志级别" onclick="setLogLevel();" id = "setLogBut"/>
+</body>
+</html>

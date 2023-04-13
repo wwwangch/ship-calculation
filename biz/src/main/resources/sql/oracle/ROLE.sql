@@ -1,0 +1,54 @@
+/*
+ Navicat Premium Data Transfer
+
+ Source Server         : 192.168.100.33_1521_XE
+ Source Server Type    : Oracle
+ Source Server Version : 110200
+ Source Host           : 192.168.100.33:1521
+ Source Schema         : GANSU
+
+ Target Server Type    : Oracle
+ Target Server Version : 110200
+ File Encoding         : 65001
+
+ Date: 03/12/2021 15:08:33
+*/
+
+
+-- ----------------------------
+-- Table structure for ROLE
+-- ----------------------------
+DROP TABLE "GANSU"."ROLE";
+CREATE TABLE "GANSU"."ROLE" (
+  "ROLE_ID" VARCHAR2(255 BYTE) ,
+  "ROLE_NAME" VARCHAR2(255 BYTE) ,
+  "ROLE_CREATE_TIME" DATE ,
+  "ROLE_UPDATE_TIME" DATE 
+)
+TABLESPACE "SYSTEM"
+LOGGING
+NOCOMPRESS
+PCTFREE 10
+INITRANS 1
+STORAGE (
+  INITIAL 65536 
+  NEXT 1048576 
+  MINEXTENTS 1
+  MAXEXTENTS 2147483645
+  FREELISTS 1
+  FREELIST GROUPS 1
+  BUFFER_POOL DEFAULT
+)
+PARALLEL 1
+NOCACHE
+DISABLE ROW MOVEMENT
+;
+
+-- ----------------------------
+-- Records of ROLE
+-- ----------------------------
+INSERT INTO "GANSU"."ROLE" VALUES ('2', '测试角色1', TO_DATE('2022-01-02 10:23:19', 'SYYYY-MM-DD HH24:MI:SS'), TO_DATE('2025-01-02 09:29:22', 'SYYYY-MM-DD HH24:MI:SS'));
+INSERT INTO "GANSU"."ROLE" VALUES ('4', '普通用户11', TO_DATE('2022-01-02 14:35:01', 'SYYYY-MM-DD HH24:MI:SS'), TO_DATE('2025-01-02 09:29:22', 'SYYYY-MM-DD HH24:MI:SS'));
+INSERT INTO "GANSU"."ROLE" VALUES ('5', '普通用户12', TO_DATE('2022-01-02 14:35:20', 'SYYYY-MM-DD HH24:MI:SS'), TO_DATE('2025-01-02 09:29:23', 'SYYYY-MM-DD HH24:MI:SS'));
+INSERT INTO "GANSU"."ROLE" VALUES ('7', '普通用户13', TO_DATE('2022-01-02 14:41:27', 'SYYYY-MM-DD HH24:MI:SS'), TO_DATE('2025-01-02 09:29:24', 'SYYYY-MM-DD HH24:MI:SS'));
+INSERT INTO "GANSU"."ROLE" VALUES ('11', 'super', NULL, NULL);

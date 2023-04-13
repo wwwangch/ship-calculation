@@ -1,0 +1,64 @@
+/*
+ Navicat Premium Data Transfer
+
+ Source Server         : 192.168.100.33_1521_XE
+ Source Server Type    : Oracle
+ Source Server Version : 110200
+ Source Host           : 192.168.100.33:1521
+ Source Schema         : GANSU
+
+ Target Server Type    : Oracle
+ Target Server Version : 110200
+ File Encoding         : 65001
+
+ Date: 03/12/2021 15:10:15
+*/
+
+
+-- ----------------------------
+-- Table structure for USER_ROLE
+-- ----------------------------
+DROP TABLE "GANSU"."USER_ROLE";
+CREATE TABLE "GANSU"."USER_ROLE" (
+  "USER_ID" VARCHAR2(255 BYTE) ,
+  "ROLE_ID" VARCHAR2(255 BYTE) 
+)
+TABLESPACE "SYSTEM"
+LOGGING
+NOCOMPRESS
+PCTFREE 10
+INITRANS 1
+STORAGE (
+  INITIAL 65536 
+  NEXT 1048576 
+  MINEXTENTS 1
+  MAXEXTENTS 2147483645
+  FREELISTS 1
+  FREELIST GROUPS 1
+  BUFFER_POOL DEFAULT
+)
+PARALLEL 1
+NOCACHE
+DISABLE ROW MOVEMENT
+;
+
+-- ----------------------------
+-- Records of USER_ROLE
+-- ----------------------------
+INSERT INTO "GANSU"."USER_ROLE" VALUES ('17', '2');
+INSERT INTO "GANSU"."USER_ROLE" VALUES ('20', '2');
+INSERT INTO "GANSU"."USER_ROLE" VALUES ('22', '2');
+INSERT INTO "GANSU"."USER_ROLE" VALUES ('23', '2');
+INSERT INTO "GANSU"."USER_ROLE" VALUES ('39', '2');
+INSERT INTO "GANSU"."USER_ROLE" VALUES ('46', '2');
+INSERT INTO "GANSU"."USER_ROLE" VALUES ('47', '2');
+INSERT INTO "GANSU"."USER_ROLE" VALUES ('1', '4');
+INSERT INTO "GANSU"."USER_ROLE" VALUES ('40', '4');
+INSERT INTO "GANSU"."USER_ROLE" VALUES ('43', '4');
+INSERT INTO "GANSU"."USER_ROLE" VALUES ('40', '5');
+INSERT INTO "GANSU"."USER_ROLE" VALUES ('41', '5');
+INSERT INTO "GANSU"."USER_ROLE" VALUES ('20', '7');
+INSERT INTO "GANSU"."USER_ROLE" VALUES ('28', '7');
+INSERT INTO "GANSU"."USER_ROLE" VALUES ('42', '7');
+INSERT INTO "GANSU"."USER_ROLE" VALUES ('46', '7');
+INSERT INTO "GANSU"."USER_ROLE" VALUES ('34', '11');

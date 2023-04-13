@@ -1,0 +1,7 @@
+
+dependencies {
+    api "com.github.docker-java:docker-java:${dockerJavaVersion}"
+    implementation 'javax.ws.rs:javax.ws.rs-api'
+    implementation 'javax.annotation:javax.annotation-api'
+    implementation 'javax.activation:activation'
+}

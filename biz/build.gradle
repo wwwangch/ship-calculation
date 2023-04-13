@@ -1,0 +1,127 @@
+apply plugin: 'war'
+
+
+configurations {
+    api.exclude group: 'org.springframework.boot', module: 'spring-boot-starter-tomcat'
+    api.exclude group: 'org.apache.tomcat'
+    api.exclude group: 'org.apache.tomcat.embed'
+    api.exclude group: 'org.springframework.boot', module: 'spring-boot-starter-logging'
+//    api.exclude group: 'ch.qos.logback', module: 'logback-access'
+    api.exclude group: 'ch.qos.logback', module: 'logback-classic'
+//    api.exclude group: 'ch.qos.logback', module: 'logback-core'
+}
+
+dependencies {
+    api project(":biz-base")
+//    api project(":common:common-tools")
+    api project(":special:ssh-server")
+//    api project(":special:common-ssh-tools")
+    api project(":biz-mp")
+    api project(":special:datasong-connect-java")
+    api "javax.annotation:javax.annotation-api"
+    api "org.eweb4j:fel"
+    api "xerces:xercesImpl"
+    api "org.webjars:jquery:${jqueryVersion}"
+//    annotationProcessor "org.springframework:spring-context-indexer"
+    testImplementation "org.springframework.boot:spring-boot-starter-test"
+    implementation "org.openjdk.jol:jol-core"
+
+    // 使用devtools 会导致一些类加载器的问题，暂时不使用
+//    developmentOnly "org.springframework.boot:spring-boot-devtools"
+}
+
+//// 清除lib
+//task myClearLib(type: Delete) {
+//    delete "$buildDir/libs/lib"
+//}
+//
+//// 拷贝lib
+//task myCopyLib(type: Copy) {
+//    into "$buildDir/libs/lib"
+//    from configurations.compileClasspath
+//}
+
+// 打瘦包配置
+//bootJar {
+//    excludes = ["*.jar"]
+//
+//    // lib目录的清除和复制任务
+//    dependsOn myClearLib
+//    dependsOn myCopyLib
+//
+//    manifest {
+//        attributes 'Start-Class': 'com.iscas.biz.BizApp',
+//                'Manifest-Version': 1.0,
+//                'Class-Path': configurations.compileClasspath.files.collect { "lib/$it.name" }.join(' '),
+//                'Main-Class': 'org.springframework.boot.loader.PropertiesLauncher'
+//    }
+//
+//}
+
+// 打胖包配置
+bootJar {
+    duplicatesStrategy = DuplicatesStrategy.EXCLUDE
+    manifest {
+        attributes 'Start-Class': 'com.iscas.biz.BizApp'
+    }
+//    launchScript()
+}
+
+bootWar {
+    duplicatesStrategy = DuplicatesStrategy.EXCLUDE
+    manifest {
+        attributes 'Start-Class': 'com.iscas.biz.BizApp'
+    }
+    rootSpec.exclude("**/undertow-*.jar")
+//    launchScript()
+}
+
+bootRun {
+    mainClass = 'com.iscas.biz.BizApp'
+//    jvmArgs('-Dfile.encoding=UTF-8')
+}
+
+
+dockerCreateDockerfile {
+    instruction 'RUN ln -snf /usr/share/zoneinfo/$TimeZone /etc/localtime && echo $TimeZone > /etc/timezone'
+    environmentVariable 'TimeZone', 'Asia/Shanghai'
+    environmentVariable 'myenv', 'this is my test'
+}
+
+docker {
+    url = "${dockerRemoteAddr}"
+    springBootApplication {
+        baseImage = "${dockerRegistryUrl}/library/oneclick/openjdk:11-jdk-oracle"
+        maintainer = 'newframe'
+        ports = [7901]
+        images = ["${dockerRegistryUrl}/library/${rootProject.name}/${project.name}:${version}"]
+        jvmArgs = ['-Djava.security.egd=file:/dev/./urandom']
+        mainClassName = "com.iscas.business.product.ProductApp"
+    }
+    registryCredentials {
+        url = "http://${dockerRegistryUrl}"
+        username = "${dockerRegistryUsername}"
+        password = "${dockerRegistryPassword}"
+    }
+}
+
+
+//使用springboot自带的打docker镜像的方法
+//bootBuildImage {
+//    imageName = "192.168.100.96:80/library/${project.name}:${project.version}"
+//    pullPolicy = "IF_NOT_PRESENT"
+//    builder = "paketobuildpacks/builder:base"
+//    publish = true
+//    docker {
+//        host = "tcp://192.168.100.91:2375"
+//        tlsVerify = false
+////        certPath = "/home/users/.minikube/certs"
+//        publishRegistry {
+//            username = "admin"
+//            password = "Harbor12345"
+//            url = "http://192.168.100.96"
+//            email = "76775081@qq.com"
+//        }
+//    }
+//
+//}

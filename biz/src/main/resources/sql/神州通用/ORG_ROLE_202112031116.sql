@@ -1,0 +1,52 @@
+INSERT INTO SYSDBA.ORG_ROLE (ORG_ID,ROLE_ID) VALUES 
+(3,2)
+,(3,4)
+,(3,5)
+,(3,7)
+,(3,11)
+,(4,2)
+,(4,4)
+,(4,5)
+,(4,7)
+,(4,11)
+;
+INSERT INTO SYSDBA.ORG_ROLE (ORG_ID,ROLE_ID) VALUES 
+(6,2)
+,(6,4)
+,(6,5)
+,(6,7)
+,(6,11)
+,(7,2)
+,(7,4)
+,(7,5)
+,(7,7)
+,(7,11)
+;
+INSERT INTO SYSDBA.ORG_ROLE (ORG_ID,ROLE_ID) VALUES 
+(8,2)
+,(8,4)
+,(8,5)
+,(8,7)
+,(8,11)
+,(9,2)
+,(9,4)
+,(9,5)
+,(9,7)
+,(9,11)
+;
+INSERT INTO SYSDBA.ORG_ROLE (ORG_ID,ROLE_ID) VALUES 
+(10,2)
+,(10,4)
+,(10,5)
+,(10,7)
+,(10,11)
+,(14,2)
+,(14,4)
+,(14,5)
+,(14,7)
+,(14,11)
+;
+INSERT INTO SYSDBA.ORG_ROLE (ORG_ID,ROLE_ID) VALUES 
+(32,2)
+,(35,5)
+;

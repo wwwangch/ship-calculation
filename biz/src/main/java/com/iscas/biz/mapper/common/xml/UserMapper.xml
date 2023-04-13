@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.iscas.biz.mapper.common.UserMapper">
+    <resultMap id="BaseResultMap" type="com.iscas.biz.domain.common.User">
+        <id column="user_id" jdbcType="INTEGER" property="userId"/>
+        <result column="user_name" jdbcType="VARCHAR" property="userName"/>
+        <result column="user_real_name" jdbcType="VARCHAR" property="userRealName"/>
+        <result column="user_pwd" jdbcType="VARCHAR" property="userPwd"/>
+        <result column="user_tel" jdbcType="VARCHAR" property="userTel"/>
+        <result column="user_email" jdbcType="VARCHAR" property="userEmail"/>
+        <result column="user_status" jdbcType="SMALLINT" property="userStatus"/>
+        <result column="user_create_time" jdbcType="TIMESTAMP" property="userCreateTime"/>
+        <result column="user_update_time" jdbcType="TIMESTAMP" property="userUpdateTime"/>
+    </resultMap>
+
+
+    <update id="updatePwd" parameterType="com.iscas.biz.domain.common.User">
+        update user_info set user_pwd = #{userPwd,jdbcType=VARCHAR}
+        where user_id = #{userId,jdbcType=INTEGER}
+    </update>
+
+    <select id="selectUserByIds" resultMap="BaseResultMap" parameterType="java.util.List">
+        select * from user_info where user_id in
+        <foreach collection="list" item="id" open="(" close=")" separator=",">
+            #{id, jdbcType=INTEGER}
+        </foreach>
+    </select>
+
+
+    <insert id="saveOrUpdate">
+        <selectKey keyProperty="count" resultType="java.lang.Integer" order="BEFORE">
+            SELECT count(*) AS COUNT FROM
+            `user_info` WHERE user_name=#{userName}
+        </selectKey>
+        <!-- 如果大于0则更新 -->
+        <if test="count>0">
+            UPDATE
+            `user_info`
+            SET
+            `user_tel`=#{userTel}
+            WHERE user_name=#{userName}
+        </if>
+        <!-- 如果等于0则保存 -->
+        <if test="count==0">
+            INSERT INTO `user_info`(`user_tel`,
+            `user_name`)
+            VALUES (#{userTel},
+            #{userName}
+            );
+        </if>
+    </insert>
+
+</mapper>

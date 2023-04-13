@@ -1,0 +1,7 @@
+person:
+  zhangsan:
+    age: 18
+
+cities: '北京;上海;广州;武汉;南京;其他'
+
+map: '{"a":1, "b":2}'

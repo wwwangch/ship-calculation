@@ -1,0 +1,533 @@
+1、产生测试数据
+
+PUT /book_info/_bulk
+{ "index" : {  "_id" : "101" } }
+{ "name" : "hello","author":"tom","release_date":"2020-01-26","page_count": 500 }
+{ "index" : {  "_id" : "102" } }
+{ "name" : "world","author":"Marry","release_date":"2018-01-26","page_count": 352 }
+{ "index" : {  "_id" : "103" } }
+{ "name" : "test","author":"test","release_date":"2019-03-26","page_count": 436 }
+{ "index" : {  "_id" : "104" } }
+{ "name" : "demo","author":"demo","release_date":"2020-06-26","page_count": 337 }
+{ "index" : {  "_id" : "105" } }
+{ "name" : "zhangsan","author":"zhangsan","release_date":"2015-05-21","page_count": 562 }
+{ "index" : {  "_id" : "106" } }
+{ "name" : "zhangsan02","author":"zhangsan","release_date":"2015-05-21","page_count": 562 }
+
+
+2、单条件查询
+
+POST /_sql?format=txt
+{
+  "query": "SELECT * FROM book_info where name = 'hello'"
+}
+
+结果：
+    author     |     name      |  page_count   |      release_date      
+---------------+---------------+---------------+------------------------
+tom            |hello          |500            |2020-01-26T00:00:00.000Z
+
+3、多条件
+
+POST /_sql?format=txt
+{
+  "query": "SELECT * FROM book_info where name = 'hello' and author='tom'"
+}
+
+结果：
+    author     |     name      |  page_count   |      release_date      
+---------------+---------------+---------------+------------------------
+tom            |hello          |500            |2020-01-26T00:00:00.000Z
+
+4、排序分页
+
+POST /_sql?format=txt
+{
+  "query": "SELECT * FROM book_info ORDER BY release_date DESC LIMIT 2"
+}
+
+    author     |     name      |  page_count   |      release_date      
+---------------+---------------+---------------+------------------------
+demo           |demo           |337            |2020-06-26T00:00:00.000Z
+tom            |hello          |500            |2020-01-26T00:00:00.000Z
+
+5、筛选返回字段
+
+POST /_sql?format=txt
+{
+  "query": "SELECT name,release_date,page_count FROM book_info ORDER BY release_date DESC  LIMIT 3"
+}
+
+     name      |      release_date      |  page_count   
+---------------+------------------------+---------------
+demo           |2020-06-26T00:00:00.000Z|337            
+hello          |2020-01-26T00:00:00.000Z|500            
+test           |2019-03-26T00:00:00.000Z|436            
+
+6、时间比较
+POST /_sql?format=txt
+{
+  "query": "SELECT * FROM book_info WHERE release_date < '2020-01-01'  LIMIT 3"
+}
+
+    author     |     name      |  page_count   |      release_date      
+---------------+---------------+---------------+------------------------
+Marry          |world          |352            |2018-01-26T00:00:00.000Z
+test           |test           |436            |2019-03-26T00:00:00.000Z
+zhangsan       |zhangsan       |562            |2015-05-21T00:00:00.000Z
+
+7、聚合查询
+
+POST /_sql?format=txt
+{
+  "query": "SELECT sum(page_count) FROM book_info"
+}
+
+结果：
+sum(page_count)
+---------------
+2749.0   
+
+POST /_sql?format=txt
+{
+  "query": "SELECT sum(page_count),name FROM book_info group by name"
+}
+
+结果：
+sum(page_count)|     name      
+---------------+---------------
+337.0          |demo           
+500.0          |hello          
+436.0          |test           
+352.0          |world          
+562.0          |zhangsan       
+562.0          |zhangsan02     
+
+POST /_sql?format=txt
+{
+  "query": "SELECT avg(page_count) FROM book_info"
+}
+
+结果：
+ avg(page_count) 
+-----------------
+458.1666666666667
+
+POST /_sql?format=txt
+{
+  "query": "SELECT min(page_count) FROM book_info"
+}
+
+结果：
+min(page_count)
+---------------
+337.0     
+
+POST /_sql?format=txt
+{
+  "query": "SELECT max(page_count) FROM book_info"
+}
+
+结果：
+max(page_count)
+---------------
+562.0   
+
+8、COUNT查询
+POST /_sql?format=txt
+{
+  "query": "SELECT count(*),count(distinct author) FROM book_info "
+}
+
+结果：
+   count(*)    |count(distinct author)
+---------------+----------------------
+6              |5
+
+9、分组查询
+POST /_sql?format=txt
+{
+  "query": "SELECT author,count(*) as count FROM book_info group by author"
+}
+
+结果：
+    author     |     count     
+---------------+---------------
+Marry          |1              
+demo           |1              
+test           |1              
+tom            |1              
+zhangsan       |2 
+
+10、模糊查询
+POST /_sql?format=txt
+{ 
+  "query": "SELECT name,author FROM book_info where name like 'hello%'", 
+  "fetch_size": 10 
+} 
+
+结果：
+     name      |    author     
+---------------+---------------
+hello          |tom      
+
+11、having
+POST /_sql?format=txt
+{
+  "query": "SELECT name, count(*) FROM book_info GROUP BY name HAVING COUNT(*)>0 LIMIT 10"
+}
+
+结果：
+     name      |   count(*)    
+---------------+---------------
+demo           |1              
+hello          |1              
+test           |1              
+world          |1              
+zhangsan       |1              
+zhangsan02     |1  
+
+12、别名
+POST /_sql?format=txt
+{
+  "query": "SELECT name as alisname FROM book_info"
+}
+
+结果：
+  alisname    
+---------------
+hello          
+world          
+test           
+demo           
+zhangsan       
+zhangsan02
+
+13、表名、列名可以用括号括起来
+（如果表名或列名与关键字冲突，可以括起来）
+POST /_sql?format=txt
+{
+  "query": "SELECT \"name\"  FROM \"book_info\""
+}
+
+结果：
+     name
+---------------
+hello
+world
+test
+demo
+zhangsan
+zhangsan02
+
+14、字符串转时间类型函数CAST
+POST /_sql?format=txt
+{
+  "query": "SELECT release_date, CAST('1989-01-09' AS TIMESTAMP)  FROM book_info"
+}
+结果：
+      release_date      |CAST('1989-01-09' AS TIMESTAMP)
+------------------------+-------------------------------
+2020-01-26T00:00:00.000Z|1989-01-09T00:00:00.000Z
+2018-01-26T00:00:00.000Z|1989-01-09T00:00:00.000Z
+2019-03-26T00:00:00.000Z|1989-01-09T00:00:00.000Z
+2020-06-26T00:00:00.000Z|1989-01-09T00:00:00.000Z
+2015-05-21T00:00:00.000Z|1989-01-09T00:00:00.000Z
+2015-05-21T00:00:00.000Z|1989-01-09T00:00:00.000Z
+
+15、转数值函数::INTEGER ::LONG
+POST /_sql?format=txt
+{
+  "query": "SELECT page_count::INTEGER AS \"COUNT\", '123'::LONG FROM book_info"
+}
+
+     COUNT     |  '123'::LONG
+---------------+---------------
+500            |123
+352            |123
+436            |123
+337            |123
+562            |123
+562            |123
+
+16、IP转换CONVERT函数
+POST /_sql?format=txt
+{
+  "query": "SELECT CONVERT('10.0.0.1', IP) FROM book_info"
+}
+
+结果：
+CONVERT('10.0.0.1', IP)
+-----------------------
+10.0.0.1
+10.0.0.1
+10.0.0.1
+10.0.0.1
+10.0.0.1
+10.0.0.1
+
+17、获取索引列表
+POST /_sql?format=txt
+{
+  "query": "SHOW TABLES"
+}
+
+结果：
+#! this request accesses system indices: [.kibana_task_manager_7.12.1_001, .kibana_7.12.1_001], but in a future major version, direct access to system indices will be prevented by default
+#! this request accesses system indices: [.apm-agent-configuration, .apm-custom-link, .async-search, .kibana_7.12.1_001, .kibana_task_manager_7.12.1_001], but in a future major version, direct access to system indices will be prevented by default
+             name              |     type      |     kind
+-------------------------------+---------------+---------------
+.apm-agent-configuration       |TABLE          |INDEX
+.apm-custom-link               |TABLE          |INDEX
+.async-search                  |TABLE          |INDEX
+.kibana                        |VIEW           |ALIAS
+.kibana-event-log-7.12.1       |VIEW           |ALIAS
+.kibana-event-log-7.12.1-000001|TABLE          |INDEX
+.kibana_7.12.1                 |VIEW           |ALIAS
+.kibana_7.12.1_001             |TABLE          |INDEX
+.kibana_task_manager           |VIEW           |ALIAS
+.kibana_task_manager_7.12.1    |VIEW           |ALIAS
+.kibana_task_manager_7.12.1_001|TABLE          |INDEX
+book_info                      |TABLE          |INDEX
+people                         |TABLE          |INDEX
+test                           |TABLE          |INDEX
+索引名称                           |TABLE          |INDEX
+
+18、获取索引列表，使用通配符%
+POST /_sql?format=txt
+{
+  "query": "SHOW TABLES \"book_inf*\""
+}
+
+结果：
+     name      |     type      |     kind
+---------------+---------------+---------------
+book_info      |TABLE          |INDEX
+
+19、查看索引的字段和元数据
+POST /_sql?format=txt
+{
+  "query": "DESC book_info"
+}
+    column     |     type      |    mapping
+---------------+---------------+---------------
+author         |VARCHAR        |text
+author.keyword |VARCHAR        |keyword
+name           |VARCHAR        |text
+name.keyword   |VARCHAR        |keyword
+page_count     |BIGINT         |long
+release_date   |TIMESTAMP      |datetime
+
+20、查看表的列信息
+POST /_sql?format=txt
+{
+  "query": "SHOW COLUMNS IN book_info"
+}
+
+结果：
+    column     |     type      |    mapping
+---------------+---------------+---------------
+author         |VARCHAR        |text
+author.keyword |VARCHAR        |keyword
+name           |VARCHAR        |text
+name.keyword   |VARCHAR        |keyword
+page_count     |BIGINT         |long
+release_date   |TIMESTAMP      |datetime
+
+21、查看ES支持的函数列表
+POST /_sql?format=txt
+{
+  "query": "SHOW FUNCTIONS"
+}
+
+结果：
+      name       |     type
+-----------------+---------------
+AVG              |AGGREGATE
+COUNT            |AGGREGATE
+FIRST            |AGGREGATE
+FIRST_VALUE      |AGGREGATE
+LAST             |AGGREGATE
+LAST_VALUE       |AGGREGATE
+MAX              |AGGREGATE
+MIN              |AGGREGATE
+SUM              |AGGREGATE
+KURTOSIS         |AGGREGATE
+MAD              |AGGREGATE
+PERCENTILE       |AGGREGATE
+PERCENTILE_RANK  |AGGREGATE
+SKEWNESS         |AGGREGATE
+STDDEV_POP       |AGGREGATE
+STDDEV_SAMP      |AGGREGATE
+SUM_OF_SQUARES   |AGGREGATE
+VAR_POP          |AGGREGATE
+VAR_SAMP         |AGGREGATE
+HISTOGRAM        |GROUPING
+CASE             |CONDITIONAL
+COALESCE         |CONDITIONAL
+GREATEST         |CONDITIONAL
+IFNULL           |CONDITIONAL
+IIF              |CONDITIONAL
+ISNULL           |CONDITIONAL
+LEAST            |CONDITIONAL
+NULLIF           |CONDITIONAL
+NVL              |CONDITIONAL
+CURDATE          |SCALAR
+CURRENT_DATE     |SCALAR
+CURRENT_TIME     |SCALAR
+CURRENT_TIMESTAMP|SCALAR
+CURTIME          |SCALAR
+DATEADD          |SCALAR
+DATEDIFF         |SCALAR
+DATEPART         |SCALAR
+DATETIME_FORMAT  |SCALAR
+DATETIME_PARSE   |SCALAR
+DATETRUNC        |SCALAR
+DATE_ADD         |SCALAR
+DATE_DIFF        |SCALAR
+DATE_PARSE       |SCALAR
+DATE_PART        |SCALAR
+DATE_TRUNC       |SCALAR
+DAY              |SCALAR
+DAYNAME          |SCALAR
+DAYOFMONTH       |SCALAR
+DAYOFWEEK        |SCALAR
+DAYOFYEAR        |SCALAR
+DAY_NAME         |SCALAR
+DAY_OF_MONTH     |SCALAR
+DAY_OF_WEEK      |SCALAR
+DAY_OF_YEAR      |SCALAR
+DOM              |SCALAR
+DOW              |SCALAR
+DOY              |SCALAR
+FORMAT           |SCALAR
+HOUR             |SCALAR
+HOUR_OF_DAY      |SCALAR
+IDOW             |SCALAR
+ISODAYOFWEEK     |SCALAR
+ISODOW           |SCALAR
+ISOWEEK          |SCALAR
+ISOWEEKOFYEAR    |SCALAR
+ISO_DAY_OF_WEEK  |SCALAR
+ISO_WEEK_OF_YEAR |SCALAR
+IW               |SCALAR
+IWOY             |SCALAR
+MINUTE           |SCALAR
+MINUTE_OF_DAY    |SCALAR
+MINUTE_OF_HOUR   |SCALAR
+MONTH            |SCALAR
+MONTHNAME        |SCALAR
+MONTH_NAME       |SCALAR
+MONTH_OF_YEAR    |SCALAR
+NOW              |SCALAR
+QUARTER          |SCALAR
+SECOND           |SCALAR
+SECOND_OF_MINUTE |SCALAR
+TIMESTAMPADD     |SCALAR
+TIMESTAMPDIFF    |SCALAR
+TIMESTAMP_ADD    |SCALAR
+TIMESTAMP_DIFF   |SCALAR
+TIME_PARSE       |SCALAR
+TODAY            |SCALAR
+TO_CHAR          |SCALAR
+WEEK             |SCALAR
+WEEK_OF_YEAR     |SCALAR
+YEAR             |SCALAR
+ABS              |SCALAR
+ACOS             |SCALAR
+ASIN             |SCALAR
+ATAN             |SCALAR
+ATAN2            |SCALAR
+CBRT             |SCALAR
+CEIL             |SCALAR
+CEILING          |SCALAR
+COS              |SCALAR
+COSH             |SCALAR
+COT              |SCALAR
+DEGREES          |SCALAR
+E                |SCALAR
+EXP              |SCALAR
+EXPM1            |SCALAR
+FLOOR            |SCALAR
+LOG              |SCALAR
+LOG10            |SCALAR
+MOD              |SCALAR
+PI               |SCALAR
+POWER            |SCALAR
+RADIANS          |SCALAR
+RAND             |SCALAR
+RANDOM           |SCALAR
+ROUND            |SCALAR
+SIGN             |SCALAR
+SIGNUM           |SCALAR
+SIN              |SCALAR
+SINH             |SCALAR
+SQRT             |SCALAR
+TAN              |SCALAR
+TRUNC            |SCALAR
+TRUNCATE         |SCALAR
+ASCII            |SCALAR
+BIT_LENGTH       |SCALAR
+CHAR             |SCALAR
+CHARACTER_LENGTH |SCALAR
+CHAR_LENGTH      |SCALAR
+CONCAT           |SCALAR
+INSERT           |SCALAR
+LCASE            |SCALAR
+LEFT             |SCALAR
+LENGTH           |SCALAR
+LOCATE           |SCALAR
+LTRIM            |SCALAR
+OCTET_LENGTH     |SCALAR
+POSITION         |SCALAR
+REPEAT           |SCALAR
+REPLACE          |SCALAR
+RIGHT            |SCALAR
+RTRIM            |SCALAR
+SPACE            |SCALAR
+STARTS_WITH      |SCALAR
+SUBSTRING        |SCALAR
+TRIM             |SCALAR
+UCASE            |SCALAR
+CAST             |SCALAR
+CONVERT          |SCALAR
+DATABASE         |SCALAR
+USER             |SCALAR
+ST_ASTEXT        |SCALAR
+ST_ASWKT         |SCALAR
+ST_DISTANCE      |SCALAR
+ST_GEOMETRYTYPE  |SCALAR
+ST_GEOMFROMTEXT  |SCALAR
+ST_WKTTOSQL      |SCALAR
+ST_X             |SCALAR
+ST_Y             |SCALAR
+ST_Z             |SCALAR
+SCORE            |SCORE
+
+22、match分词查询
+POST /_sql?format=txt
+{
+    "query": "SELECT SCORE(), * FROM book_info WHERE match(name, 'zhangsan hello') ORDER BY name DESC"
+}
+
+结果：
+    SCORE()    |    author     |     name      |  page_count   |      release_date
+---------------+---------------+---------------+---------------+------------------------
+1.540445       |zhangsan       |zhangsan       |562            |2015-05-21T00:00:00.000Z
+1.540445       |tom            |hello          |500            |2020-01-26T00:00:00.000Z
+
+23、or连接
+POST /_sql?format=txt
+{
+  "query": "SELECT * FROM book_info WHERE name = 'hello' or name like '%zhangsan%'"
+}
+
+结果：
+    author     |     name      |  page_count   |      release_date
+---------------+---------------+---------------+------------------------
+tom            |hello          |500            |2020-01-26T00:00:00.000Z
+zhangsan       |zhangsan       |562            |2015-05-21T00:00:00.000Z
+zhangsan       |zhangsan02     |562            |2015-05-21T00:00:00.000Z
+
+
+

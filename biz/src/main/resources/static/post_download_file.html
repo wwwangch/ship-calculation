@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script>
+        function download() {
+            var ajax = new XMLHttpRequest();
+            ajax.withCredentials = true;
+            ajax.responseType = "blob";
+            const fileName = "ttt.txt";
+            ajax.open('post', 'http://localhost:7901/demo/down/file/t4?fileName=' + fileName);
+            ajax.setRequestHeader("Content-Type", "application/json;charset=utf-8");
+            // ajax.setRequestHeader("Accept","application/json;charset=utf-8");
+            ajax.send(JSON.stringify({firstName: "Bill", lastName: "Gates", age: 62, eyeColor: "blue"}));
+            ajax.onreadystatechange = function () {
+                if (ajax.readyState == 4 && ajax.status == 200) {
+                    console.log(ajax.response);
+                    const href = URL.createObjectURL(ajax.response);
+                    const a = document.createElement('a');
+                    a.setAttribute('href', href);
+                    a.setAttribute('download', fileName);
+                    a.click();
+                    URL.revokeObjectURL(href);
+                }
+            }
+        }
+    </script>
+</head>
+<body>
+<input type="button" value="下载" onclick="download();"/>
+</body>
+</html>

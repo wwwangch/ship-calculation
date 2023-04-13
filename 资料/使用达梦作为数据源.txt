@@ -1,0 +1,13 @@
+1、添加依赖
+implementation group: 'com.dameng', name: 'Dm7JdbcDriver17', version: '7.6.0.165'
+
+2、修改数据库连接
+demo:
+spring.datasource.druid.mysql2.driver-class-name=dm.jdbc.driver.DmDriver
+spring.datasource.druid.mysql2.url=jdbc:dm://172.16.10.151:5236/DMSERVER?zeroDateTimeBehavior=convertToNull&useUnicode=true&characterEncoding=utf-8
+spring.datasource.druid.mysql2.username=SYSDBA
+spring.datasource.druid.mysql2.password=SYSDBA
+spring.datasource.druid.mysql2.pointcut=execution(* com.iscas.biz.service.db2.*.*(..))
+
+3、修改filters配置（注意不能有wall过滤器）
+spring.datasource.druid.mysql2.filters=stat,slf4j

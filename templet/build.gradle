@@ -1,0 +1,8 @@
+dependencies {
+    api ("cglib:cglib:${cglibVersion}") {
+        exclude group: 'org.ow2.asm', module: 'asm'
+    }
+    api 'org.ow2.asm:asm'
+    api 'com.alibaba:fastjson'
+
+}

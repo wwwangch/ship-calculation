@@ -1,0 +1,10 @@
+https://www.cnblogs.com/liuwt0911/p/5803679.html
+https://blog.csdn.net/varyall/article/details/80308295
+https://dev.mysql.com/doc/refman/8.0/en/populating-spatial-columns.html
+
+
+//插入一个坐标，4个点
+INSERT INTO req (id,area) VALUES ('wgweg111', ST_GeomFromText('POLYGON((0 0,10 0,10 10,0 10))'));
+
+//插入一个坐标，一个点
+INSERT INTO req (id,area) VALUES ('wgweg1wee11', ST_PointFromText('POINT(1 1)'));

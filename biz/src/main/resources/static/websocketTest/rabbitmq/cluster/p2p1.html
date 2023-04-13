@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Websocket广播通信测试</title>
+    <script src="http://cdn.bootcss.com/stomp.js/2.3.3/stomp.min.js"></script>
+    <script src="https://cdn.bootcss.com/sockjs-client/1.1.4/sockjs.min.js"></script>
+    <script>
+        // var socket = new SockJS("http://192.168.100.88:7901/demo/webSocketServer");
+        // var socket = new SockJS('http://localhost:15674/stomp');
+        var socket = new WebSocket('ws://localhost:15674/ws');
+        var stompClient = Stomp.over(socket);
+
+        // SockJS does not support heart-beat: disable heart-beats
+        // stompClient.heartbeat.outgoing = 0;
+        // stompClient.heartbeat.incoming = 0;
+        // stompClient.debug = pipe('#second');
+
+
+        window.onload = function () {
+            connect();
+        }
+        //订阅消息
+        function subscribe() {
+
+            stompClient.subscribe('/topic/message.zhangsan', function(response){
+                console.log(response);
+                // alert("/topic/getResponse 你接收到的消息为:" + response);
+            });
+
+        }
+        function send() {
+            stompClient.send("/app/broadcast", {},
+                JSON.stringify({ 'name': 'testtest' }));
+        }
+        function connect() {
+
+            stompClient.connect("guest","guest",
+                function connectCallback(frame) {
+                    // 连接成功时（服务器响应 CONNECTED 帧）的回调方法
+                    alert("success");
+                    subscribe();
+                },
+                function errorCallBack(error) {
+                    // 连接失败时（服务器响应 ERROR 帧）的回调方法
+                    alert("error");
+                }, "/");
+        }
+        function disconnect() {
+            if (stompClient != null) {
+                stompClient.disconnect();
+            }
+//            setConnected(false);
+            console.log("Disconnected");
+        }
+    </script>
+</head>
+<body>
+<input type="text" id="info"/><button onclick="send();">发送</button>
+</body>
+</html>

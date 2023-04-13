@@ -1,0 +1,33 @@
+<html>
+    <head>
+        <meta charset="utf-8"/>
+        <script
+                src="http://code.jquery.com/jquery-3.4.1.js"
+                integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
+                crossorigin="anonymous"></script>
+        <script>
+            window.onload = function() {
+                $.ajax({
+                    type:"post",
+                    url:"http://192.168.100.88:8180/cs_page/test/post1?a=zhangsan",
+                    // data:{ //【这里填写是传给服务端的数据 可传可不传 数据必须是json格式】
+                    //     "a":"b",
+                    //     "c":"d"
+                    // },
+                    dataType:'json',  //【这里要小心啊，不要用jsonp，一定是json】
+                    crossDomain: false,  //【这个很重要，一定要加】
+                    success:function(result){
+                        console.log(result);
+                    },
+                    error:function(result){
+                        console.log(result);
+                    }
+                });
+
+            }
+        </script>
+    </head>
+
+<!--
+    <input type="button" onclick="click()" value="点我"/>-->
+</html>

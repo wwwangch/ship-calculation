@@ -1,0 +1,75 @@
+
+菜单树内的属性：
+@ApiModel("菜单")
+@Data
+@Accessors(chain = true)
+public class Menu {
+    @ApiModelProperty("ID")
+    private Integer menuId;
+
+    @ApiModelProperty("上级菜单")
+    private Integer menuPid;
+
+    @ApiModelProperty("菜单路径")
+    private String menuPage;
+
+    @ApiModelProperty("菜单创建时间")
+    private Date menuCreateTime;
+
+    @ApiModelProperty("菜单修改时间")
+    private Date menuUpdateTime;
+
+    @ApiModelProperty("菜单名称")
+    private String menuName;
+
+    @ApiModelProperty("角色ID（多选）不显示")
+    private List<Integer> roleIds = new ArrayList<>();
+
+    @ApiModelProperty("角色名称，显示")
+    private String roleNames;
+
+    @ApiModelProperty("权限标识ID,不显示")
+    private List<Integer> oprationIds = new ArrayList<>();
+
+    @ApiModelProperty("权限标识名称，显示")
+    private String oprationNames;
+
+}
+
+组织机构树内的属性：
+@ApiModel("组织结构")
+public class Org {
+
+    @ApiModelProperty("ID")
+    private Integer orgId;
+
+    @ApiModelProperty("名称")
+    @NotNull(message = "组织结构名称不能为空")
+    private String orgName;
+
+    @ApiModelProperty("父ID")
+    private Integer orgPid;
+
+    @ApiModelProperty("创建时间")
+    private Date orgCreateTime;
+
+    @ApiModelProperty("修改时间")
+    private Date orgUpdateTime;
+
+    @ApiModelProperty("描述")
+    private String orgDesc;
+
+    @ApiModelProperty("角色(显示)")
+    private String roleNames;
+
+    @ApiModelProperty("角色ID(不显示)")
+    private List<Integer> roleIds = new ArrayList<>();
+
+}
+
+修改密码接口发送的数据：
+{
+    "oldPwd":"123456", //旧密码
+    "newPwd":"123" //新密码
+}
+

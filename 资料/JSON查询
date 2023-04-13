@@ -1,0 +1,1 @@
+select JSON_EXTRACT(param, '$.name') AS name,JSON_EXTRACT(param,'$.age') AS age, id, create_time from fuse_file;

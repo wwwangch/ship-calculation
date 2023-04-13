@@ -1,0 +1,10 @@
+INSERT INTO SYSDBA.ORG_USER (ORG_ID,USER_ID) VALUES 
+(8,46)
+,(9,20)
+,(9,23)
+,(9,40)
+,(14,39)
+,(32,42)
+,(35,28)
+,(35,41)
+;

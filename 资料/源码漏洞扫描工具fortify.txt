@@ -1,0 +1,7 @@
+下载地址：
+http://www.pc6.com/softview/SoftView_837967.html
+
+使用方式：
+https://www.cnblogs.com/dearflt/p/13853508.html
+
+注意要将fortify-common-20.1.1.0007.jar拷贝至安装目录的Core/lib下

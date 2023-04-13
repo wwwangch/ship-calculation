@@ -1,0 +1,4 @@
+dependencies {
+    api 'com.jcraft:jsch'
+    api project (":common:common-tools")
+}

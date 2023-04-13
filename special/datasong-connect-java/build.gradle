@@ -1,0 +1,21 @@
+apply plugin: 'com.github.johnrengelman.shadow'
+
+shadowJar {
+    archiveBaseName = 'datasong-connect-java'
+    archiveClassifier = null
+    archiveVersion = '0.0.1'
+}
+
+dependencies {
+    api 'org.slf4j:slf4j-api'
+    api 'com.github.jsqlparser:jsqlparser'
+    api 'com.fasterxml.jackson.core:jackson-core'
+    api 'com.fasterxml.jackson.core:jackson-databind'
+    api "com.squareup.okhttp3:okhttp:${okHttpVersion}"
+    api "org.apache.httpcomponents:httpmime"
+    api 'javax.servlet:javax.servlet-api'
+    api 'org.javatuples:javatuples'
+    api 'cn.hutool:hutool-core'
+    api fileTree(dir:"libs", include: "*.jar")
+}
+

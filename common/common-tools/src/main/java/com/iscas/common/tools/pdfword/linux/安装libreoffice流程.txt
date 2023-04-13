@@ -1,0 +1,19 @@
+参考：https://www.cnblogs.com/liangbo-/p/11424292.html
+***安装文件太大，在朱全文电脑中***
+
+1、拷贝文件LibreOffice_7.0.4_Linux_x86-64_rpm.tar.gz
+2、解压
+3、进入RMPS目录
+4、yum localinstall *.rpm
+5、拷贝libreoffice-headless下的文件
+6、解压
+8、yum localinstall *.rpm
+9、转换命令为
+libreoffice7.0 --convert-to pdf:writer_pdf_Export /root/libreoffice/a.docx --outdir /root/libreoffice/
+用Java封装实现
+10、将windows字体拷贝到linux中
+ C:\Windows\Fonts          》》          /usr/share/fonts/Fonts
+
+
+PS：下载headless的方式：
+yum install --downloadonly ./ libreoffice-headless

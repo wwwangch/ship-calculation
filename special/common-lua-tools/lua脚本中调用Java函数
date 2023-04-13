@@ -1,0 +1,62 @@
+参考：https://blog.csdn.net/u012278016/article/details/79468525
+
+
+假设在Java中有这样的一个日志类Logger.java：
+
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
+
+public class Logger {
+    public static String TAG = "Logger";
+    private static Log logger = LogFactory.getLog(Logger.class);;
+    public Logger(){
+        if(logger == null){
+            logger = LogFactory.getLog(Logger.class);
+        }
+    }
+
+    public void TestLogger(String str) {
+        logger.info(str);
+    }
+
+    public static void info(String content){
+        logger.info(content);
+    }
+}
+创建一个lua脚本：
+命名为test.lua，存放在当前项目根目录下的res/lua目录下，详细代码如下：
+
+在Lua中直接创建Java类的实例的方法：
+
+    --使用luajava创建java类的实例（对象）
+    local logger = luajava.newInstance("com.tw.login.tools.Logger")
+    --调用对象方法
+    logger:TestLogger("Test call java in lua0")
+
+
+    在Lua中绑定Java类：
+
+    --使用luajava绑定一个java类
+    local logger_method = luajava.bindClass("com.tw.login.tools.Logger");
+    --调用类的静态方法/变量
+    logger_method:info("test call static java function in lua")
+    print(logger_method.TAG)
+    -- 使用绑定类创建类的实例（对象）
+    local logger_instance = luajava.new(logger_method)
+    -- 调用对象方法
+    logger_instance:TestLogger("Test call java in lua1")
+
+
+当前我们只是实现了Lua中调用Java的逻辑，但是作为一种脚本语言，Lua没办法脱离高级语言而独立运行起来，所以要测试Lua是否能正常实现对Java的调用，还是需要在Java中运行此Lua脚本，参考之前在Java调用.lua脚本文件的方法，在Java中的main入口函数中添加一下内容：
+
+Globals globals = JsePlatform.standardGlobals();
+globals.loadfile("res/lua/test.lua").call();
+    结果输出日志：
+
+    四月 07, 2017 2:17:04 下午 com.tw.login.tools.Logger TestLogger
+    信息: Test call java in lua0
+    四月 07, 2017 2:17:04 下午 com.tw.login.tools.Logger info
+    信息: test call static java function in lua
+    Logger
+    四月 07, 2017 2:17:04 下午 com.tw.login.tools.Logger TestLogger
+    信息: Test call java in lua1

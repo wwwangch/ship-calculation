@@ -1,0 +1,36 @@
+
+---
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: phm-test
+spec:
+  replicas: 2
+  template:
+    metadata:
+      labels:
+        app: web-phm
+    spec:
+      containers:
+        - name: phm-test-instance
+          image: 192.168.100.96:80/library/phm:0.0.1
+          ports:
+            - containerPort: 8080
+      serviceAccountName: test
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: phm-test-service
+  labels:
+    name: phm-test-service
+spec:
+  type: NodePort      #这里代表是NodePort类型的
+  ports:
+    - port: 8080        #这里的端口和clusterIP对应，即ip:8080,供内部访问。
+      targetPort: 8080  #端口一定要和container暴露出来的端口对应
+      protocol: TCP
+      nodePort: 32177   # 所有的节点都会开放此端口，此端口供外部调用。
+  selector:
+    app: web-phm          #这里选择器一定要选择容器的标签，之前写name:kube-node是错的。
