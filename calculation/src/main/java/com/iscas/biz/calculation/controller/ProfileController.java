@@ -17,6 +17,7 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.Date;
 import java.util.List;
@@ -80,6 +81,13 @@ public class ProfileController {
         return tableDefinitionService.saveData(TABLE_IDENTITY, data, false, null, forceItem);
     }
 
+    @Operation(summary = "上传文件新增球扁钢", description = "插入")
+    @io.swagger.v3.oas.annotations.parameters.RequestBody(required = true, description = "新增的数据")
+    @PostMapping(value = "/data/file", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
+    public Integer saveDataByFile(MultipartFile file) {
+        return bulbFlatService.uploadFile(file);
+    }
+
     @Operation(summary = "修改球扁钢数据", description = "更新")
     @io.swagger.v3.oas.annotations.parameters.RequestBody(required = true, description = "修改的数据(未变动的数据也传)",
             content = @Content(examples = @ExampleObject(value = "{\"key\":\"val\"}")))
@@ -120,6 +128,13 @@ public class ProfileController {
     public ResponseEntity saveTData(@RequestBody Map<String, Object> data) throws ValidDataException {
         ImmutableMap<String, Object> forceItem = ImmutableMap.of("create_time", DateSafeUtils.format(new Date()));
         return tableDefinitionService.saveData(T_TABLE_IDENTITY, data, false, null, forceItem);
+    }
+
+    @Operation(summary = "上传文件新增T型材", description = "插入")
+    @io.swagger.v3.oas.annotations.parameters.RequestBody(required = true, description = "新增的文件")
+    @PostMapping(value = "/t/data/file", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
+    public Integer saveTDataByFile(MultipartFile file) {
+        return tProfileService.uploadFile(file);
     }
 
     @Operation(summary = "修改T型材数据", description = "更新")
