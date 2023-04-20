@@ -1,6 +1,7 @@
 package com.iscas.biz.calculation.controller;
 
 import com.google.common.collect.ImmutableMap;
+import com.iscas.biz.calculation.entity.db.Project;
 import com.iscas.biz.calculation.service.ProjectService;
 import com.iscas.biz.mp.table.service.TableDefinitionService;
 import com.iscas.common.tools.core.date.DateSafeUtils;
@@ -71,7 +72,7 @@ public class ProjectController {
     @PostMapping("/data")
     public ResponseEntity saveData(@RequestBody Map<String, Object> data) throws ValidDataException {
         ImmutableMap<String, Object> forceItem = ImmutableMap.of("create_time", DateSafeUtils.format(new Date()));
-        return tableDefinitionService.saveData(TABLE_IDENTITY, data, false, null, forceItem);
+        return tableDefinitionService.saveData(TABLE_IDENTITY, data, true, Project.class, forceItem);
     }
 
     @Operation(summary = "修改数据", description = "更新")
@@ -81,7 +82,7 @@ public class ProjectController {
     public ResponseEntity editData(@RequestBody Map<String, Object> data)
             throws ValidDataException {
         ImmutableMap<String, Object> forceItem = ImmutableMap.of("update_time", DateSafeUtils.format(new Date()));
-        return tableDefinitionService.saveData(TABLE_IDENTITY, data, false, null, forceItem);
+        return tableDefinitionService.saveData(TABLE_IDENTITY, data, false, Project.class, forceItem);
     }
 
     @GetMapping("/combobox/calcSpec")

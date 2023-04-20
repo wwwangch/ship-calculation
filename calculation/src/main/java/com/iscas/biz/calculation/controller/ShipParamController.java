@@ -6,6 +6,7 @@ import com.iscas.biz.mp.table.service.TableDefinitionService;
 import com.iscas.templet.common.ResponseEntity;
 import com.iscas.templet.exception.BaseException;
 import com.iscas.templet.exception.ValidDataException;
+import com.iscas.templet.view.table.ComboboxData;
 import com.iscas.templet.view.table.TableSearchRequest;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.Content;
@@ -17,6 +18,7 @@ import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * @author ch w
@@ -66,8 +68,8 @@ public class ShipParamController {
     @io.swagger.v3.oas.annotations.parameters.RequestBody(required = true, description = "新增的数据",
             content = @Content(examples = @ExampleObject(value = "{\"key\":\"val\"}")))
     @PostMapping("/data")
-    public Integer saveData(@RequestBody ShipParam shipParam) throws ValidDataException {
-        return shipParamService.save(shipParam);
+    public Integer saveData(@RequestBody Map<String, Object> data) throws ValidDataException {
+        return shipParamService.save(data);
     }
 
     @Operation(summary = "上传文件新增", description = "通过上传配置来新增数据,只传项目id和文件")
@@ -82,7 +84,13 @@ public class ShipParamController {
     @io.swagger.v3.oas.annotations.parameters.RequestBody(required = true, description = "修改的数据(未变动的数据也传)",
             content = @Content(examples = @ExampleObject(value = "{\"key\":\"val\"}")))
     @PutMapping("/data")
-    public Integer editData(@RequestBody ShipParam shipParam) throws ValidDataException {
-        return shipParamService.updateById(shipParam);
+    public Integer editData(@RequestBody Map<String, Object> data) throws ValidDataException {
+        return shipParamService.updateById(data);
+    }
+
+    @Operation(summary = "获取航行区域下拉框", description = "获取航行区域下拉框")
+    @GetMapping("/combobox/area")
+    public List<ComboboxData> listNavigationAreaCombobox() {
+        return shipParamService.listNavigationAreaCombobox();
     }
 }

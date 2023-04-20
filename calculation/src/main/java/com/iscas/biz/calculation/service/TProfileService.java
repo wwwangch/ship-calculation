@@ -1,7 +1,6 @@
 package com.iscas.biz.calculation.service;
 
 import com.baomidou.mybatisplus.extension.service.IService;
-import com.iscas.biz.calculation.entity.db.BulbFlat;
 import com.iscas.biz.calculation.entity.db.TProfile;
 import org.springframework.web.multipart.MultipartFile;
 

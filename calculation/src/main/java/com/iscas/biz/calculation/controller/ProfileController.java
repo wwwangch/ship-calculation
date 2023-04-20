@@ -1,6 +1,8 @@
 package com.iscas.biz.calculation.controller;
 
 import com.google.common.collect.ImmutableMap;
+import com.iscas.biz.calculation.entity.db.BulbFlat;
+import com.iscas.biz.calculation.entity.db.TProfile;
 import com.iscas.biz.calculation.service.BulbFlatService;
 import com.iscas.biz.calculation.service.TProfileService;
 import com.iscas.biz.mp.table.service.TableDefinitionService;
@@ -78,7 +80,7 @@ public class ProfileController {
     @PostMapping("/data")
     public ResponseEntity saveData(@RequestBody Map<String, Object> data) throws ValidDataException {
         ImmutableMap<String, Object> forceItem = ImmutableMap.of("create_time", DateSafeUtils.format(new Date()));
-        return tableDefinitionService.saveData(TABLE_IDENTITY, data, false, null, forceItem);
+        return tableDefinitionService.saveData(TABLE_IDENTITY, data, true, BulbFlat.class, forceItem);
     }
 
     @Operation(summary = "上传文件新增球扁钢", description = "插入")
@@ -95,7 +97,7 @@ public class ProfileController {
     public ResponseEntity editData(@RequestBody Map<String, Object> data)
             throws ValidDataException {
         ImmutableMap<String, Object> forceItem = ImmutableMap.of("update_time", DateSafeUtils.format(new Date()));
-        return tableDefinitionService.saveData(TABLE_IDENTITY, data, false, null, forceItem);
+        return tableDefinitionService.saveData(TABLE_IDENTITY, data, false, BulbFlat.class, forceItem);
     }
 
     @Operation(summary = "获取T型材表头", description = "不带数据，带下拉列表")
@@ -127,7 +129,7 @@ public class ProfileController {
     @PostMapping("/t/data")
     public ResponseEntity saveTData(@RequestBody Map<String, Object> data) throws ValidDataException {
         ImmutableMap<String, Object> forceItem = ImmutableMap.of("create_time", DateSafeUtils.format(new Date()));
-        return tableDefinitionService.saveData(T_TABLE_IDENTITY, data, false, null, forceItem);
+        return tableDefinitionService.saveData(T_TABLE_IDENTITY, data, true, TProfile.class, forceItem);
     }
 
     @Operation(summary = "上传文件新增T型材", description = "插入")
@@ -144,6 +146,6 @@ public class ProfileController {
     public ResponseEntity editTData(@RequestBody Map<String, Object> data)
             throws ValidDataException {
         ImmutableMap<String, Object> forceItem = ImmutableMap.of("update_time", DateSafeUtils.format(new Date()));
-        return tableDefinitionService.saveData(T_TABLE_IDENTITY, data, false, null, forceItem);
+        return tableDefinitionService.saveData(T_TABLE_IDENTITY, data, false, TProfile.class, forceItem);
     }
 }

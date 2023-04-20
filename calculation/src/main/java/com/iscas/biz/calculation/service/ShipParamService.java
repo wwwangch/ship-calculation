@@ -1,13 +1,11 @@
 package com.iscas.biz.calculation.service;
 
 import com.iscas.biz.calculation.entity.db.ShipParam;
-import com.iscas.biz.calculation.mapper.ShipParamMapper;
 import com.iscas.templet.exception.ValidDataException;
 import com.iscas.templet.view.table.ComboboxData;
-import lombok.extern.slf4j.Slf4j;
-import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * @author ch w
@@ -17,11 +15,13 @@ import java.util.List;
 public interface ShipParamService {
     int saveWithFile(ShipParam shipParam);
 
-    int updateById(ShipParam shipParam) throws ValidDataException;
+    int updateById(Map<String, Object> data) throws ValidDataException;
 
     boolean deleteByIds(List<Integer> ids);
 
     List<ComboboxData> listShipTypeCombobox();
 
-    int save(ShipParam shipParam) throws ValidDataException;
+    int save(Map<String, Object> shipParam) throws ValidDataException;
+
+    List<ComboboxData> listNavigationAreaCombobox();
 }

@@ -2,7 +2,6 @@ package com.iscas.biz.calculation.service.impl;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.toolkit.Wrappers;
-import com.fasterxml.jackson.core.type.TypeReference;
 import com.google.common.collect.ImmutableMap;
 import com.google.common.collect.Lists;
 import com.iscas.base.biz.service.fileserver.FileServerService;
@@ -10,13 +9,13 @@ import com.iscas.biz.calculation.constant.RegularConstants;
 import com.iscas.biz.calculation.entity.db.Project;
 import com.iscas.biz.calculation.entity.db.ShipParam;
 import com.iscas.biz.calculation.enums.CalculationSpecification;
+import com.iscas.biz.calculation.enums.NavigationArea;
 import com.iscas.biz.calculation.enums.ShipType;
 import com.iscas.biz.calculation.mapper.ProjectMapper;
 import com.iscas.biz.calculation.mapper.ShipParamMapper;
 import com.iscas.biz.calculation.service.ShipParamService;
 import com.iscas.biz.mp.table.service.TableDefinitionService;
 import com.iscas.common.tools.core.date.DateSafeUtils;
-import com.iscas.common.web.tools.json.JsonUtils;
 import com.iscas.templet.exception.ValidDataException;
 import com.iscas.templet.view.table.ComboboxData;
 import lombok.extern.slf4j.Slf4j;
@@ -57,13 +56,10 @@ public class ShipParamServiceImpl implements ShipParamService {
     }
 
     @Override
-    public int save(ShipParam shipParam) throws ValidDataException {
+    public int save(Map<String, Object> shipParam) throws ValidDataException {
         checkParam(shipParam);
-        TypeReference<Map<String, Object>> typeReference = new TypeReference<Map<String, Object>>() {
-        };
-        Map<String, Object> data = JsonUtils.fromJson(JsonUtils.toJson(shipParam), typeReference);
         ImmutableMap<String, Object> forceItem = ImmutableMap.of("create_time", DateSafeUtils.format(new Date()));
-        tableDefinitionService.saveData(TABLE_IDENTITY, data, false, null, null);
+        tableDefinitionService.saveData(TABLE_IDENTITY, shipParam, true, ShipParam.class, forceItem);
         return 1;
     }
 
@@ -90,25 +86,26 @@ public class ShipParamServiceImpl implements ShipParamService {
         return 0;
     }
 
-    private void checkParam(ShipParam shipParam) {
+    private void checkParam(Map<String, Object> shipParam) {
         if (null == shipParam) {
             return;
         }
-        Integer projectId = shipParam.getProjectId();
+        Integer projectId = (Integer) shipParam.get("project_id");
         Project project = projectMapper.selectById(projectId);
         if (null == project) {
             throw new RuntimeException(String.format("项目:[%s]不存在!!!", String.valueOf(projectId)));
         }
         if (CalculationSpecification.COMMON_SPECIFICATION.equals(project.getCalculationSpecification())) {
-            shipParam.setCruisingDisplacement(null);
-            shipParam.setCruisingPortraitGravity(null);
-            shipParam.setExtremeDisplacement(null);
-            shipParam.setExtremePortraitGravity(null);
+            shipParam.put("extreme_displacement", null);
+            shipParam.put("extreme_portrait_gravity", null);
+            shipParam.put("cruising_displacement", null);
+            shipParam.put("cruising_portrait_gravity", null);
+
         } else {
-            Double cruisingDisplacement = shipParam.getCruisingDisplacement();
-            String cruisingPortraitGravity = shipParam.getCruisingPortraitGravity();
-            Double extremeDisplacement = shipParam.getExtremeDisplacement();
-            String extremePortraitGravity = shipParam.getExtremePortraitGravity();
+            Double cruisingDisplacement = (Double) shipParam.get("cruising_displacement");
+            String cruisingPortraitGravity = (String) shipParam.get("cruising_portrait_gravity");
+            Double extremeDisplacement = (Double) shipParam.get("extreme_displacement");
+            String extremePortraitGravity = (String) shipParam.get("extreme_portrait_gravity");
             //校验为空
             if (null == cruisingDisplacement || null == cruisingPortraitGravity || null == extremeDisplacement || null == extremePortraitGravity) {
                 throw new RuntimeException("当前校核准则校验工况必填");
@@ -122,24 +119,20 @@ public class ShipParamServiceImpl implements ShipParamService {
     }
 
     @Override
-    public int updateById(ShipParam shipParam) throws ValidDataException {
-        if (null == shipParam.getParamId()) {
+    public int updateById(Map<String, Object> data) throws ValidDataException {
+        if (null == data.get("param_id")) {
             throw new RuntimeException("更新时id不可为空");
         }
-        checkParam(shipParam);
-        Integer projectId = shipParam.getProjectId();
+        checkParam(data);
+        Integer projectId = (Integer) data.get("project_id");
         QueryWrapper<ShipParam> queryWrapper = Wrappers.emptyWrapper();
         queryWrapper.eq("project_id", projectId);
         List<ShipParam> shipParams = shipParamMapper.selectList(queryWrapper);
         if (CollectionUtils.isNotEmpty(shipParams)) {
             throw new RuntimeException("当前项目船舶参数已经存在");
         }
-
-        TypeReference<Map<String, Object>> typeReference = new TypeReference<Map<String, Object>>() {
-        };
-        Map<String, Object> data = JsonUtils.fromJson(JsonUtils.toJson(shipParam), typeReference);
         ImmutableMap<String, Object> forceItem = ImmutableMap.of("update_time", DateSafeUtils.format(new Date()));
-        tableDefinitionService.saveData(TABLE_IDENTITY, data, false, null, null);
+        tableDefinitionService.saveData(TABLE_IDENTITY, data, false, ShipParam.class, forceItem);
         return 1;
     }
 
@@ -159,5 +152,19 @@ public class ShipParamServiceImpl implements ShipParamService {
             result.add(comboboxData);
         }
         return result;
+    }
+
+    @Override
+    public List<ComboboxData> listNavigationAreaCombobox() {
+        List<ComboboxData> result = Lists.newArrayList();
+        NavigationArea[] navigationAreas = NavigationArea.values();
+        for (NavigationArea navigationArea : navigationAreas) {
+            ComboboxData comboboxData = new ComboboxData();
+            comboboxData.setLabel(navigationArea.getDescCH());
+            comboboxData.setValue(navigationArea.getValue());
+            result.add(comboboxData);
+        }
+        return result;
+
     }
 }
