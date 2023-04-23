@@ -10,7 +10,7 @@ import com.fasterxml.jackson.annotation.JsonValue;
  * 计算规范枚举
  */
 public enum CalculationSpecification {
-    COMMON_SPECIFICATION(0,"common_specification","统用规范"),
+    COMMON_SPECIFICATION(0,"common_specification","通用规范"),
     BIG_SHIP(1,"big_ship","大船准则"),
     DQ(2,"dq","DQ准则"),
     ;

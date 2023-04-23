@@ -6,6 +6,7 @@ import com.baomidou.mybatisplus.core.metadata.TableFieldInfo;
 import com.baomidou.mybatisplus.core.metadata.TableInfo;
 import com.baomidou.mybatisplus.core.metadata.TableInfoHelper;
 import com.fasterxml.jackson.core.type.TypeReference;
+import com.google.common.base.CaseFormat;
 import com.iscas.biz.mp.aop.enable.ConditionalOnMybatis;
 import com.iscas.biz.mp.config.db.TableDefinitionSqlCreatorConfig;
 import com.iscas.biz.mp.table.mapper.TableDefinitionMapper;
@@ -114,6 +115,9 @@ public class TableDefinitionService {
                     primaryKey = "id";
                 }
             }
+
+            //下划线转小驼峰
+//            columnDefinitions.forEach(columnDefinition -> columnDefinition.setField(CaseFormat.LOWER_UNDERSCORE.to(CaseFormat.LOWER_CAMEL, columnDefinition.getField())));
 
             TableHeaderResponseData tableHeaderResponseData = new TableHeaderResponseData();
             tableHeaderResponseData.setCols(analyzeTableField(columnDefinitions, withOption));
