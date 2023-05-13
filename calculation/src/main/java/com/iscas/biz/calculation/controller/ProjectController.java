@@ -2,6 +2,7 @@ package com.iscas.biz.calculation.controller;
 
 import com.google.common.collect.ImmutableMap;
 import com.iscas.biz.calculation.entity.db.Project;
+import com.iscas.biz.calculation.grpc.CalculationGrpc;
 import com.iscas.biz.calculation.service.ProjectService;
 import com.iscas.biz.mp.table.service.TableDefinitionService;
 import com.iscas.common.tools.core.date.DateSafeUtils;
@@ -16,6 +17,7 @@ import io.swagger.v3.oas.annotations.media.ExampleObject;
 import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.extern.slf4j.Slf4j;
+import net.devh.boot.grpc.client.inject.GrpcClient;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
@@ -38,6 +40,9 @@ public class ProjectController {
     private final ProjectService projectService;
     private TableDefinitionService tableDefinitionService;
 
+    @GrpcClient("server207")
+    private CalculationGrpc.CalculationBlockingStub calculationBlockingStub;
+
     public ProjectController(ProjectService projectService, TableDefinitionService tableDefinitionService) {
         this.projectService = projectService;
         this.tableDefinitionService = tableDefinitionService;
@@ -46,6 +51,7 @@ public class ProjectController {
     @Operation(summary = "获取表头", description = "不带数据，带下拉列表")
     @GetMapping(value = "/getHeader", produces = {MediaType.APPLICATION_JSON_VALUE})
     public ResponseEntity getTableHeaderWithOption() throws BaseException {
+        System.out.println(11);
         return tableDefinitionService.getHeaderWithOption(TABLE_IDENTITY);
     }
 

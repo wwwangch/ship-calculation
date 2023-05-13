@@ -8,7 +8,7 @@ import com.baomidou.mybatisplus.annotation.EnumValue;
  * @since 2023/4/11 15:42
  */
 public enum ShipType {
-    ZQJ("ZQJ"),
+    QZJ("QZJ"),
     HM("HM"),
     ;
 

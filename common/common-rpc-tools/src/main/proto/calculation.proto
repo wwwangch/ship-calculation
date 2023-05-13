@@ -1,0 +1,107 @@
+syntax = "proto3";
+
+package com.iscas.biz.calculation.grpc;
+
+option java_package = "com.iscas.biz.calculation.grpc";
+option java_outer_classname = "CalculationProto";
+option java_multiple_files = true;
+
+
+//rpc方法
+service Calculation {
+  //船舶参数配置
+  rpc shipParam(ShipParamRequest) returns (ShipParamResponse) {}
+  //浮力计算
+  rpc buoyancy(BuoyancyRequest) returns (BuoyancyResponse){}
+}
+
+//浮力计算参数值
+message BuoyancyRequest{
+  //邦戎曲线路径
+  string brojeanFilePath = 1;
+
+  //静水力曲线文件路径
+  string buoyancycurveFilePath = 2;
+
+  //核校精度 两个double值 第一个排水量精度  第二个重心精度
+  repeated double precision = 3;
+
+  //校核目标 0-极限 1-巡航
+  int32 target = 4;
+
+  //平均吃水
+  double tm = 5;
+
+  //尾吃水
+  double ta = 6;
+
+  //船首吃水
+  double tf = 7;
+}
+
+//浮力计算返回值
+message BuoyancyResponse{
+  //0-正常 1-异常
+  int32 code = 1;
+
+  string message = 2;
+
+  //校核b(x)的计算结果 21个值的数组
+  repeated double blist = 3;
+  //每次校核计算得到的校核结果
+  repeated Buoyant calrst = 4;
+}
+message Buoyant{
+  //浮力
+  double floatforce = 1;
+  //浮力位置
+  double floatxpos = 2;
+  //船尾吃水
+  double da = 3;
+  //船中吃水
+  double dm = 4;
+  //船首吃水
+  double df = 5;
+  //浮力偏差 重量平衡精度
+  double biasf = 6;
+  //浮力位置偏差 重心平衡精度
+  double biasx = 7;
+  //第几次计算结果
+  int32 index = 8;
+}
+//船舶参数请求
+message ShipParamRequest {
+  //水线长
+  double l_wl = 1;
+  //型宽
+  double width = 2;
+  //型深
+  double  depth = 3;
+  //吃水
+  double draught = 4;
+  //航行区域 0-无限 1-有限
+  int32 area = 5;
+
+  //校验方式 0-极限 1-巡航
+  int32 checkType = 6;
+
+  //排水量
+  double displacement = 7;
+
+  //重心纵向位置
+  double portraitGravity = 8;
+
+  //校核准则 0-通用 1-大船 2-DQ
+  int32 principle = 10;
+
+  //船舶类型 ZQJ HM
+  string type = 11;
+}
+//船舶参数响应
+message ShipParamResponse{
+  //o-正常 1-异常
+  int32 code = 1;
+  //异常信息
+  string message = 2;
+}
+

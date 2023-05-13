@@ -58,6 +58,9 @@ public class ShipParamServiceImpl implements ShipParamService {
     @Override
     public int save(Map<String, Object> shipParam) throws ValidDataException {
         checkParam(shipParam);
+        QueryWrapper<ShipParam> queryWrapper = new QueryWrapper<>();
+        queryWrapper.eq("project_id", shipParam.get("project_id"));
+        shipParamMapper.delete(queryWrapper);
         ImmutableMap<String, Object> forceItem = ImmutableMap.of("create_time", DateSafeUtils.format(new Date()));
         tableDefinitionService.saveData(TABLE_IDENTITY, shipParam, true, ShipParam.class, forceItem);
         return 1;
@@ -65,24 +68,24 @@ public class ShipParamServiceImpl implements ShipParamService {
 
     @Override
     public int saveWithFile(ShipParam shipParam) {
-        MultipartFile paramFile = shipParam.getParamFile();
-        if (paramFile == null) {
-            throw new RuntimeException("配置文件不可为空");
-        }
-        try {
-            Map<String, String> upload = fileServerService.upload(new MultipartFile[]{paramFile});
-            shipParam.setParamFilePath(upload.get(paramFile.getOriginalFilename()));
-        } catch (IOException e) {
-            throw new RuntimeException("配置文件保存失败", e);
-        }
-
-        //解析文件
-        try {
-            String string = IOUtils.toString(paramFile.getInputStream(), StandardCharsets.UTF_8);
-            System.out.println(string);
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
+//        MultipartFile paramFile = shipParam.getParamFile();
+//        if (paramFile == null) {
+//            throw new RuntimeException("配置文件不可为空");
+//        }
+//        try {
+//            Map<String, String> upload = fileServerService.upload(new MultipartFile[]{paramFile});
+//            shipParam.setParamFilePath(upload.get(paramFile.getOriginalFilename()));
+//        } catch (IOException e) {
+//            throw new RuntimeException("配置文件保存失败", e);
+//        }
+//
+//        //解析文件
+//        try {
+//            String string = IOUtils.toString(paramFile.getInputStream(), StandardCharsets.UTF_8);
+//            System.out.println(string);
+//        } catch (IOException e) {
+//            throw new RuntimeException(e);
+//        }
         return 0;
     }
 
@@ -95,12 +98,21 @@ public class ShipParamServiceImpl implements ShipParamService {
         if (null == project) {
             throw new RuntimeException(String.format("项目:[%s]不存在!!!", String.valueOf(projectId)));
         }
-        if (CalculationSpecification.COMMON_SPECIFICATION.equals(project.getCalculationSpecification())) {
+
+/*        Double cruisingDisplacement = (Double) shipParam.get("cruising_displacement");
+        Double cruisingPortraitGravity = (Double) shipParam.get("cruising_portrait_gravity");
+        Double extremeDisplacement = (Double) shipParam.get("extreme_displacement");
+        Double extremePortraitGravity = (Double) shipParam.get("extreme_portrait_gravity");
+        //校验为空
+        if (null == cruisingDisplacement || null == cruisingPortraitGravity || null == extremeDisplacement || null == extremePortraitGravity) {
+            throw new RuntimeException("当前校核准则校验工况必填");
+        }*/
+
+        /*if (CalculationSpecification.COMMON_SPECIFICATION.equals(project.getCalculationSpecification())) {
             shipParam.put("extreme_displacement", null);
             shipParam.put("extreme_portrait_gravity", null);
             shipParam.put("cruising_displacement", null);
             shipParam.put("cruising_portrait_gravity", null);
-
         } else {
             Double cruisingDisplacement = (Double) shipParam.get("cruising_displacement");
             String cruisingPortraitGravity = (String) shipParam.get("cruising_portrait_gravity");
@@ -110,12 +122,7 @@ public class ShipParamServiceImpl implements ShipParamService {
             if (null == cruisingDisplacement || null == cruisingPortraitGravity || null == extremeDisplacement || null == extremePortraitGravity) {
                 throw new RuntimeException("当前校核准则校验工况必填");
             }
-            //校验位置是否合规
-            if (!cruisingPortraitGravity.matches(RegularConstants.PORTRAIT_GRAVITY) ||
-                    !extremePortraitGravity.matches(RegularConstants.PORTRAIT_GRAVITY)) {
-                throw new RuntimeException("校验工况重心纵向位置格式异常");
-            }
-        }
+        }*/
     }
 
     @Override

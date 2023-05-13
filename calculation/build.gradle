@@ -15,6 +15,13 @@ dependencies {
     testImplementation(platform("org.junit:junit-bom:5.9.1"))
     testImplementation("org.junit.jupiter:junit-jupiter")
     api project(":biz")
+    api project(":common:common-rpc-tools")
+    api("net.devh:grpc-client-spring-boot-starter:2.13.1.RELEASE"){
+        exclude group: 'org.springframework.boot', module: 'spring-boot-starter-parent'
+        exclude group: 'org.springframework.boot', module: 'spring-boot-starter-logging'
+        exclude group: 'com.google.protobuf'
+        exclude group: 'io.grpc'
+    }
 }
 
 // 打胖包配置

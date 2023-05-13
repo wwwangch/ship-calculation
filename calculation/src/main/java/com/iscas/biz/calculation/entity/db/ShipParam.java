@@ -1,12 +1,11 @@
 package com.iscas.biz.calculation.entity.db;
 
 import com.baomidou.mybatisplus.annotation.IdType;
-import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
+import com.iscas.biz.calculation.enums.CheckType;
 import com.iscas.biz.calculation.enums.NavigationArea;
 import com.iscas.biz.calculation.enums.ShipType;
 import lombok.Data;
-import org.springframework.web.multipart.MultipartFile;
 
 import java.util.Date;
 
@@ -58,33 +57,18 @@ public class ShipParam {
      */
     private NavigationArea navigationArea;
 
-    /**
-     * 极限波浪工况排水量
-     */
-    private Double extremeDisplacement;
+    private CheckType checkType;
 
     /**
-     * 极限波浪重心纵向位置
+     * 排水量
      */
-    private String extremePortraitGravity;
+
+    private Double displacement;
 
     /**
-     * 巡航工况排水量
+     * 重心纵向位置
      */
-    private Double cruisingDisplacement;
-
-    /**
-     * 巡航纵向重心纵向位置
-     */
-    private String cruisingPortraitGravity;
-
-    @TableField(exist = false)
-    private MultipartFile paramFile;
-
-    /**
-     * 如果是上传文件的需要保存文件路径
-     */
-    private String paramFilePath;
+    private Double portraitGravity;
 
     private Date createTime;
 

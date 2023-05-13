@@ -29,9 +29,6 @@ public class Section {
      */
     private Double xCoordinate;
 
-    @TableField(exist = false)
-    private MultipartFile sectionFile;
-
     /**
      * 剖面文件名称
      */

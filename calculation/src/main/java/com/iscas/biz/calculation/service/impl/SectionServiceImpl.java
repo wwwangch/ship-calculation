@@ -6,12 +6,9 @@ import com.iscas.biz.calculation.mapper.ProjectMapper;
 import com.iscas.biz.calculation.mapper.SectionMapper;
 import com.iscas.biz.calculation.service.SectionService;
 import org.springframework.stereotype.Service;
-import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
-import java.util.Date;
 import java.util.List;
-import java.util.Map;
 
 /**
  * @author ch w
@@ -34,20 +31,6 @@ public class SectionServiceImpl implements SectionService {
 
     @Override
     public int save(Section section) throws IOException {
-        MultipartFile sectionFile = section.getSectionFile();
-        if (null == sectionFile) {
-            throw new RuntimeException("剖面文件不可为空");
-        }
-        Integer projectId = section.getProjectId();
-        if (null == projectMapper.selectById(projectId)) {
-            throw new RuntimeException(String.format("项目:[%s]不存在", String.valueOf(projectId)));
-        }
-        Map<String, String> upload = fileServerService.upload(new MultipartFile[]{sectionFile});
-        String originalFilename = sectionFile.getOriginalFilename();
-        String path = upload.get(originalFilename);
-        section.setSectionFileName(originalFilename);
-        section.setSectionFilePath(path);
-        section.setCreateTime(new Date());
         return sectionMapper.insert(section);
     }
 
@@ -57,16 +40,6 @@ public class SectionServiceImpl implements SectionService {
         if (null == projectMapper.selectById(projectId)) {
             throw new RuntimeException(String.format("项目:[%s]不存在", String.valueOf(projectId)));
         }
-
-        MultipartFile sectionFile = section.getSectionFile();
-        if (null != sectionFile) {
-            Map<String, String> upload = fileServerService.upload(new MultipartFile[]{sectionFile});
-            String originalFilename = sectionFile.getOriginalFilename();
-            String path = upload.get(originalFilename);
-            section.setSectionFileName(originalFilename);
-            section.setSectionFilePath(path);
-        }
-        section.setUpdateTime(new Date());
         return sectionMapper.updateById(section);
     }
 

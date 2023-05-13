@@ -1,8 +1,11 @@
 package com.iscas.biz.calculation.controller;
 
+import com.google.common.collect.ImmutableMap;
+import com.iscas.biz.calculation.entity.db.Project;
 import com.iscas.biz.calculation.entity.db.Section;
 import com.iscas.biz.calculation.service.SectionService;
 import com.iscas.biz.mp.table.service.TableDefinitionService;
+import com.iscas.common.tools.core.date.DateSafeUtils;
 import com.iscas.templet.common.ResponseEntity;
 import com.iscas.templet.exception.BaseException;
 import com.iscas.templet.exception.ValidDataException;
@@ -15,10 +18,10 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.multipart.MultipartFile;
 
-import java.io.IOException;
+import java.util.Date;
 import java.util.List;
+import java.util.Map;
 
 /**
  * @author ch w
@@ -66,40 +69,21 @@ public class SectionController {
 
     @Operation(summary = "新增", description = "插入")
     @io.swagger.v3.oas.annotations.parameters.RequestBody(required = true, description = "新增的数据",
-            content = @Content(mediaType = MediaType.MULTIPART_FORM_DATA_VALUE))
-    @PostMapping(value = "/data", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
-    public Integer saveData(@RequestParam(value = "project_id") Integer projectId,
-                            @RequestParam(value = "x_coordinate") Double xCoordinate,
-                            @RequestParam(value = "section_file") MultipartFile sectionFile,
-                            @RequestParam(value = "component_span") Double componentSpan) throws IOException {
-        Section section = new Section();
-        section.setProjectId(projectId);
-        section.setXCoordinate(xCoordinate);
-        section.setSectionFile(sectionFile);
-        section.setComponentSpan(componentSpan);
-        return sectionService.save(section);
+            content = @Content(examples = @ExampleObject(value = "{\"key\":\"val\"}")))
+    @PostMapping(value = "/data")
+    public ResponseEntity saveData(@RequestBody Map<String, Object> data) throws ValidDataException {
+        ImmutableMap<String, Object> forceItem = ImmutableMap.of("create_time", DateSafeUtils.format(new Date()), "update_time", DateSafeUtils.format(new Date()));
+        return tableDefinitionService.saveData(TABLE_IDENTITY, data, true, Section.class, forceItem);
     }
 
     @Operation(summary = "修改数据", description = "更新")
     @io.swagger.v3.oas.annotations.parameters.RequestBody(required = true, description = "修改的数据(未变动的数据也传)",
-            content = @Content(mediaType = MediaType.MULTIPART_FORM_DATA_VALUE))
-    @PutMapping(value = "/data", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
-    public Integer editData(@RequestParam(value = "section_id") Integer sectionId,
-                            @RequestParam(value = "project_id") Integer projectId,
-                            @RequestParam(value = "x_coordinate") Double xCoordinate,
-                            @RequestParam(value = "section_file", required = false) MultipartFile sectionFile,
-                            @RequestParam(value = "section_file_name") String sectionFileName,
-                            @RequestParam(value = "section_file_path") String sectionFilePath,
-                            @RequestParam(value = "component_span") Double componentSpan) throws IOException {
-        Section section = new Section();
-        section.setSectionId(sectionId);
-        section.setProjectId(projectId);
-        section.setXCoordinate(xCoordinate);
-        section.setSectionFile(sectionFile);
-        section.setComponentSpan(componentSpan);
-        section.setSectionFileName(sectionFileName);
-        section.setSectionFilePath(sectionFilePath);
-        return sectionService.update(section);
+            content = @Content(examples = @ExampleObject(value = "{\"key\":\"val\"}")))
+    @PutMapping("/data")
+    public ResponseEntity editData(@RequestBody Map<String, Object> data) throws ValidDataException {
+        ImmutableMap<String, Object> forceItem = ImmutableMap.of("update_time", DateSafeUtils.format(new Date()));
+        return tableDefinitionService.saveData(TABLE_IDENTITY, data, false, Section.class, forceItem);
+
     }
 
 }

@@ -1,5 +1,8 @@
 package com.iscas.common.rpc.tools.grpc;
 
+import com.iscas.biz.calculation.grpc.BuoyancyRequest;
+import com.iscas.biz.calculation.grpc.BuoyancyResponse;
+import com.iscas.biz.calculation.grpc.CalculationGrpc;
 import com.iscas.common.rpc.tools.grpc.client.GrpcClientUtils;
 import com.iscas.common.rpc.tools.grpc.server.GrpcServerUtils;
 import io.grpc.ManagedChannel;
@@ -7,11 +10,10 @@ import io.grpc.Server;
 import org.junit.Assert;
 import org.junit.Test;
 
-import java.io.*;
+import java.io.IOException;
 import java.util.concurrent.TimeUnit;
 
 /**
- *
  * @author zhuquanwen
  * @version 1.0
  * @date 2020/11/20 19:19
@@ -21,7 +23,7 @@ public class GrpcCallTests {
 
     /**
      * 测试使用grpc发布服务，并调用
-     * */
+     */
     @Test
     public void testCall() throws IOException, InterruptedException {
         PersonServiceImpl psi = new PersonServiceImpl();
@@ -42,5 +44,21 @@ public class GrpcCallTests {
             server.shutdownNow();
         }).start();
         server.awaitTermination();
+    }
+
+    @Test
+    public void testCall2() throws IOException, InterruptedException {
+
+        //客户端调用
+//        ManagedChannel managedChannel = GrpcClientUtils.getManagedChannel("192.168.6.53", 50051);
+        ManagedChannel managedChannel = GrpcClientUtils.getManagedChannel("127.0.0.1", 50051);
+        CalculationGrpc.CalculationBlockingStub psbs = CalculationGrpc.newBlockingStub(managedChannel);
+        BuoyancyResponse buoyancy = psbs.buoyancy(BuoyancyRequest.newBuilder().setBrojeanFilePath("asfgjkbasfgas").setBuoyancycurveFilePath("askjfbafs")
+                        .addPrecison(0).addPrecison(1).addPrecison(2).build());
+//        ShipParamResponse response = psbs.shipParam(ShipParamRequest.newBuilder().setArea(12)
+//                .setPrinciple(23)
+//                .build());
+        System.out.println(buoyancy.getCalrstKey(0));
+        System.out.println(buoyancy.getCalrstValue(0).getDa());
     }
 }

@@ -9,21 +9,21 @@ import com.fasterxml.jackson.annotation.JsonValue;
  * @since 2023/4/11 17:09
  */
 public enum NavigationArea {
-    UNLIMITED(0,"无限航区"),
-    LIMITED(1,"有限航区"),
+    UNLIMITED("0","无限航区"),
+    LIMITED("1","有限航区"),
     ;
 
     @EnumValue
-    private Integer value;
+    private String value;
 
     private String descCH;
 
-    NavigationArea(Integer value, String descCH) {
+    NavigationArea(String value, String descCH) {
         this.value = value;
         this.descCH = descCH;
     }
     @JsonValue
-    public Integer getValue() {
+    public String getValue() {
         return value;
     }
 
