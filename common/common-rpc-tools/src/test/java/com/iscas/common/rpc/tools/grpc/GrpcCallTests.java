@@ -50,15 +50,6 @@ public class GrpcCallTests {
     public void testCall2() throws IOException, InterruptedException {
 
         //客户端调用
-//        ManagedChannel managedChannel = GrpcClientUtils.getManagedChannel("192.168.6.53", 50051);
-        ManagedChannel managedChannel = GrpcClientUtils.getManagedChannel("127.0.0.1", 50051);
-        CalculationGrpc.CalculationBlockingStub psbs = CalculationGrpc.newBlockingStub(managedChannel);
-        BuoyancyResponse buoyancy = psbs.buoyancy(BuoyancyRequest.newBuilder().setBrojeanFilePath("asfgjkbasfgas").setBuoyancycurveFilePath("askjfbafs")
-                        .addPrecison(0).addPrecison(1).addPrecison(2).build());
-//        ShipParamResponse response = psbs.shipParam(ShipParamRequest.newBuilder().setArea(12)
-//                .setPrinciple(23)
-//                .build());
-        System.out.println(buoyancy.getCalrstKey(0));
-        System.out.println(buoyancy.getCalrstValue(0).getDa());
+
     }
 }

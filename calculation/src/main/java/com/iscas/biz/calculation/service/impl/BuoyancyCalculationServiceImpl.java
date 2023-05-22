@@ -9,6 +9,7 @@ import com.fasterxml.jackson.core.type.TypeReference;
 import com.google.common.collect.ImmutableMap;
 import com.google.common.collect.Lists;
 import com.iscas.base.biz.util.SpringUtils;
+import com.iscas.biz.calculation.entity.BuoyancyVO;
 import com.iscas.biz.calculation.entity.db.BuoyancyParam;
 import com.iscas.biz.calculation.entity.db.BuoyancyResult;
 import com.iscas.biz.calculation.entity.db.Project;
@@ -16,6 +17,7 @@ import com.iscas.biz.calculation.entity.db.ShipParam;
 import com.iscas.biz.calculation.entity.dto.BuoyancyParamExcel;
 import com.iscas.biz.calculation.entity.dto.Buoyant;
 import com.iscas.biz.calculation.grpc.*;
+import com.iscas.biz.calculation.grpc.service.AlgorithmGrpc;
 import com.iscas.biz.calculation.mapper.BuoyancyParamMapper;
 import com.iscas.biz.calculation.mapper.BuoyancyResultMapper;
 import com.iscas.biz.calculation.mapper.ProjectMapper;
@@ -59,14 +61,17 @@ public class BuoyancyCalculationServiceImpl implements BuoyancyCalculationServic
 
     private final ProjectMapper projectMapper;
 
+    private final AlgorithmGrpc algorithmGrpc;
+
     private final GrpcHolder grpcHolder;
 
-    public BuoyancyCalculationServiceImpl(TableDefinitionService tableDefinitionService, BuoyancyParamMapper buoyancyParamMapper, ShipParamMapper shipParamMapper, BuoyancyResultMapper buoyancyResultMapper, ProjectMapper projectMapper, GrpcHolder grpcHolder) {
+    public BuoyancyCalculationServiceImpl(TableDefinitionService tableDefinitionService, BuoyancyParamMapper buoyancyParamMapper, ShipParamMapper shipParamMapper, BuoyancyResultMapper buoyancyResultMapper, ProjectMapper projectMapper, AlgorithmGrpc algorithmGrpc, GrpcHolder grpcHolder) {
         this.tableDefinitionService = tableDefinitionService;
         this.buoyancyParamMapper = buoyancyParamMapper;
         this.shipParamMapper = shipParamMapper;
         this.buoyancyResultMapper = buoyancyResultMapper;
         this.projectMapper = projectMapper;
+        this.algorithmGrpc = algorithmGrpc;
         this.grpcHolder = grpcHolder;
     }
 
@@ -132,13 +137,7 @@ public class BuoyancyCalculationServiceImpl implements BuoyancyCalculationServic
         shipParamQueryWrapper.eq("project_id", projectId);
         ShipParam shipParam = shipParamMapper.selectOne(shipParamQueryWrapper);
 
-        Project project = projectMapper.selectById(projectId);
-        ShipParamResponse shipParamResponse = callShipParam(project, shipParam);
-        if (0 != shipParamResponse.getCode()) {
-            throw new RuntimeException("船舶参数配置失败" + shipParamResponse.getMessage());
-        }
-
-        BuoyancyResponse buoyancyResponse = this.callBuoyancy(shipParam, buoyancyParam);
+        BuoyancyResponse buoyancyResponse = algorithmGrpc.callBuoyancy(shipParam, buoyancyParam);
         if (0 != buoyancyResponse.getCode()) {
             throw new RuntimeException("浮力计算失败" + buoyancyResponse.getMessage());
         }
@@ -164,48 +163,6 @@ public class BuoyancyCalculationServiceImpl implements BuoyancyCalculationServic
         buoyancyResultMapper.insert(buoyancyResult);
         return buoyancyResult;
     }
-
-    @Override
-    public ShipParamResponse callShipParam(Project project, ShipParam shipParam) {
-        if (null == shipParam || null == project) {
-            return ShipParamResponse.newBuilder()
-                    .setCode(1)
-                    .setMessage("船舶参数为空!")
-                    .build();
-        }
-
-        ShipParamRequest shipParamRequest = ShipParamRequest.newBuilder()
-                .setLWl(shipParam.getWaterlineLength())
-                .setWidth(shipParam.getMouldedBreadth())
-                .setDepth(shipParam.getMouldedDepth())
-                .setDraught(shipParam.getDesignedDraft())
-                .setArea(Integer.parseInt(shipParam.getNavigationArea().getValue()))
-                .setCheckType(Integer.parseInt(shipParam.getCheckType().getValue()))
-                .setDisplacement(shipParam.getDisplacement())
-                .setPortraitGravity(shipParam.getPortraitGravity())
-                .setPrinciple(Integer.parseInt(project.getCalculationSpecification().getValue()))
-                .setType(shipParam.getShipType().getValue())
-                .build();
-
-        ShipParamResponse response = grpcHolder.calculationBlockingStub().shipParam(shipParamRequest);
-        return response;
-    }
-
-    @Override
-    public BuoyancyResponse callBuoyancy(ShipParam shipParam, BuoyancyParam buoyancyParam) {
-        BuoyancyRequest buoyancyRequest = BuoyancyRequest.newBuilder()
-                .setBuoyancycurveFilePath(buoyancyParam.getBuoyancyCurveFilePath())
-                .setBrojeanFilePath(buoyancyParam.getBonjungCurveFilePath())
-                .addPrecision(buoyancyParam.getPrecisionDisplacement())
-                .addPrecision(buoyancyParam.getPrecisionGravity())
-                .setTarget(Integer.parseInt(shipParam.getCheckType().getValue()))
-                .setTm(buoyancyParam.getDraftMean())
-                .setTa(buoyancyParam.getDraftAft())
-                .setTf(buoyancyParam.getDraftForward()).build();
-        BuoyancyResponse buoyancyResponse = grpcHolder.calculationBlockingStub().buoyancy(buoyancyRequest);
-        return buoyancyResponse;
-    }
-
     @Override
     @Transactional(rollbackFor = Exception.class)
     public Boolean reset(Integer projectId) {
@@ -277,7 +234,7 @@ public class BuoyancyCalculationServiceImpl implements BuoyancyCalculationServic
     }
 
     @Override
-    public BuoyancyParam getData(Integer projectId) {
+    public BuoyancyVO getData(Integer projectId) {
         if (null == projectId) {
             return null;
         }
@@ -285,8 +242,11 @@ public class BuoyancyCalculationServiceImpl implements BuoyancyCalculationServic
         queryWrapper.eq("project_id", projectId);
         BuoyancyParam buoyancyParam = buoyancyParamMapper.selectOne(queryWrapper);
         if (null != buoyancyParam) {
-            buoyancyParam.setBuoyancyResult(listResultByParamId(buoyancyParam.getParamId()));
+            BuoyancyVO buoyancyVO=new BuoyancyVO();
+            BeanUtils.copyProperties(buoyancyParam,buoyancyVO);
+            buoyancyVO.setBuoyancyResult(listResultByParamId(buoyancyParam.getParamId()));
+            return buoyancyVO;
         }
-        return buoyancyParam;
+        return null;
     }
 }

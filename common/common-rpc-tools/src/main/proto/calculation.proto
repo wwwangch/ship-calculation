@@ -13,6 +13,8 @@ service Calculation {
   rpc shipParam(ShipParamRequest) returns (ShipParamResponse) {}
   //浮力计算
   rpc buoyancy(BuoyancyRequest) returns (BuoyancyResponse){}
+  //计算重力分布
+  rpc calWeightDistribute(WeightRequest) returns (WeightResponse) {}
 }
 
 //浮力计算参数值
@@ -105,3 +107,53 @@ message ShipParamResponse{
   string message = 2;
 }
 
+//重量分布请求体
+message WeightRequest{
+  //载重文件路径
+  string loadingFilePath = 1;
+}
+
+message WeightResponse{
+  //0-正常 1-异常
+  int32 code = 1;
+  //异常信息
+  string message = 2;
+
+  //各个分项得重量分布
+  repeated WeightDistribution weightDistributions = 3;
+
+  //整体重量分布
+  repeated double allDis = 4;
+
+  //总体重量分布
+  Gravity allRst = 5;
+
+  //每个专业得重量分布
+  repeated SubGravity subGravities = 6;
+}
+
+message WeightDistribution{
+  //专业名-项目名
+  bytes name = 1;
+
+  //对应的重量分布
+  repeated double weightItems = 2;
+}
+
+message Gravity{
+  //排水量
+  double displacement = 1;
+
+  //重心纵向坐标
+  double xg = 2;
+}
+
+message SubGravity{
+  //专业名-项目名
+  bytes name = 1;
+  //排水量
+  double displacement = 2;
+
+  //重心纵向坐标
+  double xg = 3;
+}

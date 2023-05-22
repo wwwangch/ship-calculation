@@ -1,5 +1,6 @@
 package com.iscas.biz.calculation.controller;
 
+import com.iscas.biz.calculation.entity.BuoyancyVO;
 import com.iscas.biz.calculation.entity.db.BuoyancyParam;
 import com.iscas.biz.calculation.service.BuoyancyCalculationService;
 import com.iscas.biz.mp.table.service.TableDefinitionService;
@@ -46,7 +47,7 @@ public class BuoyancyController {
 
     @Operation(summary = "查询表格数据,仅一条", description = "传项目id，带计算结果返回")
     @PostMapping(value = "/getData/{projectId}")
-    public BuoyancyParam getData(@PathVariable Integer projectId) {
+    public BuoyancyVO getData(@PathVariable Integer projectId) {
         return buoyancyCalculationService.getData(projectId);
     }
 

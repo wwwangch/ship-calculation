@@ -39,6 +39,31 @@ public final class CalculationProto {
   static final 
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
       internal_static_com_iscas_biz_calculation_grpc_ShipParamResponse_fieldAccessorTable;
+  static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_com_iscas_biz_calculation_grpc_WeightRequest_descriptor;
+  static final 
+    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      internal_static_com_iscas_biz_calculation_grpc_WeightRequest_fieldAccessorTable;
+  static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_com_iscas_biz_calculation_grpc_WeightResponse_descriptor;
+  static final 
+    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      internal_static_com_iscas_biz_calculation_grpc_WeightResponse_fieldAccessorTable;
+  static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_com_iscas_biz_calculation_grpc_WeightDistribution_descriptor;
+  static final 
+    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      internal_static_com_iscas_biz_calculation_grpc_WeightDistribution_fieldAccessorTable;
+  static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_com_iscas_biz_calculation_grpc_Gravity_descriptor;
+  static final 
+    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      internal_static_com_iscas_biz_calculation_grpc_Gravity_fieldAccessorTable;
+  static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_com_iscas_biz_calculation_grpc_SubGravity_descriptor;
+  static final 
+    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      internal_static_com_iscas_biz_calculation_grpc_SubGravity_fieldAccessorTable;
 
   public static com.google.protobuf.Descriptors.FileDescriptor
       getDescriptor() {
@@ -65,15 +90,30 @@ public final class CalculationProto {
       "pe\030\006 \001(\005\022\024\n\014displacement\030\007 \001(\001\022\027\n\017portra" +
       "itGravity\030\010 \001(\001\022\021\n\tprinciple\030\n \001(\005\022\014\n\004ty" +
       "pe\030\013 \001(\t\"2\n\021ShipParamResponse\022\014\n\004code\030\001 " +
-      "\001(\005\022\017\n\007message\030\002 \001(\t2\362\001\n\013Calculation\022r\n\t" +
-      "shipParam\0220.com.iscas.biz.calculation.gr" +
-      "pc.ShipParamRequest\0321.com.iscas.biz.calc",
-      "ulation.grpc.ShipParamResponse\"\000\022o\n\010buoy" +
-      "ancy\022/.com.iscas.biz.calculation.grpc.Bu" +
-      "oyancyRequest\0320.com.iscas.biz.calculatio" +
-      "n.grpc.BuoyancyResponse\"\000B4\n\036com.iscas.b" +
-      "iz.calculation.grpcB\020CalculationProtoP\001b" +
-      "\006proto3"
+      "\001(\005\022\017\n\007message\030\002 \001(\t\"(\n\rWeightRequest\022\027\n" +
+      "\017loadingFilePath\030\001 \001(\t\"\213\002\n\016WeightRespons" +
+      "e\022\014\n\004code\030\001 \001(\005\022\017\n\007message\030\002 \001(\t\022O\n\023weig",
+      "htDistributions\030\003 \003(\01322.com.iscas.biz.ca" +
+      "lculation.grpc.WeightDistribution\022\016\n\006all" +
+      "Dis\030\004 \003(\001\0227\n\006allRst\030\005 \001(\0132\'.com.iscas.bi" +
+      "z.calculation.grpc.Gravity\022@\n\014subGraviti" +
+      "es\030\006 \003(\0132*.com.iscas.biz.calculation.grp" +
+      "c.SubGravity\"7\n\022WeightDistribution\022\014\n\004na" +
+      "me\030\001 \001(\014\022\023\n\013weightItems\030\002 \003(\001\"+\n\007Gravity" +
+      "\022\024\n\014displacement\030\001 \001(\001\022\n\n\002xg\030\002 \001(\001\"<\n\nSu" +
+      "bGravity\022\014\n\004name\030\001 \001(\014\022\024\n\014displacement\030\002" +
+      " \001(\001\022\n\n\002xg\030\003 \001(\0012\352\002\n\013Calculation\022r\n\tship",
+      "Param\0220.com.iscas.biz.calculation.grpc.S" +
+      "hipParamRequest\0321.com.iscas.biz.calculat" +
+      "ion.grpc.ShipParamResponse\"\000\022o\n\010buoyancy" +
+      "\022/.com.iscas.biz.calculation.grpc.Buoyan" +
+      "cyRequest\0320.com.iscas.biz.calculation.gr" +
+      "pc.BuoyancyResponse\"\000\022v\n\023calWeightDistri" +
+      "bute\022-.com.iscas.biz.calculation.grpc.We" +
+      "ightRequest\032..com.iscas.biz.calculation." +
+      "grpc.WeightResponse\"\000B4\n\036com.iscas.biz.c" +
+      "alculation.grpcB\020CalculationProtoP\001b\006pro",
+      "to3"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
         new com.google.protobuf.Descriptors.FileDescriptor.    InternalDescriptorAssigner() {
@@ -117,6 +157,36 @@ public final class CalculationProto {
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_com_iscas_biz_calculation_grpc_ShipParamResponse_descriptor,
         new java.lang.String[] { "Code", "Message", });
+    internal_static_com_iscas_biz_calculation_grpc_WeightRequest_descriptor =
+      getDescriptor().getMessageTypes().get(5);
+    internal_static_com_iscas_biz_calculation_grpc_WeightRequest_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+        internal_static_com_iscas_biz_calculation_grpc_WeightRequest_descriptor,
+        new java.lang.String[] { "LoadingFilePath", });
+    internal_static_com_iscas_biz_calculation_grpc_WeightResponse_descriptor =
+      getDescriptor().getMessageTypes().get(6);
+    internal_static_com_iscas_biz_calculation_grpc_WeightResponse_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+        internal_static_com_iscas_biz_calculation_grpc_WeightResponse_descriptor,
+        new java.lang.String[] { "Code", "Message", "WeightDistributions", "AllDis", "AllRst", "SubGravities", });
+    internal_static_com_iscas_biz_calculation_grpc_WeightDistribution_descriptor =
+      getDescriptor().getMessageTypes().get(7);
+    internal_static_com_iscas_biz_calculation_grpc_WeightDistribution_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+        internal_static_com_iscas_biz_calculation_grpc_WeightDistribution_descriptor,
+        new java.lang.String[] { "Name", "WeightItems", });
+    internal_static_com_iscas_biz_calculation_grpc_Gravity_descriptor =
+      getDescriptor().getMessageTypes().get(8);
+    internal_static_com_iscas_biz_calculation_grpc_Gravity_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+        internal_static_com_iscas_biz_calculation_grpc_Gravity_descriptor,
+        new java.lang.String[] { "Displacement", "Xg", });
+    internal_static_com_iscas_biz_calculation_grpc_SubGravity_descriptor =
+      getDescriptor().getMessageTypes().get(9);
+    internal_static_com_iscas_biz_calculation_grpc_SubGravity_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+        internal_static_com_iscas_biz_calculation_grpc_SubGravity_descriptor,
+        new java.lang.String[] { "Name", "Displacement", "Xg", });
   }
 
   // @@protoc_insertion_point(outer_class_scope)

@@ -80,6 +80,37 @@ public final class CalculationGrpc {
     return getBuoyancyMethod;
   }
 
+  private static volatile io.grpc.MethodDescriptor<com.iscas.biz.calculation.grpc.WeightRequest,
+      com.iscas.biz.calculation.grpc.WeightResponse> getCalWeightDistributeMethod;
+
+  @io.grpc.stub.annotations.RpcMethod(
+      fullMethodName = SERVICE_NAME + '/' + "calWeightDistribute",
+      requestType = com.iscas.biz.calculation.grpc.WeightRequest.class,
+      responseType = com.iscas.biz.calculation.grpc.WeightResponse.class,
+      methodType = io.grpc.MethodDescriptor.MethodType.UNARY)
+  public static io.grpc.MethodDescriptor<com.iscas.biz.calculation.grpc.WeightRequest,
+      com.iscas.biz.calculation.grpc.WeightResponse> getCalWeightDistributeMethod() {
+    io.grpc.MethodDescriptor<com.iscas.biz.calculation.grpc.WeightRequest, com.iscas.biz.calculation.grpc.WeightResponse> getCalWeightDistributeMethod;
+    if ((getCalWeightDistributeMethod = CalculationGrpc.getCalWeightDistributeMethod) == null) {
+      synchronized (CalculationGrpc.class) {
+        if ((getCalWeightDistributeMethod = CalculationGrpc.getCalWeightDistributeMethod) == null) {
+          CalculationGrpc.getCalWeightDistributeMethod = getCalWeightDistributeMethod =
+              io.grpc.MethodDescriptor.<com.iscas.biz.calculation.grpc.WeightRequest, com.iscas.biz.calculation.grpc.WeightResponse>newBuilder()
+              .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
+              .setFullMethodName(generateFullMethodName(SERVICE_NAME, "calWeightDistribute"))
+              .setSampledToLocalTracing(true)
+              .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  com.iscas.biz.calculation.grpc.WeightRequest.getDefaultInstance()))
+              .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  com.iscas.biz.calculation.grpc.WeightResponse.getDefaultInstance()))
+              .setSchemaDescriptor(new CalculationMethodDescriptorSupplier("calWeightDistribute"))
+              .build();
+        }
+      }
+    }
+    return getCalWeightDistributeMethod;
+  }
+
   /**
    * Creates a new async stub that supports all call types for the service
    */
@@ -150,6 +181,16 @@ public final class CalculationGrpc {
         io.grpc.stub.StreamObserver<com.iscas.biz.calculation.grpc.BuoyancyResponse> responseObserver) {
       io.grpc.stub.ServerCalls.asyncUnimplementedUnaryCall(getBuoyancyMethod(), responseObserver);
     }
+
+    /**
+     * <pre>
+     *计算重力分布
+     * </pre>
+     */
+    default void calWeightDistribute(com.iscas.biz.calculation.grpc.WeightRequest request,
+        io.grpc.stub.StreamObserver<com.iscas.biz.calculation.grpc.WeightResponse> responseObserver) {
+      io.grpc.stub.ServerCalls.asyncUnimplementedUnaryCall(getCalWeightDistributeMethod(), responseObserver);
+    }
   }
 
   /**
@@ -206,6 +247,17 @@ public final class CalculationGrpc {
       io.grpc.stub.ClientCalls.asyncUnaryCall(
           getChannel().newCall(getBuoyancyMethod(), getCallOptions()), request, responseObserver);
     }
+
+    /**
+     * <pre>
+     *计算重力分布
+     * </pre>
+     */
+    public void calWeightDistribute(com.iscas.biz.calculation.grpc.WeightRequest request,
+        io.grpc.stub.StreamObserver<com.iscas.biz.calculation.grpc.WeightResponse> responseObserver) {
+      io.grpc.stub.ClientCalls.asyncUnaryCall(
+          getChannel().newCall(getCalWeightDistributeMethod(), getCallOptions()), request, responseObserver);
+    }
   }
 
   /**
@@ -245,6 +297,16 @@ public final class CalculationGrpc {
     public com.iscas.biz.calculation.grpc.BuoyancyResponse buoyancy(com.iscas.biz.calculation.grpc.BuoyancyRequest request) {
       return io.grpc.stub.ClientCalls.blockingUnaryCall(
           getChannel(), getBuoyancyMethod(), getCallOptions(), request);
+    }
+
+    /**
+     * <pre>
+     *计算重力分布
+     * </pre>
+     */
+    public com.iscas.biz.calculation.grpc.WeightResponse calWeightDistribute(com.iscas.biz.calculation.grpc.WeightRequest request) {
+      return io.grpc.stub.ClientCalls.blockingUnaryCall(
+          getChannel(), getCalWeightDistributeMethod(), getCallOptions(), request);
     }
   }
 
@@ -288,10 +350,22 @@ public final class CalculationGrpc {
       return io.grpc.stub.ClientCalls.futureUnaryCall(
           getChannel().newCall(getBuoyancyMethod(), getCallOptions()), request);
     }
+
+    /**
+     * <pre>
+     *计算重力分布
+     * </pre>
+     */
+    public com.google.common.util.concurrent.ListenableFuture<com.iscas.biz.calculation.grpc.WeightResponse> calWeightDistribute(
+        com.iscas.biz.calculation.grpc.WeightRequest request) {
+      return io.grpc.stub.ClientCalls.futureUnaryCall(
+          getChannel().newCall(getCalWeightDistributeMethod(), getCallOptions()), request);
+    }
   }
 
   private static final int METHODID_SHIP_PARAM = 0;
   private static final int METHODID_BUOYANCY = 1;
+  private static final int METHODID_CAL_WEIGHT_DISTRIBUTE = 2;
 
   private static final class MethodHandlers<Req, Resp> implements
       io.grpc.stub.ServerCalls.UnaryMethod<Req, Resp>,
@@ -317,6 +391,10 @@ public final class CalculationGrpc {
         case METHODID_BUOYANCY:
           serviceImpl.buoyancy((com.iscas.biz.calculation.grpc.BuoyancyRequest) request,
               (io.grpc.stub.StreamObserver<com.iscas.biz.calculation.grpc.BuoyancyResponse>) responseObserver);
+          break;
+        case METHODID_CAL_WEIGHT_DISTRIBUTE:
+          serviceImpl.calWeightDistribute((com.iscas.biz.calculation.grpc.WeightRequest) request,
+              (io.grpc.stub.StreamObserver<com.iscas.biz.calculation.grpc.WeightResponse>) responseObserver);
           break;
         default:
           throw new AssertionError();
@@ -350,6 +428,13 @@ public final class CalculationGrpc {
               com.iscas.biz.calculation.grpc.BuoyancyRequest,
               com.iscas.biz.calculation.grpc.BuoyancyResponse>(
                 service, METHODID_BUOYANCY)))
+        .addMethod(
+          getCalWeightDistributeMethod(),
+          io.grpc.stub.ServerCalls.asyncUnaryCall(
+            new MethodHandlers<
+              com.iscas.biz.calculation.grpc.WeightRequest,
+              com.iscas.biz.calculation.grpc.WeightResponse>(
+                service, METHODID_CAL_WEIGHT_DISTRIBUTE)))
         .build();
   }
 
@@ -400,6 +485,7 @@ public final class CalculationGrpc {
               .setSchemaDescriptor(new CalculationFileDescriptorSupplier())
               .addMethod(getShipParamMethod())
               .addMethod(getBuoyancyMethod())
+              .addMethod(getCalWeightDistributeMethod())
               .build();
         }
       }

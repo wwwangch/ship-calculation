@@ -18,6 +18,14 @@ public class GrpcHolder {
 
     private Integer port = 50051;
 
+    public void setIp(String ip) {
+        this.ip = ip;
+    }
+
+    public void setPort(Integer port) {
+        this.port = port;
+    }
+
     private CalculationGrpc.CalculationBlockingStub calculationBlockingStub;
 
     public CalculationGrpc.CalculationBlockingStub calculationBlockingStub() {
