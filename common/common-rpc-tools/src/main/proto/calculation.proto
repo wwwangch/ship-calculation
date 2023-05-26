@@ -15,6 +15,22 @@ service Calculation {
   rpc buoyancy(BuoyancyRequest) returns (BuoyancyResponse){}
   //计算重力分布
   rpc calWeightDistribute(WeightRequest) returns (WeightResponse) {}
+
+
+  //计算静水载荷
+  rpc calStaticLoad(StaticLoadRequest) returns(StaticLoadResponse){}
+  //波浪载荷计算
+  rpc calWaveLoad(WaveLoadRequest) returns(WaveLoadResponse){}
+  //计算砰击载荷
+  rpc calSlamLoad(SlamLoadRequest) returns(SlamLoadResponse){}
+
+  //剖面计算
+  rpc calSection(SectionRequest) returns(SectionResponse){}
+  //板件弯矩应力计算  对应总纵强度校核
+  rpc calGirderStrength(GirderStrengthRequest)returns(GirderStrengthResponse){}
+
+  //应力分布 对应极限弯矩校验
+  rpc calDist(DistRequest)returns(DistResponse){}
 }
 
 //浮力计算参数值
@@ -156,4 +172,172 @@ message SubGravity{
 
   //重心纵向坐标
   double xg = 3;
+}
+
+//静水载荷计算
+message StaticLoadRequest{
+
+}
+//静水载荷返回结果
+message StaticLoadResponse{
+  //未修正的静水剪力 目前返回21个
+  repeated double nvec = 1;
+  //  未修正的弯矩 目前返回21个
+  repeated double mvec = 2;
+
+  //修正的静水剪力 目前返回21个
+  repeated double nvecM = 3;
+  //  修正的弯矩 目前返回21个
+  repeated double mvecM = 4;
+}
+
+//波浪载荷计算请求体
+message WaveLoadRequest{
+  //波高(m)
+  double height = 1;
+}
+//波浪载荷返回体
+message WaveLoadResponse{
+  //中拱附加浮力  21个
+  repeated double mbb = 1;
+
+  //波峰未修正的静水剪力 目前返回21个
+  repeated double nwvecH = 2;
+  // 波峰未修正的弯矩 目前返回21个
+  repeated double mwvecH = 3;
+
+  //波峰修正的静水剪力 目前返回21个
+  repeated double nwvecMH = 4;
+  //波峰修正的弯矩 目前返回21个
+  repeated double mwvecMH = 5;
+
+  //中垂附加浮力  21个
+  repeated double bdeltaS = 6;
+
+  //波谷未修正的静水剪力 目前返回21个
+  repeated double nwvecS = 7;
+  // 波谷未修正的弯矩 目前返回21个
+  repeated double mwvecS = 8;
+
+  //波谷修正的静水剪力 目前返回21个
+  repeated double nwvecMS = 9;
+  //波谷修正的弯矩 目前返回21个
+  repeated double mwvecMS = 10;
+}
+//砰击载荷 请求体
+message SlamLoadRequest{
+  //航速
+  double speed = 1;
+}
+
+//砰击载荷 返回体
+message SlamLoadResponse{
+  //波峰抨击弯矩  数组  21个
+  repeated double pwbm = 1;
+
+  //波谷抨击弯矩  数组  21个
+  repeated double nwb = 2;
+}
+//剖面计算输入
+message SectionRequest{
+  //剖面文件路径
+  string profileFilePath = 1;
+}
+//剖面计算输出
+message SectionResponse{
+  //初始静矩
+  double firstMoment0 = 1;
+
+  //惯性矩
+  double interia0 = 2;
+
+  //中拱时的中和轴
+  double zaxisH = 3;
+
+  //中拱时静矩
+  double firstMomH = 4;
+
+  //中拱时惯性矩
+  double interiaH = 5;
+
+  //中垂时的中和轴
+  double zaxisS = 6;
+
+  //中垂时静矩
+  double firstMomS = 7;
+
+  //中垂时惯性矩
+  double interiaS = 8;
+}
+//总纵强度校核输入
+message GirderStrengthRequest{
+  //构件跨距
+  double kuaChang = 1;
+
+  //剖面位置x
+  double girderDistance = 2;
+}
+
+//总纵强度校核输出
+message GirderStrengthResponse{
+  //中拱支座处
+  double sigma1SH = 1;
+
+  //中拱跨中处
+  double sigma1MidH = 2;
+
+  //中垂支座处
+  double sigma1SS = 3;
+
+  //中垂跨中处
+  double sigma1MidS = 4;
+
+  //中拱不同桁材处的支座处的sigma2
+  repeated double stress2SH = 5;
+
+  //中拱不同桁材处的跨中处的sigma2
+  repeated double stress2MidH = 6;
+
+  //中拱骨材上纤维处的应力
+  repeated double stress3UpH = 7;
+
+  //中拱骨材下纤维处的应力
+  repeated double stress3DownH = 8;
+
+  //中拱板格的上表面
+  repeated double stress4UpH = 9;
+
+  //中拱板格的下表面
+  repeated double stress4downH = 10;
+
+  //中垂不同桁材处的支座处的sigma2
+  repeated double stress2SS = 11;
+
+  //中垂不同桁材处的跨中处的sigma2
+  repeated double stress2MidS = 12;
+
+  //中垂骨材上纤维处的应力
+  repeated double stress3UpS = 13;
+
+  //中垂骨材下纤维处的应力
+  repeated double stress3DownS = 14;
+
+  //中垂板格的上表面
+  repeated double stress4UpS = 15;
+
+  //中垂板格的下表面
+  repeated double stress4downS = 16;
+}
+
+//应力分布请求体 目前没有参数
+message DistRequest{
+
+}
+
+//应力分布输出
+message DistResponse{
+  //中拱极限弯矩
+  double extremeH = 1;
+  //中垂极限弯矩
+  double extremeS = 2;
 }
