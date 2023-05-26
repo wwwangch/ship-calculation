@@ -111,6 +111,192 @@ public final class CalculationGrpc {
     return getCalWeightDistributeMethod;
   }
 
+  private static volatile io.grpc.MethodDescriptor<com.iscas.biz.calculation.grpc.StaticLoadRequest,
+      com.iscas.biz.calculation.grpc.StaticLoadResponse> getCalStaticLoadMethod;
+
+  @io.grpc.stub.annotations.RpcMethod(
+      fullMethodName = SERVICE_NAME + '/' + "calStaticLoad",
+      requestType = com.iscas.biz.calculation.grpc.StaticLoadRequest.class,
+      responseType = com.iscas.biz.calculation.grpc.StaticLoadResponse.class,
+      methodType = io.grpc.MethodDescriptor.MethodType.UNARY)
+  public static io.grpc.MethodDescriptor<com.iscas.biz.calculation.grpc.StaticLoadRequest,
+      com.iscas.biz.calculation.grpc.StaticLoadResponse> getCalStaticLoadMethod() {
+    io.grpc.MethodDescriptor<com.iscas.biz.calculation.grpc.StaticLoadRequest, com.iscas.biz.calculation.grpc.StaticLoadResponse> getCalStaticLoadMethod;
+    if ((getCalStaticLoadMethod = CalculationGrpc.getCalStaticLoadMethod) == null) {
+      synchronized (CalculationGrpc.class) {
+        if ((getCalStaticLoadMethod = CalculationGrpc.getCalStaticLoadMethod) == null) {
+          CalculationGrpc.getCalStaticLoadMethod = getCalStaticLoadMethod =
+              io.grpc.MethodDescriptor.<com.iscas.biz.calculation.grpc.StaticLoadRequest, com.iscas.biz.calculation.grpc.StaticLoadResponse>newBuilder()
+              .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
+              .setFullMethodName(generateFullMethodName(SERVICE_NAME, "calStaticLoad"))
+              .setSampledToLocalTracing(true)
+              .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  com.iscas.biz.calculation.grpc.StaticLoadRequest.getDefaultInstance()))
+              .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  com.iscas.biz.calculation.grpc.StaticLoadResponse.getDefaultInstance()))
+              .setSchemaDescriptor(new CalculationMethodDescriptorSupplier("calStaticLoad"))
+              .build();
+        }
+      }
+    }
+    return getCalStaticLoadMethod;
+  }
+
+  private static volatile io.grpc.MethodDescriptor<com.iscas.biz.calculation.grpc.WaveLoadRequest,
+      com.iscas.biz.calculation.grpc.WaveLoadResponse> getCalWaveLoadMethod;
+
+  @io.grpc.stub.annotations.RpcMethod(
+      fullMethodName = SERVICE_NAME + '/' + "calWaveLoad",
+      requestType = com.iscas.biz.calculation.grpc.WaveLoadRequest.class,
+      responseType = com.iscas.biz.calculation.grpc.WaveLoadResponse.class,
+      methodType = io.grpc.MethodDescriptor.MethodType.UNARY)
+  public static io.grpc.MethodDescriptor<com.iscas.biz.calculation.grpc.WaveLoadRequest,
+      com.iscas.biz.calculation.grpc.WaveLoadResponse> getCalWaveLoadMethod() {
+    io.grpc.MethodDescriptor<com.iscas.biz.calculation.grpc.WaveLoadRequest, com.iscas.biz.calculation.grpc.WaveLoadResponse> getCalWaveLoadMethod;
+    if ((getCalWaveLoadMethod = CalculationGrpc.getCalWaveLoadMethod) == null) {
+      synchronized (CalculationGrpc.class) {
+        if ((getCalWaveLoadMethod = CalculationGrpc.getCalWaveLoadMethod) == null) {
+          CalculationGrpc.getCalWaveLoadMethod = getCalWaveLoadMethod =
+              io.grpc.MethodDescriptor.<com.iscas.biz.calculation.grpc.WaveLoadRequest, com.iscas.biz.calculation.grpc.WaveLoadResponse>newBuilder()
+              .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
+              .setFullMethodName(generateFullMethodName(SERVICE_NAME, "calWaveLoad"))
+              .setSampledToLocalTracing(true)
+              .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  com.iscas.biz.calculation.grpc.WaveLoadRequest.getDefaultInstance()))
+              .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  com.iscas.biz.calculation.grpc.WaveLoadResponse.getDefaultInstance()))
+              .setSchemaDescriptor(new CalculationMethodDescriptorSupplier("calWaveLoad"))
+              .build();
+        }
+      }
+    }
+    return getCalWaveLoadMethod;
+  }
+
+  private static volatile io.grpc.MethodDescriptor<com.iscas.biz.calculation.grpc.SlamLoadRequest,
+      com.iscas.biz.calculation.grpc.SlamLoadResponse> getCalSlamLoadMethod;
+
+  @io.grpc.stub.annotations.RpcMethod(
+      fullMethodName = SERVICE_NAME + '/' + "calSlamLoad",
+      requestType = com.iscas.biz.calculation.grpc.SlamLoadRequest.class,
+      responseType = com.iscas.biz.calculation.grpc.SlamLoadResponse.class,
+      methodType = io.grpc.MethodDescriptor.MethodType.UNARY)
+  public static io.grpc.MethodDescriptor<com.iscas.biz.calculation.grpc.SlamLoadRequest,
+      com.iscas.biz.calculation.grpc.SlamLoadResponse> getCalSlamLoadMethod() {
+    io.grpc.MethodDescriptor<com.iscas.biz.calculation.grpc.SlamLoadRequest, com.iscas.biz.calculation.grpc.SlamLoadResponse> getCalSlamLoadMethod;
+    if ((getCalSlamLoadMethod = CalculationGrpc.getCalSlamLoadMethod) == null) {
+      synchronized (CalculationGrpc.class) {
+        if ((getCalSlamLoadMethod = CalculationGrpc.getCalSlamLoadMethod) == null) {
+          CalculationGrpc.getCalSlamLoadMethod = getCalSlamLoadMethod =
+              io.grpc.MethodDescriptor.<com.iscas.biz.calculation.grpc.SlamLoadRequest, com.iscas.biz.calculation.grpc.SlamLoadResponse>newBuilder()
+              .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
+              .setFullMethodName(generateFullMethodName(SERVICE_NAME, "calSlamLoad"))
+              .setSampledToLocalTracing(true)
+              .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  com.iscas.biz.calculation.grpc.SlamLoadRequest.getDefaultInstance()))
+              .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  com.iscas.biz.calculation.grpc.SlamLoadResponse.getDefaultInstance()))
+              .setSchemaDescriptor(new CalculationMethodDescriptorSupplier("calSlamLoad"))
+              .build();
+        }
+      }
+    }
+    return getCalSlamLoadMethod;
+  }
+
+  private static volatile io.grpc.MethodDescriptor<com.iscas.biz.calculation.grpc.SectionRequest,
+      com.iscas.biz.calculation.grpc.SectionResponse> getCalSectionMethod;
+
+  @io.grpc.stub.annotations.RpcMethod(
+      fullMethodName = SERVICE_NAME + '/' + "calSection",
+      requestType = com.iscas.biz.calculation.grpc.SectionRequest.class,
+      responseType = com.iscas.biz.calculation.grpc.SectionResponse.class,
+      methodType = io.grpc.MethodDescriptor.MethodType.UNARY)
+  public static io.grpc.MethodDescriptor<com.iscas.biz.calculation.grpc.SectionRequest,
+      com.iscas.biz.calculation.grpc.SectionResponse> getCalSectionMethod() {
+    io.grpc.MethodDescriptor<com.iscas.biz.calculation.grpc.SectionRequest, com.iscas.biz.calculation.grpc.SectionResponse> getCalSectionMethod;
+    if ((getCalSectionMethod = CalculationGrpc.getCalSectionMethod) == null) {
+      synchronized (CalculationGrpc.class) {
+        if ((getCalSectionMethod = CalculationGrpc.getCalSectionMethod) == null) {
+          CalculationGrpc.getCalSectionMethod = getCalSectionMethod =
+              io.grpc.MethodDescriptor.<com.iscas.biz.calculation.grpc.SectionRequest, com.iscas.biz.calculation.grpc.SectionResponse>newBuilder()
+              .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
+              .setFullMethodName(generateFullMethodName(SERVICE_NAME, "calSection"))
+              .setSampledToLocalTracing(true)
+              .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  com.iscas.biz.calculation.grpc.SectionRequest.getDefaultInstance()))
+              .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  com.iscas.biz.calculation.grpc.SectionResponse.getDefaultInstance()))
+              .setSchemaDescriptor(new CalculationMethodDescriptorSupplier("calSection"))
+              .build();
+        }
+      }
+    }
+    return getCalSectionMethod;
+  }
+
+  private static volatile io.grpc.MethodDescriptor<com.iscas.biz.calculation.grpc.GirderStrengthRequest,
+      com.iscas.biz.calculation.grpc.GirderStrengthResponse> getCalGirderStrengthMethod;
+
+  @io.grpc.stub.annotations.RpcMethod(
+      fullMethodName = SERVICE_NAME + '/' + "calGirderStrength",
+      requestType = com.iscas.biz.calculation.grpc.GirderStrengthRequest.class,
+      responseType = com.iscas.biz.calculation.grpc.GirderStrengthResponse.class,
+      methodType = io.grpc.MethodDescriptor.MethodType.UNARY)
+  public static io.grpc.MethodDescriptor<com.iscas.biz.calculation.grpc.GirderStrengthRequest,
+      com.iscas.biz.calculation.grpc.GirderStrengthResponse> getCalGirderStrengthMethod() {
+    io.grpc.MethodDescriptor<com.iscas.biz.calculation.grpc.GirderStrengthRequest, com.iscas.biz.calculation.grpc.GirderStrengthResponse> getCalGirderStrengthMethod;
+    if ((getCalGirderStrengthMethod = CalculationGrpc.getCalGirderStrengthMethod) == null) {
+      synchronized (CalculationGrpc.class) {
+        if ((getCalGirderStrengthMethod = CalculationGrpc.getCalGirderStrengthMethod) == null) {
+          CalculationGrpc.getCalGirderStrengthMethod = getCalGirderStrengthMethod =
+              io.grpc.MethodDescriptor.<com.iscas.biz.calculation.grpc.GirderStrengthRequest, com.iscas.biz.calculation.grpc.GirderStrengthResponse>newBuilder()
+              .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
+              .setFullMethodName(generateFullMethodName(SERVICE_NAME, "calGirderStrength"))
+              .setSampledToLocalTracing(true)
+              .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  com.iscas.biz.calculation.grpc.GirderStrengthRequest.getDefaultInstance()))
+              .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  com.iscas.biz.calculation.grpc.GirderStrengthResponse.getDefaultInstance()))
+              .setSchemaDescriptor(new CalculationMethodDescriptorSupplier("calGirderStrength"))
+              .build();
+        }
+      }
+    }
+    return getCalGirderStrengthMethod;
+  }
+
+  private static volatile io.grpc.MethodDescriptor<com.iscas.biz.calculation.grpc.DistRequest,
+      com.iscas.biz.calculation.grpc.DistResponse> getCalDistMethod;
+
+  @io.grpc.stub.annotations.RpcMethod(
+      fullMethodName = SERVICE_NAME + '/' + "calDist",
+      requestType = com.iscas.biz.calculation.grpc.DistRequest.class,
+      responseType = com.iscas.biz.calculation.grpc.DistResponse.class,
+      methodType = io.grpc.MethodDescriptor.MethodType.UNARY)
+  public static io.grpc.MethodDescriptor<com.iscas.biz.calculation.grpc.DistRequest,
+      com.iscas.biz.calculation.grpc.DistResponse> getCalDistMethod() {
+    io.grpc.MethodDescriptor<com.iscas.biz.calculation.grpc.DistRequest, com.iscas.biz.calculation.grpc.DistResponse> getCalDistMethod;
+    if ((getCalDistMethod = CalculationGrpc.getCalDistMethod) == null) {
+      synchronized (CalculationGrpc.class) {
+        if ((getCalDistMethod = CalculationGrpc.getCalDistMethod) == null) {
+          CalculationGrpc.getCalDistMethod = getCalDistMethod =
+              io.grpc.MethodDescriptor.<com.iscas.biz.calculation.grpc.DistRequest, com.iscas.biz.calculation.grpc.DistResponse>newBuilder()
+              .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
+              .setFullMethodName(generateFullMethodName(SERVICE_NAME, "calDist"))
+              .setSampledToLocalTracing(true)
+              .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  com.iscas.biz.calculation.grpc.DistRequest.getDefaultInstance()))
+              .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  com.iscas.biz.calculation.grpc.DistResponse.getDefaultInstance()))
+              .setSchemaDescriptor(new CalculationMethodDescriptorSupplier("calDist"))
+              .build();
+        }
+      }
+    }
+    return getCalDistMethod;
+  }
+
   /**
    * Creates a new async stub that supports all call types for the service
    */
@@ -191,6 +377,66 @@ public final class CalculationGrpc {
         io.grpc.stub.StreamObserver<com.iscas.biz.calculation.grpc.WeightResponse> responseObserver) {
       io.grpc.stub.ServerCalls.asyncUnimplementedUnaryCall(getCalWeightDistributeMethod(), responseObserver);
     }
+
+    /**
+     * <pre>
+     *计算静水载荷
+     * </pre>
+     */
+    default void calStaticLoad(com.iscas.biz.calculation.grpc.StaticLoadRequest request,
+        io.grpc.stub.StreamObserver<com.iscas.biz.calculation.grpc.StaticLoadResponse> responseObserver) {
+      io.grpc.stub.ServerCalls.asyncUnimplementedUnaryCall(getCalStaticLoadMethod(), responseObserver);
+    }
+
+    /**
+     * <pre>
+     *波浪载荷计算
+     * </pre>
+     */
+    default void calWaveLoad(com.iscas.biz.calculation.grpc.WaveLoadRequest request,
+        io.grpc.stub.StreamObserver<com.iscas.biz.calculation.grpc.WaveLoadResponse> responseObserver) {
+      io.grpc.stub.ServerCalls.asyncUnimplementedUnaryCall(getCalWaveLoadMethod(), responseObserver);
+    }
+
+    /**
+     * <pre>
+     *计算砰击载荷
+     * </pre>
+     */
+    default void calSlamLoad(com.iscas.biz.calculation.grpc.SlamLoadRequest request,
+        io.grpc.stub.StreamObserver<com.iscas.biz.calculation.grpc.SlamLoadResponse> responseObserver) {
+      io.grpc.stub.ServerCalls.asyncUnimplementedUnaryCall(getCalSlamLoadMethod(), responseObserver);
+    }
+
+    /**
+     * <pre>
+     *剖面计算
+     * </pre>
+     */
+    default void calSection(com.iscas.biz.calculation.grpc.SectionRequest request,
+        io.grpc.stub.StreamObserver<com.iscas.biz.calculation.grpc.SectionResponse> responseObserver) {
+      io.grpc.stub.ServerCalls.asyncUnimplementedUnaryCall(getCalSectionMethod(), responseObserver);
+    }
+
+    /**
+     * <pre>
+     *板件弯矩应力计算  对应总纵强度校核
+     * </pre>
+     */
+    default void calGirderStrength(com.iscas.biz.calculation.grpc.GirderStrengthRequest request,
+        io.grpc.stub.StreamObserver<com.iscas.biz.calculation.grpc.GirderStrengthResponse> responseObserver) {
+      io.grpc.stub.ServerCalls.asyncUnimplementedUnaryCall(getCalGirderStrengthMethod(), responseObserver);
+    }
+
+    /**
+     * <pre>
+     *应力分布 对应极限弯矩校验
+     * </pre>
+     */
+    default void calDist(com.iscas.biz.calculation.grpc.DistRequest request,
+        io.grpc.stub.StreamObserver<com.iscas.biz.calculation.grpc.DistResponse> responseObserver) {
+      io.grpc.stub.ServerCalls.asyncUnimplementedUnaryCall(getCalDistMethod(), responseObserver);
+    }
   }
 
   /**
@@ -258,6 +504,72 @@ public final class CalculationGrpc {
       io.grpc.stub.ClientCalls.asyncUnaryCall(
           getChannel().newCall(getCalWeightDistributeMethod(), getCallOptions()), request, responseObserver);
     }
+
+    /**
+     * <pre>
+     *计算静水载荷
+     * </pre>
+     */
+    public void calStaticLoad(com.iscas.biz.calculation.grpc.StaticLoadRequest request,
+        io.grpc.stub.StreamObserver<com.iscas.biz.calculation.grpc.StaticLoadResponse> responseObserver) {
+      io.grpc.stub.ClientCalls.asyncUnaryCall(
+          getChannel().newCall(getCalStaticLoadMethod(), getCallOptions()), request, responseObserver);
+    }
+
+    /**
+     * <pre>
+     *波浪载荷计算
+     * </pre>
+     */
+    public void calWaveLoad(com.iscas.biz.calculation.grpc.WaveLoadRequest request,
+        io.grpc.stub.StreamObserver<com.iscas.biz.calculation.grpc.WaveLoadResponse> responseObserver) {
+      io.grpc.stub.ClientCalls.asyncUnaryCall(
+          getChannel().newCall(getCalWaveLoadMethod(), getCallOptions()), request, responseObserver);
+    }
+
+    /**
+     * <pre>
+     *计算砰击载荷
+     * </pre>
+     */
+    public void calSlamLoad(com.iscas.biz.calculation.grpc.SlamLoadRequest request,
+        io.grpc.stub.StreamObserver<com.iscas.biz.calculation.grpc.SlamLoadResponse> responseObserver) {
+      io.grpc.stub.ClientCalls.asyncUnaryCall(
+          getChannel().newCall(getCalSlamLoadMethod(), getCallOptions()), request, responseObserver);
+    }
+
+    /**
+     * <pre>
+     *剖面计算
+     * </pre>
+     */
+    public void calSection(com.iscas.biz.calculation.grpc.SectionRequest request,
+        io.grpc.stub.StreamObserver<com.iscas.biz.calculation.grpc.SectionResponse> responseObserver) {
+      io.grpc.stub.ClientCalls.asyncUnaryCall(
+          getChannel().newCall(getCalSectionMethod(), getCallOptions()), request, responseObserver);
+    }
+
+    /**
+     * <pre>
+     *板件弯矩应力计算  对应总纵强度校核
+     * </pre>
+     */
+    public void calGirderStrength(com.iscas.biz.calculation.grpc.GirderStrengthRequest request,
+        io.grpc.stub.StreamObserver<com.iscas.biz.calculation.grpc.GirderStrengthResponse> responseObserver) {
+      io.grpc.stub.ClientCalls.asyncUnaryCall(
+          getChannel().newCall(getCalGirderStrengthMethod(), getCallOptions()), request, responseObserver);
+    }
+
+    /**
+     * <pre>
+     *应力分布 对应极限弯矩校验
+     * </pre>
+     */
+    public void calDist(com.iscas.biz.calculation.grpc.DistRequest request,
+        io.grpc.stub.StreamObserver<com.iscas.biz.calculation.grpc.DistResponse> responseObserver) {
+      io.grpc.stub.ClientCalls.asyncUnaryCall(
+          getChannel().newCall(getCalDistMethod(), getCallOptions()), request, responseObserver);
+    }
   }
 
   /**
@@ -307,6 +619,66 @@ public final class CalculationGrpc {
     public com.iscas.biz.calculation.grpc.WeightResponse calWeightDistribute(com.iscas.biz.calculation.grpc.WeightRequest request) {
       return io.grpc.stub.ClientCalls.blockingUnaryCall(
           getChannel(), getCalWeightDistributeMethod(), getCallOptions(), request);
+    }
+
+    /**
+     * <pre>
+     *计算静水载荷
+     * </pre>
+     */
+    public com.iscas.biz.calculation.grpc.StaticLoadResponse calStaticLoad(com.iscas.biz.calculation.grpc.StaticLoadRequest request) {
+      return io.grpc.stub.ClientCalls.blockingUnaryCall(
+          getChannel(), getCalStaticLoadMethod(), getCallOptions(), request);
+    }
+
+    /**
+     * <pre>
+     *波浪载荷计算
+     * </pre>
+     */
+    public com.iscas.biz.calculation.grpc.WaveLoadResponse calWaveLoad(com.iscas.biz.calculation.grpc.WaveLoadRequest request) {
+      return io.grpc.stub.ClientCalls.blockingUnaryCall(
+          getChannel(), getCalWaveLoadMethod(), getCallOptions(), request);
+    }
+
+    /**
+     * <pre>
+     *计算砰击载荷
+     * </pre>
+     */
+    public com.iscas.biz.calculation.grpc.SlamLoadResponse calSlamLoad(com.iscas.biz.calculation.grpc.SlamLoadRequest request) {
+      return io.grpc.stub.ClientCalls.blockingUnaryCall(
+          getChannel(), getCalSlamLoadMethod(), getCallOptions(), request);
+    }
+
+    /**
+     * <pre>
+     *剖面计算
+     * </pre>
+     */
+    public com.iscas.biz.calculation.grpc.SectionResponse calSection(com.iscas.biz.calculation.grpc.SectionRequest request) {
+      return io.grpc.stub.ClientCalls.blockingUnaryCall(
+          getChannel(), getCalSectionMethod(), getCallOptions(), request);
+    }
+
+    /**
+     * <pre>
+     *板件弯矩应力计算  对应总纵强度校核
+     * </pre>
+     */
+    public com.iscas.biz.calculation.grpc.GirderStrengthResponse calGirderStrength(com.iscas.biz.calculation.grpc.GirderStrengthRequest request) {
+      return io.grpc.stub.ClientCalls.blockingUnaryCall(
+          getChannel(), getCalGirderStrengthMethod(), getCallOptions(), request);
+    }
+
+    /**
+     * <pre>
+     *应力分布 对应极限弯矩校验
+     * </pre>
+     */
+    public com.iscas.biz.calculation.grpc.DistResponse calDist(com.iscas.biz.calculation.grpc.DistRequest request) {
+      return io.grpc.stub.ClientCalls.blockingUnaryCall(
+          getChannel(), getCalDistMethod(), getCallOptions(), request);
     }
   }
 
@@ -361,11 +733,83 @@ public final class CalculationGrpc {
       return io.grpc.stub.ClientCalls.futureUnaryCall(
           getChannel().newCall(getCalWeightDistributeMethod(), getCallOptions()), request);
     }
+
+    /**
+     * <pre>
+     *计算静水载荷
+     * </pre>
+     */
+    public com.google.common.util.concurrent.ListenableFuture<com.iscas.biz.calculation.grpc.StaticLoadResponse> calStaticLoad(
+        com.iscas.biz.calculation.grpc.StaticLoadRequest request) {
+      return io.grpc.stub.ClientCalls.futureUnaryCall(
+          getChannel().newCall(getCalStaticLoadMethod(), getCallOptions()), request);
+    }
+
+    /**
+     * <pre>
+     *波浪载荷计算
+     * </pre>
+     */
+    public com.google.common.util.concurrent.ListenableFuture<com.iscas.biz.calculation.grpc.WaveLoadResponse> calWaveLoad(
+        com.iscas.biz.calculation.grpc.WaveLoadRequest request) {
+      return io.grpc.stub.ClientCalls.futureUnaryCall(
+          getChannel().newCall(getCalWaveLoadMethod(), getCallOptions()), request);
+    }
+
+    /**
+     * <pre>
+     *计算砰击载荷
+     * </pre>
+     */
+    public com.google.common.util.concurrent.ListenableFuture<com.iscas.biz.calculation.grpc.SlamLoadResponse> calSlamLoad(
+        com.iscas.biz.calculation.grpc.SlamLoadRequest request) {
+      return io.grpc.stub.ClientCalls.futureUnaryCall(
+          getChannel().newCall(getCalSlamLoadMethod(), getCallOptions()), request);
+    }
+
+    /**
+     * <pre>
+     *剖面计算
+     * </pre>
+     */
+    public com.google.common.util.concurrent.ListenableFuture<com.iscas.biz.calculation.grpc.SectionResponse> calSection(
+        com.iscas.biz.calculation.grpc.SectionRequest request) {
+      return io.grpc.stub.ClientCalls.futureUnaryCall(
+          getChannel().newCall(getCalSectionMethod(), getCallOptions()), request);
+    }
+
+    /**
+     * <pre>
+     *板件弯矩应力计算  对应总纵强度校核
+     * </pre>
+     */
+    public com.google.common.util.concurrent.ListenableFuture<com.iscas.biz.calculation.grpc.GirderStrengthResponse> calGirderStrength(
+        com.iscas.biz.calculation.grpc.GirderStrengthRequest request) {
+      return io.grpc.stub.ClientCalls.futureUnaryCall(
+          getChannel().newCall(getCalGirderStrengthMethod(), getCallOptions()), request);
+    }
+
+    /**
+     * <pre>
+     *应力分布 对应极限弯矩校验
+     * </pre>
+     */
+    public com.google.common.util.concurrent.ListenableFuture<com.iscas.biz.calculation.grpc.DistResponse> calDist(
+        com.iscas.biz.calculation.grpc.DistRequest request) {
+      return io.grpc.stub.ClientCalls.futureUnaryCall(
+          getChannel().newCall(getCalDistMethod(), getCallOptions()), request);
+    }
   }
 
   private static final int METHODID_SHIP_PARAM = 0;
   private static final int METHODID_BUOYANCY = 1;
   private static final int METHODID_CAL_WEIGHT_DISTRIBUTE = 2;
+  private static final int METHODID_CAL_STATIC_LOAD = 3;
+  private static final int METHODID_CAL_WAVE_LOAD = 4;
+  private static final int METHODID_CAL_SLAM_LOAD = 5;
+  private static final int METHODID_CAL_SECTION = 6;
+  private static final int METHODID_CAL_GIRDER_STRENGTH = 7;
+  private static final int METHODID_CAL_DIST = 8;
 
   private static final class MethodHandlers<Req, Resp> implements
       io.grpc.stub.ServerCalls.UnaryMethod<Req, Resp>,
@@ -395,6 +839,30 @@ public final class CalculationGrpc {
         case METHODID_CAL_WEIGHT_DISTRIBUTE:
           serviceImpl.calWeightDistribute((com.iscas.biz.calculation.grpc.WeightRequest) request,
               (io.grpc.stub.StreamObserver<com.iscas.biz.calculation.grpc.WeightResponse>) responseObserver);
+          break;
+        case METHODID_CAL_STATIC_LOAD:
+          serviceImpl.calStaticLoad((com.iscas.biz.calculation.grpc.StaticLoadRequest) request,
+              (io.grpc.stub.StreamObserver<com.iscas.biz.calculation.grpc.StaticLoadResponse>) responseObserver);
+          break;
+        case METHODID_CAL_WAVE_LOAD:
+          serviceImpl.calWaveLoad((com.iscas.biz.calculation.grpc.WaveLoadRequest) request,
+              (io.grpc.stub.StreamObserver<com.iscas.biz.calculation.grpc.WaveLoadResponse>) responseObserver);
+          break;
+        case METHODID_CAL_SLAM_LOAD:
+          serviceImpl.calSlamLoad((com.iscas.biz.calculation.grpc.SlamLoadRequest) request,
+              (io.grpc.stub.StreamObserver<com.iscas.biz.calculation.grpc.SlamLoadResponse>) responseObserver);
+          break;
+        case METHODID_CAL_SECTION:
+          serviceImpl.calSection((com.iscas.biz.calculation.grpc.SectionRequest) request,
+              (io.grpc.stub.StreamObserver<com.iscas.biz.calculation.grpc.SectionResponse>) responseObserver);
+          break;
+        case METHODID_CAL_GIRDER_STRENGTH:
+          serviceImpl.calGirderStrength((com.iscas.biz.calculation.grpc.GirderStrengthRequest) request,
+              (io.grpc.stub.StreamObserver<com.iscas.biz.calculation.grpc.GirderStrengthResponse>) responseObserver);
+          break;
+        case METHODID_CAL_DIST:
+          serviceImpl.calDist((com.iscas.biz.calculation.grpc.DistRequest) request,
+              (io.grpc.stub.StreamObserver<com.iscas.biz.calculation.grpc.DistResponse>) responseObserver);
           break;
         default:
           throw new AssertionError();
@@ -435,6 +903,48 @@ public final class CalculationGrpc {
               com.iscas.biz.calculation.grpc.WeightRequest,
               com.iscas.biz.calculation.grpc.WeightResponse>(
                 service, METHODID_CAL_WEIGHT_DISTRIBUTE)))
+        .addMethod(
+          getCalStaticLoadMethod(),
+          io.grpc.stub.ServerCalls.asyncUnaryCall(
+            new MethodHandlers<
+              com.iscas.biz.calculation.grpc.StaticLoadRequest,
+              com.iscas.biz.calculation.grpc.StaticLoadResponse>(
+                service, METHODID_CAL_STATIC_LOAD)))
+        .addMethod(
+          getCalWaveLoadMethod(),
+          io.grpc.stub.ServerCalls.asyncUnaryCall(
+            new MethodHandlers<
+              com.iscas.biz.calculation.grpc.WaveLoadRequest,
+              com.iscas.biz.calculation.grpc.WaveLoadResponse>(
+                service, METHODID_CAL_WAVE_LOAD)))
+        .addMethod(
+          getCalSlamLoadMethod(),
+          io.grpc.stub.ServerCalls.asyncUnaryCall(
+            new MethodHandlers<
+              com.iscas.biz.calculation.grpc.SlamLoadRequest,
+              com.iscas.biz.calculation.grpc.SlamLoadResponse>(
+                service, METHODID_CAL_SLAM_LOAD)))
+        .addMethod(
+          getCalSectionMethod(),
+          io.grpc.stub.ServerCalls.asyncUnaryCall(
+            new MethodHandlers<
+              com.iscas.biz.calculation.grpc.SectionRequest,
+              com.iscas.biz.calculation.grpc.SectionResponse>(
+                service, METHODID_CAL_SECTION)))
+        .addMethod(
+          getCalGirderStrengthMethod(),
+          io.grpc.stub.ServerCalls.asyncUnaryCall(
+            new MethodHandlers<
+              com.iscas.biz.calculation.grpc.GirderStrengthRequest,
+              com.iscas.biz.calculation.grpc.GirderStrengthResponse>(
+                service, METHODID_CAL_GIRDER_STRENGTH)))
+        .addMethod(
+          getCalDistMethod(),
+          io.grpc.stub.ServerCalls.asyncUnaryCall(
+            new MethodHandlers<
+              com.iscas.biz.calculation.grpc.DistRequest,
+              com.iscas.biz.calculation.grpc.DistResponse>(
+                service, METHODID_CAL_DIST)))
         .build();
   }
 
@@ -486,6 +996,12 @@ public final class CalculationGrpc {
               .addMethod(getShipParamMethod())
               .addMethod(getBuoyancyMethod())
               .addMethod(getCalWeightDistributeMethod())
+              .addMethod(getCalStaticLoadMethod())
+              .addMethod(getCalWaveLoadMethod())
+              .addMethod(getCalSlamLoadMethod())
+              .addMethod(getCalSectionMethod())
+              .addMethod(getCalGirderStrengthMethod())
+              .addMethod(getCalDistMethod())
               .build();
         }
       }
