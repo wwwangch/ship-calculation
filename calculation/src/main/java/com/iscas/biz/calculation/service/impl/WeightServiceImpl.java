@@ -52,6 +52,7 @@ public class WeightServiceImpl implements WeightService {
     }
 
     @Override
+    @Transactional
     public Weight listByProjectId(Integer projectId) {
         QueryWrapper<Weight> queryWrapper = new QueryWrapper<>();
         queryWrapper.eq("project_id", projectId);

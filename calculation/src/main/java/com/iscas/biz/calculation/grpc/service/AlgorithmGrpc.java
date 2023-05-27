@@ -2,11 +2,14 @@ package com.iscas.biz.calculation.grpc.service;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.google.common.collect.Lists;
-import com.iscas.biz.calculation.entity.db.BuoyancyParam;
-import com.iscas.biz.calculation.entity.db.Project;
-import com.iscas.biz.calculation.entity.db.ShipParam;
-import com.iscas.biz.calculation.entity.db.Weight;
+import com.iscas.biz.calculation.entity.db.*;
+import com.iscas.biz.calculation.entity.dto.SlamLoadDTO;
+import com.iscas.biz.calculation.entity.dto.StaticLoadDTO;
+import com.iscas.biz.calculation.entity.dto.WaveLoadDTO;
 import com.iscas.biz.calculation.entity.dto.WeightDTO;
+import com.iscas.biz.calculation.grpc.Gravity;
+import com.iscas.biz.calculation.grpc.SubGravity;
+import com.iscas.biz.calculation.grpc.WeightDistribution;
 import com.iscas.biz.calculation.grpc.*;
 import com.iscas.biz.calculation.mapper.ProjectMapper;
 import com.iscas.biz.calculation.mapper.ShipParamMapper;
@@ -37,6 +40,10 @@ public class AlgorithmGrpc {
     private volatile static Boolean buoyancy = false;
 
     private volatile static Boolean weight = false;
+
+    private volatile static Boolean staticLoad = false;
+
+    private volatile static Boolean waveLoad = false;
 
     public AlgorithmGrpc(GrpcHolder grpcHolder, ProjectMapper projectMapper, ShipParamMapper shipParamMapper) {
         this.grpcHolder = grpcHolder;
@@ -79,7 +86,7 @@ public class AlgorithmGrpc {
         if (!Objects.equals(shipParam.getProjectId(), AlgorithmGrpc.currentProjectId)) {
             ShipParamResponse shipParamResponse = callShipParam(projectMapper.selectById(shipParam.getProjectId()), shipParam);
             if (0 != shipParamResponse.getCode()) {
-                throw new RuntimeException("船舶参数配置失败" + shipParamResponse.getMessage());
+                throw new RuntimeException("船舶参数配置失败:" + shipParamResponse.getMessage());
             }
         }
         BuoyancyRequest buoyancyRequest = BuoyancyRequest.newBuilder()
@@ -155,6 +162,60 @@ public class AlgorithmGrpc {
         }
         AlgorithmGrpc.weight = true;
         return weight;
+    }
+
+    public StaticLoad calStaticLoad(StaticLoadDTO project) {
+//        if (!(buoyancy && weight)) {
+//            throw new RuntimeException("前置计算:浮力分布或重量分布尚未计算!");
+//        }
+        StaticLoadResponse staticLoadResponse = grpcHolder.calculationBlockingStub().calStaticLoad(StaticLoadRequest.newBuilder().build());
+        StaticLoad staticLoad = new StaticLoad();
+        staticLoad.setProjectId(project.getProjectId());
+        staticLoad.setNvec(Lists.newArrayList(staticLoadResponse.getNvecList()));
+        staticLoad.setMvec(Lists.newArrayList(staticLoadResponse.getMvecList()));
+        staticLoad.setNvecM(Lists.newArrayList(staticLoadResponse.getNvecMList()));
+        staticLoad.setMvecM(Lists.newArrayList(staticLoadResponse.getMvecMList()));
+        AlgorithmGrpc.staticLoad = true;
+        return staticLoad;
+    }
+
+    public WaveLoad calWaveLoad(WaveLoadDTO waveLoadDTO) {
+//        if (!AlgorithmGrpc.staticLoad) {
+//            throw new RuntimeException("前置计算尚未完成!");
+//        }
+        WaveLoadResponse waveLoadResponse = grpcHolder.calculationBlockingStub().calWaveLoad(WaveLoadRequest.newBuilder()
+                .setHeight(waveLoadDTO.getWaveHeight())
+                .build());
+        WaveLoad dbWaveLoad = new WaveLoad();
+        dbWaveLoad.setProjectId(waveLoadDTO.getProjectId());
+        dbWaveLoad.setMbb(Lists.newArrayList(waveLoadResponse.getMbbList()));
+        dbWaveLoad.setNwvecH(Lists.newArrayList(waveLoadResponse.getNwvecHList()));
+        dbWaveLoad.setMwvecH(Lists.newArrayList(waveLoadResponse.getMwvecHList()));
+        dbWaveLoad.setNwvecMH(Lists.newArrayList(waveLoadResponse.getNwvecMHList()));
+        dbWaveLoad.setMwvecMH(Lists.newArrayList(waveLoadResponse.getMwvecMHList()));
+        dbWaveLoad.setBdeltaS(Lists.newArrayList(waveLoadResponse.getBdeltaSList()));
+        dbWaveLoad.setNwvecS(Lists.newArrayList(waveLoadResponse.getNwvecSList()));
+        dbWaveLoad.setMwvecS(Lists.newArrayList(waveLoadResponse.getMwvecSList()));
+        dbWaveLoad.setNwvecMS(Lists.newArrayList(waveLoadResponse.getNwvecMSList()));
+        dbWaveLoad.setMwvecMS(Lists.newArrayList(waveLoadResponse.getMwvecMSList()));
+        AlgorithmGrpc.waveLoad = true;
+        return dbWaveLoad;
+    }
+
+    public SlamLoad calSlamLoad(SlamLoadDTO slamLoadDTO) {
+        //        if (!AlgorithmGrpc.waveLoad) {
+//            throw new RuntimeException("前置计算尚未完成!");
+//        }
+        SlamLoadResponse slamLoadResponse = grpcHolder.calculationBlockingStub().calSlamLoad(SlamLoadRequest.newBuilder()
+                .setSpeed(slamLoadDTO.getSpeed())
+                .build());
+        SlamLoad dbSlamLoad = new SlamLoad();
+        dbSlamLoad.setProjectId(slamLoadDTO.getProjectId());
+
+        dbSlamLoad.setNwb(Lists.newArrayList(slamLoadResponse.getNwbList()));
+        dbSlamLoad.setPwbm(Lists.newArrayList(slamLoadResponse.getPwbmList()));
+        AlgorithmGrpc.waveLoad = true;
+        return dbSlamLoad;
     }
 
 }
