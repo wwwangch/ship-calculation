@@ -2,12 +2,13 @@ package com.iscas.biz.calculation.grpc.service;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.google.common.collect.Lists;
-import com.iscas.biz.calculation.entity.db.BuoyancyParam;
-import com.iscas.biz.calculation.entity.db.Project;
-import com.iscas.biz.calculation.entity.db.ShipParam;
-import com.iscas.biz.calculation.entity.db.Weight;
+import com.iscas.biz.calculation.entity.db.*;
+import com.iscas.biz.calculation.entity.dto.CalSectionDTO;
 import com.iscas.biz.calculation.entity.dto.WeightDTO;
 import com.iscas.biz.calculation.grpc.*;
+import com.iscas.biz.calculation.grpc.Gravity;
+import com.iscas.biz.calculation.grpc.SubGravity;
+import com.iscas.biz.calculation.grpc.WeightDistribution;
 import com.iscas.biz.calculation.mapper.ProjectMapper;
 import com.iscas.biz.calculation.mapper.ShipParamMapper;
 import org.apache.commons.collections4.CollectionUtils;
@@ -37,6 +38,7 @@ public class AlgorithmGrpc {
     private volatile static Boolean buoyancy = false;
 
     private volatile static Boolean weight = false;
+    private volatile static Boolean section = false;
 
     public AlgorithmGrpc(GrpcHolder grpcHolder, ProjectMapper projectMapper, ShipParamMapper shipParamMapper) {
         this.grpcHolder = grpcHolder;
@@ -157,4 +159,37 @@ public class AlgorithmGrpc {
         return weight;
     }
 
+    public CalSection calSection(CalSectionDTO calSectionDTO) {
+        Integer projectId = calSectionDTO.getProjectId();
+        if (!Objects.equals(projectId, AlgorithmGrpc.currentProjectId)) {
+            QueryWrapper<ShipParam> queryWrapper = new QueryWrapper<>();
+            queryWrapper.eq("project_id", projectId);
+            ShipParam shipParam = shipParamMapper.selectOne(queryWrapper);
+            ShipParamResponse shipParamResponse = callShipParam(projectMapper.selectById(projectId), shipParam);
+            if (0 != shipParamResponse.getCode()) {
+                throw new RuntimeException("船舶参数配置失败" + shipParamResponse.getMessage());
+            }
+        }
+        SectionRequest sectionRequest = SectionRequest.newBuilder()
+                .setProfileFilePath(calSectionDTO.getProfileFilePath())
+                .build();
+        SectionResponse sectionResponse = grpcHolder.calculationBlockingStub().calSection(sectionRequest);
+        if (sectionResponse == null) {
+            throw new RuntimeException("剖面计算计算失败:");
+        }
+        CalSection calSection = new CalSection();
+        calSection.setProjectId(projectId);
+        calSection.setProfileFilePath(calSectionDTO.getProfileFilePath());
+        calSection.setProfileFileName(calSectionDTO.getProfileFileName());
+        calSection.setFirstMoment0(sectionResponse.getFirstMoment0());
+        calSection.setInteria0(sectionResponse.getInteria0());
+        calSection.setZaxisH(sectionResponse.getZaxisH());
+        calSection.setFirstMomH(sectionResponse.getFirstMomH());
+        calSection.setInteriaH(sectionResponse.getInteriaH());
+        calSection.setZaxisS(sectionResponse.getZaxisS());
+        calSection.setFirstMomS(sectionResponse.getFirstMomS());
+        calSection.setInteriaS(sectionResponse.getInteriaS());
+        AlgorithmGrpc.section = true;
+        return calSection;
+    }
 }
