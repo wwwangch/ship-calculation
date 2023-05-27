@@ -1,7 +1,10 @@
 package com.iscas.biz.calculation.service.impl;
 
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.iscas.biz.calculation.entity.db.Bulkhead;
+import com.iscas.biz.calculation.entity.db.BulkheadCompartment;
+import com.iscas.biz.calculation.mapper.BulkheadCompartmentMapper;
 import com.iscas.biz.calculation.mapper.BulkheadMapper;
 import com.iscas.biz.calculation.mapper.ProjectMapper;
 import com.iscas.biz.calculation.service.BulkheadService;
@@ -19,9 +22,11 @@ import java.util.List;
 public class BulkheadServiceImpl extends ServiceImpl<BulkheadMapper, Bulkhead> implements BulkheadService {
 
     private final ProjectMapper projectMapper;
+    private final BulkheadCompartmentMapper compartmentMapper;
 
-    public BulkheadServiceImpl(ProjectMapper projectMapper) {
+    public BulkheadServiceImpl(ProjectMapper projectMapper, BulkheadCompartmentMapper compartmentMapper) {
         this.projectMapper = projectMapper;
+        this.compartmentMapper = compartmentMapper;
     }
 
     @Override
@@ -37,6 +42,9 @@ public class BulkheadServiceImpl extends ServiceImpl<BulkheadMapper, Bulkhead> i
     public Boolean deleteByIds(List<Integer> ids) {
         try {
             if (CollectionUtils.isNotEmpty(ids)) {
+                QueryWrapper<BulkheadCompartment> queryWrapper = new QueryWrapper<>();
+                queryWrapper.lambda().in(BulkheadCompartment::getBulkheadId, ids);
+                compartmentMapper.delete(queryWrapper);
                 return this.removeByIds(ids);
             }
             return false;

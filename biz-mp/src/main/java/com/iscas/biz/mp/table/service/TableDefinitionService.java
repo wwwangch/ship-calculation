@@ -215,16 +215,19 @@ public class TableDefinitionService {
                 }
 
                 if (valueMap != null) {
-                    List<ComboboxData> comboboxDataList = new ArrayList<>();
-                    for (Map.Entry<Object, Object> entry : valueMap.entrySet()) {
-                        ComboboxData comboboxData = new ComboboxData();
-                        comboboxData.setLabel(entry.getValue().toString());
-                        comboboxData.setValue(entry.getKey());
-                        comboboxDataList.add(comboboxData);
-                    }
+                    List<ComboboxData> comboboxDataList = getComboboxDataList(valueMap);
                     tableField.setOption(comboboxDataList);
+
+//                    List<ComboboxData> comboboxDataList = new ArrayList<>();
+//                    for (Map.Entry<Object, Object> entry : valueMap.entrySet()) {
+//                        ComboboxData comboboxData = new ComboboxData();
+//                        comboboxData.setLabel(entry.getValue().toString());
+//                        comboboxData.setValue(entry.getKey());
+//                        comboboxDataList.add(comboboxData);
+//                    }
+//                    tableField.setOption(comboboxDataList);
                     //检查列的type和ref是否匹配
-                    if (!(TableFieldType.select.name().equalsIgnoreCase(type.trim()) || TableFieldType.selectCanedit.name().equalsIgnoreCase(type.trim()))) {
+                    if (!(TableFieldType.select.name().equalsIgnoreCase(type.trim()) || TableFieldType.selectCanedit.name().equalsIgnoreCase(type.trim()) || TableFieldType.selectCascader.name().equalsIgnoreCase(type.trim()))) {
                         ValidDataException validDataException = new ValidDataException(
                                 String.format("列[%s]的type配置不是[select],但是存在ref配置！", columnDefinition.getField()));
                         validDataException.setMsgDetail(
@@ -239,6 +242,36 @@ public class TableDefinitionService {
         return tableFields;
     }
 
+    private List<ComboboxData> getComboboxDataList(Map<Object, Object> valueMap) {
+        //处理第一层ComboboxData
+        List<ComboboxData> comboboxDataList = new ArrayList<>();
+        for (Map.Entry<Object, Object> entry : valueMap.entrySet()) {
+            ComboboxData comboboxData = new ComboboxData();
+            Object value = entry.getValue();
+            if (value instanceof LinkedHashMap) {
+                //处理 children ComboboxData
+                handlerChildren(comboboxData, (LinkedHashMap) value);
+            } else {
+                comboboxData.setLabel(value.toString());
+            }
+            comboboxData.setValue(entry.getKey());
+            comboboxDataList.add(comboboxData);
+        }
+        return comboboxDataList;
+    }
+
+    /**
+     * 支持多层嵌套
+     * 例：两层嵌套
+     * {"0":{"children":{"5":"暂定价合同","6":"确定价合同"},"value":"付款合同"},"1":"收款合同"}
+     */
+    private void handlerChildren(ComboboxData comboboxData, LinkedHashMap value) {
+        //数据库配置 value 作为 label，配置 children 作为 ComboboxData 的 children
+        comboboxData.setLabel(value.get("value").toString());
+        Map<Object, Object> childrenMap = (LinkedHashMap) value.get("children");
+        List<ComboboxData> comboboxDataList = getComboboxDataList(childrenMap);
+        comboboxData.setChildren(comboboxDataList);
+    }
 
     /**
      * 获取表头定义

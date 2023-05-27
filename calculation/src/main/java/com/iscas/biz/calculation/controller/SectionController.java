@@ -72,7 +72,7 @@ public class SectionController {
             content = @Content(examples = @ExampleObject(value = "{\"key\":\"val\"}")))
     @PostMapping(value = "/data")
     public ResponseEntity saveData(@RequestBody Map<String, Object> data) throws ValidDataException {
-        ImmutableMap<String, Object> forceItem = ImmutableMap.of("create_time", DateSafeUtils.format(new Date()), "update_time", DateSafeUtils.format(new Date()));
+        ImmutableMap<String, Object> forceItem = ImmutableMap.of("create_time", DateSafeUtils.format(new Date()), "update_time", DateSafeUtils.format(new Date()), "project_id", data.get("project_id"));
         return tableDefinitionService.saveData(TABLE_IDENTITY, data, true, Section.class, forceItem);
     }
 
