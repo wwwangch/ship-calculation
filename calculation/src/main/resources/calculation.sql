@@ -3,15 +3,15 @@
 
  Source Server         : localhost_3306
  Source Server Type    : MySQL
- Source Server Version : 80028
+ Source Server Version : 80026
  Source Host           : localhost:3306
  Source Schema         : calculation
 
  Target Server Type    : MySQL
- Target Server Version : 80028
+ Target Server Version : 80026
  File Encoding         : 65001
 
- Date: 22/05/2023 14:22:16
+ Date: 28/05/2023 00:21:04
 */
 
 SET NAMES utf8mb4;
@@ -33,7 +33,7 @@ CREATE TABLE `bulb_flat`  (
   `create_time` datetime NULL DEFAULT NULL,
   `update_time` datetime NULL DEFAULT NULL,
   PRIMARY KEY (`profile_id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 27 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = DYNAMIC;
+) ENGINE = InnoDB AUTO_INCREMENT = 26 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of bulb_flat
@@ -63,13 +63,13 @@ CREATE TABLE `buoyancy_param`  (
   `precision_displacement` double NULL DEFAULT NULL,
   `precision_gravity` double NULL DEFAULT NULL,
   PRIMARY KEY (`param_id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 3 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci COMMENT = '参数表' ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 2 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci COMMENT = '参数表' ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of buoyancy_param
 -- ----------------------------
 INSERT INTO `buoyancy_param` VALUES (1, 1, 'ServiceImpl.cpp', 'd:/tempx/2023-05-12/C7jWlR4B/ServiceImpl.cpp', 'calculation.grpc.pb.cc', 'd:/tempx/2023-05-12/EzV49GUH/calculation.grpc.pb.cc', 12, 54, 54, '2023-05-22 11:03:47', '2023-05-22 11:03:47', 56, 12);
-INSERT INTO `buoyancy_param` VALUES (2, 7, 'static0508-2.xlsx', 'd:/tempx/2023-05-13/l7SSDX94/static0508-2.xlsx', 'static0508-2.xlsx', 'd:/tempx/2023-05-13/5TgI9MhY/static0508-2.xlsx', 4.55, 4.55, 4.55, '2023-05-19 16:08:51', '2023-05-19 16:08:51', 0.005, 0.001);
+INSERT INTO `buoyancy_param` VALUES (2, 7, 'static0508-2.xlsx', 'd:/tempx/2023-05-13/l7SSDX94/static0508-2.xlsx', 'static0508-2.xlsx', 'd:/tempx/2023-05-13/5TgI9MhY/static0508-2.xlsx', 4.55, 4.55, 4.55, '2023-05-22 15:47:33', '2023-05-22 15:47:33', 0.005, 0.001);
 
 -- ----------------------------
 -- Table structure for buoyancy_result
@@ -81,14 +81,13 @@ CREATE TABLE `buoyancy_result`  (
   `blist` json NULL,
   `calrst` json NULL,
   PRIMARY KEY (`result_id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 22 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 30 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of buoyancy_result
 -- ----------------------------
 INSERT INTO `buoyancy_result` VALUES (1, 1, '[6334.0, 26500.0, 19169.0, 15724.0, 11478.0, 29358.0, 26962.0, 24464.0, 5705.0, 28145.0, 23281.0, 16827.0, 9961.0, 491.0, 2995.0, 11942.0, 4827.0, 5436.0, 32391.0, 14604.0, 3902.0]', '[{\"da\": 12.0, \"df\": 15.0, \"dm\": 23.0, \"biasf\": 15.0, \"biasx\": 23.0, \"index\": 0, \"floatxpos\": 0.5, \"floatforce\": 0.2}, {\"da\": 12.0, \"df\": 15.0, \"dm\": 23.0, \"biasf\": 15.0, \"biasx\": 23.0, \"index\": 1, \"floatxpos\": 0.5, \"floatforce\": 0.2}, {\"da\": 12.0, \"df\": 15.0, \"dm\": 23.0, \"biasf\": 15.0, \"biasx\": 23.0, \"index\": 2, \"floatxpos\": 0.5, \"floatforce\": 0.2}]');
-INSERT INTO `buoyancy_result` VALUES (20, 2, '[0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0]', '[{\"da\": 4.55, \"df\": 4.55, \"dm\": 4.55, \"biasf\": 0.0048964316188452464, \"biasx\": 0.001560318078655463, \"index\": 1, \"floatxpos\": -3.707796741302857, \"floatforce\": 4740.424623875726}, {\"da\": 4.564217012497937, \"df\": 4.564217012497937, \"dm\": 4.564217012497937, \"biasf\": 0.000002918386169288264, \"biasx\": 0.0013593469912381209, \"index\": 2, \"floatxpos\": -3.735128809191615, \"floatforce\": 4763.736097537886}, {\"da\": 4.59588839761597, \"df\": 4.529165360955323, \"dm\": 4.562526879285647, \"biasf\": 0.0009920007241136922, \"biasx\": 0.00004717063364194444, \"index\": 3, \"floatxpos\": -3.926415206175304, \"floatforce\": 4768.475643449497}]');
-INSERT INTO `buoyancy_result` VALUES (21, 2, '[0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0]', '[{\"da\": 4.55, \"df\": 4.55, \"dm\": 4.55, \"biasf\": 0.0048964316188452464, \"biasx\": 0.001560318078655463, \"index\": 1, \"floatxpos\": -3.707796741302857, \"floatforce\": 4740.424623875726}, {\"da\": 4.564217012497937, \"df\": 4.564217012497937, \"dm\": 4.564217012497937, \"biasf\": 0.000002918386169288264, \"biasx\": 0.0013593469912381209, \"index\": 2, \"floatxpos\": -3.735128809191615, \"floatforce\": 4763.736097537886}, {\"da\": 4.59588839761597, \"df\": 4.529165360955323, \"dm\": 4.562526879285647, \"biasf\": 0.0009920007241136922, \"biasx\": 0.00004717063364194444, \"index\": 3, \"floatxpos\": -3.926415206175304, \"floatforce\": 4768.475643449497}]');
+INSERT INTO `buoyancy_result` VALUES (30, 2, '[0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0]', '[{\"da\": 4.55, \"df\": 4.55, \"dm\": 4.55, \"biasf\": 0.0048964316188452464, \"biasx\": 0.001560318078655463, \"index\": 1, \"floatxpos\": -3.707796741302857, \"floatforce\": 4740.424623875726}, {\"da\": 4.564217012497937, \"df\": 4.564217012497937, \"dm\": 4.564217012497937, \"biasf\": 0.000002918386169288264, \"biasx\": 0.0013593469912381209, \"index\": 2, \"floatxpos\": -3.735128809191615, \"floatforce\": 4763.736097537886}, {\"da\": 4.59588839761597, \"df\": 4.529165360955323, \"dm\": 4.562526879285647, \"biasf\": 0.0009920007241136922, \"biasx\": 0.00004717063364194444, \"index\": 3, \"floatxpos\": -3.926415206175304, \"floatforce\": 4768.475643449497}]');
 
 -- ----------------------------
 -- Table structure for project
@@ -102,7 +101,7 @@ CREATE TABLE `project`  (
   `create_time` datetime NULL DEFAULT NULL,
   `update_time` datetime NULL DEFAULT NULL,
   PRIMARY KEY (`project_id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 8 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = DYNAMIC;
+) ENGINE = InnoDB AUTO_INCREMENT = 7 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of project
@@ -124,7 +123,7 @@ CREATE TABLE `section`  (
   `create_time` datetime NULL DEFAULT NULL,
   `update_time` datetime NULL DEFAULT NULL,
   PRIMARY KEY (`section_id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 4 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci COMMENT = '剖面表' ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 3 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci COMMENT = '剖面表' ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of section
@@ -152,7 +151,7 @@ CREATE TABLE `ship_param`  (
   `create_time` datetime NULL DEFAULT NULL,
   `update_time` datetime NULL DEFAULT NULL,
   PRIMARY KEY (`param_id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 15 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = DYNAMIC;
+) ENGINE = InnoDB AUTO_INCREMENT = 14 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of ship_param
@@ -160,6 +159,42 @@ CREATE TABLE `ship_param`  (
 INSERT INTO `ship_param` VALUES (2, 4, 'HM', 1, 1, 1, 1, '0', NULL, NULL, NULL, NULL, '2023-04-20 15:01:07', NULL);
 INSERT INTO `ship_param` VALUES (13, 1, 'HM', 23, 42, 32, 5345, '1', NULL, '1', 53, 53, '2023-05-12 18:24:15', NULL);
 INSERT INTO `ship_param` VALUES (14, 7, 'QZJ', 136, 17, 10, 4.55, '0', NULL, '0', 4763.75, -3.92, '2023-05-13 14:30:50', NULL);
+
+-- ----------------------------
+-- Table structure for slam_load
+-- ----------------------------
+DROP TABLE IF EXISTS `slam_load`;
+CREATE TABLE `slam_load`  (
+  `slam_load_id` int NOT NULL AUTO_INCREMENT COMMENT '冲击负荷ID',
+  `project_id` int NULL DEFAULT NULL COMMENT '项目ID',
+  `pwbm` json NULL COMMENT '波峰抨击弯矩',
+  `nwb` json NULL COMMENT '波谷抨击弯矩',
+  PRIMARY KEY (`slam_load_id`) USING BTREE
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of slam_load
+-- ----------------------------
+INSERT INTO `slam_load` VALUES (2, 7, '[30932.0, 2154.0, 17189.0, 31329.0, 28692.0, 10555.0, 16549.0, 9512.0, 18060.0, 3753.0, 12423.0, 25996.0, 12529.0, 17437.0, 12949.0, 23195.0, 20416.0, 16105.0, 16282.0, 25734.0, 11701.0]', '[9832.0, 4169.0, 25721.0, 19976.0, 2368.0, 21425.0, 3434.0, 7441.0, 30145.0, 21718.0, 16139.0, 16279.0, 16687.0, 22549.0, 19866.0, 193.0, 3297.0, 28286.0, 24488.0, 12455.0, 18114.0]');
+
+-- ----------------------------
+-- Table structure for static_load
+-- ----------------------------
+DROP TABLE IF EXISTS `static_load`;
+CREATE TABLE `static_load`  (
+  `static_load_id` int NOT NULL AUTO_INCREMENT COMMENT '静态负荷ID',
+  `project_id` int NULL DEFAULT NULL COMMENT '项目ID',
+  `nvec` json NULL COMMENT '未修正的静水剪力',
+  `mvec` json NULL COMMENT '未修正的弯矩',
+  `nvec_m` json NULL COMMENT '修正的静水剪力',
+  `mvec_m` json NULL COMMENT '修正的弯矩',
+  PRIMARY KEY (`static_load_id`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 2 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of static_load
+-- ----------------------------
+INSERT INTO `static_load` VALUES (1, 7, '[10291.0, 4596.0, 19668.0, 53.0, 6900.0, 3728.0, 17807.0, 22813.0, 18935.0, 16519.0, 6224.0, 14989.0, 3093.0, 29314.0, 13458.0, 14798.0, 28009.0, 18538.0, 18190.0, 19815.0, 16202.0]', '[3602.0, 9374.0, 27348.0, 8281.0, 26418.0, 18127.0, 24648.0, 14310.0, 14309.0, 20600.0, 22798.0, 5844.0, 3195.0, 30523.0, 7448.0, 20580.0, 19589.0, 20472.0, 6038.0, 7958.0, 19156.0]', '[30836.0, 24021.0, 24484.0, 1999.0, 3788.0, 14893.0, 2421.0, 9514.0, 17451.0, 31556.0, 11008.0, 32702.0, 14343.0, 9503.0, 6618.0, 15281.0, 27157.0, 12292.0, 29657.0, 22888.0, 2634.0]', '[24350.0, 11020.0, 23199.0, 4734.0, 27938.0, 467.0, 22483.0, 6617.0, 7616.0, 5249.0, 30303.0, 32609.0, 20485.0, 1587.0, 25200.0, 19796.0, 20798.0, 23622.0, 24179.0, 6191.0, 11511.0]');
 
 -- ----------------------------
 -- Table structure for t_profile
@@ -178,7 +213,7 @@ CREATE TABLE `t_profile`  (
   `update_time` datetime NULL DEFAULT NULL COMMENT '修改时间',
   `model` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '型号',
   PRIMARY KEY (`profile_id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 14 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = DYNAMIC;
+) ENGINE = InnoDB AUTO_INCREMENT = 13 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of t_profile
@@ -188,6 +223,31 @@ INSERT INTO `t_profile` VALUES (10, 23, 42, 42, 353235, 3, 23, 1, NULL, NULL, 'q
 INSERT INTO `t_profile` VALUES (11, 42, 32, 42, 53, 5, 5, 6, NULL, NULL, 'qqq');
 INSERT INTO `t_profile` VALUES (12, 42, 24, 53, 354, 3, 5, 6, NULL, NULL, 'qqqq');
 INSERT INTO `t_profile` VALUES (13, 42, 2, 4, 355, 3, 5, 33, NULL, NULL, 'qqqqq');
+
+-- ----------------------------
+-- Table structure for wave_load
+-- ----------------------------
+DROP TABLE IF EXISTS `wave_load`;
+CREATE TABLE `wave_load`  (
+  `wave_load_id` int NOT NULL AUTO_INCREMENT COMMENT '波浪负荷ID',
+  `project_id` int NULL DEFAULT NULL COMMENT '项目ID',
+  `mbb` json NULL COMMENT '中拱附加浮力',
+  `nwvec_h` json NULL COMMENT '波峰未修正的静水剪力',
+  `mwvec_h` json NULL COMMENT '波峰未修正的弯矩',
+  `nwvec_m_h` json NULL COMMENT '波峰修正的静水剪力',
+  `mwvec_m_h` json NULL COMMENT '波峰修正的弯矩',
+  `bdelta_s` json NULL COMMENT '中垂附加浮力',
+  `nwvec_s` json NULL COMMENT '波谷未修正的静水剪力',
+  `mwvec_s` json NULL COMMENT '波谷未修正的弯矩',
+  `nwvec_m_s` json NULL COMMENT '波谷修正的静水剪力',
+  `mwvec_m_s` json NULL COMMENT '波谷修正的弯矩',
+  PRIMARY KEY (`wave_load_id`) USING BTREE
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of wave_load
+-- ----------------------------
+INSERT INTO `wave_load` VALUES (1, 7, '[20055.0, 1416.0, 24389.0, 9789.0, 23757.0, 28692.0, 3753.0, 12949.0, 25734.0, 20053.0, 27982.0, 10466.0, 20649.0, 7391.0, 20159.0, 2668.0, 2625.0, 27593.0, 8360.0, 4667.0, 21694.0]', '[18875.0, 10021.0, 21003.0, 24182.0, 25721.0, 7441.0, 16687.0, 28286.0, 5786.0, 4313.0, 7129.0, 17253.0, 2168.0, 9314.0, 7518.0, 29213.0, 13061.0, 17222.0, 235.0, 2695.0, 4678.0]', '[20328.0, 21881.0, 5075.0, 15255.0, 9832.0, 21425.0, 16139.0, 193.0, 18114.0, 912.0, 481.0, 12044.0, 13186.0, 10202.0, 11833.0, 17192.0, 1543.0, 22725.0, 22413.0, 7285.0, 22658.0]', '[28433.0, 5699.0, 26869.0, 10285.0, 17189.0, 9512.0, 12529.0, 16105.0, 12263.0, 27756.0, 2161.0, 20024.0, 14018.0, 25824.0, 8177.0, 7627.0, 14181.0, 31286.0, 30833.0, 21624.0, 22593.0]', '[22646.0, 31998.0, 10712.0, 16423.0, 30932.0, 10555.0, 12423.0, 23195.0, 11701.0, 10808.0, 4144.0, 21659.0, 8313.0, 3625.0, 28070.0, 13985.0, 1924.0, 13031.0, 30974.0, 12550.0, 26302.0]', '[24272.0, 23844.0, 27892.0, 13401.0, 28617.0, 2368.0, 21718.0, 19866.0, 12455.0, 31185.0, 23646.0, 11173.0, 4745.0, 17958.0, 24372.0, 1763.0, 30527.0, 17505.0, 19187.0, 18896.0, 26576.0]', '[20142.0, 28476.0, 14688.0, 31426.0, 31329.0, 18060.0, 17437.0, 16282.0, 24355.0, 19558.0, 20450.0, 29510.0, 9905.0, 25874.0, 32270.0, 4099.0, 27432.0, 7900.0, 25760.0, 2125.0, 25484.0]', '[4886.0, 18651.0, 2510.0, 10585.0, 2154.0, 16549.0, 25996.0, 20416.0, 20671.0, 20945.0, 20222.0, 26439.0, 28022.0, 4414.0, 28297.0, 8480.0, 29972.0, 142.0, 29170.0, 13694.0, 22466.0]', '[29869.0, 3557.0, 17861.0, 27088.0, 19976.0, 30145.0, 22549.0, 24488.0, 4313.0, 28321.0, 5535.0, 26154.0, 18787.0, 29334.0, 17773.0, 4802.0, 31003.0, 13064.0, 19711.0, 28019.0, 23851.0]', '[26362.0, 10322.0, 2600.0, 5002.0, 4169.0, 3434.0, 16279.0, 3297.0, 31316.0, 1832.0, 23196.0, 26292.0, 4474.0, 26477.0, 7487.0, 3102.0, 11023.0, 8492.0, 14270.0, 140.0, 17371.0]');
 
 -- ----------------------------
 -- Table structure for weight
@@ -205,7 +265,7 @@ CREATE TABLE `weight`  (
   `all_rst` json NULL COMMENT '总体重量分布 排水量和重心纵向坐标',
   `sub_gravities` json NULL,
   PRIMARY KEY (`weight_id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 3 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 2 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of weight
@@ -326,7 +386,7 @@ CREATE TABLE `xxtable_definition`  (
   `cellEditable` bit(1) NULL DEFAULT NULL COMMENT ' true/fasle 表格是否在单元格编辑',
   `primaryKey` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '主键',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 7 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = DYNAMIC;
+) ENGINE = InnoDB AUTO_INCREMENT = 6 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of xxtable_definition
