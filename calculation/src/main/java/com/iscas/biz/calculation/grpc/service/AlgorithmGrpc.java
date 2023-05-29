@@ -254,7 +254,7 @@ public class AlgorithmGrpc {
         return girderStrength;
     }
 
-    public Dist calDist(Integer projectId) {
+    public Dist calDist(Integer projectId, Integer sectionId) {
 
         if (!Objects.equals(projectId, AlgorithmGrpc.currentProjectId)) {
             QueryWrapper<ShipParam> queryWrapper = new QueryWrapper<>();
@@ -272,6 +272,7 @@ public class AlgorithmGrpc {
         }
         Dist dist = new Dist();
         dist.setProjectId(projectId);
+        dist.setSectionId(sectionId);
         dist.setExtremeH(distResponse.getExtremeH());
         dist.setExtremeS(distResponse.getExtremeS());
         AlgorithmGrpc.dist = true;

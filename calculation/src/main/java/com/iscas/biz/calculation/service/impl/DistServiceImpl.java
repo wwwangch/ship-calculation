@@ -10,10 +10,12 @@ import com.google.common.collect.Lists;
 import com.iscas.base.biz.util.SpringUtils;
 import com.iscas.biz.calculation.entity.db.Dist;
 import com.iscas.biz.calculation.entity.db.Project;
+import com.iscas.biz.calculation.entity.db.Section;
 import com.iscas.biz.calculation.entity.dto.DistExcel;
 import com.iscas.biz.calculation.grpc.service.AlgorithmGrpc;
 import com.iscas.biz.calculation.mapper.DistMapper;
 import com.iscas.biz.calculation.mapper.ProjectMapper;
+import com.iscas.biz.calculation.mapper.SectionMapper;
 import com.iscas.biz.calculation.service.DistService;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.collections4.CollectionUtils;
@@ -38,11 +40,14 @@ public class DistServiceImpl implements DistService {
 
     private final ProjectMapper projectMapper;
 
+    private final SectionMapper sectionMapper;
+
     private final AlgorithmGrpc algorithmGrpc;
 
-    public DistServiceImpl(DistMapper distMapper, ProjectMapper projectMapper, AlgorithmGrpc algorithmGrpc) {
+    public DistServiceImpl(DistMapper distMapper, ProjectMapper projectMapper, SectionMapper sectionMapper, AlgorithmGrpc algorithmGrpc) {
         this.distMapper = distMapper;
         this.projectMapper = projectMapper;
+        this.sectionMapper = sectionMapper;
         this.algorithmGrpc = algorithmGrpc;
     }
 
@@ -54,9 +59,9 @@ public class DistServiceImpl implements DistService {
     }
 
     @Override
-    public Dist calculateAndSave(Integer projectId) {
+    public Dist calculateAndSave(Integer projectId, Integer sectionId) {
 
-        Dist dist = algorithmGrpc.calDist(projectId);
+        Dist dist = algorithmGrpc.calDist(projectId, sectionId);
         if (null != dist) {
             distMapper.insert(dist);
         }
@@ -65,9 +70,10 @@ public class DistServiceImpl implements DistService {
 
     @Override
     @Transactional(rollbackFor = Exception.class)
-    public Boolean reset(Integer projectId) {
+    public Boolean reset(Integer projectId, Integer sectionId) {
         QueryWrapper<Dist> distQueryWrapper = new QueryWrapper<>();
         distQueryWrapper.eq("project_id", projectId);
+        distQueryWrapper.eq("section_id", sectionId);
         List<Dist> dists = distMapper.selectList(distQueryWrapper);
         if (CollectionUtils.isNotEmpty(dists)) {
             distMapper.delete(distQueryWrapper);
@@ -80,19 +86,22 @@ public class DistServiceImpl implements DistService {
     }
 
     @Override
-    public void export(Integer projectId) throws IOException {
+    public void export(Integer projectId, Integer sectionId) throws IOException {
         Project project = projectMapper.selectById(projectId);
+        Section section = sectionMapper.selectById(sectionId);
         if (null == project) {
             throw new RuntimeException("当前项目不存在!");
         }
         QueryWrapper<Dist> distQueryWrapper = new QueryWrapper<>();
         distQueryWrapper.eq("project_id", projectId);
+        distQueryWrapper.eq("section_id", sectionId);
         Dist dist = distMapper.selectOne(distQueryWrapper);
         ExcelWriter excelWriter = EasyExcel.write(SpringUtils.getResponse().getOutputStream())
                 .autoTrim(true).build();
 
         DistExcel distExcel = new DistExcel();
         distExcel.setCalculationSpecification(project.getCalculationSpecification().getDescCH());
+        distExcel.setSectionFileName(section.getSectionFileName());
         distExcel.setExtermeH(dist.getExtremeH());
         distExcel.setExtermeS(dist.getExtremeS());
 
@@ -106,17 +115,14 @@ public class DistServiceImpl implements DistService {
     }
 
     @Override
-    public Dist getData(Integer projectId) {
+    public Dist getData(Integer projectId, Integer sectionId) {
         if (null == projectId) {
             return null;
         }
         QueryWrapper<Dist> queryWrapper = new QueryWrapper<>();
         queryWrapper.eq("project_id", projectId);
+        queryWrapper.eq("section_id", sectionId);
         Dist dist = distMapper.selectOne(queryWrapper);
-        if (null != dist) {
-
-            return dist;
-        }
-        return null;
+        return dist;
     }
 }
