@@ -25,6 +25,7 @@ import java.util.Objects;
 @Service
 public class AlgorithmGrpc {
 
+
     private final GrpcHolder grpcHolder;
 
     private final ProjectMapper projectMapper;
@@ -39,6 +40,8 @@ public class AlgorithmGrpc {
 
     private volatile static Boolean weight = false;
     private volatile static Boolean section = false;
+
+    private volatile static boolean dist = false;
 
     public AlgorithmGrpc(GrpcHolder grpcHolder, ProjectMapper projectMapper, ShipParamMapper shipParamMapper) {
         this.grpcHolder = grpcHolder;
@@ -191,5 +194,29 @@ public class AlgorithmGrpc {
         calSection.setInteriaS(sectionResponse.getInteriaS());
         AlgorithmGrpc.section = true;
         return calSection;
+    }
+
+    public Dist calDist(Integer projectId) {
+
+        if (!Objects.equals(projectId, AlgorithmGrpc.currentProjectId)) {
+            QueryWrapper<ShipParam> queryWrapper = new QueryWrapper<>();
+            queryWrapper.eq("project_id", projectId);
+            ShipParam shipParam = shipParamMapper.selectOne(queryWrapper);
+            ShipParamResponse shipParamResponse = callShipParam(projectMapper.selectById(projectId), shipParam);
+            if (0 != shipParamResponse.getCode()) {
+                throw new RuntimeException("船舶参数配置失败" + shipParamResponse.getMessage());
+            }
+        }
+        DistRequest distRequest = DistRequest.newBuilder()                .build();
+        DistResponse distResponse = grpcHolder.calculationBlockingStub().calDist(distRequest);
+        if (distResponse == null) {
+            throw new RuntimeException("应力分布计算失败:");
+        }
+        Dist dist = new Dist();
+        dist.setProjectId(projectId);
+        dist.setExtremeH(distResponse.getExtremeH());
+        dist.setExtremeS(distResponse.getExtremeS());
+        AlgorithmGrpc.dist = true;
+        return dist;
     }
 }
