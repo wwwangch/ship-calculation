@@ -52,6 +52,6 @@ public class CalSectionController {
     @Operation(summary = "导出", description = "导出")
     @GetMapping("/download/{projectId}")
     public void export(@PathVariable() Integer projectId) throws IOException {
-        return;
+        calSectionService.export(projectId);
     }
 }

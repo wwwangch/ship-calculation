@@ -24,12 +24,12 @@ public class CalSection {
     private Integer projectId;
 
     /**
-     * 载重文件名称
+     * 载重文件路径
      */
     private String profileFilePath;
 
     /**
-     * 载重文件路径
+     * 载重文件名称
      */
     private String profileFileName;
 
