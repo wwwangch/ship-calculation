@@ -188,6 +188,7 @@ public class AlgorithmGrpc {
                 .build());
         WaveLoad dbWaveLoad = new WaveLoad();
         dbWaveLoad.setProjectId(waveLoadDTO.getProjectId());
+        dbWaveLoad.setWaveHeight(waveLoadDTO.getWaveHeight());
         dbWaveLoad.setMbb(Lists.newArrayList(waveLoadResponse.getMbbList()));
         dbWaveLoad.setNwvecH(Lists.newArrayList(waveLoadResponse.getNwvecHList()));
         dbWaveLoad.setMwvecH(Lists.newArrayList(waveLoadResponse.getMwvecHList()));
@@ -211,7 +212,7 @@ public class AlgorithmGrpc {
                 .build());
         SlamLoad dbSlamLoad = new SlamLoad();
         dbSlamLoad.setProjectId(slamLoadDTO.getProjectId());
-
+        dbSlamLoad.setSpeed(slamLoadDTO.getSpeed());
         dbSlamLoad.setNwb(Lists.newArrayList(slamLoadResponse.getNwbList()));
         dbSlamLoad.setPwbm(Lists.newArrayList(slamLoadResponse.getPwbmList()));
         AlgorithmGrpc.waveLoad = true;

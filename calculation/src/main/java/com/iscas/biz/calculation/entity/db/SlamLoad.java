@@ -22,6 +22,8 @@ public class SlamLoad {
     private Integer slamLoadId;
 
     private Integer projectId;
+    //航速
+    private Double speed;
     //波峰抨击弯矩  数组  21个
     @TableField(typeHandler = JacksonTypeHandler.class)
     private List<Double> pwbm;
