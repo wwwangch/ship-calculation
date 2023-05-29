@@ -207,7 +207,7 @@ public class AlgorithmGrpc {
                 throw new RuntimeException("船舶参数配置失败" + shipParamResponse.getMessage());
             }
         }
-        DistRequest distRequest = DistRequest.newBuilder()                .build();
+        DistRequest distRequest = DistRequest.newBuilder().build();
         DistResponse distResponse = grpcHolder.calculationBlockingStub().calDist(distRequest);
         if (distResponse == null) {
             throw new RuntimeException("应力分布计算失败:");
