@@ -1,9 +1,12 @@
 package com.iscas.biz.calculation.controller;
 
 import com.google.common.collect.ImmutableMap;
-import com.iscas.biz.calculation.entity.db.Project;
+import com.iscas.biz.calculation.entity.db.Bulkhead;
+import com.iscas.biz.calculation.entity.db.BulkheadCompartment;
 import com.iscas.biz.calculation.entity.db.Section;
-import com.iscas.biz.calculation.service.SectionService;
+import com.iscas.biz.calculation.mapper.BulkheadCompartmentMapper;
+import com.iscas.biz.calculation.service.BulkheadCompartmentService;
+import com.iscas.biz.calculation.service.BulkheadService;
 import com.iscas.biz.mp.table.service.TableDefinitionService;
 import com.iscas.common.tools.core.date.DateSafeUtils;
 import com.iscas.templet.common.ResponseEntity;
@@ -29,18 +32,18 @@ import java.util.Map;
  * @since 2023/4/20 14:28
  */
 @RestController
-@RequestMapping("/section")
+@RequestMapping("/compartment")
 @Slf4j
-@Tag(name = "剖面控制器")
-public class SectionController {
-    private final static String TABLE_IDENTITY = "section";
+@Tag(name = "横舱壁区间控制器")
+public class CompartmentController {
+    private final static String TABLE_IDENTITY = "bulkhead_compartment";
 
-    private final SectionService sectionService;
+    private final BulkheadCompartmentService compartmentService;
 
     private final TableDefinitionService tableDefinitionService;
 
-    public SectionController(SectionService sectionService, TableDefinitionService tableDefinitionService) {
-        this.sectionService = sectionService;
+    public CompartmentController(BulkheadCompartmentService compartmentService, TableDefinitionService tableDefinitionService) {
+        this.compartmentService = compartmentService;
         this.tableDefinitionService = tableDefinitionService;
     }
 
@@ -64,7 +67,7 @@ public class SectionController {
             content = @Content(examples = @ExampleObject(value = "[123, 124]")))
     @PostMapping("/del")
     public Boolean deleteData(@RequestBody List<Integer> ids) {
-        return sectionService.deleteByIds(ids);
+        return compartmentService.deleteByIds(ids);
     }
 
     @Operation(summary = "新增", description = "插入")
@@ -72,8 +75,8 @@ public class SectionController {
             content = @Content(examples = @ExampleObject(value = "{\"key\":\"val\"}")))
     @PostMapping(value = "/data")
     public ResponseEntity saveData(@RequestBody Map<String, Object> data) throws ValidDataException {
-        ImmutableMap<String, Object> forceItem = ImmutableMap.of("create_time", DateSafeUtils.format(new Date()), "update_time", DateSafeUtils.format(new Date()), "project_id", data.get("project_id"));
-        return tableDefinitionService.saveData(TABLE_IDENTITY, data, true, Section.class, forceItem);
+        ImmutableMap<String, Object> forceItem = ImmutableMap.of("create_time", DateSafeUtils.format(new Date()), "update_time", DateSafeUtils.format(new Date()), "project_id", data.get("project_id"), "bulkhead_id", data.get("bulkhead_id"));
+        return tableDefinitionService.saveData(TABLE_IDENTITY, data, true, BulkheadCompartment.class, forceItem);
     }
 
     @Operation(summary = "修改数据", description = "更新")
@@ -84,6 +87,14 @@ public class SectionController {
         ImmutableMap<String, Object> forceItem = ImmutableMap.of("update_time", DateSafeUtils.format(new Date()));
         return tableDefinitionService.saveData(TABLE_IDENTITY, data, false, Section.class, forceItem);
 
+    }
+
+    @Operation(summary = "获取材料规格型号", description = "获取材料规格型号")
+    @GetMapping(value = "/getCascader")
+    public ResponseEntity getCascader() {
+        ResponseEntity entity = new ResponseEntity<>();
+        entity.setValue(compartmentService.getCascader());
+        return entity;
     }
 
 }

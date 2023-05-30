@@ -22,6 +22,8 @@ public class WaveLoad {
 
     private Integer projectId;
 
+    private Double waveHeight;
+
     //中拱附加浮力
     @TableField(typeHandler = JacksonTypeHandler.class)
     private List<Double> mbb;

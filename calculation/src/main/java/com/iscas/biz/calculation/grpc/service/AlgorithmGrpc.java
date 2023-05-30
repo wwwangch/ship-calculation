@@ -6,11 +6,17 @@ import com.iscas.biz.calculation.entity.db.*;
 import com.iscas.biz.calculation.entity.dto.SlamLoadDTO;
 import com.iscas.biz.calculation.entity.dto.StaticLoadDTO;
 import com.iscas.biz.calculation.entity.dto.WaveLoadDTO;
+import com.iscas.biz.calculation.entity.db.*;
+import com.iscas.biz.calculation.entity.dto.CalSectionDTO;
+import com.iscas.biz.calculation.entity.dto.GirderStrengthDTO;
 import com.iscas.biz.calculation.entity.dto.WeightDTO;
 import com.iscas.biz.calculation.grpc.Gravity;
 import com.iscas.biz.calculation.grpc.SubGravity;
 import com.iscas.biz.calculation.grpc.WeightDistribution;
 import com.iscas.biz.calculation.grpc.*;
+import com.iscas.biz.calculation.grpc.Gravity;
+import com.iscas.biz.calculation.grpc.SubGravity;
+import com.iscas.biz.calculation.grpc.WeightDistribution;
 import com.iscas.biz.calculation.mapper.ProjectMapper;
 import com.iscas.biz.calculation.mapper.ShipParamMapper;
 import org.apache.commons.collections4.CollectionUtils;
@@ -27,6 +33,7 @@ import java.util.Objects;
 @Service
 public class AlgorithmGrpc {
 
+
     private final GrpcHolder grpcHolder;
 
     private final ProjectMapper projectMapper;
@@ -40,6 +47,10 @@ public class AlgorithmGrpc {
     private volatile static Boolean buoyancy = false;
 
     private volatile static Boolean weight = false;
+    private volatile static Boolean section = false;
+    private volatile static Boolean girderStrength = false;
+
+    private volatile static boolean dist = false;
 
     private volatile static Boolean staticLoad = false;
 
@@ -164,6 +175,108 @@ public class AlgorithmGrpc {
         return weight;
     }
 
+    public CalSection calSection(CalSectionDTO calSectionDTO) {
+        Integer projectId = calSectionDTO.getProjectId();
+        if (!Objects.equals(projectId, AlgorithmGrpc.currentProjectId)) {
+            QueryWrapper<ShipParam> queryWrapper = new QueryWrapper<>();
+            queryWrapper.eq("project_id", projectId);
+            ShipParam shipParam = shipParamMapper.selectOne(queryWrapper);
+            ShipParamResponse shipParamResponse = callShipParam(projectMapper.selectById(projectId), shipParam);
+            if (0 != shipParamResponse.getCode()) {
+                throw new RuntimeException("船舶参数配置失败" + shipParamResponse.getMessage());
+            }
+        }
+        SectionRequest sectionRequest = SectionRequest.newBuilder()
+                .setProfileFilePath(calSectionDTO.getProfileFilePath())
+                .build();
+        SectionResponse sectionResponse = grpcHolder.calculationBlockingStub().calSection(sectionRequest);
+        if (sectionResponse == null) {
+            throw new RuntimeException("剖面计算失败:");
+        }
+        CalSection calSection = new CalSection();
+        calSection.setProjectId(projectId);
+        calSection.setProfileFilePath(calSectionDTO.getProfileFilePath());
+        calSection.setProfileFileName(calSectionDTO.getProfileFileName());
+        calSection.setFirstMoment0(sectionResponse.getFirstMoment0());
+        calSection.setInteria0(sectionResponse.getInteria0());
+        calSection.setZaxisH(sectionResponse.getZaxisH());
+        calSection.setFirstMomH(sectionResponse.getFirstMomH());
+        calSection.setInteriaH(sectionResponse.getInteriaH());
+        calSection.setZaxisS(sectionResponse.getZaxisS());
+        calSection.setFirstMomS(sectionResponse.getFirstMomS());
+        calSection.setInteriaS(sectionResponse.getInteriaS());
+        AlgorithmGrpc.section = true;
+        return calSection;
+    }
+
+    public GirderStrength calGirderStrength(GirderStrengthDTO girderStrengthDTO) {
+        Integer projectId = girderStrengthDTO.getProjectId();
+        if (!Objects.equals(projectId, AlgorithmGrpc.currentProjectId)) {
+            QueryWrapper<ShipParam> queryWrapper = new QueryWrapper<>();
+            queryWrapper.eq("project_id", projectId);
+            ShipParam shipParam = shipParamMapper.selectOne(queryWrapper);
+            ShipParamResponse shipParamResponse = callShipParam(projectMapper.selectById(projectId), shipParam);
+            if (0 != shipParamResponse.getCode()) {
+                throw new RuntimeException("船舶参数配置失败" + shipParamResponse.getMessage());
+            }
+        }
+        GirderStrengthRequest girderStrengthRequest = GirderStrengthRequest.newBuilder()
+                .setKuaChang(girderStrengthDTO.getKuaChang())
+                .setGirderDistance(girderStrengthDTO.getGirderDistance())
+                .build();
+        GirderStrengthResponse girderStrengthResponse = grpcHolder.calculationBlockingStub().calGirderStrength(girderStrengthRequest);
+        if (girderStrengthResponse == null) {
+            throw new RuntimeException("板件弯矩应力计算失败:");
+        }
+        GirderStrength girderStrength = new GirderStrength();
+        girderStrength.setProjectId(projectId);
+        girderStrength.setKuaChang(girderStrengthDTO.getKuaChang());
+        girderStrength.setGirderDistance(girderStrengthDTO.getGirderDistance());
+
+        girderStrength.setSigma1SH(girderStrengthResponse.getSigma1SH());
+        girderStrength.setSigma1MidH(girderStrengthResponse.getSigma1MidH());
+        girderStrength.setSigma1SS(girderStrengthResponse.getSigma1SS());
+        girderStrength.setSigma1MidS(girderStrengthResponse.getSigma1MidS());
+
+        girderStrength.setStress2SH(Lists.newArrayList(girderStrengthResponse.getStress2SHList()));
+        girderStrength.setStress2MidH(Lists.newArrayList(girderStrengthResponse.getStress2MidHList()));
+        girderStrength.setStress3UpH(Lists.newArrayList(girderStrengthResponse.getStress3UpHList()));
+        girderStrength.setStress3DownH(Lists.newArrayList(girderStrengthResponse.getStress3DownHList()));
+        girderStrength.setStress4UpH(Lists.newArrayList(girderStrengthResponse.getStress4UpHList()));
+        girderStrength.setStress4downH(Lists.newArrayList(girderStrengthResponse.getStress4DownHList()));
+        girderStrength.setStress2SS(Lists.newArrayList(girderStrengthResponse.getStress2SSList()));
+        girderStrength.setStress2MidS(Lists.newArrayList(girderStrengthResponse.getStress2MidSList()));
+        girderStrength.setStress3UpS(Lists.newArrayList(girderStrengthResponse.getStress3UpSList()));
+        girderStrength.setStress3DownS(Lists.newArrayList(girderStrengthResponse.getStress3DownSList()));
+        girderStrength.setStress4UpS(Lists.newArrayList(girderStrengthResponse.getStress4UpSList()));
+        girderStrength.setStress4downS(Lists.newArrayList(girderStrengthResponse.getStress4DownSList()));
+        AlgorithmGrpc.girderStrength = true;
+        return girderStrength;
+    }
+
+    public Dist calDist(Integer projectId) {
+
+        if (!Objects.equals(projectId, AlgorithmGrpc.currentProjectId)) {
+            QueryWrapper<ShipParam> queryWrapper = new QueryWrapper<>();
+            queryWrapper.eq("project_id", projectId);
+            ShipParam shipParam = shipParamMapper.selectOne(queryWrapper);
+            ShipParamResponse shipParamResponse = callShipParam(projectMapper.selectById(projectId), shipParam);
+            if (0 != shipParamResponse.getCode()) {
+                throw new RuntimeException("船舶参数配置失败" + shipParamResponse.getMessage());
+            }
+        }
+        DistRequest distRequest = DistRequest.newBuilder().build();
+        DistResponse distResponse = grpcHolder.calculationBlockingStub().calDist(distRequest);
+        if (distResponse == null) {
+            throw new RuntimeException("应力分布计算失败:");
+        }
+        Dist dist = new Dist();
+        dist.setProjectId(projectId);
+        dist.setExtremeH(distResponse.getExtremeH());
+        dist.setExtremeS(distResponse.getExtremeS());
+        AlgorithmGrpc.dist = true;
+        return dist;
+    }
     public StaticLoad calStaticLoad(StaticLoadDTO project) {
 //        if (!(buoyancy && weight)) {
 //            throw new RuntimeException("前置计算:浮力分布或重量分布尚未计算!");
@@ -188,6 +301,7 @@ public class AlgorithmGrpc {
                 .build());
         WaveLoad dbWaveLoad = new WaveLoad();
         dbWaveLoad.setProjectId(waveLoadDTO.getProjectId());
+        dbWaveLoad.setWaveHeight(waveLoadDTO.getWaveHeight());
         dbWaveLoad.setMbb(Lists.newArrayList(waveLoadResponse.getMbbList()));
         dbWaveLoad.setNwvecH(Lists.newArrayList(waveLoadResponse.getNwvecHList()));
         dbWaveLoad.setMwvecH(Lists.newArrayList(waveLoadResponse.getMwvecHList()));
@@ -211,7 +325,7 @@ public class AlgorithmGrpc {
                 .build());
         SlamLoad dbSlamLoad = new SlamLoad();
         dbSlamLoad.setProjectId(slamLoadDTO.getProjectId());
-
+        dbSlamLoad.setSpeed(slamLoadDTO.getSpeed());
         dbSlamLoad.setNwb(Lists.newArrayList(slamLoadResponse.getNwbList()));
         dbSlamLoad.setPwbm(Lists.newArrayList(slamLoadResponse.getPwbmList()));
         AlgorithmGrpc.waveLoad = true;
