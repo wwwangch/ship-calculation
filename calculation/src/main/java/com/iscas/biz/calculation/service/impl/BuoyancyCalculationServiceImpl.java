@@ -34,10 +34,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.io.IOException;
-import java.util.Date;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
+import java.util.*;
 import java.util.stream.Collectors;
 
 /**
@@ -163,6 +160,7 @@ public class BuoyancyCalculationServiceImpl implements BuoyancyCalculationServic
         buoyancyResultMapper.insert(buoyancyResult);
         return buoyancyResult;
     }
+
     @Override
     @Transactional(rollbackFor = Exception.class)
     public Boolean reset(Integer projectId) {
@@ -190,34 +188,24 @@ public class BuoyancyCalculationServiceImpl implements BuoyancyCalculationServic
         BuoyancyParam buoyancyParam = buoyancyParamMapper.selectOne(buoyancyParamQueryWrapper);
         ExcelWriter excelWriter = EasyExcel.write(SpringUtils.getResponse().getOutputStream())
                 .autoTrim(true).build();
-
-        BuoyancyParamExcel buoyancyParamExcel = new BuoyancyParamExcel();
-        buoyancyParamExcel.setCalculationSpecification(project.getCalculationSpecification().getDescCH());
-        buoyancyParamExcel.setBuoyancyCurveFileName(buoyancyParam.getBuoyancyCurveFileName());
-        buoyancyParamExcel.setBonjungCurveFileName(buoyancyParam.getBonjungCurveFileName());
-        buoyancyParamExcel.setDraftAft(buoyancyParam.getDraftAft());
-        buoyancyParamExcel.setDraftMean(buoyancyParam.getDraftMean());
-        buoyancyParamExcel.setDraftAft(buoyancyParam.getDraftAft());
-        buoyancyParamExcel.setPrecisionDisplacement(buoyancyParam.getPrecisionDisplacement());
-        buoyancyParamExcel.setPrecisionGravity(buoyancyParam.getPrecisionGravity());
-
-        WriteSheet writeSheet = EasyExcel.writerSheet(0).needHead(false).build();
-
-        WriteTable paramTable = EasyExcel.writerTable(0).head(BuoyancyParamExcel.class).needHead(true).build();
-        WriteTable resultTable = EasyExcel.writerTable(1).head(Buoyant.class).needHead(true).build();
-
-        excelWriter.write(Lists.newArrayList(buoyancyParamExcel), writeSheet, paramTable);
-
-        //查询浮力参数对应得计算结果
         QueryWrapper<BuoyancyResult> buoyancyResultQueryWrapper = new QueryWrapper<>();
         buoyancyResultQueryWrapper.eq("param_id", buoyancyParam.getParamId());
         BuoyancyResult buoyancyResult = buoyancyResultMapper.selectOne(buoyancyResultQueryWrapper);
-        if (null != buoyancyResult) {
-            TypeReference<List<Buoyant>> typeReference = new TypeReference<List<Buoyant>>() {
-            };
-            excelWriter.write(JsonUtils.fromJson(JsonUtils.toJson(buoyancyResult.getCalrst()), typeReference), writeSheet, resultTable);
+        List<BuoyancyParamExcel> dataList = new ArrayList<>();
+        if (buoyancyResult != null) {
+            List<Double> blist = buoyancyResult.getBlist();
+            if (blist != null) {
+                for (int i = 0; i < blist.size(); i++) {
+                    BuoyancyParamExcel buoyancyParamExcel = new BuoyancyParamExcel();
+                    buoyancyParamExcel.setBlist(blist.get(i));
+                    buoyancyParamExcel.setCode(i);
+                    dataList.add(buoyancyParamExcel);
+                }
+            }
         }
-
+        WriteSheet writeSheet = EasyExcel.writerSheet(0).needHead(false).build();
+        WriteTable paramTable = EasyExcel.writerTable(0).head(BuoyancyParamExcel.class).needHead(true).build();
+        excelWriter.write(dataList, writeSheet, paramTable);
         excelWriter.finish();
     }
 
@@ -242,8 +230,8 @@ public class BuoyancyCalculationServiceImpl implements BuoyancyCalculationServic
         queryWrapper.eq("project_id", projectId);
         BuoyancyParam buoyancyParam = buoyancyParamMapper.selectOne(queryWrapper);
         if (null != buoyancyParam) {
-            BuoyancyVO buoyancyVO=new BuoyancyVO();
-            BeanUtils.copyProperties(buoyancyParam,buoyancyVO);
+            BuoyancyVO buoyancyVO = new BuoyancyVO();
+            BeanUtils.copyProperties(buoyancyParam, buoyancyVO);
             buoyancyVO.setBuoyancyResult(listResultByParamId(buoyancyParam.getParamId()));
             return buoyancyVO;
         }

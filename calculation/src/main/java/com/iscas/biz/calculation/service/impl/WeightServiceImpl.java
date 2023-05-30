@@ -1,7 +1,14 @@
 package com.iscas.biz.calculation.service.impl;
 
+import com.alibaba.excel.EasyExcel;
+import com.alibaba.excel.ExcelWriter;
+import com.alibaba.excel.write.metadata.WriteSheet;
+import com.alibaba.excel.write.metadata.WriteTable;
+import com.alibaba.fastjson.JSON;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
-import com.iscas.biz.calculation.entity.db.Weight;
+import com.iscas.base.biz.util.SpringUtils;
+import com.iscas.biz.calculation.entity.db.*;
+import com.iscas.biz.calculation.entity.dto.BuoyancyParamExcel;
 import com.iscas.biz.calculation.entity.dto.WeightDTO;
 import com.iscas.biz.calculation.grpc.service.AlgorithmGrpc;
 import com.iscas.biz.calculation.mapper.ProjectMapper;
@@ -12,7 +19,9 @@ import org.apache.commons.collections4.CollectionUtils;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.List;
+import java.io.File;
+import java.io.IOException;
+import java.util.*;
 
 /**
  * @author ch w
@@ -69,7 +78,44 @@ public class WeightServiceImpl implements WeightService {
     }
 
     @Override
-    public void export(Integer projectId) {
+    public void export(Integer projectId) throws IOException {
+        Project project = projectMapper.selectById(projectId);
+        if (null == project) {
+            throw new RuntimeException("当前项目不存在!");
+        }
+        QueryWrapper<Weight> weightQueryWrapper = new QueryWrapper<>();
+        weightQueryWrapper.eq("project_id", projectId);
+        Weight weight = weightMapper.selectOne(weightQueryWrapper);
+        List<WeightDistribution> weightDistributions = weight.getWeightDistributions();
+        weightDistributions = JSON.parseArray(JSON.toJSONString(weightDistributions), WeightDistribution.class);
+        List<List<String>> headList = new ArrayList<>();
+        List<List<Double>> dataList = new ArrayList<>();
+        if (CollectionUtils.isNotEmpty(weightDistributions)) {
+            boolean mapB = true;
+            List<String> head0 = new ArrayList<>();
+            head0.add("站号");
+            headList.add(head0);
+            for (WeightDistribution weightDistribution : weightDistributions) {
+                String name = weightDistribution.getName();
+                List<String> head = new ArrayList<>();
+                head.add(name);
+                headList.add(head);
+                List<Double> weightItems = weightDistribution.getWeightItems();
+                for (int i = 0; i < weightItems.size(); i++) {
+                    if (mapB) {
+                        List list = new ArrayList<>();
+                        list.add(i);
+                        list.add(weightItems.get(i));
+                        dataList.add(list);
+                    } else {
+                        List list = dataList.get(i);
+                        list.add(weightItems.get(i));
+                    }
+                }
+                mapB = false;
+            }
+        }
 
+        EasyExcel.write(SpringUtils.getResponse().getOutputStream()).head(headList).sheet("0").doWrite(dataList);
     }
 }
