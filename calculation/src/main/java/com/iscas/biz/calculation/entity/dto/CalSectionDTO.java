@@ -11,6 +11,7 @@ import lombok.Data;
 public class CalSectionDTO {
 //    @JsonProperty(value = "project_id")
     private Integer projectId;
+    private Integer sectionId;
 
     /**
      * 剖面文件名称

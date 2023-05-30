@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.ws.rs.Path;
 import java.io.IOException;
 
 /**
@@ -49,28 +50,27 @@ public class DistController {
     }
 
     @Operation(summary = "查询表格数据,仅一条", description = "传项目id，带计算结果返回")
-    @PostMapping(value = "/getData/{projectId}")
-    public Dist getData(@PathVariable Integer projectId) {
-        return distService.getData(projectId);
+    @PostMapping(value = "/getData/{projectId}/{sectionId}")
+    public Dist getData(@PathVariable Integer projectId, @PathVariable Integer sectionId) {
+        return distService.getData(projectId, sectionId);
     }
 
     @Operation(summary = "计算", description = "计算,应力分布计算不需要传入参数")
-    @io.swagger.v3.oas.annotations.parameters.RequestBody(required = true, description = "新增的数据",
-            content = @Content(examples = @ExampleObject(value = "{\"key\":\"val\"}")))
-    @PostMapping("/calculate/{projectId}")
-    public ResponseEntity saveData(@PathVariable Integer projectId) throws ValidDataException {
-        return ResponseEntity.ok(distService.calculateAndSave(projectId));
+    @io.swagger.v3.oas.annotations.parameters.RequestBody(required = true, description = "新增的数据")
+    @PostMapping("/calculate/{projectId}/{sectionId}}")
+    public ResponseEntity saveData(@PathVariable Integer projectId, @PathVariable Integer sectionId) throws ValidDataException {
+        return ResponseEntity.ok(distService.calculateAndSave(projectId, sectionId));
     }
 
     @Operation(summary = "重置", description = "重置")
-    @PostMapping("/reset/{projectId}")
-    public ResponseEntity reset(@PathVariable() Integer projectId) {
-        return ResponseEntity.ok(distService.reset(projectId));
+    @PostMapping("/reset/{projectId}/{sectionId}")
+    public ResponseEntity reset(@PathVariable Integer projectId, @PathVariable Integer sectionId) {
+        return ResponseEntity.ok(distService.reset(projectId, sectionId));
     }
 
     @Operation(summary = "导出", description = "导出")
-    @GetMapping("/download/{projectId}")
-    public void export(@PathVariable() Integer projectId) throws IOException {
-        distService.export(projectId);
+    @GetMapping("/download/{projectId}/{sectionId}")
+    public void export(@PathVariable Integer projectId, @PathVariable Integer sectionId) throws IOException {
+        distService.export(projectId, sectionId);
     }
 }

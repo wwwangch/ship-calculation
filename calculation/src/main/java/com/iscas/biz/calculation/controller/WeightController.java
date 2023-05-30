@@ -51,6 +51,6 @@ public class WeightController {
     @Operation(summary = "导出", description = "导出")
     @GetMapping("/download/{projectId}")
     public void export(@PathVariable() Integer projectId) throws IOException {
-        return;
+        weightService.export(projectId);
     }
 }

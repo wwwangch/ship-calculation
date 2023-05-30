@@ -36,9 +36,9 @@ public class CalSectionController {
 
 
     @Operation(summary = "查询表格数据,仅一条", description = "传项目id，带计算结果返回")
-    @PostMapping(value = "/getData/{projectId}")
-    public CalSection getData(@PathVariable Integer projectId) {
-        return calSectionService.listByProjectId(projectId);
+    @PostMapping(value = "/getData/{sectionId}")
+    public CalSection getData(@PathVariable Integer sectionId) {
+        return calSectionService.listBySectionIdId(sectionId);
     }
 
     @Operation(summary = "计算", description = "计算,传入参数")

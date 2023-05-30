@@ -22,6 +22,7 @@ public class CalSection {
     private Integer calSectionId;
 
     private Integer projectId;
+    private Integer sectionId;
 
     /**
      * 载重文件路径

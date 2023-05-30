@@ -11,4 +11,6 @@ import com.iscas.biz.calculation.entity.dto.WeightDTO;
 public interface WeightService {
     Weight calculate(WeightDTO weight);
     Weight listByProjectId(Integer projectId);
+
+    void export(Integer projectId);
 }

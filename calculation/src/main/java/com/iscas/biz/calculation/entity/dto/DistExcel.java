@@ -14,6 +14,9 @@ public class DistExcel {
     @ExcelProperty("计算规范")
     private String calculationSpecification;
 
+    @ExcelProperty("剖面文件名称")
+    private String sectionFileName;
+
     @ExcelProperty("中拱极限弯矩")
     private Double extermeH;
 

@@ -52,20 +52,21 @@ public class CalSectionServiceImpl implements CalSectionService {
             return null;
         }
         CalSection calSection = algorithmGrpc.calSection(calSectionDTO);
-        CalSection section = listByProjectId(projectId);
+        CalSection section = listBySectionIdId(calSectionDTO.getSectionId());
         if (null != section) {
             Integer sectionId = section.getCalSectionId();
             calSection.setCalSectionId(sectionId);
             calSectionMapper.deleteById(sectionId);
         }
+        calSection.setSectionId(calSectionDTO.getSectionId());
         calSectionMapper.insert(calSection);
         return calSection;
     }
 
     @Override
-    public CalSection listByProjectId(Integer projectId) {
+    public CalSection listBySectionIdId(Integer sectionId) {
         QueryWrapper<CalSection> queryWrapper = new QueryWrapper<>();
-        queryWrapper.eq("project_id", projectId);
+        queryWrapper.lambda().eq(CalSection::getSectionId, sectionId);
         List<CalSection> calSections = calSectionMapper.selectList(queryWrapper);
         if (CollectionUtils.isNotEmpty(calSections)) {
             if (calSections.size() > 1) {

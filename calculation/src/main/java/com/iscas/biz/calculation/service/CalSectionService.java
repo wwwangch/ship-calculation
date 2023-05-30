@@ -14,7 +14,7 @@ import java.io.IOException;
  */
 public interface CalSectionService {
     CalSection calculate(CalSectionDTO calSectionDTO);
-    CalSection listByProjectId(Integer projectId);
+    CalSection listBySectionIdId(Integer sectionId);
 
     void export(Integer projectId) throws IOException;
 }

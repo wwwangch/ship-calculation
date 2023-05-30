@@ -8,10 +8,17 @@ import com.iscas.biz.calculation.mapper.BulkheadCompartmentMapper;
 import com.iscas.biz.calculation.mapper.BulkheadMapper;
 import com.iscas.biz.calculation.mapper.ProjectMapper;
 import com.iscas.biz.calculation.service.BulkheadService;
+import com.iscas.common.tools.office.excel.ExcelUtils;
 import com.iscas.datasong.connector.util.CollectionUtils;
 import org.springframework.stereotype.Service;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
 
 /**
  * @author ch w
@@ -36,6 +43,56 @@ public class BulkheadServiceImpl extends ServiceImpl<BulkheadMapper, Bulkhead> i
             throw new RuntimeException(String.format("项目:[%s]不存在", projectId));
         }
         return this.updateById(bulkhead) ? 1 : 0;
+    }
+
+    @Override
+    public void saveCompartment(Object bulkheadFilePath) {
+        if (bulkheadFilePath != null) {
+            String filePath = bulkheadFilePath.toString();
+            // 判断上传的文件是否为excel
+            if (filePath.endsWith(".xls") || filePath.endsWith(".XLS") || filePath.endsWith(".xlsx") || filePath.endsWith(".XLSX")) {
+                File file = new File(filePath);
+                if (file.exists()) {
+                    // 根据文件路径查找保存的横舱壁数据
+                    QueryWrapper<Bulkhead> bulkheadQueryWrapper = new QueryWrapper<>();
+                    bulkheadQueryWrapper.lambda().eq(Bulkhead::getBulkheadFilePath, filePath);
+                    List<Bulkhead> bulkheadList = this.list(bulkheadQueryWrapper);
+                    if (CollectionUtils.isNotEmpty(bulkheadList)) {
+                        Bulkhead bulkhead = bulkheadList.get(0);
+                        Map<String, List> resultMap = new HashMap<>();
+                        try {
+                            ExcelUtils.readExcelToListMap(filePath, resultMap);
+                        } catch (ExcelUtils.ExcelHandlerException e) {
+                            throw new RuntimeException(e);
+                        }
+                        for (Map.Entry<String, List> entry : resultMap.entrySet()) {
+                            List<Map<String, Object>> valueList = entry.getValue();
+                            Integer k1 = null;
+                            Double v1 = null;
+                            for (Map<String, Object> map : valueList) {
+                                if (map.size() == 2) {
+                                    List<Map.Entry<String, Object>> entryList = map.entrySet().stream().collect(Collectors.toList());
+                                    if (k1 == null || v1 == null) {
+                                        // 获取第二个键值对
+                                        k1 = Integer.parseInt(entryList.get(0).getValue().toString());
+                                        v1 = Double.parseDouble(entryList.get(1).getValue().toString());
+                                    } else {
+                                        Integer k2 = Integer.parseInt(entryList.get(0).getValue().toString());
+                                        Double v2 = Double.parseDouble(entryList.get(1).getValue().toString());
+                                        BulkheadCompartment bulkheadCompartment = new BulkheadCompartment();
+                                        bulkheadCompartment.setProjectId(bulkhead.getProjectId());
+                                        bulkheadCompartment.setBulkheadId(bulkhead.getBulkheadId());
+                                        bulkheadCompartment.setCompartment(k1 + "-" + k2);
+                                        bulkheadCompartment.setHeightAbove("" + (v1 - v2));
+                                        compartmentMapper.insert(bulkheadCompartment);
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
     }
 
     @Override
