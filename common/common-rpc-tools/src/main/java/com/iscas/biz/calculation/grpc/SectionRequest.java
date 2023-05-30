@@ -20,6 +20,7 @@ public  final class SectionRequest extends
   }
   private SectionRequest() {
     profileFilePath_ = "";
+    ribNumber_ = 0D;
   }
 
   @java.lang.Override
@@ -51,6 +52,11 @@ public  final class SectionRequest extends
             java.lang.String s = input.readStringRequireUtf8();
 
             profileFilePath_ = s;
+            break;
+          }
+          case 17: {
+
+            ribNumber_ = input.readDouble();
             break;
           }
         }
@@ -118,6 +124,19 @@ public  final class SectionRequest extends
     }
   }
 
+  public static final int RIBNUMBER_FIELD_NUMBER = 2;
+  private double ribNumber_;
+  /**
+   * <pre>
+   *肋位号
+   * </pre>
+   *
+   * <code>double ribNumber = 2;</code>
+   */
+  public double getRibNumber() {
+    return ribNumber_;
+  }
+
   private byte memoizedIsInitialized = -1;
   public final boolean isInitialized() {
     byte isInitialized = memoizedIsInitialized;
@@ -133,6 +152,9 @@ public  final class SectionRequest extends
     if (!getProfileFilePathBytes().isEmpty()) {
       com.google.protobuf.GeneratedMessageV3.writeString(output, 1, profileFilePath_);
     }
+    if (ribNumber_ != 0D) {
+      output.writeDouble(2, ribNumber_);
+    }
   }
 
   public int getSerializedSize() {
@@ -142,6 +164,10 @@ public  final class SectionRequest extends
     size = 0;
     if (!getProfileFilePathBytes().isEmpty()) {
       size += com.google.protobuf.GeneratedMessageV3.computeStringSize(1, profileFilePath_);
+    }
+    if (ribNumber_ != 0D) {
+      size += com.google.protobuf.CodedOutputStream
+        .computeDoubleSize(2, ribNumber_);
     }
     memoizedSize = size;
     return size;
@@ -161,6 +187,10 @@ public  final class SectionRequest extends
     boolean result = true;
     result = result && getProfileFilePath()
         .equals(other.getProfileFilePath());
+    result = result && (
+        java.lang.Double.doubleToLongBits(getRibNumber())
+        == java.lang.Double.doubleToLongBits(
+            other.getRibNumber()));
     return result;
   }
 
@@ -173,6 +203,9 @@ public  final class SectionRequest extends
     hash = (19 * hash) + getDescriptor().hashCode();
     hash = (37 * hash) + PROFILEFILEPATH_FIELD_NUMBER;
     hash = (53 * hash) + getProfileFilePath().hashCode();
+    hash = (37 * hash) + RIBNUMBER_FIELD_NUMBER;
+    hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
+        java.lang.Double.doubleToLongBits(getRibNumber()));
     hash = (29 * hash) + unknownFields.hashCode();
     memoizedHashCode = hash;
     return hash;
@@ -297,6 +330,8 @@ public  final class SectionRequest extends
       super.clear();
       profileFilePath_ = "";
 
+      ribNumber_ = 0D;
+
       return this;
     }
 
@@ -320,6 +355,7 @@ public  final class SectionRequest extends
     public com.iscas.biz.calculation.grpc.SectionRequest buildPartial() {
       com.iscas.biz.calculation.grpc.SectionRequest result = new com.iscas.biz.calculation.grpc.SectionRequest(this);
       result.profileFilePath_ = profileFilePath_;
+      result.ribNumber_ = ribNumber_;
       onBuilt();
       return result;
     }
@@ -364,6 +400,9 @@ public  final class SectionRequest extends
       if (!other.getProfileFilePath().isEmpty()) {
         profileFilePath_ = other.profileFilePath_;
         onChanged();
+      }
+      if (other.getRibNumber() != 0D) {
+        setRibNumber(other.getRibNumber());
       }
       onChanged();
       return this;
@@ -476,6 +515,44 @@ public  final class SectionRequest extends
   checkByteStringIsUtf8(value);
       
       profileFilePath_ = value;
+      onChanged();
+      return this;
+    }
+
+    private double ribNumber_ ;
+    /**
+     * <pre>
+     *肋位号
+     * </pre>
+     *
+     * <code>double ribNumber = 2;</code>
+     */
+    public double getRibNumber() {
+      return ribNumber_;
+    }
+    /**
+     * <pre>
+     *肋位号
+     * </pre>
+     *
+     * <code>double ribNumber = 2;</code>
+     */
+    public Builder setRibNumber(double value) {
+      
+      ribNumber_ = value;
+      onChanged();
+      return this;
+    }
+    /**
+     * <pre>
+     *肋位号
+     * </pre>
+     *
+     * <code>double ribNumber = 2;</code>
+     */
+    public Builder clearRibNumber() {
+      
+      ribNumber_ = 0D;
       onChanged();
       return this;
     }

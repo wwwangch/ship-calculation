@@ -24,4 +24,9 @@ public interface GirderStrengthRequestOrBuilder extends
    * <code>double girderDistance = 2;</code>
    */
   double getGirderDistance();
+
+  /**
+   * <code>double numgirder = 3;</code>
+   */
+  double getNumgirder();
 }
