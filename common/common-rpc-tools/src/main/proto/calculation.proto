@@ -247,6 +247,9 @@ message SlamLoadResponse{
 message SectionRequest{
   //剖面文件路径
   string profileFilePath = 1;
+
+  //肋位号
+  double ribNumber=2;
 }
 //剖面计算输出
 message SectionResponse{
