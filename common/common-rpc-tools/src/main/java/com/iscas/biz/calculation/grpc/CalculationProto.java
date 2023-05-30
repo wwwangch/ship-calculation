@@ -227,86 +227,86 @@ public final class CalculationProto {
       "\007 \003(\001\022\016\n\006mwvecS\030\010 \003(\001\022\017\n\007nwvecMS\030\t \003(\001\022\017" +
       "\n\007mwvecMS\030\n \003(\001\" \n\017SlamLoadRequest\022\r\n\005sp" +
       "eed\030\001 \001(\001\"-\n\020SlamLoadResponse\022\014\n\004pwbm\030\001 " +
-      "\003(\001\022\013\n\003nwb\030\002 \003(\001\")\n\016SectionRequest\022\027\n\017pr",
-      "ofileFilePath\030\001 \001(\t\"\243\001\n\017SectionResponse\022" +
-      "\024\n\014firstMoment0\030\001 \001(\001\022\020\n\010interia0\030\002 \001(\001\022" +
-      "\016\n\006zaxisH\030\003 \001(\001\022\021\n\tfirstMomH\030\004 \001(\001\022\020\n\010in" +
-      "teriaH\030\005 \001(\001\022\016\n\006zaxisS\030\006 \001(\001\022\021\n\tfirstMom" +
-      "S\030\007 \001(\001\022\020\n\010interiaS\030\010 \001(\001\"T\n\025GirderStren" +
-      "gthRequest\022\020\n\010kuaChang\030\001 \001(\001\022\026\n\016girderDi" +
-      "stance\030\002 \001(\001\022\021\n\tnumgirder\030\003 \001(\001\"\334\002\n\026Gird" +
-      "erStrengthResponse\022\020\n\010sigma1SH\030\001 \001(\001\022\022\n\n" +
-      "sigma1MidH\030\002 \001(\001\022\020\n\010sigma1SS\030\003 \001(\001\022\022\n\nsi" +
-      "gma1MidS\030\004 \001(\001\022\021\n\tstress2SH\030\005 \003(\001\022\023\n\013str",
-      "ess2MidH\030\006 \003(\001\022\022\n\nstress3UpH\030\007 \003(\001\022\024\n\014st" +
-      "ress3DownH\030\010 \003(\001\022\022\n\nstress4UpH\030\t \003(\001\022\024\n\014" +
-      "stress4downH\030\n \003(\001\022\021\n\tstress2SS\030\013 \003(\001\022\023\n" +
-      "\013stress2MidS\030\014 \003(\001\022\022\n\nstress3UpS\030\r \003(\001\022\024" +
-      "\n\014stress3DownS\030\016 \003(\001\022\022\n\nstress4UpS\030\017 \003(\001" +
-      "\022\024\n\014stress4downS\030\020 \003(\001\"\r\n\013DistRequest\"2\n" +
-      "\014DistResponse\022\020\n\010extremeH\030\001 \001(\001\022\020\n\010extre" +
-      "meS\030\002 \001(\001\"\017\n\rSigma1Request\"N\n\016Sigma1Resp" +
-      "onse\022<\n\006sigma1\030\001 \003(\0132,.com.iscas.biz.cal" +
-      "culation.grpc.Sigma1Entity\"]\n\014Sigma1Enti",
-      "ty\022\021\n\tsigma1HUp\030\001 \001(\001\022\022\n\nsigma1Down\030\002 \001(" +
-      "\001\022\021\n\tsigma1SUp\030\003 \001(\001\022\023\n\013sigma1SDown\030\004 \001(" +
-      "\001\"\235\001\n\rSigma2Request\022\020\n\010kuaChang\030\001 \003(\001\022\026\n" +
-      "\016girderDistance\030\002 \001(\001\022\022\n\nfrDistance\030\003 \001(" +
-      "\001\022\017\n\007frGuige\030\004 \003(\001\022\022\n\nplateThick\030\005 \003(\001\022\024" +
-      "\n\014deviceWeight\030\006 \001(\001\022\023\n\013girderWidth\030\007 \001(" +
-      "\001\"N\n\016Sigma2Response\022<\n\006sigma2\030\001 \003(\0132,.co" +
-      "m.iscas.biz.calculation.grpc.Sigma2Entit" +
-      "y\"\376\001\n\014Sigma2Entity\022\034\n\024zhonggongZhizuoSha" +
-      "ng\030\001 \001(\001\022\032\n\022zhonggongZhizuoXia\030\002 \001(\001\022\036\n\026",
-      "zhonggongKuazhongShang\030\003 \001(\001\022\034\n\024zhonggon" +
-      "gKuazhongXia\030\004 \001(\001\022\034\n\024zhongchuiZhizuoSha" +
-      "ng\030\005 \001(\001\022\032\n\022zhongchuiZhizuoXia\030\006 \001(\001\022\036\n\026" +
-      "zhongchuiKuazhongShang\030\007 \001(\001\022\034\n\024zhongchu" +
-      "iKuazhongXia\030\010 \001(\001\"\017\n\rSigma3Request\"N\n\016S" +
-      "igma3Response\022<\n\006sigma3\030\001 \003(\0132,.com.isca" +
-      "s.biz.calculation.grpc.Sigma2Entity\"\017\n\rS" +
-      "igma4Request\"N\n\016Sigma4Response\022<\n\006sigma4" +
-      "\030\001 \003(\0132,.com.iscas.biz.calculation.grpc." +
-      "Sigma4Entity\"v\n\014Sigma4Entity\022\027\n\017zhonggon",
-      "gZhizuo\030\001 \001(\001\022\031\n\021zhonggongKuazhong\030\002 \001(\001" +
-      "\022\027\n\017zhongchuiZhizuo\030\003 \001(\001\022\031\n\021zhongchuiKu" +
-      "azhong\030\004 \001(\0012\335\n\n\013Calculation\022r\n\tshipPara" +
-      "m\0220.com.iscas.biz.calculation.grpc.ShipP" +
-      "aramRequest\0321.com.iscas.biz.calculation." +
-      "grpc.ShipParamResponse\"\000\022o\n\010buoyancy\022/.c" +
-      "om.iscas.biz.calculation.grpc.BuoyancyRe" +
-      "quest\0320.com.iscas.biz.calculation.grpc.B" +
-      "uoyancyResponse\"\000\022v\n\023calWeightDistribute" +
-      "\022-.com.iscas.biz.calculation.grpc.Weight",
-      "Request\032..com.iscas.biz.calculation.grpc" +
-      ".WeightResponse\"\000\022x\n\rcalStaticLoad\0221.com" +
-      ".iscas.biz.calculation.grpc.StaticLoadRe" +
-      "quest\0322.com.iscas.biz.calculation.grpc.S" +
-      "taticLoadResponse\"\000\022r\n\013calWaveLoad\022/.com" +
-      ".iscas.biz.calculation.grpc.WaveLoadRequ" +
-      "est\0320.com.iscas.biz.calculation.grpc.Wav" +
-      "eLoadResponse\"\000\022r\n\013calSlamLoad\022/.com.isc" +
-      "as.biz.calculation.grpc.SlamLoadRequest\032" +
-      "0.com.iscas.biz.calculation.grpc.SlamLoa",
-      "dResponse\"\000\022o\n\ncalSection\022..com.iscas.bi" +
-      "z.calculation.grpc.SectionRequest\032/.com." +
-      "iscas.biz.calculation.grpc.SectionRespon" +
-      "se\"\000\022l\n\tcalSigma1\022-.com.iscas.biz.calcul" +
-      "ation.grpc.Sigma1Request\032..com.iscas.biz" +
-      ".calculation.grpc.Sigma1Response\"\000\022l\n\tca" +
-      "lSigma2\022-.com.iscas.biz.calculation.grpc" +
-      ".Sigma2Request\032..com.iscas.biz.calculati" +
-      "on.grpc.Sigma2Response\"\000\022l\n\tcalSigma3\022-." +
-      "com.iscas.biz.calculation.grpc.Sigma3Req",
-      "uest\032..com.iscas.biz.calculation.grpc.Si" +
-      "gma3Response\"\000\022l\n\tcalSigma4\022-.com.iscas." +
-      "biz.calculation.grpc.Sigma4Request\032..com" +
-      ".iscas.biz.calculation.grpc.Sigma4Respon" +
-      "se\"\000\022f\n\007calDist\022+.com.iscas.biz.calculat" +
-      "ion.grpc.DistRequest\032,.com.iscas.biz.cal" +
-      "culation.grpc.DistResponse\"\000B4\n\036com.isca" +
-      "s.biz.calculation.grpcB\020CalculationProto" +
-      "P\001b\006proto3"
+      "\003(\001\022\013\n\003nwb\030\002 \003(\001\"<\n\016SectionRequest\022\027\n\017pr",
+      "ofileFilePath\030\001 \001(\t\022\021\n\tribNumber\030\002 \001(\001\"\243" +
+      "\001\n\017SectionResponse\022\024\n\014firstMoment0\030\001 \001(\001" +
+      "\022\020\n\010interia0\030\002 \001(\001\022\016\n\006zaxisH\030\003 \001(\001\022\021\n\tfi" +
+      "rstMomH\030\004 \001(\001\022\020\n\010interiaH\030\005 \001(\001\022\016\n\006zaxis" +
+      "S\030\006 \001(\001\022\021\n\tfirstMomS\030\007 \001(\001\022\020\n\010interiaS\030\010" +
+      " \001(\001\"T\n\025GirderStrengthRequest\022\020\n\010kuaChan" +
+      "g\030\001 \001(\001\022\026\n\016girderDistance\030\002 \001(\001\022\021\n\tnumgi" +
+      "rder\030\003 \001(\001\"\334\002\n\026GirderStrengthResponse\022\020\n" +
+      "\010sigma1SH\030\001 \001(\001\022\022\n\nsigma1MidH\030\002 \001(\001\022\020\n\010s" +
+      "igma1SS\030\003 \001(\001\022\022\n\nsigma1MidS\030\004 \001(\001\022\021\n\tstr",
+      "ess2SH\030\005 \003(\001\022\023\n\013stress2MidH\030\006 \003(\001\022\022\n\nstr" +
+      "ess3UpH\030\007 \003(\001\022\024\n\014stress3DownH\030\010 \003(\001\022\022\n\ns" +
+      "tress4UpH\030\t \003(\001\022\024\n\014stress4downH\030\n \003(\001\022\021\n" +
+      "\tstress2SS\030\013 \003(\001\022\023\n\013stress2MidS\030\014 \003(\001\022\022\n" +
+      "\nstress3UpS\030\r \003(\001\022\024\n\014stress3DownS\030\016 \003(\001\022" +
+      "\022\n\nstress4UpS\030\017 \003(\001\022\024\n\014stress4downS\030\020 \003(" +
+      "\001\"\r\n\013DistRequest\"2\n\014DistResponse\022\020\n\010extr" +
+      "emeH\030\001 \001(\001\022\020\n\010extremeS\030\002 \001(\001\"\017\n\rSigma1Re" +
+      "quest\"N\n\016Sigma1Response\022<\n\006sigma1\030\001 \003(\0132" +
+      ",.com.iscas.biz.calculation.grpc.Sigma1E",
+      "ntity\"]\n\014Sigma1Entity\022\021\n\tsigma1HUp\030\001 \001(\001" +
+      "\022\022\n\nsigma1Down\030\002 \001(\001\022\021\n\tsigma1SUp\030\003 \001(\001\022" +
+      "\023\n\013sigma1SDown\030\004 \001(\001\"\235\001\n\rSigma2Request\022\020" +
+      "\n\010kuaChang\030\001 \003(\001\022\026\n\016girderDistance\030\002 \001(\001" +
+      "\022\022\n\nfrDistance\030\003 \001(\001\022\017\n\007frGuige\030\004 \003(\001\022\022\n" +
+      "\nplateThick\030\005 \003(\001\022\024\n\014deviceWeight\030\006 \001(\001\022" +
+      "\023\n\013girderWidth\030\007 \001(\001\"N\n\016Sigma2Response\022<" +
+      "\n\006sigma2\030\001 \003(\0132,.com.iscas.biz.calculati" +
+      "on.grpc.Sigma2Entity\"\376\001\n\014Sigma2Entity\022\034\n" +
+      "\024zhonggongZhizuoShang\030\001 \001(\001\022\032\n\022zhonggong",
+      "ZhizuoXia\030\002 \001(\001\022\036\n\026zhonggongKuazhongShan" +
+      "g\030\003 \001(\001\022\034\n\024zhonggongKuazhongXia\030\004 \001(\001\022\034\n" +
+      "\024zhongchuiZhizuoShang\030\005 \001(\001\022\032\n\022zhongchui" +
+      "ZhizuoXia\030\006 \001(\001\022\036\n\026zhongchuiKuazhongShan" +
+      "g\030\007 \001(\001\022\034\n\024zhongchuiKuazhongXia\030\010 \001(\001\"\017\n" +
+      "\rSigma3Request\"N\n\016Sigma3Response\022<\n\006sigm" +
+      "a3\030\001 \003(\0132,.com.iscas.biz.calculation.grp" +
+      "c.Sigma2Entity\"\017\n\rSigma4Request\"N\n\016Sigma" +
+      "4Response\022<\n\006sigma4\030\001 \003(\0132,.com.iscas.bi" +
+      "z.calculation.grpc.Sigma4Entity\"v\n\014Sigma",
+      "4Entity\022\027\n\017zhonggongZhizuo\030\001 \001(\001\022\031\n\021zhon" +
+      "ggongKuazhong\030\002 \001(\001\022\027\n\017zhongchuiZhizuo\030\003" +
+      " \001(\001\022\031\n\021zhongchuiKuazhong\030\004 \001(\0012\335\n\n\013Calc" +
+      "ulation\022r\n\tshipParam\0220.com.iscas.biz.cal" +
+      "culation.grpc.ShipParamRequest\0321.com.isc" +
+      "as.biz.calculation.grpc.ShipParamRespons" +
+      "e\"\000\022o\n\010buoyancy\022/.com.iscas.biz.calculat" +
+      "ion.grpc.BuoyancyRequest\0320.com.iscas.biz" +
+      ".calculation.grpc.BuoyancyResponse\"\000\022v\n\023" +
+      "calWeightDistribute\022-.com.iscas.biz.calc",
+      "ulation.grpc.WeightRequest\032..com.iscas.b" +
+      "iz.calculation.grpc.WeightResponse\"\000\022x\n\r" +
+      "calStaticLoad\0221.com.iscas.biz.calculatio" +
+      "n.grpc.StaticLoadRequest\0322.com.iscas.biz" +
+      ".calculation.grpc.StaticLoadResponse\"\000\022r" +
+      "\n\013calWaveLoad\022/.com.iscas.biz.calculatio" +
+      "n.grpc.WaveLoadRequest\0320.com.iscas.biz.c" +
+      "alculation.grpc.WaveLoadResponse\"\000\022r\n\013ca" +
+      "lSlamLoad\022/.com.iscas.biz.calculation.gr" +
+      "pc.SlamLoadRequest\0320.com.iscas.biz.calcu",
+      "lation.grpc.SlamLoadResponse\"\000\022o\n\ncalSec" +
+      "tion\022..com.iscas.biz.calculation.grpc.Se" +
+      "ctionRequest\032/.com.iscas.biz.calculation" +
+      ".grpc.SectionResponse\"\000\022l\n\tcalSigma1\022-.c" +
+      "om.iscas.biz.calculation.grpc.Sigma1Requ" +
+      "est\032..com.iscas.biz.calculation.grpc.Sig" +
+      "ma1Response\"\000\022l\n\tcalSigma2\022-.com.iscas.b" +
+      "iz.calculation.grpc.Sigma2Request\032..com." +
+      "iscas.biz.calculation.grpc.Sigma2Respons" +
+      "e\"\000\022l\n\tcalSigma3\022-.com.iscas.biz.calcula",
+      "tion.grpc.Sigma3Request\032..com.iscas.biz." +
+      "calculation.grpc.Sigma3Response\"\000\022l\n\tcal" +
+      "Sigma4\022-.com.iscas.biz.calculation.grpc." +
+      "Sigma4Request\032..com.iscas.biz.calculatio" +
+      "n.grpc.Sigma4Response\"\000\022f\n\007calDist\022+.com" +
+      ".iscas.biz.calculation.grpc.DistRequest\032" +
+      ",.com.iscas.biz.calculation.grpc.DistRes" +
+      "ponse\"\000B4\n\036com.iscas.biz.calculation.grp" +
+      "cB\020CalculationProtoP\001b\006proto3"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
         new com.google.protobuf.Descriptors.FileDescriptor.    InternalDescriptorAssigner() {
@@ -421,7 +421,7 @@ public final class CalculationProto {
     internal_static_com_iscas_biz_calculation_grpc_SectionRequest_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_com_iscas_biz_calculation_grpc_SectionRequest_descriptor,
-        new java.lang.String[] { "ProfileFilePath", });
+        new java.lang.String[] { "ProfileFilePath", "RibNumber", });
     internal_static_com_iscas_biz_calculation_grpc_SectionResponse_descriptor =
       getDescriptor().getMessageTypes().get(17);
     internal_static_com_iscas_biz_calculation_grpc_SectionResponse_fieldAccessorTable = new

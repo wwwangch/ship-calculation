@@ -24,4 +24,13 @@ public interface SectionRequestOrBuilder extends
    */
   com.google.protobuf.ByteString
       getProfileFilePathBytes();
+
+  /**
+   * <pre>
+   *肋位号
+   * </pre>
+   *
+   * <code>double ribNumber = 2;</code>
+   */
+  double getRibNumber();
 }
