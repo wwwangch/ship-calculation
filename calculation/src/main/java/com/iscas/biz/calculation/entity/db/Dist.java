@@ -13,7 +13,15 @@ public class Dist {
     @TableId(type = IdType.AUTO)
     private Integer distId;
 
+    /**
+     * 项目ID
+     */
     private Integer projectId;
+
+    /**
+     * 剖面ID
+     */
+    private Integer sectionId;
 
     /**
      * 中拱极限弯矩

@@ -3,7 +3,6 @@ package com.iscas.biz.calculation.service;
 import com.iscas.biz.calculation.entity.db.Dist;
 
 import java.io.IOException;
-import java.util.Map;
 
 /**
  * @author zhaotianci@iscas.ac.cn
@@ -13,11 +12,11 @@ public interface DistService {
 
     int remove(Integer projectId);
 
-    Dist calculateAndSave(Integer projectId);
+    Dist calculateAndSave(Integer projectId, Integer sectionId);
 
-    Boolean reset(Integer projectId);
+    Boolean reset(Integer projectId, Integer sectionId);
 
-    void export(Integer projectId) throws IOException;
+    void export(Integer projectId, Integer sectionId) throws IOException;
 
-    Dist getData(Integer projectId);
+    Dist getData(Integer projectId, Integer sectionId);
 }
