@@ -124,6 +124,61 @@ public final class CalculationProto {
   static final 
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
       internal_static_com_iscas_biz_calculation_grpc_DistResponse_fieldAccessorTable;
+  static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_com_iscas_biz_calculation_grpc_Sigma1Request_descriptor;
+  static final 
+    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      internal_static_com_iscas_biz_calculation_grpc_Sigma1Request_fieldAccessorTable;
+  static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_com_iscas_biz_calculation_grpc_Sigma1Response_descriptor;
+  static final 
+    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      internal_static_com_iscas_biz_calculation_grpc_Sigma1Response_fieldAccessorTable;
+  static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_com_iscas_biz_calculation_grpc_Sigma1Entity_descriptor;
+  static final 
+    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      internal_static_com_iscas_biz_calculation_grpc_Sigma1Entity_fieldAccessorTable;
+  static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_com_iscas_biz_calculation_grpc_Sigma2Request_descriptor;
+  static final 
+    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      internal_static_com_iscas_biz_calculation_grpc_Sigma2Request_fieldAccessorTable;
+  static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_com_iscas_biz_calculation_grpc_Sigma2Response_descriptor;
+  static final 
+    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      internal_static_com_iscas_biz_calculation_grpc_Sigma2Response_fieldAccessorTable;
+  static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_com_iscas_biz_calculation_grpc_Sigma2Entity_descriptor;
+  static final 
+    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      internal_static_com_iscas_biz_calculation_grpc_Sigma2Entity_fieldAccessorTable;
+  static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_com_iscas_biz_calculation_grpc_Sigma3Request_descriptor;
+  static final 
+    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      internal_static_com_iscas_biz_calculation_grpc_Sigma3Request_fieldAccessorTable;
+  static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_com_iscas_biz_calculation_grpc_Sigma3Response_descriptor;
+  static final 
+    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      internal_static_com_iscas_biz_calculation_grpc_Sigma3Response_fieldAccessorTable;
+  static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_com_iscas_biz_calculation_grpc_Sigma4Request_descriptor;
+  static final 
+    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      internal_static_com_iscas_biz_calculation_grpc_Sigma4Request_fieldAccessorTable;
+  static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_com_iscas_biz_calculation_grpc_Sigma4Response_descriptor;
+  static final 
+    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      internal_static_com_iscas_biz_calculation_grpc_Sigma4Response_fieldAccessorTable;
+  static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_com_iscas_biz_calculation_grpc_Sigma4Entity_descriptor;
+  static final 
+    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      internal_static_com_iscas_biz_calculation_grpc_Sigma4Entity_fieldAccessorTable;
 
   public static com.google.protobuf.Descriptors.FileDescriptor
       getDescriptor() {
@@ -177,48 +232,81 @@ public final class CalculationProto {
       "\024\n\014firstMoment0\030\001 \001(\001\022\020\n\010interia0\030\002 \001(\001\022" +
       "\016\n\006zaxisH\030\003 \001(\001\022\021\n\tfirstMomH\030\004 \001(\001\022\020\n\010in" +
       "teriaH\030\005 \001(\001\022\016\n\006zaxisS\030\006 \001(\001\022\021\n\tfirstMom" +
-      "S\030\007 \001(\001\022\020\n\010interiaS\030\010 \001(\001\"A\n\025GirderStren" +
+      "S\030\007 \001(\001\022\020\n\010interiaS\030\010 \001(\001\"T\n\025GirderStren" +
       "gthRequest\022\020\n\010kuaChang\030\001 \001(\001\022\026\n\016girderDi" +
-      "stance\030\002 \001(\001\"\334\002\n\026GirderStrengthResponse\022" +
-      "\020\n\010sigma1SH\030\001 \001(\001\022\022\n\nsigma1MidH\030\002 \001(\001\022\020\n" +
-      "\010sigma1SS\030\003 \001(\001\022\022\n\nsigma1MidS\030\004 \001(\001\022\021\n\ts" +
-      "tress2SH\030\005 \003(\001\022\023\n\013stress2MidH\030\006 \003(\001\022\022\n\ns",
-      "tress3UpH\030\007 \003(\001\022\024\n\014stress3DownH\030\010 \003(\001\022\022\n" +
-      "\nstress4UpH\030\t \003(\001\022\024\n\014stress4downH\030\n \003(\001\022" +
-      "\021\n\tstress2SS\030\013 \003(\001\022\023\n\013stress2MidS\030\014 \003(\001\022" +
-      "\022\n\nstress3UpS\030\r \003(\001\022\024\n\014stress3DownS\030\016 \003(" +
-      "\001\022\022\n\nstress4UpS\030\017 \003(\001\022\024\n\014stress4downS\030\020 " +
-      "\003(\001\"\r\n\013DistRequest\"2\n\014DistResponse\022\020\n\010ex" +
-      "tremeH\030\001 \001(\001\022\020\n\010extremeS\030\002 \001(\0012\254\010\n\013Calcu" +
-      "lation\022r\n\tshipParam\0220.com.iscas.biz.calc" +
-      "ulation.grpc.ShipParamRequest\0321.com.isca" +
-      "s.biz.calculation.grpc.ShipParamResponse",
-      "\"\000\022o\n\010buoyancy\022/.com.iscas.biz.calculati" +
-      "on.grpc.BuoyancyRequest\0320.com.iscas.biz." +
-      "calculation.grpc.BuoyancyResponse\"\000\022v\n\023c" +
-      "alWeightDistribute\022-.com.iscas.biz.calcu" +
-      "lation.grpc.WeightRequest\032..com.iscas.bi" +
-      "z.calculation.grpc.WeightResponse\"\000\022x\n\rc" +
-      "alStaticLoad\0221.com.iscas.biz.calculation" +
-      ".grpc.StaticLoadRequest\0322.com.iscas.biz." +
-      "calculation.grpc.StaticLoadResponse\"\000\022r\n" +
-      "\013calWaveLoad\022/.com.iscas.biz.calculation",
-      ".grpc.WaveLoadRequest\0320.com.iscas.biz.ca" +
-      "lculation.grpc.WaveLoadResponse\"\000\022r\n\013cal" +
-      "SlamLoad\022/.com.iscas.biz.calculation.grp" +
-      "c.SlamLoadRequest\0320.com.iscas.biz.calcul" +
-      "ation.grpc.SlamLoadResponse\"\000\022o\n\ncalSect" +
-      "ion\022..com.iscas.biz.calculation.grpc.Sec" +
-      "tionRequest\032/.com.iscas.biz.calculation." +
-      "grpc.SectionResponse\"\000\022\204\001\n\021calGirderStre" +
-      "ngth\0225.com.iscas.biz.calculation.grpc.Gi" +
-      "rderStrengthRequest\0326.com.iscas.biz.calc",
-      "ulation.grpc.GirderStrengthResponse\"\000\022f\n" +
-      "\007calDist\022+.com.iscas.biz.calculation.grp" +
-      "c.DistRequest\032,.com.iscas.biz.calculatio" +
-      "n.grpc.DistResponse\"\000B4\n\036com.iscas.biz.c" +
-      "alculation.grpcB\020CalculationProtoP\001b\006pro" +
-      "to3"
+      "stance\030\002 \001(\001\022\021\n\tnumgirder\030\003 \001(\001\"\334\002\n\026Gird" +
+      "erStrengthResponse\022\020\n\010sigma1SH\030\001 \001(\001\022\022\n\n" +
+      "sigma1MidH\030\002 \001(\001\022\020\n\010sigma1SS\030\003 \001(\001\022\022\n\nsi" +
+      "gma1MidS\030\004 \001(\001\022\021\n\tstress2SH\030\005 \003(\001\022\023\n\013str",
+      "ess2MidH\030\006 \003(\001\022\022\n\nstress3UpH\030\007 \003(\001\022\024\n\014st" +
+      "ress3DownH\030\010 \003(\001\022\022\n\nstress4UpH\030\t \003(\001\022\024\n\014" +
+      "stress4downH\030\n \003(\001\022\021\n\tstress2SS\030\013 \003(\001\022\023\n" +
+      "\013stress2MidS\030\014 \003(\001\022\022\n\nstress3UpS\030\r \003(\001\022\024" +
+      "\n\014stress3DownS\030\016 \003(\001\022\022\n\nstress4UpS\030\017 \003(\001" +
+      "\022\024\n\014stress4downS\030\020 \003(\001\"\r\n\013DistRequest\"2\n" +
+      "\014DistResponse\022\020\n\010extremeH\030\001 \001(\001\022\020\n\010extre" +
+      "meS\030\002 \001(\001\"\017\n\rSigma1Request\"N\n\016Sigma1Resp" +
+      "onse\022<\n\006sigma1\030\001 \003(\0132,.com.iscas.biz.cal" +
+      "culation.grpc.Sigma1Entity\"]\n\014Sigma1Enti",
+      "ty\022\021\n\tsigma1HUp\030\001 \001(\001\022\022\n\nsigma1Down\030\002 \001(" +
+      "\001\022\021\n\tsigma1SUp\030\003 \001(\001\022\023\n\013sigma1SDown\030\004 \001(" +
+      "\001\"\235\001\n\rSigma2Request\022\020\n\010kuaChang\030\001 \003(\001\022\026\n" +
+      "\016girderDistance\030\002 \001(\001\022\022\n\nfrDistance\030\003 \001(" +
+      "\001\022\017\n\007frGuige\030\004 \003(\001\022\022\n\nplateThick\030\005 \003(\001\022\024" +
+      "\n\014deviceWeight\030\006 \001(\001\022\023\n\013girderWidth\030\007 \001(" +
+      "\001\"N\n\016Sigma2Response\022<\n\006sigma2\030\001 \003(\0132,.co" +
+      "m.iscas.biz.calculation.grpc.Sigma2Entit" +
+      "y\"\376\001\n\014Sigma2Entity\022\034\n\024zhonggongZhizuoSha" +
+      "ng\030\001 \001(\001\022\032\n\022zhonggongZhizuoXia\030\002 \001(\001\022\036\n\026",
+      "zhonggongKuazhongShang\030\003 \001(\001\022\034\n\024zhonggon" +
+      "gKuazhongXia\030\004 \001(\001\022\034\n\024zhongchuiZhizuoSha" +
+      "ng\030\005 \001(\001\022\032\n\022zhongchuiZhizuoXia\030\006 \001(\001\022\036\n\026" +
+      "zhongchuiKuazhongShang\030\007 \001(\001\022\034\n\024zhongchu" +
+      "iKuazhongXia\030\010 \001(\001\"\017\n\rSigma3Request\"N\n\016S" +
+      "igma3Response\022<\n\006sigma3\030\001 \003(\0132,.com.isca" +
+      "s.biz.calculation.grpc.Sigma2Entity\"\017\n\rS" +
+      "igma4Request\"N\n\016Sigma4Response\022<\n\006sigma4" +
+      "\030\001 \003(\0132,.com.iscas.biz.calculation.grpc." +
+      "Sigma4Entity\"v\n\014Sigma4Entity\022\027\n\017zhonggon",
+      "gZhizuo\030\001 \001(\001\022\031\n\021zhonggongKuazhong\030\002 \001(\001" +
+      "\022\027\n\017zhongchuiZhizuo\030\003 \001(\001\022\031\n\021zhongchuiKu" +
+      "azhong\030\004 \001(\0012\335\n\n\013Calculation\022r\n\tshipPara" +
+      "m\0220.com.iscas.biz.calculation.grpc.ShipP" +
+      "aramRequest\0321.com.iscas.biz.calculation." +
+      "grpc.ShipParamResponse\"\000\022o\n\010buoyancy\022/.c" +
+      "om.iscas.biz.calculation.grpc.BuoyancyRe" +
+      "quest\0320.com.iscas.biz.calculation.grpc.B" +
+      "uoyancyResponse\"\000\022v\n\023calWeightDistribute" +
+      "\022-.com.iscas.biz.calculation.grpc.Weight",
+      "Request\032..com.iscas.biz.calculation.grpc" +
+      ".WeightResponse\"\000\022x\n\rcalStaticLoad\0221.com" +
+      ".iscas.biz.calculation.grpc.StaticLoadRe" +
+      "quest\0322.com.iscas.biz.calculation.grpc.S" +
+      "taticLoadResponse\"\000\022r\n\013calWaveLoad\022/.com" +
+      ".iscas.biz.calculation.grpc.WaveLoadRequ" +
+      "est\0320.com.iscas.biz.calculation.grpc.Wav" +
+      "eLoadResponse\"\000\022r\n\013calSlamLoad\022/.com.isc" +
+      "as.biz.calculation.grpc.SlamLoadRequest\032" +
+      "0.com.iscas.biz.calculation.grpc.SlamLoa",
+      "dResponse\"\000\022o\n\ncalSection\022..com.iscas.bi" +
+      "z.calculation.grpc.SectionRequest\032/.com." +
+      "iscas.biz.calculation.grpc.SectionRespon" +
+      "se\"\000\022l\n\tcalSigma1\022-.com.iscas.biz.calcul" +
+      "ation.grpc.Sigma1Request\032..com.iscas.biz" +
+      ".calculation.grpc.Sigma1Response\"\000\022l\n\tca" +
+      "lSigma2\022-.com.iscas.biz.calculation.grpc" +
+      ".Sigma2Request\032..com.iscas.biz.calculati" +
+      "on.grpc.Sigma2Response\"\000\022l\n\tcalSigma3\022-." +
+      "com.iscas.biz.calculation.grpc.Sigma3Req",
+      "uest\032..com.iscas.biz.calculation.grpc.Si" +
+      "gma3Response\"\000\022l\n\tcalSigma4\022-.com.iscas." +
+      "biz.calculation.grpc.Sigma4Request\032..com" +
+      ".iscas.biz.calculation.grpc.Sigma4Respon" +
+      "se\"\000\022f\n\007calDist\022+.com.iscas.biz.calculat" +
+      "ion.grpc.DistRequest\032,.com.iscas.biz.cal" +
+      "culation.grpc.DistResponse\"\000B4\n\036com.isca" +
+      "s.biz.calculation.grpcB\020CalculationProto" +
+      "P\001b\006proto3"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
         new com.google.protobuf.Descriptors.FileDescriptor.    InternalDescriptorAssigner() {
@@ -345,7 +433,7 @@ public final class CalculationProto {
     internal_static_com_iscas_biz_calculation_grpc_GirderStrengthRequest_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_com_iscas_biz_calculation_grpc_GirderStrengthRequest_descriptor,
-        new java.lang.String[] { "KuaChang", "GirderDistance", });
+        new java.lang.String[] { "KuaChang", "GirderDistance", "Numgirder", });
     internal_static_com_iscas_biz_calculation_grpc_GirderStrengthResponse_descriptor =
       getDescriptor().getMessageTypes().get(19);
     internal_static_com_iscas_biz_calculation_grpc_GirderStrengthResponse_fieldAccessorTable = new
@@ -364,6 +452,72 @@ public final class CalculationProto {
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_com_iscas_biz_calculation_grpc_DistResponse_descriptor,
         new java.lang.String[] { "ExtremeH", "ExtremeS", });
+    internal_static_com_iscas_biz_calculation_grpc_Sigma1Request_descriptor =
+      getDescriptor().getMessageTypes().get(22);
+    internal_static_com_iscas_biz_calculation_grpc_Sigma1Request_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+        internal_static_com_iscas_biz_calculation_grpc_Sigma1Request_descriptor,
+        new java.lang.String[] { });
+    internal_static_com_iscas_biz_calculation_grpc_Sigma1Response_descriptor =
+      getDescriptor().getMessageTypes().get(23);
+    internal_static_com_iscas_biz_calculation_grpc_Sigma1Response_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+        internal_static_com_iscas_biz_calculation_grpc_Sigma1Response_descriptor,
+        new java.lang.String[] { "Sigma1", });
+    internal_static_com_iscas_biz_calculation_grpc_Sigma1Entity_descriptor =
+      getDescriptor().getMessageTypes().get(24);
+    internal_static_com_iscas_biz_calculation_grpc_Sigma1Entity_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+        internal_static_com_iscas_biz_calculation_grpc_Sigma1Entity_descriptor,
+        new java.lang.String[] { "Sigma1HUp", "Sigma1Down", "Sigma1SUp", "Sigma1SDown", });
+    internal_static_com_iscas_biz_calculation_grpc_Sigma2Request_descriptor =
+      getDescriptor().getMessageTypes().get(25);
+    internal_static_com_iscas_biz_calculation_grpc_Sigma2Request_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+        internal_static_com_iscas_biz_calculation_grpc_Sigma2Request_descriptor,
+        new java.lang.String[] { "KuaChang", "GirderDistance", "FrDistance", "FrGuige", "PlateThick", "DeviceWeight", "GirderWidth", });
+    internal_static_com_iscas_biz_calculation_grpc_Sigma2Response_descriptor =
+      getDescriptor().getMessageTypes().get(26);
+    internal_static_com_iscas_biz_calculation_grpc_Sigma2Response_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+        internal_static_com_iscas_biz_calculation_grpc_Sigma2Response_descriptor,
+        new java.lang.String[] { "Sigma2", });
+    internal_static_com_iscas_biz_calculation_grpc_Sigma2Entity_descriptor =
+      getDescriptor().getMessageTypes().get(27);
+    internal_static_com_iscas_biz_calculation_grpc_Sigma2Entity_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+        internal_static_com_iscas_biz_calculation_grpc_Sigma2Entity_descriptor,
+        new java.lang.String[] { "ZhonggongZhizuoShang", "ZhonggongZhizuoXia", "ZhonggongKuazhongShang", "ZhonggongKuazhongXia", "ZhongchuiZhizuoShang", "ZhongchuiZhizuoXia", "ZhongchuiKuazhongShang", "ZhongchuiKuazhongXia", });
+    internal_static_com_iscas_biz_calculation_grpc_Sigma3Request_descriptor =
+      getDescriptor().getMessageTypes().get(28);
+    internal_static_com_iscas_biz_calculation_grpc_Sigma3Request_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+        internal_static_com_iscas_biz_calculation_grpc_Sigma3Request_descriptor,
+        new java.lang.String[] { });
+    internal_static_com_iscas_biz_calculation_grpc_Sigma3Response_descriptor =
+      getDescriptor().getMessageTypes().get(29);
+    internal_static_com_iscas_biz_calculation_grpc_Sigma3Response_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+        internal_static_com_iscas_biz_calculation_grpc_Sigma3Response_descriptor,
+        new java.lang.String[] { "Sigma3", });
+    internal_static_com_iscas_biz_calculation_grpc_Sigma4Request_descriptor =
+      getDescriptor().getMessageTypes().get(30);
+    internal_static_com_iscas_biz_calculation_grpc_Sigma4Request_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+        internal_static_com_iscas_biz_calculation_grpc_Sigma4Request_descriptor,
+        new java.lang.String[] { });
+    internal_static_com_iscas_biz_calculation_grpc_Sigma4Response_descriptor =
+      getDescriptor().getMessageTypes().get(31);
+    internal_static_com_iscas_biz_calculation_grpc_Sigma4Response_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+        internal_static_com_iscas_biz_calculation_grpc_Sigma4Response_descriptor,
+        new java.lang.String[] { "Sigma4", });
+    internal_static_com_iscas_biz_calculation_grpc_Sigma4Entity_descriptor =
+      getDescriptor().getMessageTypes().get(32);
+    internal_static_com_iscas_biz_calculation_grpc_Sigma4Entity_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+        internal_static_com_iscas_biz_calculation_grpc_Sigma4Entity_descriptor,
+        new java.lang.String[] { "ZhonggongZhizuo", "ZhonggongKuazhong", "ZhongchuiZhizuo", "ZhongchuiKuazhong", });
   }
 
   // @@protoc_insertion_point(outer_class_scope)

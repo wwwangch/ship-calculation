@@ -4,24 +4,21 @@
 package com.iscas.biz.calculation.grpc;
 
 /**
- * <pre>
- *总纵强度校核输入
- * </pre>
- *
- * Protobuf type {@code com.iscas.biz.calculation.grpc.GirderStrengthRequest}
+ * Protobuf type {@code com.iscas.biz.calculation.grpc.Sigma1Entity}
  */
-public  final class GirderStrengthRequest extends
+public  final class Sigma1Entity extends
     com.google.protobuf.GeneratedMessageV3 implements
-    // @@protoc_insertion_point(message_implements:com.iscas.biz.calculation.grpc.GirderStrengthRequest)
-    GirderStrengthRequestOrBuilder {
-  // Use GirderStrengthRequest.newBuilder() to construct.
-  private GirderStrengthRequest(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
+    // @@protoc_insertion_point(message_implements:com.iscas.biz.calculation.grpc.Sigma1Entity)
+    Sigma1EntityOrBuilder {
+  // Use Sigma1Entity.newBuilder() to construct.
+  private Sigma1Entity(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
     super(builder);
   }
-  private GirderStrengthRequest() {
-    kuaChang_ = 0D;
-    girderDistance_ = 0D;
-    numgirder_ = 0D;
+  private Sigma1Entity() {
+    sigma1HUp_ = 0D;
+    sigma1Down_ = 0D;
+    sigma1SUp_ = 0D;
+    sigma1SDown_ = 0D;
   }
 
   @java.lang.Override
@@ -29,7 +26,7 @@ public  final class GirderStrengthRequest extends
   getUnknownFields() {
     return com.google.protobuf.UnknownFieldSet.getDefaultInstance();
   }
-  private GirderStrengthRequest(
+  private Sigma1Entity(
       com.google.protobuf.CodedInputStream input,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)
       throws com.google.protobuf.InvalidProtocolBufferException {
@@ -51,17 +48,22 @@ public  final class GirderStrengthRequest extends
           }
           case 9: {
 
-            kuaChang_ = input.readDouble();
+            sigma1HUp_ = input.readDouble();
             break;
           }
           case 17: {
 
-            girderDistance_ = input.readDouble();
+            sigma1Down_ = input.readDouble();
             break;
           }
           case 25: {
 
-            numgirder_ = input.readDouble();
+            sigma1SUp_ = input.readDouble();
+            break;
+          }
+          case 33: {
+
+            sigma1SDown_ = input.readDouble();
             break;
           }
         }
@@ -77,49 +79,66 @@ public  final class GirderStrengthRequest extends
   }
   public static final com.google.protobuf.Descriptors.Descriptor
       getDescriptor() {
-    return com.iscas.biz.calculation.grpc.CalculationProto.internal_static_com_iscas_biz_calculation_grpc_GirderStrengthRequest_descriptor;
+    return com.iscas.biz.calculation.grpc.CalculationProto.internal_static_com_iscas_biz_calculation_grpc_Sigma1Entity_descriptor;
   }
 
   protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
       internalGetFieldAccessorTable() {
-    return com.iscas.biz.calculation.grpc.CalculationProto.internal_static_com_iscas_biz_calculation_grpc_GirderStrengthRequest_fieldAccessorTable
+    return com.iscas.biz.calculation.grpc.CalculationProto.internal_static_com_iscas_biz_calculation_grpc_Sigma1Entity_fieldAccessorTable
         .ensureFieldAccessorsInitialized(
-            com.iscas.biz.calculation.grpc.GirderStrengthRequest.class, com.iscas.biz.calculation.grpc.GirderStrengthRequest.Builder.class);
+            com.iscas.biz.calculation.grpc.Sigma1Entity.class, com.iscas.biz.calculation.grpc.Sigma1Entity.Builder.class);
   }
 
-  public static final int KUACHANG_FIELD_NUMBER = 1;
-  private double kuaChang_;
+  public static final int SIGMA1HUP_FIELD_NUMBER = 1;
+  private double sigma1HUp_;
   /**
    * <pre>
-   *构件跨距
+   *中拱龙骨上纤维
    * </pre>
    *
-   * <code>double kuaChang = 1;</code>
+   * <code>double sigma1HUp = 1;</code>
    */
-  public double getKuaChang() {
-    return kuaChang_;
+  public double getSigma1HUp() {
+    return sigma1HUp_;
   }
 
-  public static final int GIRDERDISTANCE_FIELD_NUMBER = 2;
-  private double girderDistance_;
+  public static final int SIGMA1DOWN_FIELD_NUMBER = 2;
+  private double sigma1Down_;
   /**
    * <pre>
-   *剖面位置x
+   *中拱龙骨下纤维
    * </pre>
    *
-   * <code>double girderDistance = 2;</code>
+   * <code>double sigma1Down = 2;</code>
    */
-  public double getGirderDistance() {
-    return girderDistance_;
+  public double getSigma1Down() {
+    return sigma1Down_;
   }
 
-  public static final int NUMGIRDER_FIELD_NUMBER = 3;
-  private double numgirder_;
+  public static final int SIGMA1SUP_FIELD_NUMBER = 3;
+  private double sigma1SUp_;
   /**
-   * <code>double numgirder = 3;</code>
+   * <pre>
+   *中垂龙骨上纤维
+   * </pre>
+   *
+   * <code>double sigma1SUp = 3;</code>
    */
-  public double getNumgirder() {
-    return numgirder_;
+  public double getSigma1SUp() {
+    return sigma1SUp_;
+  }
+
+  public static final int SIGMA1SDOWN_FIELD_NUMBER = 4;
+  private double sigma1SDown_;
+  /**
+   * <pre>
+   *中垂龙骨上纤维
+   * </pre>
+   *
+   * <code>double sigma1SDown = 4;</code>
+   */
+  public double getSigma1SDown() {
+    return sigma1SDown_;
   }
 
   private byte memoizedIsInitialized = -1;
@@ -134,14 +153,17 @@ public  final class GirderStrengthRequest extends
 
   public void writeTo(com.google.protobuf.CodedOutputStream output)
                       throws java.io.IOException {
-    if (kuaChang_ != 0D) {
-      output.writeDouble(1, kuaChang_);
+    if (sigma1HUp_ != 0D) {
+      output.writeDouble(1, sigma1HUp_);
     }
-    if (girderDistance_ != 0D) {
-      output.writeDouble(2, girderDistance_);
+    if (sigma1Down_ != 0D) {
+      output.writeDouble(2, sigma1Down_);
     }
-    if (numgirder_ != 0D) {
-      output.writeDouble(3, numgirder_);
+    if (sigma1SUp_ != 0D) {
+      output.writeDouble(3, sigma1SUp_);
+    }
+    if (sigma1SDown_ != 0D) {
+      output.writeDouble(4, sigma1SDown_);
     }
   }
 
@@ -150,17 +172,21 @@ public  final class GirderStrengthRequest extends
     if (size != -1) return size;
 
     size = 0;
-    if (kuaChang_ != 0D) {
+    if (sigma1HUp_ != 0D) {
       size += com.google.protobuf.CodedOutputStream
-        .computeDoubleSize(1, kuaChang_);
+        .computeDoubleSize(1, sigma1HUp_);
     }
-    if (girderDistance_ != 0D) {
+    if (sigma1Down_ != 0D) {
       size += com.google.protobuf.CodedOutputStream
-        .computeDoubleSize(2, girderDistance_);
+        .computeDoubleSize(2, sigma1Down_);
     }
-    if (numgirder_ != 0D) {
+    if (sigma1SUp_ != 0D) {
       size += com.google.protobuf.CodedOutputStream
-        .computeDoubleSize(3, numgirder_);
+        .computeDoubleSize(3, sigma1SUp_);
+    }
+    if (sigma1SDown_ != 0D) {
+      size += com.google.protobuf.CodedOutputStream
+        .computeDoubleSize(4, sigma1SDown_);
     }
     memoizedSize = size;
     return size;
@@ -172,24 +198,28 @@ public  final class GirderStrengthRequest extends
     if (obj == this) {
      return true;
     }
-    if (!(obj instanceof com.iscas.biz.calculation.grpc.GirderStrengthRequest)) {
+    if (!(obj instanceof com.iscas.biz.calculation.grpc.Sigma1Entity)) {
       return super.equals(obj);
     }
-    com.iscas.biz.calculation.grpc.GirderStrengthRequest other = (com.iscas.biz.calculation.grpc.GirderStrengthRequest) obj;
+    com.iscas.biz.calculation.grpc.Sigma1Entity other = (com.iscas.biz.calculation.grpc.Sigma1Entity) obj;
 
     boolean result = true;
     result = result && (
-        java.lang.Double.doubleToLongBits(getKuaChang())
+        java.lang.Double.doubleToLongBits(getSigma1HUp())
         == java.lang.Double.doubleToLongBits(
-            other.getKuaChang()));
+            other.getSigma1HUp()));
     result = result && (
-        java.lang.Double.doubleToLongBits(getGirderDistance())
+        java.lang.Double.doubleToLongBits(getSigma1Down())
         == java.lang.Double.doubleToLongBits(
-            other.getGirderDistance()));
+            other.getSigma1Down()));
     result = result && (
-        java.lang.Double.doubleToLongBits(getNumgirder())
+        java.lang.Double.doubleToLongBits(getSigma1SUp())
         == java.lang.Double.doubleToLongBits(
-            other.getNumgirder()));
+            other.getSigma1SUp()));
+    result = result && (
+        java.lang.Double.doubleToLongBits(getSigma1SDown())
+        == java.lang.Double.doubleToLongBits(
+            other.getSigma1SDown()));
     return result;
   }
 
@@ -200,72 +230,75 @@ public  final class GirderStrengthRequest extends
     }
     int hash = 41;
     hash = (19 * hash) + getDescriptor().hashCode();
-    hash = (37 * hash) + KUACHANG_FIELD_NUMBER;
+    hash = (37 * hash) + SIGMA1HUP_FIELD_NUMBER;
     hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
-        java.lang.Double.doubleToLongBits(getKuaChang()));
-    hash = (37 * hash) + GIRDERDISTANCE_FIELD_NUMBER;
+        java.lang.Double.doubleToLongBits(getSigma1HUp()));
+    hash = (37 * hash) + SIGMA1DOWN_FIELD_NUMBER;
     hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
-        java.lang.Double.doubleToLongBits(getGirderDistance()));
-    hash = (37 * hash) + NUMGIRDER_FIELD_NUMBER;
+        java.lang.Double.doubleToLongBits(getSigma1Down()));
+    hash = (37 * hash) + SIGMA1SUP_FIELD_NUMBER;
     hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
-        java.lang.Double.doubleToLongBits(getNumgirder()));
+        java.lang.Double.doubleToLongBits(getSigma1SUp()));
+    hash = (37 * hash) + SIGMA1SDOWN_FIELD_NUMBER;
+    hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
+        java.lang.Double.doubleToLongBits(getSigma1SDown()));
     hash = (29 * hash) + unknownFields.hashCode();
     memoizedHashCode = hash;
     return hash;
   }
 
-  public static com.iscas.biz.calculation.grpc.GirderStrengthRequest parseFrom(
+  public static com.iscas.biz.calculation.grpc.Sigma1Entity parseFrom(
       com.google.protobuf.ByteString data)
       throws com.google.protobuf.InvalidProtocolBufferException {
     return PARSER.parseFrom(data);
   }
-  public static com.iscas.biz.calculation.grpc.GirderStrengthRequest parseFrom(
+  public static com.iscas.biz.calculation.grpc.Sigma1Entity parseFrom(
       com.google.protobuf.ByteString data,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)
       throws com.google.protobuf.InvalidProtocolBufferException {
     return PARSER.parseFrom(data, extensionRegistry);
   }
-  public static com.iscas.biz.calculation.grpc.GirderStrengthRequest parseFrom(byte[] data)
+  public static com.iscas.biz.calculation.grpc.Sigma1Entity parseFrom(byte[] data)
       throws com.google.protobuf.InvalidProtocolBufferException {
     return PARSER.parseFrom(data);
   }
-  public static com.iscas.biz.calculation.grpc.GirderStrengthRequest parseFrom(
+  public static com.iscas.biz.calculation.grpc.Sigma1Entity parseFrom(
       byte[] data,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)
       throws com.google.protobuf.InvalidProtocolBufferException {
     return PARSER.parseFrom(data, extensionRegistry);
   }
-  public static com.iscas.biz.calculation.grpc.GirderStrengthRequest parseFrom(java.io.InputStream input)
+  public static com.iscas.biz.calculation.grpc.Sigma1Entity parseFrom(java.io.InputStream input)
       throws java.io.IOException {
     return com.google.protobuf.GeneratedMessageV3
         .parseWithIOException(PARSER, input);
   }
-  public static com.iscas.biz.calculation.grpc.GirderStrengthRequest parseFrom(
+  public static com.iscas.biz.calculation.grpc.Sigma1Entity parseFrom(
       java.io.InputStream input,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)
       throws java.io.IOException {
     return com.google.protobuf.GeneratedMessageV3
         .parseWithIOException(PARSER, input, extensionRegistry);
   }
-  public static com.iscas.biz.calculation.grpc.GirderStrengthRequest parseDelimitedFrom(java.io.InputStream input)
+  public static com.iscas.biz.calculation.grpc.Sigma1Entity parseDelimitedFrom(java.io.InputStream input)
       throws java.io.IOException {
     return com.google.protobuf.GeneratedMessageV3
         .parseDelimitedWithIOException(PARSER, input);
   }
-  public static com.iscas.biz.calculation.grpc.GirderStrengthRequest parseDelimitedFrom(
+  public static com.iscas.biz.calculation.grpc.Sigma1Entity parseDelimitedFrom(
       java.io.InputStream input,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)
       throws java.io.IOException {
     return com.google.protobuf.GeneratedMessageV3
         .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
   }
-  public static com.iscas.biz.calculation.grpc.GirderStrengthRequest parseFrom(
+  public static com.iscas.biz.calculation.grpc.Sigma1Entity parseFrom(
       com.google.protobuf.CodedInputStream input)
       throws java.io.IOException {
     return com.google.protobuf.GeneratedMessageV3
         .parseWithIOException(PARSER, input);
   }
-  public static com.iscas.biz.calculation.grpc.GirderStrengthRequest parseFrom(
+  public static com.iscas.biz.calculation.grpc.Sigma1Entity parseFrom(
       com.google.protobuf.CodedInputStream input,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)
       throws java.io.IOException {
@@ -277,7 +310,7 @@ public  final class GirderStrengthRequest extends
   public static Builder newBuilder() {
     return DEFAULT_INSTANCE.toBuilder();
   }
-  public static Builder newBuilder(com.iscas.biz.calculation.grpc.GirderStrengthRequest prototype) {
+  public static Builder newBuilder(com.iscas.biz.calculation.grpc.Sigma1Entity prototype) {
     return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
   }
   public Builder toBuilder() {
@@ -292,29 +325,25 @@ public  final class GirderStrengthRequest extends
     return builder;
   }
   /**
-   * <pre>
-   *总纵强度校核输入
-   * </pre>
-   *
-   * Protobuf type {@code com.iscas.biz.calculation.grpc.GirderStrengthRequest}
+   * Protobuf type {@code com.iscas.biz.calculation.grpc.Sigma1Entity}
    */
   public static final class Builder extends
       com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
-      // @@protoc_insertion_point(builder_implements:com.iscas.biz.calculation.grpc.GirderStrengthRequest)
-      com.iscas.biz.calculation.grpc.GirderStrengthRequestOrBuilder {
+      // @@protoc_insertion_point(builder_implements:com.iscas.biz.calculation.grpc.Sigma1Entity)
+      com.iscas.biz.calculation.grpc.Sigma1EntityOrBuilder {
     public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
-      return com.iscas.biz.calculation.grpc.CalculationProto.internal_static_com_iscas_biz_calculation_grpc_GirderStrengthRequest_descriptor;
+      return com.iscas.biz.calculation.grpc.CalculationProto.internal_static_com_iscas_biz_calculation_grpc_Sigma1Entity_descriptor;
     }
 
     protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
         internalGetFieldAccessorTable() {
-      return com.iscas.biz.calculation.grpc.CalculationProto.internal_static_com_iscas_biz_calculation_grpc_GirderStrengthRequest_fieldAccessorTable
+      return com.iscas.biz.calculation.grpc.CalculationProto.internal_static_com_iscas_biz_calculation_grpc_Sigma1Entity_fieldAccessorTable
           .ensureFieldAccessorsInitialized(
-              com.iscas.biz.calculation.grpc.GirderStrengthRequest.class, com.iscas.biz.calculation.grpc.GirderStrengthRequest.Builder.class);
+              com.iscas.biz.calculation.grpc.Sigma1Entity.class, com.iscas.biz.calculation.grpc.Sigma1Entity.Builder.class);
     }
 
-    // Construct using com.iscas.biz.calculation.grpc.GirderStrengthRequest.newBuilder()
+    // Construct using com.iscas.biz.calculation.grpc.Sigma1Entity.newBuilder()
     private Builder() {
       maybeForceBuilderInitialization();
     }
@@ -331,37 +360,40 @@ public  final class GirderStrengthRequest extends
     }
     public Builder clear() {
       super.clear();
-      kuaChang_ = 0D;
+      sigma1HUp_ = 0D;
 
-      girderDistance_ = 0D;
+      sigma1Down_ = 0D;
 
-      numgirder_ = 0D;
+      sigma1SUp_ = 0D;
+
+      sigma1SDown_ = 0D;
 
       return this;
     }
 
     public com.google.protobuf.Descriptors.Descriptor
         getDescriptorForType() {
-      return com.iscas.biz.calculation.grpc.CalculationProto.internal_static_com_iscas_biz_calculation_grpc_GirderStrengthRequest_descriptor;
+      return com.iscas.biz.calculation.grpc.CalculationProto.internal_static_com_iscas_biz_calculation_grpc_Sigma1Entity_descriptor;
     }
 
-    public com.iscas.biz.calculation.grpc.GirderStrengthRequest getDefaultInstanceForType() {
-      return com.iscas.biz.calculation.grpc.GirderStrengthRequest.getDefaultInstance();
+    public com.iscas.biz.calculation.grpc.Sigma1Entity getDefaultInstanceForType() {
+      return com.iscas.biz.calculation.grpc.Sigma1Entity.getDefaultInstance();
     }
 
-    public com.iscas.biz.calculation.grpc.GirderStrengthRequest build() {
-      com.iscas.biz.calculation.grpc.GirderStrengthRequest result = buildPartial();
+    public com.iscas.biz.calculation.grpc.Sigma1Entity build() {
+      com.iscas.biz.calculation.grpc.Sigma1Entity result = buildPartial();
       if (!result.isInitialized()) {
         throw newUninitializedMessageException(result);
       }
       return result;
     }
 
-    public com.iscas.biz.calculation.grpc.GirderStrengthRequest buildPartial() {
-      com.iscas.biz.calculation.grpc.GirderStrengthRequest result = new com.iscas.biz.calculation.grpc.GirderStrengthRequest(this);
-      result.kuaChang_ = kuaChang_;
-      result.girderDistance_ = girderDistance_;
-      result.numgirder_ = numgirder_;
+    public com.iscas.biz.calculation.grpc.Sigma1Entity buildPartial() {
+      com.iscas.biz.calculation.grpc.Sigma1Entity result = new com.iscas.biz.calculation.grpc.Sigma1Entity(this);
+      result.sigma1HUp_ = sigma1HUp_;
+      result.sigma1Down_ = sigma1Down_;
+      result.sigma1SUp_ = sigma1SUp_;
+      result.sigma1SDown_ = sigma1SDown_;
       onBuilt();
       return result;
     }
@@ -393,24 +425,27 @@ public  final class GirderStrengthRequest extends
       return (Builder) super.addRepeatedField(field, value);
     }
     public Builder mergeFrom(com.google.protobuf.Message other) {
-      if (other instanceof com.iscas.biz.calculation.grpc.GirderStrengthRequest) {
-        return mergeFrom((com.iscas.biz.calculation.grpc.GirderStrengthRequest)other);
+      if (other instanceof com.iscas.biz.calculation.grpc.Sigma1Entity) {
+        return mergeFrom((com.iscas.biz.calculation.grpc.Sigma1Entity)other);
       } else {
         super.mergeFrom(other);
         return this;
       }
     }
 
-    public Builder mergeFrom(com.iscas.biz.calculation.grpc.GirderStrengthRequest other) {
-      if (other == com.iscas.biz.calculation.grpc.GirderStrengthRequest.getDefaultInstance()) return this;
-      if (other.getKuaChang() != 0D) {
-        setKuaChang(other.getKuaChang());
+    public Builder mergeFrom(com.iscas.biz.calculation.grpc.Sigma1Entity other) {
+      if (other == com.iscas.biz.calculation.grpc.Sigma1Entity.getDefaultInstance()) return this;
+      if (other.getSigma1HUp() != 0D) {
+        setSigma1HUp(other.getSigma1HUp());
       }
-      if (other.getGirderDistance() != 0D) {
-        setGirderDistance(other.getGirderDistance());
+      if (other.getSigma1Down() != 0D) {
+        setSigma1Down(other.getSigma1Down());
       }
-      if (other.getNumgirder() != 0D) {
-        setNumgirder(other.getNumgirder());
+      if (other.getSigma1SUp() != 0D) {
+        setSigma1SUp(other.getSigma1SUp());
+      }
+      if (other.getSigma1SDown() != 0D) {
+        setSigma1SDown(other.getSigma1SDown());
       }
       onChanged();
       return this;
@@ -424,11 +459,11 @@ public  final class GirderStrengthRequest extends
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
-      com.iscas.biz.calculation.grpc.GirderStrengthRequest parsedMessage = null;
+      com.iscas.biz.calculation.grpc.Sigma1Entity parsedMessage = null;
       try {
         parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
       } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-        parsedMessage = (com.iscas.biz.calculation.grpc.GirderStrengthRequest) e.getUnfinishedMessage();
+        parsedMessage = (com.iscas.biz.calculation.grpc.Sigma1Entity) e.getUnfinishedMessage();
         throw e.unwrapIOException();
       } finally {
         if (parsedMessage != null) {
@@ -438,104 +473,154 @@ public  final class GirderStrengthRequest extends
       return this;
     }
 
-    private double kuaChang_ ;
+    private double sigma1HUp_ ;
     /**
      * <pre>
-     *构件跨距
+     *中拱龙骨上纤维
      * </pre>
      *
-     * <code>double kuaChang = 1;</code>
+     * <code>double sigma1HUp = 1;</code>
      */
-    public double getKuaChang() {
-      return kuaChang_;
+    public double getSigma1HUp() {
+      return sigma1HUp_;
     }
     /**
      * <pre>
-     *构件跨距
+     *中拱龙骨上纤维
      * </pre>
      *
-     * <code>double kuaChang = 1;</code>
+     * <code>double sigma1HUp = 1;</code>
      */
-    public Builder setKuaChang(double value) {
+    public Builder setSigma1HUp(double value) {
       
-      kuaChang_ = value;
+      sigma1HUp_ = value;
       onChanged();
       return this;
     }
     /**
      * <pre>
-     *构件跨距
+     *中拱龙骨上纤维
      * </pre>
      *
-     * <code>double kuaChang = 1;</code>
+     * <code>double sigma1HUp = 1;</code>
      */
-    public Builder clearKuaChang() {
+    public Builder clearSigma1HUp() {
       
-      kuaChang_ = 0D;
-      onChanged();
-      return this;
-    }
-
-    private double girderDistance_ ;
-    /**
-     * <pre>
-     *剖面位置x
-     * </pre>
-     *
-     * <code>double girderDistance = 2;</code>
-     */
-    public double getGirderDistance() {
-      return girderDistance_;
-    }
-    /**
-     * <pre>
-     *剖面位置x
-     * </pre>
-     *
-     * <code>double girderDistance = 2;</code>
-     */
-    public Builder setGirderDistance(double value) {
-      
-      girderDistance_ = value;
-      onChanged();
-      return this;
-    }
-    /**
-     * <pre>
-     *剖面位置x
-     * </pre>
-     *
-     * <code>double girderDistance = 2;</code>
-     */
-    public Builder clearGirderDistance() {
-      
-      girderDistance_ = 0D;
+      sigma1HUp_ = 0D;
       onChanged();
       return this;
     }
 
-    private double numgirder_ ;
+    private double sigma1Down_ ;
     /**
-     * <code>double numgirder = 3;</code>
+     * <pre>
+     *中拱龙骨下纤维
+     * </pre>
+     *
+     * <code>double sigma1Down = 2;</code>
      */
-    public double getNumgirder() {
-      return numgirder_;
+    public double getSigma1Down() {
+      return sigma1Down_;
     }
     /**
-     * <code>double numgirder = 3;</code>
+     * <pre>
+     *中拱龙骨下纤维
+     * </pre>
+     *
+     * <code>double sigma1Down = 2;</code>
      */
-    public Builder setNumgirder(double value) {
+    public Builder setSigma1Down(double value) {
       
-      numgirder_ = value;
+      sigma1Down_ = value;
       onChanged();
       return this;
     }
     /**
-     * <code>double numgirder = 3;</code>
+     * <pre>
+     *中拱龙骨下纤维
+     * </pre>
+     *
+     * <code>double sigma1Down = 2;</code>
      */
-    public Builder clearNumgirder() {
+    public Builder clearSigma1Down() {
       
-      numgirder_ = 0D;
+      sigma1Down_ = 0D;
+      onChanged();
+      return this;
+    }
+
+    private double sigma1SUp_ ;
+    /**
+     * <pre>
+     *中垂龙骨上纤维
+     * </pre>
+     *
+     * <code>double sigma1SUp = 3;</code>
+     */
+    public double getSigma1SUp() {
+      return sigma1SUp_;
+    }
+    /**
+     * <pre>
+     *中垂龙骨上纤维
+     * </pre>
+     *
+     * <code>double sigma1SUp = 3;</code>
+     */
+    public Builder setSigma1SUp(double value) {
+      
+      sigma1SUp_ = value;
+      onChanged();
+      return this;
+    }
+    /**
+     * <pre>
+     *中垂龙骨上纤维
+     * </pre>
+     *
+     * <code>double sigma1SUp = 3;</code>
+     */
+    public Builder clearSigma1SUp() {
+      
+      sigma1SUp_ = 0D;
+      onChanged();
+      return this;
+    }
+
+    private double sigma1SDown_ ;
+    /**
+     * <pre>
+     *中垂龙骨上纤维
+     * </pre>
+     *
+     * <code>double sigma1SDown = 4;</code>
+     */
+    public double getSigma1SDown() {
+      return sigma1SDown_;
+    }
+    /**
+     * <pre>
+     *中垂龙骨上纤维
+     * </pre>
+     *
+     * <code>double sigma1SDown = 4;</code>
+     */
+    public Builder setSigma1SDown(double value) {
+      
+      sigma1SDown_ = value;
+      onChanged();
+      return this;
+    }
+    /**
+     * <pre>
+     *中垂龙骨上纤维
+     * </pre>
+     *
+     * <code>double sigma1SDown = 4;</code>
+     */
+    public Builder clearSigma1SDown() {
+      
+      sigma1SDown_ = 0D;
       onChanged();
       return this;
     }
@@ -550,39 +635,39 @@ public  final class GirderStrengthRequest extends
     }
 
 
-    // @@protoc_insertion_point(builder_scope:com.iscas.biz.calculation.grpc.GirderStrengthRequest)
+    // @@protoc_insertion_point(builder_scope:com.iscas.biz.calculation.grpc.Sigma1Entity)
   }
 
-  // @@protoc_insertion_point(class_scope:com.iscas.biz.calculation.grpc.GirderStrengthRequest)
-  private static final com.iscas.biz.calculation.grpc.GirderStrengthRequest DEFAULT_INSTANCE;
+  // @@protoc_insertion_point(class_scope:com.iscas.biz.calculation.grpc.Sigma1Entity)
+  private static final com.iscas.biz.calculation.grpc.Sigma1Entity DEFAULT_INSTANCE;
   static {
-    DEFAULT_INSTANCE = new com.iscas.biz.calculation.grpc.GirderStrengthRequest();
+    DEFAULT_INSTANCE = new com.iscas.biz.calculation.grpc.Sigma1Entity();
   }
 
-  public static com.iscas.biz.calculation.grpc.GirderStrengthRequest getDefaultInstance() {
+  public static com.iscas.biz.calculation.grpc.Sigma1Entity getDefaultInstance() {
     return DEFAULT_INSTANCE;
   }
 
-  private static final com.google.protobuf.Parser<GirderStrengthRequest>
-      PARSER = new com.google.protobuf.AbstractParser<GirderStrengthRequest>() {
-    public GirderStrengthRequest parsePartialFrom(
+  private static final com.google.protobuf.Parser<Sigma1Entity>
+      PARSER = new com.google.protobuf.AbstractParser<Sigma1Entity>() {
+    public Sigma1Entity parsePartialFrom(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
-        return new GirderStrengthRequest(input, extensionRegistry);
+        return new Sigma1Entity(input, extensionRegistry);
     }
   };
 
-  public static com.google.protobuf.Parser<GirderStrengthRequest> parser() {
+  public static com.google.protobuf.Parser<Sigma1Entity> parser() {
     return PARSER;
   }
 
   @java.lang.Override
-  public com.google.protobuf.Parser<GirderStrengthRequest> getParserForType() {
+  public com.google.protobuf.Parser<Sigma1Entity> getParserForType() {
     return PARSER;
   }
 
-  public com.iscas.biz.calculation.grpc.GirderStrengthRequest getDefaultInstanceForType() {
+  public com.iscas.biz.calculation.grpc.Sigma1Entity getDefaultInstanceForType() {
     return DEFAULT_INSTANCE;
   }
 

@@ -235,35 +235,128 @@ public final class CalculationGrpc {
     return getCalSectionMethod;
   }
 
-  private static volatile io.grpc.MethodDescriptor<com.iscas.biz.calculation.grpc.GirderStrengthRequest,
-      com.iscas.biz.calculation.grpc.GirderStrengthResponse> getCalGirderStrengthMethod;
+  private static volatile io.grpc.MethodDescriptor<com.iscas.biz.calculation.grpc.Sigma1Request,
+      com.iscas.biz.calculation.grpc.Sigma1Response> getCalSigma1Method;
 
   @io.grpc.stub.annotations.RpcMethod(
-      fullMethodName = SERVICE_NAME + '/' + "calGirderStrength",
-      requestType = com.iscas.biz.calculation.grpc.GirderStrengthRequest.class,
-      responseType = com.iscas.biz.calculation.grpc.GirderStrengthResponse.class,
+      fullMethodName = SERVICE_NAME + '/' + "calSigma1",
+      requestType = com.iscas.biz.calculation.grpc.Sigma1Request.class,
+      responseType = com.iscas.biz.calculation.grpc.Sigma1Response.class,
       methodType = io.grpc.MethodDescriptor.MethodType.UNARY)
-  public static io.grpc.MethodDescriptor<com.iscas.biz.calculation.grpc.GirderStrengthRequest,
-      com.iscas.biz.calculation.grpc.GirderStrengthResponse> getCalGirderStrengthMethod() {
-    io.grpc.MethodDescriptor<com.iscas.biz.calculation.grpc.GirderStrengthRequest, com.iscas.biz.calculation.grpc.GirderStrengthResponse> getCalGirderStrengthMethod;
-    if ((getCalGirderStrengthMethod = CalculationGrpc.getCalGirderStrengthMethod) == null) {
+  public static io.grpc.MethodDescriptor<com.iscas.biz.calculation.grpc.Sigma1Request,
+      com.iscas.biz.calculation.grpc.Sigma1Response> getCalSigma1Method() {
+    io.grpc.MethodDescriptor<com.iscas.biz.calculation.grpc.Sigma1Request, com.iscas.biz.calculation.grpc.Sigma1Response> getCalSigma1Method;
+    if ((getCalSigma1Method = CalculationGrpc.getCalSigma1Method) == null) {
       synchronized (CalculationGrpc.class) {
-        if ((getCalGirderStrengthMethod = CalculationGrpc.getCalGirderStrengthMethod) == null) {
-          CalculationGrpc.getCalGirderStrengthMethod = getCalGirderStrengthMethod =
-              io.grpc.MethodDescriptor.<com.iscas.biz.calculation.grpc.GirderStrengthRequest, com.iscas.biz.calculation.grpc.GirderStrengthResponse>newBuilder()
+        if ((getCalSigma1Method = CalculationGrpc.getCalSigma1Method) == null) {
+          CalculationGrpc.getCalSigma1Method = getCalSigma1Method =
+              io.grpc.MethodDescriptor.<com.iscas.biz.calculation.grpc.Sigma1Request, com.iscas.biz.calculation.grpc.Sigma1Response>newBuilder()
               .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
-              .setFullMethodName(generateFullMethodName(SERVICE_NAME, "calGirderStrength"))
+              .setFullMethodName(generateFullMethodName(SERVICE_NAME, "calSigma1"))
               .setSampledToLocalTracing(true)
               .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
-                  com.iscas.biz.calculation.grpc.GirderStrengthRequest.getDefaultInstance()))
+                  com.iscas.biz.calculation.grpc.Sigma1Request.getDefaultInstance()))
               .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
-                  com.iscas.biz.calculation.grpc.GirderStrengthResponse.getDefaultInstance()))
-              .setSchemaDescriptor(new CalculationMethodDescriptorSupplier("calGirderStrength"))
+                  com.iscas.biz.calculation.grpc.Sigma1Response.getDefaultInstance()))
+              .setSchemaDescriptor(new CalculationMethodDescriptorSupplier("calSigma1"))
               .build();
         }
       }
     }
-    return getCalGirderStrengthMethod;
+    return getCalSigma1Method;
+  }
+
+  private static volatile io.grpc.MethodDescriptor<com.iscas.biz.calculation.grpc.Sigma2Request,
+      com.iscas.biz.calculation.grpc.Sigma2Response> getCalSigma2Method;
+
+  @io.grpc.stub.annotations.RpcMethod(
+      fullMethodName = SERVICE_NAME + '/' + "calSigma2",
+      requestType = com.iscas.biz.calculation.grpc.Sigma2Request.class,
+      responseType = com.iscas.biz.calculation.grpc.Sigma2Response.class,
+      methodType = io.grpc.MethodDescriptor.MethodType.UNARY)
+  public static io.grpc.MethodDescriptor<com.iscas.biz.calculation.grpc.Sigma2Request,
+      com.iscas.biz.calculation.grpc.Sigma2Response> getCalSigma2Method() {
+    io.grpc.MethodDescriptor<com.iscas.biz.calculation.grpc.Sigma2Request, com.iscas.biz.calculation.grpc.Sigma2Response> getCalSigma2Method;
+    if ((getCalSigma2Method = CalculationGrpc.getCalSigma2Method) == null) {
+      synchronized (CalculationGrpc.class) {
+        if ((getCalSigma2Method = CalculationGrpc.getCalSigma2Method) == null) {
+          CalculationGrpc.getCalSigma2Method = getCalSigma2Method =
+              io.grpc.MethodDescriptor.<com.iscas.biz.calculation.grpc.Sigma2Request, com.iscas.biz.calculation.grpc.Sigma2Response>newBuilder()
+              .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
+              .setFullMethodName(generateFullMethodName(SERVICE_NAME, "calSigma2"))
+              .setSampledToLocalTracing(true)
+              .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  com.iscas.biz.calculation.grpc.Sigma2Request.getDefaultInstance()))
+              .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  com.iscas.biz.calculation.grpc.Sigma2Response.getDefaultInstance()))
+              .setSchemaDescriptor(new CalculationMethodDescriptorSupplier("calSigma2"))
+              .build();
+        }
+      }
+    }
+    return getCalSigma2Method;
+  }
+
+  private static volatile io.grpc.MethodDescriptor<com.iscas.biz.calculation.grpc.Sigma3Request,
+      com.iscas.biz.calculation.grpc.Sigma3Response> getCalSigma3Method;
+
+  @io.grpc.stub.annotations.RpcMethod(
+      fullMethodName = SERVICE_NAME + '/' + "calSigma3",
+      requestType = com.iscas.biz.calculation.grpc.Sigma3Request.class,
+      responseType = com.iscas.biz.calculation.grpc.Sigma3Response.class,
+      methodType = io.grpc.MethodDescriptor.MethodType.UNARY)
+  public static io.grpc.MethodDescriptor<com.iscas.biz.calculation.grpc.Sigma3Request,
+      com.iscas.biz.calculation.grpc.Sigma3Response> getCalSigma3Method() {
+    io.grpc.MethodDescriptor<com.iscas.biz.calculation.grpc.Sigma3Request, com.iscas.biz.calculation.grpc.Sigma3Response> getCalSigma3Method;
+    if ((getCalSigma3Method = CalculationGrpc.getCalSigma3Method) == null) {
+      synchronized (CalculationGrpc.class) {
+        if ((getCalSigma3Method = CalculationGrpc.getCalSigma3Method) == null) {
+          CalculationGrpc.getCalSigma3Method = getCalSigma3Method =
+              io.grpc.MethodDescriptor.<com.iscas.biz.calculation.grpc.Sigma3Request, com.iscas.biz.calculation.grpc.Sigma3Response>newBuilder()
+              .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
+              .setFullMethodName(generateFullMethodName(SERVICE_NAME, "calSigma3"))
+              .setSampledToLocalTracing(true)
+              .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  com.iscas.biz.calculation.grpc.Sigma3Request.getDefaultInstance()))
+              .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  com.iscas.biz.calculation.grpc.Sigma3Response.getDefaultInstance()))
+              .setSchemaDescriptor(new CalculationMethodDescriptorSupplier("calSigma3"))
+              .build();
+        }
+      }
+    }
+    return getCalSigma3Method;
+  }
+
+  private static volatile io.grpc.MethodDescriptor<com.iscas.biz.calculation.grpc.Sigma4Request,
+      com.iscas.biz.calculation.grpc.Sigma4Response> getCalSigma4Method;
+
+  @io.grpc.stub.annotations.RpcMethod(
+      fullMethodName = SERVICE_NAME + '/' + "calSigma4",
+      requestType = com.iscas.biz.calculation.grpc.Sigma4Request.class,
+      responseType = com.iscas.biz.calculation.grpc.Sigma4Response.class,
+      methodType = io.grpc.MethodDescriptor.MethodType.UNARY)
+  public static io.grpc.MethodDescriptor<com.iscas.biz.calculation.grpc.Sigma4Request,
+      com.iscas.biz.calculation.grpc.Sigma4Response> getCalSigma4Method() {
+    io.grpc.MethodDescriptor<com.iscas.biz.calculation.grpc.Sigma4Request, com.iscas.biz.calculation.grpc.Sigma4Response> getCalSigma4Method;
+    if ((getCalSigma4Method = CalculationGrpc.getCalSigma4Method) == null) {
+      synchronized (CalculationGrpc.class) {
+        if ((getCalSigma4Method = CalculationGrpc.getCalSigma4Method) == null) {
+          CalculationGrpc.getCalSigma4Method = getCalSigma4Method =
+              io.grpc.MethodDescriptor.<com.iscas.biz.calculation.grpc.Sigma4Request, com.iscas.biz.calculation.grpc.Sigma4Response>newBuilder()
+              .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
+              .setFullMethodName(generateFullMethodName(SERVICE_NAME, "calSigma4"))
+              .setSampledToLocalTracing(true)
+              .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  com.iscas.biz.calculation.grpc.Sigma4Request.getDefaultInstance()))
+              .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  com.iscas.biz.calculation.grpc.Sigma4Response.getDefaultInstance()))
+              .setSchemaDescriptor(new CalculationMethodDescriptorSupplier("calSigma4"))
+              .build();
+        }
+      }
+    }
+    return getCalSigma4Method;
   }
 
   private static volatile io.grpc.MethodDescriptor<com.iscas.biz.calculation.grpc.DistRequest,
@@ -419,13 +512,31 @@ public final class CalculationGrpc {
     }
 
     /**
-     * <pre>
-     *板件弯矩应力计算  对应总纵强度校核
-     * </pre>
      */
-    default void calGirderStrength(com.iscas.biz.calculation.grpc.GirderStrengthRequest request,
-        io.grpc.stub.StreamObserver<com.iscas.biz.calculation.grpc.GirderStrengthResponse> responseObserver) {
-      io.grpc.stub.ServerCalls.asyncUnimplementedUnaryCall(getCalGirderStrengthMethod(), responseObserver);
+    default void calSigma1(com.iscas.biz.calculation.grpc.Sigma1Request request,
+        io.grpc.stub.StreamObserver<com.iscas.biz.calculation.grpc.Sigma1Response> responseObserver) {
+      io.grpc.stub.ServerCalls.asyncUnimplementedUnaryCall(getCalSigma1Method(), responseObserver);
+    }
+
+    /**
+     */
+    default void calSigma2(com.iscas.biz.calculation.grpc.Sigma2Request request,
+        io.grpc.stub.StreamObserver<com.iscas.biz.calculation.grpc.Sigma2Response> responseObserver) {
+      io.grpc.stub.ServerCalls.asyncUnimplementedUnaryCall(getCalSigma2Method(), responseObserver);
+    }
+
+    /**
+     */
+    default void calSigma3(com.iscas.biz.calculation.grpc.Sigma3Request request,
+        io.grpc.stub.StreamObserver<com.iscas.biz.calculation.grpc.Sigma3Response> responseObserver) {
+      io.grpc.stub.ServerCalls.asyncUnimplementedUnaryCall(getCalSigma3Method(), responseObserver);
+    }
+
+    /**
+     */
+    default void calSigma4(com.iscas.biz.calculation.grpc.Sigma4Request request,
+        io.grpc.stub.StreamObserver<com.iscas.biz.calculation.grpc.Sigma4Response> responseObserver) {
+      io.grpc.stub.ServerCalls.asyncUnimplementedUnaryCall(getCalSigma4Method(), responseObserver);
     }
 
     /**
@@ -550,14 +661,35 @@ public final class CalculationGrpc {
     }
 
     /**
-     * <pre>
-     *板件弯矩应力计算  对应总纵强度校核
-     * </pre>
      */
-    public void calGirderStrength(com.iscas.biz.calculation.grpc.GirderStrengthRequest request,
-        io.grpc.stub.StreamObserver<com.iscas.biz.calculation.grpc.GirderStrengthResponse> responseObserver) {
+    public void calSigma1(com.iscas.biz.calculation.grpc.Sigma1Request request,
+        io.grpc.stub.StreamObserver<com.iscas.biz.calculation.grpc.Sigma1Response> responseObserver) {
       io.grpc.stub.ClientCalls.asyncUnaryCall(
-          getChannel().newCall(getCalGirderStrengthMethod(), getCallOptions()), request, responseObserver);
+          getChannel().newCall(getCalSigma1Method(), getCallOptions()), request, responseObserver);
+    }
+
+    /**
+     */
+    public void calSigma2(com.iscas.biz.calculation.grpc.Sigma2Request request,
+        io.grpc.stub.StreamObserver<com.iscas.biz.calculation.grpc.Sigma2Response> responseObserver) {
+      io.grpc.stub.ClientCalls.asyncUnaryCall(
+          getChannel().newCall(getCalSigma2Method(), getCallOptions()), request, responseObserver);
+    }
+
+    /**
+     */
+    public void calSigma3(com.iscas.biz.calculation.grpc.Sigma3Request request,
+        io.grpc.stub.StreamObserver<com.iscas.biz.calculation.grpc.Sigma3Response> responseObserver) {
+      io.grpc.stub.ClientCalls.asyncUnaryCall(
+          getChannel().newCall(getCalSigma3Method(), getCallOptions()), request, responseObserver);
+    }
+
+    /**
+     */
+    public void calSigma4(com.iscas.biz.calculation.grpc.Sigma4Request request,
+        io.grpc.stub.StreamObserver<com.iscas.biz.calculation.grpc.Sigma4Response> responseObserver) {
+      io.grpc.stub.ClientCalls.asyncUnaryCall(
+          getChannel().newCall(getCalSigma4Method(), getCallOptions()), request, responseObserver);
     }
 
     /**
@@ -662,13 +794,31 @@ public final class CalculationGrpc {
     }
 
     /**
-     * <pre>
-     *板件弯矩应力计算  对应总纵强度校核
-     * </pre>
      */
-    public com.iscas.biz.calculation.grpc.GirderStrengthResponse calGirderStrength(com.iscas.biz.calculation.grpc.GirderStrengthRequest request) {
+    public com.iscas.biz.calculation.grpc.Sigma1Response calSigma1(com.iscas.biz.calculation.grpc.Sigma1Request request) {
       return io.grpc.stub.ClientCalls.blockingUnaryCall(
-          getChannel(), getCalGirderStrengthMethod(), getCallOptions(), request);
+          getChannel(), getCalSigma1Method(), getCallOptions(), request);
+    }
+
+    /**
+     */
+    public com.iscas.biz.calculation.grpc.Sigma2Response calSigma2(com.iscas.biz.calculation.grpc.Sigma2Request request) {
+      return io.grpc.stub.ClientCalls.blockingUnaryCall(
+          getChannel(), getCalSigma2Method(), getCallOptions(), request);
+    }
+
+    /**
+     */
+    public com.iscas.biz.calculation.grpc.Sigma3Response calSigma3(com.iscas.biz.calculation.grpc.Sigma3Request request) {
+      return io.grpc.stub.ClientCalls.blockingUnaryCall(
+          getChannel(), getCalSigma3Method(), getCallOptions(), request);
+    }
+
+    /**
+     */
+    public com.iscas.biz.calculation.grpc.Sigma4Response calSigma4(com.iscas.biz.calculation.grpc.Sigma4Request request) {
+      return io.grpc.stub.ClientCalls.blockingUnaryCall(
+          getChannel(), getCalSigma4Method(), getCallOptions(), request);
     }
 
     /**
@@ -779,14 +929,35 @@ public final class CalculationGrpc {
     }
 
     /**
-     * <pre>
-     *板件弯矩应力计算  对应总纵强度校核
-     * </pre>
      */
-    public com.google.common.util.concurrent.ListenableFuture<com.iscas.biz.calculation.grpc.GirderStrengthResponse> calGirderStrength(
-        com.iscas.biz.calculation.grpc.GirderStrengthRequest request) {
+    public com.google.common.util.concurrent.ListenableFuture<com.iscas.biz.calculation.grpc.Sigma1Response> calSigma1(
+        com.iscas.biz.calculation.grpc.Sigma1Request request) {
       return io.grpc.stub.ClientCalls.futureUnaryCall(
-          getChannel().newCall(getCalGirderStrengthMethod(), getCallOptions()), request);
+          getChannel().newCall(getCalSigma1Method(), getCallOptions()), request);
+    }
+
+    /**
+     */
+    public com.google.common.util.concurrent.ListenableFuture<com.iscas.biz.calculation.grpc.Sigma2Response> calSigma2(
+        com.iscas.biz.calculation.grpc.Sigma2Request request) {
+      return io.grpc.stub.ClientCalls.futureUnaryCall(
+          getChannel().newCall(getCalSigma2Method(), getCallOptions()), request);
+    }
+
+    /**
+     */
+    public com.google.common.util.concurrent.ListenableFuture<com.iscas.biz.calculation.grpc.Sigma3Response> calSigma3(
+        com.iscas.biz.calculation.grpc.Sigma3Request request) {
+      return io.grpc.stub.ClientCalls.futureUnaryCall(
+          getChannel().newCall(getCalSigma3Method(), getCallOptions()), request);
+    }
+
+    /**
+     */
+    public com.google.common.util.concurrent.ListenableFuture<com.iscas.biz.calculation.grpc.Sigma4Response> calSigma4(
+        com.iscas.biz.calculation.grpc.Sigma4Request request) {
+      return io.grpc.stub.ClientCalls.futureUnaryCall(
+          getChannel().newCall(getCalSigma4Method(), getCallOptions()), request);
     }
 
     /**
@@ -808,8 +979,11 @@ public final class CalculationGrpc {
   private static final int METHODID_CAL_WAVE_LOAD = 4;
   private static final int METHODID_CAL_SLAM_LOAD = 5;
   private static final int METHODID_CAL_SECTION = 6;
-  private static final int METHODID_CAL_GIRDER_STRENGTH = 7;
-  private static final int METHODID_CAL_DIST = 8;
+  private static final int METHODID_CAL_SIGMA1 = 7;
+  private static final int METHODID_CAL_SIGMA2 = 8;
+  private static final int METHODID_CAL_SIGMA3 = 9;
+  private static final int METHODID_CAL_SIGMA4 = 10;
+  private static final int METHODID_CAL_DIST = 11;
 
   private static final class MethodHandlers<Req, Resp> implements
       io.grpc.stub.ServerCalls.UnaryMethod<Req, Resp>,
@@ -856,9 +1030,21 @@ public final class CalculationGrpc {
           serviceImpl.calSection((com.iscas.biz.calculation.grpc.SectionRequest) request,
               (io.grpc.stub.StreamObserver<com.iscas.biz.calculation.grpc.SectionResponse>) responseObserver);
           break;
-        case METHODID_CAL_GIRDER_STRENGTH:
-          serviceImpl.calGirderStrength((com.iscas.biz.calculation.grpc.GirderStrengthRequest) request,
-              (io.grpc.stub.StreamObserver<com.iscas.biz.calculation.grpc.GirderStrengthResponse>) responseObserver);
+        case METHODID_CAL_SIGMA1:
+          serviceImpl.calSigma1((com.iscas.biz.calculation.grpc.Sigma1Request) request,
+              (io.grpc.stub.StreamObserver<com.iscas.biz.calculation.grpc.Sigma1Response>) responseObserver);
+          break;
+        case METHODID_CAL_SIGMA2:
+          serviceImpl.calSigma2((com.iscas.biz.calculation.grpc.Sigma2Request) request,
+              (io.grpc.stub.StreamObserver<com.iscas.biz.calculation.grpc.Sigma2Response>) responseObserver);
+          break;
+        case METHODID_CAL_SIGMA3:
+          serviceImpl.calSigma3((com.iscas.biz.calculation.grpc.Sigma3Request) request,
+              (io.grpc.stub.StreamObserver<com.iscas.biz.calculation.grpc.Sigma3Response>) responseObserver);
+          break;
+        case METHODID_CAL_SIGMA4:
+          serviceImpl.calSigma4((com.iscas.biz.calculation.grpc.Sigma4Request) request,
+              (io.grpc.stub.StreamObserver<com.iscas.biz.calculation.grpc.Sigma4Response>) responseObserver);
           break;
         case METHODID_CAL_DIST:
           serviceImpl.calDist((com.iscas.biz.calculation.grpc.DistRequest) request,
@@ -932,12 +1118,33 @@ public final class CalculationGrpc {
               com.iscas.biz.calculation.grpc.SectionResponse>(
                 service, METHODID_CAL_SECTION)))
         .addMethod(
-          getCalGirderStrengthMethod(),
+          getCalSigma1Method(),
           io.grpc.stub.ServerCalls.asyncUnaryCall(
             new MethodHandlers<
-              com.iscas.biz.calculation.grpc.GirderStrengthRequest,
-              com.iscas.biz.calculation.grpc.GirderStrengthResponse>(
-                service, METHODID_CAL_GIRDER_STRENGTH)))
+              com.iscas.biz.calculation.grpc.Sigma1Request,
+              com.iscas.biz.calculation.grpc.Sigma1Response>(
+                service, METHODID_CAL_SIGMA1)))
+        .addMethod(
+          getCalSigma2Method(),
+          io.grpc.stub.ServerCalls.asyncUnaryCall(
+            new MethodHandlers<
+              com.iscas.biz.calculation.grpc.Sigma2Request,
+              com.iscas.biz.calculation.grpc.Sigma2Response>(
+                service, METHODID_CAL_SIGMA2)))
+        .addMethod(
+          getCalSigma3Method(),
+          io.grpc.stub.ServerCalls.asyncUnaryCall(
+            new MethodHandlers<
+              com.iscas.biz.calculation.grpc.Sigma3Request,
+              com.iscas.biz.calculation.grpc.Sigma3Response>(
+                service, METHODID_CAL_SIGMA3)))
+        .addMethod(
+          getCalSigma4Method(),
+          io.grpc.stub.ServerCalls.asyncUnaryCall(
+            new MethodHandlers<
+              com.iscas.biz.calculation.grpc.Sigma4Request,
+              com.iscas.biz.calculation.grpc.Sigma4Response>(
+                service, METHODID_CAL_SIGMA4)))
         .addMethod(
           getCalDistMethod(),
           io.grpc.stub.ServerCalls.asyncUnaryCall(
@@ -1000,7 +1207,10 @@ public final class CalculationGrpc {
               .addMethod(getCalWaveLoadMethod())
               .addMethod(getCalSlamLoadMethod())
               .addMethod(getCalSectionMethod())
-              .addMethod(getCalGirderStrengthMethod())
+              .addMethod(getCalSigma1Method())
+              .addMethod(getCalSigma2Method())
+              .addMethod(getCalSigma3Method())
+              .addMethod(getCalSigma4Method())
               .addMethod(getCalDistMethod())
               .build();
         }

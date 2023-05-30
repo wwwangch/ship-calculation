@@ -27,7 +27,12 @@ service Calculation {
   //剖面计算
   rpc calSection(SectionRequest) returns(SectionResponse){}
   //板件弯矩应力计算  对应总纵强度校核
-  rpc calGirderStrength(GirderStrengthRequest)returns(GirderStrengthResponse){}
+  //  rpc calGirderStrength(GirderStrengthRequest)returns(GirderStrengthResponse){}
+
+  rpc  calSigma1(Sigma1Request) returns(Sigma1Response){}
+  rpc  calSigma2(Sigma2Request) returns(Sigma2Response){}
+  rpc  calSigma3(Sigma3Request) returns(Sigma3Response){}
+  rpc  calSigma4(Sigma4Request) returns(Sigma4Response){}
 
   //应力分布 对应极限弯矩校验
   rpc calDist(DistRequest)returns(DistResponse){}
@@ -276,6 +281,9 @@ message GirderStrengthRequest{
 
   //剖面位置x
   double girderDistance = 2;
+
+
+  double numgirder = 3;
 }
 
 //总纵强度校核输出
@@ -340,4 +348,101 @@ message DistResponse{
   double extremeH = 1;
   //中垂极限弯矩
   double extremeS = 2;
+}
+message Sigma1Request{
+
+}
+
+message Sigma1Response{
+  repeated Sigma1Entity sigma1 = 1;
+}
+
+message Sigma1Entity{
+  //中拱龙骨上纤维
+  double sigma1HUp = 1;
+  //中拱龙骨下纤维
+  double sigma1Down = 2;
+  //中垂龙骨上纤维
+  double sigma1SUp = 3;
+  //中垂龙骨上纤维
+  double sigma1SDown = 4;
+}
+
+message Sigma2Request{
+  //构件跨距-龙骨跨距 每个的跨距
+  repeated double kuaChang = 1;
+
+  //剖面位置x-衡量间距
+  double girderDistance = 2;
+
+  //纵骨间距
+  double  frDistance = 3;
+
+  //纵骨规格 每个的规格
+  repeated double frGuige = 4;
+
+  //板各厚度 每个板材的厚度
+  repeated double plateThick = 5;
+
+  //设备重量(t)
+  double deviceWeight = 6;
+
+  //版格宽度
+  double girderWidth = 7;
+}
+
+message Sigma2Response{
+  repeated Sigma2Entity sigma2 = 1;
+}
+
+message Sigma2Entity{
+  //中拱支座上纤维
+  double zhonggongZhizuoShang = 1;
+  //中拱支座下纤维
+  double zhonggongZhizuoXia = 2;
+
+  //中拱跨中上纤维
+  double zhonggongKuazhongShang = 3;
+  //中拱跨中下纤维
+  double zhonggongKuazhongXia = 4;
+
+  //中垂支座上纤维
+  double zhongchuiZhizuoShang = 5;
+  //中垂支座下纤维
+  double zhongchuiZhizuoXia = 6;
+
+  //中垂跨中上纤维
+  double zhongchuiKuazhongShang = 7;
+  //中垂跨中下纤维
+  double zhongchuiKuazhongXia = 8;
+}
+
+message Sigma3Request{
+
+}
+
+message Sigma3Response{
+  repeated Sigma2Entity sigma3 = 1;
+}
+
+message Sigma4Request{
+
+}
+
+message Sigma4Response{
+  repeated Sigma4Entity sigma4 = 1;
+}
+
+message Sigma4Entity{
+  //中拱支座
+  double zhonggongZhizuo = 1;
+
+  //中拱跨中
+  double zhonggongKuazhong = 2;
+
+  //中垂支座
+  double zhongchuiZhizuo = 3;
+
+  //中垂跨中
+  double zhongchuiKuazhong = 4;
 }
