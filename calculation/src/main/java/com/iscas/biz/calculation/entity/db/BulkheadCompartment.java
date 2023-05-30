@@ -10,7 +10,7 @@ import java.util.Date;
  * @author ch w
  * @version 1.0
  * @since 2023/4/20 13:57
- * 剖面-用于总纵强度计算
+ * 舱壁区间
  */
 @Data
 public class BulkheadCompartment {
@@ -22,6 +22,10 @@ public class BulkheadCompartment {
      * 横舱壁id
      */
     private Integer bulkheadId;
+    /**
+     * 距基线高度
+     */
+    private String heightAbove;
 
     /**
      * 带板宽度

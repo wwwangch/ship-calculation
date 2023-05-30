@@ -20,14 +20,14 @@ public class Bulkhead {
     private Integer projectId;
 
     /**
-     * 剖面文件名称
-     */
-    private String sectionFileName;
-
-    /**
      * 各层甲板高度文件名称
      */
     private String bulkheadFileName;
+
+    /**
+     * 各层甲板高度文件路径
+     */
+    private String bulkheadFilePath;
     /**
      * 是否防撞舱壁
      */

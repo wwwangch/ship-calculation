@@ -17,4 +17,6 @@ public interface BulkheadService extends IService<Bulkhead> {
     Boolean deleteByIds(List<Integer> ids);
 
     Integer update(Bulkhead bulkhead) throws IOException;
+
+    void saveCompartment(Object bulkheadFilePath);
 }
