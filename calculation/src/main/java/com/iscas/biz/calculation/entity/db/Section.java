@@ -25,9 +25,10 @@ public class Section {
     private Integer projectId;
 
     /**
-     * 校核剖面位置X
+     * 原先为：校核剖面位置X xCoordinate
+     * 修改为：剖面位置x-横梁间距  girderDistance
      */
-    private Double xCoordinate;
+    private Double girderDistance;
 
     /**
      * 剖面文件名称
@@ -39,11 +40,46 @@ public class Section {
      */
     private String sectionFilePath;
     /**
-     * 剖面构件跨距a
+     *
+     * 原先为：剖面构件跨距a  componentSpan
+     * 修改为：构件跨距-龙骨跨距 每个的跨距
      */
-    private Double componentSpan;
+    private Double kuaChang;
 
     private Date createTime;
 
     private Date updateTime;
+
+    /**
+     * 肋位号
+     */
+    private Double ribNumber;
+
+    /**
+     * 纵骨间距
+     */
+    private Double frDistance;
+    /**
+     * 纵骨规格 每个的规格
+     */
+    private Double frGuige;
+    /**
+     *板格厚度 每个板材的厚度
+     */
+    private Double plateThick;
+    /**
+     * 设备重量
+     */
+    private Double deviceWeight;
+    /**
+     * 板格宽度
+     */
+    private Double girderWidth;
+    /**
+     * 材料类型
+     */
+    private String materialType;
+
+
+
 }
