@@ -3,7 +3,7 @@
 
 package com.iscas.biz.calculation.grpc;
 
-public interface Sigma2RequestOrBuilder extends
-    // @@protoc_insertion_point(interface_extends:com.iscas.biz.calculation.grpc.Sigma2Request)
+public interface ShearingStressRequestOrBuilder extends
+    // @@protoc_insertion_point(interface_extends:com.iscas.biz.calculation.grpc.ShearingStressRequest)
     com.google.protobuf.MessageOrBuilder {
 }

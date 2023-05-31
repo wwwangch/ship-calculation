@@ -359,6 +359,37 @@ public final class CalculationGrpc {
     return getCalSigma4Method;
   }
 
+  private static volatile io.grpc.MethodDescriptor<com.iscas.biz.calculation.grpc.ShearingStressRequest,
+      com.iscas.biz.calculation.grpc.ShearingStressResponse> getCalShearingStressMethod;
+
+  @io.grpc.stub.annotations.RpcMethod(
+      fullMethodName = SERVICE_NAME + '/' + "calShearingStress",
+      requestType = com.iscas.biz.calculation.grpc.ShearingStressRequest.class,
+      responseType = com.iscas.biz.calculation.grpc.ShearingStressResponse.class,
+      methodType = io.grpc.MethodDescriptor.MethodType.UNARY)
+  public static io.grpc.MethodDescriptor<com.iscas.biz.calculation.grpc.ShearingStressRequest,
+      com.iscas.biz.calculation.grpc.ShearingStressResponse> getCalShearingStressMethod() {
+    io.grpc.MethodDescriptor<com.iscas.biz.calculation.grpc.ShearingStressRequest, com.iscas.biz.calculation.grpc.ShearingStressResponse> getCalShearingStressMethod;
+    if ((getCalShearingStressMethod = CalculationGrpc.getCalShearingStressMethod) == null) {
+      synchronized (CalculationGrpc.class) {
+        if ((getCalShearingStressMethod = CalculationGrpc.getCalShearingStressMethod) == null) {
+          CalculationGrpc.getCalShearingStressMethod = getCalShearingStressMethod =
+              io.grpc.MethodDescriptor.<com.iscas.biz.calculation.grpc.ShearingStressRequest, com.iscas.biz.calculation.grpc.ShearingStressResponse>newBuilder()
+              .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
+              .setFullMethodName(generateFullMethodName(SERVICE_NAME, "calShearingStress"))
+              .setSampledToLocalTracing(true)
+              .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  com.iscas.biz.calculation.grpc.ShearingStressRequest.getDefaultInstance()))
+              .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  com.iscas.biz.calculation.grpc.ShearingStressResponse.getDefaultInstance()))
+              .setSchemaDescriptor(new CalculationMethodDescriptorSupplier("calShearingStress"))
+              .build();
+        }
+      }
+    }
+    return getCalShearingStressMethod;
+  }
+
   private static volatile io.grpc.MethodDescriptor<com.iscas.biz.calculation.grpc.DistRequest,
       com.iscas.biz.calculation.grpc.DistResponse> getCalDistMethod;
 
@@ -541,6 +572,16 @@ public final class CalculationGrpc {
 
     /**
      * <pre>
+     *剪应力
+     * </pre>
+     */
+    default void calShearingStress(com.iscas.biz.calculation.grpc.ShearingStressRequest request,
+        io.grpc.stub.StreamObserver<com.iscas.biz.calculation.grpc.ShearingStressResponse> responseObserver) {
+      io.grpc.stub.ServerCalls.asyncUnimplementedUnaryCall(getCalShearingStressMethod(), responseObserver);
+    }
+
+    /**
+     * <pre>
      *应力分布 对应极限弯矩校验
      * </pre>
      */
@@ -694,6 +735,17 @@ public final class CalculationGrpc {
 
     /**
      * <pre>
+     *剪应力
+     * </pre>
+     */
+    public void calShearingStress(com.iscas.biz.calculation.grpc.ShearingStressRequest request,
+        io.grpc.stub.StreamObserver<com.iscas.biz.calculation.grpc.ShearingStressResponse> responseObserver) {
+      io.grpc.stub.ClientCalls.asyncUnaryCall(
+          getChannel().newCall(getCalShearingStressMethod(), getCallOptions()), request, responseObserver);
+    }
+
+    /**
+     * <pre>
      *应力分布 对应极限弯矩校验
      * </pre>
      */
@@ -819,6 +871,16 @@ public final class CalculationGrpc {
     public com.iscas.biz.calculation.grpc.Sigma4Response calSigma4(com.iscas.biz.calculation.grpc.Sigma4Request request) {
       return io.grpc.stub.ClientCalls.blockingUnaryCall(
           getChannel(), getCalSigma4Method(), getCallOptions(), request);
+    }
+
+    /**
+     * <pre>
+     *剪应力
+     * </pre>
+     */
+    public com.iscas.biz.calculation.grpc.ShearingStressResponse calShearingStress(com.iscas.biz.calculation.grpc.ShearingStressRequest request) {
+      return io.grpc.stub.ClientCalls.blockingUnaryCall(
+          getChannel(), getCalShearingStressMethod(), getCallOptions(), request);
     }
 
     /**
@@ -962,6 +1024,17 @@ public final class CalculationGrpc {
 
     /**
      * <pre>
+     *剪应力
+     * </pre>
+     */
+    public com.google.common.util.concurrent.ListenableFuture<com.iscas.biz.calculation.grpc.ShearingStressResponse> calShearingStress(
+        com.iscas.biz.calculation.grpc.ShearingStressRequest request) {
+      return io.grpc.stub.ClientCalls.futureUnaryCall(
+          getChannel().newCall(getCalShearingStressMethod(), getCallOptions()), request);
+    }
+
+    /**
+     * <pre>
      *应力分布 对应极限弯矩校验
      * </pre>
      */
@@ -983,7 +1056,8 @@ public final class CalculationGrpc {
   private static final int METHODID_CAL_SIGMA2 = 8;
   private static final int METHODID_CAL_SIGMA3 = 9;
   private static final int METHODID_CAL_SIGMA4 = 10;
-  private static final int METHODID_CAL_DIST = 11;
+  private static final int METHODID_CAL_SHEARING_STRESS = 11;
+  private static final int METHODID_CAL_DIST = 12;
 
   private static final class MethodHandlers<Req, Resp> implements
       io.grpc.stub.ServerCalls.UnaryMethod<Req, Resp>,
@@ -1045,6 +1119,10 @@ public final class CalculationGrpc {
         case METHODID_CAL_SIGMA4:
           serviceImpl.calSigma4((com.iscas.biz.calculation.grpc.Sigma4Request) request,
               (io.grpc.stub.StreamObserver<com.iscas.biz.calculation.grpc.Sigma4Response>) responseObserver);
+          break;
+        case METHODID_CAL_SHEARING_STRESS:
+          serviceImpl.calShearingStress((com.iscas.biz.calculation.grpc.ShearingStressRequest) request,
+              (io.grpc.stub.StreamObserver<com.iscas.biz.calculation.grpc.ShearingStressResponse>) responseObserver);
           break;
         case METHODID_CAL_DIST:
           serviceImpl.calDist((com.iscas.biz.calculation.grpc.DistRequest) request,
@@ -1146,6 +1224,13 @@ public final class CalculationGrpc {
               com.iscas.biz.calculation.grpc.Sigma4Response>(
                 service, METHODID_CAL_SIGMA4)))
         .addMethod(
+          getCalShearingStressMethod(),
+          io.grpc.stub.ServerCalls.asyncUnaryCall(
+            new MethodHandlers<
+              com.iscas.biz.calculation.grpc.ShearingStressRequest,
+              com.iscas.biz.calculation.grpc.ShearingStressResponse>(
+                service, METHODID_CAL_SHEARING_STRESS)))
+        .addMethod(
           getCalDistMethod(),
           io.grpc.stub.ServerCalls.asyncUnaryCall(
             new MethodHandlers<
@@ -1211,6 +1296,7 @@ public final class CalculationGrpc {
               .addMethod(getCalSigma2Method())
               .addMethod(getCalSigma3Method())
               .addMethod(getCalSigma4Method())
+              .addMethod(getCalShearingStressMethod())
               .addMethod(getCalDistMethod())
               .build();
         }

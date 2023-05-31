@@ -15,6 +15,14 @@ public  final class Sigma1Request extends
     super(builder);
   }
   private Sigma1Request() {
+    kuaChang_ = java.util.Collections.emptyList();
+    girderDistance_ = 0D;
+    frDistance_ = 0D;
+    frGuige_ = java.util.Collections.emptyList();
+    plateThick_ = java.util.Collections.emptyList();
+    deviceWeight_ = 0D;
+    girderWidth_ = 0D;
+    materialType_ = 0D;
   }
 
   @java.lang.Override
@@ -27,6 +35,7 @@ public  final class Sigma1Request extends
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)
       throws com.google.protobuf.InvalidProtocolBufferException {
     this();
+    int mutable_bitField0_ = 0;
     try {
       boolean done = false;
       while (!done) {
@@ -41,6 +50,94 @@ public  final class Sigma1Request extends
             }
             break;
           }
+          case 9: {
+            if (!((mutable_bitField0_ & 0x00000001) == 0x00000001)) {
+              kuaChang_ = new java.util.ArrayList<java.lang.Double>();
+              mutable_bitField0_ |= 0x00000001;
+            }
+            kuaChang_.add(input.readDouble());
+            break;
+          }
+          case 10: {
+            int length = input.readRawVarint32();
+            int limit = input.pushLimit(length);
+            if (!((mutable_bitField0_ & 0x00000001) == 0x00000001) && input.getBytesUntilLimit() > 0) {
+              kuaChang_ = new java.util.ArrayList<java.lang.Double>();
+              mutable_bitField0_ |= 0x00000001;
+            }
+            while (input.getBytesUntilLimit() > 0) {
+              kuaChang_.add(input.readDouble());
+            }
+            input.popLimit(limit);
+            break;
+          }
+          case 17: {
+
+            girderDistance_ = input.readDouble();
+            break;
+          }
+          case 25: {
+
+            frDistance_ = input.readDouble();
+            break;
+          }
+          case 33: {
+            if (!((mutable_bitField0_ & 0x00000008) == 0x00000008)) {
+              frGuige_ = new java.util.ArrayList<java.lang.Double>();
+              mutable_bitField0_ |= 0x00000008;
+            }
+            frGuige_.add(input.readDouble());
+            break;
+          }
+          case 34: {
+            int length = input.readRawVarint32();
+            int limit = input.pushLimit(length);
+            if (!((mutable_bitField0_ & 0x00000008) == 0x00000008) && input.getBytesUntilLimit() > 0) {
+              frGuige_ = new java.util.ArrayList<java.lang.Double>();
+              mutable_bitField0_ |= 0x00000008;
+            }
+            while (input.getBytesUntilLimit() > 0) {
+              frGuige_.add(input.readDouble());
+            }
+            input.popLimit(limit);
+            break;
+          }
+          case 41: {
+            if (!((mutable_bitField0_ & 0x00000010) == 0x00000010)) {
+              plateThick_ = new java.util.ArrayList<java.lang.Double>();
+              mutable_bitField0_ |= 0x00000010;
+            }
+            plateThick_.add(input.readDouble());
+            break;
+          }
+          case 42: {
+            int length = input.readRawVarint32();
+            int limit = input.pushLimit(length);
+            if (!((mutable_bitField0_ & 0x00000010) == 0x00000010) && input.getBytesUntilLimit() > 0) {
+              plateThick_ = new java.util.ArrayList<java.lang.Double>();
+              mutable_bitField0_ |= 0x00000010;
+            }
+            while (input.getBytesUntilLimit() > 0) {
+              plateThick_.add(input.readDouble());
+            }
+            input.popLimit(limit);
+            break;
+          }
+          case 49: {
+
+            deviceWeight_ = input.readDouble();
+            break;
+          }
+          case 57: {
+
+            girderWidth_ = input.readDouble();
+            break;
+          }
+          case 65: {
+
+            materialType_ = input.readDouble();
+            break;
+          }
         }
       }
     } catch (com.google.protobuf.InvalidProtocolBufferException e) {
@@ -49,6 +146,15 @@ public  final class Sigma1Request extends
       throw new com.google.protobuf.InvalidProtocolBufferException(
           e).setUnfinishedMessage(this);
     } finally {
+      if (((mutable_bitField0_ & 0x00000001) == 0x00000001)) {
+        kuaChang_ = java.util.Collections.unmodifiableList(kuaChang_);
+      }
+      if (((mutable_bitField0_ & 0x00000008) == 0x00000008)) {
+        frGuige_ = java.util.Collections.unmodifiableList(frGuige_);
+      }
+      if (((mutable_bitField0_ & 0x00000010) == 0x00000010)) {
+        plateThick_ = java.util.Collections.unmodifiableList(plateThick_);
+      }
       makeExtensionsImmutable();
     }
   }
@@ -64,6 +170,177 @@ public  final class Sigma1Request extends
             com.iscas.biz.calculation.grpc.Sigma1Request.class, com.iscas.biz.calculation.grpc.Sigma1Request.Builder.class);
   }
 
+  private int bitField0_;
+  public static final int KUACHANG_FIELD_NUMBER = 1;
+  private java.util.List<java.lang.Double> kuaChang_;
+  /**
+   * <pre>
+   *构件跨距-龙骨跨距 每个的跨距
+   * </pre>
+   *
+   * <code>repeated double kuaChang = 1;</code>
+   */
+  public java.util.List<java.lang.Double>
+      getKuaChangList() {
+    return kuaChang_;
+  }
+  /**
+   * <pre>
+   *构件跨距-龙骨跨距 每个的跨距
+   * </pre>
+   *
+   * <code>repeated double kuaChang = 1;</code>
+   */
+  public int getKuaChangCount() {
+    return kuaChang_.size();
+  }
+  /**
+   * <pre>
+   *构件跨距-龙骨跨距 每个的跨距
+   * </pre>
+   *
+   * <code>repeated double kuaChang = 1;</code>
+   */
+  public double getKuaChang(int index) {
+    return kuaChang_.get(index);
+  }
+  private int kuaChangMemoizedSerializedSize = -1;
+
+  public static final int GIRDERDISTANCE_FIELD_NUMBER = 2;
+  private double girderDistance_;
+  /**
+   * <pre>
+   *剖面位置x-衡量间距
+   * </pre>
+   *
+   * <code>double girderDistance = 2;</code>
+   */
+  public double getGirderDistance() {
+    return girderDistance_;
+  }
+
+  public static final int FRDISTANCE_FIELD_NUMBER = 3;
+  private double frDistance_;
+  /**
+   * <pre>
+   *纵骨间距
+   * </pre>
+   *
+   * <code>double frDistance = 3;</code>
+   */
+  public double getFrDistance() {
+    return frDistance_;
+  }
+
+  public static final int FRGUIGE_FIELD_NUMBER = 4;
+  private java.util.List<java.lang.Double> frGuige_;
+  /**
+   * <pre>
+   *纵骨规格 每个的规格
+   * </pre>
+   *
+   * <code>repeated double frGuige = 4;</code>
+   */
+  public java.util.List<java.lang.Double>
+      getFrGuigeList() {
+    return frGuige_;
+  }
+  /**
+   * <pre>
+   *纵骨规格 每个的规格
+   * </pre>
+   *
+   * <code>repeated double frGuige = 4;</code>
+   */
+  public int getFrGuigeCount() {
+    return frGuige_.size();
+  }
+  /**
+   * <pre>
+   *纵骨规格 每个的规格
+   * </pre>
+   *
+   * <code>repeated double frGuige = 4;</code>
+   */
+  public double getFrGuige(int index) {
+    return frGuige_.get(index);
+  }
+  private int frGuigeMemoizedSerializedSize = -1;
+
+  public static final int PLATETHICK_FIELD_NUMBER = 5;
+  private java.util.List<java.lang.Double> plateThick_;
+  /**
+   * <pre>
+   *板各厚度 每个板材的厚度
+   * </pre>
+   *
+   * <code>repeated double plateThick = 5;</code>
+   */
+  public java.util.List<java.lang.Double>
+      getPlateThickList() {
+    return plateThick_;
+  }
+  /**
+   * <pre>
+   *板各厚度 每个板材的厚度
+   * </pre>
+   *
+   * <code>repeated double plateThick = 5;</code>
+   */
+  public int getPlateThickCount() {
+    return plateThick_.size();
+  }
+  /**
+   * <pre>
+   *板各厚度 每个板材的厚度
+   * </pre>
+   *
+   * <code>repeated double plateThick = 5;</code>
+   */
+  public double getPlateThick(int index) {
+    return plateThick_.get(index);
+  }
+  private int plateThickMemoizedSerializedSize = -1;
+
+  public static final int DEVICEWEIGHT_FIELD_NUMBER = 6;
+  private double deviceWeight_;
+  /**
+   * <pre>
+   *设备重量(t)
+   * </pre>
+   *
+   * <code>double deviceWeight = 6;</code>
+   */
+  public double getDeviceWeight() {
+    return deviceWeight_;
+  }
+
+  public static final int GIRDERWIDTH_FIELD_NUMBER = 7;
+  private double girderWidth_;
+  /**
+   * <pre>
+   *版格宽度
+   * </pre>
+   *
+   * <code>double girderWidth = 7;</code>
+   */
+  public double getGirderWidth() {
+    return girderWidth_;
+  }
+
+  public static final int MATERIALTYPE_FIELD_NUMBER = 8;
+  private double materialType_;
+  /**
+   * <pre>
+   *材料类型
+   * </pre>
+   *
+   * <code>double materialType = 8;</code>
+   */
+  public double getMaterialType() {
+    return materialType_;
+  }
+
   private byte memoizedIsInitialized = -1;
   public final boolean isInitialized() {
     byte isInitialized = memoizedIsInitialized;
@@ -76,6 +353,43 @@ public  final class Sigma1Request extends
 
   public void writeTo(com.google.protobuf.CodedOutputStream output)
                       throws java.io.IOException {
+    getSerializedSize();
+    if (getKuaChangList().size() > 0) {
+      output.writeUInt32NoTag(10);
+      output.writeUInt32NoTag(kuaChangMemoizedSerializedSize);
+    }
+    for (int i = 0; i < kuaChang_.size(); i++) {
+      output.writeDoubleNoTag(kuaChang_.get(i));
+    }
+    if (girderDistance_ != 0D) {
+      output.writeDouble(2, girderDistance_);
+    }
+    if (frDistance_ != 0D) {
+      output.writeDouble(3, frDistance_);
+    }
+    if (getFrGuigeList().size() > 0) {
+      output.writeUInt32NoTag(34);
+      output.writeUInt32NoTag(frGuigeMemoizedSerializedSize);
+    }
+    for (int i = 0; i < frGuige_.size(); i++) {
+      output.writeDoubleNoTag(frGuige_.get(i));
+    }
+    if (getPlateThickList().size() > 0) {
+      output.writeUInt32NoTag(42);
+      output.writeUInt32NoTag(plateThickMemoizedSerializedSize);
+    }
+    for (int i = 0; i < plateThick_.size(); i++) {
+      output.writeDoubleNoTag(plateThick_.get(i));
+    }
+    if (deviceWeight_ != 0D) {
+      output.writeDouble(6, deviceWeight_);
+    }
+    if (girderWidth_ != 0D) {
+      output.writeDouble(7, girderWidth_);
+    }
+    if (materialType_ != 0D) {
+      output.writeDouble(8, materialType_);
+    }
   }
 
   public int getSerializedSize() {
@@ -83,6 +397,59 @@ public  final class Sigma1Request extends
     if (size != -1) return size;
 
     size = 0;
+    {
+      int dataSize = 0;
+      dataSize = 8 * getKuaChangList().size();
+      size += dataSize;
+      if (!getKuaChangList().isEmpty()) {
+        size += 1;
+        size += com.google.protobuf.CodedOutputStream
+            .computeInt32SizeNoTag(dataSize);
+      }
+      kuaChangMemoizedSerializedSize = dataSize;
+    }
+    if (girderDistance_ != 0D) {
+      size += com.google.protobuf.CodedOutputStream
+        .computeDoubleSize(2, girderDistance_);
+    }
+    if (frDistance_ != 0D) {
+      size += com.google.protobuf.CodedOutputStream
+        .computeDoubleSize(3, frDistance_);
+    }
+    {
+      int dataSize = 0;
+      dataSize = 8 * getFrGuigeList().size();
+      size += dataSize;
+      if (!getFrGuigeList().isEmpty()) {
+        size += 1;
+        size += com.google.protobuf.CodedOutputStream
+            .computeInt32SizeNoTag(dataSize);
+      }
+      frGuigeMemoizedSerializedSize = dataSize;
+    }
+    {
+      int dataSize = 0;
+      dataSize = 8 * getPlateThickList().size();
+      size += dataSize;
+      if (!getPlateThickList().isEmpty()) {
+        size += 1;
+        size += com.google.protobuf.CodedOutputStream
+            .computeInt32SizeNoTag(dataSize);
+      }
+      plateThickMemoizedSerializedSize = dataSize;
+    }
+    if (deviceWeight_ != 0D) {
+      size += com.google.protobuf.CodedOutputStream
+        .computeDoubleSize(6, deviceWeight_);
+    }
+    if (girderWidth_ != 0D) {
+      size += com.google.protobuf.CodedOutputStream
+        .computeDoubleSize(7, girderWidth_);
+    }
+    if (materialType_ != 0D) {
+      size += com.google.protobuf.CodedOutputStream
+        .computeDoubleSize(8, materialType_);
+    }
     memoizedSize = size;
     return size;
   }
@@ -99,6 +466,32 @@ public  final class Sigma1Request extends
     com.iscas.biz.calculation.grpc.Sigma1Request other = (com.iscas.biz.calculation.grpc.Sigma1Request) obj;
 
     boolean result = true;
+    result = result && getKuaChangList()
+        .equals(other.getKuaChangList());
+    result = result && (
+        java.lang.Double.doubleToLongBits(getGirderDistance())
+        == java.lang.Double.doubleToLongBits(
+            other.getGirderDistance()));
+    result = result && (
+        java.lang.Double.doubleToLongBits(getFrDistance())
+        == java.lang.Double.doubleToLongBits(
+            other.getFrDistance()));
+    result = result && getFrGuigeList()
+        .equals(other.getFrGuigeList());
+    result = result && getPlateThickList()
+        .equals(other.getPlateThickList());
+    result = result && (
+        java.lang.Double.doubleToLongBits(getDeviceWeight())
+        == java.lang.Double.doubleToLongBits(
+            other.getDeviceWeight()));
+    result = result && (
+        java.lang.Double.doubleToLongBits(getGirderWidth())
+        == java.lang.Double.doubleToLongBits(
+            other.getGirderWidth()));
+    result = result && (
+        java.lang.Double.doubleToLongBits(getMaterialType())
+        == java.lang.Double.doubleToLongBits(
+            other.getMaterialType()));
     return result;
   }
 
@@ -109,6 +502,33 @@ public  final class Sigma1Request extends
     }
     int hash = 41;
     hash = (19 * hash) + getDescriptor().hashCode();
+    if (getKuaChangCount() > 0) {
+      hash = (37 * hash) + KUACHANG_FIELD_NUMBER;
+      hash = (53 * hash) + getKuaChangList().hashCode();
+    }
+    hash = (37 * hash) + GIRDERDISTANCE_FIELD_NUMBER;
+    hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
+        java.lang.Double.doubleToLongBits(getGirderDistance()));
+    hash = (37 * hash) + FRDISTANCE_FIELD_NUMBER;
+    hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
+        java.lang.Double.doubleToLongBits(getFrDistance()));
+    if (getFrGuigeCount() > 0) {
+      hash = (37 * hash) + FRGUIGE_FIELD_NUMBER;
+      hash = (53 * hash) + getFrGuigeList().hashCode();
+    }
+    if (getPlateThickCount() > 0) {
+      hash = (37 * hash) + PLATETHICK_FIELD_NUMBER;
+      hash = (53 * hash) + getPlateThickList().hashCode();
+    }
+    hash = (37 * hash) + DEVICEWEIGHT_FIELD_NUMBER;
+    hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
+        java.lang.Double.doubleToLongBits(getDeviceWeight()));
+    hash = (37 * hash) + GIRDERWIDTH_FIELD_NUMBER;
+    hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
+        java.lang.Double.doubleToLongBits(getGirderWidth()));
+    hash = (37 * hash) + MATERIALTYPE_FIELD_NUMBER;
+    hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
+        java.lang.Double.doubleToLongBits(getMaterialType()));
     hash = (29 * hash) + unknownFields.hashCode();
     memoizedHashCode = hash;
     return hash;
@@ -227,6 +647,22 @@ public  final class Sigma1Request extends
     }
     public Builder clear() {
       super.clear();
+      kuaChang_ = java.util.Collections.emptyList();
+      bitField0_ = (bitField0_ & ~0x00000001);
+      girderDistance_ = 0D;
+
+      frDistance_ = 0D;
+
+      frGuige_ = java.util.Collections.emptyList();
+      bitField0_ = (bitField0_ & ~0x00000008);
+      plateThick_ = java.util.Collections.emptyList();
+      bitField0_ = (bitField0_ & ~0x00000010);
+      deviceWeight_ = 0D;
+
+      girderWidth_ = 0D;
+
+      materialType_ = 0D;
+
       return this;
     }
 
@@ -249,6 +685,29 @@ public  final class Sigma1Request extends
 
     public com.iscas.biz.calculation.grpc.Sigma1Request buildPartial() {
       com.iscas.biz.calculation.grpc.Sigma1Request result = new com.iscas.biz.calculation.grpc.Sigma1Request(this);
+      int from_bitField0_ = bitField0_;
+      int to_bitField0_ = 0;
+      if (((bitField0_ & 0x00000001) == 0x00000001)) {
+        kuaChang_ = java.util.Collections.unmodifiableList(kuaChang_);
+        bitField0_ = (bitField0_ & ~0x00000001);
+      }
+      result.kuaChang_ = kuaChang_;
+      result.girderDistance_ = girderDistance_;
+      result.frDistance_ = frDistance_;
+      if (((bitField0_ & 0x00000008) == 0x00000008)) {
+        frGuige_ = java.util.Collections.unmodifiableList(frGuige_);
+        bitField0_ = (bitField0_ & ~0x00000008);
+      }
+      result.frGuige_ = frGuige_;
+      if (((bitField0_ & 0x00000010) == 0x00000010)) {
+        plateThick_ = java.util.Collections.unmodifiableList(plateThick_);
+        bitField0_ = (bitField0_ & ~0x00000010);
+      }
+      result.plateThick_ = plateThick_;
+      result.deviceWeight_ = deviceWeight_;
+      result.girderWidth_ = girderWidth_;
+      result.materialType_ = materialType_;
+      result.bitField0_ = to_bitField0_;
       onBuilt();
       return result;
     }
@@ -290,6 +749,51 @@ public  final class Sigma1Request extends
 
     public Builder mergeFrom(com.iscas.biz.calculation.grpc.Sigma1Request other) {
       if (other == com.iscas.biz.calculation.grpc.Sigma1Request.getDefaultInstance()) return this;
+      if (!other.kuaChang_.isEmpty()) {
+        if (kuaChang_.isEmpty()) {
+          kuaChang_ = other.kuaChang_;
+          bitField0_ = (bitField0_ & ~0x00000001);
+        } else {
+          ensureKuaChangIsMutable();
+          kuaChang_.addAll(other.kuaChang_);
+        }
+        onChanged();
+      }
+      if (other.getGirderDistance() != 0D) {
+        setGirderDistance(other.getGirderDistance());
+      }
+      if (other.getFrDistance() != 0D) {
+        setFrDistance(other.getFrDistance());
+      }
+      if (!other.frGuige_.isEmpty()) {
+        if (frGuige_.isEmpty()) {
+          frGuige_ = other.frGuige_;
+          bitField0_ = (bitField0_ & ~0x00000008);
+        } else {
+          ensureFrGuigeIsMutable();
+          frGuige_.addAll(other.frGuige_);
+        }
+        onChanged();
+      }
+      if (!other.plateThick_.isEmpty()) {
+        if (plateThick_.isEmpty()) {
+          plateThick_ = other.plateThick_;
+          bitField0_ = (bitField0_ & ~0x00000010);
+        } else {
+          ensurePlateThickIsMutable();
+          plateThick_.addAll(other.plateThick_);
+        }
+        onChanged();
+      }
+      if (other.getDeviceWeight() != 0D) {
+        setDeviceWeight(other.getDeviceWeight());
+      }
+      if (other.getGirderWidth() != 0D) {
+        setGirderWidth(other.getGirderWidth());
+      }
+      if (other.getMaterialType() != 0D) {
+        setMaterialType(other.getMaterialType());
+      }
       onChanged();
       return this;
     }
@@ -313,6 +817,479 @@ public  final class Sigma1Request extends
           mergeFrom(parsedMessage);
         }
       }
+      return this;
+    }
+    private int bitField0_;
+
+    private java.util.List<java.lang.Double> kuaChang_ = java.util.Collections.emptyList();
+    private void ensureKuaChangIsMutable() {
+      if (!((bitField0_ & 0x00000001) == 0x00000001)) {
+        kuaChang_ = new java.util.ArrayList<java.lang.Double>(kuaChang_);
+        bitField0_ |= 0x00000001;
+       }
+    }
+    /**
+     * <pre>
+     *构件跨距-龙骨跨距 每个的跨距
+     * </pre>
+     *
+     * <code>repeated double kuaChang = 1;</code>
+     */
+    public java.util.List<java.lang.Double>
+        getKuaChangList() {
+      return java.util.Collections.unmodifiableList(kuaChang_);
+    }
+    /**
+     * <pre>
+     *构件跨距-龙骨跨距 每个的跨距
+     * </pre>
+     *
+     * <code>repeated double kuaChang = 1;</code>
+     */
+    public int getKuaChangCount() {
+      return kuaChang_.size();
+    }
+    /**
+     * <pre>
+     *构件跨距-龙骨跨距 每个的跨距
+     * </pre>
+     *
+     * <code>repeated double kuaChang = 1;</code>
+     */
+    public double getKuaChang(int index) {
+      return kuaChang_.get(index);
+    }
+    /**
+     * <pre>
+     *构件跨距-龙骨跨距 每个的跨距
+     * </pre>
+     *
+     * <code>repeated double kuaChang = 1;</code>
+     */
+    public Builder setKuaChang(
+        int index, double value) {
+      ensureKuaChangIsMutable();
+      kuaChang_.set(index, value);
+      onChanged();
+      return this;
+    }
+    /**
+     * <pre>
+     *构件跨距-龙骨跨距 每个的跨距
+     * </pre>
+     *
+     * <code>repeated double kuaChang = 1;</code>
+     */
+    public Builder addKuaChang(double value) {
+      ensureKuaChangIsMutable();
+      kuaChang_.add(value);
+      onChanged();
+      return this;
+    }
+    /**
+     * <pre>
+     *构件跨距-龙骨跨距 每个的跨距
+     * </pre>
+     *
+     * <code>repeated double kuaChang = 1;</code>
+     */
+    public Builder addAllKuaChang(
+        java.lang.Iterable<? extends java.lang.Double> values) {
+      ensureKuaChangIsMutable();
+      com.google.protobuf.AbstractMessageLite.Builder.addAll(
+          values, kuaChang_);
+      onChanged();
+      return this;
+    }
+    /**
+     * <pre>
+     *构件跨距-龙骨跨距 每个的跨距
+     * </pre>
+     *
+     * <code>repeated double kuaChang = 1;</code>
+     */
+    public Builder clearKuaChang() {
+      kuaChang_ = java.util.Collections.emptyList();
+      bitField0_ = (bitField0_ & ~0x00000001);
+      onChanged();
+      return this;
+    }
+
+    private double girderDistance_ ;
+    /**
+     * <pre>
+     *剖面位置x-衡量间距
+     * </pre>
+     *
+     * <code>double girderDistance = 2;</code>
+     */
+    public double getGirderDistance() {
+      return girderDistance_;
+    }
+    /**
+     * <pre>
+     *剖面位置x-衡量间距
+     * </pre>
+     *
+     * <code>double girderDistance = 2;</code>
+     */
+    public Builder setGirderDistance(double value) {
+      
+      girderDistance_ = value;
+      onChanged();
+      return this;
+    }
+    /**
+     * <pre>
+     *剖面位置x-衡量间距
+     * </pre>
+     *
+     * <code>double girderDistance = 2;</code>
+     */
+    public Builder clearGirderDistance() {
+      
+      girderDistance_ = 0D;
+      onChanged();
+      return this;
+    }
+
+    private double frDistance_ ;
+    /**
+     * <pre>
+     *纵骨间距
+     * </pre>
+     *
+     * <code>double frDistance = 3;</code>
+     */
+    public double getFrDistance() {
+      return frDistance_;
+    }
+    /**
+     * <pre>
+     *纵骨间距
+     * </pre>
+     *
+     * <code>double frDistance = 3;</code>
+     */
+    public Builder setFrDistance(double value) {
+      
+      frDistance_ = value;
+      onChanged();
+      return this;
+    }
+    /**
+     * <pre>
+     *纵骨间距
+     * </pre>
+     *
+     * <code>double frDistance = 3;</code>
+     */
+    public Builder clearFrDistance() {
+      
+      frDistance_ = 0D;
+      onChanged();
+      return this;
+    }
+
+    private java.util.List<java.lang.Double> frGuige_ = java.util.Collections.emptyList();
+    private void ensureFrGuigeIsMutable() {
+      if (!((bitField0_ & 0x00000008) == 0x00000008)) {
+        frGuige_ = new java.util.ArrayList<java.lang.Double>(frGuige_);
+        bitField0_ |= 0x00000008;
+       }
+    }
+    /**
+     * <pre>
+     *纵骨规格 每个的规格
+     * </pre>
+     *
+     * <code>repeated double frGuige = 4;</code>
+     */
+    public java.util.List<java.lang.Double>
+        getFrGuigeList() {
+      return java.util.Collections.unmodifiableList(frGuige_);
+    }
+    /**
+     * <pre>
+     *纵骨规格 每个的规格
+     * </pre>
+     *
+     * <code>repeated double frGuige = 4;</code>
+     */
+    public int getFrGuigeCount() {
+      return frGuige_.size();
+    }
+    /**
+     * <pre>
+     *纵骨规格 每个的规格
+     * </pre>
+     *
+     * <code>repeated double frGuige = 4;</code>
+     */
+    public double getFrGuige(int index) {
+      return frGuige_.get(index);
+    }
+    /**
+     * <pre>
+     *纵骨规格 每个的规格
+     * </pre>
+     *
+     * <code>repeated double frGuige = 4;</code>
+     */
+    public Builder setFrGuige(
+        int index, double value) {
+      ensureFrGuigeIsMutable();
+      frGuige_.set(index, value);
+      onChanged();
+      return this;
+    }
+    /**
+     * <pre>
+     *纵骨规格 每个的规格
+     * </pre>
+     *
+     * <code>repeated double frGuige = 4;</code>
+     */
+    public Builder addFrGuige(double value) {
+      ensureFrGuigeIsMutable();
+      frGuige_.add(value);
+      onChanged();
+      return this;
+    }
+    /**
+     * <pre>
+     *纵骨规格 每个的规格
+     * </pre>
+     *
+     * <code>repeated double frGuige = 4;</code>
+     */
+    public Builder addAllFrGuige(
+        java.lang.Iterable<? extends java.lang.Double> values) {
+      ensureFrGuigeIsMutable();
+      com.google.protobuf.AbstractMessageLite.Builder.addAll(
+          values, frGuige_);
+      onChanged();
+      return this;
+    }
+    /**
+     * <pre>
+     *纵骨规格 每个的规格
+     * </pre>
+     *
+     * <code>repeated double frGuige = 4;</code>
+     */
+    public Builder clearFrGuige() {
+      frGuige_ = java.util.Collections.emptyList();
+      bitField0_ = (bitField0_ & ~0x00000008);
+      onChanged();
+      return this;
+    }
+
+    private java.util.List<java.lang.Double> plateThick_ = java.util.Collections.emptyList();
+    private void ensurePlateThickIsMutable() {
+      if (!((bitField0_ & 0x00000010) == 0x00000010)) {
+        plateThick_ = new java.util.ArrayList<java.lang.Double>(plateThick_);
+        bitField0_ |= 0x00000010;
+       }
+    }
+    /**
+     * <pre>
+     *板各厚度 每个板材的厚度
+     * </pre>
+     *
+     * <code>repeated double plateThick = 5;</code>
+     */
+    public java.util.List<java.lang.Double>
+        getPlateThickList() {
+      return java.util.Collections.unmodifiableList(plateThick_);
+    }
+    /**
+     * <pre>
+     *板各厚度 每个板材的厚度
+     * </pre>
+     *
+     * <code>repeated double plateThick = 5;</code>
+     */
+    public int getPlateThickCount() {
+      return plateThick_.size();
+    }
+    /**
+     * <pre>
+     *板各厚度 每个板材的厚度
+     * </pre>
+     *
+     * <code>repeated double plateThick = 5;</code>
+     */
+    public double getPlateThick(int index) {
+      return plateThick_.get(index);
+    }
+    /**
+     * <pre>
+     *板各厚度 每个板材的厚度
+     * </pre>
+     *
+     * <code>repeated double plateThick = 5;</code>
+     */
+    public Builder setPlateThick(
+        int index, double value) {
+      ensurePlateThickIsMutable();
+      plateThick_.set(index, value);
+      onChanged();
+      return this;
+    }
+    /**
+     * <pre>
+     *板各厚度 每个板材的厚度
+     * </pre>
+     *
+     * <code>repeated double plateThick = 5;</code>
+     */
+    public Builder addPlateThick(double value) {
+      ensurePlateThickIsMutable();
+      plateThick_.add(value);
+      onChanged();
+      return this;
+    }
+    /**
+     * <pre>
+     *板各厚度 每个板材的厚度
+     * </pre>
+     *
+     * <code>repeated double plateThick = 5;</code>
+     */
+    public Builder addAllPlateThick(
+        java.lang.Iterable<? extends java.lang.Double> values) {
+      ensurePlateThickIsMutable();
+      com.google.protobuf.AbstractMessageLite.Builder.addAll(
+          values, plateThick_);
+      onChanged();
+      return this;
+    }
+    /**
+     * <pre>
+     *板各厚度 每个板材的厚度
+     * </pre>
+     *
+     * <code>repeated double plateThick = 5;</code>
+     */
+    public Builder clearPlateThick() {
+      plateThick_ = java.util.Collections.emptyList();
+      bitField0_ = (bitField0_ & ~0x00000010);
+      onChanged();
+      return this;
+    }
+
+    private double deviceWeight_ ;
+    /**
+     * <pre>
+     *设备重量(t)
+     * </pre>
+     *
+     * <code>double deviceWeight = 6;</code>
+     */
+    public double getDeviceWeight() {
+      return deviceWeight_;
+    }
+    /**
+     * <pre>
+     *设备重量(t)
+     * </pre>
+     *
+     * <code>double deviceWeight = 6;</code>
+     */
+    public Builder setDeviceWeight(double value) {
+      
+      deviceWeight_ = value;
+      onChanged();
+      return this;
+    }
+    /**
+     * <pre>
+     *设备重量(t)
+     * </pre>
+     *
+     * <code>double deviceWeight = 6;</code>
+     */
+    public Builder clearDeviceWeight() {
+      
+      deviceWeight_ = 0D;
+      onChanged();
+      return this;
+    }
+
+    private double girderWidth_ ;
+    /**
+     * <pre>
+     *版格宽度
+     * </pre>
+     *
+     * <code>double girderWidth = 7;</code>
+     */
+    public double getGirderWidth() {
+      return girderWidth_;
+    }
+    /**
+     * <pre>
+     *版格宽度
+     * </pre>
+     *
+     * <code>double girderWidth = 7;</code>
+     */
+    public Builder setGirderWidth(double value) {
+      
+      girderWidth_ = value;
+      onChanged();
+      return this;
+    }
+    /**
+     * <pre>
+     *版格宽度
+     * </pre>
+     *
+     * <code>double girderWidth = 7;</code>
+     */
+    public Builder clearGirderWidth() {
+      
+      girderWidth_ = 0D;
+      onChanged();
+      return this;
+    }
+
+    private double materialType_ ;
+    /**
+     * <pre>
+     *材料类型
+     * </pre>
+     *
+     * <code>double materialType = 8;</code>
+     */
+    public double getMaterialType() {
+      return materialType_;
+    }
+    /**
+     * <pre>
+     *材料类型
+     * </pre>
+     *
+     * <code>double materialType = 8;</code>
+     */
+    public Builder setMaterialType(double value) {
+      
+      materialType_ = value;
+      onChanged();
+      return this;
+    }
+    /**
+     * <pre>
+     *材料类型
+     * </pre>
+     *
+     * <code>double materialType = 8;</code>
+     */
+    public Builder clearMaterialType() {
+      
+      materialType_ = 0D;
+      onChanged();
       return this;
     }
     public final Builder setUnknownFields(

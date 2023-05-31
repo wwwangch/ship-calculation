@@ -4,17 +4,17 @@
 package com.iscas.biz.calculation.grpc;
 
 /**
- * Protobuf type {@code com.iscas.biz.calculation.grpc.Sigma2Request}
+ * Protobuf type {@code com.iscas.biz.calculation.grpc.ShearingStressRequest}
  */
-public  final class Sigma2Request extends
+public  final class ShearingStressRequest extends
     com.google.protobuf.GeneratedMessageV3 implements
-    // @@protoc_insertion_point(message_implements:com.iscas.biz.calculation.grpc.Sigma2Request)
-    Sigma2RequestOrBuilder {
-  // Use Sigma2Request.newBuilder() to construct.
-  private Sigma2Request(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
+    // @@protoc_insertion_point(message_implements:com.iscas.biz.calculation.grpc.ShearingStressRequest)
+    ShearingStressRequestOrBuilder {
+  // Use ShearingStressRequest.newBuilder() to construct.
+  private ShearingStressRequest(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
     super(builder);
   }
-  private Sigma2Request() {
+  private ShearingStressRequest() {
   }
 
   @java.lang.Override
@@ -22,7 +22,7 @@ public  final class Sigma2Request extends
   getUnknownFields() {
     return com.google.protobuf.UnknownFieldSet.getDefaultInstance();
   }
-  private Sigma2Request(
+  private ShearingStressRequest(
       com.google.protobuf.CodedInputStream input,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)
       throws com.google.protobuf.InvalidProtocolBufferException {
@@ -54,14 +54,14 @@ public  final class Sigma2Request extends
   }
   public static final com.google.protobuf.Descriptors.Descriptor
       getDescriptor() {
-    return com.iscas.biz.calculation.grpc.CalculationProto.internal_static_com_iscas_biz_calculation_grpc_Sigma2Request_descriptor;
+    return com.iscas.biz.calculation.grpc.CalculationProto.internal_static_com_iscas_biz_calculation_grpc_ShearingStressRequest_descriptor;
   }
 
   protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
       internalGetFieldAccessorTable() {
-    return com.iscas.biz.calculation.grpc.CalculationProto.internal_static_com_iscas_biz_calculation_grpc_Sigma2Request_fieldAccessorTable
+    return com.iscas.biz.calculation.grpc.CalculationProto.internal_static_com_iscas_biz_calculation_grpc_ShearingStressRequest_fieldAccessorTable
         .ensureFieldAccessorsInitialized(
-            com.iscas.biz.calculation.grpc.Sigma2Request.class, com.iscas.biz.calculation.grpc.Sigma2Request.Builder.class);
+            com.iscas.biz.calculation.grpc.ShearingStressRequest.class, com.iscas.biz.calculation.grpc.ShearingStressRequest.Builder.class);
   }
 
   private byte memoizedIsInitialized = -1;
@@ -93,10 +93,10 @@ public  final class Sigma2Request extends
     if (obj == this) {
      return true;
     }
-    if (!(obj instanceof com.iscas.biz.calculation.grpc.Sigma2Request)) {
+    if (!(obj instanceof com.iscas.biz.calculation.grpc.ShearingStressRequest)) {
       return super.equals(obj);
     }
-    com.iscas.biz.calculation.grpc.Sigma2Request other = (com.iscas.biz.calculation.grpc.Sigma2Request) obj;
+    com.iscas.biz.calculation.grpc.ShearingStressRequest other = (com.iscas.biz.calculation.grpc.ShearingStressRequest) obj;
 
     boolean result = true;
     return result;
@@ -114,58 +114,58 @@ public  final class Sigma2Request extends
     return hash;
   }
 
-  public static com.iscas.biz.calculation.grpc.Sigma2Request parseFrom(
+  public static com.iscas.biz.calculation.grpc.ShearingStressRequest parseFrom(
       com.google.protobuf.ByteString data)
       throws com.google.protobuf.InvalidProtocolBufferException {
     return PARSER.parseFrom(data);
   }
-  public static com.iscas.biz.calculation.grpc.Sigma2Request parseFrom(
+  public static com.iscas.biz.calculation.grpc.ShearingStressRequest parseFrom(
       com.google.protobuf.ByteString data,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)
       throws com.google.protobuf.InvalidProtocolBufferException {
     return PARSER.parseFrom(data, extensionRegistry);
   }
-  public static com.iscas.biz.calculation.grpc.Sigma2Request parseFrom(byte[] data)
+  public static com.iscas.biz.calculation.grpc.ShearingStressRequest parseFrom(byte[] data)
       throws com.google.protobuf.InvalidProtocolBufferException {
     return PARSER.parseFrom(data);
   }
-  public static com.iscas.biz.calculation.grpc.Sigma2Request parseFrom(
+  public static com.iscas.biz.calculation.grpc.ShearingStressRequest parseFrom(
       byte[] data,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)
       throws com.google.protobuf.InvalidProtocolBufferException {
     return PARSER.parseFrom(data, extensionRegistry);
   }
-  public static com.iscas.biz.calculation.grpc.Sigma2Request parseFrom(java.io.InputStream input)
+  public static com.iscas.biz.calculation.grpc.ShearingStressRequest parseFrom(java.io.InputStream input)
       throws java.io.IOException {
     return com.google.protobuf.GeneratedMessageV3
         .parseWithIOException(PARSER, input);
   }
-  public static com.iscas.biz.calculation.grpc.Sigma2Request parseFrom(
+  public static com.iscas.biz.calculation.grpc.ShearingStressRequest parseFrom(
       java.io.InputStream input,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)
       throws java.io.IOException {
     return com.google.protobuf.GeneratedMessageV3
         .parseWithIOException(PARSER, input, extensionRegistry);
   }
-  public static com.iscas.biz.calculation.grpc.Sigma2Request parseDelimitedFrom(java.io.InputStream input)
+  public static com.iscas.biz.calculation.grpc.ShearingStressRequest parseDelimitedFrom(java.io.InputStream input)
       throws java.io.IOException {
     return com.google.protobuf.GeneratedMessageV3
         .parseDelimitedWithIOException(PARSER, input);
   }
-  public static com.iscas.biz.calculation.grpc.Sigma2Request parseDelimitedFrom(
+  public static com.iscas.biz.calculation.grpc.ShearingStressRequest parseDelimitedFrom(
       java.io.InputStream input,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)
       throws java.io.IOException {
     return com.google.protobuf.GeneratedMessageV3
         .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
   }
-  public static com.iscas.biz.calculation.grpc.Sigma2Request parseFrom(
+  public static com.iscas.biz.calculation.grpc.ShearingStressRequest parseFrom(
       com.google.protobuf.CodedInputStream input)
       throws java.io.IOException {
     return com.google.protobuf.GeneratedMessageV3
         .parseWithIOException(PARSER, input);
   }
-  public static com.iscas.biz.calculation.grpc.Sigma2Request parseFrom(
+  public static com.iscas.biz.calculation.grpc.ShearingStressRequest parseFrom(
       com.google.protobuf.CodedInputStream input,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)
       throws java.io.IOException {
@@ -177,7 +177,7 @@ public  final class Sigma2Request extends
   public static Builder newBuilder() {
     return DEFAULT_INSTANCE.toBuilder();
   }
-  public static Builder newBuilder(com.iscas.biz.calculation.grpc.Sigma2Request prototype) {
+  public static Builder newBuilder(com.iscas.biz.calculation.grpc.ShearingStressRequest prototype) {
     return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
   }
   public Builder toBuilder() {
@@ -192,25 +192,25 @@ public  final class Sigma2Request extends
     return builder;
   }
   /**
-   * Protobuf type {@code com.iscas.biz.calculation.grpc.Sigma2Request}
+   * Protobuf type {@code com.iscas.biz.calculation.grpc.ShearingStressRequest}
    */
   public static final class Builder extends
       com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
-      // @@protoc_insertion_point(builder_implements:com.iscas.biz.calculation.grpc.Sigma2Request)
-      com.iscas.biz.calculation.grpc.Sigma2RequestOrBuilder {
+      // @@protoc_insertion_point(builder_implements:com.iscas.biz.calculation.grpc.ShearingStressRequest)
+      com.iscas.biz.calculation.grpc.ShearingStressRequestOrBuilder {
     public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
-      return com.iscas.biz.calculation.grpc.CalculationProto.internal_static_com_iscas_biz_calculation_grpc_Sigma2Request_descriptor;
+      return com.iscas.biz.calculation.grpc.CalculationProto.internal_static_com_iscas_biz_calculation_grpc_ShearingStressRequest_descriptor;
     }
 
     protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
         internalGetFieldAccessorTable() {
-      return com.iscas.biz.calculation.grpc.CalculationProto.internal_static_com_iscas_biz_calculation_grpc_Sigma2Request_fieldAccessorTable
+      return com.iscas.biz.calculation.grpc.CalculationProto.internal_static_com_iscas_biz_calculation_grpc_ShearingStressRequest_fieldAccessorTable
           .ensureFieldAccessorsInitialized(
-              com.iscas.biz.calculation.grpc.Sigma2Request.class, com.iscas.biz.calculation.grpc.Sigma2Request.Builder.class);
+              com.iscas.biz.calculation.grpc.ShearingStressRequest.class, com.iscas.biz.calculation.grpc.ShearingStressRequest.Builder.class);
     }
 
-    // Construct using com.iscas.biz.calculation.grpc.Sigma2Request.newBuilder()
+    // Construct using com.iscas.biz.calculation.grpc.ShearingStressRequest.newBuilder()
     private Builder() {
       maybeForceBuilderInitialization();
     }
@@ -232,23 +232,23 @@ public  final class Sigma2Request extends
 
     public com.google.protobuf.Descriptors.Descriptor
         getDescriptorForType() {
-      return com.iscas.biz.calculation.grpc.CalculationProto.internal_static_com_iscas_biz_calculation_grpc_Sigma2Request_descriptor;
+      return com.iscas.biz.calculation.grpc.CalculationProto.internal_static_com_iscas_biz_calculation_grpc_ShearingStressRequest_descriptor;
     }
 
-    public com.iscas.biz.calculation.grpc.Sigma2Request getDefaultInstanceForType() {
-      return com.iscas.biz.calculation.grpc.Sigma2Request.getDefaultInstance();
+    public com.iscas.biz.calculation.grpc.ShearingStressRequest getDefaultInstanceForType() {
+      return com.iscas.biz.calculation.grpc.ShearingStressRequest.getDefaultInstance();
     }
 
-    public com.iscas.biz.calculation.grpc.Sigma2Request build() {
-      com.iscas.biz.calculation.grpc.Sigma2Request result = buildPartial();
+    public com.iscas.biz.calculation.grpc.ShearingStressRequest build() {
+      com.iscas.biz.calculation.grpc.ShearingStressRequest result = buildPartial();
       if (!result.isInitialized()) {
         throw newUninitializedMessageException(result);
       }
       return result;
     }
 
-    public com.iscas.biz.calculation.grpc.Sigma2Request buildPartial() {
-      com.iscas.biz.calculation.grpc.Sigma2Request result = new com.iscas.biz.calculation.grpc.Sigma2Request(this);
+    public com.iscas.biz.calculation.grpc.ShearingStressRequest buildPartial() {
+      com.iscas.biz.calculation.grpc.ShearingStressRequest result = new com.iscas.biz.calculation.grpc.ShearingStressRequest(this);
       onBuilt();
       return result;
     }
@@ -280,16 +280,16 @@ public  final class Sigma2Request extends
       return (Builder) super.addRepeatedField(field, value);
     }
     public Builder mergeFrom(com.google.protobuf.Message other) {
-      if (other instanceof com.iscas.biz.calculation.grpc.Sigma2Request) {
-        return mergeFrom((com.iscas.biz.calculation.grpc.Sigma2Request)other);
+      if (other instanceof com.iscas.biz.calculation.grpc.ShearingStressRequest) {
+        return mergeFrom((com.iscas.biz.calculation.grpc.ShearingStressRequest)other);
       } else {
         super.mergeFrom(other);
         return this;
       }
     }
 
-    public Builder mergeFrom(com.iscas.biz.calculation.grpc.Sigma2Request other) {
-      if (other == com.iscas.biz.calculation.grpc.Sigma2Request.getDefaultInstance()) return this;
+    public Builder mergeFrom(com.iscas.biz.calculation.grpc.ShearingStressRequest other) {
+      if (other == com.iscas.biz.calculation.grpc.ShearingStressRequest.getDefaultInstance()) return this;
       onChanged();
       return this;
     }
@@ -302,11 +302,11 @@ public  final class Sigma2Request extends
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
-      com.iscas.biz.calculation.grpc.Sigma2Request parsedMessage = null;
+      com.iscas.biz.calculation.grpc.ShearingStressRequest parsedMessage = null;
       try {
         parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
       } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-        parsedMessage = (com.iscas.biz.calculation.grpc.Sigma2Request) e.getUnfinishedMessage();
+        parsedMessage = (com.iscas.biz.calculation.grpc.ShearingStressRequest) e.getUnfinishedMessage();
         throw e.unwrapIOException();
       } finally {
         if (parsedMessage != null) {
@@ -326,39 +326,39 @@ public  final class Sigma2Request extends
     }
 
 
-    // @@protoc_insertion_point(builder_scope:com.iscas.biz.calculation.grpc.Sigma2Request)
+    // @@protoc_insertion_point(builder_scope:com.iscas.biz.calculation.grpc.ShearingStressRequest)
   }
 
-  // @@protoc_insertion_point(class_scope:com.iscas.biz.calculation.grpc.Sigma2Request)
-  private static final com.iscas.biz.calculation.grpc.Sigma2Request DEFAULT_INSTANCE;
+  // @@protoc_insertion_point(class_scope:com.iscas.biz.calculation.grpc.ShearingStressRequest)
+  private static final com.iscas.biz.calculation.grpc.ShearingStressRequest DEFAULT_INSTANCE;
   static {
-    DEFAULT_INSTANCE = new com.iscas.biz.calculation.grpc.Sigma2Request();
+    DEFAULT_INSTANCE = new com.iscas.biz.calculation.grpc.ShearingStressRequest();
   }
 
-  public static com.iscas.biz.calculation.grpc.Sigma2Request getDefaultInstance() {
+  public static com.iscas.biz.calculation.grpc.ShearingStressRequest getDefaultInstance() {
     return DEFAULT_INSTANCE;
   }
 
-  private static final com.google.protobuf.Parser<Sigma2Request>
-      PARSER = new com.google.protobuf.AbstractParser<Sigma2Request>() {
-    public Sigma2Request parsePartialFrom(
+  private static final com.google.protobuf.Parser<ShearingStressRequest>
+      PARSER = new com.google.protobuf.AbstractParser<ShearingStressRequest>() {
+    public ShearingStressRequest parsePartialFrom(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
-        return new Sigma2Request(input, extensionRegistry);
+        return new ShearingStressRequest(input, extensionRegistry);
     }
   };
 
-  public static com.google.protobuf.Parser<Sigma2Request> parser() {
+  public static com.google.protobuf.Parser<ShearingStressRequest> parser() {
     return PARSER;
   }
 
   @java.lang.Override
-  public com.google.protobuf.Parser<Sigma2Request> getParserForType() {
+  public com.google.protobuf.Parser<ShearingStressRequest> getParserForType() {
     return PARSER;
   }
 
-  public com.iscas.biz.calculation.grpc.Sigma2Request getDefaultInstanceForType() {
+  public com.iscas.biz.calculation.grpc.ShearingStressRequest getDefaultInstanceForType() {
     return DEFAULT_INSTANCE;
   }
 
