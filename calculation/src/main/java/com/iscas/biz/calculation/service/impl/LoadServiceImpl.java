@@ -178,7 +178,7 @@ public class LoadServiceImpl implements LoadService {
             head4.add("修正的弯矩");
             headList.add(head4);
         }
-        List<List<Double>> dataList = new ArrayList<>();
+        List<List<Object>> dataList = new ArrayList<>();
         List<Double> nvec = staticLoad.getNvec();
         List<Double> nvecM = staticLoad.getNvecM();
         List<Double> mvec = staticLoad.getMvec();
@@ -191,6 +191,7 @@ public class LoadServiceImpl implements LoadService {
                 data.add(nvecM.get(i));
                 data.add(mvec.get(i));
                 data.add(mvecM.get(i));
+                dataList.add(data);
             }
         }
         EasyExcel.write(SpringUtils.getResponse().getOutputStream()).head(headList).sheet("0").doWrite(dataList);
@@ -241,7 +242,7 @@ public class LoadServiceImpl implements LoadService {
             head10.add("中垂附加浮力");
             headList.add(head10);
         }
-        List<List<Double>> dataList = new ArrayList<>();
+        List<List<Object>> dataList = new ArrayList<>();
         List<Double> nwvecH = waveLoad.getNwvecH();
         List<Double> nwvecMH = waveLoad.getNwvecMH();
         List<Double> nwvecS = waveLoad.getNwvecS();
@@ -266,6 +267,7 @@ public class LoadServiceImpl implements LoadService {
                 data.add(mwvecMS.get(i));
                 data.add(mbb.get(i));
                 data.add(bdeltaS.get(i));
+                dataList.add(data);
             }
         }
         EasyExcel.write(SpringUtils.getResponse().getOutputStream()).head(headList).sheet("0").doWrite(dataList);
@@ -292,7 +294,7 @@ public class LoadServiceImpl implements LoadService {
             head2.add("波谷抨击弯矩");
             headList.add(head2);
         }
-        List<List<Double>> dataList = new ArrayList<>();
+        List<List<Object>> dataList = new ArrayList<>();
         List<Double> pwbm = slamLoad.getPwbm();
         List<Double> nwb = slamLoad.getNwb();
         if (CollectionUtils.isNotEmpty(pwbm)) {
@@ -301,6 +303,7 @@ public class LoadServiceImpl implements LoadService {
                 data.add(i);
                 data.add(pwbm.get(i));
                 data.add(nwb.get(i));
+                dataList.add(data);
             }
         }
         EasyExcel.write(SpringUtils.getResponse().getOutputStream()).head(headList).sheet("0").doWrite(dataList);
