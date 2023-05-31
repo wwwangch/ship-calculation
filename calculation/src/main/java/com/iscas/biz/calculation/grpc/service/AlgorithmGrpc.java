@@ -188,6 +188,7 @@ public class AlgorithmGrpc {
         }
         SectionRequest sectionRequest = SectionRequest.newBuilder()
                 .setProfileFilePath(calSectionDTO.getProfileFilePath())
+                .setRibNumber(calSectionDTO.getRibNumber())
                 .build();
         SectionResponse sectionResponse = grpcHolder.calculationBlockingStub().calSection(sectionRequest);
         if (sectionResponse == null) {
@@ -197,6 +198,7 @@ public class AlgorithmGrpc {
         calSection.setProjectId(projectId);
         calSection.setProfileFilePath(calSectionDTO.getProfileFilePath());
         calSection.setProfileFileName(calSectionDTO.getProfileFileName());
+        calSection.setRibNumber(calSectionDTO.getRibNumber());
         calSection.setFirstMoment0(sectionResponse.getFirstMoment0());
         calSection.setInteria0(sectionResponse.getInteria0());
         calSection.setZaxisH(sectionResponse.getZaxisH());
@@ -278,6 +280,7 @@ public class AlgorithmGrpc {
         AlgorithmGrpc.dist = true;
         return dist;
     }
+
     public StaticLoad calStaticLoad(StaticLoadDTO project) {
 //        if (!(buoyancy && weight)) {
 //            throw new RuntimeException("前置计算:浮力分布或重量分布尚未计算!");

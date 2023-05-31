@@ -23,4 +23,9 @@ public class CalSectionDTO {
      */
 //    @JsonProperty(value = "loadingFilepath")
     private String profileFileName;
+
+    /**
+     * 肋位号
+     */
+    private Double ribNumber;
 }

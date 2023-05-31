@@ -34,6 +34,11 @@ public class CalSection {
      */
     private String profileFileName;
 
+    /**
+     * 肋位号
+     */
+    private Double ribNumber;
+
 
     //初始静矩
     private Double firstMoment0;
