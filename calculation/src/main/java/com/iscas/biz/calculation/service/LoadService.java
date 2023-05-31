@@ -8,6 +8,8 @@ import com.iscas.biz.calculation.entity.dto.StaticLoadDTO;
 import com.iscas.biz.calculation.entity.dto.WaveLoadDTO;
 import com.iscas.templet.common.ResponseEntity;
 
+import java.io.IOException;
+
 /**
  * @author ch w
  * @version 1.0
@@ -25,4 +27,10 @@ public interface LoadService {
     WaveLoad calWaveLoad(WaveLoadDTO waveLoadDTO);
 
     SlamLoad calSlamLoad(SlamLoadDTO slamLoadDTO);
+
+    void staticExport(Integer projectId) throws IOException;
+
+    void waveExport(Integer projectId) throws IOException;
+
+    void slamExport(Integer projectId) throws IOException;
 }

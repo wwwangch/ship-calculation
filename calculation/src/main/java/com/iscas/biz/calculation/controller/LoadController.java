@@ -72,6 +72,7 @@ public class LoadController {
     public ResponseEntity saveWaveData(@RequestBody WaveLoadDTO waveLoadDTO) {
         return ResponseEntity.ok(loadService.calWaveLoad(waveLoadDTO));
     }
+
     @Operation(summary = "计算抨击载荷", description = "计算,传入参数")
     @io.swagger.v3.oas.annotations.parameters.RequestBody(required = true, description = "新增的数据",
             content = @Content(examples = @ExampleObject(value = "{\"projectId\":1,\"speed\":25}")))
@@ -80,9 +81,21 @@ public class LoadController {
         return ResponseEntity.ok(loadService.calSlamLoad(slamLoadDTO));
     }
 
-    @Operation(summary = "导出", description = "导出")
-    @GetMapping("/download/{projectId}")
-    public void export(@PathVariable() Integer projectId) throws IOException {
-        return;
+    @Operation(summary = "静水载荷导出", description = "导出")
+    @GetMapping("/static/download/{projectId}")
+    public void staticExport(@PathVariable() Integer projectId) throws IOException {
+        loadService.staticExport(projectId);
+    }
+
+    @Operation(summary = "波浪载荷导出", description = "导出")
+    @GetMapping("/wave/download/{projectId}")
+    public void waveExport(@PathVariable() Integer projectId) throws IOException {
+        loadService.waveExport(projectId);
+    }
+
+    @Operation(summary = "抨击载荷导出", description = "导出")
+    @GetMapping("/slam/download/{projectId}")
+    public void slamExport(@PathVariable() Integer projectId) throws IOException {
+        loadService.slamExport(projectId);
     }
 }

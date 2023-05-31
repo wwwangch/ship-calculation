@@ -209,50 +209,50 @@ public class AlgorithmGrpc {
         return calSection;
     }
 
-    public GirderStrength calGirderStrength(GirderStrengthDTO girderStrengthDTO) {
-        Integer projectId = girderStrengthDTO.getProjectId();
-        if (!Objects.equals(projectId, AlgorithmGrpc.currentProjectId)) {
-            QueryWrapper<ShipParam> queryWrapper = new QueryWrapper<>();
-            queryWrapper.eq("project_id", projectId);
-            ShipParam shipParam = shipParamMapper.selectOne(queryWrapper);
-            ShipParamResponse shipParamResponse = callShipParam(projectMapper.selectById(projectId), shipParam);
-            if (0 != shipParamResponse.getCode()) {
-                throw new RuntimeException("船舶参数配置失败" + shipParamResponse.getMessage());
-            }
-        }
-        GirderStrengthRequest girderStrengthRequest = GirderStrengthRequest.newBuilder()
-                .setKuaChang(girderStrengthDTO.getKuaChang())
-                .setGirderDistance(girderStrengthDTO.getGirderDistance())
-                .build();
-        GirderStrengthResponse girderStrengthResponse = grpcHolder.calculationBlockingStub().calGirderStrength(girderStrengthRequest);
-        if (girderStrengthResponse == null) {
-            throw new RuntimeException("板件弯矩应力计算失败:");
-        }
-        GirderStrength girderStrength = new GirderStrength();
-        girderStrength.setProjectId(projectId);
-        girderStrength.setKuaChang(girderStrengthDTO.getKuaChang());
-        girderStrength.setGirderDistance(girderStrengthDTO.getGirderDistance());
-
-        girderStrength.setSigma1SH(girderStrengthResponse.getSigma1SH());
-        girderStrength.setSigma1MidH(girderStrengthResponse.getSigma1MidH());
-        girderStrength.setSigma1SS(girderStrengthResponse.getSigma1SS());
-        girderStrength.setSigma1MidS(girderStrengthResponse.getSigma1MidS());
-
-        girderStrength.setStress2SH(Lists.newArrayList(girderStrengthResponse.getStress2SHList()));
-        girderStrength.setStress2MidH(Lists.newArrayList(girderStrengthResponse.getStress2MidHList()));
-        girderStrength.setStress3UpH(Lists.newArrayList(girderStrengthResponse.getStress3UpHList()));
-        girderStrength.setStress3DownH(Lists.newArrayList(girderStrengthResponse.getStress3DownHList()));
-        girderStrength.setStress4UpH(Lists.newArrayList(girderStrengthResponse.getStress4UpHList()));
-        girderStrength.setStress4downH(Lists.newArrayList(girderStrengthResponse.getStress4DownHList()));
-        girderStrength.setStress2SS(Lists.newArrayList(girderStrengthResponse.getStress2SSList()));
-        girderStrength.setStress2MidS(Lists.newArrayList(girderStrengthResponse.getStress2MidSList()));
-        girderStrength.setStress3UpS(Lists.newArrayList(girderStrengthResponse.getStress3UpSList()));
-        girderStrength.setStress3DownS(Lists.newArrayList(girderStrengthResponse.getStress3DownSList()));
-        girderStrength.setStress4UpS(Lists.newArrayList(girderStrengthResponse.getStress4UpSList()));
-        girderStrength.setStress4downS(Lists.newArrayList(girderStrengthResponse.getStress4DownSList()));
-        AlgorithmGrpc.girderStrength = true;
-        return girderStrength;
-    }
+//    public GirderStrength calGirderStrength(GirderStrengthDTO girderStrengthDTO) {
+//        Integer projectId = girderStrengthDTO.getProjectId();
+//        if (!Objects.equals(projectId, AlgorithmGrpc.currentProjectId)) {
+//            QueryWrapper<ShipParam> queryWrapper = new QueryWrapper<>();
+//            queryWrapper.eq("project_id", projectId);
+//            ShipParam shipParam = shipParamMapper.selectOne(queryWrapper);
+//            ShipParamResponse shipParamResponse = callShipParam(projectMapper.selectById(projectId), shipParam);
+//            if (0 != shipParamResponse.getCode()) {
+//                throw new RuntimeException("船舶参数配置失败" + shipParamResponse.getMessage());
+//            }
+//        }
+//        GirderStrengthRequest girderStrengthRequest = GirderStrengthRequest.newBuilder()
+//                .setKuaChang(girderStrengthDTO.getKuaChang())
+//                .setGirderDistance(girderStrengthDTO.getGirderDistance())
+//                .build();
+//        GirderStrengthResponse girderStrengthResponse = grpcHolder.calculationBlockingStub().calGirderStrength(girderStrengthRequest);
+//        if (girderStrengthResponse == null) {
+//            throw new RuntimeException("板件弯矩应力计算失败:");
+//        }
+//        GirderStrength girderStrength = new GirderStrength();
+//        girderStrength.setProjectId(projectId);
+//        girderStrength.setKuaChang(girderStrengthDTO.getKuaChang());
+//        girderStrength.setGirderDistance(girderStrengthDTO.getGirderDistance());
+//
+//        girderStrength.setSigma1SH(girderStrengthResponse.getSigma1SH());
+//        girderStrength.setSigma1MidH(girderStrengthResponse.getSigma1MidH());
+//        girderStrength.setSigma1SS(girderStrengthResponse.getSigma1SS());
+//        girderStrength.setSigma1MidS(girderStrengthResponse.getSigma1MidS());
+//
+//        girderStrength.setStress2SH(Lists.newArrayList(girderStrengthResponse.getStress2SHList()));
+//        girderStrength.setStress2MidH(Lists.newArrayList(girderStrengthResponse.getStress2MidHList()));
+//        girderStrength.setStress3UpH(Lists.newArrayList(girderStrengthResponse.getStress3UpHList()));
+//        girderStrength.setStress3DownH(Lists.newArrayList(girderStrengthResponse.getStress3DownHList()));
+//        girderStrength.setStress4UpH(Lists.newArrayList(girderStrengthResponse.getStress4UpHList()));
+//        girderStrength.setStress4downH(Lists.newArrayList(girderStrengthResponse.getStress4DownHList()));
+//        girderStrength.setStress2SS(Lists.newArrayList(girderStrengthResponse.getStress2SSList()));
+//        girderStrength.setStress2MidS(Lists.newArrayList(girderStrengthResponse.getStress2MidSList()));
+//        girderStrength.setStress3UpS(Lists.newArrayList(girderStrengthResponse.getStress3UpSList()));
+//        girderStrength.setStress3DownS(Lists.newArrayList(girderStrengthResponse.getStress3DownSList()));
+//        girderStrength.setStress4UpS(Lists.newArrayList(girderStrengthResponse.getStress4UpSList()));
+//        girderStrength.setStress4downS(Lists.newArrayList(girderStrengthResponse.getStress4DownSList()));
+//        AlgorithmGrpc.girderStrength = true;
+//        return girderStrength;
+//    }
 
     public Dist calDist(Integer projectId, Integer sectionId) {
 

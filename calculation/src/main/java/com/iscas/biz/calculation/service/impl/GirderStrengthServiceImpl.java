@@ -47,19 +47,20 @@ public class GirderStrengthServiceImpl implements GirderStrengthService {
     @Override
     @Transactional
     public GirderStrength calculate(GirderStrengthDTO girderStrengthDTO) {
-        Integer projectId = girderStrengthDTO.getProjectId();
-        if (null == projectId || null == projectMapper.selectById(projectId)) {
-            return null;
-        }
-        GirderStrength girderStrength = algorithmGrpc.calGirderStrength(girderStrengthDTO);
-        GirderStrength dbGirderStrength = listByProjectId(projectId);
-        if (null != dbGirderStrength) {
-            Integer girderStrengthId = dbGirderStrength.getGirderStrengthId();
-            girderStrength.setGirderStrengthId(girderStrengthId);
-            girderStrengthMapper.deleteById(girderStrengthId);
-        }
-        girderStrengthMapper.insert(girderStrength);
-        return girderStrength;
+//        Integer projectId = girderStrengthDTO.getProjectId();
+//        if (null == projectId || null == projectMapper.selectById(projectId)) {
+//            return null;
+//        }
+//        GirderStrength girderStrength = algorithmGrpc.calGirderStrength(girderStrengthDTO);
+//        GirderStrength dbGirderStrength = listByProjectId(projectId);
+//        if (null != dbGirderStrength) {
+//            Integer girderStrengthId = dbGirderStrength.getGirderStrengthId();
+//            girderStrength.setGirderStrengthId(girderStrengthId);
+//            girderStrengthMapper.deleteById(girderStrengthId);
+//        }
+//        girderStrengthMapper.insert(girderStrength);
+//        return girderStrength;
+        return null;
     }
 
     @Override
