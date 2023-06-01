@@ -294,6 +294,7 @@ message DistResponse{
   double extremeS = 2;
 }
 message Sigma1Request{
+
   //构件跨距-龙骨跨距 每个的跨距
   repeated double kuaChang = 1;
 
@@ -316,7 +317,7 @@ message Sigma1Request{
   double girderWidth = 7;
 
   //材料类型
-  double materialType = 8;
+  string materialType = 8;
 
   /**
      * 中拱-波浪弯矩
@@ -342,6 +343,9 @@ message Sigma1Request{
    * 中垂-剪力
    */
   double midVerticalShear=14;
+
+  //龙骨数量
+  int32 numGirder  = 15;
 }
 
 message Sigma1Response{

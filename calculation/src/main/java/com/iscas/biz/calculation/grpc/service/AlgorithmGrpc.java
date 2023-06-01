@@ -21,9 +21,12 @@ import com.iscas.biz.calculation.grpc.SubGravity;
 import com.iscas.biz.calculation.grpc.WeightDistribution;
 import com.iscas.biz.calculation.mapper.ProjectMapper;
 import com.iscas.biz.calculation.mapper.ShipParamMapper;
+import com.iscas.biz.calculation.util.ListUtils;
+import com.spire.ms.System.Collections.ArrayList;
 import org.apache.commons.collections4.CollectionUtils;
 import org.springframework.stereotype.Service;
 
+import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
 
@@ -340,11 +343,11 @@ public class AlgorithmGrpc {
 
 //    public Sigma1 calSigma1(Sigma1DTO sigma1DTO){
 //        Sigma1Response sigma1Response = grpcHolder.calculationBlockingStub().calSigma1(Sigma1Request.newBuilder()
-//                        .setKuaChang(sigma1DTO.getKuaChang())
+//                        .addAllKuaChang(ListUtils.convertStrToDoubleList(sigma1DTO.getKuaChang()))
 //                        .setGirderDistance(sigma1DTO.getGirderDistance())
 //                        .setFrDistance(sigma1DTO.getFrDistance())
-//                        .setFrGuige(sigma1DTO.getFrGuige())
-//                        .setPlateThick(sigma1DTO.getPlateThick())
+//                        .addAllFrGuige(ListUtils.convertStrToDoubleList(sigma1DTO.getFrGuige()))
+//                        .addAllPlateThick(ListUtils.convertStrToDoubleList(sigma1DTO.getPlateThick()))
 //                        .setDeviceWeight(sigma1DTO.getDeviceWeight())
 //                        .setGirderWidth(sigma1DTO.getGirderWidth())
 //                        .setMaterialType(sigma1DTO.getMaterialType())

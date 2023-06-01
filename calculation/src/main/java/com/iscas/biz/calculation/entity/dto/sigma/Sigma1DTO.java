@@ -15,7 +15,7 @@ public class Sigma1DTO {
      * 原先为：剖面构件跨距a  componentSpan
      * 修改为：构件跨距-龙骨跨距 每个的跨距
      */
-    private Double kuaChang;
+    private String kuaChang;
 
     /**
      * 原先为：校核剖面位置X xCoordinate
@@ -30,11 +30,11 @@ public class Sigma1DTO {
     /**
      * 纵骨规格 每个的规格
      */
-    private Double frGuige;
+    private String frGuige;
     /**
      *板格厚度 每个板材的厚度
      */
-    private Double plateThick;
+    private String plateThick;
     /**
      * 设备重量
      */
