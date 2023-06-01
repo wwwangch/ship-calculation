@@ -44,7 +44,7 @@ public class Section {
      * 原先为：剖面构件跨距a  componentSpan
      * 修改为：构件跨距-龙骨跨距 每个的跨距
      */
-    private Double kuaChang;
+    private String kuaChang;
 
     private Date createTime;
 
@@ -62,11 +62,11 @@ public class Section {
     /**
      * 纵骨规格 每个的规格
      */
-    private Double frGuige;
+    private String frGuige;
     /**
      *板格厚度 每个板材的厚度
      */
-    private Double plateThick;
+    private String plateThick;
     /**
      * 设备重量
      */
@@ -79,6 +79,10 @@ public class Section {
      * 材料类型
      */
     private String materialType;
+    /**
+     * 龙骨数量
+     */
+    private String numGirders;
 
 
 

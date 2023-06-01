@@ -2,14 +2,15 @@ package com.iscas.biz.calculation.controller;
 
 import com.iscas.biz.calculation.entity.db.StaticLoad;
 import com.iscas.biz.calculation.entity.db.sigma.*;
+import com.iscas.biz.calculation.entity.dto.StaticLoadDTO;
 import com.iscas.biz.calculation.service.StrengthService;
+import com.iscas.templet.common.ResponseEntity;
 import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.media.Content;
+import io.swagger.v3.oas.annotations.media.ExampleObject;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 /**
  * @Author yichuan@iscas.ac.cn
@@ -56,6 +57,12 @@ public class StrengthController {
     @GetMapping(value = "/shearingStress/getData/{projectId}/{sectionId}")
     public ShearingStress getShearingStresssData(@PathVariable Integer projectId, Integer sectionId) {
         return strengthService.getShearingStress(projectId, sectionId);
+    }
+
+    @Operation(summary = "计算Sigma1", description = "计算,传入参数")
+    @GetMapping(value = "/sigma3/calculate/{projectId}/{sectionId}")
+    public ResponseEntity calSigma1(@PathVariable Integer projectId, Integer sectionId) throws IllegalAccessException {
+        return ResponseEntity.ok(strengthService.calSigma1(projectId,sectionId));
     }
 
 }

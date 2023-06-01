@@ -17,7 +17,7 @@ public interface StrengthService {
     ShearingStress getShearingStress(Integer projectId, Integer sectionId);
 
 
-    Sigma1 calSigma1(Sigma1DTO sigma1DTO);
+    Sigma1 calSigma1(Integer projectId, Integer sectionId) throws IllegalAccessException;
 
 
 //    void sigma1Export(Integer projectId, Integer sectionId)throws IOException;

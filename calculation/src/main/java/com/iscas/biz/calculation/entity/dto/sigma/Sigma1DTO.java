@@ -72,4 +72,9 @@ public class Sigma1DTO {
      * 中垂-剪力
      */
     private Double midVerticalShear;
+
+    /**
+     * 龙骨数量
+     */
+    private Integer numGirder;
 }

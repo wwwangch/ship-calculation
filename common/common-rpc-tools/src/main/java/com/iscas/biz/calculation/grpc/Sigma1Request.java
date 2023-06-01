@@ -22,7 +22,14 @@ public  final class Sigma1Request extends
     plateThick_ = java.util.Collections.emptyList();
     deviceWeight_ = 0D;
     girderWidth_ = 0D;
-    materialType_ = 0D;
+    materialType_ = "";
+    midArchWaveMoment_ = 0D;
+    midArchImpactMoment_ = 0D;
+    midArchShear_ = 0D;
+    midVerticalWaveMoment_ = 0D;
+    midVerticalImpactMoment_ = 0D;
+    midVerticalShear_ = 0D;
+    numGirder_ = 0;
   }
 
   @java.lang.Override
@@ -133,9 +140,45 @@ public  final class Sigma1Request extends
             girderWidth_ = input.readDouble();
             break;
           }
-          case 65: {
+          case 66: {
+            java.lang.String s = input.readStringRequireUtf8();
 
-            materialType_ = input.readDouble();
+            materialType_ = s;
+            break;
+          }
+          case 73: {
+
+            midArchWaveMoment_ = input.readDouble();
+            break;
+          }
+          case 81: {
+
+            midArchImpactMoment_ = input.readDouble();
+            break;
+          }
+          case 89: {
+
+            midArchShear_ = input.readDouble();
+            break;
+          }
+          case 97: {
+
+            midVerticalWaveMoment_ = input.readDouble();
+            break;
+          }
+          case 105: {
+
+            midVerticalImpactMoment_ = input.readDouble();
+            break;
+          }
+          case 113: {
+
+            midVerticalShear_ = input.readDouble();
+            break;
+          }
+          case 120: {
+
+            numGirder_ = input.readInt32();
             break;
           }
         }
@@ -329,16 +372,142 @@ public  final class Sigma1Request extends
   }
 
   public static final int MATERIALTYPE_FIELD_NUMBER = 8;
-  private double materialType_;
+  private volatile java.lang.Object materialType_;
   /**
    * <pre>
    *材料类型
    * </pre>
    *
-   * <code>double materialType = 8;</code>
+   * <code>string materialType = 8;</code>
    */
-  public double getMaterialType() {
-    return materialType_;
+  public java.lang.String getMaterialType() {
+    java.lang.Object ref = materialType_;
+    if (ref instanceof java.lang.String) {
+      return (java.lang.String) ref;
+    } else {
+      com.google.protobuf.ByteString bs = 
+          (com.google.protobuf.ByteString) ref;
+      java.lang.String s = bs.toStringUtf8();
+      materialType_ = s;
+      return s;
+    }
+  }
+  /**
+   * <pre>
+   *材料类型
+   * </pre>
+   *
+   * <code>string materialType = 8;</code>
+   */
+  public com.google.protobuf.ByteString
+      getMaterialTypeBytes() {
+    java.lang.Object ref = materialType_;
+    if (ref instanceof java.lang.String) {
+      com.google.protobuf.ByteString b = 
+          com.google.protobuf.ByteString.copyFromUtf8(
+              (java.lang.String) ref);
+      materialType_ = b;
+      return b;
+    } else {
+      return (com.google.protobuf.ByteString) ref;
+    }
+  }
+
+  public static final int MIDARCHWAVEMOMENT_FIELD_NUMBER = 9;
+  private double midArchWaveMoment_;
+  /**
+   * <pre>
+   **
+   * 中拱-波浪弯矩
+   * </pre>
+   *
+   * <code>double midArchWaveMoment = 9;</code>
+   */
+  public double getMidArchWaveMoment() {
+    return midArchWaveMoment_;
+  }
+
+  public static final int MIDARCHIMPACTMOMENT_FIELD_NUMBER = 10;
+  private double midArchImpactMoment_;
+  /**
+   * <pre>
+   **
+   * 中拱-砰击振动弯矩
+   * </pre>
+   *
+   * <code>double midArchImpactMoment = 10;</code>
+   */
+  public double getMidArchImpactMoment() {
+    return midArchImpactMoment_;
+  }
+
+  public static final int MIDARCHSHEAR_FIELD_NUMBER = 11;
+  private double midArchShear_;
+  /**
+   * <pre>
+   **
+   * 中拱-剪力
+   * </pre>
+   *
+   * <code>double midArchShear = 11;</code>
+   */
+  public double getMidArchShear() {
+    return midArchShear_;
+  }
+
+  public static final int MIDVERTICALWAVEMOMENT_FIELD_NUMBER = 12;
+  private double midVerticalWaveMoment_;
+  /**
+   * <pre>
+   **
+   * 中垂-波浪弯矩
+   * </pre>
+   *
+   * <code>double midVerticalWaveMoment = 12;</code>
+   */
+  public double getMidVerticalWaveMoment() {
+    return midVerticalWaveMoment_;
+  }
+
+  public static final int MIDVERTICALIMPACTMOMENT_FIELD_NUMBER = 13;
+  private double midVerticalImpactMoment_;
+  /**
+   * <pre>
+   **
+   * 中垂-砰击振动弯矩
+   * </pre>
+   *
+   * <code>double midVerticalImpactMoment = 13;</code>
+   */
+  public double getMidVerticalImpactMoment() {
+    return midVerticalImpactMoment_;
+  }
+
+  public static final int MIDVERTICALSHEAR_FIELD_NUMBER = 14;
+  private double midVerticalShear_;
+  /**
+   * <pre>
+   **
+   * 中垂-剪力
+   * </pre>
+   *
+   * <code>double midVerticalShear = 14;</code>
+   */
+  public double getMidVerticalShear() {
+    return midVerticalShear_;
+  }
+
+  public static final int NUMGIRDER_FIELD_NUMBER = 15;
+  private int numGirder_;
+  /**
+   * <pre>
+   *龙骨数量
+   * </pre>
+   *
+   * <code>int32 numGirder = 15;</code>
+   */
+  public int getNumGirder() {
+    return numGirder_;
   }
 
   private byte memoizedIsInitialized = -1;
@@ -387,8 +556,29 @@ public  final class Sigma1Request extends
     if (girderWidth_ != 0D) {
       output.writeDouble(7, girderWidth_);
     }
-    if (materialType_ != 0D) {
-      output.writeDouble(8, materialType_);
+    if (!getMaterialTypeBytes().isEmpty()) {
+      com.google.protobuf.GeneratedMessageV3.writeString(output, 8, materialType_);
+    }
+    if (midArchWaveMoment_ != 0D) {
+      output.writeDouble(9, midArchWaveMoment_);
+    }
+    if (midArchImpactMoment_ != 0D) {
+      output.writeDouble(10, midArchImpactMoment_);
+    }
+    if (midArchShear_ != 0D) {
+      output.writeDouble(11, midArchShear_);
+    }
+    if (midVerticalWaveMoment_ != 0D) {
+      output.writeDouble(12, midVerticalWaveMoment_);
+    }
+    if (midVerticalImpactMoment_ != 0D) {
+      output.writeDouble(13, midVerticalImpactMoment_);
+    }
+    if (midVerticalShear_ != 0D) {
+      output.writeDouble(14, midVerticalShear_);
+    }
+    if (numGirder_ != 0) {
+      output.writeInt32(15, numGirder_);
     }
   }
 
@@ -446,9 +636,36 @@ public  final class Sigma1Request extends
       size += com.google.protobuf.CodedOutputStream
         .computeDoubleSize(7, girderWidth_);
     }
-    if (materialType_ != 0D) {
+    if (!getMaterialTypeBytes().isEmpty()) {
+      size += com.google.protobuf.GeneratedMessageV3.computeStringSize(8, materialType_);
+    }
+    if (midArchWaveMoment_ != 0D) {
       size += com.google.protobuf.CodedOutputStream
-        .computeDoubleSize(8, materialType_);
+        .computeDoubleSize(9, midArchWaveMoment_);
+    }
+    if (midArchImpactMoment_ != 0D) {
+      size += com.google.protobuf.CodedOutputStream
+        .computeDoubleSize(10, midArchImpactMoment_);
+    }
+    if (midArchShear_ != 0D) {
+      size += com.google.protobuf.CodedOutputStream
+        .computeDoubleSize(11, midArchShear_);
+    }
+    if (midVerticalWaveMoment_ != 0D) {
+      size += com.google.protobuf.CodedOutputStream
+        .computeDoubleSize(12, midVerticalWaveMoment_);
+    }
+    if (midVerticalImpactMoment_ != 0D) {
+      size += com.google.protobuf.CodedOutputStream
+        .computeDoubleSize(13, midVerticalImpactMoment_);
+    }
+    if (midVerticalShear_ != 0D) {
+      size += com.google.protobuf.CodedOutputStream
+        .computeDoubleSize(14, midVerticalShear_);
+    }
+    if (numGirder_ != 0) {
+      size += com.google.protobuf.CodedOutputStream
+        .computeInt32Size(15, numGirder_);
     }
     memoizedSize = size;
     return size;
@@ -488,10 +705,34 @@ public  final class Sigma1Request extends
         java.lang.Double.doubleToLongBits(getGirderWidth())
         == java.lang.Double.doubleToLongBits(
             other.getGirderWidth()));
+    result = result && getMaterialType()
+        .equals(other.getMaterialType());
     result = result && (
-        java.lang.Double.doubleToLongBits(getMaterialType())
+        java.lang.Double.doubleToLongBits(getMidArchWaveMoment())
         == java.lang.Double.doubleToLongBits(
-            other.getMaterialType()));
+            other.getMidArchWaveMoment()));
+    result = result && (
+        java.lang.Double.doubleToLongBits(getMidArchImpactMoment())
+        == java.lang.Double.doubleToLongBits(
+            other.getMidArchImpactMoment()));
+    result = result && (
+        java.lang.Double.doubleToLongBits(getMidArchShear())
+        == java.lang.Double.doubleToLongBits(
+            other.getMidArchShear()));
+    result = result && (
+        java.lang.Double.doubleToLongBits(getMidVerticalWaveMoment())
+        == java.lang.Double.doubleToLongBits(
+            other.getMidVerticalWaveMoment()));
+    result = result && (
+        java.lang.Double.doubleToLongBits(getMidVerticalImpactMoment())
+        == java.lang.Double.doubleToLongBits(
+            other.getMidVerticalImpactMoment()));
+    result = result && (
+        java.lang.Double.doubleToLongBits(getMidVerticalShear())
+        == java.lang.Double.doubleToLongBits(
+            other.getMidVerticalShear()));
+    result = result && (getNumGirder()
+        == other.getNumGirder());
     return result;
   }
 
@@ -527,8 +768,27 @@ public  final class Sigma1Request extends
     hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
         java.lang.Double.doubleToLongBits(getGirderWidth()));
     hash = (37 * hash) + MATERIALTYPE_FIELD_NUMBER;
+    hash = (53 * hash) + getMaterialType().hashCode();
+    hash = (37 * hash) + MIDARCHWAVEMOMENT_FIELD_NUMBER;
     hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
-        java.lang.Double.doubleToLongBits(getMaterialType()));
+        java.lang.Double.doubleToLongBits(getMidArchWaveMoment()));
+    hash = (37 * hash) + MIDARCHIMPACTMOMENT_FIELD_NUMBER;
+    hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
+        java.lang.Double.doubleToLongBits(getMidArchImpactMoment()));
+    hash = (37 * hash) + MIDARCHSHEAR_FIELD_NUMBER;
+    hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
+        java.lang.Double.doubleToLongBits(getMidArchShear()));
+    hash = (37 * hash) + MIDVERTICALWAVEMOMENT_FIELD_NUMBER;
+    hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
+        java.lang.Double.doubleToLongBits(getMidVerticalWaveMoment()));
+    hash = (37 * hash) + MIDVERTICALIMPACTMOMENT_FIELD_NUMBER;
+    hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
+        java.lang.Double.doubleToLongBits(getMidVerticalImpactMoment()));
+    hash = (37 * hash) + MIDVERTICALSHEAR_FIELD_NUMBER;
+    hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
+        java.lang.Double.doubleToLongBits(getMidVerticalShear()));
+    hash = (37 * hash) + NUMGIRDER_FIELD_NUMBER;
+    hash = (53 * hash) + getNumGirder();
     hash = (29 * hash) + unknownFields.hashCode();
     memoizedHashCode = hash;
     return hash;
@@ -661,7 +921,21 @@ public  final class Sigma1Request extends
 
       girderWidth_ = 0D;
 
-      materialType_ = 0D;
+      materialType_ = "";
+
+      midArchWaveMoment_ = 0D;
+
+      midArchImpactMoment_ = 0D;
+
+      midArchShear_ = 0D;
+
+      midVerticalWaveMoment_ = 0D;
+
+      midVerticalImpactMoment_ = 0D;
+
+      midVerticalShear_ = 0D;
+
+      numGirder_ = 0;
 
       return this;
     }
@@ -707,6 +981,13 @@ public  final class Sigma1Request extends
       result.deviceWeight_ = deviceWeight_;
       result.girderWidth_ = girderWidth_;
       result.materialType_ = materialType_;
+      result.midArchWaveMoment_ = midArchWaveMoment_;
+      result.midArchImpactMoment_ = midArchImpactMoment_;
+      result.midArchShear_ = midArchShear_;
+      result.midVerticalWaveMoment_ = midVerticalWaveMoment_;
+      result.midVerticalImpactMoment_ = midVerticalImpactMoment_;
+      result.midVerticalShear_ = midVerticalShear_;
+      result.numGirder_ = numGirder_;
       result.bitField0_ = to_bitField0_;
       onBuilt();
       return result;
@@ -791,8 +1072,30 @@ public  final class Sigma1Request extends
       if (other.getGirderWidth() != 0D) {
         setGirderWidth(other.getGirderWidth());
       }
-      if (other.getMaterialType() != 0D) {
-        setMaterialType(other.getMaterialType());
+      if (!other.getMaterialType().isEmpty()) {
+        materialType_ = other.materialType_;
+        onChanged();
+      }
+      if (other.getMidArchWaveMoment() != 0D) {
+        setMidArchWaveMoment(other.getMidArchWaveMoment());
+      }
+      if (other.getMidArchImpactMoment() != 0D) {
+        setMidArchImpactMoment(other.getMidArchImpactMoment());
+      }
+      if (other.getMidArchShear() != 0D) {
+        setMidArchShear(other.getMidArchShear());
+      }
+      if (other.getMidVerticalWaveMoment() != 0D) {
+        setMidVerticalWaveMoment(other.getMidVerticalWaveMoment());
+      }
+      if (other.getMidVerticalImpactMoment() != 0D) {
+        setMidVerticalImpactMoment(other.getMidVerticalImpactMoment());
+      }
+      if (other.getMidVerticalShear() != 0D) {
+        setMidVerticalShear(other.getMidVerticalShear());
+      }
+      if (other.getNumGirder() != 0) {
+        setNumGirder(other.getNumGirder());
       }
       onChanged();
       return this;
@@ -1255,26 +1558,59 @@ public  final class Sigma1Request extends
       return this;
     }
 
-    private double materialType_ ;
+    private java.lang.Object materialType_ = "";
     /**
      * <pre>
      *材料类型
      * </pre>
      *
-     * <code>double materialType = 8;</code>
+     * <code>string materialType = 8;</code>
      */
-    public double getMaterialType() {
-      return materialType_;
+    public java.lang.String getMaterialType() {
+      java.lang.Object ref = materialType_;
+      if (!(ref instanceof java.lang.String)) {
+        com.google.protobuf.ByteString bs =
+            (com.google.protobuf.ByteString) ref;
+        java.lang.String s = bs.toStringUtf8();
+        materialType_ = s;
+        return s;
+      } else {
+        return (java.lang.String) ref;
+      }
     }
     /**
      * <pre>
      *材料类型
      * </pre>
      *
-     * <code>double materialType = 8;</code>
+     * <code>string materialType = 8;</code>
      */
-    public Builder setMaterialType(double value) {
-      
+    public com.google.protobuf.ByteString
+        getMaterialTypeBytes() {
+      java.lang.Object ref = materialType_;
+      if (ref instanceof String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (java.lang.String) ref);
+        materialType_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
+    }
+    /**
+     * <pre>
+     *材料类型
+     * </pre>
+     *
+     * <code>string materialType = 8;</code>
+     */
+    public Builder setMaterialType(
+        java.lang.String value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  
       materialType_ = value;
       onChanged();
       return this;
@@ -1284,11 +1620,313 @@ public  final class Sigma1Request extends
      *材料类型
      * </pre>
      *
-     * <code>double materialType = 8;</code>
+     * <code>string materialType = 8;</code>
      */
     public Builder clearMaterialType() {
       
-      materialType_ = 0D;
+      materialType_ = getDefaultInstance().getMaterialType();
+      onChanged();
+      return this;
+    }
+    /**
+     * <pre>
+     *材料类型
+     * </pre>
+     *
+     * <code>string materialType = 8;</code>
+     */
+    public Builder setMaterialTypeBytes(
+        com.google.protobuf.ByteString value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+      
+      materialType_ = value;
+      onChanged();
+      return this;
+    }
+
+    private double midArchWaveMoment_ ;
+    /**
+     * <pre>
+     **
+     * 中拱-波浪弯矩
+     * </pre>
+     *
+     * <code>double midArchWaveMoment = 9;</code>
+     */
+    public double getMidArchWaveMoment() {
+      return midArchWaveMoment_;
+    }
+    /**
+     * <pre>
+     **
+     * 中拱-波浪弯矩
+     * </pre>
+     *
+     * <code>double midArchWaveMoment = 9;</code>
+     */
+    public Builder setMidArchWaveMoment(double value) {
+      
+      midArchWaveMoment_ = value;
+      onChanged();
+      return this;
+    }
+    /**
+     * <pre>
+     **
+     * 中拱-波浪弯矩
+     * </pre>
+     *
+     * <code>double midArchWaveMoment = 9;</code>
+     */
+    public Builder clearMidArchWaveMoment() {
+      
+      midArchWaveMoment_ = 0D;
+      onChanged();
+      return this;
+    }
+
+    private double midArchImpactMoment_ ;
+    /**
+     * <pre>
+     **
+     * 中拱-砰击振动弯矩
+     * </pre>
+     *
+     * <code>double midArchImpactMoment = 10;</code>
+     */
+    public double getMidArchImpactMoment() {
+      return midArchImpactMoment_;
+    }
+    /**
+     * <pre>
+     **
+     * 中拱-砰击振动弯矩
+     * </pre>
+     *
+     * <code>double midArchImpactMoment = 10;</code>
+     */
+    public Builder setMidArchImpactMoment(double value) {
+      
+      midArchImpactMoment_ = value;
+      onChanged();
+      return this;
+    }
+    /**
+     * <pre>
+     **
+     * 中拱-砰击振动弯矩
+     * </pre>
+     *
+     * <code>double midArchImpactMoment = 10;</code>
+     */
+    public Builder clearMidArchImpactMoment() {
+      
+      midArchImpactMoment_ = 0D;
+      onChanged();
+      return this;
+    }
+
+    private double midArchShear_ ;
+    /**
+     * <pre>
+     **
+     * 中拱-剪力
+     * </pre>
+     *
+     * <code>double midArchShear = 11;</code>
+     */
+    public double getMidArchShear() {
+      return midArchShear_;
+    }
+    /**
+     * <pre>
+     **
+     * 中拱-剪力
+     * </pre>
+     *
+     * <code>double midArchShear = 11;</code>
+     */
+    public Builder setMidArchShear(double value) {
+      
+      midArchShear_ = value;
+      onChanged();
+      return this;
+    }
+    /**
+     * <pre>
+     **
+     * 中拱-剪力
+     * </pre>
+     *
+     * <code>double midArchShear = 11;</code>
+     */
+    public Builder clearMidArchShear() {
+      
+      midArchShear_ = 0D;
+      onChanged();
+      return this;
+    }
+
+    private double midVerticalWaveMoment_ ;
+    /**
+     * <pre>
+     **
+     * 中垂-波浪弯矩
+     * </pre>
+     *
+     * <code>double midVerticalWaveMoment = 12;</code>
+     */
+    public double getMidVerticalWaveMoment() {
+      return midVerticalWaveMoment_;
+    }
+    /**
+     * <pre>
+     **
+     * 中垂-波浪弯矩
+     * </pre>
+     *
+     * <code>double midVerticalWaveMoment = 12;</code>
+     */
+    public Builder setMidVerticalWaveMoment(double value) {
+      
+      midVerticalWaveMoment_ = value;
+      onChanged();
+      return this;
+    }
+    /**
+     * <pre>
+     **
+     * 中垂-波浪弯矩
+     * </pre>
+     *
+     * <code>double midVerticalWaveMoment = 12;</code>
+     */
+    public Builder clearMidVerticalWaveMoment() {
+      
+      midVerticalWaveMoment_ = 0D;
+      onChanged();
+      return this;
+    }
+
+    private double midVerticalImpactMoment_ ;
+    /**
+     * <pre>
+     **
+     * 中垂-砰击振动弯矩
+     * </pre>
+     *
+     * <code>double midVerticalImpactMoment = 13;</code>
+     */
+    public double getMidVerticalImpactMoment() {
+      return midVerticalImpactMoment_;
+    }
+    /**
+     * <pre>
+     **
+     * 中垂-砰击振动弯矩
+     * </pre>
+     *
+     * <code>double midVerticalImpactMoment = 13;</code>
+     */
+    public Builder setMidVerticalImpactMoment(double value) {
+      
+      midVerticalImpactMoment_ = value;
+      onChanged();
+      return this;
+    }
+    /**
+     * <pre>
+     **
+     * 中垂-砰击振动弯矩
+     * </pre>
+     *
+     * <code>double midVerticalImpactMoment = 13;</code>
+     */
+    public Builder clearMidVerticalImpactMoment() {
+      
+      midVerticalImpactMoment_ = 0D;
+      onChanged();
+      return this;
+    }
+
+    private double midVerticalShear_ ;
+    /**
+     * <pre>
+     **
+     * 中垂-剪力
+     * </pre>
+     *
+     * <code>double midVerticalShear = 14;</code>
+     */
+    public double getMidVerticalShear() {
+      return midVerticalShear_;
+    }
+    /**
+     * <pre>
+     **
+     * 中垂-剪力
+     * </pre>
+     *
+     * <code>double midVerticalShear = 14;</code>
+     */
+    public Builder setMidVerticalShear(double value) {
+      
+      midVerticalShear_ = value;
+      onChanged();
+      return this;
+    }
+    /**
+     * <pre>
+     **
+     * 中垂-剪力
+     * </pre>
+     *
+     * <code>double midVerticalShear = 14;</code>
+     */
+    public Builder clearMidVerticalShear() {
+      
+      midVerticalShear_ = 0D;
+      onChanged();
+      return this;
+    }
+
+    private int numGirder_ ;
+    /**
+     * <pre>
+     *龙骨数量
+     * </pre>
+     *
+     * <code>int32 numGirder = 15;</code>
+     */
+    public int getNumGirder() {
+      return numGirder_;
+    }
+    /**
+     * <pre>
+     *龙骨数量
+     * </pre>
+     *
+     * <code>int32 numGirder = 15;</code>
+     */
+    public Builder setNumGirder(int value) {
+      
+      numGirder_ = value;
+      onChanged();
+      return this;
+    }
+    /**
+     * <pre>
+     *龙骨数量
+     * </pre>
+     *
+     * <code>int32 numGirder = 15;</code>
+     */
+    public Builder clearNumGirder() {
+      
+      numGirder_ = 0;
       onChanged();
       return this;
     }

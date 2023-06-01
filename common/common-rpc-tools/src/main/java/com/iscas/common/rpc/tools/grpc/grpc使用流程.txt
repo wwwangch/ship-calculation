@@ -6,6 +6,8 @@
 运行后会在proto文件中配置的package下生成对应的Java文件，可以拷贝到别的目录下，注意java_package要对，
 服务端和客户端都生成一下或拷贝一下
 
+找到gradle中的common下的common-rpc-tools下的Tasks下的other下的generateProto
+
 3、在服务端编写一个实现类，实现xxxGrpc.xxxImplBase,本例为PersonServiceImpl extends PersonServiceGrpc.PersonServiceImplBase
 重写其函数
 

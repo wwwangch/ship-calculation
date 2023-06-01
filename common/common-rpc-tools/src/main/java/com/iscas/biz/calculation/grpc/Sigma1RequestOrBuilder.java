@@ -123,7 +123,85 @@ public interface Sigma1RequestOrBuilder extends
    *材料类型
    * </pre>
    *
-   * <code>double materialType = 8;</code>
+   * <code>string materialType = 8;</code>
    */
-  double getMaterialType();
+  java.lang.String getMaterialType();
+  /**
+   * <pre>
+   *材料类型
+   * </pre>
+   *
+   * <code>string materialType = 8;</code>
+   */
+  com.google.protobuf.ByteString
+      getMaterialTypeBytes();
+
+  /**
+   * <pre>
+   **
+   * 中拱-波浪弯矩
+   * </pre>
+   *
+   * <code>double midArchWaveMoment = 9;</code>
+   */
+  double getMidArchWaveMoment();
+
+  /**
+   * <pre>
+   **
+   * 中拱-砰击振动弯矩
+   * </pre>
+   *
+   * <code>double midArchImpactMoment = 10;</code>
+   */
+  double getMidArchImpactMoment();
+
+  /**
+   * <pre>
+   **
+   * 中拱-剪力
+   * </pre>
+   *
+   * <code>double midArchShear = 11;</code>
+   */
+  double getMidArchShear();
+
+  /**
+   * <pre>
+   **
+   * 中垂-波浪弯矩
+   * </pre>
+   *
+   * <code>double midVerticalWaveMoment = 12;</code>
+   */
+  double getMidVerticalWaveMoment();
+
+  /**
+   * <pre>
+   **
+   * 中垂-砰击振动弯矩
+   * </pre>
+   *
+   * <code>double midVerticalImpactMoment = 13;</code>
+   */
+  double getMidVerticalImpactMoment();
+
+  /**
+   * <pre>
+   **
+   * 中垂-剪力
+   * </pre>
+   *
+   * <code>double midVerticalShear = 14;</code>
+   */
+  double getMidVerticalShear();
+
+  /**
+   * <pre>
+   *龙骨数量
+   * </pre>
+   *
+   * <code>int32 numGirder = 15;</code>
+   */
+  int getNumGirder();
 }

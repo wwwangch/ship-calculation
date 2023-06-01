@@ -341,31 +341,32 @@ public class AlgorithmGrpc {
         return dbSlamLoad;
     }
 
-//    public Sigma1 calSigma1(Sigma1DTO sigma1DTO){
-//        Sigma1Response sigma1Response = grpcHolder.calculationBlockingStub().calSigma1(Sigma1Request.newBuilder()
-//                        .addAllKuaChang(ListUtils.convertStrToDoubleList(sigma1DTO.getKuaChang()))
-//                        .setGirderDistance(sigma1DTO.getGirderDistance())
-//                        .setFrDistance(sigma1DTO.getFrDistance())
-//                        .addAllFrGuige(ListUtils.convertStrToDoubleList(sigma1DTO.getFrGuige()))
-//                        .addAllPlateThick(ListUtils.convertStrToDoubleList(sigma1DTO.getPlateThick()))
-//                        .setDeviceWeight(sigma1DTO.getDeviceWeight())
-//                        .setGirderWidth(sigma1DTO.getGirderWidth())
-//                        .setMaterialType(sigma1DTO.getMaterialType())
-//                        .setMidArchWaveMoment(sigma1DTO.getMidArchWaveMoment())
-//                        .setMidArchImpactMoment(sigma1DTO.getMidArchImpactMoment())
-//                        .setMidArchShear(sigma1DTO.getMidArchShear())
-//                        .setMidVerticalWaveMoment(sigma1DTO.getMidVerticalWaveMoment())
-//                        .setMidVerticalImpactMoment(sigma1DTO.getMidVerticalImpactMoment())
-//                        .setMidVerticalShear(sigma1DTO.getMidVerticalShear())
-//                .build());
-//        Sigma1 sigma1 = new Sigma1();
-//        sigma1.setProjectId(sigma1DTO.getProjectId());
-//        sigma1.setSectionId(sigma1DTO.getSectionId());
-//        sigma1.setSigma1Down(sigma1Response.getSigma1(0).getSigma1Down());
-//        sigma1.setSigma1HUp(sigma1Response.getSigma1(0).getSigma1HUp());
-//        sigma1.setSigma1SUp(sigma1Response.getSigma1(0).getSigma1SUp());
-//        sigma1.setSigma1SDown(sigma1Response.getSigma1(0).getSigma1SDown());
-//        return sigma1;
-//    }
+    public Sigma1 calSigma1(Sigma1DTO sigma1DTO){
+        Sigma1Response sigma1Response = grpcHolder.calculationBlockingStub().calSigma1(Sigma1Request.newBuilder()
+                        .addAllKuaChang(ListUtils.convertStrToDoubleList(sigma1DTO.getKuaChang()))
+                        .setGirderDistance(sigma1DTO.getGirderDistance())
+                        .setFrDistance(sigma1DTO.getFrDistance())
+                        .addAllFrGuige(ListUtils.convertStrToDoubleList(sigma1DTO.getFrGuige()))
+                        .addAllPlateThick(ListUtils.convertStrToDoubleList(sigma1DTO.getPlateThick()))
+                        .setDeviceWeight(sigma1DTO.getDeviceWeight())
+                        .setGirderWidth(sigma1DTO.getGirderWidth())
+                        .setMaterialType(sigma1DTO.getMaterialType())
+                        .setMidArchWaveMoment(sigma1DTO.getMidArchWaveMoment())
+                        .setMidArchImpactMoment(sigma1DTO.getMidArchImpactMoment())
+                        .setMidArchShear(sigma1DTO.getMidArchShear())
+                        .setMidVerticalWaveMoment(sigma1DTO.getMidVerticalWaveMoment())
+                        .setMidVerticalImpactMoment(sigma1DTO.getMidVerticalImpactMoment())
+                        .setMidVerticalShear(sigma1DTO.getMidVerticalShear())
+                        .setNumGirder(sigma1DTO.getNumGirder())
+                .build());
+        Sigma1 sigma1 = new Sigma1();
+        sigma1.setProjectId(sigma1DTO.getProjectId());
+        sigma1.setSectionId(sigma1DTO.getSectionId());
+        sigma1.setSigma1Down(sigma1Response.getSigma1(0).getSigma1Down());
+        sigma1.setSigma1HUp(sigma1Response.getSigma1(0).getSigma1HUp());
+        sigma1.setSigma1SUp(sigma1Response.getSigma1(0).getSigma1SUp());
+        sigma1.setSigma1SDown(sigma1Response.getSigma1(0).getSigma1SDown());
+        return sigma1;
+    }
 
 }

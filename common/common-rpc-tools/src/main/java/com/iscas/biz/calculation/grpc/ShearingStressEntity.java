@@ -87,7 +87,6 @@ public  final class ShearingStressEntity extends
   private double zhongchuiMax_;
   /**
    * <pre>
-   *中垂剖面最大剪力值τ  中拱剖面最大剪力值τ  许用剪应力[τ]
    *中垂剖面最大剪力值τ
    * </pre>
    *
@@ -438,7 +437,6 @@ public  final class ShearingStressEntity extends
     private double zhongchuiMax_ ;
     /**
      * <pre>
-     *中垂剖面最大剪力值τ  中拱剖面最大剪力值τ  许用剪应力[τ]
      *中垂剖面最大剪力值τ
      * </pre>
      *
@@ -449,7 +447,6 @@ public  final class ShearingStressEntity extends
     }
     /**
      * <pre>
-     *中垂剖面最大剪力值τ  中拱剖面最大剪力值τ  许用剪应力[τ]
      *中垂剖面最大剪力值τ
      * </pre>
      *
@@ -463,7 +460,6 @@ public  final class ShearingStressEntity extends
     }
     /**
      * <pre>
-     *中垂剖面最大剪力值τ  中拱剖面最大剪力值τ  许用剪应力[τ]
      *中垂剖面最大剪力值τ
      * </pre>
      *
