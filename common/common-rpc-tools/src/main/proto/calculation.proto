@@ -317,6 +317,31 @@ message Sigma1Request{
 
   //材料类型
   double materialType = 8;
+
+  /**
+     * 中拱-波浪弯矩
+     */
+  double midArchWaveMoment=9;
+  /**
+   * 中拱-砰击振动弯矩
+   */
+  double midArchImpactMoment=10;
+  /**
+   * 中拱-剪力
+   */
+  double midArchShear=11;
+  /**
+   * 中垂-波浪弯矩
+   */
+  double midVerticalWaveMoment=12;
+  /**
+   * 中垂-砰击振动弯矩
+   */
+  double midVerticalImpactMoment=13;
+  /**
+   * 中垂-剪力
+   */
+  double midVerticalShear=14;
 }
 
 message Sigma1Response{
@@ -401,7 +426,6 @@ message ShearingStressResponse{
   repeated ShearingStressEntity shearingStress = 1;
 }
 message ShearingStressEntity{
-  //中垂剖面最大剪力值τ  中拱剖面最大剪力值τ  许用剪应力[τ]
   //中垂剖面最大剪力值τ
   double zhongchuiMax = 1;
   //中拱剖面最大剪力值τ

@@ -14,6 +14,8 @@ public class Moment {
     @TableId(type = IdType.AUTO)
     private Integer momentId;
 
+    private Integer projectId;
+
     private Integer sectionId;
     /**
      * 中拱-波浪弯矩

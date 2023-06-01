@@ -3,6 +3,7 @@ package com.iscas.biz.calculation.grpc.service;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.google.common.collect.Lists;
 import com.iscas.biz.calculation.entity.db.*;
+import com.iscas.biz.calculation.entity.db.sigma.Sigma1;
 import com.iscas.biz.calculation.entity.dto.SlamLoadDTO;
 import com.iscas.biz.calculation.entity.dto.StaticLoadDTO;
 import com.iscas.biz.calculation.entity.dto.WaveLoadDTO;
@@ -10,6 +11,7 @@ import com.iscas.biz.calculation.entity.db.*;
 import com.iscas.biz.calculation.entity.dto.CalSectionDTO;
 import com.iscas.biz.calculation.entity.dto.GirderStrengthDTO;
 import com.iscas.biz.calculation.entity.dto.WeightDTO;
+import com.iscas.biz.calculation.entity.dto.sigma.Sigma1DTO;
 import com.iscas.biz.calculation.grpc.Gravity;
 import com.iscas.biz.calculation.grpc.SubGravity;
 import com.iscas.biz.calculation.grpc.WeightDistribution;
@@ -335,5 +337,32 @@ public class AlgorithmGrpc {
         AlgorithmGrpc.waveLoad = true;
         return dbSlamLoad;
     }
+
+//    public Sigma1 calSigma1(Sigma1DTO sigma1DTO){
+//        Sigma1Response sigma1Response = grpcHolder.calculationBlockingStub().calSigma1(Sigma1Request.newBuilder()
+//                        .setKuaChang(sigma1DTO.getKuaChang())
+//                        .setGirderDistance(sigma1DTO.getGirderDistance())
+//                        .setFrDistance(sigma1DTO.getFrDistance())
+//                        .setFrGuige(sigma1DTO.getFrGuige())
+//                        .setPlateThick(sigma1DTO.getPlateThick())
+//                        .setDeviceWeight(sigma1DTO.getDeviceWeight())
+//                        .setGirderWidth(sigma1DTO.getGirderWidth())
+//                        .setMaterialType(sigma1DTO.getMaterialType())
+//                        .setMidArchWaveMoment(sigma1DTO.getMidArchWaveMoment())
+//                        .setMidArchImpactMoment(sigma1DTO.getMidArchImpactMoment())
+//                        .setMidArchShear(sigma1DTO.getMidArchShear())
+//                        .setMidVerticalWaveMoment(sigma1DTO.getMidVerticalWaveMoment())
+//                        .setMidVerticalImpactMoment(sigma1DTO.getMidVerticalImpactMoment())
+//                        .setMidVerticalShear(sigma1DTO.getMidVerticalShear())
+//                .build());
+//        Sigma1 sigma1 = new Sigma1();
+//        sigma1.setProjectId(sigma1DTO.getProjectId());
+//        sigma1.setSectionId(sigma1DTO.getSectionId());
+//        sigma1.setSigma1Down(sigma1Response.getSigma1(0).getSigma1Down());
+//        sigma1.setSigma1HUp(sigma1Response.getSigma1(0).getSigma1HUp());
+//        sigma1.setSigma1SUp(sigma1Response.getSigma1(0).getSigma1SUp());
+//        sigma1.setSigma1SDown(sigma1Response.getSigma1(0).getSigma1SDown());
+//        return sigma1;
+//    }
 
 }

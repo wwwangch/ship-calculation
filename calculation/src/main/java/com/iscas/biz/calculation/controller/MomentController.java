@@ -72,8 +72,8 @@ public class MomentController {
             content = @Content(examples = @ExampleObject(value = "{\"key\":\"val\"}")))
     @PostMapping(value = "/data")
     public ResponseEntity saveData(@RequestBody Map<String, Object> data) throws ValidDataException {
-        ImmutableMap<String, Object> forceItem = ImmutableMap.of("create_time", DateSafeUtils.format(new Date()), "update_time", DateSafeUtils.format(new Date()), "project_id", data.get("project_id"));
-        return tableDefinitionService.saveData(TABLE_IDENTITY, data, true, Moment.class, forceItem);
+//        ImmutableMap<String, Object> forceItem = ImmutableMap.of("create_time", DateSafeUtils.format(new Date()), "update_time", DateSafeUtils.format(new Date()), "project_id", data.get("project_id"));
+        return tableDefinitionService.saveData(TABLE_IDENTITY, data, true, Moment.class, null);
     }
 
     @Operation(summary = "修改数据", description = "更新")
@@ -81,8 +81,8 @@ public class MomentController {
             content = @Content(examples = @ExampleObject(value = "{\"key\":\"val\"}")))
     @PutMapping("/data")
     public ResponseEntity editData(@RequestBody Map<String, Object> data) throws ValidDataException {
-        ImmutableMap<String, Object> forceItem = ImmutableMap.of("update_time", DateSafeUtils.format(new Date()));
-        return tableDefinitionService.saveData(TABLE_IDENTITY, data, false, Moment.class, forceItem);
+//        ImmutableMap<String, Object> forceItem = ImmutableMap.of("update_time", DateSafeUtils.format(new Date()));
+        return tableDefinitionService.saveData(TABLE_IDENTITY, data, false, Moment.class, null);
 
     }
 }
