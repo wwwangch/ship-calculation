@@ -59,71 +59,39 @@ public class StrengthServiceImpl implements StrengthService {
     }
 
     @Override
-    public Sigma2 getSigma2(Integer projectId, Integer sectionId) {
+    public List<Sigma2> getSigma2(Integer projectId, Integer sectionId) {
         QueryWrapper<Sigma2> queryWrapper = new QueryWrapper();
         queryWrapper.eq("project_id", projectId);
         queryWrapper.eq("section_id", sectionId);
         List<Sigma2> sigma2List = sigma2Mapper.selectList(queryWrapper);
-        if (CollectionUtils.isNotEmpty(sigma2List)) {
-            if (sigma2List.size() > 1) {
-                for (int i = 1; i < sigma2List.size(); i++) {
-                    sigma2Mapper.deleteById(sigma2List.get(i));
-                }
-            }
-            return sigma2List.get(0);
-        }
-        return null;
+        return sigma2List;
     }
 
     @Override
-    public Sigma3 getSigma3(Integer projectId, Integer sectionId) {
+    public List<Sigma3> getSigma3(Integer projectId, Integer sectionId) {
         QueryWrapper<Sigma3> queryWrapper = new QueryWrapper();
         queryWrapper.eq("project_id", projectId);
         queryWrapper.eq("section_id", sectionId);
         List<Sigma3> sigma3List = sigma3Mapper.selectList(queryWrapper);
-        if (CollectionUtils.isNotEmpty(sigma3List)) {
-            if (sigma3List.size() > 1) {
-                for (int i = 1; i < sigma3List.size(); i++) {
-                    sigma3Mapper.deleteById(sigma3List.get(i));
-                }
-            }
-            return sigma3List.get(0);
-        }
-        return null;
+        return sigma3List;
     }
 
     @Override
-    public Sigma4 getSigma4(Integer projectId, Integer sectionId) {
+    public List<Sigma4> getSigma4(Integer projectId, Integer sectionId) {
         QueryWrapper<Sigma4> queryWrapper = new QueryWrapper();
         queryWrapper.eq("project_id", projectId);
         queryWrapper.eq("section_id", sectionId);
         List<Sigma4> sigma4List = sigma4Mapper.selectList(queryWrapper);
-        if (CollectionUtils.isNotEmpty(sigma4List)) {
-            if (sigma4List.size() > 1) {
-                for (int i = 1; i < sigma4List.size(); i++) {
-                    sigma4Mapper.deleteById(sigma4List.get(i));
-                }
-            }
-            return sigma4List.get(0);
-        }
-        return null;
+        return sigma4List;
     }
 
     @Override
-    public ShearingStress getShearingStress(Integer projectId, Integer sectionId) {
+    public List<ShearingStress> getShearingStress(Integer projectId, Integer sectionId) {
         QueryWrapper<ShearingStress> queryWrapper = new QueryWrapper();
         queryWrapper.eq("project_id", projectId);
         queryWrapper.eq("section_id", sectionId);
         List<ShearingStress> shearingStressList = shearingStressMapper.selectList(queryWrapper);
-        if (CollectionUtils.isNotEmpty(shearingStressList)) {
-            if (shearingStressList.size() > 1) {
-                for (int i = 1; i < shearingStressList.size(); i++) {
-                    shearingStressMapper.deleteById(shearingStressList.get(i));
-                }
-            }
-            return shearingStressList.get(0);
-        }
-        return null;
+        return shearingStressList;
     }
 
     @Override
@@ -147,7 +115,6 @@ public class StrengthServiceImpl implements StrengthService {
         copyFields(section, sigma1DTO);
         copyFields(moment, sigma1DTO);
         List<Sigma1> calSigma1List = algorithmGrpc.calSigma1(sigma1DTO);
-        //todo 重写  删除历史数据  然后再插入  去除getdata中的值
         //清空全部历史数据  
         sigma1Mapper.delete(null);
         //插入新数据
@@ -158,44 +125,77 @@ public class StrengthServiceImpl implements StrengthService {
     }
 
 
-//    @Override
-//    public Sigma2 calSigma2(Integer projectId, Integer sectionId) throws IllegalAccessException {
-//        if (null == projectId) {
-//            throw new RuntimeException("参数[projectId]不可为空");
-//        }
-//        if (null == sectionId) {
-//            throw new RuntimeException("参数[sectionId]不可为空");
-//        }
-//        Sigma2 calSigma2 = algorithmGrpc.calSigma2(projectId, sectionId);
-//        Sigma2 sigma2 = getSigma2(projectId, sectionId);
-//        if (null!=sigma2){
-//            Integer sigma2Id = sigma2.getSigma2Id();
-//            calSigma2.setSigma2Id(sigma2Id);
-//            sigma2Mapper.deleteById(sigma2Id);
-//        }
-//        sigma2Mapper.insert(calSigma2);
-//        return calSigma2;
-//    }
-//
-//    @Override
-//    public Sigma3 calSigma3(Integer projectId, Integer sectionId) throws IllegalAccessException {
-//        if (null == projectId) {
-//            throw new RuntimeException("参数[projectId]不可为空");
-//        }
-//        if (null == sectionId) {
-//            throw new RuntimeException("参数[sectionId]不可为空");
-//        }
-//        Sigma2 calSigma2 = algorithmGrpc.calSigma2(projectId, sectionId);
-//        Sigma2 sigma2 = getSigma2(projectId, sectionId);
-//        if (null!=sigma2){
-//            Integer sigma2Id = sigma2.getSigma2Id();
-//            calSigma2.setSigma2Id(sigma2Id);
-//            sigma2Mapper.deleteById(sigma2Id);
-//        }
-//        sigma2Mapper.insert(calSigma2);
-//        return calSigma2;
-//
-//    }
+    @Override
+    public List<Sigma2> calSigma2(Integer projectId, Integer sectionId) throws IllegalAccessException {
+        if (null == projectId) {
+            throw new RuntimeException("参数[projectId]不可为空");
+        }
+        if (null == sectionId) {
+            throw new RuntimeException("参数[sectionId]不可为空");
+        }
+        List<Sigma2> calSigma2List = algorithmGrpc.calSigma2(projectId, sectionId);
+        //清空全部历史数据
+        sigma2Mapper.delete(null);
+        //插入新数据
+        for (int i = 0; i < calSigma2List.size(); i++) {
+            sigma2Mapper.insert(calSigma2List.get(i));
+        }
+        return calSigma2List;
+    }
+
+    @Override
+    public List<Sigma3> calSigma3(Integer projectId, Integer sectionId) throws IllegalAccessException {
+        if (null == projectId) {
+            throw new RuntimeException("参数[projectId]不可为空");
+        }
+        if (null == sectionId) {
+            throw new RuntimeException("参数[sectionId]不可为空");
+        }
+        List<Sigma3> calSigma3List = algorithmGrpc.calSigma3(projectId, sectionId);
+        //清空全部历史数据
+        sigma3Mapper.delete(null);
+        //插入新数据
+        for (int i = 0; i < calSigma3List.size(); i++) {
+            sigma3Mapper.insert(calSigma3List.get(i));
+        }
+        return calSigma3List;
+    }
+
+    @Override
+    public List<Sigma4> calSigma4(Integer projectId, Integer sectionId) throws IllegalAccessException {
+        if (null == projectId) {
+            throw new RuntimeException("参数[projectId]不可为空");
+        }
+        if (null == sectionId) {
+            throw new RuntimeException("参数[sectionId]不可为空");
+        }
+        List<Sigma4> calSigma4List = algorithmGrpc.calSigma4(projectId, sectionId);
+        //清空全部历史数据
+        sigma4Mapper.delete(null);
+        //插入新数据
+        for (int i = 0; i < calSigma4List.size(); i++) {
+            sigma4Mapper.insert(calSigma4List.get(i));
+        }
+        return calSigma4List;
+    }
+
+    @Override
+    public List<ShearingStress> calShearingStress(Integer projectId, Integer sectionId) throws IllegalAccessException {
+        if (null == projectId) {
+            throw new RuntimeException("参数[projectId]不可为空");
+        }
+        if (null == sectionId) {
+            throw new RuntimeException("参数[sectionId]不可为空");
+        }
+        List<ShearingStress> calShearingStressList = algorithmGrpc.calShearingStress(projectId, sectionId);
+        //清空全部历史数据
+        shearingStressMapper.delete(null);
+        //插入新数据
+        for (int i = 0; i < calShearingStressList.size(); i++) {
+            shearingStressMapper.insert(calShearingStressList.get(i));
+        }
+        return calShearingStressList;
+    }
 
     public static <T, U> void copyFields(T sourceObj, U destObj) throws IllegalAccessException {
         Field[] sourceFields = sourceObj.getClass().getDeclaredFields();

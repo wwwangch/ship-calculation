@@ -60,7 +60,8 @@ public class DistServiceImpl implements DistService {
 
     @Override
     public Dist calculateAndSave(Integer projectId, Integer sectionId) {
-
+        //清空全部历史数据
+        distMapper.delete(null);
         Dist dist = algorithmGrpc.calDist(projectId, sectionId);
         if (null != dist) {
             distMapper.insert(dist);
