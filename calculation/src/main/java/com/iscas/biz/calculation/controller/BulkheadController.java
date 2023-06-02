@@ -75,7 +75,7 @@ public class BulkheadController {
     public ResponseEntity saveData(@RequestBody Map<String, Object> data) throws ValidDataException {
         ImmutableMap<String, Object> forceItem = ImmutableMap.of("create_time", DateSafeUtils.format(new Date()), "update_time", DateSafeUtils.format(new Date()), "project_id", data.get("project_id"));
         ResponseEntity entity = tableDefinitionService.saveData(TABLE_IDENTITY, data, true, Bulkhead.class, forceItem);
-        bulkheadService.saveCompartment(data.get("bulkheadFilePath"));
+        bulkheadService.saveCompartment(data.get("bulkhead_file_path"));
         return entity;
     }
 

@@ -36,4 +36,21 @@ public class Bulkhead {
     private Date createTime;
 
     private Date updateTime;
+
+    /**
+     * 舱壁位置
+     */
+    private String cangbiweizhi;
+    /**
+     * 舱壁肋位号
+     */
+    private String leiweihao;
+    /**
+     * 水动压力
+     */
+    private String shuidongyali;
+    /**
+     * 甲板纵骨跨距
+     */
+    private String zonggukuaju;
 }

@@ -182,14 +182,8 @@ public class AlgorithmGrpc {
 
     public CalSection calSection(CalSectionDTO calSectionDTO) {
         Integer projectId = calSectionDTO.getProjectId();
-        if (!Objects.equals(projectId, AlgorithmGrpc.currentProjectId)) {
-            QueryWrapper<ShipParam> queryWrapper = new QueryWrapper<>();
-            queryWrapper.eq("project_id", projectId);
-            ShipParam shipParam = shipParamMapper.selectOne(queryWrapper);
-            ShipParamResponse shipParamResponse = callShipParam(projectMapper.selectById(projectId), shipParam);
-            if (0 != shipParamResponse.getCode()) {
-                throw new RuntimeException("船舶参数配置失败" + shipParamResponse.getMessage());
-            }
+        if (calSectionDTO.getProfileFilePath() == null || calSectionDTO.getRibNumber() == null) {
+            throw new RuntimeException("剖面计算参数错误");
         }
         SectionRequest sectionRequest = SectionRequest.newBuilder()
                 .setProfileFilePath(calSectionDTO.getProfileFilePath())
