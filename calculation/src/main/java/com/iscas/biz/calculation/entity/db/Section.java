@@ -82,7 +82,7 @@ public class Section {
     /**
      * 龙骨数量
      */
-    private String numGirders;
+    private Integer numGirders;
 
 
 

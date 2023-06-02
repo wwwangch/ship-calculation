@@ -76,5 +76,5 @@ public class Sigma1DTO {
     /**
      * 龙骨数量
      */
-    private Integer numGirder;
+    private Integer numGirders;
 }

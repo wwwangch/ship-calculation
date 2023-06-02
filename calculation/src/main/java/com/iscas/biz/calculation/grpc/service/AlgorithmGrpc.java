@@ -4,6 +4,7 @@ import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.google.common.collect.Lists;
 import com.iscas.biz.calculation.entity.db.*;
 import com.iscas.biz.calculation.entity.db.sigma.Sigma1;
+import com.iscas.biz.calculation.entity.db.sigma.Sigma2;
 import com.iscas.biz.calculation.entity.dto.SlamLoadDTO;
 import com.iscas.biz.calculation.entity.dto.StaticLoadDTO;
 import com.iscas.biz.calculation.entity.dto.WaveLoadDTO;
@@ -341,7 +342,7 @@ public class AlgorithmGrpc {
         return dbSlamLoad;
     }
 
-    public Sigma1 calSigma1(Sigma1DTO sigma1DTO){
+    public List<Sigma1> calSigma1(Sigma1DTO sigma1DTO){
         Sigma1Response sigma1Response = grpcHolder.calculationBlockingStub().calSigma1(Sigma1Request.newBuilder()
                         .addAllKuaChang(ListUtils.convertStrToDoubleList(sigma1DTO.getKuaChang()))
                         .setGirderDistance(sigma1DTO.getGirderDistance())
@@ -357,16 +358,46 @@ public class AlgorithmGrpc {
                         .setMidVerticalWaveMoment(sigma1DTO.getMidVerticalWaveMoment())
                         .setMidVerticalImpactMoment(sigma1DTO.getMidVerticalImpactMoment())
                         .setMidVerticalShear(sigma1DTO.getMidVerticalShear())
-                        .setNumGirder(sigma1DTO.getNumGirder())
+                        .setNumGirder(sigma1DTO.getNumGirders())
                 .build());
-        Sigma1 sigma1 = new Sigma1();
-        sigma1.setProjectId(sigma1DTO.getProjectId());
-        sigma1.setSectionId(sigma1DTO.getSectionId());
-        sigma1.setSigma1Down(sigma1Response.getSigma1(0).getSigma1Down());
-        sigma1.setSigma1HUp(sigma1Response.getSigma1(0).getSigma1HUp());
-        sigma1.setSigma1SUp(sigma1Response.getSigma1(0).getSigma1SUp());
-        sigma1.setSigma1SDown(sigma1Response.getSigma1(0).getSigma1SDown());
-        return sigma1;
+
+        List<Sigma1> sigma1List = new ArrayList();
+        for (int i = 0; i < sigma1Response.getSigma1List().size(); i++) {
+            Sigma1 sigma1 = new Sigma1();
+            sigma1.setProjectId(sigma1DTO.getProjectId());
+            sigma1.setSectionId(sigma1DTO.getSectionId());
+            sigma1.setSigma1Down(sigma1Response.getSigma1(i).getSigma1Down());
+            sigma1.setSigma1HUp(sigma1Response.getSigma1(i).getSigma1HUp());
+            sigma1.setSigma1SUp(sigma1Response.getSigma1(i).getSigma1SUp());
+            sigma1.setSigma1SDown(sigma1Response.getSigma1(i).getSigma1SDown());
+            sigma1List.add(sigma1);
+        }
+
+        return sigma1List;
+    }
+
+    public List<Sigma2> calSigma2(Integer projectId, Integer sectionId){
+        Sigma2Response sigma2Response = grpcHolder.calculationBlockingStub().calSigma2(Sigma2Request.newBuilder().build());
+        List<Sigma2> sigma2List = Lists.newArrayList();
+        for (int i = 0; i < sigma2Response.getSigma2List().size(); i++) {
+            Sigma2 sigma2 = new Sigma2();
+            sigma2.setProjectId(projectId);
+            sigma2.setSectionId(sectionId);
+            sigma2.setZhonggongZhizuoShang(sigma2Response.getSigma2(i).getZhonggongZhizuoShang());
+            sigma2.setZhonggongZhizuoXia(sigma2Response.getSigma2(i).getZhonggongZhizuoXia());
+
+            sigma2.setZhonggongKuazhongShang(sigma2Response.getSigma2(i).getZhonggongKuazhongShang());
+            sigma2.setZhonggongKuazhongXia(sigma2Response.getSigma2(i).getZhonggongKuazhongXia());
+
+
+            sigma2.setZhongchuiZhizuoShang(sigma2Response.getSigma2(i).getZhongchuiZhizuoShang());
+            sigma2.setZhongchuiZhizuoXia(sigma2Response.getSigma2(i).getZhongchuiZhizuoXia());
+
+            sigma2.setZhongchuiKuazhongShang(sigma2Response.getSigma2(i).getZhongchuiKuazhongShang());
+            sigma2.setZhongchuiKuazhongXia(sigma2Response.getSigma2(i).getZhongchuiKuazhongXia());
+            sigma2List.add(sigma2);
+        }
+        return sigma2List;
     }
 
 }

@@ -4,9 +4,10 @@ import com.iscas.biz.calculation.entity.db.sigma.*;
 import com.iscas.biz.calculation.entity.dto.sigma.Sigma1DTO;
 
 import java.io.IOException;
+import java.util.List;
 
 public interface StrengthService {
-    Sigma1 getSigma1(Integer projectId, Integer sectionId);
+    List<Sigma1> getSigma1(Integer projectId, Integer sectionId);
 
     Sigma2 getSigma2(Integer projectId, Integer sectionId);
 
@@ -17,8 +18,12 @@ public interface StrengthService {
     ShearingStress getShearingStress(Integer projectId, Integer sectionId);
 
 
-    Sigma1 calSigma1(Integer projectId, Integer sectionId) throws IllegalAccessException;
+    List<Sigma1> calSigma1(Integer projectId, Integer sectionId) throws IllegalAccessException;
 
+
+//    Sigma2 calSigma2(Integer projectId, Integer sectionId) throws IllegalAccessException;
+//
+//    Sigma3 calSigma3(Integer projectId, Integer sectionId) throws IllegalAccessException;
 
 //    void sigma1Export(Integer projectId, Integer sectionId)throws IOException;
 //
