@@ -74,10 +74,10 @@ public class BulkheadServiceImpl extends ServiceImpl<BulkheadMapper, Bulkhead> i
                                     List<Map.Entry<String, Object>> entryList = map.entrySet().stream().collect(Collectors.toList());
                                     if (k1 == null || v1 == null) {
                                         // 获取第二个键值对
-                                        k1 = Integer.parseInt(entryList.get(0).getValue().toString());
+                                        k1 = Double.valueOf(entryList.get(0).getValue().toString()).intValue();
                                         v1 = Double.parseDouble(entryList.get(1).getValue().toString());
                                     } else {
-                                        Integer k2 = Integer.parseInt(entryList.get(0).getValue().toString());
+                                        Integer k2 = Double.valueOf(entryList.get(0).getValue().toString()).intValue();
                                         Double v2 = Double.parseDouble(entryList.get(1).getValue().toString());
                                         BulkheadCompartment bulkheadCompartment = new BulkheadCompartment();
                                         bulkheadCompartment.setProjectId(bulkhead.getProjectId());
@@ -85,6 +85,8 @@ public class BulkheadServiceImpl extends ServiceImpl<BulkheadMapper, Bulkhead> i
                                         bulkheadCompartment.setCompartment(k1 + "-" + k2);
                                         bulkheadCompartment.setHeightAbove("" + (v1 - v2));
                                         compartmentMapper.insert(bulkheadCompartment);
+                                        k1 = k2;
+                                        v1 = v2;
                                     }
                                 }
                             }

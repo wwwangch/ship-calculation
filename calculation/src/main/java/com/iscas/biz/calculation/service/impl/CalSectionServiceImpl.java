@@ -5,7 +5,6 @@ import com.alibaba.excel.ExcelWriter;
 import com.alibaba.excel.write.metadata.WriteSheet;
 import com.alibaba.excel.write.metadata.WriteTable;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
-import com.fasterxml.jackson.core.type.TypeReference;
 import com.google.common.collect.Lists;
 import com.iscas.base.biz.util.SpringUtils;
 import com.iscas.biz.calculation.entity.db.*;
@@ -13,10 +12,8 @@ import com.iscas.biz.calculation.entity.dto.*;
 import com.iscas.biz.calculation.grpc.service.AlgorithmGrpc;
 import com.iscas.biz.calculation.mapper.CalSectionMapper;
 import com.iscas.biz.calculation.mapper.ProjectMapper;
-import com.iscas.biz.calculation.mapper.WeightMapper;
+import com.iscas.biz.calculation.mapper.SectionMapper;
 import com.iscas.biz.calculation.service.CalSectionService;
-import com.iscas.biz.calculation.service.WeightService;
-import com.iscas.common.web.tools.json.JsonUtils;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.collections4.CollectionUtils;
 import org.springframework.stereotype.Service;
@@ -37,11 +34,13 @@ public class CalSectionServiceImpl implements CalSectionService {
     private final CalSectionMapper calSectionMapper;
 
     private final ProjectMapper projectMapper;
+    private final SectionMapper sectionMapper;
 
-    public CalSectionServiceImpl(AlgorithmGrpc algorithmGrpc, CalSectionMapper calSectionMapper, ProjectMapper projectMapper) {
+    public CalSectionServiceImpl(AlgorithmGrpc algorithmGrpc, CalSectionMapper calSectionMapper, ProjectMapper projectMapper, SectionMapper sectionMapper) {
         this.algorithmGrpc = algorithmGrpc;
         this.calSectionMapper = calSectionMapper;
         this.projectMapper = projectMapper;
+        this.sectionMapper = sectionMapper;
     }
 
     @Override
@@ -51,6 +50,10 @@ public class CalSectionServiceImpl implements CalSectionService {
         if (null == projectId || null == projectMapper.selectById(projectId)) {
             return null;
         }
+        Section selectById = sectionMapper.selectById(calSectionDTO.getSectionId());
+        calSectionDTO.setProfileFilePath(selectById.getSectionFilePath());
+        calSectionDTO.setProfileFileName(selectById.getSectionFileName());
+        calSectionDTO.setRibNumber(selectById.getRibNumber());
         CalSection calSection = algorithmGrpc.calSection(calSectionDTO);
         CalSection section = listBySectionIdId(calSectionDTO.getSectionId());
         if (null != section) {

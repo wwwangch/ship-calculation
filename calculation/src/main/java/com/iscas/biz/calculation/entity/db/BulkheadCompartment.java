@@ -61,4 +61,9 @@ public class BulkheadCompartment {
     private Date createTime;
 
     private Date updateTime;
+
+    /**
+     * 带板厚度
+     */
+    private String daibanhou;
 }

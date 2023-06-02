@@ -183,14 +183,8 @@ public class AlgorithmGrpc {
 
     public CalSection calSection(CalSectionDTO calSectionDTO) {
         Integer projectId = calSectionDTO.getProjectId();
-        if (!Objects.equals(projectId, AlgorithmGrpc.currentProjectId)) {
-            QueryWrapper<ShipParam> queryWrapper = new QueryWrapper<>();
-            queryWrapper.eq("project_id", projectId);
-            ShipParam shipParam = shipParamMapper.selectOne(queryWrapper);
-            ShipParamResponse shipParamResponse = callShipParam(projectMapper.selectById(projectId), shipParam);
-            if (0 != shipParamResponse.getCode()) {
-                throw new RuntimeException("船舶参数配置失败" + shipParamResponse.getMessage());
-            }
+        if (calSectionDTO.getProfileFilePath() == null || calSectionDTO.getRibNumber() == null) {
+            throw new RuntimeException("剖面计算参数错误");
         }
         SectionRequest sectionRequest = SectionRequest.newBuilder()
                 .setProfileFilePath(calSectionDTO.getProfileFilePath())
@@ -342,23 +336,23 @@ public class AlgorithmGrpc {
         return dbSlamLoad;
     }
 
-    public List<Sigma1> calSigma1(Sigma1DTO sigma1DTO){
+    public List<Sigma1> calSigma1(Sigma1DTO sigma1DTO) {
         Sigma1Response sigma1Response = grpcHolder.calculationBlockingStub().calSigma1(Sigma1Request.newBuilder()
-                        .addAllKuaChang(ListUtils.convertStrToDoubleList(sigma1DTO.getKuaChang()))
-                        .setGirderDistance(sigma1DTO.getGirderDistance())
-                        .setFrDistance(sigma1DTO.getFrDistance())
-                        .addAllFrGuige(ListUtils.convertStrToDoubleList(sigma1DTO.getFrGuige()))
-                        .addAllPlateThick(ListUtils.convertStrToDoubleList(sigma1DTO.getPlateThick()))
-                        .setDeviceWeight(sigma1DTO.getDeviceWeight())
-                        .setGirderWidth(sigma1DTO.getGirderWidth())
-                        .setMaterialType(sigma1DTO.getMaterialType())
-                        .setMidArchWaveMoment(sigma1DTO.getMidArchWaveMoment())
-                        .setMidArchImpactMoment(sigma1DTO.getMidArchImpactMoment())
-                        .setMidArchShear(sigma1DTO.getMidArchShear())
-                        .setMidVerticalWaveMoment(sigma1DTO.getMidVerticalWaveMoment())
-                        .setMidVerticalImpactMoment(sigma1DTO.getMidVerticalImpactMoment())
-                        .setMidVerticalShear(sigma1DTO.getMidVerticalShear())
-                        .setNumGirder(sigma1DTO.getNumGirders())
+                .addAllKuaChang(ListUtils.convertStrToDoubleList(sigma1DTO.getKuaChang()))
+                .setGirderDistance(sigma1DTO.getGirderDistance())
+                .setFrDistance(sigma1DTO.getFrDistance())
+                .addAllFrGuige(ListUtils.convertStrToDoubleList(sigma1DTO.getFrGuige()))
+                .addAllPlateThick(ListUtils.convertStrToDoubleList(sigma1DTO.getPlateThick()))
+                .setDeviceWeight(sigma1DTO.getDeviceWeight())
+                .setGirderWidth(sigma1DTO.getGirderWidth())
+                .setMaterialType(sigma1DTO.getMaterialType())
+                .setMidArchWaveMoment(sigma1DTO.getMidArchWaveMoment())
+                .setMidArchImpactMoment(sigma1DTO.getMidArchImpactMoment())
+                .setMidArchShear(sigma1DTO.getMidArchShear())
+                .setMidVerticalWaveMoment(sigma1DTO.getMidVerticalWaveMoment())
+                .setMidVerticalImpactMoment(sigma1DTO.getMidVerticalImpactMoment())
+                .setMidVerticalShear(sigma1DTO.getMidVerticalShear())
+                .setNumGirder(sigma1DTO.getNumGirders())
                 .build());
 
         List<Sigma1> sigma1List = new ArrayList();
@@ -376,7 +370,7 @@ public class AlgorithmGrpc {
         return sigma1List;
     }
 
-    public List<Sigma2> calSigma2(Integer projectId, Integer sectionId){
+    public List<Sigma2> calSigma2(Integer projectId, Integer sectionId) {
         Sigma2Response sigma2Response = grpcHolder.calculationBlockingStub().calSigma2(Sigma2Request.newBuilder().build());
         List<Sigma2> sigma2List = Lists.newArrayList();
         for (int i = 0; i < sigma2Response.getSigma2List().size(); i++) {
