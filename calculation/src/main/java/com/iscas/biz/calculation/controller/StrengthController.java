@@ -14,6 +14,7 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.*;
 
+import java.io.IOException;
 import java.util.List;
 
 /**
@@ -124,7 +125,35 @@ public class StrengthController {
         return ResponseEntity.ok(strengthService.calShearingStress(projectId,sectionId));
     }
 
+    @Operation(summary = "sigma1导出", description = "导出")
+    @GetMapping("/sigma1/download/{projectId}/{sectionId}")
+    public void exportSigma1(@PathVariable Integer projectId, @PathVariable Integer sectionId) throws IOException {
+        strengthService.sigma1Export(projectId,sectionId);
+    }
 
+//    @Operation(summary = "sigma2导出", description = "导出")
+//    @GetMapping("/sigma2/download/{projectId}/{sectionId}")
+//    public void exportSigma2(@PathVariable Integer projectId, @PathVariable Integer sectionId) throws IOException {
+//        strengthService.sigma2Export(projectId,sectionId);
+//    }
+//
+//    @Operation(summary = "sigma3导出", description = "导出")
+//    @GetMapping("/sigma3/download/{projectId}/{sectionId}")
+//    public void exportSigma3(@PathVariable Integer projectId, @PathVariable Integer sectionId) throws IOException {
+//        strengthService.sigma3Export(projectId,sectionId);
+//    }
+//
+//    @Operation(summary = "sigma4导出", description = "导出")
+//    @GetMapping("/sigma4/download/{projectId}/{sectionId}")
+//    public void exportSigma4(@PathVariable Integer projectId, @PathVariable Integer sectionId) throws IOException {
+//        strengthService.sigma4Export(projectId,sectionId);
+//    }
+//
+//    @Operation(summary = "shearingStress导出", description = "导出")
+//    @GetMapping("/shearingStress/download/{projectId}/{sectionId}")
+//    public void exportShearingStress(@PathVariable Integer projectId, @PathVariable Integer sectionId) throws IOException {
+//        strengthService.shearingStressExport(projectId,sectionId);
+//    }
 
 
 }

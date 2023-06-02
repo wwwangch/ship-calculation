@@ -24,4 +24,40 @@ public interface DistResponseOrBuilder extends
    * <code>double extremeS = 2;</code>
    */
   double getExtremeS();
+
+  /**
+   * <pre>
+   *中拱过载系数1
+   * </pre>
+   *
+   * <code>double overloadH1 = 3;</code>
+   */
+  double getOverloadH1();
+
+  /**
+   * <pre>
+   *中拱过载系数2
+   * </pre>
+   *
+   * <code>double overloadH2 = 4;</code>
+   */
+  double getOverloadH2();
+
+  /**
+   * <pre>
+   *中垂过载系数1
+   * </pre>
+   *
+   * <code>double overloadS1 = 5;</code>
+   */
+  double getOverloadS1();
+
+  /**
+   * <pre>
+   *中垂过载系数2
+   * </pre>
+   *
+   * <code>double overloadS2 = 6;</code>
+   */
+  double getOverloadS2();
 }

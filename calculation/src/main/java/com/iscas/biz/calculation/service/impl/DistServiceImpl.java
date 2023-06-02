@@ -6,11 +6,13 @@ import com.alibaba.excel.ExcelWriter;
 import com.alibaba.excel.write.metadata.WriteSheet;
 import com.alibaba.excel.write.metadata.WriteTable;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.baomidou.mybatisplus.core.conditions.update.UpdateWrapper;
 import com.google.common.collect.Lists;
 import com.iscas.base.biz.util.SpringUtils;
 import com.iscas.biz.calculation.entity.db.Dist;
 import com.iscas.biz.calculation.entity.db.Project;
 import com.iscas.biz.calculation.entity.db.Section;
+import com.iscas.biz.calculation.entity.db.sigma.ShearingStress;
 import com.iscas.biz.calculation.entity.dto.DistExcel;
 import com.iscas.biz.calculation.grpc.service.AlgorithmGrpc;
 import com.iscas.biz.calculation.mapper.DistMapper;
@@ -60,7 +62,12 @@ public class DistServiceImpl implements DistService {
 
     @Override
     public Dist calculateAndSave(Integer projectId, Integer sectionId) {
-        //清空全部历史数据
+        //清空该项目该剖面历史数据
+        UpdateWrapper<Dist> updateWrapper = new UpdateWrapper<>();
+        updateWrapper.eq("project_id", projectId);
+        updateWrapper.eq("section_id", sectionId);
+        distMapper.delete(updateWrapper);
+
         distMapper.delete(null);
         Dist dist = algorithmGrpc.calDist(projectId, sectionId);
         if (null != dist) {

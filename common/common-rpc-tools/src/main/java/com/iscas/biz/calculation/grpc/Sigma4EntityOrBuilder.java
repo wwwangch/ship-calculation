@@ -42,4 +42,94 @@ public interface Sigma4EntityOrBuilder extends
    * <code>double zhongchuiKuazhong = 4;</code>
    */
   double getZhongchuiKuazhong();
+
+  /**
+   * <pre>
+   *许用应力
+   * </pre>
+   *
+   * <code>double allowStress = 5;</code>
+   */
+  double getAllowStress();
+
+  /**
+   * <pre>
+   *合成许用应力
+   * </pre>
+   *
+   * <code>double combineAllowStress = 6;</code>
+   */
+  double getCombineAllowStress();
+
+  /**
+   * <pre>
+   *合成中拱支座上纤维
+   * </pre>
+   *
+   * <code>double combineZhonggongZhizuoUp = 7;</code>
+   */
+  double getCombineZhonggongZhizuoUp();
+
+  /**
+   * <pre>
+   *合成中拱支座下纤维
+   * </pre>
+   *
+   * <code>double combineZhonggongZhizuoDown = 8;</code>
+   */
+  double getCombineZhonggongZhizuoDown();
+
+  /**
+   * <pre>
+   *合成中拱跨中上纤维
+   * </pre>
+   *
+   * <code>double combineZhonggongKuazhongUp = 9;</code>
+   */
+  double getCombineZhonggongKuazhongUp();
+
+  /**
+   * <pre>
+   *合成中拱支座下纤维
+   * </pre>
+   *
+   * <code>double combineZhonggongKuazhongDown = 10;</code>
+   */
+  double getCombineZhonggongKuazhongDown();
+
+  /**
+   * <pre>
+   *合成中垂支座上纤维
+   * </pre>
+   *
+   * <code>double combineZhongchuiZhizuoUp = 11;</code>
+   */
+  double getCombineZhongchuiZhizuoUp();
+
+  /**
+   * <pre>
+   *合成中拱支座下纤维
+   * </pre>
+   *
+   * <code>double combineZhongchuiZhizuoDown = 12;</code>
+   */
+  double getCombineZhongchuiZhizuoDown();
+
+  /**
+   * <pre>
+   *合成中垂跨中上纤维
+   * </pre>
+   *
+   * <code>double combineZhongchuiKuazhongUp = 13;</code>
+   */
+  double getCombineZhongchuiKuazhongUp();
+
+  /**
+   * <pre>
+   *合成中拱支座下纤维
+   * </pre>
+   *
+   * <code>double combineZhongchuiKuazhongDown = 14;</code>
+   */
+  double getCombineZhongchuiKuazhongDown();
 }

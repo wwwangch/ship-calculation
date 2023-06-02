@@ -251,7 +251,7 @@ message SectionRequest{
   string profileFilePath = 1;
 
   //肋位号
-  double ribNumber=2;
+  double ribNumber = 2;
 }
 //剖面计算输出
 message SectionResponse{
@@ -292,6 +292,15 @@ message DistResponse{
   double extremeH = 1;
   //中垂极限弯矩
   double extremeS = 2;
+  //中拱过载系数1
+  double overloadH1 = 3;
+  //中拱过载系数2
+  double overloadH2 = 4;
+  //中垂过载系数1
+  double overloadS1 = 5;
+  //中垂过载系数2
+  double overloadS2 = 6;
+
 }
 message Sigma1Request{
 
@@ -322,34 +331,36 @@ message Sigma1Request{
   /**
      * 中拱-波浪弯矩
      */
-  double midArchWaveMoment=9;
+  double midArchWaveMoment = 9;
   /**
    * 中拱-砰击振动弯矩
    */
-  double midArchImpactMoment=10;
+  double midArchImpactMoment = 10;
   /**
    * 中拱-剪力
    */
-  double midArchShear=11;
+  double midArchShear = 11;
   /**
    * 中垂-波浪弯矩
    */
-  double midVerticalWaveMoment=12;
+  double midVerticalWaveMoment = 12;
   /**
    * 中垂-砰击振动弯矩
    */
-  double midVerticalImpactMoment=13;
+  double midVerticalImpactMoment = 13;
   /**
    * 中垂-剪力
    */
-  double midVerticalShear=14;
+  double midVerticalShear = 14;
 
   //龙骨数量
-  int32 numGirder  = 15;
+  int32 numGirder = 15;
 }
 
 message Sigma1Response{
   repeated Sigma1Entity sigma1 = 1;
+  //许用应力
+  double allowStress = 2;
 }
 
 message Sigma1Entity{
@@ -361,6 +372,8 @@ message Sigma1Entity{
   double sigma1SUp = 3;
   //中垂龙骨上纤维
   double sigma1SDown = 4;
+  //许用应力
+  double allowStress = 5;
 }
 
 message Sigma2Request{
@@ -391,6 +404,29 @@ message Sigma2Entity{
   double zhongchuiKuazhongShang = 7;
   //中垂跨中下纤维
   double zhongchuiKuazhongXia = 8;
+  //许用应力
+  double allowStress = 9;
+  //合成许用应力
+  double combineAllowStress = 10;
+  //合成中拱支座上纤维
+  double combineZhonggongZhizuoShang = 11;
+  //合成中拱支座下纤维
+  double combineZhonggongZhizuoXia = 12;
+
+  //合成中拱跨中上纤维
+  double combineZhonggongKuazhongShang = 13;
+  //合成中拱跨中下纤维
+  double combineZhonggongKuazhongXia = 14;
+
+  //合成中垂支座上纤维
+  double combineZhongchuiZhizuoShang = 15;
+  //合成中垂支座下纤维
+  double combineZhongchuiZhizuoXia = 16;
+
+  //合成中垂跨中上纤维
+  double combineZhongchuiKuazhongShang = 17;
+  //合成中垂跨中下纤维
+  double combineZhongchuiKuazhongXia = 18;
 }
 
 message Sigma3Request{
@@ -421,6 +457,29 @@ message Sigma4Entity{
 
   //中垂跨中
   double zhongchuiKuazhong = 4;
+  //许用应力
+  double allowStress = 5;
+  //合成许用应力
+  double combineAllowStress = 6;
+
+  //合成中拱支座上纤维
+  double combineZhonggongZhizuoUp = 7;
+  //合成中拱支座下纤维
+  double combineZhonggongZhizuoDown = 8;
+  //合成中拱跨中上纤维
+  double combineZhonggongKuazhongUp = 9;
+  //合成中拱支座下纤维
+  double combineZhonggongKuazhongDown = 10;
+
+  //合成中垂支座上纤维
+  double combineZhongchuiZhizuoUp = 11;
+  //合成中拱支座下纤维
+  double combineZhongchuiZhizuoDown = 12;
+
+  //合成中垂跨中上纤维
+  double combineZhongchuiKuazhongUp = 13;
+  //合成中拱支座下纤维
+  double combineZhongchuiKuazhongDown = 14;
 }
 
 message ShearingStressRequest{
