@@ -19,6 +19,16 @@ public  final class Sigma4Entity extends
     zhonggongKuazhong_ = 0D;
     zhongchuiZhizuo_ = 0D;
     zhongchuiKuazhong_ = 0D;
+    allowStress_ = 0D;
+    combineAllowStress_ = 0D;
+    combineZhonggongZhizuoUp_ = 0D;
+    combineZhonggongZhizuoDown_ = 0D;
+    combineZhonggongKuazhongUp_ = 0D;
+    combineZhonggongKuazhongDown_ = 0D;
+    combineZhongchuiZhizuoUp_ = 0D;
+    combineZhongchuiZhizuoDown_ = 0D;
+    combineZhongchuiKuazhongUp_ = 0D;
+    combineZhongchuiKuazhongDown_ = 0D;
   }
 
   @java.lang.Override
@@ -64,6 +74,56 @@ public  final class Sigma4Entity extends
           case 33: {
 
             zhongchuiKuazhong_ = input.readDouble();
+            break;
+          }
+          case 41: {
+
+            allowStress_ = input.readDouble();
+            break;
+          }
+          case 49: {
+
+            combineAllowStress_ = input.readDouble();
+            break;
+          }
+          case 57: {
+
+            combineZhonggongZhizuoUp_ = input.readDouble();
+            break;
+          }
+          case 65: {
+
+            combineZhonggongZhizuoDown_ = input.readDouble();
+            break;
+          }
+          case 73: {
+
+            combineZhonggongKuazhongUp_ = input.readDouble();
+            break;
+          }
+          case 81: {
+
+            combineZhonggongKuazhongDown_ = input.readDouble();
+            break;
+          }
+          case 89: {
+
+            combineZhongchuiZhizuoUp_ = input.readDouble();
+            break;
+          }
+          case 97: {
+
+            combineZhongchuiZhizuoDown_ = input.readDouble();
+            break;
+          }
+          case 105: {
+
+            combineZhongchuiKuazhongUp_ = input.readDouble();
+            break;
+          }
+          case 113: {
+
+            combineZhongchuiKuazhongDown_ = input.readDouble();
             break;
           }
         }
@@ -141,6 +201,136 @@ public  final class Sigma4Entity extends
     return zhongchuiKuazhong_;
   }
 
+  public static final int ALLOWSTRESS_FIELD_NUMBER = 5;
+  private double allowStress_;
+  /**
+   * <pre>
+   *许用应力
+   * </pre>
+   *
+   * <code>double allowStress = 5;</code>
+   */
+  public double getAllowStress() {
+    return allowStress_;
+  }
+
+  public static final int COMBINEALLOWSTRESS_FIELD_NUMBER = 6;
+  private double combineAllowStress_;
+  /**
+   * <pre>
+   *合成许用应力
+   * </pre>
+   *
+   * <code>double combineAllowStress = 6;</code>
+   */
+  public double getCombineAllowStress() {
+    return combineAllowStress_;
+  }
+
+  public static final int COMBINEZHONGGONGZHIZUOUP_FIELD_NUMBER = 7;
+  private double combineZhonggongZhizuoUp_;
+  /**
+   * <pre>
+   *合成中拱支座上纤维
+   * </pre>
+   *
+   * <code>double combineZhonggongZhizuoUp = 7;</code>
+   */
+  public double getCombineZhonggongZhizuoUp() {
+    return combineZhonggongZhizuoUp_;
+  }
+
+  public static final int COMBINEZHONGGONGZHIZUODOWN_FIELD_NUMBER = 8;
+  private double combineZhonggongZhizuoDown_;
+  /**
+   * <pre>
+   *合成中拱支座下纤维
+   * </pre>
+   *
+   * <code>double combineZhonggongZhizuoDown = 8;</code>
+   */
+  public double getCombineZhonggongZhizuoDown() {
+    return combineZhonggongZhizuoDown_;
+  }
+
+  public static final int COMBINEZHONGGONGKUAZHONGUP_FIELD_NUMBER = 9;
+  private double combineZhonggongKuazhongUp_;
+  /**
+   * <pre>
+   *合成中拱跨中上纤维
+   * </pre>
+   *
+   * <code>double combineZhonggongKuazhongUp = 9;</code>
+   */
+  public double getCombineZhonggongKuazhongUp() {
+    return combineZhonggongKuazhongUp_;
+  }
+
+  public static final int COMBINEZHONGGONGKUAZHONGDOWN_FIELD_NUMBER = 10;
+  private double combineZhonggongKuazhongDown_;
+  /**
+   * <pre>
+   *合成中拱支座下纤维
+   * </pre>
+   *
+   * <code>double combineZhonggongKuazhongDown = 10;</code>
+   */
+  public double getCombineZhonggongKuazhongDown() {
+    return combineZhonggongKuazhongDown_;
+  }
+
+  public static final int COMBINEZHONGCHUIZHIZUOUP_FIELD_NUMBER = 11;
+  private double combineZhongchuiZhizuoUp_;
+  /**
+   * <pre>
+   *合成中垂支座上纤维
+   * </pre>
+   *
+   * <code>double combineZhongchuiZhizuoUp = 11;</code>
+   */
+  public double getCombineZhongchuiZhizuoUp() {
+    return combineZhongchuiZhizuoUp_;
+  }
+
+  public static final int COMBINEZHONGCHUIZHIZUODOWN_FIELD_NUMBER = 12;
+  private double combineZhongchuiZhizuoDown_;
+  /**
+   * <pre>
+   *合成中拱支座下纤维
+   * </pre>
+   *
+   * <code>double combineZhongchuiZhizuoDown = 12;</code>
+   */
+  public double getCombineZhongchuiZhizuoDown() {
+    return combineZhongchuiZhizuoDown_;
+  }
+
+  public static final int COMBINEZHONGCHUIKUAZHONGUP_FIELD_NUMBER = 13;
+  private double combineZhongchuiKuazhongUp_;
+  /**
+   * <pre>
+   *合成中垂跨中上纤维
+   * </pre>
+   *
+   * <code>double combineZhongchuiKuazhongUp = 13;</code>
+   */
+  public double getCombineZhongchuiKuazhongUp() {
+    return combineZhongchuiKuazhongUp_;
+  }
+
+  public static final int COMBINEZHONGCHUIKUAZHONGDOWN_FIELD_NUMBER = 14;
+  private double combineZhongchuiKuazhongDown_;
+  /**
+   * <pre>
+   *合成中拱支座下纤维
+   * </pre>
+   *
+   * <code>double combineZhongchuiKuazhongDown = 14;</code>
+   */
+  public double getCombineZhongchuiKuazhongDown() {
+    return combineZhongchuiKuazhongDown_;
+  }
+
   private byte memoizedIsInitialized = -1;
   public final boolean isInitialized() {
     byte isInitialized = memoizedIsInitialized;
@@ -165,6 +355,36 @@ public  final class Sigma4Entity extends
     if (zhongchuiKuazhong_ != 0D) {
       output.writeDouble(4, zhongchuiKuazhong_);
     }
+    if (allowStress_ != 0D) {
+      output.writeDouble(5, allowStress_);
+    }
+    if (combineAllowStress_ != 0D) {
+      output.writeDouble(6, combineAllowStress_);
+    }
+    if (combineZhonggongZhizuoUp_ != 0D) {
+      output.writeDouble(7, combineZhonggongZhizuoUp_);
+    }
+    if (combineZhonggongZhizuoDown_ != 0D) {
+      output.writeDouble(8, combineZhonggongZhizuoDown_);
+    }
+    if (combineZhonggongKuazhongUp_ != 0D) {
+      output.writeDouble(9, combineZhonggongKuazhongUp_);
+    }
+    if (combineZhonggongKuazhongDown_ != 0D) {
+      output.writeDouble(10, combineZhonggongKuazhongDown_);
+    }
+    if (combineZhongchuiZhizuoUp_ != 0D) {
+      output.writeDouble(11, combineZhongchuiZhizuoUp_);
+    }
+    if (combineZhongchuiZhizuoDown_ != 0D) {
+      output.writeDouble(12, combineZhongchuiZhizuoDown_);
+    }
+    if (combineZhongchuiKuazhongUp_ != 0D) {
+      output.writeDouble(13, combineZhongchuiKuazhongUp_);
+    }
+    if (combineZhongchuiKuazhongDown_ != 0D) {
+      output.writeDouble(14, combineZhongchuiKuazhongDown_);
+    }
   }
 
   public int getSerializedSize() {
@@ -187,6 +407,46 @@ public  final class Sigma4Entity extends
     if (zhongchuiKuazhong_ != 0D) {
       size += com.google.protobuf.CodedOutputStream
         .computeDoubleSize(4, zhongchuiKuazhong_);
+    }
+    if (allowStress_ != 0D) {
+      size += com.google.protobuf.CodedOutputStream
+        .computeDoubleSize(5, allowStress_);
+    }
+    if (combineAllowStress_ != 0D) {
+      size += com.google.protobuf.CodedOutputStream
+        .computeDoubleSize(6, combineAllowStress_);
+    }
+    if (combineZhonggongZhizuoUp_ != 0D) {
+      size += com.google.protobuf.CodedOutputStream
+        .computeDoubleSize(7, combineZhonggongZhizuoUp_);
+    }
+    if (combineZhonggongZhizuoDown_ != 0D) {
+      size += com.google.protobuf.CodedOutputStream
+        .computeDoubleSize(8, combineZhonggongZhizuoDown_);
+    }
+    if (combineZhonggongKuazhongUp_ != 0D) {
+      size += com.google.protobuf.CodedOutputStream
+        .computeDoubleSize(9, combineZhonggongKuazhongUp_);
+    }
+    if (combineZhonggongKuazhongDown_ != 0D) {
+      size += com.google.protobuf.CodedOutputStream
+        .computeDoubleSize(10, combineZhonggongKuazhongDown_);
+    }
+    if (combineZhongchuiZhizuoUp_ != 0D) {
+      size += com.google.protobuf.CodedOutputStream
+        .computeDoubleSize(11, combineZhongchuiZhizuoUp_);
+    }
+    if (combineZhongchuiZhizuoDown_ != 0D) {
+      size += com.google.protobuf.CodedOutputStream
+        .computeDoubleSize(12, combineZhongchuiZhizuoDown_);
+    }
+    if (combineZhongchuiKuazhongUp_ != 0D) {
+      size += com.google.protobuf.CodedOutputStream
+        .computeDoubleSize(13, combineZhongchuiKuazhongUp_);
+    }
+    if (combineZhongchuiKuazhongDown_ != 0D) {
+      size += com.google.protobuf.CodedOutputStream
+        .computeDoubleSize(14, combineZhongchuiKuazhongDown_);
     }
     memoizedSize = size;
     return size;
@@ -220,6 +480,46 @@ public  final class Sigma4Entity extends
         java.lang.Double.doubleToLongBits(getZhongchuiKuazhong())
         == java.lang.Double.doubleToLongBits(
             other.getZhongchuiKuazhong()));
+    result = result && (
+        java.lang.Double.doubleToLongBits(getAllowStress())
+        == java.lang.Double.doubleToLongBits(
+            other.getAllowStress()));
+    result = result && (
+        java.lang.Double.doubleToLongBits(getCombineAllowStress())
+        == java.lang.Double.doubleToLongBits(
+            other.getCombineAllowStress()));
+    result = result && (
+        java.lang.Double.doubleToLongBits(getCombineZhonggongZhizuoUp())
+        == java.lang.Double.doubleToLongBits(
+            other.getCombineZhonggongZhizuoUp()));
+    result = result && (
+        java.lang.Double.doubleToLongBits(getCombineZhonggongZhizuoDown())
+        == java.lang.Double.doubleToLongBits(
+            other.getCombineZhonggongZhizuoDown()));
+    result = result && (
+        java.lang.Double.doubleToLongBits(getCombineZhonggongKuazhongUp())
+        == java.lang.Double.doubleToLongBits(
+            other.getCombineZhonggongKuazhongUp()));
+    result = result && (
+        java.lang.Double.doubleToLongBits(getCombineZhonggongKuazhongDown())
+        == java.lang.Double.doubleToLongBits(
+            other.getCombineZhonggongKuazhongDown()));
+    result = result && (
+        java.lang.Double.doubleToLongBits(getCombineZhongchuiZhizuoUp())
+        == java.lang.Double.doubleToLongBits(
+            other.getCombineZhongchuiZhizuoUp()));
+    result = result && (
+        java.lang.Double.doubleToLongBits(getCombineZhongchuiZhizuoDown())
+        == java.lang.Double.doubleToLongBits(
+            other.getCombineZhongchuiZhizuoDown()));
+    result = result && (
+        java.lang.Double.doubleToLongBits(getCombineZhongchuiKuazhongUp())
+        == java.lang.Double.doubleToLongBits(
+            other.getCombineZhongchuiKuazhongUp()));
+    result = result && (
+        java.lang.Double.doubleToLongBits(getCombineZhongchuiKuazhongDown())
+        == java.lang.Double.doubleToLongBits(
+            other.getCombineZhongchuiKuazhongDown()));
     return result;
   }
 
@@ -242,6 +542,36 @@ public  final class Sigma4Entity extends
     hash = (37 * hash) + ZHONGCHUIKUAZHONG_FIELD_NUMBER;
     hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
         java.lang.Double.doubleToLongBits(getZhongchuiKuazhong()));
+    hash = (37 * hash) + ALLOWSTRESS_FIELD_NUMBER;
+    hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
+        java.lang.Double.doubleToLongBits(getAllowStress()));
+    hash = (37 * hash) + COMBINEALLOWSTRESS_FIELD_NUMBER;
+    hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
+        java.lang.Double.doubleToLongBits(getCombineAllowStress()));
+    hash = (37 * hash) + COMBINEZHONGGONGZHIZUOUP_FIELD_NUMBER;
+    hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
+        java.lang.Double.doubleToLongBits(getCombineZhonggongZhizuoUp()));
+    hash = (37 * hash) + COMBINEZHONGGONGZHIZUODOWN_FIELD_NUMBER;
+    hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
+        java.lang.Double.doubleToLongBits(getCombineZhonggongZhizuoDown()));
+    hash = (37 * hash) + COMBINEZHONGGONGKUAZHONGUP_FIELD_NUMBER;
+    hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
+        java.lang.Double.doubleToLongBits(getCombineZhonggongKuazhongUp()));
+    hash = (37 * hash) + COMBINEZHONGGONGKUAZHONGDOWN_FIELD_NUMBER;
+    hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
+        java.lang.Double.doubleToLongBits(getCombineZhonggongKuazhongDown()));
+    hash = (37 * hash) + COMBINEZHONGCHUIZHIZUOUP_FIELD_NUMBER;
+    hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
+        java.lang.Double.doubleToLongBits(getCombineZhongchuiZhizuoUp()));
+    hash = (37 * hash) + COMBINEZHONGCHUIZHIZUODOWN_FIELD_NUMBER;
+    hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
+        java.lang.Double.doubleToLongBits(getCombineZhongchuiZhizuoDown()));
+    hash = (37 * hash) + COMBINEZHONGCHUIKUAZHONGUP_FIELD_NUMBER;
+    hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
+        java.lang.Double.doubleToLongBits(getCombineZhongchuiKuazhongUp()));
+    hash = (37 * hash) + COMBINEZHONGCHUIKUAZHONGDOWN_FIELD_NUMBER;
+    hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
+        java.lang.Double.doubleToLongBits(getCombineZhongchuiKuazhongDown()));
     hash = (29 * hash) + unknownFields.hashCode();
     memoizedHashCode = hash;
     return hash;
@@ -368,6 +698,26 @@ public  final class Sigma4Entity extends
 
       zhongchuiKuazhong_ = 0D;
 
+      allowStress_ = 0D;
+
+      combineAllowStress_ = 0D;
+
+      combineZhonggongZhizuoUp_ = 0D;
+
+      combineZhonggongZhizuoDown_ = 0D;
+
+      combineZhonggongKuazhongUp_ = 0D;
+
+      combineZhonggongKuazhongDown_ = 0D;
+
+      combineZhongchuiZhizuoUp_ = 0D;
+
+      combineZhongchuiZhizuoDown_ = 0D;
+
+      combineZhongchuiKuazhongUp_ = 0D;
+
+      combineZhongchuiKuazhongDown_ = 0D;
+
       return this;
     }
 
@@ -394,6 +744,16 @@ public  final class Sigma4Entity extends
       result.zhonggongKuazhong_ = zhonggongKuazhong_;
       result.zhongchuiZhizuo_ = zhongchuiZhizuo_;
       result.zhongchuiKuazhong_ = zhongchuiKuazhong_;
+      result.allowStress_ = allowStress_;
+      result.combineAllowStress_ = combineAllowStress_;
+      result.combineZhonggongZhizuoUp_ = combineZhonggongZhizuoUp_;
+      result.combineZhonggongZhizuoDown_ = combineZhonggongZhizuoDown_;
+      result.combineZhonggongKuazhongUp_ = combineZhonggongKuazhongUp_;
+      result.combineZhonggongKuazhongDown_ = combineZhonggongKuazhongDown_;
+      result.combineZhongchuiZhizuoUp_ = combineZhongchuiZhizuoUp_;
+      result.combineZhongchuiZhizuoDown_ = combineZhongchuiZhizuoDown_;
+      result.combineZhongchuiKuazhongUp_ = combineZhongchuiKuazhongUp_;
+      result.combineZhongchuiKuazhongDown_ = combineZhongchuiKuazhongDown_;
       onBuilt();
       return result;
     }
@@ -446,6 +806,36 @@ public  final class Sigma4Entity extends
       }
       if (other.getZhongchuiKuazhong() != 0D) {
         setZhongchuiKuazhong(other.getZhongchuiKuazhong());
+      }
+      if (other.getAllowStress() != 0D) {
+        setAllowStress(other.getAllowStress());
+      }
+      if (other.getCombineAllowStress() != 0D) {
+        setCombineAllowStress(other.getCombineAllowStress());
+      }
+      if (other.getCombineZhonggongZhizuoUp() != 0D) {
+        setCombineZhonggongZhizuoUp(other.getCombineZhonggongZhizuoUp());
+      }
+      if (other.getCombineZhonggongZhizuoDown() != 0D) {
+        setCombineZhonggongZhizuoDown(other.getCombineZhonggongZhizuoDown());
+      }
+      if (other.getCombineZhonggongKuazhongUp() != 0D) {
+        setCombineZhonggongKuazhongUp(other.getCombineZhonggongKuazhongUp());
+      }
+      if (other.getCombineZhonggongKuazhongDown() != 0D) {
+        setCombineZhonggongKuazhongDown(other.getCombineZhonggongKuazhongDown());
+      }
+      if (other.getCombineZhongchuiZhizuoUp() != 0D) {
+        setCombineZhongchuiZhizuoUp(other.getCombineZhongchuiZhizuoUp());
+      }
+      if (other.getCombineZhongchuiZhizuoDown() != 0D) {
+        setCombineZhongchuiZhizuoDown(other.getCombineZhongchuiZhizuoDown());
+      }
+      if (other.getCombineZhongchuiKuazhongUp() != 0D) {
+        setCombineZhongchuiKuazhongUp(other.getCombineZhongchuiKuazhongUp());
+      }
+      if (other.getCombineZhongchuiKuazhongDown() != 0D) {
+        setCombineZhongchuiKuazhongDown(other.getCombineZhongchuiKuazhongDown());
       }
       onChanged();
       return this;
@@ -621,6 +1011,386 @@ public  final class Sigma4Entity extends
     public Builder clearZhongchuiKuazhong() {
       
       zhongchuiKuazhong_ = 0D;
+      onChanged();
+      return this;
+    }
+
+    private double allowStress_ ;
+    /**
+     * <pre>
+     *许用应力
+     * </pre>
+     *
+     * <code>double allowStress = 5;</code>
+     */
+    public double getAllowStress() {
+      return allowStress_;
+    }
+    /**
+     * <pre>
+     *许用应力
+     * </pre>
+     *
+     * <code>double allowStress = 5;</code>
+     */
+    public Builder setAllowStress(double value) {
+      
+      allowStress_ = value;
+      onChanged();
+      return this;
+    }
+    /**
+     * <pre>
+     *许用应力
+     * </pre>
+     *
+     * <code>double allowStress = 5;</code>
+     */
+    public Builder clearAllowStress() {
+      
+      allowStress_ = 0D;
+      onChanged();
+      return this;
+    }
+
+    private double combineAllowStress_ ;
+    /**
+     * <pre>
+     *合成许用应力
+     * </pre>
+     *
+     * <code>double combineAllowStress = 6;</code>
+     */
+    public double getCombineAllowStress() {
+      return combineAllowStress_;
+    }
+    /**
+     * <pre>
+     *合成许用应力
+     * </pre>
+     *
+     * <code>double combineAllowStress = 6;</code>
+     */
+    public Builder setCombineAllowStress(double value) {
+      
+      combineAllowStress_ = value;
+      onChanged();
+      return this;
+    }
+    /**
+     * <pre>
+     *合成许用应力
+     * </pre>
+     *
+     * <code>double combineAllowStress = 6;</code>
+     */
+    public Builder clearCombineAllowStress() {
+      
+      combineAllowStress_ = 0D;
+      onChanged();
+      return this;
+    }
+
+    private double combineZhonggongZhizuoUp_ ;
+    /**
+     * <pre>
+     *合成中拱支座上纤维
+     * </pre>
+     *
+     * <code>double combineZhonggongZhizuoUp = 7;</code>
+     */
+    public double getCombineZhonggongZhizuoUp() {
+      return combineZhonggongZhizuoUp_;
+    }
+    /**
+     * <pre>
+     *合成中拱支座上纤维
+     * </pre>
+     *
+     * <code>double combineZhonggongZhizuoUp = 7;</code>
+     */
+    public Builder setCombineZhonggongZhizuoUp(double value) {
+      
+      combineZhonggongZhizuoUp_ = value;
+      onChanged();
+      return this;
+    }
+    /**
+     * <pre>
+     *合成中拱支座上纤维
+     * </pre>
+     *
+     * <code>double combineZhonggongZhizuoUp = 7;</code>
+     */
+    public Builder clearCombineZhonggongZhizuoUp() {
+      
+      combineZhonggongZhizuoUp_ = 0D;
+      onChanged();
+      return this;
+    }
+
+    private double combineZhonggongZhizuoDown_ ;
+    /**
+     * <pre>
+     *合成中拱支座下纤维
+     * </pre>
+     *
+     * <code>double combineZhonggongZhizuoDown = 8;</code>
+     */
+    public double getCombineZhonggongZhizuoDown() {
+      return combineZhonggongZhizuoDown_;
+    }
+    /**
+     * <pre>
+     *合成中拱支座下纤维
+     * </pre>
+     *
+     * <code>double combineZhonggongZhizuoDown = 8;</code>
+     */
+    public Builder setCombineZhonggongZhizuoDown(double value) {
+      
+      combineZhonggongZhizuoDown_ = value;
+      onChanged();
+      return this;
+    }
+    /**
+     * <pre>
+     *合成中拱支座下纤维
+     * </pre>
+     *
+     * <code>double combineZhonggongZhizuoDown = 8;</code>
+     */
+    public Builder clearCombineZhonggongZhizuoDown() {
+      
+      combineZhonggongZhizuoDown_ = 0D;
+      onChanged();
+      return this;
+    }
+
+    private double combineZhonggongKuazhongUp_ ;
+    /**
+     * <pre>
+     *合成中拱跨中上纤维
+     * </pre>
+     *
+     * <code>double combineZhonggongKuazhongUp = 9;</code>
+     */
+    public double getCombineZhonggongKuazhongUp() {
+      return combineZhonggongKuazhongUp_;
+    }
+    /**
+     * <pre>
+     *合成中拱跨中上纤维
+     * </pre>
+     *
+     * <code>double combineZhonggongKuazhongUp = 9;</code>
+     */
+    public Builder setCombineZhonggongKuazhongUp(double value) {
+      
+      combineZhonggongKuazhongUp_ = value;
+      onChanged();
+      return this;
+    }
+    /**
+     * <pre>
+     *合成中拱跨中上纤维
+     * </pre>
+     *
+     * <code>double combineZhonggongKuazhongUp = 9;</code>
+     */
+    public Builder clearCombineZhonggongKuazhongUp() {
+      
+      combineZhonggongKuazhongUp_ = 0D;
+      onChanged();
+      return this;
+    }
+
+    private double combineZhonggongKuazhongDown_ ;
+    /**
+     * <pre>
+     *合成中拱支座下纤维
+     * </pre>
+     *
+     * <code>double combineZhonggongKuazhongDown = 10;</code>
+     */
+    public double getCombineZhonggongKuazhongDown() {
+      return combineZhonggongKuazhongDown_;
+    }
+    /**
+     * <pre>
+     *合成中拱支座下纤维
+     * </pre>
+     *
+     * <code>double combineZhonggongKuazhongDown = 10;</code>
+     */
+    public Builder setCombineZhonggongKuazhongDown(double value) {
+      
+      combineZhonggongKuazhongDown_ = value;
+      onChanged();
+      return this;
+    }
+    /**
+     * <pre>
+     *合成中拱支座下纤维
+     * </pre>
+     *
+     * <code>double combineZhonggongKuazhongDown = 10;</code>
+     */
+    public Builder clearCombineZhonggongKuazhongDown() {
+      
+      combineZhonggongKuazhongDown_ = 0D;
+      onChanged();
+      return this;
+    }
+
+    private double combineZhongchuiZhizuoUp_ ;
+    /**
+     * <pre>
+     *合成中垂支座上纤维
+     * </pre>
+     *
+     * <code>double combineZhongchuiZhizuoUp = 11;</code>
+     */
+    public double getCombineZhongchuiZhizuoUp() {
+      return combineZhongchuiZhizuoUp_;
+    }
+    /**
+     * <pre>
+     *合成中垂支座上纤维
+     * </pre>
+     *
+     * <code>double combineZhongchuiZhizuoUp = 11;</code>
+     */
+    public Builder setCombineZhongchuiZhizuoUp(double value) {
+      
+      combineZhongchuiZhizuoUp_ = value;
+      onChanged();
+      return this;
+    }
+    /**
+     * <pre>
+     *合成中垂支座上纤维
+     * </pre>
+     *
+     * <code>double combineZhongchuiZhizuoUp = 11;</code>
+     */
+    public Builder clearCombineZhongchuiZhizuoUp() {
+      
+      combineZhongchuiZhizuoUp_ = 0D;
+      onChanged();
+      return this;
+    }
+
+    private double combineZhongchuiZhizuoDown_ ;
+    /**
+     * <pre>
+     *合成中拱支座下纤维
+     * </pre>
+     *
+     * <code>double combineZhongchuiZhizuoDown = 12;</code>
+     */
+    public double getCombineZhongchuiZhizuoDown() {
+      return combineZhongchuiZhizuoDown_;
+    }
+    /**
+     * <pre>
+     *合成中拱支座下纤维
+     * </pre>
+     *
+     * <code>double combineZhongchuiZhizuoDown = 12;</code>
+     */
+    public Builder setCombineZhongchuiZhizuoDown(double value) {
+      
+      combineZhongchuiZhizuoDown_ = value;
+      onChanged();
+      return this;
+    }
+    /**
+     * <pre>
+     *合成中拱支座下纤维
+     * </pre>
+     *
+     * <code>double combineZhongchuiZhizuoDown = 12;</code>
+     */
+    public Builder clearCombineZhongchuiZhizuoDown() {
+      
+      combineZhongchuiZhizuoDown_ = 0D;
+      onChanged();
+      return this;
+    }
+
+    private double combineZhongchuiKuazhongUp_ ;
+    /**
+     * <pre>
+     *合成中垂跨中上纤维
+     * </pre>
+     *
+     * <code>double combineZhongchuiKuazhongUp = 13;</code>
+     */
+    public double getCombineZhongchuiKuazhongUp() {
+      return combineZhongchuiKuazhongUp_;
+    }
+    /**
+     * <pre>
+     *合成中垂跨中上纤维
+     * </pre>
+     *
+     * <code>double combineZhongchuiKuazhongUp = 13;</code>
+     */
+    public Builder setCombineZhongchuiKuazhongUp(double value) {
+      
+      combineZhongchuiKuazhongUp_ = value;
+      onChanged();
+      return this;
+    }
+    /**
+     * <pre>
+     *合成中垂跨中上纤维
+     * </pre>
+     *
+     * <code>double combineZhongchuiKuazhongUp = 13;</code>
+     */
+    public Builder clearCombineZhongchuiKuazhongUp() {
+      
+      combineZhongchuiKuazhongUp_ = 0D;
+      onChanged();
+      return this;
+    }
+
+    private double combineZhongchuiKuazhongDown_ ;
+    /**
+     * <pre>
+     *合成中拱支座下纤维
+     * </pre>
+     *
+     * <code>double combineZhongchuiKuazhongDown = 14;</code>
+     */
+    public double getCombineZhongchuiKuazhongDown() {
+      return combineZhongchuiKuazhongDown_;
+    }
+    /**
+     * <pre>
+     *合成中拱支座下纤维
+     * </pre>
+     *
+     * <code>double combineZhongchuiKuazhongDown = 14;</code>
+     */
+    public Builder setCombineZhongchuiKuazhongDown(double value) {
+      
+      combineZhongchuiKuazhongDown_ = value;
+      onChanged();
+      return this;
+    }
+    /**
+     * <pre>
+     *合成中拱支座下纤维
+     * </pre>
+     *
+     * <code>double combineZhongchuiKuazhongDown = 14;</code>
+     */
+    public Builder clearCombineZhongchuiKuazhongDown() {
+      
+      combineZhongchuiKuazhongDown_ = 0D;
       onChanged();
       return this;
     }

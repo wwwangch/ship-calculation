@@ -3,8 +3,7 @@ package com.iscas.biz.calculation.grpc.service;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.google.common.collect.Lists;
 import com.iscas.biz.calculation.entity.db.*;
-import com.iscas.biz.calculation.entity.db.sigma.Sigma1;
-import com.iscas.biz.calculation.entity.db.sigma.Sigma2;
+import com.iscas.biz.calculation.entity.db.sigma.*;
 import com.iscas.biz.calculation.entity.dto.SlamLoadDTO;
 import com.iscas.biz.calculation.entity.dto.StaticLoadDTO;
 import com.iscas.biz.calculation.entity.dto.WaveLoadDTO;
@@ -366,7 +365,6 @@ public class AlgorithmGrpc {
             sigma1.setSigma1SDown(sigma1Response.getSigma1(i).getSigma1SDown());
             sigma1List.add(sigma1);
         }
-
         return sigma1List;
     }
 
@@ -392,6 +390,63 @@ public class AlgorithmGrpc {
             sigma2List.add(sigma2);
         }
         return sigma2List;
+    }
+
+    public List<Sigma3> calSigma3(Integer projectId, Integer sectionId) {
+        Sigma3Response sigma3Response = grpcHolder.calculationBlockingStub().calSigma3(Sigma3Request.newBuilder().build());
+        List<Sigma3> sigma3List = Lists.newArrayList();
+        for (int i = 0; i < sigma3Response.getSigma3List().size(); i++) {
+            Sigma3 sigma3 = new Sigma3();
+            sigma3.setProjectId(projectId);
+            sigma3.setSectionId(sectionId);
+            sigma3.setZhonggongZhizuoShang(sigma3Response.getSigma3(i).getZhonggongZhizuoShang());
+            sigma3.setZhonggongZhizuoXia(sigma3Response.getSigma3(i).getZhonggongZhizuoXia());
+
+            sigma3.setZhonggongKuazhongShang(sigma3Response.getSigma3(i).getZhonggongKuazhongShang());
+            sigma3.setZhonggongKuazhongXia(sigma3Response.getSigma3(i).getZhonggongKuazhongXia());
+
+
+            sigma3.setZhongchuiZhizuoShang(sigma3Response.getSigma3(i).getZhongchuiZhizuoShang());
+            sigma3.setZhongchuiZhizuoXia(sigma3Response.getSigma3(i).getZhongchuiZhizuoXia());
+
+            sigma3.setZhongchuiKuazhongShang(sigma3Response.getSigma3(i).getZhongchuiKuazhongShang());
+            sigma3.setZhongchuiKuazhongXia(sigma3Response.getSigma3(i).getZhongchuiKuazhongXia());
+            sigma3List.add(sigma3);
+        }
+        return sigma3List;
+    }
+
+    public List<Sigma4> calSigma4(Integer projectId, Integer sectionId) {
+        Sigma4Response sigma4Response = grpcHolder.calculationBlockingStub().calSigma4(Sigma4Request.newBuilder().build());
+        List<Sigma4> sigma4List = Lists.newArrayList();
+        for (int i = 0; i < sigma4Response.getSigma4List().size(); i++) {
+            Sigma4 sigma4 = new Sigma4();
+            sigma4.setProjectId(projectId);
+            sigma4.setSectionId(sectionId);
+
+            sigma4.setZhonggongZhizuo(sigma4Response.getSigma4(i).getZhonggongZhizuo());
+            sigma4.setZhonggongKuazhong(sigma4Response.getSigma4(i).getZhonggongKuazhong());
+
+            sigma4.setZhongchuiZhizuo(sigma4Response.getSigma4(i).getZhongchuiZhizuo());
+            sigma4.setZhongchuiKuazhong(sigma4Response.getSigma4(i).getZhongchuiKuazhong());
+            sigma4List.add(sigma4);
+        }
+        return sigma4List;
+    }
+
+    public List<ShearingStress> calShearingStress(Integer projectId, Integer sectionId) {
+        ShearingStressResponse shearingStressResponse = grpcHolder.calculationBlockingStub().calShearingStress(ShearingStressRequest.newBuilder().build());
+        List<ShearingStress> shearingStressList = Lists.newArrayList();
+        for (int i = 0; i < shearingStressResponse.getShearingStressList().size(); i++) {
+            ShearingStress shearingStress = new ShearingStress();
+            shearingStress.setProjectId(projectId);
+            shearingStress.setSectionId(sectionId);
+            shearingStress.setZhongchuiMax(shearingStressResponse.getShearingStress(i).getZhongchuiMax());
+            shearingStress.setZhonggongMax(shearingStressResponse.getShearingStress(i).getZhonggongMax());
+            shearingStress.setShearingStress(shearingStressResponse.getShearingStress(i).getShearingStress());
+            shearingStressList.add(shearingStress);
+        }
+        return shearingStressList;
     }
 
 }

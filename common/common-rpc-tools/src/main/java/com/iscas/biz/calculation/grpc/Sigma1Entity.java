@@ -19,6 +19,7 @@ public  final class Sigma1Entity extends
     sigma1Down_ = 0D;
     sigma1SUp_ = 0D;
     sigma1SDown_ = 0D;
+    allowStress_ = 0D;
   }
 
   @java.lang.Override
@@ -64,6 +65,11 @@ public  final class Sigma1Entity extends
           case 33: {
 
             sigma1SDown_ = input.readDouble();
+            break;
+          }
+          case 41: {
+
+            allowStress_ = input.readDouble();
             break;
           }
         }
@@ -141,6 +147,19 @@ public  final class Sigma1Entity extends
     return sigma1SDown_;
   }
 
+  public static final int ALLOWSTRESS_FIELD_NUMBER = 5;
+  private double allowStress_;
+  /**
+   * <pre>
+   *许用应力
+   * </pre>
+   *
+   * <code>double allowStress = 5;</code>
+   */
+  public double getAllowStress() {
+    return allowStress_;
+  }
+
   private byte memoizedIsInitialized = -1;
   public final boolean isInitialized() {
     byte isInitialized = memoizedIsInitialized;
@@ -165,6 +184,9 @@ public  final class Sigma1Entity extends
     if (sigma1SDown_ != 0D) {
       output.writeDouble(4, sigma1SDown_);
     }
+    if (allowStress_ != 0D) {
+      output.writeDouble(5, allowStress_);
+    }
   }
 
   public int getSerializedSize() {
@@ -187,6 +209,10 @@ public  final class Sigma1Entity extends
     if (sigma1SDown_ != 0D) {
       size += com.google.protobuf.CodedOutputStream
         .computeDoubleSize(4, sigma1SDown_);
+    }
+    if (allowStress_ != 0D) {
+      size += com.google.protobuf.CodedOutputStream
+        .computeDoubleSize(5, allowStress_);
     }
     memoizedSize = size;
     return size;
@@ -220,6 +246,10 @@ public  final class Sigma1Entity extends
         java.lang.Double.doubleToLongBits(getSigma1SDown())
         == java.lang.Double.doubleToLongBits(
             other.getSigma1SDown()));
+    result = result && (
+        java.lang.Double.doubleToLongBits(getAllowStress())
+        == java.lang.Double.doubleToLongBits(
+            other.getAllowStress()));
     return result;
   }
 
@@ -242,6 +272,9 @@ public  final class Sigma1Entity extends
     hash = (37 * hash) + SIGMA1SDOWN_FIELD_NUMBER;
     hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
         java.lang.Double.doubleToLongBits(getSigma1SDown()));
+    hash = (37 * hash) + ALLOWSTRESS_FIELD_NUMBER;
+    hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
+        java.lang.Double.doubleToLongBits(getAllowStress()));
     hash = (29 * hash) + unknownFields.hashCode();
     memoizedHashCode = hash;
     return hash;
@@ -368,6 +401,8 @@ public  final class Sigma1Entity extends
 
       sigma1SDown_ = 0D;
 
+      allowStress_ = 0D;
+
       return this;
     }
 
@@ -394,6 +429,7 @@ public  final class Sigma1Entity extends
       result.sigma1Down_ = sigma1Down_;
       result.sigma1SUp_ = sigma1SUp_;
       result.sigma1SDown_ = sigma1SDown_;
+      result.allowStress_ = allowStress_;
       onBuilt();
       return result;
     }
@@ -446,6 +482,9 @@ public  final class Sigma1Entity extends
       }
       if (other.getSigma1SDown() != 0D) {
         setSigma1SDown(other.getSigma1SDown());
+      }
+      if (other.getAllowStress() != 0D) {
+        setAllowStress(other.getAllowStress());
       }
       onChanged();
       return this;
@@ -621,6 +660,44 @@ public  final class Sigma1Entity extends
     public Builder clearSigma1SDown() {
       
       sigma1SDown_ = 0D;
+      onChanged();
+      return this;
+    }
+
+    private double allowStress_ ;
+    /**
+     * <pre>
+     *许用应力
+     * </pre>
+     *
+     * <code>double allowStress = 5;</code>
+     */
+    public double getAllowStress() {
+      return allowStress_;
+    }
+    /**
+     * <pre>
+     *许用应力
+     * </pre>
+     *
+     * <code>double allowStress = 5;</code>
+     */
+    public Builder setAllowStress(double value) {
+      
+      allowStress_ = value;
+      onChanged();
+      return this;
+    }
+    /**
+     * <pre>
+     *许用应力
+     * </pre>
+     *
+     * <code>double allowStress = 5;</code>
+     */
+    public Builder clearAllowStress() {
+      
+      allowStress_ = 0D;
       onChanged();
       return this;
     }

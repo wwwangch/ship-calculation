@@ -6,9 +6,9 @@ import com.iscas.biz.mp.table.service.TableDefinitionService;
 import com.iscas.templet.common.ResponseEntity;
 import com.iscas.templet.exception.BaseException;
 import com.iscas.templet.exception.ValidDataException;
+import com.iscas.templet.view.table.TableResponse;
+import com.iscas.templet.view.table.TableResponseData;
 import io.swagger.v3.oas.annotations.Operation;
-import io.swagger.v3.oas.annotations.media.Content;
-import io.swagger.v3.oas.annotations.media.ExampleObject;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.MediaType;
@@ -20,6 +20,8 @@ import org.springframework.web.bind.annotation.RestController;
 
 import javax.ws.rs.Path;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * @author zhaotianci@iscas.ac.cn
@@ -29,7 +31,7 @@ import java.io.IOException;
 @RestController
 @Slf4j
 @RequestMapping("/dist")
-@Tag(name = "应力分布计算")
+@Tag(name = "应力分布计算-极限弯矩校核")
 public class DistController {
 
     private final static String TABLE_IDENTITY = "dist";
@@ -51,8 +53,16 @@ public class DistController {
 
     @Operation(summary = "查询表格数据,仅一条", description = "传项目id，带计算结果返回")
     @PostMapping(value = "/getData/{projectId}/{sectionId}")
-    public Dist getData(@PathVariable Integer projectId, @PathVariable Integer sectionId) {
-        return distService.getData(projectId, sectionId);
+    public TableResponse getData(@PathVariable Integer projectId, @PathVariable Integer sectionId) {
+        TableResponse tableResponse = new TableResponse();
+        TableResponseData tableResponseData = new TableResponseData();
+        Dist tmp = distService.getData(projectId, sectionId);
+        List<Dist> distList = new ArrayList<>();
+        distList.add(tmp);
+        tableResponseData.setRows((long) distList.size());
+        tableResponseData.setData(distList);
+        tableResponse.setValue(tableResponseData);
+        return tableResponse;
     }
 
     @Operation(summary = "计算", description = "计算,应力分布计算不需要传入参数")
@@ -62,11 +72,11 @@ public class DistController {
         return ResponseEntity.ok(distService.calculateAndSave(projectId, sectionId));
     }
 
-    @Operation(summary = "重置", description = "重置")
-    @PostMapping("/reset/{projectId}/{sectionId}")
-    public ResponseEntity reset(@PathVariable Integer projectId, @PathVariable Integer sectionId) {
-        return ResponseEntity.ok(distService.reset(projectId, sectionId));
-    }
+//    @Operation(summary = "重置", description = "重置")
+//    @PostMapping("/reset/{projectId}/{sectionId}")
+//    public ResponseEntity reset(@PathVariable Integer projectId, @PathVariable Integer sectionId) {
+//        return ResponseEntity.ok(distService.reset(projectId, sectionId));
+//    }
 
     @Operation(summary = "导出", description = "导出")
     @GetMapping("/download/{projectId}/{sectionId}")

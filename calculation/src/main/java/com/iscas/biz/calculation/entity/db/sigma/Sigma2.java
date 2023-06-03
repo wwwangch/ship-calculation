@@ -36,4 +36,6 @@ public class Sigma2 {
     private Double zhongchuiKuazhongShang;
     //中垂跨中下纤维
     private Double zhongchuiKuazhongXia;
+    //许用应力
+    private Double allowStress;
 }

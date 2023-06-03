@@ -16,6 +16,7 @@ public  final class Sigma1Response extends
   }
   private Sigma1Response() {
     sigma1_ = java.util.Collections.emptyList();
+    allowStress_ = 0D;
   }
 
   @java.lang.Override
@@ -52,6 +53,11 @@ public  final class Sigma1Response extends
                 input.readMessage(com.iscas.biz.calculation.grpc.Sigma1Entity.parser(), extensionRegistry));
             break;
           }
+          case 17: {
+
+            allowStress_ = input.readDouble();
+            break;
+          }
         }
       }
     } catch (com.google.protobuf.InvalidProtocolBufferException e) {
@@ -78,6 +84,7 @@ public  final class Sigma1Response extends
             com.iscas.biz.calculation.grpc.Sigma1Response.class, com.iscas.biz.calculation.grpc.Sigma1Response.Builder.class);
   }
 
+  private int bitField0_;
   public static final int SIGMA1_FIELD_NUMBER = 1;
   private java.util.List<com.iscas.biz.calculation.grpc.Sigma1Entity> sigma1_;
   /**
@@ -113,6 +120,19 @@ public  final class Sigma1Response extends
     return sigma1_.get(index);
   }
 
+  public static final int ALLOWSTRESS_FIELD_NUMBER = 2;
+  private double allowStress_;
+  /**
+   * <pre>
+   *许用应力
+   * </pre>
+   *
+   * <code>double allowStress = 2;</code>
+   */
+  public double getAllowStress() {
+    return allowStress_;
+  }
+
   private byte memoizedIsInitialized = -1;
   public final boolean isInitialized() {
     byte isInitialized = memoizedIsInitialized;
@@ -128,6 +148,9 @@ public  final class Sigma1Response extends
     for (int i = 0; i < sigma1_.size(); i++) {
       output.writeMessage(1, sigma1_.get(i));
     }
+    if (allowStress_ != 0D) {
+      output.writeDouble(2, allowStress_);
+    }
   }
 
   public int getSerializedSize() {
@@ -138,6 +161,10 @@ public  final class Sigma1Response extends
     for (int i = 0; i < sigma1_.size(); i++) {
       size += com.google.protobuf.CodedOutputStream
         .computeMessageSize(1, sigma1_.get(i));
+    }
+    if (allowStress_ != 0D) {
+      size += com.google.protobuf.CodedOutputStream
+        .computeDoubleSize(2, allowStress_);
     }
     memoizedSize = size;
     return size;
@@ -157,6 +184,10 @@ public  final class Sigma1Response extends
     boolean result = true;
     result = result && getSigma1List()
         .equals(other.getSigma1List());
+    result = result && (
+        java.lang.Double.doubleToLongBits(getAllowStress())
+        == java.lang.Double.doubleToLongBits(
+            other.getAllowStress()));
     return result;
   }
 
@@ -171,6 +202,9 @@ public  final class Sigma1Response extends
       hash = (37 * hash) + SIGMA1_FIELD_NUMBER;
       hash = (53 * hash) + getSigma1List().hashCode();
     }
+    hash = (37 * hash) + ALLOWSTRESS_FIELD_NUMBER;
+    hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
+        java.lang.Double.doubleToLongBits(getAllowStress()));
     hash = (29 * hash) + unknownFields.hashCode();
     memoizedHashCode = hash;
     return hash;
@@ -296,6 +330,8 @@ public  final class Sigma1Response extends
       } else {
         sigma1Builder_.clear();
       }
+      allowStress_ = 0D;
+
       return this;
     }
 
@@ -319,6 +355,7 @@ public  final class Sigma1Response extends
     public com.iscas.biz.calculation.grpc.Sigma1Response buildPartial() {
       com.iscas.biz.calculation.grpc.Sigma1Response result = new com.iscas.biz.calculation.grpc.Sigma1Response(this);
       int from_bitField0_ = bitField0_;
+      int to_bitField0_ = 0;
       if (sigma1Builder_ == null) {
         if (((bitField0_ & 0x00000001) == 0x00000001)) {
           sigma1_ = java.util.Collections.unmodifiableList(sigma1_);
@@ -328,6 +365,8 @@ public  final class Sigma1Response extends
       } else {
         result.sigma1_ = sigma1Builder_.build();
       }
+      result.allowStress_ = allowStress_;
+      result.bitField0_ = to_bitField0_;
       onBuilt();
       return result;
     }
@@ -394,6 +433,9 @@ public  final class Sigma1Response extends
             sigma1Builder_.addAllMessages(other.sigma1_);
           }
         }
+      }
+      if (other.getAllowStress() != 0D) {
+        setAllowStress(other.getAllowStress());
       }
       onChanged();
       return this;
@@ -660,6 +702,44 @@ public  final class Sigma1Response extends
         sigma1_ = null;
       }
       return sigma1Builder_;
+    }
+
+    private double allowStress_ ;
+    /**
+     * <pre>
+     *许用应力
+     * </pre>
+     *
+     * <code>double allowStress = 2;</code>
+     */
+    public double getAllowStress() {
+      return allowStress_;
+    }
+    /**
+     * <pre>
+     *许用应力
+     * </pre>
+     *
+     * <code>double allowStress = 2;</code>
+     */
+    public Builder setAllowStress(double value) {
+      
+      allowStress_ = value;
+      onChanged();
+      return this;
+    }
+    /**
+     * <pre>
+     *许用应力
+     * </pre>
+     *
+     * <code>double allowStress = 2;</code>
+     */
+    public Builder clearAllowStress() {
+      
+      allowStress_ = 0D;
+      onChanged();
+      return this;
     }
     public final Builder setUnknownFields(
         final com.google.protobuf.UnknownFieldSet unknownFields) {

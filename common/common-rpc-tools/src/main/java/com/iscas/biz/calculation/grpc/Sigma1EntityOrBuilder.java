@@ -42,4 +42,13 @@ public interface Sigma1EntityOrBuilder extends
    * <code>double sigma1SDown = 4;</code>
    */
   double getSigma1SDown();
+
+  /**
+   * <pre>
+   *许用应力
+   * </pre>
+   *
+   * <code>double allowStress = 5;</code>
+   */
+  double getAllowStress();
 }

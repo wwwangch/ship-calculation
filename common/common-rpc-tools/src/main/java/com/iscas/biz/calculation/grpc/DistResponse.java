@@ -21,6 +21,10 @@ public  final class DistResponse extends
   private DistResponse() {
     extremeH_ = 0D;
     extremeS_ = 0D;
+    overloadH1_ = 0D;
+    overloadH2_ = 0D;
+    overloadS1_ = 0D;
+    overloadS2_ = 0D;
   }
 
   @java.lang.Override
@@ -56,6 +60,26 @@ public  final class DistResponse extends
           case 17: {
 
             extremeS_ = input.readDouble();
+            break;
+          }
+          case 25: {
+
+            overloadH1_ = input.readDouble();
+            break;
+          }
+          case 33: {
+
+            overloadH2_ = input.readDouble();
+            break;
+          }
+          case 41: {
+
+            overloadS1_ = input.readDouble();
+            break;
+          }
+          case 49: {
+
+            overloadS2_ = input.readDouble();
             break;
           }
         }
@@ -107,6 +131,58 @@ public  final class DistResponse extends
     return extremeS_;
   }
 
+  public static final int OVERLOADH1_FIELD_NUMBER = 3;
+  private double overloadH1_;
+  /**
+   * <pre>
+   *中拱过载系数1
+   * </pre>
+   *
+   * <code>double overloadH1 = 3;</code>
+   */
+  public double getOverloadH1() {
+    return overloadH1_;
+  }
+
+  public static final int OVERLOADH2_FIELD_NUMBER = 4;
+  private double overloadH2_;
+  /**
+   * <pre>
+   *中拱过载系数2
+   * </pre>
+   *
+   * <code>double overloadH2 = 4;</code>
+   */
+  public double getOverloadH2() {
+    return overloadH2_;
+  }
+
+  public static final int OVERLOADS1_FIELD_NUMBER = 5;
+  private double overloadS1_;
+  /**
+   * <pre>
+   *中垂过载系数1
+   * </pre>
+   *
+   * <code>double overloadS1 = 5;</code>
+   */
+  public double getOverloadS1() {
+    return overloadS1_;
+  }
+
+  public static final int OVERLOADS2_FIELD_NUMBER = 6;
+  private double overloadS2_;
+  /**
+   * <pre>
+   *中垂过载系数2
+   * </pre>
+   *
+   * <code>double overloadS2 = 6;</code>
+   */
+  public double getOverloadS2() {
+    return overloadS2_;
+  }
+
   private byte memoizedIsInitialized = -1;
   public final boolean isInitialized() {
     byte isInitialized = memoizedIsInitialized;
@@ -125,6 +201,18 @@ public  final class DistResponse extends
     if (extremeS_ != 0D) {
       output.writeDouble(2, extremeS_);
     }
+    if (overloadH1_ != 0D) {
+      output.writeDouble(3, overloadH1_);
+    }
+    if (overloadH2_ != 0D) {
+      output.writeDouble(4, overloadH2_);
+    }
+    if (overloadS1_ != 0D) {
+      output.writeDouble(5, overloadS1_);
+    }
+    if (overloadS2_ != 0D) {
+      output.writeDouble(6, overloadS2_);
+    }
   }
 
   public int getSerializedSize() {
@@ -139,6 +227,22 @@ public  final class DistResponse extends
     if (extremeS_ != 0D) {
       size += com.google.protobuf.CodedOutputStream
         .computeDoubleSize(2, extremeS_);
+    }
+    if (overloadH1_ != 0D) {
+      size += com.google.protobuf.CodedOutputStream
+        .computeDoubleSize(3, overloadH1_);
+    }
+    if (overloadH2_ != 0D) {
+      size += com.google.protobuf.CodedOutputStream
+        .computeDoubleSize(4, overloadH2_);
+    }
+    if (overloadS1_ != 0D) {
+      size += com.google.protobuf.CodedOutputStream
+        .computeDoubleSize(5, overloadS1_);
+    }
+    if (overloadS2_ != 0D) {
+      size += com.google.protobuf.CodedOutputStream
+        .computeDoubleSize(6, overloadS2_);
     }
     memoizedSize = size;
     return size;
@@ -164,6 +268,22 @@ public  final class DistResponse extends
         java.lang.Double.doubleToLongBits(getExtremeS())
         == java.lang.Double.doubleToLongBits(
             other.getExtremeS()));
+    result = result && (
+        java.lang.Double.doubleToLongBits(getOverloadH1())
+        == java.lang.Double.doubleToLongBits(
+            other.getOverloadH1()));
+    result = result && (
+        java.lang.Double.doubleToLongBits(getOverloadH2())
+        == java.lang.Double.doubleToLongBits(
+            other.getOverloadH2()));
+    result = result && (
+        java.lang.Double.doubleToLongBits(getOverloadS1())
+        == java.lang.Double.doubleToLongBits(
+            other.getOverloadS1()));
+    result = result && (
+        java.lang.Double.doubleToLongBits(getOverloadS2())
+        == java.lang.Double.doubleToLongBits(
+            other.getOverloadS2()));
     return result;
   }
 
@@ -180,6 +300,18 @@ public  final class DistResponse extends
     hash = (37 * hash) + EXTREMES_FIELD_NUMBER;
     hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
         java.lang.Double.doubleToLongBits(getExtremeS()));
+    hash = (37 * hash) + OVERLOADH1_FIELD_NUMBER;
+    hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
+        java.lang.Double.doubleToLongBits(getOverloadH1()));
+    hash = (37 * hash) + OVERLOADH2_FIELD_NUMBER;
+    hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
+        java.lang.Double.doubleToLongBits(getOverloadH2()));
+    hash = (37 * hash) + OVERLOADS1_FIELD_NUMBER;
+    hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
+        java.lang.Double.doubleToLongBits(getOverloadS1()));
+    hash = (37 * hash) + OVERLOADS2_FIELD_NUMBER;
+    hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
+        java.lang.Double.doubleToLongBits(getOverloadS2()));
     hash = (29 * hash) + unknownFields.hashCode();
     memoizedHashCode = hash;
     return hash;
@@ -306,6 +438,14 @@ public  final class DistResponse extends
 
       extremeS_ = 0D;
 
+      overloadH1_ = 0D;
+
+      overloadH2_ = 0D;
+
+      overloadS1_ = 0D;
+
+      overloadS2_ = 0D;
+
       return this;
     }
 
@@ -330,6 +470,10 @@ public  final class DistResponse extends
       com.iscas.biz.calculation.grpc.DistResponse result = new com.iscas.biz.calculation.grpc.DistResponse(this);
       result.extremeH_ = extremeH_;
       result.extremeS_ = extremeS_;
+      result.overloadH1_ = overloadH1_;
+      result.overloadH2_ = overloadH2_;
+      result.overloadS1_ = overloadS1_;
+      result.overloadS2_ = overloadS2_;
       onBuilt();
       return result;
     }
@@ -376,6 +520,18 @@ public  final class DistResponse extends
       }
       if (other.getExtremeS() != 0D) {
         setExtremeS(other.getExtremeS());
+      }
+      if (other.getOverloadH1() != 0D) {
+        setOverloadH1(other.getOverloadH1());
+      }
+      if (other.getOverloadH2() != 0D) {
+        setOverloadH2(other.getOverloadH2());
+      }
+      if (other.getOverloadS1() != 0D) {
+        setOverloadS1(other.getOverloadS1());
+      }
+      if (other.getOverloadS2() != 0D) {
+        setOverloadS2(other.getOverloadS2());
       }
       onChanged();
       return this;
@@ -475,6 +631,158 @@ public  final class DistResponse extends
     public Builder clearExtremeS() {
       
       extremeS_ = 0D;
+      onChanged();
+      return this;
+    }
+
+    private double overloadH1_ ;
+    /**
+     * <pre>
+     *中拱过载系数1
+     * </pre>
+     *
+     * <code>double overloadH1 = 3;</code>
+     */
+    public double getOverloadH1() {
+      return overloadH1_;
+    }
+    /**
+     * <pre>
+     *中拱过载系数1
+     * </pre>
+     *
+     * <code>double overloadH1 = 3;</code>
+     */
+    public Builder setOverloadH1(double value) {
+      
+      overloadH1_ = value;
+      onChanged();
+      return this;
+    }
+    /**
+     * <pre>
+     *中拱过载系数1
+     * </pre>
+     *
+     * <code>double overloadH1 = 3;</code>
+     */
+    public Builder clearOverloadH1() {
+      
+      overloadH1_ = 0D;
+      onChanged();
+      return this;
+    }
+
+    private double overloadH2_ ;
+    /**
+     * <pre>
+     *中拱过载系数2
+     * </pre>
+     *
+     * <code>double overloadH2 = 4;</code>
+     */
+    public double getOverloadH2() {
+      return overloadH2_;
+    }
+    /**
+     * <pre>
+     *中拱过载系数2
+     * </pre>
+     *
+     * <code>double overloadH2 = 4;</code>
+     */
+    public Builder setOverloadH2(double value) {
+      
+      overloadH2_ = value;
+      onChanged();
+      return this;
+    }
+    /**
+     * <pre>
+     *中拱过载系数2
+     * </pre>
+     *
+     * <code>double overloadH2 = 4;</code>
+     */
+    public Builder clearOverloadH2() {
+      
+      overloadH2_ = 0D;
+      onChanged();
+      return this;
+    }
+
+    private double overloadS1_ ;
+    /**
+     * <pre>
+     *中垂过载系数1
+     * </pre>
+     *
+     * <code>double overloadS1 = 5;</code>
+     */
+    public double getOverloadS1() {
+      return overloadS1_;
+    }
+    /**
+     * <pre>
+     *中垂过载系数1
+     * </pre>
+     *
+     * <code>double overloadS1 = 5;</code>
+     */
+    public Builder setOverloadS1(double value) {
+      
+      overloadS1_ = value;
+      onChanged();
+      return this;
+    }
+    /**
+     * <pre>
+     *中垂过载系数1
+     * </pre>
+     *
+     * <code>double overloadS1 = 5;</code>
+     */
+    public Builder clearOverloadS1() {
+      
+      overloadS1_ = 0D;
+      onChanged();
+      return this;
+    }
+
+    private double overloadS2_ ;
+    /**
+     * <pre>
+     *中垂过载系数2
+     * </pre>
+     *
+     * <code>double overloadS2 = 6;</code>
+     */
+    public double getOverloadS2() {
+      return overloadS2_;
+    }
+    /**
+     * <pre>
+     *中垂过载系数2
+     * </pre>
+     *
+     * <code>double overloadS2 = 6;</code>
+     */
+    public Builder setOverloadS2(double value) {
+      
+      overloadS2_ = value;
+      onChanged();
+      return this;
+    }
+    /**
+     * <pre>
+     *中垂过载系数2
+     * </pre>
+     *
+     * <code>double overloadS2 = 6;</code>
+     */
+    public Builder clearOverloadS2() {
+      
+      overloadS2_ = 0D;
       onChanged();
       return this;
     }

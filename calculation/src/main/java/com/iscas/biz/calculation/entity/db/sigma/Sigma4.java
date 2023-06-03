@@ -28,4 +28,6 @@ public class Sigma4 {
 
     //中垂跨中
     private Double zhongchuiKuazhong;
+    //许用应力
+    private Double allowStress;
 }
