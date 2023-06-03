@@ -70,6 +70,17 @@ public class ShipParam {
      */
     private Double portraitGravity;
 
+    /**
+     * 干舷高
+     */
+    private Double freeboard;
+
+    /**
+     * 液舱空气管压头
+     */
+    private Double airguanyatou;
+
+
     private Date createTime;
 
     private Date updateTime;

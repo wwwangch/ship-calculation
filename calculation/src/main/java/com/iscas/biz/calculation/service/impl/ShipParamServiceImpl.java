@@ -5,10 +5,8 @@ import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 import com.google.common.collect.ImmutableMap;
 import com.google.common.collect.Lists;
 import com.iscas.base.biz.service.fileserver.FileServerService;
-import com.iscas.biz.calculation.constant.RegularConstants;
 import com.iscas.biz.calculation.entity.db.Project;
 import com.iscas.biz.calculation.entity.db.ShipParam;
-import com.iscas.biz.calculation.enums.CalculationSpecification;
 import com.iscas.biz.calculation.enums.NavigationArea;
 import com.iscas.biz.calculation.enums.ShipType;
 import com.iscas.biz.calculation.mapper.ProjectMapper;
@@ -20,12 +18,8 @@ import com.iscas.templet.exception.ValidDataException;
 import com.iscas.templet.view.table.ComboboxData;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.collections4.CollectionUtils;
-import org.apache.commons.io.IOUtils;
 import org.springframework.stereotype.Service;
-import org.springframework.web.multipart.MultipartFile;
 
-import java.io.IOException;
-import java.nio.charset.StandardCharsets;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
@@ -135,8 +129,8 @@ public class ShipParamServiceImpl implements ShipParamService {
         QueryWrapper<ShipParam> queryWrapper = Wrappers.emptyWrapper();
         queryWrapper.eq("project_id", projectId);
         List<ShipParam> shipParams = shipParamMapper.selectList(queryWrapper);
-        if (CollectionUtils.isNotEmpty(shipParams)) {
-            throw new RuntimeException("当前项目船舶参数已经存在");
+        if (CollectionUtils.isEmpty(shipParams)) {
+            throw new RuntimeException("当前项目船舶参数不存在");
         }
         ImmutableMap<String, Object> forceItem = ImmutableMap.of("update_time", DateSafeUtils.format(new Date()));
         tableDefinitionService.saveData(TABLE_IDENTITY, data, false, ShipParam.class, forceItem);
