@@ -1,10 +1,13 @@
 package com.iscas.biz.calculation.entity.db;
 
 import com.baomidou.mybatisplus.annotation.IdType;
+import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
+import com.baomidou.mybatisplus.extension.handlers.JacksonTypeHandler;
 import lombok.Data;
 
 import java.util.Date;
+import java.util.List;
 
 /**
  * @author ch w
@@ -25,38 +28,40 @@ public class BulkheadCompartment {
     /**
      * 距基线高度
      */
-    private String heightAbove;
+    private Double heightAbove;
 
     /**
      * 带板宽度
      */
-    private String stripPlateWidth;
+    @TableField(typeHandler = JacksonTypeHandler.class)
+    private List<Double> stripPlateWidth;
 
     /**
      * 扶强材规格
      */
-    private String strengthMaterialSpecification;
+    @TableField(typeHandler = JacksonTypeHandler.class)
+    private List<String> strengthMaterialSpecification;
 
     /**
      * 是否液舱
      */
-    private String liquid;
+    private Boolean liquid;
     /**
      * 板厚
      */
-    private String plateThickness;
+    private Double plateThickness;
     /**
      * 材料
      */
-    private String material;
+    private Double material;
     /**
      * 板宽
      */
-    private String plateWidth;
+    private Double plateWidth;
     /**
      * 区间
      */
-    private String compartment;
+    private Double compartment;
 
     private Date createTime;
 
@@ -65,5 +70,6 @@ public class BulkheadCompartment {
     /**
      * 带板厚度
      */
-    private String daibanhou;
+    @TableField(typeHandler = JacksonTypeHandler.class)
+    private List<Double> daibanhou;
 }

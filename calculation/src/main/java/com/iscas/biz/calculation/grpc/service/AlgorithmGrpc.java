@@ -4,13 +4,8 @@ import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.google.common.collect.Lists;
 import com.iscas.biz.calculation.entity.db.*;
 import com.iscas.biz.calculation.entity.db.sigma.*;
-import com.iscas.biz.calculation.entity.dto.SlamLoadDTO;
-import com.iscas.biz.calculation.entity.dto.StaticLoadDTO;
-import com.iscas.biz.calculation.entity.dto.WaveLoadDTO;
+import com.iscas.biz.calculation.entity.dto.*;
 import com.iscas.biz.calculation.entity.db.*;
-import com.iscas.biz.calculation.entity.dto.CalSectionDTO;
-import com.iscas.biz.calculation.entity.dto.GirderStrengthDTO;
-import com.iscas.biz.calculation.entity.dto.WeightDTO;
 import com.iscas.biz.calculation.entity.dto.sigma.Sigma1DTO;
 import com.iscas.biz.calculation.grpc.Gravity;
 import com.iscas.biz.calculation.grpc.SubGravity;
@@ -208,6 +203,33 @@ public class AlgorithmGrpc {
         calSection.setInteriaS(sectionResponse.getInteriaS());
         AlgorithmGrpc.section = true;
         return calSection;
+    }
+
+    public CalAddition calAddition(CalAdditionDTO calAdditionDTO){
+        Integer projectId = calAdditionDTO.getProjectId();
+
+        AdditionalForceHeadRequest headRequest = AdditionalForceHeadRequest.newBuilder()
+                .setCangbiWeizhi(calAdditionDTO.getCangbiWeizhi())
+                .setLeiweihao(calAdditionDTO.getLeiweihao())
+                .setFreeboard(calAdditionDTO.getFreeboard())
+                .setIsCollision(calAdditionDTO.getIsCollision())
+                .setShuidongYali(calAdditionDTO.getShuidongYali())
+                .build();
+        AdditionalForceHeadResponse headResponse = grpcHolder.calculationBlockingStub().calAdditionalForceHead(headRequest);
+        if (headResponse == null){
+            throw new RuntimeException("附加压头计算失败");
+        }
+        CalAddition calAddition = new CalAddition();
+        calAddition.setProjectId(projectId);
+        calAddition.setFreeboard(calAdditionDTO.getFreeboard());
+        calAddition.setLeiweihao(calAdditionDTO.getLeiweihao());
+        calAddition.setCangbiWeizhi(calAdditionDTO.getCangbiWeizhi());
+        calAddition.setIsCollision(calAdditionDTO.getIsCollision());
+        calAddition.setShuidongYali(calAdditionDTO.getShuidongYali());
+        calAddition.setLeiweihaos(headResponse.getLeiweihaoList());
+        calAddition.setAddyatouh(headResponse.getAddyatouhList());
+        AlgorithmGrpc.section = true;
+        return calAddition;
     }
 
 //    public GirderStrength calGirderStrength(GirderStrengthDTO girderStrengthDTO) {
