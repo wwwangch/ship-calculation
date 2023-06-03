@@ -1,12 +1,11 @@
 package com.iscas.biz.calculation.controller;
 
 import com.google.common.collect.ImmutableMap;
-import com.iscas.biz.calculation.entity.db.Bulkhead;
+import com.iscas.biz.calculation.entity.db.BulkheadCheckResult;
 import com.iscas.biz.calculation.entity.db.BulkheadCompartment;
 import com.iscas.biz.calculation.entity.db.Section;
-import com.iscas.biz.calculation.mapper.BulkheadCompartmentMapper;
+import com.iscas.biz.calculation.entity.dto.BulkheadDTO;
 import com.iscas.biz.calculation.service.BulkheadCompartmentService;
-import com.iscas.biz.calculation.service.BulkheadService;
 import com.iscas.biz.mp.table.service.TableDefinitionService;
 import com.iscas.common.tools.core.date.DateSafeUtils;
 import com.iscas.templet.common.ResponseEntity;
@@ -95,6 +94,18 @@ public class CompartmentController {
         ResponseEntity entity = new ResponseEntity<>();
         entity.setValue(compartmentService.getCascader());
         return entity;
+    }
+
+    @Operation(summary = "舱壁板材校核结果查询,仅一条", description = "传舱壁id，仅返回计算结果")
+    @GetMapping(value = "/bulkhead/getData/{bulkheadId}")
+    public BulkheadCheckResult getCheckData(@PathVariable Integer bulkheadId) {
+        return compartmentService.listResultByBulkheadId(bulkheadId);
+    }
+
+    @Operation(summary = "舱壁板材校核", description = "舱壁板材校核")
+    @GetMapping(value = "/bulkhead/check")
+    public ResponseEntity checkBulkheadPlate(@RequestBody BulkheadDTO bulkheadDTO) {
+        return ResponseEntity.ok(compartmentService.checkBulkhead(bulkheadDTO));
     }
 
 }

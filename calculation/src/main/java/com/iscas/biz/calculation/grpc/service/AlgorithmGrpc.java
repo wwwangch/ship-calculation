@@ -4,21 +4,12 @@ import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.google.common.collect.Lists;
 import com.iscas.biz.calculation.entity.db.*;
 import com.iscas.biz.calculation.entity.db.sigma.*;
-import com.iscas.biz.calculation.entity.dto.SlamLoadDTO;
-import com.iscas.biz.calculation.entity.dto.StaticLoadDTO;
-import com.iscas.biz.calculation.entity.dto.WaveLoadDTO;
-import com.iscas.biz.calculation.entity.db.*;
-import com.iscas.biz.calculation.entity.dto.CalSectionDTO;
-import com.iscas.biz.calculation.entity.dto.GirderStrengthDTO;
-import com.iscas.biz.calculation.entity.dto.WeightDTO;
+import com.iscas.biz.calculation.entity.dto.*;
 import com.iscas.biz.calculation.entity.dto.sigma.Sigma1DTO;
 import com.iscas.biz.calculation.grpc.Gravity;
 import com.iscas.biz.calculation.grpc.SubGravity;
 import com.iscas.biz.calculation.grpc.WeightDistribution;
 import com.iscas.biz.calculation.grpc.*;
-import com.iscas.biz.calculation.grpc.Gravity;
-import com.iscas.biz.calculation.grpc.SubGravity;
-import com.iscas.biz.calculation.grpc.WeightDistribution;
 import com.iscas.biz.calculation.mapper.ProjectMapper;
 import com.iscas.biz.calculation.mapper.ShipParamMapper;
 import com.iscas.biz.calculation.util.ListUtils;
@@ -26,7 +17,6 @@ import com.spire.ms.System.Collections.ArrayList;
 import org.apache.commons.collections4.CollectionUtils;
 import org.springframework.stereotype.Service;
 
-import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
 
@@ -447,6 +437,50 @@ public class AlgorithmGrpc {
             shearingStressList.add(shearingStress);
         }
         return shearingStressList;
+    }
+
+    /**
+     * 舱壁板材校核
+     *
+     * @param bulkheadId           舱壁id
+     * @param shipParam            船舶参数
+     * @param bulkheadCompartments 区间数据
+     * @return
+     */
+    public BulkheadCheckResult calBulkheadCheck(Integer bulkheadId, ShipParam shipParam, List<BulkheadCompartment> bulkheadCompartments) {
+        List<Double> deckHeight = Lists.newArrayList();
+        List<Boolean> boolLiquidTank = Lists.newArrayList();
+        List<Double> banWidth = Lists.newArrayList();
+        List<Double> banThick = Lists.newArrayList();
+        List<Double> cangbiBancailiao = Lists.newArrayList();
+        for (BulkheadCompartment bulkheadCompartment : bulkheadCompartments) {
+            deckHeight.add(Double.valueOf(bulkheadCompartment.getHeightAbove()));
+            boolLiquidTank.add(Boolean.valueOf(bulkheadCompartment.getLiquid()));
+            banWidth.add(Double.valueOf(bulkheadCompartment.getStripPlateWidth()));
+            banThick.add(Double.valueOf(bulkheadCompartment.getPlateThickness()));
+            cangbiBancailiao.add(Double.valueOf(bulkheadCompartment.getMaterial()));
+        }
+        CompartmentBulkheadSheetResponse compartmentBulkheadSheetResponse = grpcHolder.calculationBlockingStub().calCompartmentBulkheadSheet(CompartmentBulkheadSheetRequest.newBuilder()
+                .setAirguanyatou(shipParam.getAirguanyatou())
+                .addAllDeckHeight(deckHeight)
+                .addAllBanWidth(banWidth)
+                .addAllBanThick(banThick)
+                .addAllCangbiBancailiao(cangbiBancailiao)
+                .build());
+        BulkheadCheckResult bulkheadCheckResult = new BulkheadCheckResult();
+        bulkheadCheckResult.setBulkheadId(bulkheadId);
+        bulkheadCheckResult.setProjectId(shipParam.getProjectId());
+        bulkheadCheckResult.setYatou(Lists.newArrayList(compartmentBulkheadSheetResponse.getYatouList()));
+        bulkheadCheckResult.setDisload(Lists.newArrayList(compartmentBulkheadSheetResponse.getDisloadList()));
+        bulkheadCheckResult.setLgvList(Lists.newArrayList(compartmentBulkheadSheetResponse.getLgvListList()));
+        bulkheadCheckResult.setUList(Lists.newArrayList(compartmentBulkheadSheetResponse.getUListList()));
+        bulkheadCheckResult.setChi1List(Lists.newArrayList(compartmentBulkheadSheetResponse.getChi1ListList()));
+        bulkheadCheckResult.setChi2List(Lists.newArrayList(compartmentBulkheadSheetResponse.getChi2ListList()));
+        bulkheadCheckResult.setStressXlList(Lists.newArrayList(compartmentBulkheadSheetResponse.getStressXlListList()));
+        bulkheadCheckResult.setStressZhizuo(Lists.newArrayList(compartmentBulkheadSheetResponse.getStressZhizuoList()));
+        bulkheadCheckResult.setStressKuozhong(Lists.newArrayList(compartmentBulkheadSheetResponse.getStressKuozhongList()));
+        bulkheadCheckResult.setShearAllow(Lists.newArrayList(compartmentBulkheadSheetResponse.getShearAllowList()));
+        return bulkheadCheckResult;
     }
 
 }
