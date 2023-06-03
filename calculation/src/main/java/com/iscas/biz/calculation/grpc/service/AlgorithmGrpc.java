@@ -200,6 +200,33 @@ public class AlgorithmGrpc {
         return calSection;
     }
 
+    public CalAddition calAddition(CalAdditionDTO calAdditionDTO) {
+        Integer projectId = calAdditionDTO.getProjectId();
+
+        AdditionalForceHeadRequest headRequest = AdditionalForceHeadRequest.newBuilder()
+                .setCangbiWeizhi(calAdditionDTO.getCangbiWeizhi())
+                .setLeiweihao(calAdditionDTO.getLeiweihao())
+                .setFreeboard(calAdditionDTO.getFreeboard())
+                .setIsCollision(calAdditionDTO.getIsCollision())
+                .setShuidongYali(calAdditionDTO.getShuidongYali())
+                .build();
+        AdditionalForceHeadResponse headResponse = grpcHolder.calculationBlockingStub().calAdditionalForceHead(headRequest);
+        if (headResponse == null) {
+            throw new RuntimeException("附加压头计算失败");
+        }
+        CalAddition calAddition = new CalAddition();
+        calAddition.setProjectId(projectId);
+        calAddition.setFreeboard(calAdditionDTO.getFreeboard());
+        calAddition.setLeiweihao(calAdditionDTO.getLeiweihao());
+        calAddition.setCangbiWeizhi(calAdditionDTO.getCangbiWeizhi());
+        calAddition.setIsCollision(calAdditionDTO.getIsCollision());
+        calAddition.setShuidongYali(calAdditionDTO.getShuidongYali());
+        calAddition.setLeiweihaos(headResponse.getLeiweihaoList());
+        calAddition.setAddyatouh(headResponse.getAddyatouhList());
+        AlgorithmGrpc.section = true;
+        return calAddition;
+    }
+
 //    public GirderStrength calGirderStrength(GirderStrengthDTO girderStrengthDTO) {
 //        Integer projectId = girderStrengthDTO.getProjectId();
 //        if (!Objects.equals(projectId, AlgorithmGrpc.currentProjectId)) {

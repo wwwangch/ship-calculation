@@ -31,7 +31,7 @@ public class Bulkhead {
     /**
      * 是否防撞舱壁
      */
-    private String collisionBulkhead;
+    private Boolean collisionBulkhead;
 
     private Date createTime;
 
@@ -40,17 +40,19 @@ public class Bulkhead {
     /**
      * 舱壁位置
      */
-    private String cangbiweizhi;
+    private Double cangbiweizhi;
     /**
      * 舱壁肋位号
      */
-    private String leiweihao;
+    private Double leiweihao;
     /**
      * 水动压力
      */
-    private String shuidongyali;
+    private Double shuidongyali;
     /**
      * 甲板纵骨跨距
      */
-    private String zonggukuaju;
+    private Double zonggukuaju;
+
+
 }
