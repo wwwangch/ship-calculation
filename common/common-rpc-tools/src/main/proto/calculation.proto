@@ -38,6 +38,15 @@ service Calculation {
 
   //应力分布 对应极限弯矩校验
   rpc calDist(DistRequest)returns(DistResponse){}
+
+  //附加压头计算
+  rpc calAdditionalForceHead(AdditionalForceHeadRequest) returns(AdditionalForceHeadResponse){}
+
+  //舱壁板材校核
+  rpc calCompartmentBulkheadSheet(CompartmentBulkheadSheetRequest) returns(CompartmentBulkheadSheetResponse){}
+
+  //扶强材计算
+  rpc calSupportingMaterialStrength(SupportingMaterialStrengthRequest) returns(SupportingMaterialStrengthResponse){}
 }
 
 //浮力计算参数值
@@ -251,7 +260,7 @@ message SectionRequest{
   string profileFilePath = 1;
 
   //肋位号
-  double ribNumber=2;
+  double ribNumber = 2;
 }
 //剖面计算输出
 message SectionResponse{
@@ -322,30 +331,30 @@ message Sigma1Request{
   /**
      * 中拱-波浪弯矩
      */
-  double midArchWaveMoment=9;
+  double midArchWaveMoment = 9;
   /**
    * 中拱-砰击振动弯矩
    */
-  double midArchImpactMoment=10;
+  double midArchImpactMoment = 10;
   /**
    * 中拱-剪力
    */
-  double midArchShear=11;
+  double midArchShear = 11;
   /**
    * 中垂-波浪弯矩
    */
-  double midVerticalWaveMoment=12;
+  double midVerticalWaveMoment = 12;
   /**
    * 中垂-砰击振动弯矩
    */
-  double midVerticalImpactMoment=13;
+  double midVerticalImpactMoment = 13;
   /**
    * 中垂-剪力
    */
-  double midVerticalShear=14;
+  double midVerticalShear = 14;
 
   //龙骨数量
-  int32 numGirder  = 15;
+  int32 numGirder = 15;
 }
 
 message Sigma1Response{
@@ -436,4 +445,129 @@ message ShearingStressEntity{
   double zhonggongMax = 2;
   //许用剪应力[τ]
   double shearingStress = 3;
+}
+
+message AdditionalForceHeadRequest{
+  //干舷高
+  double freeboard = 1;
+
+  //肋位号
+  double leiweihao = 2;
+
+  //舱壁位置
+  double cangbiWeizhi = 3;
+
+  //是否防撞舱壁
+  bool isCollision = 4;
+
+  //水动压力
+  double shuidongYali = 5;
+}
+message AdditionalForceHeadResponse{
+  //肋位号  数组
+  repeated double leiweihao = 1;
+
+  //附加压头  数组
+  repeated double addyatouh = 2;
+}
+
+message CompartmentBulkheadSheetRequest{
+  //液仓空气管压头
+  double airguanyatou = 1;
+
+  //甲板层高 区间excel中的数据
+  repeated double deckHeight = 2;
+
+  //是否液压舱壁  区间excel中的数据
+  repeated bool boolLiquidTank = 3;
+
+  //板宽 区间excel中的数据
+  repeated double banWidth = 4;
+
+  //板厚 区间excel中的数据
+  repeated double banThick = 5;
+
+  //舱壁板材料
+  repeated double cangbiBancailiao = 6;
+}
+
+message CompartmentBulkheadSheetResponse{
+  //破损压头水压值
+  repeated double yatou = 1;
+
+  //均布载荷
+  repeated double disload = 2;
+  //lgv
+  repeated double lgvList = 3;
+
+  //u输出
+  repeated double uList = 4;
+  //chi1 输出
+  repeated double chi1List = 5;
+  //chi2 输出
+  repeated double chi2List = 6;
+  //悬链应力
+  repeated double stressXlList = 7;
+  //跨中应力
+  repeated double stressKuozhong = 8;
+  //支座应力
+  repeated double stressZhizuo = 9;
+  //许用剪力
+  repeated double shearAllow = 10;
+}
+
+message SupportingMaterialStrengthRequest{
+  //扶强材型号
+  repeated string guicaiType = 1;
+
+  //带板宽
+  repeated double daibanKuan = 2;
+  //带板厚
+  repeated double daibanHou = 3;
+  //甲板纵骨跨距
+  double zongguKuaju = 4;
+}
+
+message SupportingMaterialStrengthResponse{
+  //上端载荷
+  repeated double upperLoad = 1;
+
+  //下端载荷
+  repeated double lowerLoad = 2;
+
+  //自由支持中部弯矩
+  repeated double ziyouZhongwan = 3;
+
+  //自由支持上部弯矩
+  repeated double ziyouShangwan = 4;
+  //自由支持下部弯矩
+  repeated double ziyouXiawan = 5;
+  //自由支持上部剪力
+  repeated double ziyouShangjian = 6;
+  //自由支持下部剪力
+  repeated double ziyouXiajian = 7;
+
+  //刚性固定上部弯矩
+  repeated double gangxingShangwan = 8;
+  //刚性固定下部弯矩
+  repeated double gangxingXiawan = 9;
+  //刚性固定上部剪力
+  repeated double gangxingShangjian = 10;
+  //刚性固定下部剪力
+  repeated double gangxingXiajian = 11;
+
+  //应力值中部应力
+  repeated double yingliZhongying = 12;
+  //应力值上部应力
+  repeated double yingliShangying = 13;
+  //应力值下部应力
+  repeated double yingliXiaying = 14;
+  //应力值许用应力
+  repeated double yingliXuying = 15;
+  //应力值上部剪力
+  repeated double yingliShangjian = 16;
+  //应力值下部剪力
+  repeated double yingliXiajian = 17;
+  //应力值许用剪力
+  repeated double yingliXujian = 18;
 }

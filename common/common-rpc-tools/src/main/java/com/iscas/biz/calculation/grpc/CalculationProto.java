@@ -184,6 +184,36 @@ public final class CalculationProto {
   static final 
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
       internal_static_com_iscas_biz_calculation_grpc_ShearingStressEntity_fieldAccessorTable;
+  static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_com_iscas_biz_calculation_grpc_AdditionalForceHeadRequest_descriptor;
+  static final 
+    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      internal_static_com_iscas_biz_calculation_grpc_AdditionalForceHeadRequest_fieldAccessorTable;
+  static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_com_iscas_biz_calculation_grpc_AdditionalForceHeadResponse_descriptor;
+  static final 
+    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      internal_static_com_iscas_biz_calculation_grpc_AdditionalForceHeadResponse_fieldAccessorTable;
+  static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_com_iscas_biz_calculation_grpc_CompartmentBulkheadSheetRequest_descriptor;
+  static final 
+    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      internal_static_com_iscas_biz_calculation_grpc_CompartmentBulkheadSheetRequest_fieldAccessorTable;
+  static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_com_iscas_biz_calculation_grpc_CompartmentBulkheadSheetResponse_descriptor;
+  static final 
+    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      internal_static_com_iscas_biz_calculation_grpc_CompartmentBulkheadSheetResponse_fieldAccessorTable;
+  static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_com_iscas_biz_calculation_grpc_SupportingMaterialStrengthRequest_descriptor;
+  static final 
+    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      internal_static_com_iscas_biz_calculation_grpc_SupportingMaterialStrengthRequest_fieldAccessorTable;
+  static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_com_iscas_biz_calculation_grpc_SupportingMaterialStrengthResponse_descriptor;
+  static final 
+    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      internal_static_com_iscas_biz_calculation_grpc_SupportingMaterialStrengthResponse_fieldAccessorTable;
 
   public static com.google.protobuf.Descriptors.FileDescriptor
       getDescriptor() {
@@ -275,46 +305,88 @@ public final class CalculationProto {
       ".com.iscas.biz.calculation.grpc.Shearing",
       "StressEntity\"Z\n\024ShearingStressEntity\022\024\n\014" +
       "zhongchuiMax\030\001 \001(\001\022\024\n\014zhonggongMax\030\002 \001(\001" +
-      "\022\026\n\016shearingStress\030\003 \001(\0012\344\013\n\013Calculation" +
-      "\022r\n\tshipParam\0220.com.iscas.biz.calculatio" +
-      "n.grpc.ShipParamRequest\0321.com.iscas.biz." +
-      "calculation.grpc.ShipParamResponse\"\000\022o\n\010" +
-      "buoyancy\022/.com.iscas.biz.calculation.grp" +
-      "c.BuoyancyRequest\0320.com.iscas.biz.calcul" +
-      "ation.grpc.BuoyancyResponse\"\000\022v\n\023calWeig" +
-      "htDistribute\022-.com.iscas.biz.calculation",
-      ".grpc.WeightRequest\032..com.iscas.biz.calc" +
-      "ulation.grpc.WeightResponse\"\000\022x\n\rcalStat" +
-      "icLoad\0221.com.iscas.biz.calculation.grpc." +
-      "StaticLoadRequest\0322.com.iscas.biz.calcul" +
-      "ation.grpc.StaticLoadResponse\"\000\022r\n\013calWa" +
-      "veLoad\022/.com.iscas.biz.calculation.grpc." +
-      "WaveLoadRequest\0320.com.iscas.biz.calculat" +
-      "ion.grpc.WaveLoadResponse\"\000\022r\n\013calSlamLo" +
-      "ad\022/.com.iscas.biz.calculation.grpc.Slam" +
-      "LoadRequest\0320.com.iscas.biz.calculation.",
-      "grpc.SlamLoadResponse\"\000\022o\n\ncalSection\022.." +
-      "com.iscas.biz.calculation.grpc.SectionRe" +
-      "quest\032/.com.iscas.biz.calculation.grpc.S" +
-      "ectionResponse\"\000\022l\n\tcalSigma1\022-.com.isca" +
-      "s.biz.calculation.grpc.Sigma1Request\032..c" +
-      "om.iscas.biz.calculation.grpc.Sigma1Resp" +
-      "onse\"\000\022l\n\tcalSigma2\022-.com.iscas.biz.calc" +
-      "ulation.grpc.Sigma2Request\032..com.iscas.b" +
-      "iz.calculation.grpc.Sigma2Response\"\000\022l\n\t" +
-      "calSigma3\022-.com.iscas.biz.calculation.gr",
-      "pc.Sigma3Request\032..com.iscas.biz.calcula" +
-      "tion.grpc.Sigma3Response\"\000\022l\n\tcalSigma4\022" +
-      "-.com.iscas.biz.calculation.grpc.Sigma4R" +
-      "equest\032..com.iscas.biz.calculation.grpc." +
-      "Sigma4Response\"\000\022\204\001\n\021calShearingStress\0225" +
-      ".com.iscas.biz.calculation.grpc.Shearing" +
-      "StressRequest\0326.com.iscas.biz.calculatio" +
-      "n.grpc.ShearingStressResponse\"\000\022f\n\007calDi" +
-      "st\022+.com.iscas.biz.calculation.grpc.Dist" +
-      "Request\032,.com.iscas.biz.calculation.grpc",
-      ".DistResponse\"\000B4\n\036com.iscas.biz.calcula" +
-      "tion.grpcB\020CalculationProtoP\001b\006proto3"
+      "\022\026\n\016shearingStress\030\003 \001(\001\"\203\001\n\032AdditionalF" +
+      "orceHeadRequest\022\021\n\tfreeboard\030\001 \001(\001\022\021\n\tle" +
+      "iweihao\030\002 \001(\001\022\024\n\014cangbiWeizhi\030\003 \001(\001\022\023\n\013i" +
+      "sCollision\030\004 \001(\010\022\024\n\014shuidongYali\030\005 \001(\001\"C" +
+      "\n\033AdditionalForceHeadResponse\022\021\n\tleiweih" +
+      "ao\030\001 \003(\001\022\021\n\taddyatouh\030\002 \003(\001\"\241\001\n\037Compartm" +
+      "entBulkheadSheetRequest\022\024\n\014airguanyatou\030" +
+      "\001 \001(\001\022\022\n\ndeckHeight\030\002 \003(\001\022\026\n\016boolLiquidT",
+      "ank\030\003 \003(\010\022\020\n\010banWidth\030\004 \003(\001\022\020\n\010banThick\030" +
+      "\005 \003(\001\022\030\n\020cangbiBancailiao\030\006 \003(\001\"\336\001\n Comp" +
+      "artmentBulkheadSheetResponse\022\r\n\005yatou\030\001 " +
+      "\003(\001\022\017\n\007disload\030\002 \003(\001\022\017\n\007lgvList\030\003 \003(\001\022\r\n" +
+      "\005uList\030\004 \003(\001\022\020\n\010chi1List\030\005 \003(\001\022\020\n\010chi2Li" +
+      "st\030\006 \003(\001\022\024\n\014stressXlList\030\007 \003(\001\022\026\n\016stress" +
+      "Kuozhong\030\010 \003(\001\022\024\n\014stressZhizuo\030\t \003(\001\022\022\n\n" +
+      "shearAllow\030\n \003(\001\"s\n!SupportingMaterialSt" +
+      "rengthRequest\022\022\n\nguicaiType\030\001 \003(\t\022\022\n\ndai" +
+      "banKuan\030\002 \003(\001\022\021\n\tdaibanHou\030\003 \003(\001\022\023\n\013zong",
+      "guKuaju\030\004 \001(\001\"\306\003\n\"SupportingMaterialStre" +
+      "ngthResponse\022\021\n\tupperLoad\030\001 \003(\001\022\021\n\tlower" +
+      "Load\030\002 \003(\001\022\025\n\rziyouZhongwan\030\003 \003(\001\022\025\n\rziy" +
+      "ouShangwan\030\004 \003(\001\022\023\n\013ziyouXiawan\030\005 \003(\001\022\026\n" +
+      "\016ziyouShangjian\030\006 \003(\001\022\024\n\014ziyouXiajian\030\007 " +
+      "\003(\001\022\030\n\020gangxingShangwan\030\010 \003(\001\022\026\n\016gangxin" +
+      "gXiawan\030\t \003(\001\022\031\n\021gangxingShangjian\030\n \003(\001" +
+      "\022\027\n\017gangxingXiajian\030\013 \003(\001\022\027\n\017yingliZhong" +
+      "ying\030\014 \003(\001\022\027\n\017yingliShangying\030\r \003(\001\022\025\n\ry" +
+      "ingliXiaying\030\016 \003(\001\022\024\n\014yingliXuying\030\017 \003(\001",
+      "\022\027\n\017yingliShangjian\030\020 \003(\001\022\025\n\ryingliXiaji" +
+      "an\030\021 \003(\001\022\024\n\014yingliXujian\030\022 \003(\0012\312\017\n\013Calcu" +
+      "lation\022r\n\tshipParam\0220.com.iscas.biz.calc" +
+      "ulation.grpc.ShipParamRequest\0321.com.isca" +
+      "s.biz.calculation.grpc.ShipParamResponse" +
+      "\"\000\022o\n\010buoyancy\022/.com.iscas.biz.calculati" +
+      "on.grpc.BuoyancyRequest\0320.com.iscas.biz." +
+      "calculation.grpc.BuoyancyResponse\"\000\022v\n\023c" +
+      "alWeightDistribute\022-.com.iscas.biz.calcu" +
+      "lation.grpc.WeightRequest\032..com.iscas.bi",
+      "z.calculation.grpc.WeightResponse\"\000\022x\n\rc" +
+      "alStaticLoad\0221.com.iscas.biz.calculation" +
+      ".grpc.StaticLoadRequest\0322.com.iscas.biz." +
+      "calculation.grpc.StaticLoadResponse\"\000\022r\n" +
+      "\013calWaveLoad\022/.com.iscas.biz.calculation" +
+      ".grpc.WaveLoadRequest\0320.com.iscas.biz.ca" +
+      "lculation.grpc.WaveLoadResponse\"\000\022r\n\013cal" +
+      "SlamLoad\022/.com.iscas.biz.calculation.grp" +
+      "c.SlamLoadRequest\0320.com.iscas.biz.calcul" +
+      "ation.grpc.SlamLoadResponse\"\000\022o\n\ncalSect",
+      "ion\022..com.iscas.biz.calculation.grpc.Sec" +
+      "tionRequest\032/.com.iscas.biz.calculation." +
+      "grpc.SectionResponse\"\000\022l\n\tcalSigma1\022-.co" +
+      "m.iscas.biz.calculation.grpc.Sigma1Reque" +
+      "st\032..com.iscas.biz.calculation.grpc.Sigm" +
+      "a1Response\"\000\022l\n\tcalSigma2\022-.com.iscas.bi" +
+      "z.calculation.grpc.Sigma2Request\032..com.i" +
+      "scas.biz.calculation.grpc.Sigma2Response" +
+      "\"\000\022l\n\tcalSigma3\022-.com.iscas.biz.calculat" +
+      "ion.grpc.Sigma3Request\032..com.iscas.biz.c",
+      "alculation.grpc.Sigma3Response\"\000\022l\n\tcalS" +
+      "igma4\022-.com.iscas.biz.calculation.grpc.S" +
+      "igma4Request\032..com.iscas.biz.calculation" +
+      ".grpc.Sigma4Response\"\000\022\204\001\n\021calShearingSt" +
+      "ress\0225.com.iscas.biz.calculation.grpc.Sh" +
+      "earingStressRequest\0326.com.iscas.biz.calc" +
+      "ulation.grpc.ShearingStressResponse\"\000\022f\n" +
+      "\007calDist\022+.com.iscas.biz.calculation.grp" +
+      "c.DistRequest\032,.com.iscas.biz.calculatio" +
+      "n.grpc.DistResponse\"\000\022\223\001\n\026calAdditionalF",
+      "orceHead\022:.com.iscas.biz.calculation.grp" +
+      "c.AdditionalForceHeadRequest\032;.com.iscas" +
+      ".biz.calculation.grpc.AdditionalForceHea" +
+      "dResponse\"\000\022\242\001\n\033calCompartmentBulkheadSh" +
+      "eet\022?.com.iscas.biz.calculation.grpc.Com" +
+      "partmentBulkheadSheetRequest\032@.com.iscas" +
+      ".biz.calculation.grpc.CompartmentBulkhea" +
+      "dSheetResponse\"\000\022\250\001\n\035calSupportingMateri" +
+      "alStrength\022A.com.iscas.biz.calculation.g" +
+      "rpc.SupportingMaterialStrengthRequest\032B.",
+      "com.iscas.biz.calculation.grpc.Supportin" +
+      "gMaterialStrengthResponse\"\000B4\n\036com.iscas" +
+      ".biz.calculation.grpcB\020CalculationProtoP" +
+      "\001b\006proto3"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
         new com.google.protobuf.Descriptors.FileDescriptor.    InternalDescriptorAssigner() {
@@ -532,6 +604,42 @@ public final class CalculationProto {
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_com_iscas_biz_calculation_grpc_ShearingStressEntity_descriptor,
         new java.lang.String[] { "ZhongchuiMax", "ZhonggongMax", "ShearingStress", });
+    internal_static_com_iscas_biz_calculation_grpc_AdditionalForceHeadRequest_descriptor =
+      getDescriptor().getMessageTypes().get(34);
+    internal_static_com_iscas_biz_calculation_grpc_AdditionalForceHeadRequest_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+        internal_static_com_iscas_biz_calculation_grpc_AdditionalForceHeadRequest_descriptor,
+        new java.lang.String[] { "Freeboard", "Leiweihao", "CangbiWeizhi", "IsCollision", "ShuidongYali", });
+    internal_static_com_iscas_biz_calculation_grpc_AdditionalForceHeadResponse_descriptor =
+      getDescriptor().getMessageTypes().get(35);
+    internal_static_com_iscas_biz_calculation_grpc_AdditionalForceHeadResponse_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+        internal_static_com_iscas_biz_calculation_grpc_AdditionalForceHeadResponse_descriptor,
+        new java.lang.String[] { "Leiweihao", "Addyatouh", });
+    internal_static_com_iscas_biz_calculation_grpc_CompartmentBulkheadSheetRequest_descriptor =
+      getDescriptor().getMessageTypes().get(36);
+    internal_static_com_iscas_biz_calculation_grpc_CompartmentBulkheadSheetRequest_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+        internal_static_com_iscas_biz_calculation_grpc_CompartmentBulkheadSheetRequest_descriptor,
+        new java.lang.String[] { "Airguanyatou", "DeckHeight", "BoolLiquidTank", "BanWidth", "BanThick", "CangbiBancailiao", });
+    internal_static_com_iscas_biz_calculation_grpc_CompartmentBulkheadSheetResponse_descriptor =
+      getDescriptor().getMessageTypes().get(37);
+    internal_static_com_iscas_biz_calculation_grpc_CompartmentBulkheadSheetResponse_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+        internal_static_com_iscas_biz_calculation_grpc_CompartmentBulkheadSheetResponse_descriptor,
+        new java.lang.String[] { "Yatou", "Disload", "LgvList", "UList", "Chi1List", "Chi2List", "StressXlList", "StressKuozhong", "StressZhizuo", "ShearAllow", });
+    internal_static_com_iscas_biz_calculation_grpc_SupportingMaterialStrengthRequest_descriptor =
+      getDescriptor().getMessageTypes().get(38);
+    internal_static_com_iscas_biz_calculation_grpc_SupportingMaterialStrengthRequest_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+        internal_static_com_iscas_biz_calculation_grpc_SupportingMaterialStrengthRequest_descriptor,
+        new java.lang.String[] { "GuicaiType", "DaibanKuan", "DaibanHou", "ZongguKuaju", });
+    internal_static_com_iscas_biz_calculation_grpc_SupportingMaterialStrengthResponse_descriptor =
+      getDescriptor().getMessageTypes().get(39);
+    internal_static_com_iscas_biz_calculation_grpc_SupportingMaterialStrengthResponse_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+        internal_static_com_iscas_biz_calculation_grpc_SupportingMaterialStrengthResponse_descriptor,
+        new java.lang.String[] { "UpperLoad", "LowerLoad", "ZiyouZhongwan", "ZiyouShangwan", "ZiyouXiawan", "ZiyouShangjian", "ZiyouXiajian", "GangxingShangwan", "GangxingXiawan", "GangxingShangjian", "GangxingXiajian", "YingliZhongying", "YingliShangying", "YingliXiaying", "YingliXuying", "YingliShangjian", "YingliXiajian", "YingliXujian", });
   }
 
   // @@protoc_insertion_point(outer_class_scope)

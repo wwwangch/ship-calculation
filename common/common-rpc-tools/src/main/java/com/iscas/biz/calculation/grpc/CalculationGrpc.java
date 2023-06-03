@@ -421,6 +421,99 @@ public final class CalculationGrpc {
     return getCalDistMethod;
   }
 
+  private static volatile io.grpc.MethodDescriptor<com.iscas.biz.calculation.grpc.AdditionalForceHeadRequest,
+      com.iscas.biz.calculation.grpc.AdditionalForceHeadResponse> getCalAdditionalForceHeadMethod;
+
+  @io.grpc.stub.annotations.RpcMethod(
+      fullMethodName = SERVICE_NAME + '/' + "calAdditionalForceHead",
+      requestType = com.iscas.biz.calculation.grpc.AdditionalForceHeadRequest.class,
+      responseType = com.iscas.biz.calculation.grpc.AdditionalForceHeadResponse.class,
+      methodType = io.grpc.MethodDescriptor.MethodType.UNARY)
+  public static io.grpc.MethodDescriptor<com.iscas.biz.calculation.grpc.AdditionalForceHeadRequest,
+      com.iscas.biz.calculation.grpc.AdditionalForceHeadResponse> getCalAdditionalForceHeadMethod() {
+    io.grpc.MethodDescriptor<com.iscas.biz.calculation.grpc.AdditionalForceHeadRequest, com.iscas.biz.calculation.grpc.AdditionalForceHeadResponse> getCalAdditionalForceHeadMethod;
+    if ((getCalAdditionalForceHeadMethod = CalculationGrpc.getCalAdditionalForceHeadMethod) == null) {
+      synchronized (CalculationGrpc.class) {
+        if ((getCalAdditionalForceHeadMethod = CalculationGrpc.getCalAdditionalForceHeadMethod) == null) {
+          CalculationGrpc.getCalAdditionalForceHeadMethod = getCalAdditionalForceHeadMethod =
+              io.grpc.MethodDescriptor.<com.iscas.biz.calculation.grpc.AdditionalForceHeadRequest, com.iscas.biz.calculation.grpc.AdditionalForceHeadResponse>newBuilder()
+              .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
+              .setFullMethodName(generateFullMethodName(SERVICE_NAME, "calAdditionalForceHead"))
+              .setSampledToLocalTracing(true)
+              .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  com.iscas.biz.calculation.grpc.AdditionalForceHeadRequest.getDefaultInstance()))
+              .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  com.iscas.biz.calculation.grpc.AdditionalForceHeadResponse.getDefaultInstance()))
+              .setSchemaDescriptor(new CalculationMethodDescriptorSupplier("calAdditionalForceHead"))
+              .build();
+        }
+      }
+    }
+    return getCalAdditionalForceHeadMethod;
+  }
+
+  private static volatile io.grpc.MethodDescriptor<com.iscas.biz.calculation.grpc.CompartmentBulkheadSheetRequest,
+      com.iscas.biz.calculation.grpc.CompartmentBulkheadSheetResponse> getCalCompartmentBulkheadSheetMethod;
+
+  @io.grpc.stub.annotations.RpcMethod(
+      fullMethodName = SERVICE_NAME + '/' + "calCompartmentBulkheadSheet",
+      requestType = com.iscas.biz.calculation.grpc.CompartmentBulkheadSheetRequest.class,
+      responseType = com.iscas.biz.calculation.grpc.CompartmentBulkheadSheetResponse.class,
+      methodType = io.grpc.MethodDescriptor.MethodType.UNARY)
+  public static io.grpc.MethodDescriptor<com.iscas.biz.calculation.grpc.CompartmentBulkheadSheetRequest,
+      com.iscas.biz.calculation.grpc.CompartmentBulkheadSheetResponse> getCalCompartmentBulkheadSheetMethod() {
+    io.grpc.MethodDescriptor<com.iscas.biz.calculation.grpc.CompartmentBulkheadSheetRequest, com.iscas.biz.calculation.grpc.CompartmentBulkheadSheetResponse> getCalCompartmentBulkheadSheetMethod;
+    if ((getCalCompartmentBulkheadSheetMethod = CalculationGrpc.getCalCompartmentBulkheadSheetMethod) == null) {
+      synchronized (CalculationGrpc.class) {
+        if ((getCalCompartmentBulkheadSheetMethod = CalculationGrpc.getCalCompartmentBulkheadSheetMethod) == null) {
+          CalculationGrpc.getCalCompartmentBulkheadSheetMethod = getCalCompartmentBulkheadSheetMethod =
+              io.grpc.MethodDescriptor.<com.iscas.biz.calculation.grpc.CompartmentBulkheadSheetRequest, com.iscas.biz.calculation.grpc.CompartmentBulkheadSheetResponse>newBuilder()
+              .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
+              .setFullMethodName(generateFullMethodName(SERVICE_NAME, "calCompartmentBulkheadSheet"))
+              .setSampledToLocalTracing(true)
+              .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  com.iscas.biz.calculation.grpc.CompartmentBulkheadSheetRequest.getDefaultInstance()))
+              .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  com.iscas.biz.calculation.grpc.CompartmentBulkheadSheetResponse.getDefaultInstance()))
+              .setSchemaDescriptor(new CalculationMethodDescriptorSupplier("calCompartmentBulkheadSheet"))
+              .build();
+        }
+      }
+    }
+    return getCalCompartmentBulkheadSheetMethod;
+  }
+
+  private static volatile io.grpc.MethodDescriptor<com.iscas.biz.calculation.grpc.SupportingMaterialStrengthRequest,
+      com.iscas.biz.calculation.grpc.SupportingMaterialStrengthResponse> getCalSupportingMaterialStrengthMethod;
+
+  @io.grpc.stub.annotations.RpcMethod(
+      fullMethodName = SERVICE_NAME + '/' + "calSupportingMaterialStrength",
+      requestType = com.iscas.biz.calculation.grpc.SupportingMaterialStrengthRequest.class,
+      responseType = com.iscas.biz.calculation.grpc.SupportingMaterialStrengthResponse.class,
+      methodType = io.grpc.MethodDescriptor.MethodType.UNARY)
+  public static io.grpc.MethodDescriptor<com.iscas.biz.calculation.grpc.SupportingMaterialStrengthRequest,
+      com.iscas.biz.calculation.grpc.SupportingMaterialStrengthResponse> getCalSupportingMaterialStrengthMethod() {
+    io.grpc.MethodDescriptor<com.iscas.biz.calculation.grpc.SupportingMaterialStrengthRequest, com.iscas.biz.calculation.grpc.SupportingMaterialStrengthResponse> getCalSupportingMaterialStrengthMethod;
+    if ((getCalSupportingMaterialStrengthMethod = CalculationGrpc.getCalSupportingMaterialStrengthMethod) == null) {
+      synchronized (CalculationGrpc.class) {
+        if ((getCalSupportingMaterialStrengthMethod = CalculationGrpc.getCalSupportingMaterialStrengthMethod) == null) {
+          CalculationGrpc.getCalSupportingMaterialStrengthMethod = getCalSupportingMaterialStrengthMethod =
+              io.grpc.MethodDescriptor.<com.iscas.biz.calculation.grpc.SupportingMaterialStrengthRequest, com.iscas.biz.calculation.grpc.SupportingMaterialStrengthResponse>newBuilder()
+              .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
+              .setFullMethodName(generateFullMethodName(SERVICE_NAME, "calSupportingMaterialStrength"))
+              .setSampledToLocalTracing(true)
+              .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  com.iscas.biz.calculation.grpc.SupportingMaterialStrengthRequest.getDefaultInstance()))
+              .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  com.iscas.biz.calculation.grpc.SupportingMaterialStrengthResponse.getDefaultInstance()))
+              .setSchemaDescriptor(new CalculationMethodDescriptorSupplier("calSupportingMaterialStrength"))
+              .build();
+        }
+      }
+    }
+    return getCalSupportingMaterialStrengthMethod;
+  }
+
   /**
    * Creates a new async stub that supports all call types for the service
    */
@@ -589,6 +682,36 @@ public final class CalculationGrpc {
         io.grpc.stub.StreamObserver<com.iscas.biz.calculation.grpc.DistResponse> responseObserver) {
       io.grpc.stub.ServerCalls.asyncUnimplementedUnaryCall(getCalDistMethod(), responseObserver);
     }
+
+    /**
+     * <pre>
+     *附加压头计算
+     * </pre>
+     */
+    default void calAdditionalForceHead(com.iscas.biz.calculation.grpc.AdditionalForceHeadRequest request,
+        io.grpc.stub.StreamObserver<com.iscas.biz.calculation.grpc.AdditionalForceHeadResponse> responseObserver) {
+      io.grpc.stub.ServerCalls.asyncUnimplementedUnaryCall(getCalAdditionalForceHeadMethod(), responseObserver);
+    }
+
+    /**
+     * <pre>
+     *舱壁板材校核
+     * </pre>
+     */
+    default void calCompartmentBulkheadSheet(com.iscas.biz.calculation.grpc.CompartmentBulkheadSheetRequest request,
+        io.grpc.stub.StreamObserver<com.iscas.biz.calculation.grpc.CompartmentBulkheadSheetResponse> responseObserver) {
+      io.grpc.stub.ServerCalls.asyncUnimplementedUnaryCall(getCalCompartmentBulkheadSheetMethod(), responseObserver);
+    }
+
+    /**
+     * <pre>
+     *扶强材计算
+     * </pre>
+     */
+    default void calSupportingMaterialStrength(com.iscas.biz.calculation.grpc.SupportingMaterialStrengthRequest request,
+        io.grpc.stub.StreamObserver<com.iscas.biz.calculation.grpc.SupportingMaterialStrengthResponse> responseObserver) {
+      io.grpc.stub.ServerCalls.asyncUnimplementedUnaryCall(getCalSupportingMaterialStrengthMethod(), responseObserver);
+    }
   }
 
   /**
@@ -754,6 +877,39 @@ public final class CalculationGrpc {
       io.grpc.stub.ClientCalls.asyncUnaryCall(
           getChannel().newCall(getCalDistMethod(), getCallOptions()), request, responseObserver);
     }
+
+    /**
+     * <pre>
+     *附加压头计算
+     * </pre>
+     */
+    public void calAdditionalForceHead(com.iscas.biz.calculation.grpc.AdditionalForceHeadRequest request,
+        io.grpc.stub.StreamObserver<com.iscas.biz.calculation.grpc.AdditionalForceHeadResponse> responseObserver) {
+      io.grpc.stub.ClientCalls.asyncUnaryCall(
+          getChannel().newCall(getCalAdditionalForceHeadMethod(), getCallOptions()), request, responseObserver);
+    }
+
+    /**
+     * <pre>
+     *舱壁板材校核
+     * </pre>
+     */
+    public void calCompartmentBulkheadSheet(com.iscas.biz.calculation.grpc.CompartmentBulkheadSheetRequest request,
+        io.grpc.stub.StreamObserver<com.iscas.biz.calculation.grpc.CompartmentBulkheadSheetResponse> responseObserver) {
+      io.grpc.stub.ClientCalls.asyncUnaryCall(
+          getChannel().newCall(getCalCompartmentBulkheadSheetMethod(), getCallOptions()), request, responseObserver);
+    }
+
+    /**
+     * <pre>
+     *扶强材计算
+     * </pre>
+     */
+    public void calSupportingMaterialStrength(com.iscas.biz.calculation.grpc.SupportingMaterialStrengthRequest request,
+        io.grpc.stub.StreamObserver<com.iscas.biz.calculation.grpc.SupportingMaterialStrengthResponse> responseObserver) {
+      io.grpc.stub.ClientCalls.asyncUnaryCall(
+          getChannel().newCall(getCalSupportingMaterialStrengthMethod(), getCallOptions()), request, responseObserver);
+    }
   }
 
   /**
@@ -891,6 +1047,36 @@ public final class CalculationGrpc {
     public com.iscas.biz.calculation.grpc.DistResponse calDist(com.iscas.biz.calculation.grpc.DistRequest request) {
       return io.grpc.stub.ClientCalls.blockingUnaryCall(
           getChannel(), getCalDistMethod(), getCallOptions(), request);
+    }
+
+    /**
+     * <pre>
+     *附加压头计算
+     * </pre>
+     */
+    public com.iscas.biz.calculation.grpc.AdditionalForceHeadResponse calAdditionalForceHead(com.iscas.biz.calculation.grpc.AdditionalForceHeadRequest request) {
+      return io.grpc.stub.ClientCalls.blockingUnaryCall(
+          getChannel(), getCalAdditionalForceHeadMethod(), getCallOptions(), request);
+    }
+
+    /**
+     * <pre>
+     *舱壁板材校核
+     * </pre>
+     */
+    public com.iscas.biz.calculation.grpc.CompartmentBulkheadSheetResponse calCompartmentBulkheadSheet(com.iscas.biz.calculation.grpc.CompartmentBulkheadSheetRequest request) {
+      return io.grpc.stub.ClientCalls.blockingUnaryCall(
+          getChannel(), getCalCompartmentBulkheadSheetMethod(), getCallOptions(), request);
+    }
+
+    /**
+     * <pre>
+     *扶强材计算
+     * </pre>
+     */
+    public com.iscas.biz.calculation.grpc.SupportingMaterialStrengthResponse calSupportingMaterialStrength(com.iscas.biz.calculation.grpc.SupportingMaterialStrengthRequest request) {
+      return io.grpc.stub.ClientCalls.blockingUnaryCall(
+          getChannel(), getCalSupportingMaterialStrengthMethod(), getCallOptions(), request);
     }
   }
 
@@ -1043,6 +1229,39 @@ public final class CalculationGrpc {
       return io.grpc.stub.ClientCalls.futureUnaryCall(
           getChannel().newCall(getCalDistMethod(), getCallOptions()), request);
     }
+
+    /**
+     * <pre>
+     *附加压头计算
+     * </pre>
+     */
+    public com.google.common.util.concurrent.ListenableFuture<com.iscas.biz.calculation.grpc.AdditionalForceHeadResponse> calAdditionalForceHead(
+        com.iscas.biz.calculation.grpc.AdditionalForceHeadRequest request) {
+      return io.grpc.stub.ClientCalls.futureUnaryCall(
+          getChannel().newCall(getCalAdditionalForceHeadMethod(), getCallOptions()), request);
+    }
+
+    /**
+     * <pre>
+     *舱壁板材校核
+     * </pre>
+     */
+    public com.google.common.util.concurrent.ListenableFuture<com.iscas.biz.calculation.grpc.CompartmentBulkheadSheetResponse> calCompartmentBulkheadSheet(
+        com.iscas.biz.calculation.grpc.CompartmentBulkheadSheetRequest request) {
+      return io.grpc.stub.ClientCalls.futureUnaryCall(
+          getChannel().newCall(getCalCompartmentBulkheadSheetMethod(), getCallOptions()), request);
+    }
+
+    /**
+     * <pre>
+     *扶强材计算
+     * </pre>
+     */
+    public com.google.common.util.concurrent.ListenableFuture<com.iscas.biz.calculation.grpc.SupportingMaterialStrengthResponse> calSupportingMaterialStrength(
+        com.iscas.biz.calculation.grpc.SupportingMaterialStrengthRequest request) {
+      return io.grpc.stub.ClientCalls.futureUnaryCall(
+          getChannel().newCall(getCalSupportingMaterialStrengthMethod(), getCallOptions()), request);
+    }
   }
 
   private static final int METHODID_SHIP_PARAM = 0;
@@ -1058,6 +1277,9 @@ public final class CalculationGrpc {
   private static final int METHODID_CAL_SIGMA4 = 10;
   private static final int METHODID_CAL_SHEARING_STRESS = 11;
   private static final int METHODID_CAL_DIST = 12;
+  private static final int METHODID_CAL_ADDITIONAL_FORCE_HEAD = 13;
+  private static final int METHODID_CAL_COMPARTMENT_BULKHEAD_SHEET = 14;
+  private static final int METHODID_CAL_SUPPORTING_MATERIAL_STRENGTH = 15;
 
   private static final class MethodHandlers<Req, Resp> implements
       io.grpc.stub.ServerCalls.UnaryMethod<Req, Resp>,
@@ -1127,6 +1349,18 @@ public final class CalculationGrpc {
         case METHODID_CAL_DIST:
           serviceImpl.calDist((com.iscas.biz.calculation.grpc.DistRequest) request,
               (io.grpc.stub.StreamObserver<com.iscas.biz.calculation.grpc.DistResponse>) responseObserver);
+          break;
+        case METHODID_CAL_ADDITIONAL_FORCE_HEAD:
+          serviceImpl.calAdditionalForceHead((com.iscas.biz.calculation.grpc.AdditionalForceHeadRequest) request,
+              (io.grpc.stub.StreamObserver<com.iscas.biz.calculation.grpc.AdditionalForceHeadResponse>) responseObserver);
+          break;
+        case METHODID_CAL_COMPARTMENT_BULKHEAD_SHEET:
+          serviceImpl.calCompartmentBulkheadSheet((com.iscas.biz.calculation.grpc.CompartmentBulkheadSheetRequest) request,
+              (io.grpc.stub.StreamObserver<com.iscas.biz.calculation.grpc.CompartmentBulkheadSheetResponse>) responseObserver);
+          break;
+        case METHODID_CAL_SUPPORTING_MATERIAL_STRENGTH:
+          serviceImpl.calSupportingMaterialStrength((com.iscas.biz.calculation.grpc.SupportingMaterialStrengthRequest) request,
+              (io.grpc.stub.StreamObserver<com.iscas.biz.calculation.grpc.SupportingMaterialStrengthResponse>) responseObserver);
           break;
         default:
           throw new AssertionError();
@@ -1237,6 +1471,27 @@ public final class CalculationGrpc {
               com.iscas.biz.calculation.grpc.DistRequest,
               com.iscas.biz.calculation.grpc.DistResponse>(
                 service, METHODID_CAL_DIST)))
+        .addMethod(
+          getCalAdditionalForceHeadMethod(),
+          io.grpc.stub.ServerCalls.asyncUnaryCall(
+            new MethodHandlers<
+              com.iscas.biz.calculation.grpc.AdditionalForceHeadRequest,
+              com.iscas.biz.calculation.grpc.AdditionalForceHeadResponse>(
+                service, METHODID_CAL_ADDITIONAL_FORCE_HEAD)))
+        .addMethod(
+          getCalCompartmentBulkheadSheetMethod(),
+          io.grpc.stub.ServerCalls.asyncUnaryCall(
+            new MethodHandlers<
+              com.iscas.biz.calculation.grpc.CompartmentBulkheadSheetRequest,
+              com.iscas.biz.calculation.grpc.CompartmentBulkheadSheetResponse>(
+                service, METHODID_CAL_COMPARTMENT_BULKHEAD_SHEET)))
+        .addMethod(
+          getCalSupportingMaterialStrengthMethod(),
+          io.grpc.stub.ServerCalls.asyncUnaryCall(
+            new MethodHandlers<
+              com.iscas.biz.calculation.grpc.SupportingMaterialStrengthRequest,
+              com.iscas.biz.calculation.grpc.SupportingMaterialStrengthResponse>(
+                service, METHODID_CAL_SUPPORTING_MATERIAL_STRENGTH)))
         .build();
   }
 
@@ -1298,6 +1553,9 @@ public final class CalculationGrpc {
               .addMethod(getCalSigma4Method())
               .addMethod(getCalShearingStressMethod())
               .addMethod(getCalDistMethod())
+              .addMethod(getCalAdditionalForceHeadMethod())
+              .addMethod(getCalCompartmentBulkheadSheetMethod())
+              .addMethod(getCalSupportingMaterialStrengthMethod())
               .build();
         }
       }
