@@ -22,4 +22,13 @@ public class DistExcel {
 
     @ExcelProperty("中垂极限弯矩")
     private Double extermeS;
+
+    @ExcelProperty("中拱过载系数1")
+    private Double overloadH1 ;
+    @ExcelProperty("中拱过载系数2")
+    private Double overloadH2 ;
+    @ExcelProperty("中垂过载系数1")
+    private Double overloadS1 ;
+    @ExcelProperty("中垂过载系数2")
+    private Double overloadS2 ;
 }

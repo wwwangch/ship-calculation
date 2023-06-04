@@ -66,70 +66,70 @@ public interface Sigma4EntityOrBuilder extends
    *合成中拱支座上纤维
    * </pre>
    *
-   * <code>double combineZhonggongZhizuoUp = 7;</code>
+   * <code>double combineZhonggongZhizuoShang = 7;</code>
    */
-  double getCombineZhonggongZhizuoUp();
+  double getCombineZhonggongZhizuoShang();
 
   /**
    * <pre>
    *合成中拱支座下纤维
    * </pre>
    *
-   * <code>double combineZhonggongZhizuoDown = 8;</code>
+   * <code>double combineZhonggongZhizuoXia = 8;</code>
    */
-  double getCombineZhonggongZhizuoDown();
+  double getCombineZhonggongZhizuoXia();
 
   /**
    * <pre>
    *合成中拱跨中上纤维
    * </pre>
    *
-   * <code>double combineZhonggongKuazhongUp = 9;</code>
+   * <code>double combineZhonggongKuazhongShang = 9;</code>
    */
-  double getCombineZhonggongKuazhongUp();
+  double getCombineZhonggongKuazhongShang();
 
   /**
    * <pre>
-   *合成中拱支座下纤维
+   *合成中拱跨中下纤维
    * </pre>
    *
-   * <code>double combineZhonggongKuazhongDown = 10;</code>
+   * <code>double combineZhonggongKuazhongXia = 10;</code>
    */
-  double getCombineZhonggongKuazhongDown();
+  double getCombineZhonggongKuazhongXia();
 
   /**
    * <pre>
    *合成中垂支座上纤维
    * </pre>
    *
-   * <code>double combineZhongchuiZhizuoUp = 11;</code>
+   * <code>double combineZhongchuiZhizuoShang = 11;</code>
    */
-  double getCombineZhongchuiZhizuoUp();
+  double getCombineZhongchuiZhizuoShang();
 
   /**
    * <pre>
-   *合成中拱支座下纤维
+   *合成中垂支座下纤维
    * </pre>
    *
-   * <code>double combineZhongchuiZhizuoDown = 12;</code>
+   * <code>double combineZhongchuiZhizuoXia = 12;</code>
    */
-  double getCombineZhongchuiZhizuoDown();
+  double getCombineZhongchuiZhizuoXia();
 
   /**
    * <pre>
    *合成中垂跨中上纤维
    * </pre>
    *
-   * <code>double combineZhongchuiKuazhongUp = 13;</code>
+   * <code>double combineZhongchuiKuazhongShang = 13;</code>
    */
-  double getCombineZhongchuiKuazhongUp();
+  double getCombineZhongchuiKuazhongShang();
 
   /**
    * <pre>
-   *合成中拱支座下纤维
+   *合成中垂跨中下纤维
    * </pre>
    *
-   * <code>double combineZhongchuiKuazhongDown = 14;</code>
+   * <code>double combineZhongchuiKuazhongXia = 14;</code>
    */
-  double getCombineZhongchuiKuazhongDown();
+  double getCombineZhongchuiKuazhongXia();
 }
