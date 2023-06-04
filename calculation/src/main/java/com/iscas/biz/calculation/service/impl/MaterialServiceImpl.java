@@ -68,45 +68,47 @@ public class MaterialServiceImpl implements MaterialService {
     }
 
     @Override
-    public void export(Integer projectId) throws IOException {
-        Project project = projectMapper.selectById(projectId);
-        if (null == project) {
-            throw new RuntimeException("当前项目不存在!");
+    public void export(MaterialDTO materialDTO) throws IOException {
+        if (null != materialDTO.getProjectId() && null != materialDTO.getBulkheadId()) {
+            Project project = projectMapper.selectById(materialDTO.getProjectId());
+            if (null == project) {
+                throw new RuntimeException("当前项目不存在!");
+            }
+
+            QueryWrapper<Material> materialQueryWrapper = new QueryWrapper<>();
+            materialQueryWrapper.lambda().eq(Material::getProjectId, materialDTO.getProjectId()).eq(Material::getBulkheadId, materialDTO.getBulkheadId());
+            Material material = materialMapper.selectOne(materialQueryWrapper);
+            ExcelWriter excelWriter = EasyExcel.write(SpringUtils.getResponse().getOutputStream())
+                    .autoTrim(true).build();
+
+            MaterialParamExcel paramExcel = new MaterialParamExcel();
+
+
+            paramExcel.setLowerLoad(material.getLowerLoad());
+            paramExcel.setUpperLoad(material.getUpperLoad());
+            paramExcel.setZiyouZhongwan(material.getZiyouZhongwan());
+            paramExcel.setZiyouShangwan(material.getZiyouShangwan());
+            paramExcel.setZiyouXiawan(material.getZiyouXiawan());
+            paramExcel.setZiyouShangjian(material.getZiyouShangjian());
+            paramExcel.setZiyouXiajian(material.getZiyouXiajian());
+            paramExcel.setGangxingShangwan(material.getGangxingShangwan());
+            paramExcel.setGangxingXiawan(material.getGangxingXiawan());
+            paramExcel.setGangxingShangjian(material.getGangxingShangjian());
+            paramExcel.setGangxingXiajian(material.getGangxingXiajian());
+            paramExcel.setYingliZhongying(material.getYingliZhongying());
+            paramExcel.setYingliShangying(material.getYingliShangying());
+            paramExcel.setYingliXiaying(material.getYingliXiaying());
+            paramExcel.setYingliXuying(material.getYingliXuying());
+            paramExcel.setYingliShangjian(material.getYingliShangjian());
+            paramExcel.setYingliXiajian(material.getYingliXiajian());
+            paramExcel.setYingliXujian(material.getYingliXujian());
+
+            WriteSheet writeSheet = EasyExcel.writerSheet(0).needHead(false).build();
+
+            WriteTable paramTable = EasyExcel.writerTable(0).head(BuoyancyParamExcel.class).needHead(true).build();
+            excelWriter.write(Lists.newArrayList(paramExcel), writeSheet, paramTable);
+            excelWriter.finish();
         }
-
-        QueryWrapper<Material> materialQueryWrapper = new QueryWrapper<>();
-        materialQueryWrapper.lambda().eq(Material::getProjectId, projectId);
-        Material material = materialMapper.selectOne(materialQueryWrapper);
-        ExcelWriter excelWriter = EasyExcel.write(SpringUtils.getResponse().getOutputStream())
-                .autoTrim(true).build();
-
-        MaterialParamExcel paramExcel = new MaterialParamExcel();
-
-
-        paramExcel.setLowerLoad(material.getLowerLoad());
-        paramExcel.setUpperLoad(material.getUpperLoad());
-        paramExcel.setZiyouZhongwan(material.getZiyouZhongwan());
-        paramExcel.setZiyouShangwan(material.getZiyouShangwan());
-        paramExcel.setZiyouXiawan(material.getZiyouXiawan());
-        paramExcel.setZiyouShangjian(material.getZiyouShangjian());
-        paramExcel.setZiyouXiajian(material.getZiyouXiajian());
-        paramExcel.setGangxingShangwan(material.getGangxingShangwan());
-        paramExcel.setGangxingXiawan(material.getGangxingXiawan());
-        paramExcel.setGangxingShangjian(material.getGangxingShangjian());
-        paramExcel.setGangxingXiajian(material.getGangxingXiajian());
-        paramExcel.setYingliZhongying(material.getYingliZhongying());
-        paramExcel.setYingliShangying(material.getYingliShangying());
-        paramExcel.setYingliXiaying(material.getYingliXiaying());
-        paramExcel.setYingliXuying(material.getYingliXuying());
-        paramExcel.setYingliShangjian(material.getYingliShangjian());
-        paramExcel.setYingliXiajian(material.getYingliXiajian());
-        paramExcel.setYingliXujian(material.getYingliXujian());
-
-        WriteSheet writeSheet = EasyExcel.writerSheet(0).needHead(false).build();
-
-        WriteTable paramTable = EasyExcel.writerTable(0).head(BuoyancyParamExcel.class).needHead(true).build();
-        excelWriter.write(Lists.newArrayList(paramExcel), writeSheet, paramTable);
-        excelWriter.finish();
     }
 
     @Override

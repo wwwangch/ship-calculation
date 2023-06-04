@@ -48,8 +48,10 @@ public class MaterialController {
     }
 
     @Operation(summary = "导出", description = "导出")
-    @GetMapping("/download/{projectId}")
-    public void export(@PathVariable() Integer projectId) throws IOException {
-        materialService.export(projectId);
+    @io.swagger.v3.oas.annotations.parameters.RequestBody(required = true, description = "导出数据",
+            content = @Content(examples = @ExampleObject(value = "{\"projectId\":1,\"bulkheadId\":1}")))
+    @PostMapping("/download")
+    public void export(@RequestBody MaterialDTO materialDTO) throws IOException {
+        materialService.export(materialDTO);
     }
 }

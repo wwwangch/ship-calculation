@@ -16,7 +16,7 @@ public interface MaterialService {
 
     Material listBybulkheadId(Integer bulkheadId);
 
-    void export(Integer projectId) throws IOException;
+    void export(MaterialDTO materialDTO) throws IOException;
 
     Material calMaterial(MaterialDTO materialDTO);
 }
