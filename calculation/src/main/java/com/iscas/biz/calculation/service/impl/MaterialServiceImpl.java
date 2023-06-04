@@ -18,6 +18,7 @@ import com.iscas.biz.calculation.grpc.service.AlgorithmGrpc;
 import com.iscas.biz.calculation.mapper.*;
 import com.iscas.biz.calculation.service.MaterialService;
 import org.apache.commons.collections4.CollectionUtils;
+import org.springframework.stereotype.Service;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -28,6 +29,7 @@ import java.util.List;
  * @date 2023-06-03
  * @apiNote
  */
+@Service
 public class MaterialServiceImpl implements MaterialService {
 
     private final MaterialMapper materialMapper;
