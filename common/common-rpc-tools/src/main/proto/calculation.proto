@@ -368,8 +368,6 @@ message Sigma1Request{
 
 message Sigma1Response{
   repeated Sigma1Entity sigma1 = 1;
-  //许用应力
-  double allowStress = 2;
 }
 
 message Sigma1Entity{
@@ -472,23 +470,23 @@ message Sigma4Entity{
   double combineAllowStress = 6;
 
   //合成中拱支座上纤维
-  double combineZhonggongZhizuoUp = 7;
+  double combineZhonggongZhizuoShang = 7;
   //合成中拱支座下纤维
-  double combineZhonggongZhizuoDown = 8;
+  double combineZhonggongZhizuoXia = 8;
   //合成中拱跨中上纤维
-  double combineZhonggongKuazhongUp = 9;
-  //合成中拱支座下纤维
-  double combineZhonggongKuazhongDown = 10;
+  double combineZhonggongKuazhongShang = 9;
+  //合成中拱跨中下纤维
+  double combineZhonggongKuazhongXia = 10;
 
   //合成中垂支座上纤维
-  double combineZhongchuiZhizuoUp = 11;
-  //合成中拱支座下纤维
-  double combineZhongchuiZhizuoDown = 12;
+  double combineZhongchuiZhizuoShang = 11;
+  //合成中垂支座下纤维
+  double combineZhongchuiZhizuoXia = 12;
 
   //合成中垂跨中上纤维
-  double combineZhongchuiKuazhongUp = 13;
-  //合成中拱支座下纤维
-  double combineZhongchuiKuazhongDown = 14;
+  double combineZhongchuiKuazhongShang  = 13;
+  //合成中垂跨中下纤维
+  double combineZhongchuiKuazhongXia = 14;
 }
 
 message ShearingStressRequest{

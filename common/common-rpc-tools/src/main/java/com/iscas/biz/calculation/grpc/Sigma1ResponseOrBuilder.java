@@ -30,13 +30,4 @@ public interface Sigma1ResponseOrBuilder extends
    */
   com.iscas.biz.calculation.grpc.Sigma1EntityOrBuilder getSigma1OrBuilder(
       int index);
-
-  /**
-   * <pre>
-   *许用应力
-   * </pre>
-   *
-   * <code>double allowStress = 2;</code>
-   */
-  double getAllowStress();
 }

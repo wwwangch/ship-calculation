@@ -112,6 +112,11 @@ public class DistServiceImpl implements DistService {
         distExcel.setSectionFileName(section.getSectionFileName());
         distExcel.setExtermeH(dist.getExtremeH());
         distExcel.setExtermeS(dist.getExtremeS());
+        distExcel.setOverloadH1(dist.getOverloadH1());
+        distExcel.setOverloadH2(dist.getOverloadH2());
+        distExcel.setOverloadS1(dist.getOverloadS1());
+        distExcel.setOverloadS2(dist.getOverloadS2());
+
 
         WriteSheet writeSheet = EasyExcel.writerSheet(0).needHead(false).build();
 

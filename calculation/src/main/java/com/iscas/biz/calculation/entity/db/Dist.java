@@ -32,4 +32,13 @@ public class Dist {
      * 中垂极限弯矩
      */
     private Double extremeS;
+
+    //中拱过载系数1
+    private Double overloadH1 ;
+    //中拱过载系数2
+    private Double overloadH2 ;
+    //中垂过载系数1
+    private Double overloadS1 ;
+    //中垂过载系数2
+    private Double overloadS2 ;
 }
