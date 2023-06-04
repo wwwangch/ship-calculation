@@ -96,16 +96,5 @@ public class CompartmentController {
         return entity;
     }
 
-    @Operation(summary = "舱壁板材校核结果查询,仅一条", description = "传舱壁id，仅返回计算结果")
-    @GetMapping(value = "/bulkhead/getData/{bulkheadId}")
-    public BulkheadCheckResult getCheckData(@PathVariable Integer bulkheadId) {
-        return compartmentService.listResultByBulkheadId(bulkheadId);
-    }
-
-    @Operation(summary = "舱壁板材校核", description = "舱壁板材校核")
-    @PostMapping(value = "/bulkhead/check")
-    public ResponseEntity checkBulkheadPlate(@RequestBody BulkheadDTO bulkheadDTO) {
-        return ResponseEntity.ok(compartmentService.checkBulkhead(bulkheadDTO));
-    }
 
 }
