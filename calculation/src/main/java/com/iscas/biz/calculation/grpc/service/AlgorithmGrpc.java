@@ -227,6 +227,47 @@ public class AlgorithmGrpc {
         return calAddition;
     }
 
+    public Material material(MaterialDTO materialDTO){
+        Integer projectId = materialDTO.getProjectId();
+        SupportingMaterialStrengthRequest strengthRequest = SupportingMaterialStrengthRequest.newBuilder()
+                .addAllGuicaiType(materialDTO.getGuicaiType())
+                .addAllDaibanHou(materialDTO.getDaibanHou())
+                .addAllDaibanKuan(materialDTO.getDaibanKuan())
+                .setZongguKuaju(materialDTO.getZongguKuaju())
+                .build();
+        SupportingMaterialStrengthResponse strengthResponse = grpcHolder.calculationBlockingStub().calSupportingMaterialStrength(strengthRequest);
+        if (strengthResponse == null){
+            throw new RuntimeException("扶强材计算失败");
+        }
+        Material material = new Material();
+        material.setProjectId(projectId);
+        material.setGuicaiType(materialDTO.getGuicaiType());
+        material.setDaibanHou(materialDTO.getDaibanHou());
+        material.setDaibanKuan(materialDTO.getDaibanKuan());
+        material.setZongguKuaju(materialDTO.getZongguKuaju());
+        material.setLowerLoad(strengthResponse.getLowerLoadList());
+        material.setUpperLoad(strengthResponse.getUpperLoadList());
+        material.setZiyouZhongwan(strengthResponse.getZiyouZhongwanList());
+        material.setZiyouShangwan(strengthResponse.getZiyouShangwanList());
+        material.setZiyouXiawan(strengthResponse.getZiyouXiawanList());
+        material.setZiyouShangjian(strengthResponse.getZiyouShangjianList());
+        material.setZiyouXiajian(strengthResponse.getZiyouXiajianList());
+        material.setGangxingShangwan(strengthResponse.getGangxingShangwanList());
+        material.setGangxingXiawan(strengthResponse.getGangxingXiawanList());
+        material.setGangxingShangjian(strengthResponse.getGangxingShangjianList());
+        material.setGangxingXiajian(strengthResponse.getGangxingXiajianList());
+        material.setYingliZhongying(strengthResponse.getYingliZhongyingList());
+        material.setYingliShangying(strengthResponse.getYingliShangyingList());
+        material.setYingliXiaying(strengthResponse.getYingliXiayingList());
+        material.setYingliXuying(strengthResponse.getYingliXuyingList());
+        material.setYingliShangjian(strengthResponse.getYingliShangjianList());
+        material.setYingliXiajian(strengthResponse.getYingliXiajianList());
+        material.setYingliXujian(strengthResponse.getYingliXujianList());
+        AlgorithmGrpc.section = true;
+
+        return material;
+    }
+
 //    public GirderStrength calGirderStrength(GirderStrengthDTO girderStrengthDTO) {
 //        Integer projectId = girderStrengthDTO.getProjectId();
 //        if (!Objects.equals(projectId, AlgorithmGrpc.currentProjectId)) {
