@@ -227,6 +227,47 @@ public class AlgorithmGrpc {
         return calAddition;
     }
 
+    public Material material(MaterialDTO materialDTO){
+        Integer projectId = materialDTO.getProjectId();
+        SupportingMaterialStrengthRequest strengthRequest = SupportingMaterialStrengthRequest.newBuilder()
+                .addAllGuicaiType(materialDTO.getGuicaiType())
+                .addAllDaibanHou(materialDTO.getDaibanHou())
+                .addAllDaibanKuan(materialDTO.getDaibanKuan())
+                .setZongguKuaju(materialDTO.getZongguKuaju())
+                .build();
+        SupportingMaterialStrengthResponse strengthResponse = grpcHolder.calculationBlockingStub().calSupportingMaterialStrength(strengthRequest);
+        if (strengthResponse == null){
+            throw new RuntimeException("扶强材计算失败");
+        }
+        Material material = new Material();
+        material.setProjectId(projectId);
+        material.setGuicaiType(materialDTO.getGuicaiType());
+        material.setDaibanHou(materialDTO.getDaibanHou());
+        material.setDaibanKuan(materialDTO.getDaibanKuan());
+        material.setZongguKuaju(materialDTO.getZongguKuaju());
+        material.setLowerLoad(strengthResponse.getLowerLoadList());
+        material.setUpperLoad(strengthResponse.getUpperLoadList());
+        material.setZiyouZhongwan(strengthResponse.getZiyouZhongwanList());
+        material.setZiyouShangwan(strengthResponse.getZiyouShangwanList());
+        material.setZiyouXiawan(strengthResponse.getZiyouXiawanList());
+        material.setZiyouShangjian(strengthResponse.getZiyouShangjianList());
+        material.setZiyouXiajian(strengthResponse.getZiyouXiajianList());
+        material.setGangxingShangwan(strengthResponse.getGangxingShangwanList());
+        material.setGangxingXiawan(strengthResponse.getGangxingXiawanList());
+        material.setGangxingShangjian(strengthResponse.getGangxingShangjianList());
+        material.setGangxingXiajian(strengthResponse.getGangxingXiajianList());
+        material.setYingliZhongying(strengthResponse.getYingliZhongyingList());
+        material.setYingliShangying(strengthResponse.getYingliShangyingList());
+        material.setYingliXiaying(strengthResponse.getYingliXiayingList());
+        material.setYingliXuying(strengthResponse.getYingliXuyingList());
+        material.setYingliShangjian(strengthResponse.getYingliShangjianList());
+        material.setYingliXiajian(strengthResponse.getYingliXiajianList());
+        material.setYingliXujian(strengthResponse.getYingliXujianList());
+        AlgorithmGrpc.section = true;
+
+        return material;
+    }
+
 //    public GirderStrength calGirderStrength(GirderStrengthDTO girderStrengthDTO) {
 //        Integer projectId = girderStrengthDTO.getProjectId();
 //        if (!Objects.equals(projectId, AlgorithmGrpc.currentProjectId)) {
@@ -293,6 +334,10 @@ public class AlgorithmGrpc {
         dist.setSectionId(sectionId);
         dist.setExtremeH(distResponse.getExtremeH());
         dist.setExtremeS(distResponse.getExtremeS());
+        dist.setOverloadH1(distResponse.getOverloadH1());
+        dist.setOverloadH2(distResponse.getOverloadH2());
+        dist.setOverloadS1(distResponse.getOverloadS1());
+        dist.setOverloadS2(distResponse.getOverloadS2());
         AlgorithmGrpc.dist = true;
         return dist;
     }
@@ -380,6 +425,7 @@ public class AlgorithmGrpc {
             sigma1.setSigma1HUp(sigma1Response.getSigma1(i).getSigma1HUp());
             sigma1.setSigma1SUp(sigma1Response.getSigma1(i).getSigma1SUp());
             sigma1.setSigma1SDown(sigma1Response.getSigma1(i).getSigma1SDown());
+            sigma1.setAllowStress(sigma1Response.getSigma1(i).getAllowStress());
             sigma1List.add(sigma1);
         }
         return sigma1List;
@@ -404,6 +450,18 @@ public class AlgorithmGrpc {
 
             sigma2.setZhongchuiKuazhongShang(sigma2Response.getSigma2(i).getZhongchuiKuazhongShang());
             sigma2.setZhongchuiKuazhongXia(sigma2Response.getSigma2(i).getZhongchuiKuazhongXia());
+
+            sigma2.setAllowStress(sigma2Response.getSigma2(i).getAllowStress());
+            sigma2.setCombineAllowStress(sigma2Response.getSigma2(i).getCombineAllowStress());
+            sigma2.setCombineZhonggongZhizuoShang(sigma2Response.getSigma2(i).getCombineZhonggongZhizuoShang());
+            sigma2.setCombineZhonggongZhizuoXia(sigma2Response.getSigma2(i).getCombineZhonggongZhizuoXia());
+            sigma2.setCombineZhonggongKuazhongShang(sigma2Response.getSigma2(i).getCombineZhonggongKuazhongShang());
+            sigma2.setCombineZhonggongKuazhongXia(sigma2Response.getSigma2(i).getCombineZhonggongKuazhongXia());
+            sigma2.setCombineZhongchuiZhizuoShang(sigma2Response.getSigma2(i).getCombineZhongchuiZhizuoShang());
+            sigma2.setCombineZhongchuiZhizuoXia(sigma2Response.getSigma2(i).getCombineZhongchuiZhizuoXia());
+            sigma2.setCombineZhongchuiKuazhongShang(sigma2Response.getSigma2(i).getCombineZhongchuiKuazhongShang());
+            sigma2.setCombineZhongchuiKuazhongXia(sigma2Response.getSigma2(i).getCombineZhongchuiKuazhongXia());
+
             sigma2List.add(sigma2);
         }
         return sigma2List;
@@ -428,6 +486,18 @@ public class AlgorithmGrpc {
 
             sigma3.setZhongchuiKuazhongShang(sigma3Response.getSigma3(i).getZhongchuiKuazhongShang());
             sigma3.setZhongchuiKuazhongXia(sigma3Response.getSigma3(i).getZhongchuiKuazhongXia());
+
+            sigma3.setAllowStress(sigma3Response.getSigma3(i).getAllowStress());
+            sigma3.setCombineAllowStress(sigma3Response.getSigma3(i).getCombineAllowStress());
+            sigma3.setCombineZhonggongZhizuoShang(sigma3Response.getSigma3(i).getCombineZhonggongZhizuoShang());
+            sigma3.setCombineZhonggongZhizuoXia(sigma3Response.getSigma3(i).getCombineZhonggongZhizuoXia());
+            sigma3.setCombineZhonggongKuazhongShang(sigma3Response.getSigma3(i).getCombineZhonggongKuazhongShang());
+            sigma3.setCombineZhonggongKuazhongXia(sigma3Response.getSigma3(i).getCombineZhonggongKuazhongXia());
+            sigma3.setCombineZhongchuiZhizuoShang(sigma3Response.getSigma3(i).getCombineZhongchuiZhizuoShang());
+            sigma3.setCombineZhongchuiZhizuoXia(sigma3Response.getSigma3(i).getCombineZhongchuiZhizuoXia());
+            sigma3.setCombineZhongchuiKuazhongShang(sigma3Response.getSigma3(i).getCombineZhongchuiKuazhongShang());
+            sigma3.setCombineZhongchuiKuazhongXia(sigma3Response.getSigma3(i).getCombineZhongchuiKuazhongXia());
+
             sigma3List.add(sigma3);
         }
         return sigma3List;
@@ -446,6 +516,19 @@ public class AlgorithmGrpc {
 
             sigma4.setZhongchuiZhizuo(sigma4Response.getSigma4(i).getZhongchuiZhizuo());
             sigma4.setZhongchuiKuazhong(sigma4Response.getSigma4(i).getZhongchuiKuazhong());
+
+            sigma4.setAllowStress(sigma4Response.getSigma4(i).getAllowStress());
+            sigma4.setCombineAllowStress(sigma4Response.getSigma4(i).getCombineAllowStress());
+            sigma4.setCombineZhonggongZhizuoShang(sigma4Response.getSigma4(i).getCombineZhonggongZhizuoShang());
+            sigma4.setCombineZhonggongZhizuoXia(sigma4Response.getSigma4(i).getCombineZhonggongZhizuoXia());
+            sigma4.setCombineZhonggongKuazhongShang(sigma4Response.getSigma4(i).getCombineZhonggongKuazhongShang());
+            sigma4.setCombineZhonggongKuazhongXia(sigma4Response.getSigma4(i).getCombineZhonggongKuazhongXia());
+            sigma4.setCombineZhongchuiZhizuoShang(sigma4Response.getSigma4(i).getCombineZhongchuiZhizuoShang());
+            sigma4.setCombineZhongchuiZhizuoXia(sigma4Response.getSigma4(i).getCombineZhongchuiZhizuoXia());
+            sigma4.setCombineZhongchuiKuazhongShang(sigma4Response.getSigma4(i).getCombineZhongchuiKuazhongShang());
+            sigma4.setCombineZhongchuiKuazhongXia(sigma4Response.getSigma4(i).getCombineZhongchuiKuazhongXia());
+
+
             sigma4List.add(sigma4);
         }
         return sigma4List;
