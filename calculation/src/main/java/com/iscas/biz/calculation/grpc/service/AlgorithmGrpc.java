@@ -483,7 +483,7 @@ public class AlgorithmGrpc {
         for (BulkheadCompartment bulkheadCompartment : bulkheadCompartments) {
             deckHeight.add(Double.valueOf(bulkheadCompartment.getHeightAbove()));
             boolLiquidTank.add(Boolean.valueOf(bulkheadCompartment.getLiquid()));
-            banWidth.add(Double.valueOf(bulkheadCompartment.getStripPlateWidth()));
+            banWidth.add(Double.valueOf(bulkheadCompartment.getPlateWidth()));
             banThick.add(Double.valueOf(bulkheadCompartment.getPlateThickness()));
             cangbiBancailiao.add(Double.valueOf(bulkheadCompartment.getMaterial()));
         }

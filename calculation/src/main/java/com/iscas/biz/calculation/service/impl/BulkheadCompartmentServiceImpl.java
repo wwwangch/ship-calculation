@@ -125,8 +125,8 @@ public class BulkheadCompartmentServiceImpl extends ServiceImpl<BulkheadCompartm
             calBulkheadCheckResult.setBulkheadResultId(bulkheadResultId);
             bulkheadCheckResultMapper.deleteById(bulkheadResultId);
         }
-        bulkheadCheckResultMapper.insert(dbBulkheadCheckResult);
-        return dbBulkheadCheckResult;
+        bulkheadCheckResultMapper.insert(calBulkheadCheckResult);
+        return calBulkheadCheckResult;
     }
 
     @Override

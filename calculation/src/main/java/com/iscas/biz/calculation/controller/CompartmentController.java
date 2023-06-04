@@ -103,7 +103,7 @@ public class CompartmentController {
     }
 
     @Operation(summary = "舱壁板材校核", description = "舱壁板材校核")
-    @GetMapping(value = "/bulkhead/check")
+    @PostMapping(value = "/bulkhead/check")
     public ResponseEntity checkBulkheadPlate(@RequestBody BulkheadDTO bulkheadDTO) {
         return ResponseEntity.ok(compartmentService.checkBulkhead(bulkheadDTO));
     }
