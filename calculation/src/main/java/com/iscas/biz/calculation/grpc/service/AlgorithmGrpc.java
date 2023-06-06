@@ -517,17 +517,11 @@ public class AlgorithmGrpc {
             sigma4.setZhongchuiZhizuo(sigma4Response.getSigma4(i).getZhongchuiZhizuo());
             sigma4.setZhongchuiKuazhong(sigma4Response.getSigma4(i).getZhongchuiKuazhong());
 
-            sigma4.setAllowStress(sigma4Response.getSigma4(i).getAllowStress());
             sigma4.setCombineAllowStress(sigma4Response.getSigma4(i).getCombineAllowStress());
-            sigma4.setCombineZhonggongZhizuoShang(sigma4Response.getSigma4(i).getCombineZhonggongZhizuoShang());
-            sigma4.setCombineZhonggongZhizuoXia(sigma4Response.getSigma4(i).getCombineZhonggongZhizuoXia());
-            sigma4.setCombineZhonggongKuazhongShang(sigma4Response.getSigma4(i).getCombineZhonggongKuazhongShang());
-            sigma4.setCombineZhonggongKuazhongXia(sigma4Response.getSigma4(i).getCombineZhonggongKuazhongXia());
-            sigma4.setCombineZhongchuiZhizuoShang(sigma4Response.getSigma4(i).getCombineZhongchuiZhizuoShang());
-            sigma4.setCombineZhongchuiZhizuoXia(sigma4Response.getSigma4(i).getCombineZhongchuiZhizuoXia());
-            sigma4.setCombineZhongchuiKuazhongShang(sigma4Response.getSigma4(i).getCombineZhongchuiKuazhongShang());
-            sigma4.setCombineZhongchuiKuazhongXia(sigma4Response.getSigma4(i).getCombineZhongchuiKuazhongXia());
-
+            sigma4.setCombineZhonggongZhizuo(sigma4Response.getSigma4(i).getCombineZhonggongZhizuo());
+            sigma4.setCombineZhonggongKuazhong(sigma4Response.getSigma4(i).getCombineZhonggongKuazhong());
+            sigma4.setCombineZhongchuiZhizuo(sigma4Response.getSigma4(i).getCombineZhongchuiZhizuo());
+            sigma4.setCombineZhongchuiKuazhong(sigma4Response.getSigma4(i).getCombineZhongchuiKuazhong());
 
             sigma4List.add(sigma4);
         }

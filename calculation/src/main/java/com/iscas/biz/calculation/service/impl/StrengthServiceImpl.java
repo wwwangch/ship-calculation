@@ -14,6 +14,7 @@ import com.iscas.biz.calculation.entity.dto.sigma.Sigma1DTO;
 import com.iscas.biz.calculation.grpc.service.AlgorithmGrpc;
 import com.iscas.biz.calculation.mapper.*;
 import com.iscas.biz.calculation.service.StrengthService;
+import com.iscas.biz.calculation.util.ExcelWidthStyleStrategy;
 import org.apache.commons.collections4.CollectionUtils;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -268,6 +269,14 @@ public class StrengthServiceImpl implements StrengthService {
         }
 
         List<Sigma1Export> sigma1ExportList = new ArrayList<>();
+        if (sigma1List.size() > 0) {
+            Sigma1Export xuyong = new Sigma1Export();
+            xuyong.setName("许用应力");
+            xuyong.setZhonggong(sigma1List.get(0).getAllowStress());
+            xuyong.setZhongchui(sigma1List.get(0).getAllowStress());
+            sigma1ExportList.add(xuyong);
+        }
+
         for (int i = 0; i < sigma1List.size(); i++) {
             int number = i + 1;
             Sigma1Export sigma1Export1 = new Sigma1Export();
@@ -282,7 +291,7 @@ public class StrengthServiceImpl implements StrengthService {
             sigma1ExportList.add(sigma1Export2);
         }
         EasyExcel.write(SpringUtils.getResponse().getOutputStream(), Sigma1Export.class)
-                .head(headList).sheet("0").doWrite(sigma1ExportList);
+                .head(headList).sheet("0").registerWriteHandler(new ExcelWidthStyleStrategy()).doWrite(sigma1ExportList);
     }
 
     private static class Sigma1Export {
@@ -315,6 +324,269 @@ public class StrengthServiceImpl implements StrengthService {
 
         public void setZhongchui(Double zhongchui) {
             this.zhongchui = zhongchui;
+        }
+    }
+
+
+    @Override
+    public void sigma2Export(Integer projectId, Integer sectionId) throws IOException {
+        QueryWrapper<Sigma2> sigma2QueryWrapper = new QueryWrapper<>();
+        sigma2QueryWrapper.eq("project_id", projectId);
+        sigma2QueryWrapper.eq("section_id", sectionId);
+        List<Sigma2> sigma2List = sigma2Mapper.selectList(sigma2QueryWrapper);
+        if (null == sigma2List || sigma2List.size() == 0) {
+            throw new RuntimeException("当前数据不存在!");
+        }
+
+        List<TableHeader> sigma2ExportList = new ArrayList<>();
+        if (sigma2List.size() > 0) {
+            TableHeader xuyong = new TableHeader();
+            xuyong.setStatus("许用应力");
+            xuyong.setZhonggongZhizuo(sigma2List.get(0).getAllowStress());
+            xuyong.setZhonggongKuazhong(sigma2List.get(0).getAllowStress());
+            xuyong.setZhongchuiZhizuo(sigma2List.get(0).getAllowStress());
+            xuyong.setZhongchuiKuazhong(sigma2List.get(0).getAllowStress());
+            TableHeader hecheng = new TableHeader();
+            hecheng.setStatus("合成许用应力");
+            hecheng.setZhonggongZhizuo(sigma2List.get(0).getAllowStress());
+            hecheng.setZhonggongKuazhong(sigma2List.get(0).getAllowStress());
+            hecheng.setZhongchuiZhizuo(sigma2List.get(0).getAllowStress());
+            hecheng.setZhongchuiKuazhong(sigma2List.get(0).getAllowStress());
+
+            sigma2ExportList.add(xuyong);
+            sigma2ExportList.add(hecheng);
+        }
+
+        for (int i = 0; i < sigma2List.size(); i++) {
+            int number = i + 1;
+            TableHeader sigma2Export = new TableHeader();
+            sigma2Export.setStatus("龙骨" + number + "上纤维（σ2）");
+            sigma2Export.setZhonggongZhizuo(sigma2List.get(i).getZhonggongZhizuoShang());
+            sigma2Export.setZhongchuiKuazhong(sigma2List.get(i).getZhongchuiKuazhongShang());
+            sigma2Export.setZhongchuiZhizuo(sigma2List.get(i).getZhongchuiZhizuoShang());
+            sigma2Export.setZhongchuiKuazhong(sigma2List.get(i).getZhongchuiKuazhongShang());
+            TableHeader sigma2Export2 = new TableHeader();
+            sigma2Export2.setStatus("龙骨" + number + "下纤维（σ2）");
+            sigma2Export2.setZhonggongZhizuo(sigma2List.get(i).getZhonggongZhizuoXia());
+            sigma2Export2.setZhongchuiKuazhong(sigma2List.get(i).getZhongchuiKuazhongXia());
+            sigma2Export2.setZhongchuiZhizuo(sigma2List.get(i).getZhongchuiZhizuoXia());
+            sigma2Export2.setZhongchuiKuazhong(sigma2List.get(i).getZhongchuiKuazhongXia());
+            TableHeader sigma2Export3 = new TableHeader();
+            sigma2Export3.setStatus("龙骨" + number + "上纤维合成应力（σ1+σ2）");
+            sigma2Export3.setZhonggongZhizuo(sigma2List.get(i).getCombineZhonggongZhizuoShang());
+            sigma2Export3.setZhongchuiKuazhong(sigma2List.get(i).getCombineZhonggongKuazhongShang());
+            sigma2Export3.setZhongchuiZhizuo(sigma2List.get(i).getCombineZhongchuiZhizuoShang());
+            sigma2Export3.setZhongchuiKuazhong(sigma2List.get(i).getCombineZhongchuiKuazhongShang());
+            TableHeader sigma2Export4 = new TableHeader();
+            sigma2Export4.setStatus("龙骨" + number + "下纤维合成应力（σ1+σ2）");
+            sigma2Export4.setZhonggongZhizuo(sigma2List.get(i).getCombineZhonggongZhizuoXia());
+            sigma2Export4.setZhongchuiKuazhong(sigma2List.get(i).getCombineZhonggongKuazhongXia());
+            sigma2Export4.setZhongchuiZhizuo(sigma2List.get(i).getCombineZhongchuiZhizuoXia());
+            sigma2Export4.setZhongchuiKuazhong(sigma2List.get(i).getCombineZhongchuiKuazhongXia());
+            sigma2ExportList.add(sigma2Export);
+            sigma2ExportList.add(sigma2Export2);
+            sigma2ExportList.add(sigma2Export3);
+            sigma2ExportList.add(sigma2Export4);
+        }
+        EasyExcel.write(SpringUtils.getResponse().getOutputStream(),TableHeader.class).sheet("0").registerWriteHandler(new ExcelWidthStyleStrategy()).doWrite(sigma2ExportList);
+    }
+
+    @Override
+    public void sigma3Export(Integer projectId, Integer sectionId) throws IOException {
+        QueryWrapper<Sigma3> sigma3QueryWrapper = new QueryWrapper<>();
+        sigma3QueryWrapper.eq("project_id", projectId);
+        sigma3QueryWrapper.eq("section_id", sectionId);
+        List<Sigma3> sigma3List = sigma3Mapper.selectList(sigma3QueryWrapper);
+        if (null == sigma3List || sigma3List.size() == 0) {
+            throw new RuntimeException("当前数据不存在!");
+        }
+
+        List<TableHeader> sigma3ExportList = new ArrayList<>();
+        if (sigma3List.size() > 0) {
+            TableHeader xuyong = new TableHeader();
+            xuyong.setStatus("许用应力");
+            xuyong.setZhonggongZhizuo(sigma3List.get(0).getAllowStress());
+            xuyong.setZhonggongKuazhong(sigma3List.get(0).getAllowStress());
+            xuyong.setZhongchuiZhizuo(sigma3List.get(0).getAllowStress());
+            xuyong.setZhongchuiKuazhong(sigma3List.get(0).getAllowStress());
+            TableHeader hecheng = new TableHeader();
+            hecheng.setStatus("合成许用应力");
+            hecheng.setZhonggongZhizuo(sigma3List.get(0).getAllowStress());
+            hecheng.setZhonggongKuazhong(sigma3List.get(0).getAllowStress());
+            hecheng.setZhongchuiZhizuo(sigma3List.get(0).getAllowStress());
+            hecheng.setZhongchuiKuazhong(sigma3List.get(0).getAllowStress());
+
+            sigma3ExportList.add(xuyong);
+            sigma3ExportList.add(hecheng);
+        }
+
+        for (int i = 0; i < sigma3List.size(); i++) {
+            int number = i + 1;
+            TableHeader sigma3Export = new TableHeader();
+            sigma3Export.setStatus("龙骨" + number + "上纤维（σ3）");
+            sigma3Export.setZhonggongZhizuo(sigma3List.get(i).getZhonggongZhizuoShang());
+            sigma3Export.setZhongchuiKuazhong(sigma3List.get(i).getZhongchuiKuazhongShang());
+            sigma3Export.setZhongchuiZhizuo(sigma3List.get(i).getZhongchuiZhizuoShang());
+            sigma3Export.setZhongchuiKuazhong(sigma3List.get(i).getZhongchuiKuazhongShang());
+            TableHeader sigma3Export2 = new TableHeader();
+            sigma3Export2.setStatus("龙骨" + number + "下纤维（σ3）");
+            sigma3Export2.setZhonggongZhizuo(sigma3List.get(i).getZhonggongZhizuoXia());
+            sigma3Export2.setZhongchuiKuazhong(sigma3List.get(i).getZhongchuiKuazhongXia());
+            sigma3Export2.setZhongchuiZhizuo(sigma3List.get(i).getZhongchuiZhizuoXia());
+            sigma3Export2.setZhongchuiKuazhong(sigma3List.get(i).getZhongchuiKuazhongXia());
+            TableHeader sigma3Export3 = new TableHeader();
+            sigma3Export3.setStatus("龙骨" + number + "上纤维合成应力（σ1+σ2+σ3）");
+            sigma3Export3.setZhonggongZhizuo(sigma3List.get(i).getCombineZhonggongZhizuoShang());
+            sigma3Export3.setZhongchuiKuazhong(sigma3List.get(i).getCombineZhonggongKuazhongShang());
+            sigma3Export3.setZhongchuiZhizuo(sigma3List.get(i).getCombineZhongchuiZhizuoShang());
+            sigma3Export3.setZhongchuiKuazhong(sigma3List.get(i).getCombineZhongchuiKuazhongShang());
+            TableHeader sigma3Export4 = new TableHeader();
+            sigma3Export4.setStatus("龙骨" + number + "下纤维合成应力（σ1+σ2+σ3）");
+            sigma3Export4.setZhonggongZhizuo(sigma3List.get(i).getCombineZhonggongZhizuoXia());
+            sigma3Export4.setZhongchuiKuazhong(sigma3List.get(i).getCombineZhonggongKuazhongXia());
+            sigma3Export4.setZhongchuiZhizuo(sigma3List.get(i).getCombineZhongchuiZhizuoXia());
+            sigma3Export4.setZhongchuiKuazhong(sigma3List.get(i).getCombineZhongchuiKuazhongXia());
+            sigma3ExportList.add(sigma3Export);
+            sigma3ExportList.add(sigma3Export2);
+            sigma3ExportList.add(sigma3Export3);
+            sigma3ExportList.add(sigma3Export4);
+        }
+        EasyExcel.write(SpringUtils.getResponse().getOutputStream(),TableHeader.class).sheet("0").registerWriteHandler(new ExcelWidthStyleStrategy()).doWrite(sigma3ExportList);
+    }
+
+    @Override
+    public void sigma4Export(Integer projectId, Integer sectionId) throws IOException {
+        QueryWrapper<Sigma4> sigma4QueryWrapper = new QueryWrapper<>();
+        sigma4QueryWrapper.eq("project_id", projectId);
+        sigma4QueryWrapper.eq("section_id", sectionId);
+        List<Sigma4> sigma4List = sigma4Mapper.selectList(sigma4QueryWrapper);
+        if (null == sigma4List || sigma4List.size() == 0) {
+            throw new RuntimeException("当前数据不存在!");
+        }
+
+        List<TableHeader> sigma4ExportList = new ArrayList<>();
+        if (sigma4List.size() > 0) {
+            TableHeader hecheng = new TableHeader();
+            hecheng.setStatus("合成许用应力");
+            hecheng.setZhonggongZhizuo(sigma4List.get(0).getAllowStress());
+            hecheng.setZhonggongKuazhong(sigma4List.get(0).getAllowStress());
+            hecheng.setZhongchuiZhizuo(sigma4List.get(0).getAllowStress());
+            hecheng.setZhongchuiKuazhong(sigma4List.get(0).getAllowStress());
+            sigma4ExportList.add(hecheng);
+        }
+
+        for (int i = 0; i < sigma4List.size(); i++) {
+            int number = i + 1;
+            TableHeader sigma4Export = new TableHeader();
+            sigma4Export.setStatus("龙骨" + number + "（σ4）");
+            sigma4Export.setZhonggongZhizuo(sigma4List.get(i).getZhonggongZhizuo());
+            sigma4Export.setZhongchuiKuazhong(sigma4List.get(i).getZhongchuiKuazhong());
+            sigma4Export.setZhongchuiZhizuo(sigma4List.get(i).getZhongchuiZhizuo());
+            sigma4Export.setZhongchuiKuazhong(sigma4List.get(i).getZhongchuiKuazhong());
+            TableHeader sigma4Export2 = new TableHeader();
+            sigma4Export2.setStatus("龙骨" + number + "四种应力合成（σ1+σ2+σ3+σ4）");
+            sigma4Export2.setZhonggongZhizuo(sigma4List.get(i).getCombineZhonggongZhizuo());
+            sigma4Export2.setZhongchuiKuazhong(sigma4List.get(i).getCombineZhongchuiKuazhong());
+            sigma4Export2.setZhongchuiZhizuo(sigma4List.get(i).getCombineZhongchuiZhizuo());
+            sigma4Export2.setZhongchuiKuazhong(sigma4List.get(i).getCombineZhongchuiKuazhong());
+            sigma4ExportList.add(sigma4Export);
+            sigma4ExportList.add(sigma4Export2);
+        }
+        EasyExcel.write(SpringUtils.getResponse().getOutputStream(),TableHeader.class).sheet("0").registerWriteHandler(new ExcelWidthStyleStrategy()).doWrite(sigma4ExportList);
+    }
+
+    @Override
+    public void shearingStressExport(Integer projectId, Integer sectionId) throws IOException {
+        QueryWrapper<ShearingStress> shearingStressQueryWrapper = new QueryWrapper<>();
+        shearingStressQueryWrapper.eq("project_id", projectId);
+        shearingStressQueryWrapper.eq("section_id", sectionId);
+        List<ShearingStress> shearingStressList = shearingStressMapper.selectList(shearingStressQueryWrapper);
+        if (null == shearingStressList || shearingStressList.size() == 0) {
+            throw new RuntimeException("当前数据不存在!");
+        }
+        List<List<String>> headList = new ArrayList<>();
+        if (shearingStressList.size() > 0) {
+            List<String> head0 = new ArrayList<>();
+            head0.add("");
+            headList.add(head0);
+            List<String> head1 = new ArrayList<>();
+            head1.add("中拱");
+            headList.add(head1);
+            List<String> head2 = new ArrayList<>();
+            head2.add("中垂");
+            headList.add(head2);
+        }
+        Sigma1Export shearingStressExport = new Sigma1Export();
+        shearingStressExport.setName("最大剪应力τ");
+        shearingStressExport.setZhonggong(shearingStressList.get(0).getZhonggongMax());
+        shearingStressExport.setZhongchui(shearingStressList.get(0).getZhongchuiMax());
+        Sigma1Export shearingStressExport2 = new Sigma1Export();
+        shearingStressExport2.setName("许用剪应力[τ]\t");
+        shearingStressExport2.setZhonggong(shearingStressList.get(0).getShearingStress());
+        shearingStressExport2.setZhongchui(shearingStressList.get(0).getShearingStress());
+        List<Sigma1Export> shearingStressExportList = new ArrayList<>();
+        shearingStressExportList.add(shearingStressExport);
+        shearingStressExportList.add(shearingStressExport2);
+        EasyExcel.write(SpringUtils.getResponse().getOutputStream(), Sigma1Export.class)
+                .head(headList).sheet("0").registerWriteHandler(new ExcelWidthStyleStrategy()).doWrite(shearingStressExportList);
+
+
+    }
+
+    /**
+     * sigma2,sigma3,sigma4,shearingStress通用表头
+     */
+    private static class TableHeader {
+        @ExcelProperty(value = {"校核状态", "校核位置（应力单位:MPa）"})
+        private String status;
+        @ExcelProperty(value = {"中拱", "支座处"})
+        private Double zhonggongZhizuo;
+        @ExcelProperty(value = {"中拱", "跨中处"})
+        private Double zhonggongKuazhong;
+        @ExcelProperty(value = {"中垂", "支座处"})
+
+        private Double zhongchuiZhizuo;
+        @ExcelProperty(value = {"中垂", "跨中处"})
+        private Double zhongchuiKuazhong;
+
+        public String getStatus() {
+            return status;
+        }
+
+        public void setStatus(String status) {
+            this.status = status;
+        }
+
+        public Double getZhonggongZhizuo() {
+            return zhonggongZhizuo;
+        }
+
+        public void setZhonggongZhizuo(Double zhonggongZhizuo) {
+            this.zhonggongZhizuo = zhonggongZhizuo;
+        }
+
+        public Double getZhonggongKuazhong() {
+            return zhonggongKuazhong;
+        }
+
+        public void setZhonggongKuazhong(Double zhonggongKuazhong) {
+            this.zhonggongKuazhong = zhonggongKuazhong;
+        }
+
+        public Double getZhongchuiZhizuo() {
+            return zhongchuiZhizuo;
+        }
+
+        public void setZhongchuiZhizuo(Double zhongchuiZhizuo) {
+            this.zhongchuiZhizuo = zhongchuiZhizuo;
+        }
+
+        public Double getZhongchuiKuazhong() {
+            return zhongchuiKuazhong;
+        }
+
+        public void setZhongchuiKuazhong(Double zhongchuiKuazhong) {
+            this.zhongchuiKuazhong = zhongchuiKuazhong;
         }
     }
 }

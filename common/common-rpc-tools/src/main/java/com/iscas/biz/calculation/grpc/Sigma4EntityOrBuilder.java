@@ -45,91 +45,46 @@ public interface Sigma4EntityOrBuilder extends
 
   /**
    * <pre>
-   *许用应力
-   * </pre>
-   *
-   * <code>double allowStress = 5;</code>
-   */
-  double getAllowStress();
-
-  /**
-   * <pre>
    *合成许用应力
    * </pre>
    *
-   * <code>double combineAllowStress = 6;</code>
+   * <code>double combineAllowStress = 5;</code>
    */
   double getCombineAllowStress();
 
   /**
    * <pre>
-   *合成中拱支座上纤维
+   *合成中拱支座
    * </pre>
    *
-   * <code>double combineZhonggongZhizuoShang = 7;</code>
+   * <code>double combineZhonggongZhizuo = 6;</code>
    */
-  double getCombineZhonggongZhizuoShang();
+  double getCombineZhonggongZhizuo();
 
   /**
    * <pre>
-   *合成中拱支座下纤维
+   *合成中拱跨中
    * </pre>
    *
-   * <code>double combineZhonggongZhizuoXia = 8;</code>
+   * <code>double combineZhonggongKuazhong = 7;</code>
    */
-  double getCombineZhonggongZhizuoXia();
+  double getCombineZhonggongKuazhong();
 
   /**
    * <pre>
-   *合成中拱跨中上纤维
+   *合成中垂支座
    * </pre>
    *
-   * <code>double combineZhonggongKuazhongShang = 9;</code>
+   * <code>double combineZhongchuiZhizuo = 8;</code>
    */
-  double getCombineZhonggongKuazhongShang();
+  double getCombineZhongchuiZhizuo();
 
   /**
    * <pre>
-   *合成中拱跨中下纤维
+   *合成中垂跨中
    * </pre>
    *
-   * <code>double combineZhonggongKuazhongXia = 10;</code>
+   * <code>double combineZhongchuiKuazhong = 9;</code>
    */
-  double getCombineZhonggongKuazhongXia();
-
-  /**
-   * <pre>
-   *合成中垂支座上纤维
-   * </pre>
-   *
-   * <code>double combineZhongchuiZhizuoShang = 11;</code>
-   */
-  double getCombineZhongchuiZhizuoShang();
-
-  /**
-   * <pre>
-   *合成中垂支座下纤维
-   * </pre>
-   *
-   * <code>double combineZhongchuiZhizuoXia = 12;</code>
-   */
-  double getCombineZhongchuiZhizuoXia();
-
-  /**
-   * <pre>
-   *合成中垂跨中上纤维
-   * </pre>
-   *
-   * <code>double combineZhongchuiKuazhongShang = 13;</code>
-   */
-  double getCombineZhongchuiKuazhongShang();
-
-  /**
-   * <pre>
-   *合成中垂跨中下纤维
-   * </pre>
-   *
-   * <code>double combineZhongchuiKuazhongXia = 14;</code>
-   */
-  double getCombineZhongchuiKuazhongXia();
+  double getCombineZhongchuiKuazhong();
 }

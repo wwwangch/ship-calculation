@@ -464,29 +464,22 @@ message Sigma4Entity{
 
   //中垂跨中
   double zhongchuiKuazhong = 4;
-  //许用应力
-  double allowStress = 5;
+
   //合成许用应力
-  double combineAllowStress = 6;
+  double combineAllowStress = 5;
 
-  //合成中拱支座上纤维
-  double combineZhonggongZhizuoShang = 7;
-  //合成中拱支座下纤维
-  double combineZhonggongZhizuoXia = 8;
-  //合成中拱跨中上纤维
-  double combineZhonggongKuazhongShang = 9;
-  //合成中拱跨中下纤维
-  double combineZhonggongKuazhongXia = 10;
+  //合成中拱支座
+  double combineZhonggongZhizuo = 6;
 
-  //合成中垂支座上纤维
-  double combineZhongchuiZhizuoShang = 11;
-  //合成中垂支座下纤维
-  double combineZhongchuiZhizuoXia = 12;
+  //合成中拱跨中
+  double combineZhonggongKuazhong = 7;
 
-  //合成中垂跨中上纤维
-  double combineZhongchuiKuazhongShang  = 13;
-  //合成中垂跨中下纤维
-  double combineZhongchuiKuazhongXia = 14;
+  //合成中垂支座
+  double combineZhongchuiZhizuo = 8;
+
+  //合成中垂跨中
+  double combineZhongchuiKuazhong = 9;
+
 }
 
 message ShearingStressRequest{

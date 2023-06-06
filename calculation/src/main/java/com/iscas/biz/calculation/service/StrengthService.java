@@ -30,11 +30,11 @@ public interface StrengthService {
     List<ShearingStress> calShearingStress(Integer projectId, Integer sectionId) throws IllegalAccessException;
     void sigma1Export(Integer projectId, Integer sectionId)throws IOException;
 
-//    void sigma2Export(Integer projectId, Integer sectionId)throws IOException;
-//
-//    void sigma3Export(Integer projectId, Integer sectionId)throws IOException;
-//
-//    void sigma4Export(Integer projectId, Integer sectionId)throws IOException;
-//
-//    void shearingStressExport(Integer projectId, Integer sectionId)throws IOException;
+    void sigma2Export(Integer projectId, Integer sectionId)throws IOException;
+
+    void sigma3Export(Integer projectId, Integer sectionId)throws IOException;
+
+    void sigma4Export(Integer projectId, Integer sectionId)throws IOException;
+
+    void shearingStressExport(Integer projectId, Integer sectionId)throws IOException;
 }

@@ -62,9 +62,14 @@ public class BulkheadServiceImpl extends ServiceImpl<BulkheadMapper, Bulkhead> i
                         Map<String, List> resultMap = new HashMap<>();
                         try {
                             ExcelUtils.readExcelToListMap(filePath, resultMap);
+                            Thread.sleep(1000);
                         } catch (ExcelUtils.ExcelHandlerException e) {
                             throw new RuntimeException(e);
+                        } catch (InterruptedException e) {
+                            throw new RuntimeException(e);
                         }
+
+
                         for (Map.Entry<String, List> entry : resultMap.entrySet()) {
                             List<Map<String, Object>> valueList = entry.getValue();
                             Integer k1 = null;

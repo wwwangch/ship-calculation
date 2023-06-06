@@ -56,32 +56,32 @@ public class BulkheadCompartmentServiceImpl extends ServiceImpl<BulkheadCompartm
         List<TProfile> tProfiles = tProfileMapper.selectList(null);
         List<ComboboxData> comboboxData = new ArrayList<>();
         ComboboxData qData = new ComboboxData<>();
-        comboboxData.add(qData);
         qData.setLabel("球扁钢");
         qData.setValue("q");
         List<ComboboxData> qDataList = new ArrayList<>();
-        qData.setChildren(qDataList);
         for (BulbFlat bulbFlat : bulbFlats) {
             String label = bulbFlat.getModel();
             String value = bulbFlat.getProfileId().toString();
             ComboboxData data = new ComboboxData();
-            data.setValue(value);
+            data.setValue(label);
             data.setLabel(label);
             qDataList.add(data);
         }
-        ComboboxData tData = new ComboboxData<>();
+        qData.setChildren(qDataList);
         comboboxData.add(qData);
-        qData.setLabel("T型材");
-        qData.setValue("t");
+        ComboboxData tData = new ComboboxData<>();
+        tData.setLabel("T型材");
+        tData.setValue("t");
         List<ComboboxData> tDataList = new ArrayList<>();
         for (TProfile tProfile : tProfiles) {
             String label = tProfile.getModel();
             String value = tProfile.getProfileId().toString();
             ComboboxData data = new ComboboxData();
-            data.setValue(value);
+            data.setValue(label);
             data.setLabel(label);
             tDataList.add(data);
         }
+        tData.setChildren(tDataList);
         comboboxData.add(tData);
         return comboboxData;
     }

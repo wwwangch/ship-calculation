@@ -308,105 +308,100 @@ public final class CalculationProto {
       "biz.calculation.grpc.Sigma2Entity\"\017\n\rSig" +
       "ma4Request\"N\n\016Sigma4Response\022<\n\006sigma4\030\001" +
       " \003(\0132,.com.iscas.biz.calculation.grpc.Si" +
-      "gma4Entity\"\317\003\n\014Sigma4Entity\022\027\n\017zhonggong" +
+      "gma4Entity\"\226\002\n\014Sigma4Entity\022\027\n\017zhonggong" +
       "Zhizuo\030\001 \001(\001\022\031\n\021zhonggongKuazhong\030\002 \001(\001\022" +
       "\027\n\017zhongchuiZhizuo\030\003 \001(\001\022\031\n\021zhongchuiKua" +
-      "zhong\030\004 \001(\001\022\023\n\013allowStress\030\005 \001(\001\022\032\n\022comb" +
-      "ineAllowStress\030\006 \001(\001\022#\n\033combineZhonggong",
-      "ZhizuoShang\030\007 \001(\001\022!\n\031combineZhonggongZhi" +
-      "zuoXia\030\010 \001(\001\022%\n\035combineZhonggongKuazhong" +
-      "Shang\030\t \001(\001\022#\n\033combineZhonggongKuazhongX" +
-      "ia\030\n \001(\001\022#\n\033combineZhongchuiZhizuoShang\030" +
-      "\013 \001(\001\022!\n\031combineZhongchuiZhizuoXia\030\014 \001(\001" +
-      "\022%\n\035combineZhongchuiKuazhongShang\030\r \001(\001\022" +
-      "#\n\033combineZhongchuiKuazhongXia\030\016 \001(\001\"\027\n\025" +
-      "ShearingStressRequest\"f\n\026ShearingStressR" +
-      "esponse\022L\n\016shearingStress\030\001 \003(\01324.com.is" +
-      "cas.biz.calculation.grpc.ShearingStressE",
-      "ntity\"Z\n\024ShearingStressEntity\022\024\n\014zhongch" +
-      "uiMax\030\001 \001(\001\022\024\n\014zhonggongMax\030\002 \001(\001\022\026\n\016she" +
-      "aringStress\030\003 \001(\001\"\203\001\n\032AdditionalForceHea" +
-      "dRequest\022\021\n\tfreeboard\030\001 \001(\001\022\021\n\tleiweihao" +
-      "\030\002 \001(\001\022\024\n\014cangbiWeizhi\030\003 \001(\001\022\023\n\013isCollis" +
-      "ion\030\004 \001(\010\022\024\n\014shuidongYali\030\005 \001(\001\"C\n\033Addit" +
-      "ionalForceHeadResponse\022\021\n\tleiweihao\030\001 \003(" +
-      "\001\022\021\n\taddyatouh\030\002 \003(\001\"\241\001\n\037CompartmentBulk" +
-      "headSheetRequest\022\024\n\014airguanyatou\030\001 \001(\001\022\022" +
-      "\n\ndeckHeight\030\002 \003(\001\022\026\n\016boolLiquidTank\030\003 \003",
-      "(\010\022\020\n\010banWidth\030\004 \003(\001\022\020\n\010banThick\030\005 \003(\001\022\030" +
-      "\n\020cangbiBancailiao\030\006 \003(\001\"\336\001\n Compartment" +
-      "BulkheadSheetResponse\022\r\n\005yatou\030\001 \003(\001\022\017\n\007" +
-      "disload\030\002 \003(\001\022\017\n\007lgvList\030\003 \003(\001\022\r\n\005uList\030" +
-      "\004 \003(\001\022\020\n\010chi1List\030\005 \003(\001\022\020\n\010chi2List\030\006 \003(" +
-      "\001\022\024\n\014stressXlList\030\007 \003(\001\022\026\n\016stressKuozhon" +
-      "g\030\010 \003(\001\022\024\n\014stressZhizuo\030\t \003(\001\022\022\n\nshearAl" +
-      "low\030\n \003(\001\"s\n!SupportingMaterialStrengthR" +
-      "equest\022\022\n\nguicaiType\030\001 \003(\t\022\022\n\ndaibanKuan" +
-      "\030\002 \003(\001\022\021\n\tdaibanHou\030\003 \003(\001\022\023\n\013zongguKuaju",
-      "\030\004 \001(\001\"\306\003\n\"SupportingMaterialStrengthRes" +
-      "ponse\022\021\n\tupperLoad\030\001 \003(\001\022\021\n\tlowerLoad\030\002 " +
-      "\003(\001\022\025\n\rziyouZhongwan\030\003 \003(\001\022\025\n\rziyouShang" +
-      "wan\030\004 \003(\001\022\023\n\013ziyouXiawan\030\005 \003(\001\022\026\n\016ziyouS" +
-      "hangjian\030\006 \003(\001\022\024\n\014ziyouXiajian\030\007 \003(\001\022\030\n\020" +
-      "gangxingShangwan\030\010 \003(\001\022\026\n\016gangxingXiawan" +
-      "\030\t \003(\001\022\031\n\021gangxingShangjian\030\n \003(\001\022\027\n\017gan" +
-      "gxingXiajian\030\013 \003(\001\022\027\n\017yingliZhongying\030\014 " +
-      "\003(\001\022\027\n\017yingliShangying\030\r \003(\001\022\025\n\ryingliXi" +
-      "aying\030\016 \003(\001\022\024\n\014yingliXuying\030\017 \003(\001\022\027\n\017yin",
-      "gliShangjian\030\020 \003(\001\022\025\n\ryingliXiajian\030\021 \003(" +
-      "\001\022\024\n\014yingliXujian\030\022 \003(\0012\312\017\n\013Calculation\022" +
-      "r\n\tshipParam\0220.com.iscas.biz.calculation" +
-      ".grpc.ShipParamRequest\0321.com.iscas.biz.c" +
-      "alculation.grpc.ShipParamResponse\"\000\022o\n\010b" +
-      "uoyancy\022/.com.iscas.biz.calculation.grpc" +
-      ".BuoyancyRequest\0320.com.iscas.biz.calcula" +
-      "tion.grpc.BuoyancyResponse\"\000\022v\n\023calWeigh" +
-      "tDistribute\022-.com.iscas.biz.calculation." +
-      "grpc.WeightRequest\032..com.iscas.biz.calcu",
-      "lation.grpc.WeightResponse\"\000\022x\n\rcalStati" +
-      "cLoad\0221.com.iscas.biz.calculation.grpc.S" +
-      "taticLoadRequest\0322.com.iscas.biz.calcula" +
-      "tion.grpc.StaticLoadResponse\"\000\022r\n\013calWav" +
-      "eLoad\022/.com.iscas.biz.calculation.grpc.W" +
-      "aveLoadRequest\0320.com.iscas.biz.calculati" +
-      "on.grpc.WaveLoadResponse\"\000\022r\n\013calSlamLoa" +
-      "d\022/.com.iscas.biz.calculation.grpc.SlamL" +
-      "oadRequest\0320.com.iscas.biz.calculation.g" +
-      "rpc.SlamLoadResponse\"\000\022o\n\ncalSection\022..c",
-      "om.iscas.biz.calculation.grpc.SectionReq" +
-      "uest\032/.com.iscas.biz.calculation.grpc.Se" +
-      "ctionResponse\"\000\022l\n\tcalSigma1\022-.com.iscas" +
-      ".biz.calculation.grpc.Sigma1Request\032..co" +
-      "m.iscas.biz.calculation.grpc.Sigma1Respo" +
-      "nse\"\000\022l\n\tcalSigma2\022-.com.iscas.biz.calcu" +
-      "lation.grpc.Sigma2Request\032..com.iscas.bi" +
-      "z.calculation.grpc.Sigma2Response\"\000\022l\n\tc" +
-      "alSigma3\022-.com.iscas.biz.calculation.grp" +
-      "c.Sigma3Request\032..com.iscas.biz.calculat",
-      "ion.grpc.Sigma3Response\"\000\022l\n\tcalSigma4\022-" +
-      ".com.iscas.biz.calculation.grpc.Sigma4Re" +
-      "quest\032..com.iscas.biz.calculation.grpc.S" +
-      "igma4Response\"\000\022\204\001\n\021calShearingStress\0225." +
-      "com.iscas.biz.calculation.grpc.ShearingS" +
-      "tressRequest\0326.com.iscas.biz.calculation" +
-      ".grpc.ShearingStressResponse\"\000\022f\n\007calDis" +
-      "t\022+.com.iscas.biz.calculation.grpc.DistR" +
-      "equest\032,.com.iscas.biz.calculation.grpc." +
-      "DistResponse\"\000\022\223\001\n\026calAdditionalForceHea",
-      "d\022:.com.iscas.biz.calculation.grpc.Addit" +
-      "ionalForceHeadRequest\032;.com.iscas.biz.ca" +
-      "lculation.grpc.AdditionalForceHeadRespon" +
-      "se\"\000\022\242\001\n\033calCompartmentBulkheadSheet\022?.c" +
+      "zhong\030\004 \001(\001\022\032\n\022combineAllowStress\030\005 \001(\001\022" +
+      "\036\n\026combineZhonggongZhizuo\030\006 \001(\001\022 \n\030combi",
+      "neZhonggongKuazhong\030\007 \001(\001\022\036\n\026combineZhon" +
+      "gchuiZhizuo\030\010 \001(\001\022 \n\030combineZhongchuiKua" +
+      "zhong\030\t \001(\001\"\027\n\025ShearingStressRequest\"f\n\026" +
+      "ShearingStressResponse\022L\n\016shearingStress" +
+      "\030\001 \003(\01324.com.iscas.biz.calculation.grpc." +
+      "ShearingStressEntity\"Z\n\024ShearingStressEn" +
+      "tity\022\024\n\014zhongchuiMax\030\001 \001(\001\022\024\n\014zhonggongM" +
+      "ax\030\002 \001(\001\022\026\n\016shearingStress\030\003 \001(\001\"\203\001\n\032Add" +
+      "itionalForceHeadRequest\022\021\n\tfreeboard\030\001 \001" +
+      "(\001\022\021\n\tleiweihao\030\002 \001(\001\022\024\n\014cangbiWeizhi\030\003 ",
+      "\001(\001\022\023\n\013isCollision\030\004 \001(\010\022\024\n\014shuidongYali" +
+      "\030\005 \001(\001\"C\n\033AdditionalForceHeadResponse\022\021\n" +
+      "\tleiweihao\030\001 \003(\001\022\021\n\taddyatouh\030\002 \003(\001\"\241\001\n\037" +
+      "CompartmentBulkheadSheetRequest\022\024\n\014airgu" +
+      "anyatou\030\001 \001(\001\022\022\n\ndeckHeight\030\002 \003(\001\022\026\n\016boo" +
+      "lLiquidTank\030\003 \003(\010\022\020\n\010banWidth\030\004 \003(\001\022\020\n\010b" +
+      "anThick\030\005 \003(\001\022\030\n\020cangbiBancailiao\030\006 \003(\001\"" +
+      "\336\001\n CompartmentBulkheadSheetResponse\022\r\n\005" +
+      "yatou\030\001 \003(\001\022\017\n\007disload\030\002 \003(\001\022\017\n\007lgvList\030" +
+      "\003 \003(\001\022\r\n\005uList\030\004 \003(\001\022\020\n\010chi1List\030\005 \003(\001\022\020",
+      "\n\010chi2List\030\006 \003(\001\022\024\n\014stressXlList\030\007 \003(\001\022\026" +
+      "\n\016stressKuozhong\030\010 \003(\001\022\024\n\014stressZhizuo\030\t" +
+      " \003(\001\022\022\n\nshearAllow\030\n \003(\001\"s\n!SupportingMa" +
+      "terialStrengthRequest\022\022\n\nguicaiType\030\001 \003(" +
+      "\t\022\022\n\ndaibanKuan\030\002 \003(\001\022\021\n\tdaibanHou\030\003 \003(\001" +
+      "\022\023\n\013zongguKuaju\030\004 \001(\001\"\306\003\n\"SupportingMate" +
+      "rialStrengthResponse\022\021\n\tupperLoad\030\001 \003(\001\022" +
+      "\021\n\tlowerLoad\030\002 \003(\001\022\025\n\rziyouZhongwan\030\003 \003(" +
+      "\001\022\025\n\rziyouShangwan\030\004 \003(\001\022\023\n\013ziyouXiawan\030" +
+      "\005 \003(\001\022\026\n\016ziyouShangjian\030\006 \003(\001\022\024\n\014ziyouXi",
+      "ajian\030\007 \003(\001\022\030\n\020gangxingShangwan\030\010 \003(\001\022\026\n" +
+      "\016gangxingXiawan\030\t \003(\001\022\031\n\021gangxingShangji" +
+      "an\030\n \003(\001\022\027\n\017gangxingXiajian\030\013 \003(\001\022\027\n\017yin" +
+      "gliZhongying\030\014 \003(\001\022\027\n\017yingliShangying\030\r " +
+      "\003(\001\022\025\n\ryingliXiaying\030\016 \003(\001\022\024\n\014yingliXuyi" +
+      "ng\030\017 \003(\001\022\027\n\017yingliShangjian\030\020 \003(\001\022\025\n\ryin" +
+      "gliXiajian\030\021 \003(\001\022\024\n\014yingliXujian\030\022 \003(\0012\312" +
+      "\017\n\013Calculation\022r\n\tshipParam\0220.com.iscas." +
+      "biz.calculation.grpc.ShipParamRequest\0321." +
+      "com.iscas.biz.calculation.grpc.ShipParam",
+      "Response\"\000\022o\n\010buoyancy\022/.com.iscas.biz.c" +
+      "alculation.grpc.BuoyancyRequest\0320.com.is" +
+      "cas.biz.calculation.grpc.BuoyancyRespons" +
+      "e\"\000\022v\n\023calWeightDistribute\022-.com.iscas.b" +
+      "iz.calculation.grpc.WeightRequest\032..com." +
+      "iscas.biz.calculation.grpc.WeightRespons" +
+      "e\"\000\022x\n\rcalStaticLoad\0221.com.iscas.biz.cal" +
+      "culation.grpc.StaticLoadRequest\0322.com.is" +
+      "cas.biz.calculation.grpc.StaticLoadRespo" +
+      "nse\"\000\022r\n\013calWaveLoad\022/.com.iscas.biz.cal",
+      "culation.grpc.WaveLoadRequest\0320.com.isca" +
+      "s.biz.calculation.grpc.WaveLoadResponse\"" +
+      "\000\022r\n\013calSlamLoad\022/.com.iscas.biz.calcula" +
+      "tion.grpc.SlamLoadRequest\0320.com.iscas.bi" +
+      "z.calculation.grpc.SlamLoadResponse\"\000\022o\n" +
+      "\ncalSection\022..com.iscas.biz.calculation." +
+      "grpc.SectionRequest\032/.com.iscas.biz.calc" +
+      "ulation.grpc.SectionResponse\"\000\022l\n\tcalSig" +
+      "ma1\022-.com.iscas.biz.calculation.grpc.Sig" +
+      "ma1Request\032..com.iscas.biz.calculation.g",
+      "rpc.Sigma1Response\"\000\022l\n\tcalSigma2\022-.com." +
+      "iscas.biz.calculation.grpc.Sigma2Request" +
+      "\032..com.iscas.biz.calculation.grpc.Sigma2" +
+      "Response\"\000\022l\n\tcalSigma3\022-.com.iscas.biz." +
+      "calculation.grpc.Sigma3Request\032..com.isc" +
+      "as.biz.calculation.grpc.Sigma3Response\"\000" +
+      "\022l\n\tcalSigma4\022-.com.iscas.biz.calculatio" +
+      "n.grpc.Sigma4Request\032..com.iscas.biz.cal" +
+      "culation.grpc.Sigma4Response\"\000\022\204\001\n\021calSh" +
+      "earingStress\0225.com.iscas.biz.calculation",
+      ".grpc.ShearingStressRequest\0326.com.iscas." +
+      "biz.calculation.grpc.ShearingStressRespo" +
+      "nse\"\000\022f\n\007calDist\022+.com.iscas.biz.calcula" +
+      "tion.grpc.DistRequest\032,.com.iscas.biz.ca" +
+      "lculation.grpc.DistResponse\"\000\022\223\001\n\026calAdd" +
+      "itionalForceHead\022:.com.iscas.biz.calcula" +
+      "tion.grpc.AdditionalForceHeadRequest\032;.c" +
+      "om.iscas.biz.calculation.grpc.Additional" +
+      "ForceHeadResponse\"\000\022\242\001\n\033calCompartmentBu" +
+      "lkheadSheet\022?.com.iscas.biz.calculation.",
+      "grpc.CompartmentBulkheadSheetRequest\032@.c" +
       "om.iscas.biz.calculation.grpc.Compartmen" +
-      "tBulkheadSheetRequest\032@.com.iscas.biz.ca" +
-      "lculation.grpc.CompartmentBulkheadSheetR" +
-      "esponse\"\000\022\250\001\n\035calSupportingMaterialStren" +
-      "gth\022A.com.iscas.biz.calculation.grpc.Sup" +
-      "portingMaterialStrengthRequest\032B.com.isc",
-      "as.biz.calculation.grpc.SupportingMateri" +
-      "alStrengthResponse\"\000B4\n\036com.iscas.biz.ca" +
-      "lculation.grpcB\020CalculationProtoP\001b\006prot" +
-      "o3"
+      "tBulkheadSheetResponse\"\000\022\250\001\n\035calSupporti" +
+      "ngMaterialStrength\022A.com.iscas.biz.calcu" +
+      "lation.grpc.SupportingMaterialStrengthRe" +
+      "quest\032B.com.iscas.biz.calculation.grpc.S" +
+      "upportingMaterialStrengthResponse\"\000B4\n\036c" +
+      "om.iscas.biz.calculation.grpcB\020Calculati" +
+      "onProtoP\001b\006proto3"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
         new com.google.protobuf.Descriptors.FileDescriptor.    InternalDescriptorAssigner() {
@@ -605,7 +600,7 @@ public final class CalculationProto {
     internal_static_com_iscas_biz_calculation_grpc_Sigma4Entity_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_com_iscas_biz_calculation_grpc_Sigma4Entity_descriptor,
-        new java.lang.String[] { "ZhonggongZhizuo", "ZhonggongKuazhong", "ZhongchuiZhizuo", "ZhongchuiKuazhong", "AllowStress", "CombineAllowStress", "CombineZhonggongZhizuoShang", "CombineZhonggongZhizuoXia", "CombineZhonggongKuazhongShang", "CombineZhonggongKuazhongXia", "CombineZhongchuiZhizuoShang", "CombineZhongchuiZhizuoXia", "CombineZhongchuiKuazhongShang", "CombineZhongchuiKuazhongXia", });
+        new java.lang.String[] { "ZhonggongZhizuo", "ZhonggongKuazhong", "ZhongchuiZhizuo", "ZhongchuiKuazhong", "CombineAllowStress", "CombineZhonggongZhizuo", "CombineZhonggongKuazhong", "CombineZhongchuiZhizuo", "CombineZhongchuiKuazhong", });
     internal_static_com_iscas_biz_calculation_grpc_ShearingStressRequest_descriptor =
       getDescriptor().getMessageTypes().get(31);
     internal_static_com_iscas_biz_calculation_grpc_ShearingStressRequest_fieldAccessorTable = new

@@ -1,8 +1,11 @@
 package com.iscas.biz.calculation.controller;
 
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.google.common.collect.ImmutableMap;
 import com.iscas.biz.calculation.entity.db.Bulkhead;
+import com.iscas.biz.calculation.entity.db.BulkheadCompartment;
 import com.iscas.biz.calculation.entity.db.Section;
+import com.iscas.biz.calculation.mapper.BulkheadCompartmentMapper;
 import com.iscas.biz.calculation.service.BulkheadService;
 import com.iscas.biz.calculation.service.SectionService;
 import com.iscas.biz.mp.table.service.TableDefinitionService;
@@ -40,9 +43,12 @@ public class BulkheadController {
 
     private final TableDefinitionService tableDefinitionService;
 
-    public BulkheadController(BulkheadService bulkheadService, TableDefinitionService tableDefinitionService) {
+    private final BulkheadCompartmentMapper bulkheadCompartmentMapper;
+
+    public BulkheadController(BulkheadService bulkheadService, TableDefinitionService tableDefinitionService, BulkheadCompartmentMapper bulkheadCompartmentMapper) {
         this.bulkheadService = bulkheadService;
         this.tableDefinitionService = tableDefinitionService;
+        this.bulkheadCompartmentMapper = bulkheadCompartmentMapper;
     }
 
     @Operation(summary = "获取表头", description = "不带数据，带下拉列表")
@@ -83,10 +89,19 @@ public class BulkheadController {
     @io.swagger.v3.oas.annotations.parameters.RequestBody(required = true, description = "修改的数据(未变动的数据也传)",
             content = @Content(examples = @ExampleObject(value = "{\"key\":\"val\"}")))
     @PutMapping("/data")
-    public ResponseEntity editData(@RequestBody Map<String, Object> data) throws ValidDataException {
+    public ResponseEntity editData(@RequestBody Map<String, Object> data) throws ValidDataException, InterruptedException {
         ImmutableMap<String, Object> forceItem = ImmutableMap.of("update_time", DateSafeUtils.format(new Date()));
-        return tableDefinitionService.saveData(TABLE_IDENTITY, data, false, Section.class, forceItem);
-
+        QueryWrapper<BulkheadCompartment> bulkheadCompartmentQueryWrapper = new QueryWrapper<>();
+        QueryWrapper<Bulkhead> bulkheadQueryWrapper = new QueryWrapper<>();
+        bulkheadQueryWrapper.eq("project_id", data.get("project_id"));
+        Bulkhead bulkhead = bulkheadService.getOne(bulkheadQueryWrapper);
+        bulkheadCompartmentQueryWrapper.eq("bulkhead_id", bulkhead.getBulkheadId());
+        if (bulkheadCompartmentMapper.exists(bulkheadCompartmentQueryWrapper)) {
+            bulkheadCompartmentMapper.delete(bulkheadCompartmentQueryWrapper);
+        }
+        tableDefinitionService.saveData(TABLE_IDENTITY, data, false, Section.class, forceItem);
+        bulkheadService.saveCompartment(data.get("bulkhead_file_path"));
+        return new ResponseEntity();
     }
 
 }
