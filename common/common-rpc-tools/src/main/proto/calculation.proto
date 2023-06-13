@@ -261,6 +261,31 @@ message SectionRequest{
 
   //肋位号
   double ribNumber = 2;
+  //球扁钢数组
+  repeated BulbFlat bulbFlats = 3;
+  //T型材数组
+  repeated TProfile tProfiles = 4;
+}
+//球扁钢
+message BulbFlat{
+  string model = 1;   //型号
+  double height = 2;         // 高度(mm)
+  double width = 3;          // 宽度(mm)
+  double thickness = 4;      // 厚度(mm)
+  double sectionalArea = 5;  // 剖面积(cm²)
+  double momentOfInertia = 6;// 惯性矩(cm⁴)
+  double centroidPosition = 7; // 形心位置(cm)
+}
+//T型材
+message TProfile{
+  string model = 1;   //型号
+  double keelHeight = 2;    // 腹板高度(mm)
+  double keelThickness = 3; // 腹板厚度(mm)
+  double deckWidth = 4;     // 面板宽度(mm)
+  double deckThickness = 5; // 面板厚度(mm)
+  double sectionalArea = 6; // 剖面积(cm²)
+  double momentOfInertia = 7; // 惯性矩(cm⁴)
+  double centroidPosition = 8; // 形心位置(cm)
 }
 //剖面计算输出
 message SectionResponse{
