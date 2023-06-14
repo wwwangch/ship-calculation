@@ -148,6 +148,23 @@ subprojects {
 
     dependencies {
 //        compile 'org.projectlombok:lombok'
+//  wmf转svg
+// https://mvnrepository.com/artifact/net.arnx/wmf2svg
+// <dependency>
+//             <groupId>net.arnx</groupId>
+//             <artifactId>wmf2svg</artifactId>
+//             <version>0.9.8</version>
+//         </dependency>
+//
+//         <dependency>
+//             <groupId>org.apache.xmlgraphics</groupId>
+//             <artifactId>batik-codec</artifactId>
+//             <version>1.7</version>
+//         </dependency>
+implementation group: 'net.arnx', name: 'wmf2svg', version: '0.9.11'
+// https://mvnrepository.com/artifact/org.apache.xmlgraphics/batik-codec
+implementation group: 'org.apache.xmlgraphics', name: 'batik-codec', version: '1.16'
+
 
         annotationProcessor "org.projectlombok:lombok"
         compileOnly "org.projectlombok:lombok"
