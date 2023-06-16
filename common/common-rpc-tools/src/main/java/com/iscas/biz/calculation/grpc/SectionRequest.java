@@ -23,6 +23,7 @@ public  final class SectionRequest extends
     ribNumber_ = 0D;
     bulbFlats_ = java.util.Collections.emptyList();
     tProfiles_ = java.util.Collections.emptyList();
+    isHalfProfile_ = false;
   }
 
   @java.lang.Override
@@ -77,6 +78,11 @@ public  final class SectionRequest extends
             }
             tProfiles_.add(
                 input.readMessage(com.iscas.biz.calculation.grpc.TProfile.parser(), extensionRegistry));
+            break;
+          }
+          case 40: {
+
+            isHalfProfile_ = input.readBool();
             break;
           }
         }
@@ -274,6 +280,20 @@ public  final class SectionRequest extends
     return tProfiles_.get(index);
   }
 
+  public static final int ISHALFPROFILE_FIELD_NUMBER = 5;
+  private boolean isHalfProfile_;
+  /**
+   * <pre>
+   *new614----------------
+   *是否半剖面
+   * </pre>
+   *
+   * <code>bool isHalfProfile = 5;</code>
+   */
+  public boolean getIsHalfProfile() {
+    return isHalfProfile_;
+  }
+
   private byte memoizedIsInitialized = -1;
   public final boolean isInitialized() {
     byte isInitialized = memoizedIsInitialized;
@@ -298,6 +318,9 @@ public  final class SectionRequest extends
     for (int i = 0; i < tProfiles_.size(); i++) {
       output.writeMessage(4, tProfiles_.get(i));
     }
+    if (isHalfProfile_ != false) {
+      output.writeBool(5, isHalfProfile_);
+    }
   }
 
   public int getSerializedSize() {
@@ -319,6 +342,10 @@ public  final class SectionRequest extends
     for (int i = 0; i < tProfiles_.size(); i++) {
       size += com.google.protobuf.CodedOutputStream
         .computeMessageSize(4, tProfiles_.get(i));
+    }
+    if (isHalfProfile_ != false) {
+      size += com.google.protobuf.CodedOutputStream
+        .computeBoolSize(5, isHalfProfile_);
     }
     memoizedSize = size;
     return size;
@@ -346,6 +373,8 @@ public  final class SectionRequest extends
         .equals(other.getBulbFlatsList());
     result = result && getTProfilesList()
         .equals(other.getTProfilesList());
+    result = result && (getIsHalfProfile()
+        == other.getIsHalfProfile());
     return result;
   }
 
@@ -369,6 +398,9 @@ public  final class SectionRequest extends
       hash = (37 * hash) + TPROFILES_FIELD_NUMBER;
       hash = (53 * hash) + getTProfilesList().hashCode();
     }
+    hash = (37 * hash) + ISHALFPROFILE_FIELD_NUMBER;
+    hash = (53 * hash) + com.google.protobuf.Internal.hashBoolean(
+        getIsHalfProfile());
     hash = (29 * hash) + unknownFields.hashCode();
     memoizedHashCode = hash;
     return hash;
@@ -509,6 +541,8 @@ public  final class SectionRequest extends
       } else {
         tProfilesBuilder_.clear();
       }
+      isHalfProfile_ = false;
+
       return this;
     }
 
@@ -553,6 +587,7 @@ public  final class SectionRequest extends
       } else {
         result.tProfiles_ = tProfilesBuilder_.build();
       }
+      result.isHalfProfile_ = isHalfProfile_;
       result.bitField0_ = to_bitField0_;
       onBuilt();
       return result;
@@ -653,6 +688,9 @@ public  final class SectionRequest extends
             tProfilesBuilder_.addAllMessages(other.tProfiles_);
           }
         }
+      }
+      if (other.getIsHalfProfile() != false) {
+        setIsHalfProfile(other.getIsHalfProfile());
       }
       onChanged();
       return this;
@@ -1430,6 +1468,47 @@ public  final class SectionRequest extends
         tProfiles_ = null;
       }
       return tProfilesBuilder_;
+    }
+
+    private boolean isHalfProfile_ ;
+    /**
+     * <pre>
+     *new614----------------
+     *是否半剖面
+     * </pre>
+     *
+     * <code>bool isHalfProfile = 5;</code>
+     */
+    public boolean getIsHalfProfile() {
+      return isHalfProfile_;
+    }
+    /**
+     * <pre>
+     *new614----------------
+     *是否半剖面
+     * </pre>
+     *
+     * <code>bool isHalfProfile = 5;</code>
+     */
+    public Builder setIsHalfProfile(boolean value) {
+      
+      isHalfProfile_ = value;
+      onChanged();
+      return this;
+    }
+    /**
+     * <pre>
+     *new614----------------
+     *是否半剖面
+     * </pre>
+     *
+     * <code>bool isHalfProfile = 5;</code>
+     */
+    public Builder clearIsHalfProfile() {
+      
+      isHalfProfile_ = false;
+      onChanged();
+      return this;
     }
     public final Builder setUnknownFields(
         final com.google.protobuf.UnknownFieldSet unknownFields) {

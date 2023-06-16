@@ -56,4 +56,64 @@ public interface AdditionalForceHeadResponseOrBuilder extends
    * <code>repeated double addyatouh = 2;</code>
    */
   double getAddyatouh(int index);
+
+  /**
+   * <pre>
+   *甲板名称
+   * </pre>
+   *
+   * <code>repeated string strdeck = 3;</code>
+   */
+  java.util.List<java.lang.String>
+      getStrdeckList();
+  /**
+   * <pre>
+   *甲板名称
+   * </pre>
+   *
+   * <code>repeated string strdeck = 3;</code>
+   */
+  int getStrdeckCount();
+  /**
+   * <pre>
+   *甲板名称
+   * </pre>
+   *
+   * <code>repeated string strdeck = 3;</code>
+   */
+  java.lang.String getStrdeck(int index);
+  /**
+   * <pre>
+   *甲板名称
+   * </pre>
+   *
+   * <code>repeated string strdeck = 3;</code>
+   */
+  com.google.protobuf.ByteString
+      getStrdeckBytes(int index);
+
+  /**
+   * <pre>
+   *甲板破损压头水压值
+   * </pre>
+   *
+   * <code>repeated double deckyatou = 4;</code>
+   */
+  java.util.List<java.lang.Double> getDeckyatouList();
+  /**
+   * <pre>
+   *甲板破损压头水压值
+   * </pre>
+   *
+   * <code>repeated double deckyatou = 4;</code>
+   */
+  int getDeckyatouCount();
+  /**
+   * <pre>
+   *甲板破损压头水压值
+   * </pre>
+   *
+   * <code>repeated double deckyatou = 4;</code>
+   */
+  double getDeckyatou(int index);
 }

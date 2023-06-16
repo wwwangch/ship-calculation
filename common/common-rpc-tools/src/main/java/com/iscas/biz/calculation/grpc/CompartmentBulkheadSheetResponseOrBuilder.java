@@ -9,28 +9,38 @@ public interface CompartmentBulkheadSheetResponseOrBuilder extends
 
   /**
    * <pre>
-   *破损压头水压值
+   *层间名称
    * </pre>
    *
-   * <code>repeated double yatou = 1;</code>
+   * <code>repeated string strdeckdistrict = 1;</code>
    */
-  java.util.List<java.lang.Double> getYatouList();
+  java.util.List<java.lang.String>
+      getStrdeckdistrictList();
   /**
    * <pre>
-   *破损压头水压值
+   *层间名称
    * </pre>
    *
-   * <code>repeated double yatou = 1;</code>
+   * <code>repeated string strdeckdistrict = 1;</code>
    */
-  int getYatouCount();
+  int getStrdeckdistrictCount();
   /**
    * <pre>
-   *破损压头水压值
+   *层间名称
    * </pre>
    *
-   * <code>repeated double yatou = 1;</code>
+   * <code>repeated string strdeckdistrict = 1;</code>
    */
-  double getYatou(int index);
+  java.lang.String getStrdeckdistrict(int index);
+  /**
+   * <pre>
+   *层间名称
+   * </pre>
+   *
+   * <code>repeated string strdeckdistrict = 1;</code>
+   */
+  com.google.protobuf.ByteString
+      getStrdeckdistrictBytes(int index);
 
   /**
    * <pre>
@@ -234,7 +244,7 @@ public interface CompartmentBulkheadSheetResponseOrBuilder extends
 
   /**
    * <pre>
-   *许用剪力
+   *许用应力
    * </pre>
    *
    * <code>repeated double shearAllow = 10;</code>
@@ -242,7 +252,7 @@ public interface CompartmentBulkheadSheetResponseOrBuilder extends
   java.util.List<java.lang.Double> getShearAllowList();
   /**
    * <pre>
-   *许用剪力
+   *许用应力
    * </pre>
    *
    * <code>repeated double shearAllow = 10;</code>
@@ -250,7 +260,7 @@ public interface CompartmentBulkheadSheetResponseOrBuilder extends
   int getShearAllowCount();
   /**
    * <pre>
-   *许用剪力
+   *许用应力
    * </pre>
    *
    * <code>repeated double shearAllow = 10;</code>

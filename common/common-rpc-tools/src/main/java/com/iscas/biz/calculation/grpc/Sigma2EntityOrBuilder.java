@@ -81,28 +81,10 @@ public interface Sigma2EntityOrBuilder extends
 
   /**
    * <pre>
-   *许用应力
-   * </pre>
-   *
-   * <code>double allowStress = 9;</code>
-   */
-  double getAllowStress();
-
-  /**
-   * <pre>
-   *合成许用应力
-   * </pre>
-   *
-   * <code>double combineAllowStress = 10;</code>
-   */
-  double getCombineAllowStress();
-
-  /**
-   * <pre>
    *合成中拱支座上纤维
    * </pre>
    *
-   * <code>double combineZhonggongZhizuoShang = 11;</code>
+   * <code>double combineZhonggongZhizuoShang = 9;</code>
    */
   double getCombineZhonggongZhizuoShang();
 
@@ -111,7 +93,7 @@ public interface Sigma2EntityOrBuilder extends
    *合成中拱支座下纤维
    * </pre>
    *
-   * <code>double combineZhonggongZhizuoXia = 12;</code>
+   * <code>double combineZhonggongZhizuoXia = 10;</code>
    */
   double getCombineZhonggongZhizuoXia();
 
@@ -120,7 +102,7 @@ public interface Sigma2EntityOrBuilder extends
    *合成中拱跨中上纤维
    * </pre>
    *
-   * <code>double combineZhonggongKuazhongShang = 13;</code>
+   * <code>double combineZhonggongKuazhongShang = 11;</code>
    */
   double getCombineZhonggongKuazhongShang();
 
@@ -129,7 +111,7 @@ public interface Sigma2EntityOrBuilder extends
    *合成中拱跨中下纤维
    * </pre>
    *
-   * <code>double combineZhonggongKuazhongXia = 14;</code>
+   * <code>double combineZhonggongKuazhongXia = 12;</code>
    */
   double getCombineZhonggongKuazhongXia();
 
@@ -138,7 +120,7 @@ public interface Sigma2EntityOrBuilder extends
    *合成中垂支座上纤维
    * </pre>
    *
-   * <code>double combineZhongchuiZhizuoShang = 15;</code>
+   * <code>double combineZhongchuiZhizuoShang = 13;</code>
    */
   double getCombineZhongchuiZhizuoShang();
 
@@ -147,7 +129,7 @@ public interface Sigma2EntityOrBuilder extends
    *合成中垂支座下纤维
    * </pre>
    *
-   * <code>double combineZhongchuiZhizuoXia = 16;</code>
+   * <code>double combineZhongchuiZhizuoXia = 14;</code>
    */
   double getCombineZhongchuiZhizuoXia();
 
@@ -156,7 +138,7 @@ public interface Sigma2EntityOrBuilder extends
    *合成中垂跨中上纤维
    * </pre>
    *
-   * <code>double combineZhongchuiKuazhongShang = 17;</code>
+   * <code>double combineZhongchuiKuazhongShang = 15;</code>
    */
   double getCombineZhongchuiKuazhongShang();
 
@@ -165,7 +147,16 @@ public interface Sigma2EntityOrBuilder extends
    *合成中垂跨中下纤维
    * </pre>
    *
-   * <code>double combineZhongchuiKuazhongXia = 18;</code>
+   * <code>double combineZhongchuiKuazhongXia = 16;</code>
    */
   double getCombineZhongchuiKuazhongXia();
+
+  /**
+   * <pre>
+   *合成许用应力
+   * </pre>
+   *
+   * <code>double combineAllowStress = 17;</code>
+   */
+  double getCombineAllowStress();
 }

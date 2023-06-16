@@ -23,8 +23,6 @@ public  final class Sigma2Entity extends
     zhongchuiZhizuoXia_ = 0D;
     zhongchuiKuazhongShang_ = 0D;
     zhongchuiKuazhongXia_ = 0D;
-    allowStress_ = 0D;
-    combineAllowStress_ = 0D;
     combineZhonggongZhizuoShang_ = 0D;
     combineZhonggongZhizuoXia_ = 0D;
     combineZhonggongKuazhongShang_ = 0D;
@@ -33,6 +31,7 @@ public  final class Sigma2Entity extends
     combineZhongchuiZhizuoXia_ = 0D;
     combineZhongchuiKuazhongShang_ = 0D;
     combineZhongchuiKuazhongXia_ = 0D;
+    combineAllowStress_ = 0D;
   }
 
   @java.lang.Override
@@ -102,52 +101,47 @@ public  final class Sigma2Entity extends
           }
           case 73: {
 
-            allowStress_ = input.readDouble();
+            combineZhonggongZhizuoShang_ = input.readDouble();
             break;
           }
           case 81: {
 
-            combineAllowStress_ = input.readDouble();
+            combineZhonggongZhizuoXia_ = input.readDouble();
             break;
           }
           case 89: {
 
-            combineZhonggongZhizuoShang_ = input.readDouble();
+            combineZhonggongKuazhongShang_ = input.readDouble();
             break;
           }
           case 97: {
 
-            combineZhonggongZhizuoXia_ = input.readDouble();
+            combineZhonggongKuazhongXia_ = input.readDouble();
             break;
           }
           case 105: {
 
-            combineZhonggongKuazhongShang_ = input.readDouble();
+            combineZhongchuiZhizuoShang_ = input.readDouble();
             break;
           }
           case 113: {
 
-            combineZhonggongKuazhongXia_ = input.readDouble();
+            combineZhongchuiZhizuoXia_ = input.readDouble();
             break;
           }
           case 121: {
 
-            combineZhongchuiZhizuoShang_ = input.readDouble();
+            combineZhongchuiKuazhongShang_ = input.readDouble();
             break;
           }
           case 129: {
 
-            combineZhongchuiZhizuoXia_ = input.readDouble();
+            combineZhongchuiKuazhongXia_ = input.readDouble();
             break;
           }
           case 137: {
 
-            combineZhongchuiKuazhongShang_ = input.readDouble();
-            break;
-          }
-          case 145: {
-
-            combineZhongchuiKuazhongXia_ = input.readDouble();
+            combineAllowStress_ = input.readDouble();
             break;
           }
         }
@@ -277,134 +271,121 @@ public  final class Sigma2Entity extends
     return zhongchuiKuazhongXia_;
   }
 
-  public static final int ALLOWSTRESS_FIELD_NUMBER = 9;
-  private double allowStress_;
-  /**
-   * <pre>
-   *许用应力
-   * </pre>
-   *
-   * <code>double allowStress = 9;</code>
-   */
-  public double getAllowStress() {
-    return allowStress_;
-  }
-
-  public static final int COMBINEALLOWSTRESS_FIELD_NUMBER = 10;
-  private double combineAllowStress_;
-  /**
-   * <pre>
-   *合成许用应力
-   * </pre>
-   *
-   * <code>double combineAllowStress = 10;</code>
-   */
-  public double getCombineAllowStress() {
-    return combineAllowStress_;
-  }
-
-  public static final int COMBINEZHONGGONGZHIZUOSHANG_FIELD_NUMBER = 11;
+  public static final int COMBINEZHONGGONGZHIZUOSHANG_FIELD_NUMBER = 9;
   private double combineZhonggongZhizuoShang_;
   /**
    * <pre>
    *合成中拱支座上纤维
    * </pre>
    *
-   * <code>double combineZhonggongZhizuoShang = 11;</code>
+   * <code>double combineZhonggongZhizuoShang = 9;</code>
    */
   public double getCombineZhonggongZhizuoShang() {
     return combineZhonggongZhizuoShang_;
   }
 
-  public static final int COMBINEZHONGGONGZHIZUOXIA_FIELD_NUMBER = 12;
+  public static final int COMBINEZHONGGONGZHIZUOXIA_FIELD_NUMBER = 10;
   private double combineZhonggongZhizuoXia_;
   /**
    * <pre>
    *合成中拱支座下纤维
    * </pre>
    *
-   * <code>double combineZhonggongZhizuoXia = 12;</code>
+   * <code>double combineZhonggongZhizuoXia = 10;</code>
    */
   public double getCombineZhonggongZhizuoXia() {
     return combineZhonggongZhizuoXia_;
   }
 
-  public static final int COMBINEZHONGGONGKUAZHONGSHANG_FIELD_NUMBER = 13;
+  public static final int COMBINEZHONGGONGKUAZHONGSHANG_FIELD_NUMBER = 11;
   private double combineZhonggongKuazhongShang_;
   /**
    * <pre>
    *合成中拱跨中上纤维
    * </pre>
    *
-   * <code>double combineZhonggongKuazhongShang = 13;</code>
+   * <code>double combineZhonggongKuazhongShang = 11;</code>
    */
   public double getCombineZhonggongKuazhongShang() {
     return combineZhonggongKuazhongShang_;
   }
 
-  public static final int COMBINEZHONGGONGKUAZHONGXIA_FIELD_NUMBER = 14;
+  public static final int COMBINEZHONGGONGKUAZHONGXIA_FIELD_NUMBER = 12;
   private double combineZhonggongKuazhongXia_;
   /**
    * <pre>
    *合成中拱跨中下纤维
    * </pre>
    *
-   * <code>double combineZhonggongKuazhongXia = 14;</code>
+   * <code>double combineZhonggongKuazhongXia = 12;</code>
    */
   public double getCombineZhonggongKuazhongXia() {
     return combineZhonggongKuazhongXia_;
   }
 
-  public static final int COMBINEZHONGCHUIZHIZUOSHANG_FIELD_NUMBER = 15;
+  public static final int COMBINEZHONGCHUIZHIZUOSHANG_FIELD_NUMBER = 13;
   private double combineZhongchuiZhizuoShang_;
   /**
    * <pre>
    *合成中垂支座上纤维
    * </pre>
    *
-   * <code>double combineZhongchuiZhizuoShang = 15;</code>
+   * <code>double combineZhongchuiZhizuoShang = 13;</code>
    */
   public double getCombineZhongchuiZhizuoShang() {
     return combineZhongchuiZhizuoShang_;
   }
 
-  public static final int COMBINEZHONGCHUIZHIZUOXIA_FIELD_NUMBER = 16;
+  public static final int COMBINEZHONGCHUIZHIZUOXIA_FIELD_NUMBER = 14;
   private double combineZhongchuiZhizuoXia_;
   /**
    * <pre>
    *合成中垂支座下纤维
    * </pre>
    *
-   * <code>double combineZhongchuiZhizuoXia = 16;</code>
+   * <code>double combineZhongchuiZhizuoXia = 14;</code>
    */
   public double getCombineZhongchuiZhizuoXia() {
     return combineZhongchuiZhizuoXia_;
   }
 
-  public static final int COMBINEZHONGCHUIKUAZHONGSHANG_FIELD_NUMBER = 17;
+  public static final int COMBINEZHONGCHUIKUAZHONGSHANG_FIELD_NUMBER = 15;
   private double combineZhongchuiKuazhongShang_;
   /**
    * <pre>
    *合成中垂跨中上纤维
    * </pre>
    *
-   * <code>double combineZhongchuiKuazhongShang = 17;</code>
+   * <code>double combineZhongchuiKuazhongShang = 15;</code>
    */
   public double getCombineZhongchuiKuazhongShang() {
     return combineZhongchuiKuazhongShang_;
   }
 
-  public static final int COMBINEZHONGCHUIKUAZHONGXIA_FIELD_NUMBER = 18;
+  public static final int COMBINEZHONGCHUIKUAZHONGXIA_FIELD_NUMBER = 16;
   private double combineZhongchuiKuazhongXia_;
   /**
    * <pre>
    *合成中垂跨中下纤维
    * </pre>
    *
-   * <code>double combineZhongchuiKuazhongXia = 18;</code>
+   * <code>double combineZhongchuiKuazhongXia = 16;</code>
    */
   public double getCombineZhongchuiKuazhongXia() {
     return combineZhongchuiKuazhongXia_;
+  }
+
+  public static final int COMBINEALLOWSTRESS_FIELD_NUMBER = 17;
+  private double combineAllowStress_;
+  /**
+   * <pre>
+   *合成许用应力
+   * </pre>
+   *
+   * <code>double combineAllowStress = 17;</code>
+   */
+  public double getCombineAllowStress() {
+    return combineAllowStress_;
   }
 
   private byte memoizedIsInitialized = -1;
@@ -443,35 +424,32 @@ public  final class Sigma2Entity extends
     if (zhongchuiKuazhongXia_ != 0D) {
       output.writeDouble(8, zhongchuiKuazhongXia_);
     }
-    if (allowStress_ != 0D) {
-      output.writeDouble(9, allowStress_);
-    }
-    if (combineAllowStress_ != 0D) {
-      output.writeDouble(10, combineAllowStress_);
-    }
     if (combineZhonggongZhizuoShang_ != 0D) {
-      output.writeDouble(11, combineZhonggongZhizuoShang_);
+      output.writeDouble(9, combineZhonggongZhizuoShang_);
     }
     if (combineZhonggongZhizuoXia_ != 0D) {
-      output.writeDouble(12, combineZhonggongZhizuoXia_);
+      output.writeDouble(10, combineZhonggongZhizuoXia_);
     }
     if (combineZhonggongKuazhongShang_ != 0D) {
-      output.writeDouble(13, combineZhonggongKuazhongShang_);
+      output.writeDouble(11, combineZhonggongKuazhongShang_);
     }
     if (combineZhonggongKuazhongXia_ != 0D) {
-      output.writeDouble(14, combineZhonggongKuazhongXia_);
+      output.writeDouble(12, combineZhonggongKuazhongXia_);
     }
     if (combineZhongchuiZhizuoShang_ != 0D) {
-      output.writeDouble(15, combineZhongchuiZhizuoShang_);
+      output.writeDouble(13, combineZhongchuiZhizuoShang_);
     }
     if (combineZhongchuiZhizuoXia_ != 0D) {
-      output.writeDouble(16, combineZhongchuiZhizuoXia_);
+      output.writeDouble(14, combineZhongchuiZhizuoXia_);
     }
     if (combineZhongchuiKuazhongShang_ != 0D) {
-      output.writeDouble(17, combineZhongchuiKuazhongShang_);
+      output.writeDouble(15, combineZhongchuiKuazhongShang_);
     }
     if (combineZhongchuiKuazhongXia_ != 0D) {
-      output.writeDouble(18, combineZhongchuiKuazhongXia_);
+      output.writeDouble(16, combineZhongchuiKuazhongXia_);
+    }
+    if (combineAllowStress_ != 0D) {
+      output.writeDouble(17, combineAllowStress_);
     }
   }
 
@@ -512,45 +490,41 @@ public  final class Sigma2Entity extends
       size += com.google.protobuf.CodedOutputStream
         .computeDoubleSize(8, zhongchuiKuazhongXia_);
     }
-    if (allowStress_ != 0D) {
-      size += com.google.protobuf.CodedOutputStream
-        .computeDoubleSize(9, allowStress_);
-    }
-    if (combineAllowStress_ != 0D) {
-      size += com.google.protobuf.CodedOutputStream
-        .computeDoubleSize(10, combineAllowStress_);
-    }
     if (combineZhonggongZhizuoShang_ != 0D) {
       size += com.google.protobuf.CodedOutputStream
-        .computeDoubleSize(11, combineZhonggongZhizuoShang_);
+        .computeDoubleSize(9, combineZhonggongZhizuoShang_);
     }
     if (combineZhonggongZhizuoXia_ != 0D) {
       size += com.google.protobuf.CodedOutputStream
-        .computeDoubleSize(12, combineZhonggongZhizuoXia_);
+        .computeDoubleSize(10, combineZhonggongZhizuoXia_);
     }
     if (combineZhonggongKuazhongShang_ != 0D) {
       size += com.google.protobuf.CodedOutputStream
-        .computeDoubleSize(13, combineZhonggongKuazhongShang_);
+        .computeDoubleSize(11, combineZhonggongKuazhongShang_);
     }
     if (combineZhonggongKuazhongXia_ != 0D) {
       size += com.google.protobuf.CodedOutputStream
-        .computeDoubleSize(14, combineZhonggongKuazhongXia_);
+        .computeDoubleSize(12, combineZhonggongKuazhongXia_);
     }
     if (combineZhongchuiZhizuoShang_ != 0D) {
       size += com.google.protobuf.CodedOutputStream
-        .computeDoubleSize(15, combineZhongchuiZhizuoShang_);
+        .computeDoubleSize(13, combineZhongchuiZhizuoShang_);
     }
     if (combineZhongchuiZhizuoXia_ != 0D) {
       size += com.google.protobuf.CodedOutputStream
-        .computeDoubleSize(16, combineZhongchuiZhizuoXia_);
+        .computeDoubleSize(14, combineZhongchuiZhizuoXia_);
     }
     if (combineZhongchuiKuazhongShang_ != 0D) {
       size += com.google.protobuf.CodedOutputStream
-        .computeDoubleSize(17, combineZhongchuiKuazhongShang_);
+        .computeDoubleSize(15, combineZhongchuiKuazhongShang_);
     }
     if (combineZhongchuiKuazhongXia_ != 0D) {
       size += com.google.protobuf.CodedOutputStream
-        .computeDoubleSize(18, combineZhongchuiKuazhongXia_);
+        .computeDoubleSize(16, combineZhongchuiKuazhongXia_);
+    }
+    if (combineAllowStress_ != 0D) {
+      size += com.google.protobuf.CodedOutputStream
+        .computeDoubleSize(17, combineAllowStress_);
     }
     memoizedSize = size;
     return size;
@@ -601,14 +575,6 @@ public  final class Sigma2Entity extends
         == java.lang.Double.doubleToLongBits(
             other.getZhongchuiKuazhongXia()));
     result = result && (
-        java.lang.Double.doubleToLongBits(getAllowStress())
-        == java.lang.Double.doubleToLongBits(
-            other.getAllowStress()));
-    result = result && (
-        java.lang.Double.doubleToLongBits(getCombineAllowStress())
-        == java.lang.Double.doubleToLongBits(
-            other.getCombineAllowStress()));
-    result = result && (
         java.lang.Double.doubleToLongBits(getCombineZhonggongZhizuoShang())
         == java.lang.Double.doubleToLongBits(
             other.getCombineZhonggongZhizuoShang()));
@@ -640,6 +606,10 @@ public  final class Sigma2Entity extends
         java.lang.Double.doubleToLongBits(getCombineZhongchuiKuazhongXia())
         == java.lang.Double.doubleToLongBits(
             other.getCombineZhongchuiKuazhongXia()));
+    result = result && (
+        java.lang.Double.doubleToLongBits(getCombineAllowStress())
+        == java.lang.Double.doubleToLongBits(
+            other.getCombineAllowStress()));
     return result;
   }
 
@@ -674,12 +644,6 @@ public  final class Sigma2Entity extends
     hash = (37 * hash) + ZHONGCHUIKUAZHONGXIA_FIELD_NUMBER;
     hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
         java.lang.Double.doubleToLongBits(getZhongchuiKuazhongXia()));
-    hash = (37 * hash) + ALLOWSTRESS_FIELD_NUMBER;
-    hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
-        java.lang.Double.doubleToLongBits(getAllowStress()));
-    hash = (37 * hash) + COMBINEALLOWSTRESS_FIELD_NUMBER;
-    hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
-        java.lang.Double.doubleToLongBits(getCombineAllowStress()));
     hash = (37 * hash) + COMBINEZHONGGONGZHIZUOSHANG_FIELD_NUMBER;
     hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
         java.lang.Double.doubleToLongBits(getCombineZhonggongZhizuoShang()));
@@ -704,6 +668,9 @@ public  final class Sigma2Entity extends
     hash = (37 * hash) + COMBINEZHONGCHUIKUAZHONGXIA_FIELD_NUMBER;
     hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
         java.lang.Double.doubleToLongBits(getCombineZhongchuiKuazhongXia()));
+    hash = (37 * hash) + COMBINEALLOWSTRESS_FIELD_NUMBER;
+    hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
+        java.lang.Double.doubleToLongBits(getCombineAllowStress()));
     hash = (29 * hash) + unknownFields.hashCode();
     memoizedHashCode = hash;
     return hash;
@@ -838,10 +805,6 @@ public  final class Sigma2Entity extends
 
       zhongchuiKuazhongXia_ = 0D;
 
-      allowStress_ = 0D;
-
-      combineAllowStress_ = 0D;
-
       combineZhonggongZhizuoShang_ = 0D;
 
       combineZhonggongZhizuoXia_ = 0D;
@@ -857,6 +820,8 @@ public  final class Sigma2Entity extends
       combineZhongchuiKuazhongShang_ = 0D;
 
       combineZhongchuiKuazhongXia_ = 0D;
+
+      combineAllowStress_ = 0D;
 
       return this;
     }
@@ -888,8 +853,6 @@ public  final class Sigma2Entity extends
       result.zhongchuiZhizuoXia_ = zhongchuiZhizuoXia_;
       result.zhongchuiKuazhongShang_ = zhongchuiKuazhongShang_;
       result.zhongchuiKuazhongXia_ = zhongchuiKuazhongXia_;
-      result.allowStress_ = allowStress_;
-      result.combineAllowStress_ = combineAllowStress_;
       result.combineZhonggongZhizuoShang_ = combineZhonggongZhizuoShang_;
       result.combineZhonggongZhizuoXia_ = combineZhonggongZhizuoXia_;
       result.combineZhonggongKuazhongShang_ = combineZhonggongKuazhongShang_;
@@ -898,6 +861,7 @@ public  final class Sigma2Entity extends
       result.combineZhongchuiZhizuoXia_ = combineZhongchuiZhizuoXia_;
       result.combineZhongchuiKuazhongShang_ = combineZhongchuiKuazhongShang_;
       result.combineZhongchuiKuazhongXia_ = combineZhongchuiKuazhongXia_;
+      result.combineAllowStress_ = combineAllowStress_;
       onBuilt();
       return result;
     }
@@ -963,12 +927,6 @@ public  final class Sigma2Entity extends
       if (other.getZhongchuiKuazhongXia() != 0D) {
         setZhongchuiKuazhongXia(other.getZhongchuiKuazhongXia());
       }
-      if (other.getAllowStress() != 0D) {
-        setAllowStress(other.getAllowStress());
-      }
-      if (other.getCombineAllowStress() != 0D) {
-        setCombineAllowStress(other.getCombineAllowStress());
-      }
       if (other.getCombineZhonggongZhizuoShang() != 0D) {
         setCombineZhonggongZhizuoShang(other.getCombineZhonggongZhizuoShang());
       }
@@ -992,6 +950,9 @@ public  final class Sigma2Entity extends
       }
       if (other.getCombineZhongchuiKuazhongXia() != 0D) {
         setCombineZhongchuiKuazhongXia(other.getCombineZhongchuiKuazhongXia());
+      }
+      if (other.getCombineAllowStress() != 0D) {
+        setCombineAllowStress(other.getCombineAllowStress());
       }
       onChanged();
       return this;
@@ -1323,89 +1284,13 @@ public  final class Sigma2Entity extends
       return this;
     }
 
-    private double allowStress_ ;
-    /**
-     * <pre>
-     *许用应力
-     * </pre>
-     *
-     * <code>double allowStress = 9;</code>
-     */
-    public double getAllowStress() {
-      return allowStress_;
-    }
-    /**
-     * <pre>
-     *许用应力
-     * </pre>
-     *
-     * <code>double allowStress = 9;</code>
-     */
-    public Builder setAllowStress(double value) {
-      
-      allowStress_ = value;
-      onChanged();
-      return this;
-    }
-    /**
-     * <pre>
-     *许用应力
-     * </pre>
-     *
-     * <code>double allowStress = 9;</code>
-     */
-    public Builder clearAllowStress() {
-      
-      allowStress_ = 0D;
-      onChanged();
-      return this;
-    }
-
-    private double combineAllowStress_ ;
-    /**
-     * <pre>
-     *合成许用应力
-     * </pre>
-     *
-     * <code>double combineAllowStress = 10;</code>
-     */
-    public double getCombineAllowStress() {
-      return combineAllowStress_;
-    }
-    /**
-     * <pre>
-     *合成许用应力
-     * </pre>
-     *
-     * <code>double combineAllowStress = 10;</code>
-     */
-    public Builder setCombineAllowStress(double value) {
-      
-      combineAllowStress_ = value;
-      onChanged();
-      return this;
-    }
-    /**
-     * <pre>
-     *合成许用应力
-     * </pre>
-     *
-     * <code>double combineAllowStress = 10;</code>
-     */
-    public Builder clearCombineAllowStress() {
-      
-      combineAllowStress_ = 0D;
-      onChanged();
-      return this;
-    }
-
     private double combineZhonggongZhizuoShang_ ;
     /**
      * <pre>
      *合成中拱支座上纤维
      * </pre>
      *
-     * <code>double combineZhonggongZhizuoShang = 11;</code>
+     * <code>double combineZhonggongZhizuoShang = 9;</code>
      */
     public double getCombineZhonggongZhizuoShang() {
       return combineZhonggongZhizuoShang_;
@@ -1415,7 +1300,7 @@ public  final class Sigma2Entity extends
      *合成中拱支座上纤维
      * </pre>
      *
-     * <code>double combineZhonggongZhizuoShang = 11;</code>
+     * <code>double combineZhonggongZhizuoShang = 9;</code>
      */
     public Builder setCombineZhonggongZhizuoShang(double value) {
       
@@ -1428,7 +1313,7 @@ public  final class Sigma2Entity extends
      *合成中拱支座上纤维
      * </pre>
      *
-     * <code>double combineZhonggongZhizuoShang = 11;</code>
+     * <code>double combineZhonggongZhizuoShang = 9;</code>
      */
     public Builder clearCombineZhonggongZhizuoShang() {
       
@@ -1443,7 +1328,7 @@ public  final class Sigma2Entity extends
      *合成中拱支座下纤维
      * </pre>
      *
-     * <code>double combineZhonggongZhizuoXia = 12;</code>
+     * <code>double combineZhonggongZhizuoXia = 10;</code>
      */
     public double getCombineZhonggongZhizuoXia() {
       return combineZhonggongZhizuoXia_;
@@ -1453,7 +1338,7 @@ public  final class Sigma2Entity extends
      *合成中拱支座下纤维
      * </pre>
      *
-     * <code>double combineZhonggongZhizuoXia = 12;</code>
+     * <code>double combineZhonggongZhizuoXia = 10;</code>
      */
     public Builder setCombineZhonggongZhizuoXia(double value) {
       
@@ -1466,7 +1351,7 @@ public  final class Sigma2Entity extends
      *合成中拱支座下纤维
      * </pre>
      *
-     * <code>double combineZhonggongZhizuoXia = 12;</code>
+     * <code>double combineZhonggongZhizuoXia = 10;</code>
      */
     public Builder clearCombineZhonggongZhizuoXia() {
       
@@ -1481,7 +1366,7 @@ public  final class Sigma2Entity extends
      *合成中拱跨中上纤维
      * </pre>
      *
-     * <code>double combineZhonggongKuazhongShang = 13;</code>
+     * <code>double combineZhonggongKuazhongShang = 11;</code>
      */
     public double getCombineZhonggongKuazhongShang() {
       return combineZhonggongKuazhongShang_;
@@ -1491,7 +1376,7 @@ public  final class Sigma2Entity extends
      *合成中拱跨中上纤维
      * </pre>
      *
-     * <code>double combineZhonggongKuazhongShang = 13;</code>
+     * <code>double combineZhonggongKuazhongShang = 11;</code>
      */
     public Builder setCombineZhonggongKuazhongShang(double value) {
       
@@ -1504,7 +1389,7 @@ public  final class Sigma2Entity extends
      *合成中拱跨中上纤维
      * </pre>
      *
-     * <code>double combineZhonggongKuazhongShang = 13;</code>
+     * <code>double combineZhonggongKuazhongShang = 11;</code>
      */
     public Builder clearCombineZhonggongKuazhongShang() {
       
@@ -1519,7 +1404,7 @@ public  final class Sigma2Entity extends
      *合成中拱跨中下纤维
      * </pre>
      *
-     * <code>double combineZhonggongKuazhongXia = 14;</code>
+     * <code>double combineZhonggongKuazhongXia = 12;</code>
      */
     public double getCombineZhonggongKuazhongXia() {
       return combineZhonggongKuazhongXia_;
@@ -1529,7 +1414,7 @@ public  final class Sigma2Entity extends
      *合成中拱跨中下纤维
      * </pre>
      *
-     * <code>double combineZhonggongKuazhongXia = 14;</code>
+     * <code>double combineZhonggongKuazhongXia = 12;</code>
      */
     public Builder setCombineZhonggongKuazhongXia(double value) {
       
@@ -1542,7 +1427,7 @@ public  final class Sigma2Entity extends
      *合成中拱跨中下纤维
      * </pre>
      *
-     * <code>double combineZhonggongKuazhongXia = 14;</code>
+     * <code>double combineZhonggongKuazhongXia = 12;</code>
      */
     public Builder clearCombineZhonggongKuazhongXia() {
       
@@ -1557,7 +1442,7 @@ public  final class Sigma2Entity extends
      *合成中垂支座上纤维
      * </pre>
      *
-     * <code>double combineZhongchuiZhizuoShang = 15;</code>
+     * <code>double combineZhongchuiZhizuoShang = 13;</code>
      */
     public double getCombineZhongchuiZhizuoShang() {
       return combineZhongchuiZhizuoShang_;
@@ -1567,7 +1452,7 @@ public  final class Sigma2Entity extends
      *合成中垂支座上纤维
      * </pre>
      *
-     * <code>double combineZhongchuiZhizuoShang = 15;</code>
+     * <code>double combineZhongchuiZhizuoShang = 13;</code>
      */
     public Builder setCombineZhongchuiZhizuoShang(double value) {
       
@@ -1580,7 +1465,7 @@ public  final class Sigma2Entity extends
      *合成中垂支座上纤维
      * </pre>
      *
-     * <code>double combineZhongchuiZhizuoShang = 15;</code>
+     * <code>double combineZhongchuiZhizuoShang = 13;</code>
      */
     public Builder clearCombineZhongchuiZhizuoShang() {
       
@@ -1595,7 +1480,7 @@ public  final class Sigma2Entity extends
      *合成中垂支座下纤维
      * </pre>
      *
-     * <code>double combineZhongchuiZhizuoXia = 16;</code>
+     * <code>double combineZhongchuiZhizuoXia = 14;</code>
      */
     public double getCombineZhongchuiZhizuoXia() {
       return combineZhongchuiZhizuoXia_;
@@ -1605,7 +1490,7 @@ public  final class Sigma2Entity extends
      *合成中垂支座下纤维
      * </pre>
      *
-     * <code>double combineZhongchuiZhizuoXia = 16;</code>
+     * <code>double combineZhongchuiZhizuoXia = 14;</code>
      */
     public Builder setCombineZhongchuiZhizuoXia(double value) {
       
@@ -1618,7 +1503,7 @@ public  final class Sigma2Entity extends
      *合成中垂支座下纤维
      * </pre>
      *
-     * <code>double combineZhongchuiZhizuoXia = 16;</code>
+     * <code>double combineZhongchuiZhizuoXia = 14;</code>
      */
     public Builder clearCombineZhongchuiZhizuoXia() {
       
@@ -1633,7 +1518,7 @@ public  final class Sigma2Entity extends
      *合成中垂跨中上纤维
      * </pre>
      *
-     * <code>double combineZhongchuiKuazhongShang = 17;</code>
+     * <code>double combineZhongchuiKuazhongShang = 15;</code>
      */
     public double getCombineZhongchuiKuazhongShang() {
       return combineZhongchuiKuazhongShang_;
@@ -1643,7 +1528,7 @@ public  final class Sigma2Entity extends
      *合成中垂跨中上纤维
      * </pre>
      *
-     * <code>double combineZhongchuiKuazhongShang = 17;</code>
+     * <code>double combineZhongchuiKuazhongShang = 15;</code>
      */
     public Builder setCombineZhongchuiKuazhongShang(double value) {
       
@@ -1656,7 +1541,7 @@ public  final class Sigma2Entity extends
      *合成中垂跨中上纤维
      * </pre>
      *
-     * <code>double combineZhongchuiKuazhongShang = 17;</code>
+     * <code>double combineZhongchuiKuazhongShang = 15;</code>
      */
     public Builder clearCombineZhongchuiKuazhongShang() {
       
@@ -1671,7 +1556,7 @@ public  final class Sigma2Entity extends
      *合成中垂跨中下纤维
      * </pre>
      *
-     * <code>double combineZhongchuiKuazhongXia = 18;</code>
+     * <code>double combineZhongchuiKuazhongXia = 16;</code>
      */
     public double getCombineZhongchuiKuazhongXia() {
       return combineZhongchuiKuazhongXia_;
@@ -1681,7 +1566,7 @@ public  final class Sigma2Entity extends
      *合成中垂跨中下纤维
      * </pre>
      *
-     * <code>double combineZhongchuiKuazhongXia = 18;</code>
+     * <code>double combineZhongchuiKuazhongXia = 16;</code>
      */
     public Builder setCombineZhongchuiKuazhongXia(double value) {
       
@@ -1694,11 +1579,49 @@ public  final class Sigma2Entity extends
      *合成中垂跨中下纤维
      * </pre>
      *
-     * <code>double combineZhongchuiKuazhongXia = 18;</code>
+     * <code>double combineZhongchuiKuazhongXia = 16;</code>
      */
     public Builder clearCombineZhongchuiKuazhongXia() {
       
       combineZhongchuiKuazhongXia_ = 0D;
+      onChanged();
+      return this;
+    }
+
+    private double combineAllowStress_ ;
+    /**
+     * <pre>
+     *合成许用应力
+     * </pre>
+     *
+     * <code>double combineAllowStress = 17;</code>
+     */
+    public double getCombineAllowStress() {
+      return combineAllowStress_;
+    }
+    /**
+     * <pre>
+     *合成许用应力
+     * </pre>
+     *
+     * <code>double combineAllowStress = 17;</code>
+     */
+    public Builder setCombineAllowStress(double value) {
+      
+      combineAllowStress_ = value;
+      onChanged();
+      return this;
+    }
+    /**
+     * <pre>
+     *合成许用应力
+     * </pre>
+     *
+     * <code>double combineAllowStress = 17;</code>
+     */
+    public Builder clearCombineAllowStress() {
+      
+      combineAllowStress_ = 0D;
       onChanged();
       return this;
     }

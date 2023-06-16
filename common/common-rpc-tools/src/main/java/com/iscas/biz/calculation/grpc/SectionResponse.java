@@ -21,12 +21,11 @@ public  final class SectionResponse extends
   private SectionResponse() {
     firstMoment0_ = 0D;
     interia0_ = 0D;
-    zaxisH_ = 0D;
-    firstMomH_ = 0D;
-    interiaH_ = 0D;
-    zaxisS_ = 0D;
-    firstMomS_ = 0D;
-    interiaS_ = 0D;
+    zaxis0_ = 0D;
+    area_ = 0D;
+    moduleUppper_ = 0D;
+    moduleLower_ = 0D;
+    profileFilePath_ = "";
   }
 
   @java.lang.Override
@@ -66,32 +65,28 @@ public  final class SectionResponse extends
           }
           case 25: {
 
-            zaxisH_ = input.readDouble();
+            zaxis0_ = input.readDouble();
             break;
           }
           case 33: {
 
-            firstMomH_ = input.readDouble();
+            area_ = input.readDouble();
             break;
           }
           case 41: {
 
-            interiaH_ = input.readDouble();
+            moduleUppper_ = input.readDouble();
             break;
           }
           case 49: {
 
-            zaxisS_ = input.readDouble();
+            moduleLower_ = input.readDouble();
             break;
           }
-          case 57: {
+          case 58: {
+            java.lang.String s = input.readStringRequireUtf8();
 
-            firstMomS_ = input.readDouble();
-            break;
-          }
-          case 65: {
-
-            interiaS_ = input.readDouble();
+            profileFilePath_ = s;
             break;
           }
         }
@@ -134,7 +129,7 @@ public  final class SectionResponse extends
   private double interia0_;
   /**
    * <pre>
-   *惯性矩
+   *初始惯性矩
    * </pre>
    *
    * <code>double interia0 = 2;</code>
@@ -143,82 +138,99 @@ public  final class SectionResponse extends
     return interia0_;
   }
 
-  public static final int ZAXISH_FIELD_NUMBER = 3;
-  private double zaxisH_;
+  public static final int ZAXIS0_FIELD_NUMBER = 3;
+  private double zaxis0_;
   /**
    * <pre>
-   *中拱时的中和轴
+   *初始中和轴
    * </pre>
    *
-   * <code>double zaxisH = 3;</code>
+   * <code>double zaxis0 = 3;</code>
    */
-  public double getZaxisH() {
-    return zaxisH_;
+  public double getZaxis0() {
+    return zaxis0_;
   }
 
-  public static final int FIRSTMOMH_FIELD_NUMBER = 4;
-  private double firstMomH_;
+  public static final int AREA_FIELD_NUMBER = 4;
+  private double area_;
   /**
    * <pre>
-   *中拱时静矩
+   *修改0614 去掉中拱中垂输出，增加面积和底部上甲板模数输出
+   *剖面面积
    * </pre>
    *
-   * <code>double firstMomH = 4;</code>
+   * <code>double area = 4;</code>
    */
-  public double getFirstMomH() {
-    return firstMomH_;
+  public double getArea() {
+    return area_;
   }
 
-  public static final int INTERIAH_FIELD_NUMBER = 5;
-  private double interiaH_;
+  public static final int MODULE_UPPPER_FIELD_NUMBER = 5;
+  private double moduleUppper_;
   /**
    * <pre>
-   *中拱时惯性矩
+   *上甲板模数
    * </pre>
    *
-   * <code>double interiaH = 5;</code>
+   * <code>double module_uppper = 5;</code>
    */
-  public double getInteriaH() {
-    return interiaH_;
+  public double getModuleUppper() {
+    return moduleUppper_;
   }
 
-  public static final int ZAXISS_FIELD_NUMBER = 6;
-  private double zaxisS_;
+  public static final int MODULE_LOWER_FIELD_NUMBER = 6;
+  private double moduleLower_;
   /**
    * <pre>
-   *中垂时的中和轴
+   *底部模数
    * </pre>
    *
-   * <code>double zaxisS = 6;</code>
+   * <code>double module_lower = 6;</code>
    */
-  public double getZaxisS() {
-    return zaxisS_;
+  public double getModuleLower() {
+    return moduleLower_;
   }
 
-  public static final int FIRSTMOMS_FIELD_NUMBER = 7;
-  private double firstMomS_;
+  public static final int PROFILEFILEPATH_FIELD_NUMBER = 7;
+  private volatile java.lang.Object profileFilePath_;
   /**
    * <pre>
-   *中垂时静矩
+   *解析后的剖面文件路径
    * </pre>
    *
-   * <code>double firstMomS = 7;</code>
+   * <code>string profileFilePath = 7;</code>
    */
-  public double getFirstMomS() {
-    return firstMomS_;
+  public java.lang.String getProfileFilePath() {
+    java.lang.Object ref = profileFilePath_;
+    if (ref instanceof java.lang.String) {
+      return (java.lang.String) ref;
+    } else {
+      com.google.protobuf.ByteString bs = 
+          (com.google.protobuf.ByteString) ref;
+      java.lang.String s = bs.toStringUtf8();
+      profileFilePath_ = s;
+      return s;
+    }
   }
-
-  public static final int INTERIAS_FIELD_NUMBER = 8;
-  private double interiaS_;
   /**
    * <pre>
-   *中垂时惯性矩
+   *解析后的剖面文件路径
    * </pre>
    *
-   * <code>double interiaS = 8;</code>
+   * <code>string profileFilePath = 7;</code>
    */
-  public double getInteriaS() {
-    return interiaS_;
+  public com.google.protobuf.ByteString
+      getProfileFilePathBytes() {
+    java.lang.Object ref = profileFilePath_;
+    if (ref instanceof java.lang.String) {
+      com.google.protobuf.ByteString b = 
+          com.google.protobuf.ByteString.copyFromUtf8(
+              (java.lang.String) ref);
+      profileFilePath_ = b;
+      return b;
+    } else {
+      return (com.google.protobuf.ByteString) ref;
+    }
   }
 
   private byte memoizedIsInitialized = -1;
@@ -239,23 +251,20 @@ public  final class SectionResponse extends
     if (interia0_ != 0D) {
       output.writeDouble(2, interia0_);
     }
-    if (zaxisH_ != 0D) {
-      output.writeDouble(3, zaxisH_);
+    if (zaxis0_ != 0D) {
+      output.writeDouble(3, zaxis0_);
     }
-    if (firstMomH_ != 0D) {
-      output.writeDouble(4, firstMomH_);
+    if (area_ != 0D) {
+      output.writeDouble(4, area_);
     }
-    if (interiaH_ != 0D) {
-      output.writeDouble(5, interiaH_);
+    if (moduleUppper_ != 0D) {
+      output.writeDouble(5, moduleUppper_);
     }
-    if (zaxisS_ != 0D) {
-      output.writeDouble(6, zaxisS_);
+    if (moduleLower_ != 0D) {
+      output.writeDouble(6, moduleLower_);
     }
-    if (firstMomS_ != 0D) {
-      output.writeDouble(7, firstMomS_);
-    }
-    if (interiaS_ != 0D) {
-      output.writeDouble(8, interiaS_);
+    if (!getProfileFilePathBytes().isEmpty()) {
+      com.google.protobuf.GeneratedMessageV3.writeString(output, 7, profileFilePath_);
     }
   }
 
@@ -272,29 +281,24 @@ public  final class SectionResponse extends
       size += com.google.protobuf.CodedOutputStream
         .computeDoubleSize(2, interia0_);
     }
-    if (zaxisH_ != 0D) {
+    if (zaxis0_ != 0D) {
       size += com.google.protobuf.CodedOutputStream
-        .computeDoubleSize(3, zaxisH_);
+        .computeDoubleSize(3, zaxis0_);
     }
-    if (firstMomH_ != 0D) {
+    if (area_ != 0D) {
       size += com.google.protobuf.CodedOutputStream
-        .computeDoubleSize(4, firstMomH_);
+        .computeDoubleSize(4, area_);
     }
-    if (interiaH_ != 0D) {
+    if (moduleUppper_ != 0D) {
       size += com.google.protobuf.CodedOutputStream
-        .computeDoubleSize(5, interiaH_);
+        .computeDoubleSize(5, moduleUppper_);
     }
-    if (zaxisS_ != 0D) {
+    if (moduleLower_ != 0D) {
       size += com.google.protobuf.CodedOutputStream
-        .computeDoubleSize(6, zaxisS_);
+        .computeDoubleSize(6, moduleLower_);
     }
-    if (firstMomS_ != 0D) {
-      size += com.google.protobuf.CodedOutputStream
-        .computeDoubleSize(7, firstMomS_);
-    }
-    if (interiaS_ != 0D) {
-      size += com.google.protobuf.CodedOutputStream
-        .computeDoubleSize(8, interiaS_);
+    if (!getProfileFilePathBytes().isEmpty()) {
+      size += com.google.protobuf.GeneratedMessageV3.computeStringSize(7, profileFilePath_);
     }
     memoizedSize = size;
     return size;
@@ -321,29 +325,23 @@ public  final class SectionResponse extends
         == java.lang.Double.doubleToLongBits(
             other.getInteria0()));
     result = result && (
-        java.lang.Double.doubleToLongBits(getZaxisH())
+        java.lang.Double.doubleToLongBits(getZaxis0())
         == java.lang.Double.doubleToLongBits(
-            other.getZaxisH()));
+            other.getZaxis0()));
     result = result && (
-        java.lang.Double.doubleToLongBits(getFirstMomH())
+        java.lang.Double.doubleToLongBits(getArea())
         == java.lang.Double.doubleToLongBits(
-            other.getFirstMomH()));
+            other.getArea()));
     result = result && (
-        java.lang.Double.doubleToLongBits(getInteriaH())
+        java.lang.Double.doubleToLongBits(getModuleUppper())
         == java.lang.Double.doubleToLongBits(
-            other.getInteriaH()));
+            other.getModuleUppper()));
     result = result && (
-        java.lang.Double.doubleToLongBits(getZaxisS())
+        java.lang.Double.doubleToLongBits(getModuleLower())
         == java.lang.Double.doubleToLongBits(
-            other.getZaxisS()));
-    result = result && (
-        java.lang.Double.doubleToLongBits(getFirstMomS())
-        == java.lang.Double.doubleToLongBits(
-            other.getFirstMomS()));
-    result = result && (
-        java.lang.Double.doubleToLongBits(getInteriaS())
-        == java.lang.Double.doubleToLongBits(
-            other.getInteriaS()));
+            other.getModuleLower()));
+    result = result && getProfileFilePath()
+        .equals(other.getProfileFilePath());
     return result;
   }
 
@@ -360,24 +358,20 @@ public  final class SectionResponse extends
     hash = (37 * hash) + INTERIA0_FIELD_NUMBER;
     hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
         java.lang.Double.doubleToLongBits(getInteria0()));
-    hash = (37 * hash) + ZAXISH_FIELD_NUMBER;
+    hash = (37 * hash) + ZAXIS0_FIELD_NUMBER;
     hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
-        java.lang.Double.doubleToLongBits(getZaxisH()));
-    hash = (37 * hash) + FIRSTMOMH_FIELD_NUMBER;
+        java.lang.Double.doubleToLongBits(getZaxis0()));
+    hash = (37 * hash) + AREA_FIELD_NUMBER;
     hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
-        java.lang.Double.doubleToLongBits(getFirstMomH()));
-    hash = (37 * hash) + INTERIAH_FIELD_NUMBER;
+        java.lang.Double.doubleToLongBits(getArea()));
+    hash = (37 * hash) + MODULE_UPPPER_FIELD_NUMBER;
     hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
-        java.lang.Double.doubleToLongBits(getInteriaH()));
-    hash = (37 * hash) + ZAXISS_FIELD_NUMBER;
+        java.lang.Double.doubleToLongBits(getModuleUppper()));
+    hash = (37 * hash) + MODULE_LOWER_FIELD_NUMBER;
     hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
-        java.lang.Double.doubleToLongBits(getZaxisS()));
-    hash = (37 * hash) + FIRSTMOMS_FIELD_NUMBER;
-    hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
-        java.lang.Double.doubleToLongBits(getFirstMomS()));
-    hash = (37 * hash) + INTERIAS_FIELD_NUMBER;
-    hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
-        java.lang.Double.doubleToLongBits(getInteriaS()));
+        java.lang.Double.doubleToLongBits(getModuleLower()));
+    hash = (37 * hash) + PROFILEFILEPATH_FIELD_NUMBER;
+    hash = (53 * hash) + getProfileFilePath().hashCode();
     hash = (29 * hash) + unknownFields.hashCode();
     memoizedHashCode = hash;
     return hash;
@@ -504,17 +498,15 @@ public  final class SectionResponse extends
 
       interia0_ = 0D;
 
-      zaxisH_ = 0D;
+      zaxis0_ = 0D;
 
-      firstMomH_ = 0D;
+      area_ = 0D;
 
-      interiaH_ = 0D;
+      moduleUppper_ = 0D;
 
-      zaxisS_ = 0D;
+      moduleLower_ = 0D;
 
-      firstMomS_ = 0D;
-
-      interiaS_ = 0D;
+      profileFilePath_ = "";
 
       return this;
     }
@@ -540,12 +532,11 @@ public  final class SectionResponse extends
       com.iscas.biz.calculation.grpc.SectionResponse result = new com.iscas.biz.calculation.grpc.SectionResponse(this);
       result.firstMoment0_ = firstMoment0_;
       result.interia0_ = interia0_;
-      result.zaxisH_ = zaxisH_;
-      result.firstMomH_ = firstMomH_;
-      result.interiaH_ = interiaH_;
-      result.zaxisS_ = zaxisS_;
-      result.firstMomS_ = firstMomS_;
-      result.interiaS_ = interiaS_;
+      result.zaxis0_ = zaxis0_;
+      result.area_ = area_;
+      result.moduleUppper_ = moduleUppper_;
+      result.moduleLower_ = moduleLower_;
+      result.profileFilePath_ = profileFilePath_;
       onBuilt();
       return result;
     }
@@ -593,23 +584,21 @@ public  final class SectionResponse extends
       if (other.getInteria0() != 0D) {
         setInteria0(other.getInteria0());
       }
-      if (other.getZaxisH() != 0D) {
-        setZaxisH(other.getZaxisH());
+      if (other.getZaxis0() != 0D) {
+        setZaxis0(other.getZaxis0());
       }
-      if (other.getFirstMomH() != 0D) {
-        setFirstMomH(other.getFirstMomH());
+      if (other.getArea() != 0D) {
+        setArea(other.getArea());
       }
-      if (other.getInteriaH() != 0D) {
-        setInteriaH(other.getInteriaH());
+      if (other.getModuleUppper() != 0D) {
+        setModuleUppper(other.getModuleUppper());
       }
-      if (other.getZaxisS() != 0D) {
-        setZaxisS(other.getZaxisS());
+      if (other.getModuleLower() != 0D) {
+        setModuleLower(other.getModuleLower());
       }
-      if (other.getFirstMomS() != 0D) {
-        setFirstMomS(other.getFirstMomS());
-      }
-      if (other.getInteriaS() != 0D) {
-        setInteriaS(other.getInteriaS());
+      if (!other.getProfileFilePath().isEmpty()) {
+        profileFilePath_ = other.profileFilePath_;
+        onChanged();
       }
       onChanged();
       return this;
@@ -678,7 +667,7 @@ public  final class SectionResponse extends
     private double interia0_ ;
     /**
      * <pre>
-     *惯性矩
+     *初始惯性矩
      * </pre>
      *
      * <code>double interia0 = 2;</code>
@@ -688,7 +677,7 @@ public  final class SectionResponse extends
     }
     /**
      * <pre>
-     *惯性矩
+     *初始惯性矩
      * </pre>
      *
      * <code>double interia0 = 2;</code>
@@ -701,7 +690,7 @@ public  final class SectionResponse extends
     }
     /**
      * <pre>
-     *惯性矩
+     *初始惯性矩
      * </pre>
      *
      * <code>double interia0 = 2;</code>
@@ -713,230 +702,246 @@ public  final class SectionResponse extends
       return this;
     }
 
-    private double zaxisH_ ;
+    private double zaxis0_ ;
     /**
      * <pre>
-     *中拱时的中和轴
+     *初始中和轴
      * </pre>
      *
-     * <code>double zaxisH = 3;</code>
+     * <code>double zaxis0 = 3;</code>
      */
-    public double getZaxisH() {
-      return zaxisH_;
+    public double getZaxis0() {
+      return zaxis0_;
     }
     /**
      * <pre>
-     *中拱时的中和轴
+     *初始中和轴
      * </pre>
      *
-     * <code>double zaxisH = 3;</code>
+     * <code>double zaxis0 = 3;</code>
      */
-    public Builder setZaxisH(double value) {
+    public Builder setZaxis0(double value) {
       
-      zaxisH_ = value;
+      zaxis0_ = value;
       onChanged();
       return this;
     }
     /**
      * <pre>
-     *中拱时的中和轴
+     *初始中和轴
      * </pre>
      *
-     * <code>double zaxisH = 3;</code>
+     * <code>double zaxis0 = 3;</code>
      */
-    public Builder clearZaxisH() {
+    public Builder clearZaxis0() {
       
-      zaxisH_ = 0D;
-      onChanged();
-      return this;
-    }
-
-    private double firstMomH_ ;
-    /**
-     * <pre>
-     *中拱时静矩
-     * </pre>
-     *
-     * <code>double firstMomH = 4;</code>
-     */
-    public double getFirstMomH() {
-      return firstMomH_;
-    }
-    /**
-     * <pre>
-     *中拱时静矩
-     * </pre>
-     *
-     * <code>double firstMomH = 4;</code>
-     */
-    public Builder setFirstMomH(double value) {
-      
-      firstMomH_ = value;
-      onChanged();
-      return this;
-    }
-    /**
-     * <pre>
-     *中拱时静矩
-     * </pre>
-     *
-     * <code>double firstMomH = 4;</code>
-     */
-    public Builder clearFirstMomH() {
-      
-      firstMomH_ = 0D;
+      zaxis0_ = 0D;
       onChanged();
       return this;
     }
 
-    private double interiaH_ ;
+    private double area_ ;
     /**
      * <pre>
-     *中拱时惯性矩
+     *修改0614 去掉中拱中垂输出，增加面积和底部上甲板模数输出
+     *剖面面积
      * </pre>
      *
-     * <code>double interiaH = 5;</code>
+     * <code>double area = 4;</code>
      */
-    public double getInteriaH() {
-      return interiaH_;
+    public double getArea() {
+      return area_;
     }
     /**
      * <pre>
-     *中拱时惯性矩
+     *修改0614 去掉中拱中垂输出，增加面积和底部上甲板模数输出
+     *剖面面积
      * </pre>
      *
-     * <code>double interiaH = 5;</code>
+     * <code>double area = 4;</code>
      */
-    public Builder setInteriaH(double value) {
+    public Builder setArea(double value) {
       
-      interiaH_ = value;
+      area_ = value;
       onChanged();
       return this;
     }
     /**
      * <pre>
-     *中拱时惯性矩
+     *修改0614 去掉中拱中垂输出，增加面积和底部上甲板模数输出
+     *剖面面积
      * </pre>
      *
-     * <code>double interiaH = 5;</code>
+     * <code>double area = 4;</code>
      */
-    public Builder clearInteriaH() {
+    public Builder clearArea() {
       
-      interiaH_ = 0D;
-      onChanged();
-      return this;
-    }
-
-    private double zaxisS_ ;
-    /**
-     * <pre>
-     *中垂时的中和轴
-     * </pre>
-     *
-     * <code>double zaxisS = 6;</code>
-     */
-    public double getZaxisS() {
-      return zaxisS_;
-    }
-    /**
-     * <pre>
-     *中垂时的中和轴
-     * </pre>
-     *
-     * <code>double zaxisS = 6;</code>
-     */
-    public Builder setZaxisS(double value) {
-      
-      zaxisS_ = value;
-      onChanged();
-      return this;
-    }
-    /**
-     * <pre>
-     *中垂时的中和轴
-     * </pre>
-     *
-     * <code>double zaxisS = 6;</code>
-     */
-    public Builder clearZaxisS() {
-      
-      zaxisS_ = 0D;
+      area_ = 0D;
       onChanged();
       return this;
     }
 
-    private double firstMomS_ ;
+    private double moduleUppper_ ;
     /**
      * <pre>
-     *中垂时静矩
+     *上甲板模数
      * </pre>
      *
-     * <code>double firstMomS = 7;</code>
+     * <code>double module_uppper = 5;</code>
      */
-    public double getFirstMomS() {
-      return firstMomS_;
+    public double getModuleUppper() {
+      return moduleUppper_;
     }
     /**
      * <pre>
-     *中垂时静矩
+     *上甲板模数
      * </pre>
      *
-     * <code>double firstMomS = 7;</code>
+     * <code>double module_uppper = 5;</code>
      */
-    public Builder setFirstMomS(double value) {
+    public Builder setModuleUppper(double value) {
       
-      firstMomS_ = value;
+      moduleUppper_ = value;
       onChanged();
       return this;
     }
     /**
      * <pre>
-     *中垂时静矩
+     *上甲板模数
      * </pre>
      *
-     * <code>double firstMomS = 7;</code>
+     * <code>double module_uppper = 5;</code>
      */
-    public Builder clearFirstMomS() {
+    public Builder clearModuleUppper() {
       
-      firstMomS_ = 0D;
+      moduleUppper_ = 0D;
       onChanged();
       return this;
     }
 
-    private double interiaS_ ;
+    private double moduleLower_ ;
     /**
      * <pre>
-     *中垂时惯性矩
+     *底部模数
      * </pre>
      *
-     * <code>double interiaS = 8;</code>
+     * <code>double module_lower = 6;</code>
      */
-    public double getInteriaS() {
-      return interiaS_;
+    public double getModuleLower() {
+      return moduleLower_;
     }
     /**
      * <pre>
-     *中垂时惯性矩
+     *底部模数
      * </pre>
      *
-     * <code>double interiaS = 8;</code>
+     * <code>double module_lower = 6;</code>
      */
-    public Builder setInteriaS(double value) {
+    public Builder setModuleLower(double value) {
       
-      interiaS_ = value;
+      moduleLower_ = value;
       onChanged();
       return this;
     }
     /**
      * <pre>
-     *中垂时惯性矩
+     *底部模数
      * </pre>
      *
-     * <code>double interiaS = 8;</code>
+     * <code>double module_lower = 6;</code>
      */
-    public Builder clearInteriaS() {
+    public Builder clearModuleLower() {
       
-      interiaS_ = 0D;
+      moduleLower_ = 0D;
+      onChanged();
+      return this;
+    }
+
+    private java.lang.Object profileFilePath_ = "";
+    /**
+     * <pre>
+     *解析后的剖面文件路径
+     * </pre>
+     *
+     * <code>string profileFilePath = 7;</code>
+     */
+    public java.lang.String getProfileFilePath() {
+      java.lang.Object ref = profileFilePath_;
+      if (!(ref instanceof java.lang.String)) {
+        com.google.protobuf.ByteString bs =
+            (com.google.protobuf.ByteString) ref;
+        java.lang.String s = bs.toStringUtf8();
+        profileFilePath_ = s;
+        return s;
+      } else {
+        return (java.lang.String) ref;
+      }
+    }
+    /**
+     * <pre>
+     *解析后的剖面文件路径
+     * </pre>
+     *
+     * <code>string profileFilePath = 7;</code>
+     */
+    public com.google.protobuf.ByteString
+        getProfileFilePathBytes() {
+      java.lang.Object ref = profileFilePath_;
+      if (ref instanceof String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (java.lang.String) ref);
+        profileFilePath_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
+    }
+    /**
+     * <pre>
+     *解析后的剖面文件路径
+     * </pre>
+     *
+     * <code>string profileFilePath = 7;</code>
+     */
+    public Builder setProfileFilePath(
+        java.lang.String value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  
+      profileFilePath_ = value;
+      onChanged();
+      return this;
+    }
+    /**
+     * <pre>
+     *解析后的剖面文件路径
+     * </pre>
+     *
+     * <code>string profileFilePath = 7;</code>
+     */
+    public Builder clearProfileFilePath() {
+      
+      profileFilePath_ = getDefaultInstance().getProfileFilePath();
+      onChanged();
+      return this;
+    }
+    /**
+     * <pre>
+     *解析后的剖面文件路径
+     * </pre>
+     *
+     * <code>string profileFilePath = 7;</code>
+     */
+    public Builder setProfileFilePathBytes(
+        com.google.protobuf.ByteString value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+      
+      profileFilePath_ = value;
       onChanged();
       return this;
     }

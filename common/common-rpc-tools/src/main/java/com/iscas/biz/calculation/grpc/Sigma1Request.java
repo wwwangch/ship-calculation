@@ -18,17 +18,22 @@ public  final class Sigma1Request extends
     kuaChang_ = java.util.Collections.emptyList();
     girderDistance_ = 0D;
     frDistance_ = 0D;
-    frGuige_ = java.util.Collections.emptyList();
+    trusswidth_ = 0D;
+    frGuige_ = com.google.protobuf.LazyStringArrayList.EMPTY;
     plateThick_ = java.util.Collections.emptyList();
     deviceWeight_ = 0D;
-    girderWidth_ = 0D;
-    materialType_ = "";
+    girderWidth_ = java.util.Collections.emptyList();
+    materialYieldLimit_ = 0D;
+    isCustomLoad_ = false;
     midArchWaveMoment_ = 0D;
     midArchImpactMoment_ = 0D;
     midArchShear_ = 0D;
+    midArchDraught_ = 0D;
     midVerticalWaveMoment_ = 0D;
     midVerticalImpactMoment_ = 0D;
     midVerticalShear_ = 0D;
+    midVerticalDraught_ = 0D;
+    xiancethick_ = java.util.Collections.emptyList();
     numGirder_ = 0;
   }
 
@@ -89,40 +94,33 @@ public  final class Sigma1Request extends
             break;
           }
           case 33: {
-            if (!((mutable_bitField0_ & 0x00000008) == 0x00000008)) {
-              frGuige_ = new java.util.ArrayList<java.lang.Double>();
-              mutable_bitField0_ |= 0x00000008;
-            }
-            frGuige_.add(input.readDouble());
+
+            trusswidth_ = input.readDouble();
             break;
           }
-          case 34: {
-            int length = input.readRawVarint32();
-            int limit = input.pushLimit(length);
-            if (!((mutable_bitField0_ & 0x00000008) == 0x00000008) && input.getBytesUntilLimit() > 0) {
-              frGuige_ = new java.util.ArrayList<java.lang.Double>();
-              mutable_bitField0_ |= 0x00000008;
-            }
-            while (input.getBytesUntilLimit() > 0) {
-              frGuige_.add(input.readDouble());
-            }
-            input.popLimit(limit);
-            break;
-          }
-          case 41: {
+          case 42: {
+            java.lang.String s = input.readStringRequireUtf8();
             if (!((mutable_bitField0_ & 0x00000010) == 0x00000010)) {
-              plateThick_ = new java.util.ArrayList<java.lang.Double>();
+              frGuige_ = new com.google.protobuf.LazyStringArrayList();
               mutable_bitField0_ |= 0x00000010;
+            }
+            frGuige_.add(s);
+            break;
+          }
+          case 49: {
+            if (!((mutable_bitField0_ & 0x00000020) == 0x00000020)) {
+              plateThick_ = new java.util.ArrayList<java.lang.Double>();
+              mutable_bitField0_ |= 0x00000020;
             }
             plateThick_.add(input.readDouble());
             break;
           }
-          case 42: {
+          case 50: {
             int length = input.readRawVarint32();
             int limit = input.pushLimit(length);
-            if (!((mutable_bitField0_ & 0x00000010) == 0x00000010) && input.getBytesUntilLimit() > 0) {
+            if (!((mutable_bitField0_ & 0x00000020) == 0x00000020) && input.getBytesUntilLimit() > 0) {
               plateThick_ = new java.util.ArrayList<java.lang.Double>();
-              mutable_bitField0_ |= 0x00000010;
+              mutable_bitField0_ |= 0x00000020;
             }
             while (input.getBytesUntilLimit() > 0) {
               plateThick_.add(input.readDouble());
@@ -130,53 +128,104 @@ public  final class Sigma1Request extends
             input.popLimit(limit);
             break;
           }
-          case 49: {
+          case 57: {
 
             deviceWeight_ = input.readDouble();
             break;
           }
-          case 57: {
-
-            girderWidth_ = input.readDouble();
+          case 65: {
+            if (!((mutable_bitField0_ & 0x00000080) == 0x00000080)) {
+              girderWidth_ = new java.util.ArrayList<java.lang.Double>();
+              mutable_bitField0_ |= 0x00000080;
+            }
+            girderWidth_.add(input.readDouble());
             break;
           }
           case 66: {
-            java.lang.String s = input.readStringRequireUtf8();
-
-            materialType_ = s;
+            int length = input.readRawVarint32();
+            int limit = input.pushLimit(length);
+            if (!((mutable_bitField0_ & 0x00000080) == 0x00000080) && input.getBytesUntilLimit() > 0) {
+              girderWidth_ = new java.util.ArrayList<java.lang.Double>();
+              mutable_bitField0_ |= 0x00000080;
+            }
+            while (input.getBytesUntilLimit() > 0) {
+              girderWidth_.add(input.readDouble());
+            }
+            input.popLimit(limit);
             break;
           }
           case 73: {
 
-            midArchWaveMoment_ = input.readDouble();
+            materialYieldLimit_ = input.readDouble();
             break;
           }
-          case 81: {
+          case 80: {
 
-            midArchImpactMoment_ = input.readDouble();
+            isCustomLoad_ = input.readBool();
             break;
           }
           case 89: {
 
-            midArchShear_ = input.readDouble();
+            midArchWaveMoment_ = input.readDouble();
             break;
           }
           case 97: {
 
-            midVerticalWaveMoment_ = input.readDouble();
+            midArchImpactMoment_ = input.readDouble();
             break;
           }
           case 105: {
 
-            midVerticalImpactMoment_ = input.readDouble();
+            midArchShear_ = input.readDouble();
             break;
           }
           case 113: {
 
+            midArchDraught_ = input.readDouble();
+            break;
+          }
+          case 121: {
+
+            midVerticalWaveMoment_ = input.readDouble();
+            break;
+          }
+          case 129: {
+
+            midVerticalImpactMoment_ = input.readDouble();
+            break;
+          }
+          case 137: {
+
             midVerticalShear_ = input.readDouble();
             break;
           }
-          case 120: {
+          case 145: {
+
+            midVerticalDraught_ = input.readDouble();
+            break;
+          }
+          case 153: {
+            if (!((mutable_bitField0_ & 0x00040000) == 0x00040000)) {
+              xiancethick_ = new java.util.ArrayList<java.lang.Double>();
+              mutable_bitField0_ |= 0x00040000;
+            }
+            xiancethick_.add(input.readDouble());
+            break;
+          }
+          case 154: {
+            int length = input.readRawVarint32();
+            int limit = input.pushLimit(length);
+            if (!((mutable_bitField0_ & 0x00040000) == 0x00040000) && input.getBytesUntilLimit() > 0) {
+              xiancethick_ = new java.util.ArrayList<java.lang.Double>();
+              mutable_bitField0_ |= 0x00040000;
+            }
+            while (input.getBytesUntilLimit() > 0) {
+              xiancethick_.add(input.readDouble());
+            }
+            input.popLimit(limit);
+            break;
+          }
+          case 160: {
 
             numGirder_ = input.readInt32();
             break;
@@ -192,11 +241,17 @@ public  final class Sigma1Request extends
       if (((mutable_bitField0_ & 0x00000001) == 0x00000001)) {
         kuaChang_ = java.util.Collections.unmodifiableList(kuaChang_);
       }
-      if (((mutable_bitField0_ & 0x00000008) == 0x00000008)) {
-        frGuige_ = java.util.Collections.unmodifiableList(frGuige_);
-      }
       if (((mutable_bitField0_ & 0x00000010) == 0x00000010)) {
+        frGuige_ = frGuige_.getUnmodifiableView();
+      }
+      if (((mutable_bitField0_ & 0x00000020) == 0x00000020)) {
         plateThick_ = java.util.Collections.unmodifiableList(plateThick_);
+      }
+      if (((mutable_bitField0_ & 0x00000080) == 0x00000080)) {
+        girderWidth_ = java.util.Collections.unmodifiableList(girderWidth_);
+      }
+      if (((mutable_bitField0_ & 0x00040000) == 0x00040000)) {
+        xiancethick_ = java.util.Collections.unmodifiableList(xiancethick_);
       }
       makeExtensionsImmutable();
     }
@@ -218,7 +273,7 @@ public  final class Sigma1Request extends
   private java.util.List<java.lang.Double> kuaChang_;
   /**
    * <pre>
-   *构件跨距-龙骨跨距 每个的跨距
+   *构件跨距-龙骨跨距 跨距
    * </pre>
    *
    * <code>repeated double kuaChang = 1;</code>
@@ -229,7 +284,7 @@ public  final class Sigma1Request extends
   }
   /**
    * <pre>
-   *构件跨距-龙骨跨距 每个的跨距
+   *构件跨距-龙骨跨距 跨距
    * </pre>
    *
    * <code>repeated double kuaChang = 1;</code>
@@ -239,7 +294,7 @@ public  final class Sigma1Request extends
   }
   /**
    * <pre>
-   *构件跨距-龙骨跨距 每个的跨距
+   *构件跨距-龙骨跨距 跨距
    * </pre>
    *
    * <code>repeated double kuaChang = 1;</code>
@@ -253,7 +308,7 @@ public  final class Sigma1Request extends
   private double girderDistance_;
   /**
    * <pre>
-   *剖面位置x-衡量间距
+   *剖面位置x-肋板间距
    * </pre>
    *
    * <code>double girderDistance = 2;</code>
@@ -275,25 +330,40 @@ public  final class Sigma1Request extends
     return frDistance_;
   }
 
-  public static final int FRGUIGE_FIELD_NUMBER = 4;
-  private java.util.List<java.lang.Double> frGuige_;
+  public static final int TRUSSWIDTH_FIELD_NUMBER = 4;
+  private double trusswidth_;
+  /**
+   * <pre>
+   *板架宽度 添加614
+   * </pre>
+   *
+   * <code>double trusswidth = 4;</code>
+   */
+  public double getTrusswidth() {
+    return trusswidth_;
+  }
+
+  public static final int FRGUIGE_FIELD_NUMBER = 5;
+  private com.google.protobuf.LazyStringList frGuige_;
   /**
    * <pre>
    *纵骨规格 每个的规格
+   *修改614 double-&gt;string
    * </pre>
    *
-   * <code>repeated double frGuige = 4;</code>
+   * <code>repeated string frGuige = 5;</code>
    */
-  public java.util.List<java.lang.Double>
+  public com.google.protobuf.ProtocolStringList
       getFrGuigeList() {
     return frGuige_;
   }
   /**
    * <pre>
    *纵骨规格 每个的规格
+   *修改614 double-&gt;string
    * </pre>
    *
-   * <code>repeated double frGuige = 4;</code>
+   * <code>repeated string frGuige = 5;</code>
    */
   public int getFrGuigeCount() {
     return frGuige_.size();
@@ -301,23 +371,35 @@ public  final class Sigma1Request extends
   /**
    * <pre>
    *纵骨规格 每个的规格
+   *修改614 double-&gt;string
    * </pre>
    *
-   * <code>repeated double frGuige = 4;</code>
+   * <code>repeated string frGuige = 5;</code>
    */
-  public double getFrGuige(int index) {
+  public java.lang.String getFrGuige(int index) {
     return frGuige_.get(index);
   }
-  private int frGuigeMemoizedSerializedSize = -1;
+  /**
+   * <pre>
+   *纵骨规格 每个的规格
+   *修改614 double-&gt;string
+   * </pre>
+   *
+   * <code>repeated string frGuige = 5;</code>
+   */
+  public com.google.protobuf.ByteString
+      getFrGuigeBytes(int index) {
+    return frGuige_.getByteString(index);
+  }
 
-  public static final int PLATETHICK_FIELD_NUMBER = 5;
+  public static final int PLATETHICK_FIELD_NUMBER = 6;
   private java.util.List<java.lang.Double> plateThick_;
   /**
    * <pre>
-   *板各厚度 每个板材的厚度
+   *外底板厚 每个板材的厚度
    * </pre>
    *
-   * <code>repeated double plateThick = 5;</code>
+   * <code>repeated double plateThick = 6;</code>
    */
   public java.util.List<java.lang.Double>
       getPlateThickList() {
@@ -325,95 +407,103 @@ public  final class Sigma1Request extends
   }
   /**
    * <pre>
-   *板各厚度 每个板材的厚度
+   *外底板厚 每个板材的厚度
    * </pre>
    *
-   * <code>repeated double plateThick = 5;</code>
+   * <code>repeated double plateThick = 6;</code>
    */
   public int getPlateThickCount() {
     return plateThick_.size();
   }
   /**
    * <pre>
-   *板各厚度 每个板材的厚度
+   *外底板厚 每个板材的厚度
    * </pre>
    *
-   * <code>repeated double plateThick = 5;</code>
+   * <code>repeated double plateThick = 6;</code>
    */
   public double getPlateThick(int index) {
     return plateThick_.get(index);
   }
   private int plateThickMemoizedSerializedSize = -1;
 
-  public static final int DEVICEWEIGHT_FIELD_NUMBER = 6;
+  public static final int DEVICEWEIGHT_FIELD_NUMBER = 7;
   private double deviceWeight_;
   /**
    * <pre>
    *设备重量(t)
    * </pre>
    *
-   * <code>double deviceWeight = 6;</code>
+   * <code>double deviceWeight = 7;</code>
    */
   public double getDeviceWeight() {
     return deviceWeight_;
   }
 
-  public static final int GIRDERWIDTH_FIELD_NUMBER = 7;
-  private double girderWidth_;
+  public static final int GIRDERWIDTH_FIELD_NUMBER = 8;
+  private java.util.List<java.lang.Double> girderWidth_;
   /**
    * <pre>
-   *版格宽度
+   *外底板宽度 修改614为数组
    * </pre>
    *
-   * <code>double girderWidth = 7;</code>
+   * <code>repeated double girderWidth = 8;</code>
    */
-  public double getGirderWidth() {
+  public java.util.List<java.lang.Double>
+      getGirderWidthList() {
     return girderWidth_;
   }
-
-  public static final int MATERIALTYPE_FIELD_NUMBER = 8;
-  private volatile java.lang.Object materialType_;
   /**
    * <pre>
-   *材料类型
+   *外底板宽度 修改614为数组
    * </pre>
    *
-   * <code>string materialType = 8;</code>
+   * <code>repeated double girderWidth = 8;</code>
    */
-  public java.lang.String getMaterialType() {
-    java.lang.Object ref = materialType_;
-    if (ref instanceof java.lang.String) {
-      return (java.lang.String) ref;
-    } else {
-      com.google.protobuf.ByteString bs = 
-          (com.google.protobuf.ByteString) ref;
-      java.lang.String s = bs.toStringUtf8();
-      materialType_ = s;
-      return s;
-    }
+  public int getGirderWidthCount() {
+    return girderWidth_.size();
   }
   /**
    * <pre>
-   *材料类型
+   *外底板宽度 修改614为数组
    * </pre>
    *
-   * <code>string materialType = 8;</code>
+   * <code>repeated double girderWidth = 8;</code>
    */
-  public com.google.protobuf.ByteString
-      getMaterialTypeBytes() {
-    java.lang.Object ref = materialType_;
-    if (ref instanceof java.lang.String) {
-      com.google.protobuf.ByteString b = 
-          com.google.protobuf.ByteString.copyFromUtf8(
-              (java.lang.String) ref);
-      materialType_ = b;
-      return b;
-    } else {
-      return (com.google.protobuf.ByteString) ref;
-    }
+  public double getGirderWidth(int index) {
+    return girderWidth_.get(index);
+  }
+  private int girderWidthMemoizedSerializedSize = -1;
+
+  public static final int MATERIALYIELDLIMIT_FIELD_NUMBER = 9;
+  private double materialYieldLimit_;
+  /**
+   * <pre>
+   *new614----------------
+   *材料类型 改为材料屈服极限
+   * </pre>
+   *
+   * <code>double materialYieldLimit = 9;</code>
+   */
+  public double getMaterialYieldLimit() {
+    return materialYieldLimit_;
   }
 
-  public static final int MIDARCHWAVEMOMENT_FIELD_NUMBER = 9;
+  public static final int ISCUSTOMLOAD_FIELD_NUMBER = 10;
+  private boolean isCustomLoad_;
+  /**
+   * <pre>
+   *new614----------------
+   *是否采用自定义载荷
+   * </pre>
+   *
+   * <code>bool isCustomLoad = 10;</code>
+   */
+  public boolean getIsCustomLoad() {
+    return isCustomLoad_;
+  }
+
+  public static final int MIDARCHWAVEMOMENT_FIELD_NUMBER = 11;
   private double midArchWaveMoment_;
   /**
    * <pre>
@@ -421,27 +511,27 @@ public  final class Sigma1Request extends
    * 中拱-波浪弯矩
    * </pre>
    *
-   * <code>double midArchWaveMoment = 9;</code>
+   * <code>double midArchWaveMoment = 11;</code>
    */
   public double getMidArchWaveMoment() {
     return midArchWaveMoment_;
   }
 
-  public static final int MIDARCHIMPACTMOMENT_FIELD_NUMBER = 10;
+  public static final int MIDARCHIMPACTMOMENT_FIELD_NUMBER = 12;
   private double midArchImpactMoment_;
   /**
    * <pre>
    **
-   * 中拱-砰击振动弯矩
+   * 中拱-砰击弯矩
    * </pre>
    *
-   * <code>double midArchImpactMoment = 10;</code>
+   * <code>double midArchImpactMoment = 12;</code>
    */
   public double getMidArchImpactMoment() {
     return midArchImpactMoment_;
   }
 
-  public static final int MIDARCHSHEAR_FIELD_NUMBER = 11;
+  public static final int MIDARCHSHEAR_FIELD_NUMBER = 13;
   private double midArchShear_;
   /**
    * <pre>
@@ -449,13 +539,27 @@ public  final class Sigma1Request extends
    * 中拱-剪力
    * </pre>
    *
-   * <code>double midArchShear = 11;</code>
+   * <code>double midArchShear = 13;</code>
    */
   public double getMidArchShear() {
     return midArchShear_;
   }
 
-  public static final int MIDVERTICALWAVEMOMENT_FIELD_NUMBER = 12;
+  public static final int MIDARCHDRAUGHT_FIELD_NUMBER = 14;
+  private double midArchDraught_;
+  /**
+   * <pre>
+   **添加614
+   * 中拱-吃水
+   * </pre>
+   *
+   * <code>double midArchDraught = 14;</code>
+   */
+  public double getMidArchDraught() {
+    return midArchDraught_;
+  }
+
+  public static final int MIDVERTICALWAVEMOMENT_FIELD_NUMBER = 15;
   private double midVerticalWaveMoment_;
   /**
    * <pre>
@@ -463,27 +567,27 @@ public  final class Sigma1Request extends
    * 中垂-波浪弯矩
    * </pre>
    *
-   * <code>double midVerticalWaveMoment = 12;</code>
+   * <code>double midVerticalWaveMoment = 15;</code>
    */
   public double getMidVerticalWaveMoment() {
     return midVerticalWaveMoment_;
   }
 
-  public static final int MIDVERTICALIMPACTMOMENT_FIELD_NUMBER = 13;
+  public static final int MIDVERTICALIMPACTMOMENT_FIELD_NUMBER = 16;
   private double midVerticalImpactMoment_;
   /**
    * <pre>
    **
-   * 中垂-砰击振动弯矩
+   * 中垂-砰击弯矩
    * </pre>
    *
-   * <code>double midVerticalImpactMoment = 13;</code>
+   * <code>double midVerticalImpactMoment = 16;</code>
    */
   public double getMidVerticalImpactMoment() {
     return midVerticalImpactMoment_;
   }
 
-  public static final int MIDVERTICALSHEAR_FIELD_NUMBER = 14;
+  public static final int MIDVERTICALSHEAR_FIELD_NUMBER = 17;
   private double midVerticalShear_;
   /**
    * <pre>
@@ -491,20 +595,72 @@ public  final class Sigma1Request extends
    * 中垂-剪力
    * </pre>
    *
-   * <code>double midVerticalShear = 14;</code>
+   * <code>double midVerticalShear = 17;</code>
    */
   public double getMidVerticalShear() {
     return midVerticalShear_;
   }
 
-  public static final int NUMGIRDER_FIELD_NUMBER = 15;
+  public static final int MIDVERTICALDRAUGHT_FIELD_NUMBER = 18;
+  private double midVerticalDraught_;
+  /**
+   * <pre>
+   **添加614
+   * 中垂-吃水
+   * </pre>
+   *
+   * <code>double midVerticalDraught = 18;</code>
+   */
+  public double getMidVerticalDraught() {
+    return midVerticalDraught_;
+  }
+
+  public static final int XIANCETHICK_FIELD_NUMBER = 19;
+  private java.util.List<java.lang.Double> xiancethick_;
+  /**
+   * <pre>
+   **添加614
+   * 舷侧中和轴附近板的厚度
+   * </pre>
+   *
+   * <code>repeated double xiancethick = 19;</code>
+   */
+  public java.util.List<java.lang.Double>
+      getXiancethickList() {
+    return xiancethick_;
+  }
+  /**
+   * <pre>
+   **添加614
+   * 舷侧中和轴附近板的厚度
+   * </pre>
+   *
+   * <code>repeated double xiancethick = 19;</code>
+   */
+  public int getXiancethickCount() {
+    return xiancethick_.size();
+  }
+  /**
+   * <pre>
+   **添加614
+   * 舷侧中和轴附近板的厚度
+   * </pre>
+   *
+   * <code>repeated double xiancethick = 19;</code>
+   */
+  public double getXiancethick(int index) {
+    return xiancethick_.get(index);
+  }
+  private int xiancethickMemoizedSerializedSize = -1;
+
+  public static final int NUMGIRDER_FIELD_NUMBER = 20;
   private int numGirder_;
   /**
    * <pre>
    *龙骨数量
    * </pre>
    *
-   * <code>int32 numGirder = 15;</code>
+   * <code>int32 numGirder = 20;</code>
    */
   public int getNumGirder() {
     return numGirder_;
@@ -536,49 +692,68 @@ public  final class Sigma1Request extends
     if (frDistance_ != 0D) {
       output.writeDouble(3, frDistance_);
     }
-    if (getFrGuigeList().size() > 0) {
-      output.writeUInt32NoTag(34);
-      output.writeUInt32NoTag(frGuigeMemoizedSerializedSize);
+    if (trusswidth_ != 0D) {
+      output.writeDouble(4, trusswidth_);
     }
     for (int i = 0; i < frGuige_.size(); i++) {
-      output.writeDoubleNoTag(frGuige_.get(i));
+      com.google.protobuf.GeneratedMessageV3.writeString(output, 5, frGuige_.getRaw(i));
     }
     if (getPlateThickList().size() > 0) {
-      output.writeUInt32NoTag(42);
+      output.writeUInt32NoTag(50);
       output.writeUInt32NoTag(plateThickMemoizedSerializedSize);
     }
     for (int i = 0; i < plateThick_.size(); i++) {
       output.writeDoubleNoTag(plateThick_.get(i));
     }
     if (deviceWeight_ != 0D) {
-      output.writeDouble(6, deviceWeight_);
+      output.writeDouble(7, deviceWeight_);
     }
-    if (girderWidth_ != 0D) {
-      output.writeDouble(7, girderWidth_);
+    if (getGirderWidthList().size() > 0) {
+      output.writeUInt32NoTag(66);
+      output.writeUInt32NoTag(girderWidthMemoizedSerializedSize);
     }
-    if (!getMaterialTypeBytes().isEmpty()) {
-      com.google.protobuf.GeneratedMessageV3.writeString(output, 8, materialType_);
+    for (int i = 0; i < girderWidth_.size(); i++) {
+      output.writeDoubleNoTag(girderWidth_.get(i));
+    }
+    if (materialYieldLimit_ != 0D) {
+      output.writeDouble(9, materialYieldLimit_);
+    }
+    if (isCustomLoad_ != false) {
+      output.writeBool(10, isCustomLoad_);
     }
     if (midArchWaveMoment_ != 0D) {
-      output.writeDouble(9, midArchWaveMoment_);
+      output.writeDouble(11, midArchWaveMoment_);
     }
     if (midArchImpactMoment_ != 0D) {
-      output.writeDouble(10, midArchImpactMoment_);
+      output.writeDouble(12, midArchImpactMoment_);
     }
     if (midArchShear_ != 0D) {
-      output.writeDouble(11, midArchShear_);
+      output.writeDouble(13, midArchShear_);
+    }
+    if (midArchDraught_ != 0D) {
+      output.writeDouble(14, midArchDraught_);
     }
     if (midVerticalWaveMoment_ != 0D) {
-      output.writeDouble(12, midVerticalWaveMoment_);
+      output.writeDouble(15, midVerticalWaveMoment_);
     }
     if (midVerticalImpactMoment_ != 0D) {
-      output.writeDouble(13, midVerticalImpactMoment_);
+      output.writeDouble(16, midVerticalImpactMoment_);
     }
     if (midVerticalShear_ != 0D) {
-      output.writeDouble(14, midVerticalShear_);
+      output.writeDouble(17, midVerticalShear_);
+    }
+    if (midVerticalDraught_ != 0D) {
+      output.writeDouble(18, midVerticalDraught_);
+    }
+    if (getXiancethickList().size() > 0) {
+      output.writeUInt32NoTag(154);
+      output.writeUInt32NoTag(xiancethickMemoizedSerializedSize);
+    }
+    for (int i = 0; i < xiancethick_.size(); i++) {
+      output.writeDoubleNoTag(xiancethick_.get(i));
     }
     if (numGirder_ != 0) {
-      output.writeInt32(15, numGirder_);
+      output.writeInt32(20, numGirder_);
     }
   }
 
@@ -606,16 +781,17 @@ public  final class Sigma1Request extends
       size += com.google.protobuf.CodedOutputStream
         .computeDoubleSize(3, frDistance_);
     }
+    if (trusswidth_ != 0D) {
+      size += com.google.protobuf.CodedOutputStream
+        .computeDoubleSize(4, trusswidth_);
+    }
     {
       int dataSize = 0;
-      dataSize = 8 * getFrGuigeList().size();
-      size += dataSize;
-      if (!getFrGuigeList().isEmpty()) {
-        size += 1;
-        size += com.google.protobuf.CodedOutputStream
-            .computeInt32SizeNoTag(dataSize);
+      for (int i = 0; i < frGuige_.size(); i++) {
+        dataSize += computeStringSizeNoTag(frGuige_.getRaw(i));
       }
-      frGuigeMemoizedSerializedSize = dataSize;
+      size += dataSize;
+      size += 1 * getFrGuigeList().size();
     }
     {
       int dataSize = 0;
@@ -630,42 +806,73 @@ public  final class Sigma1Request extends
     }
     if (deviceWeight_ != 0D) {
       size += com.google.protobuf.CodedOutputStream
-        .computeDoubleSize(6, deviceWeight_);
+        .computeDoubleSize(7, deviceWeight_);
     }
-    if (girderWidth_ != 0D) {
+    {
+      int dataSize = 0;
+      dataSize = 8 * getGirderWidthList().size();
+      size += dataSize;
+      if (!getGirderWidthList().isEmpty()) {
+        size += 1;
+        size += com.google.protobuf.CodedOutputStream
+            .computeInt32SizeNoTag(dataSize);
+      }
+      girderWidthMemoizedSerializedSize = dataSize;
+    }
+    if (materialYieldLimit_ != 0D) {
       size += com.google.protobuf.CodedOutputStream
-        .computeDoubleSize(7, girderWidth_);
+        .computeDoubleSize(9, materialYieldLimit_);
     }
-    if (!getMaterialTypeBytes().isEmpty()) {
-      size += com.google.protobuf.GeneratedMessageV3.computeStringSize(8, materialType_);
+    if (isCustomLoad_ != false) {
+      size += com.google.protobuf.CodedOutputStream
+        .computeBoolSize(10, isCustomLoad_);
     }
     if (midArchWaveMoment_ != 0D) {
       size += com.google.protobuf.CodedOutputStream
-        .computeDoubleSize(9, midArchWaveMoment_);
+        .computeDoubleSize(11, midArchWaveMoment_);
     }
     if (midArchImpactMoment_ != 0D) {
       size += com.google.protobuf.CodedOutputStream
-        .computeDoubleSize(10, midArchImpactMoment_);
+        .computeDoubleSize(12, midArchImpactMoment_);
     }
     if (midArchShear_ != 0D) {
       size += com.google.protobuf.CodedOutputStream
-        .computeDoubleSize(11, midArchShear_);
+        .computeDoubleSize(13, midArchShear_);
+    }
+    if (midArchDraught_ != 0D) {
+      size += com.google.protobuf.CodedOutputStream
+        .computeDoubleSize(14, midArchDraught_);
     }
     if (midVerticalWaveMoment_ != 0D) {
       size += com.google.protobuf.CodedOutputStream
-        .computeDoubleSize(12, midVerticalWaveMoment_);
+        .computeDoubleSize(15, midVerticalWaveMoment_);
     }
     if (midVerticalImpactMoment_ != 0D) {
       size += com.google.protobuf.CodedOutputStream
-        .computeDoubleSize(13, midVerticalImpactMoment_);
+        .computeDoubleSize(16, midVerticalImpactMoment_);
     }
     if (midVerticalShear_ != 0D) {
       size += com.google.protobuf.CodedOutputStream
-        .computeDoubleSize(14, midVerticalShear_);
+        .computeDoubleSize(17, midVerticalShear_);
+    }
+    if (midVerticalDraught_ != 0D) {
+      size += com.google.protobuf.CodedOutputStream
+        .computeDoubleSize(18, midVerticalDraught_);
+    }
+    {
+      int dataSize = 0;
+      dataSize = 8 * getXiancethickList().size();
+      size += dataSize;
+      if (!getXiancethickList().isEmpty()) {
+        size += 2;
+        size += com.google.protobuf.CodedOutputStream
+            .computeInt32SizeNoTag(dataSize);
+      }
+      xiancethickMemoizedSerializedSize = dataSize;
     }
     if (numGirder_ != 0) {
       size += com.google.protobuf.CodedOutputStream
-        .computeInt32Size(15, numGirder_);
+        .computeInt32Size(20, numGirder_);
     }
     memoizedSize = size;
     return size;
@@ -693,6 +900,10 @@ public  final class Sigma1Request extends
         java.lang.Double.doubleToLongBits(getFrDistance())
         == java.lang.Double.doubleToLongBits(
             other.getFrDistance()));
+    result = result && (
+        java.lang.Double.doubleToLongBits(getTrusswidth())
+        == java.lang.Double.doubleToLongBits(
+            other.getTrusswidth()));
     result = result && getFrGuigeList()
         .equals(other.getFrGuigeList());
     result = result && getPlateThickList()
@@ -701,12 +912,14 @@ public  final class Sigma1Request extends
         java.lang.Double.doubleToLongBits(getDeviceWeight())
         == java.lang.Double.doubleToLongBits(
             other.getDeviceWeight()));
+    result = result && getGirderWidthList()
+        .equals(other.getGirderWidthList());
     result = result && (
-        java.lang.Double.doubleToLongBits(getGirderWidth())
+        java.lang.Double.doubleToLongBits(getMaterialYieldLimit())
         == java.lang.Double.doubleToLongBits(
-            other.getGirderWidth()));
-    result = result && getMaterialType()
-        .equals(other.getMaterialType());
+            other.getMaterialYieldLimit()));
+    result = result && (getIsCustomLoad()
+        == other.getIsCustomLoad());
     result = result && (
         java.lang.Double.doubleToLongBits(getMidArchWaveMoment())
         == java.lang.Double.doubleToLongBits(
@@ -720,6 +933,10 @@ public  final class Sigma1Request extends
         == java.lang.Double.doubleToLongBits(
             other.getMidArchShear()));
     result = result && (
+        java.lang.Double.doubleToLongBits(getMidArchDraught())
+        == java.lang.Double.doubleToLongBits(
+            other.getMidArchDraught()));
+    result = result && (
         java.lang.Double.doubleToLongBits(getMidVerticalWaveMoment())
         == java.lang.Double.doubleToLongBits(
             other.getMidVerticalWaveMoment()));
@@ -731,6 +948,12 @@ public  final class Sigma1Request extends
         java.lang.Double.doubleToLongBits(getMidVerticalShear())
         == java.lang.Double.doubleToLongBits(
             other.getMidVerticalShear()));
+    result = result && (
+        java.lang.Double.doubleToLongBits(getMidVerticalDraught())
+        == java.lang.Double.doubleToLongBits(
+            other.getMidVerticalDraught()));
+    result = result && getXiancethickList()
+        .equals(other.getXiancethickList());
     result = result && (getNumGirder()
         == other.getNumGirder());
     return result;
@@ -753,6 +976,9 @@ public  final class Sigma1Request extends
     hash = (37 * hash) + FRDISTANCE_FIELD_NUMBER;
     hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
         java.lang.Double.doubleToLongBits(getFrDistance()));
+    hash = (37 * hash) + TRUSSWIDTH_FIELD_NUMBER;
+    hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
+        java.lang.Double.doubleToLongBits(getTrusswidth()));
     if (getFrGuigeCount() > 0) {
       hash = (37 * hash) + FRGUIGE_FIELD_NUMBER;
       hash = (53 * hash) + getFrGuigeList().hashCode();
@@ -764,11 +990,16 @@ public  final class Sigma1Request extends
     hash = (37 * hash) + DEVICEWEIGHT_FIELD_NUMBER;
     hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
         java.lang.Double.doubleToLongBits(getDeviceWeight()));
-    hash = (37 * hash) + GIRDERWIDTH_FIELD_NUMBER;
+    if (getGirderWidthCount() > 0) {
+      hash = (37 * hash) + GIRDERWIDTH_FIELD_NUMBER;
+      hash = (53 * hash) + getGirderWidthList().hashCode();
+    }
+    hash = (37 * hash) + MATERIALYIELDLIMIT_FIELD_NUMBER;
     hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
-        java.lang.Double.doubleToLongBits(getGirderWidth()));
-    hash = (37 * hash) + MATERIALTYPE_FIELD_NUMBER;
-    hash = (53 * hash) + getMaterialType().hashCode();
+        java.lang.Double.doubleToLongBits(getMaterialYieldLimit()));
+    hash = (37 * hash) + ISCUSTOMLOAD_FIELD_NUMBER;
+    hash = (53 * hash) + com.google.protobuf.Internal.hashBoolean(
+        getIsCustomLoad());
     hash = (37 * hash) + MIDARCHWAVEMOMENT_FIELD_NUMBER;
     hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
         java.lang.Double.doubleToLongBits(getMidArchWaveMoment()));
@@ -778,6 +1009,9 @@ public  final class Sigma1Request extends
     hash = (37 * hash) + MIDARCHSHEAR_FIELD_NUMBER;
     hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
         java.lang.Double.doubleToLongBits(getMidArchShear()));
+    hash = (37 * hash) + MIDARCHDRAUGHT_FIELD_NUMBER;
+    hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
+        java.lang.Double.doubleToLongBits(getMidArchDraught()));
     hash = (37 * hash) + MIDVERTICALWAVEMOMENT_FIELD_NUMBER;
     hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
         java.lang.Double.doubleToLongBits(getMidVerticalWaveMoment()));
@@ -787,6 +1021,13 @@ public  final class Sigma1Request extends
     hash = (37 * hash) + MIDVERTICALSHEAR_FIELD_NUMBER;
     hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
         java.lang.Double.doubleToLongBits(getMidVerticalShear()));
+    hash = (37 * hash) + MIDVERTICALDRAUGHT_FIELD_NUMBER;
+    hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
+        java.lang.Double.doubleToLongBits(getMidVerticalDraught()));
+    if (getXiancethickCount() > 0) {
+      hash = (37 * hash) + XIANCETHICK_FIELD_NUMBER;
+      hash = (53 * hash) + getXiancethickList().hashCode();
+    }
     hash = (37 * hash) + NUMGIRDER_FIELD_NUMBER;
     hash = (53 * hash) + getNumGirder();
     hash = (29 * hash) + unknownFields.hashCode();
@@ -913,15 +1154,19 @@ public  final class Sigma1Request extends
 
       frDistance_ = 0D;
 
-      frGuige_ = java.util.Collections.emptyList();
-      bitField0_ = (bitField0_ & ~0x00000008);
-      plateThick_ = java.util.Collections.emptyList();
+      trusswidth_ = 0D;
+
+      frGuige_ = com.google.protobuf.LazyStringArrayList.EMPTY;
       bitField0_ = (bitField0_ & ~0x00000010);
+      plateThick_ = java.util.Collections.emptyList();
+      bitField0_ = (bitField0_ & ~0x00000020);
       deviceWeight_ = 0D;
 
-      girderWidth_ = 0D;
+      girderWidth_ = java.util.Collections.emptyList();
+      bitField0_ = (bitField0_ & ~0x00000080);
+      materialYieldLimit_ = 0D;
 
-      materialType_ = "";
+      isCustomLoad_ = false;
 
       midArchWaveMoment_ = 0D;
 
@@ -929,12 +1174,18 @@ public  final class Sigma1Request extends
 
       midArchShear_ = 0D;
 
+      midArchDraught_ = 0D;
+
       midVerticalWaveMoment_ = 0D;
 
       midVerticalImpactMoment_ = 0D;
 
       midVerticalShear_ = 0D;
 
+      midVerticalDraught_ = 0D;
+
+      xiancethick_ = java.util.Collections.emptyList();
+      bitField0_ = (bitField0_ & ~0x00040000);
       numGirder_ = 0;
 
       return this;
@@ -968,25 +1219,38 @@ public  final class Sigma1Request extends
       result.kuaChang_ = kuaChang_;
       result.girderDistance_ = girderDistance_;
       result.frDistance_ = frDistance_;
-      if (((bitField0_ & 0x00000008) == 0x00000008)) {
-        frGuige_ = java.util.Collections.unmodifiableList(frGuige_);
-        bitField0_ = (bitField0_ & ~0x00000008);
+      result.trusswidth_ = trusswidth_;
+      if (((bitField0_ & 0x00000010) == 0x00000010)) {
+        frGuige_ = frGuige_.getUnmodifiableView();
+        bitField0_ = (bitField0_ & ~0x00000010);
       }
       result.frGuige_ = frGuige_;
-      if (((bitField0_ & 0x00000010) == 0x00000010)) {
+      if (((bitField0_ & 0x00000020) == 0x00000020)) {
         plateThick_ = java.util.Collections.unmodifiableList(plateThick_);
-        bitField0_ = (bitField0_ & ~0x00000010);
+        bitField0_ = (bitField0_ & ~0x00000020);
       }
       result.plateThick_ = plateThick_;
       result.deviceWeight_ = deviceWeight_;
+      if (((bitField0_ & 0x00000080) == 0x00000080)) {
+        girderWidth_ = java.util.Collections.unmodifiableList(girderWidth_);
+        bitField0_ = (bitField0_ & ~0x00000080);
+      }
       result.girderWidth_ = girderWidth_;
-      result.materialType_ = materialType_;
+      result.materialYieldLimit_ = materialYieldLimit_;
+      result.isCustomLoad_ = isCustomLoad_;
       result.midArchWaveMoment_ = midArchWaveMoment_;
       result.midArchImpactMoment_ = midArchImpactMoment_;
       result.midArchShear_ = midArchShear_;
+      result.midArchDraught_ = midArchDraught_;
       result.midVerticalWaveMoment_ = midVerticalWaveMoment_;
       result.midVerticalImpactMoment_ = midVerticalImpactMoment_;
       result.midVerticalShear_ = midVerticalShear_;
+      result.midVerticalDraught_ = midVerticalDraught_;
+      if (((bitField0_ & 0x00040000) == 0x00040000)) {
+        xiancethick_ = java.util.Collections.unmodifiableList(xiancethick_);
+        bitField0_ = (bitField0_ & ~0x00040000);
+      }
+      result.xiancethick_ = xiancethick_;
       result.numGirder_ = numGirder_;
       result.bitField0_ = to_bitField0_;
       onBuilt();
@@ -1046,10 +1310,13 @@ public  final class Sigma1Request extends
       if (other.getFrDistance() != 0D) {
         setFrDistance(other.getFrDistance());
       }
+      if (other.getTrusswidth() != 0D) {
+        setTrusswidth(other.getTrusswidth());
+      }
       if (!other.frGuige_.isEmpty()) {
         if (frGuige_.isEmpty()) {
           frGuige_ = other.frGuige_;
-          bitField0_ = (bitField0_ & ~0x00000008);
+          bitField0_ = (bitField0_ & ~0x00000010);
         } else {
           ensureFrGuigeIsMutable();
           frGuige_.addAll(other.frGuige_);
@@ -1059,7 +1326,7 @@ public  final class Sigma1Request extends
       if (!other.plateThick_.isEmpty()) {
         if (plateThick_.isEmpty()) {
           plateThick_ = other.plateThick_;
-          bitField0_ = (bitField0_ & ~0x00000010);
+          bitField0_ = (bitField0_ & ~0x00000020);
         } else {
           ensurePlateThickIsMutable();
           plateThick_.addAll(other.plateThick_);
@@ -1069,12 +1336,21 @@ public  final class Sigma1Request extends
       if (other.getDeviceWeight() != 0D) {
         setDeviceWeight(other.getDeviceWeight());
       }
-      if (other.getGirderWidth() != 0D) {
-        setGirderWidth(other.getGirderWidth());
-      }
-      if (!other.getMaterialType().isEmpty()) {
-        materialType_ = other.materialType_;
+      if (!other.girderWidth_.isEmpty()) {
+        if (girderWidth_.isEmpty()) {
+          girderWidth_ = other.girderWidth_;
+          bitField0_ = (bitField0_ & ~0x00000080);
+        } else {
+          ensureGirderWidthIsMutable();
+          girderWidth_.addAll(other.girderWidth_);
+        }
         onChanged();
+      }
+      if (other.getMaterialYieldLimit() != 0D) {
+        setMaterialYieldLimit(other.getMaterialYieldLimit());
+      }
+      if (other.getIsCustomLoad() != false) {
+        setIsCustomLoad(other.getIsCustomLoad());
       }
       if (other.getMidArchWaveMoment() != 0D) {
         setMidArchWaveMoment(other.getMidArchWaveMoment());
@@ -1085,6 +1361,9 @@ public  final class Sigma1Request extends
       if (other.getMidArchShear() != 0D) {
         setMidArchShear(other.getMidArchShear());
       }
+      if (other.getMidArchDraught() != 0D) {
+        setMidArchDraught(other.getMidArchDraught());
+      }
       if (other.getMidVerticalWaveMoment() != 0D) {
         setMidVerticalWaveMoment(other.getMidVerticalWaveMoment());
       }
@@ -1093,6 +1372,19 @@ public  final class Sigma1Request extends
       }
       if (other.getMidVerticalShear() != 0D) {
         setMidVerticalShear(other.getMidVerticalShear());
+      }
+      if (other.getMidVerticalDraught() != 0D) {
+        setMidVerticalDraught(other.getMidVerticalDraught());
+      }
+      if (!other.xiancethick_.isEmpty()) {
+        if (xiancethick_.isEmpty()) {
+          xiancethick_ = other.xiancethick_;
+          bitField0_ = (bitField0_ & ~0x00040000);
+        } else {
+          ensureXiancethickIsMutable();
+          xiancethick_.addAll(other.xiancethick_);
+        }
+        onChanged();
       }
       if (other.getNumGirder() != 0) {
         setNumGirder(other.getNumGirder());
@@ -1133,7 +1425,7 @@ public  final class Sigma1Request extends
     }
     /**
      * <pre>
-     *构件跨距-龙骨跨距 每个的跨距
+     *构件跨距-龙骨跨距 跨距
      * </pre>
      *
      * <code>repeated double kuaChang = 1;</code>
@@ -1144,7 +1436,7 @@ public  final class Sigma1Request extends
     }
     /**
      * <pre>
-     *构件跨距-龙骨跨距 每个的跨距
+     *构件跨距-龙骨跨距 跨距
      * </pre>
      *
      * <code>repeated double kuaChang = 1;</code>
@@ -1154,7 +1446,7 @@ public  final class Sigma1Request extends
     }
     /**
      * <pre>
-     *构件跨距-龙骨跨距 每个的跨距
+     *构件跨距-龙骨跨距 跨距
      * </pre>
      *
      * <code>repeated double kuaChang = 1;</code>
@@ -1164,7 +1456,7 @@ public  final class Sigma1Request extends
     }
     /**
      * <pre>
-     *构件跨距-龙骨跨距 每个的跨距
+     *构件跨距-龙骨跨距 跨距
      * </pre>
      *
      * <code>repeated double kuaChang = 1;</code>
@@ -1178,7 +1470,7 @@ public  final class Sigma1Request extends
     }
     /**
      * <pre>
-     *构件跨距-龙骨跨距 每个的跨距
+     *构件跨距-龙骨跨距 跨距
      * </pre>
      *
      * <code>repeated double kuaChang = 1;</code>
@@ -1191,7 +1483,7 @@ public  final class Sigma1Request extends
     }
     /**
      * <pre>
-     *构件跨距-龙骨跨距 每个的跨距
+     *构件跨距-龙骨跨距 跨距
      * </pre>
      *
      * <code>repeated double kuaChang = 1;</code>
@@ -1206,7 +1498,7 @@ public  final class Sigma1Request extends
     }
     /**
      * <pre>
-     *构件跨距-龙骨跨距 每个的跨距
+     *构件跨距-龙骨跨距 跨距
      * </pre>
      *
      * <code>repeated double kuaChang = 1;</code>
@@ -1221,7 +1513,7 @@ public  final class Sigma1Request extends
     private double girderDistance_ ;
     /**
      * <pre>
-     *剖面位置x-衡量间距
+     *剖面位置x-肋板间距
      * </pre>
      *
      * <code>double girderDistance = 2;</code>
@@ -1231,7 +1523,7 @@ public  final class Sigma1Request extends
     }
     /**
      * <pre>
-     *剖面位置x-衡量间距
+     *剖面位置x-肋板间距
      * </pre>
      *
      * <code>double girderDistance = 2;</code>
@@ -1244,7 +1536,7 @@ public  final class Sigma1Request extends
     }
     /**
      * <pre>
-     *剖面位置x-衡量间距
+     *剖面位置x-肋板间距
      * </pre>
      *
      * <code>double girderDistance = 2;</code>
@@ -1294,30 +1586,70 @@ public  final class Sigma1Request extends
       return this;
     }
 
-    private java.util.List<java.lang.Double> frGuige_ = java.util.Collections.emptyList();
+    private double trusswidth_ ;
+    /**
+     * <pre>
+     *板架宽度 添加614
+     * </pre>
+     *
+     * <code>double trusswidth = 4;</code>
+     */
+    public double getTrusswidth() {
+      return trusswidth_;
+    }
+    /**
+     * <pre>
+     *板架宽度 添加614
+     * </pre>
+     *
+     * <code>double trusswidth = 4;</code>
+     */
+    public Builder setTrusswidth(double value) {
+      
+      trusswidth_ = value;
+      onChanged();
+      return this;
+    }
+    /**
+     * <pre>
+     *板架宽度 添加614
+     * </pre>
+     *
+     * <code>double trusswidth = 4;</code>
+     */
+    public Builder clearTrusswidth() {
+      
+      trusswidth_ = 0D;
+      onChanged();
+      return this;
+    }
+
+    private com.google.protobuf.LazyStringList frGuige_ = com.google.protobuf.LazyStringArrayList.EMPTY;
     private void ensureFrGuigeIsMutable() {
-      if (!((bitField0_ & 0x00000008) == 0x00000008)) {
-        frGuige_ = new java.util.ArrayList<java.lang.Double>(frGuige_);
-        bitField0_ |= 0x00000008;
+      if (!((bitField0_ & 0x00000010) == 0x00000010)) {
+        frGuige_ = new com.google.protobuf.LazyStringArrayList(frGuige_);
+        bitField0_ |= 0x00000010;
        }
     }
     /**
      * <pre>
      *纵骨规格 每个的规格
+     *修改614 double-&gt;string
      * </pre>
      *
-     * <code>repeated double frGuige = 4;</code>
+     * <code>repeated string frGuige = 5;</code>
      */
-    public java.util.List<java.lang.Double>
+    public com.google.protobuf.ProtocolStringList
         getFrGuigeList() {
-      return java.util.Collections.unmodifiableList(frGuige_);
+      return frGuige_.getUnmodifiableView();
     }
     /**
      * <pre>
      *纵骨规格 每个的规格
+     *修改614 double-&gt;string
      * </pre>
      *
-     * <code>repeated double frGuige = 4;</code>
+     * <code>repeated string frGuige = 5;</code>
      */
     public int getFrGuigeCount() {
       return frGuige_.size();
@@ -1325,23 +1657,40 @@ public  final class Sigma1Request extends
     /**
      * <pre>
      *纵骨规格 每个的规格
+     *修改614 double-&gt;string
      * </pre>
      *
-     * <code>repeated double frGuige = 4;</code>
+     * <code>repeated string frGuige = 5;</code>
      */
-    public double getFrGuige(int index) {
+    public java.lang.String getFrGuige(int index) {
       return frGuige_.get(index);
     }
     /**
      * <pre>
      *纵骨规格 每个的规格
+     *修改614 double-&gt;string
      * </pre>
      *
-     * <code>repeated double frGuige = 4;</code>
+     * <code>repeated string frGuige = 5;</code>
+     */
+    public com.google.protobuf.ByteString
+        getFrGuigeBytes(int index) {
+      return frGuige_.getByteString(index);
+    }
+    /**
+     * <pre>
+     *纵骨规格 每个的规格
+     *修改614 double-&gt;string
+     * </pre>
+     *
+     * <code>repeated string frGuige = 5;</code>
      */
     public Builder setFrGuige(
-        int index, double value) {
-      ensureFrGuigeIsMutable();
+        int index, java.lang.String value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  ensureFrGuigeIsMutable();
       frGuige_.set(index, value);
       onChanged();
       return this;
@@ -1349,12 +1698,17 @@ public  final class Sigma1Request extends
     /**
      * <pre>
      *纵骨规格 每个的规格
+     *修改614 double-&gt;string
      * </pre>
      *
-     * <code>repeated double frGuige = 4;</code>
+     * <code>repeated string frGuige = 5;</code>
      */
-    public Builder addFrGuige(double value) {
-      ensureFrGuigeIsMutable();
+    public Builder addFrGuige(
+        java.lang.String value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  ensureFrGuigeIsMutable();
       frGuige_.add(value);
       onChanged();
       return this;
@@ -1362,12 +1716,13 @@ public  final class Sigma1Request extends
     /**
      * <pre>
      *纵骨规格 每个的规格
+     *修改614 double-&gt;string
      * </pre>
      *
-     * <code>repeated double frGuige = 4;</code>
+     * <code>repeated string frGuige = 5;</code>
      */
     public Builder addAllFrGuige(
-        java.lang.Iterable<? extends java.lang.Double> values) {
+        java.lang.Iterable<java.lang.String> values) {
       ensureFrGuigeIsMutable();
       com.google.protobuf.AbstractMessageLite.Builder.addAll(
           values, frGuige_);
@@ -1377,30 +1732,50 @@ public  final class Sigma1Request extends
     /**
      * <pre>
      *纵骨规格 每个的规格
+     *修改614 double-&gt;string
      * </pre>
      *
-     * <code>repeated double frGuige = 4;</code>
+     * <code>repeated string frGuige = 5;</code>
      */
     public Builder clearFrGuige() {
-      frGuige_ = java.util.Collections.emptyList();
-      bitField0_ = (bitField0_ & ~0x00000008);
+      frGuige_ = com.google.protobuf.LazyStringArrayList.EMPTY;
+      bitField0_ = (bitField0_ & ~0x00000010);
+      onChanged();
+      return this;
+    }
+    /**
+     * <pre>
+     *纵骨规格 每个的规格
+     *修改614 double-&gt;string
+     * </pre>
+     *
+     * <code>repeated string frGuige = 5;</code>
+     */
+    public Builder addFrGuigeBytes(
+        com.google.protobuf.ByteString value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+      ensureFrGuigeIsMutable();
+      frGuige_.add(value);
       onChanged();
       return this;
     }
 
     private java.util.List<java.lang.Double> plateThick_ = java.util.Collections.emptyList();
     private void ensurePlateThickIsMutable() {
-      if (!((bitField0_ & 0x00000010) == 0x00000010)) {
+      if (!((bitField0_ & 0x00000020) == 0x00000020)) {
         plateThick_ = new java.util.ArrayList<java.lang.Double>(plateThick_);
-        bitField0_ |= 0x00000010;
+        bitField0_ |= 0x00000020;
        }
     }
     /**
      * <pre>
-     *板各厚度 每个板材的厚度
+     *外底板厚 每个板材的厚度
      * </pre>
      *
-     * <code>repeated double plateThick = 5;</code>
+     * <code>repeated double plateThick = 6;</code>
      */
     public java.util.List<java.lang.Double>
         getPlateThickList() {
@@ -1408,30 +1783,30 @@ public  final class Sigma1Request extends
     }
     /**
      * <pre>
-     *板各厚度 每个板材的厚度
+     *外底板厚 每个板材的厚度
      * </pre>
      *
-     * <code>repeated double plateThick = 5;</code>
+     * <code>repeated double plateThick = 6;</code>
      */
     public int getPlateThickCount() {
       return plateThick_.size();
     }
     /**
      * <pre>
-     *板各厚度 每个板材的厚度
+     *外底板厚 每个板材的厚度
      * </pre>
      *
-     * <code>repeated double plateThick = 5;</code>
+     * <code>repeated double plateThick = 6;</code>
      */
     public double getPlateThick(int index) {
       return plateThick_.get(index);
     }
     /**
      * <pre>
-     *板各厚度 每个板材的厚度
+     *外底板厚 每个板材的厚度
      * </pre>
      *
-     * <code>repeated double plateThick = 5;</code>
+     * <code>repeated double plateThick = 6;</code>
      */
     public Builder setPlateThick(
         int index, double value) {
@@ -1442,10 +1817,10 @@ public  final class Sigma1Request extends
     }
     /**
      * <pre>
-     *板各厚度 每个板材的厚度
+     *外底板厚 每个板材的厚度
      * </pre>
      *
-     * <code>repeated double plateThick = 5;</code>
+     * <code>repeated double plateThick = 6;</code>
      */
     public Builder addPlateThick(double value) {
       ensurePlateThickIsMutable();
@@ -1455,10 +1830,10 @@ public  final class Sigma1Request extends
     }
     /**
      * <pre>
-     *板各厚度 每个板材的厚度
+     *外底板厚 每个板材的厚度
      * </pre>
      *
-     * <code>repeated double plateThick = 5;</code>
+     * <code>repeated double plateThick = 6;</code>
      */
     public Builder addAllPlateThick(
         java.lang.Iterable<? extends java.lang.Double> values) {
@@ -1470,14 +1845,14 @@ public  final class Sigma1Request extends
     }
     /**
      * <pre>
-     *板各厚度 每个板材的厚度
+     *外底板厚 每个板材的厚度
      * </pre>
      *
-     * <code>repeated double plateThick = 5;</code>
+     * <code>repeated double plateThick = 6;</code>
      */
     public Builder clearPlateThick() {
       plateThick_ = java.util.Collections.emptyList();
-      bitField0_ = (bitField0_ & ~0x00000010);
+      bitField0_ = (bitField0_ & ~0x00000020);
       onChanged();
       return this;
     }
@@ -1488,7 +1863,7 @@ public  final class Sigma1Request extends
      *设备重量(t)
      * </pre>
      *
-     * <code>double deviceWeight = 6;</code>
+     * <code>double deviceWeight = 7;</code>
      */
     public double getDeviceWeight() {
       return deviceWeight_;
@@ -1498,7 +1873,7 @@ public  final class Sigma1Request extends
      *设备重量(t)
      * </pre>
      *
-     * <code>double deviceWeight = 6;</code>
+     * <code>double deviceWeight = 7;</code>
      */
     public Builder setDeviceWeight(double value) {
       
@@ -1511,7 +1886,7 @@ public  final class Sigma1Request extends
      *设备重量(t)
      * </pre>
      *
-     * <code>double deviceWeight = 6;</code>
+     * <code>double deviceWeight = 7;</code>
      */
     public Builder clearDeviceWeight() {
       
@@ -1520,129 +1895,178 @@ public  final class Sigma1Request extends
       return this;
     }
 
-    private double girderWidth_ ;
-    /**
-     * <pre>
-     *版格宽度
-     * </pre>
-     *
-     * <code>double girderWidth = 7;</code>
-     */
-    public double getGirderWidth() {
-      return girderWidth_;
+    private java.util.List<java.lang.Double> girderWidth_ = java.util.Collections.emptyList();
+    private void ensureGirderWidthIsMutable() {
+      if (!((bitField0_ & 0x00000080) == 0x00000080)) {
+        girderWidth_ = new java.util.ArrayList<java.lang.Double>(girderWidth_);
+        bitField0_ |= 0x00000080;
+       }
     }
     /**
      * <pre>
-     *版格宽度
+     *外底板宽度 修改614为数组
      * </pre>
      *
-     * <code>double girderWidth = 7;</code>
+     * <code>repeated double girderWidth = 8;</code>
      */
-    public Builder setGirderWidth(double value) {
-      
-      girderWidth_ = value;
+    public java.util.List<java.lang.Double>
+        getGirderWidthList() {
+      return java.util.Collections.unmodifiableList(girderWidth_);
+    }
+    /**
+     * <pre>
+     *外底板宽度 修改614为数组
+     * </pre>
+     *
+     * <code>repeated double girderWidth = 8;</code>
+     */
+    public int getGirderWidthCount() {
+      return girderWidth_.size();
+    }
+    /**
+     * <pre>
+     *外底板宽度 修改614为数组
+     * </pre>
+     *
+     * <code>repeated double girderWidth = 8;</code>
+     */
+    public double getGirderWidth(int index) {
+      return girderWidth_.get(index);
+    }
+    /**
+     * <pre>
+     *外底板宽度 修改614为数组
+     * </pre>
+     *
+     * <code>repeated double girderWidth = 8;</code>
+     */
+    public Builder setGirderWidth(
+        int index, double value) {
+      ensureGirderWidthIsMutable();
+      girderWidth_.set(index, value);
       onChanged();
       return this;
     }
     /**
      * <pre>
-     *版格宽度
+     *外底板宽度 修改614为数组
      * </pre>
      *
-     * <code>double girderWidth = 7;</code>
+     * <code>repeated double girderWidth = 8;</code>
+     */
+    public Builder addGirderWidth(double value) {
+      ensureGirderWidthIsMutable();
+      girderWidth_.add(value);
+      onChanged();
+      return this;
+    }
+    /**
+     * <pre>
+     *外底板宽度 修改614为数组
+     * </pre>
+     *
+     * <code>repeated double girderWidth = 8;</code>
+     */
+    public Builder addAllGirderWidth(
+        java.lang.Iterable<? extends java.lang.Double> values) {
+      ensureGirderWidthIsMutable();
+      com.google.protobuf.AbstractMessageLite.Builder.addAll(
+          values, girderWidth_);
+      onChanged();
+      return this;
+    }
+    /**
+     * <pre>
+     *外底板宽度 修改614为数组
+     * </pre>
+     *
+     * <code>repeated double girderWidth = 8;</code>
      */
     public Builder clearGirderWidth() {
-      
-      girderWidth_ = 0D;
+      girderWidth_ = java.util.Collections.emptyList();
+      bitField0_ = (bitField0_ & ~0x00000080);
       onChanged();
       return this;
     }
 
-    private java.lang.Object materialType_ = "";
+    private double materialYieldLimit_ ;
     /**
      * <pre>
-     *材料类型
+     *new614----------------
+     *材料类型 改为材料屈服极限
      * </pre>
      *
-     * <code>string materialType = 8;</code>
+     * <code>double materialYieldLimit = 9;</code>
      */
-    public java.lang.String getMaterialType() {
-      java.lang.Object ref = materialType_;
-      if (!(ref instanceof java.lang.String)) {
-        com.google.protobuf.ByteString bs =
-            (com.google.protobuf.ByteString) ref;
-        java.lang.String s = bs.toStringUtf8();
-        materialType_ = s;
-        return s;
-      } else {
-        return (java.lang.String) ref;
-      }
+    public double getMaterialYieldLimit() {
+      return materialYieldLimit_;
     }
     /**
      * <pre>
-     *材料类型
+     *new614----------------
+     *材料类型 改为材料屈服极限
      * </pre>
      *
-     * <code>string materialType = 8;</code>
+     * <code>double materialYieldLimit = 9;</code>
      */
-    public com.google.protobuf.ByteString
-        getMaterialTypeBytes() {
-      java.lang.Object ref = materialType_;
-      if (ref instanceof String) {
-        com.google.protobuf.ByteString b = 
-            com.google.protobuf.ByteString.copyFromUtf8(
-                (java.lang.String) ref);
-        materialType_ = b;
-        return b;
-      } else {
-        return (com.google.protobuf.ByteString) ref;
-      }
-    }
-    /**
-     * <pre>
-     *材料类型
-     * </pre>
-     *
-     * <code>string materialType = 8;</code>
-     */
-    public Builder setMaterialType(
-        java.lang.String value) {
-      if (value == null) {
-    throw new NullPointerException();
-  }
-  
-      materialType_ = value;
+    public Builder setMaterialYieldLimit(double value) {
+      
+      materialYieldLimit_ = value;
       onChanged();
       return this;
     }
     /**
      * <pre>
-     *材料类型
+     *new614----------------
+     *材料类型 改为材料屈服极限
      * </pre>
      *
-     * <code>string materialType = 8;</code>
+     * <code>double materialYieldLimit = 9;</code>
      */
-    public Builder clearMaterialType() {
+    public Builder clearMaterialYieldLimit() {
       
-      materialType_ = getDefaultInstance().getMaterialType();
+      materialYieldLimit_ = 0D;
+      onChanged();
+      return this;
+    }
+
+    private boolean isCustomLoad_ ;
+    /**
+     * <pre>
+     *new614----------------
+     *是否采用自定义载荷
+     * </pre>
+     *
+     * <code>bool isCustomLoad = 10;</code>
+     */
+    public boolean getIsCustomLoad() {
+      return isCustomLoad_;
+    }
+    /**
+     * <pre>
+     *new614----------------
+     *是否采用自定义载荷
+     * </pre>
+     *
+     * <code>bool isCustomLoad = 10;</code>
+     */
+    public Builder setIsCustomLoad(boolean value) {
+      
+      isCustomLoad_ = value;
       onChanged();
       return this;
     }
     /**
      * <pre>
-     *材料类型
+     *new614----------------
+     *是否采用自定义载荷
      * </pre>
      *
-     * <code>string materialType = 8;</code>
+     * <code>bool isCustomLoad = 10;</code>
      */
-    public Builder setMaterialTypeBytes(
-        com.google.protobuf.ByteString value) {
-      if (value == null) {
-    throw new NullPointerException();
-  }
-  checkByteStringIsUtf8(value);
+    public Builder clearIsCustomLoad() {
       
-      materialType_ = value;
+      isCustomLoad_ = false;
       onChanged();
       return this;
     }
@@ -1654,7 +2078,7 @@ public  final class Sigma1Request extends
      * 中拱-波浪弯矩
      * </pre>
      *
-     * <code>double midArchWaveMoment = 9;</code>
+     * <code>double midArchWaveMoment = 11;</code>
      */
     public double getMidArchWaveMoment() {
       return midArchWaveMoment_;
@@ -1665,7 +2089,7 @@ public  final class Sigma1Request extends
      * 中拱-波浪弯矩
      * </pre>
      *
-     * <code>double midArchWaveMoment = 9;</code>
+     * <code>double midArchWaveMoment = 11;</code>
      */
     public Builder setMidArchWaveMoment(double value) {
       
@@ -1679,7 +2103,7 @@ public  final class Sigma1Request extends
      * 中拱-波浪弯矩
      * </pre>
      *
-     * <code>double midArchWaveMoment = 9;</code>
+     * <code>double midArchWaveMoment = 11;</code>
      */
     public Builder clearMidArchWaveMoment() {
       
@@ -1692,10 +2116,10 @@ public  final class Sigma1Request extends
     /**
      * <pre>
      **
-     * 中拱-砰击振动弯矩
+     * 中拱-砰击弯矩
      * </pre>
      *
-     * <code>double midArchImpactMoment = 10;</code>
+     * <code>double midArchImpactMoment = 12;</code>
      */
     public double getMidArchImpactMoment() {
       return midArchImpactMoment_;
@@ -1703,10 +2127,10 @@ public  final class Sigma1Request extends
     /**
      * <pre>
      **
-     * 中拱-砰击振动弯矩
+     * 中拱-砰击弯矩
      * </pre>
      *
-     * <code>double midArchImpactMoment = 10;</code>
+     * <code>double midArchImpactMoment = 12;</code>
      */
     public Builder setMidArchImpactMoment(double value) {
       
@@ -1717,10 +2141,10 @@ public  final class Sigma1Request extends
     /**
      * <pre>
      **
-     * 中拱-砰击振动弯矩
+     * 中拱-砰击弯矩
      * </pre>
      *
-     * <code>double midArchImpactMoment = 10;</code>
+     * <code>double midArchImpactMoment = 12;</code>
      */
     public Builder clearMidArchImpactMoment() {
       
@@ -1736,7 +2160,7 @@ public  final class Sigma1Request extends
      * 中拱-剪力
      * </pre>
      *
-     * <code>double midArchShear = 11;</code>
+     * <code>double midArchShear = 13;</code>
      */
     public double getMidArchShear() {
       return midArchShear_;
@@ -1747,7 +2171,7 @@ public  final class Sigma1Request extends
      * 中拱-剪力
      * </pre>
      *
-     * <code>double midArchShear = 11;</code>
+     * <code>double midArchShear = 13;</code>
      */
     public Builder setMidArchShear(double value) {
       
@@ -1761,11 +2185,52 @@ public  final class Sigma1Request extends
      * 中拱-剪力
      * </pre>
      *
-     * <code>double midArchShear = 11;</code>
+     * <code>double midArchShear = 13;</code>
      */
     public Builder clearMidArchShear() {
       
       midArchShear_ = 0D;
+      onChanged();
+      return this;
+    }
+
+    private double midArchDraught_ ;
+    /**
+     * <pre>
+     **添加614
+     * 中拱-吃水
+     * </pre>
+     *
+     * <code>double midArchDraught = 14;</code>
+     */
+    public double getMidArchDraught() {
+      return midArchDraught_;
+    }
+    /**
+     * <pre>
+     **添加614
+     * 中拱-吃水
+     * </pre>
+     *
+     * <code>double midArchDraught = 14;</code>
+     */
+    public Builder setMidArchDraught(double value) {
+      
+      midArchDraught_ = value;
+      onChanged();
+      return this;
+    }
+    /**
+     * <pre>
+     **添加614
+     * 中拱-吃水
+     * </pre>
+     *
+     * <code>double midArchDraught = 14;</code>
+     */
+    public Builder clearMidArchDraught() {
+      
+      midArchDraught_ = 0D;
       onChanged();
       return this;
     }
@@ -1777,7 +2242,7 @@ public  final class Sigma1Request extends
      * 中垂-波浪弯矩
      * </pre>
      *
-     * <code>double midVerticalWaveMoment = 12;</code>
+     * <code>double midVerticalWaveMoment = 15;</code>
      */
     public double getMidVerticalWaveMoment() {
       return midVerticalWaveMoment_;
@@ -1788,7 +2253,7 @@ public  final class Sigma1Request extends
      * 中垂-波浪弯矩
      * </pre>
      *
-     * <code>double midVerticalWaveMoment = 12;</code>
+     * <code>double midVerticalWaveMoment = 15;</code>
      */
     public Builder setMidVerticalWaveMoment(double value) {
       
@@ -1802,7 +2267,7 @@ public  final class Sigma1Request extends
      * 中垂-波浪弯矩
      * </pre>
      *
-     * <code>double midVerticalWaveMoment = 12;</code>
+     * <code>double midVerticalWaveMoment = 15;</code>
      */
     public Builder clearMidVerticalWaveMoment() {
       
@@ -1815,10 +2280,10 @@ public  final class Sigma1Request extends
     /**
      * <pre>
      **
-     * 中垂-砰击振动弯矩
+     * 中垂-砰击弯矩
      * </pre>
      *
-     * <code>double midVerticalImpactMoment = 13;</code>
+     * <code>double midVerticalImpactMoment = 16;</code>
      */
     public double getMidVerticalImpactMoment() {
       return midVerticalImpactMoment_;
@@ -1826,10 +2291,10 @@ public  final class Sigma1Request extends
     /**
      * <pre>
      **
-     * 中垂-砰击振动弯矩
+     * 中垂-砰击弯矩
      * </pre>
      *
-     * <code>double midVerticalImpactMoment = 13;</code>
+     * <code>double midVerticalImpactMoment = 16;</code>
      */
     public Builder setMidVerticalImpactMoment(double value) {
       
@@ -1840,10 +2305,10 @@ public  final class Sigma1Request extends
     /**
      * <pre>
      **
-     * 中垂-砰击振动弯矩
+     * 中垂-砰击弯矩
      * </pre>
      *
-     * <code>double midVerticalImpactMoment = 13;</code>
+     * <code>double midVerticalImpactMoment = 16;</code>
      */
     public Builder clearMidVerticalImpactMoment() {
       
@@ -1859,7 +2324,7 @@ public  final class Sigma1Request extends
      * 中垂-剪力
      * </pre>
      *
-     * <code>double midVerticalShear = 14;</code>
+     * <code>double midVerticalShear = 17;</code>
      */
     public double getMidVerticalShear() {
       return midVerticalShear_;
@@ -1870,7 +2335,7 @@ public  final class Sigma1Request extends
      * 中垂-剪力
      * </pre>
      *
-     * <code>double midVerticalShear = 14;</code>
+     * <code>double midVerticalShear = 17;</code>
      */
     public Builder setMidVerticalShear(double value) {
       
@@ -1884,11 +2349,153 @@ public  final class Sigma1Request extends
      * 中垂-剪力
      * </pre>
      *
-     * <code>double midVerticalShear = 14;</code>
+     * <code>double midVerticalShear = 17;</code>
      */
     public Builder clearMidVerticalShear() {
       
       midVerticalShear_ = 0D;
+      onChanged();
+      return this;
+    }
+
+    private double midVerticalDraught_ ;
+    /**
+     * <pre>
+     **添加614
+     * 中垂-吃水
+     * </pre>
+     *
+     * <code>double midVerticalDraught = 18;</code>
+     */
+    public double getMidVerticalDraught() {
+      return midVerticalDraught_;
+    }
+    /**
+     * <pre>
+     **添加614
+     * 中垂-吃水
+     * </pre>
+     *
+     * <code>double midVerticalDraught = 18;</code>
+     */
+    public Builder setMidVerticalDraught(double value) {
+      
+      midVerticalDraught_ = value;
+      onChanged();
+      return this;
+    }
+    /**
+     * <pre>
+     **添加614
+     * 中垂-吃水
+     * </pre>
+     *
+     * <code>double midVerticalDraught = 18;</code>
+     */
+    public Builder clearMidVerticalDraught() {
+      
+      midVerticalDraught_ = 0D;
+      onChanged();
+      return this;
+    }
+
+    private java.util.List<java.lang.Double> xiancethick_ = java.util.Collections.emptyList();
+    private void ensureXiancethickIsMutable() {
+      if (!((bitField0_ & 0x00040000) == 0x00040000)) {
+        xiancethick_ = new java.util.ArrayList<java.lang.Double>(xiancethick_);
+        bitField0_ |= 0x00040000;
+       }
+    }
+    /**
+     * <pre>
+     **添加614
+     * 舷侧中和轴附近板的厚度
+     * </pre>
+     *
+     * <code>repeated double xiancethick = 19;</code>
+     */
+    public java.util.List<java.lang.Double>
+        getXiancethickList() {
+      return java.util.Collections.unmodifiableList(xiancethick_);
+    }
+    /**
+     * <pre>
+     **添加614
+     * 舷侧中和轴附近板的厚度
+     * </pre>
+     *
+     * <code>repeated double xiancethick = 19;</code>
+     */
+    public int getXiancethickCount() {
+      return xiancethick_.size();
+    }
+    /**
+     * <pre>
+     **添加614
+     * 舷侧中和轴附近板的厚度
+     * </pre>
+     *
+     * <code>repeated double xiancethick = 19;</code>
+     */
+    public double getXiancethick(int index) {
+      return xiancethick_.get(index);
+    }
+    /**
+     * <pre>
+     **添加614
+     * 舷侧中和轴附近板的厚度
+     * </pre>
+     *
+     * <code>repeated double xiancethick = 19;</code>
+     */
+    public Builder setXiancethick(
+        int index, double value) {
+      ensureXiancethickIsMutable();
+      xiancethick_.set(index, value);
+      onChanged();
+      return this;
+    }
+    /**
+     * <pre>
+     **添加614
+     * 舷侧中和轴附近板的厚度
+     * </pre>
+     *
+     * <code>repeated double xiancethick = 19;</code>
+     */
+    public Builder addXiancethick(double value) {
+      ensureXiancethickIsMutable();
+      xiancethick_.add(value);
+      onChanged();
+      return this;
+    }
+    /**
+     * <pre>
+     **添加614
+     * 舷侧中和轴附近板的厚度
+     * </pre>
+     *
+     * <code>repeated double xiancethick = 19;</code>
+     */
+    public Builder addAllXiancethick(
+        java.lang.Iterable<? extends java.lang.Double> values) {
+      ensureXiancethickIsMutable();
+      com.google.protobuf.AbstractMessageLite.Builder.addAll(
+          values, xiancethick_);
+      onChanged();
+      return this;
+    }
+    /**
+     * <pre>
+     **添加614
+     * 舷侧中和轴附近板的厚度
+     * </pre>
+     *
+     * <code>repeated double xiancethick = 19;</code>
+     */
+    public Builder clearXiancethick() {
+      xiancethick_ = java.util.Collections.emptyList();
+      bitField0_ = (bitField0_ & ~0x00040000);
       onChanged();
       return this;
     }
@@ -1899,7 +2506,7 @@ public  final class Sigma1Request extends
      *龙骨数量
      * </pre>
      *
-     * <code>int32 numGirder = 15;</code>
+     * <code>int32 numGirder = 20;</code>
      */
     public int getNumGirder() {
       return numGirder_;
@@ -1909,7 +2516,7 @@ public  final class Sigma1Request extends
      *龙骨数量
      * </pre>
      *
-     * <code>int32 numGirder = 15;</code>
+     * <code>int32 numGirder = 20;</code>
      */
     public Builder setNumGirder(int value) {
       
@@ -1922,7 +2529,7 @@ public  final class Sigma1Request extends
      *龙骨数量
      * </pre>
      *
-     * <code>int32 numGirder = 15;</code>
+     * <code>int32 numGirder = 20;</code>
      */
     public Builder clearNumGirder() {
       

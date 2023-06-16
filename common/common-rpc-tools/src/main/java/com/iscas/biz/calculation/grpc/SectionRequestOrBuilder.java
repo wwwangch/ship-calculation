@@ -121,4 +121,14 @@ public interface SectionRequestOrBuilder extends
    */
   com.iscas.biz.calculation.grpc.TProfileOrBuilder getTProfilesOrBuilder(
       int index);
+
+  /**
+   * <pre>
+   *new614----------------
+   *是否半剖面
+   * </pre>
+   *
+   * <code>bool isHalfProfile = 5;</code>
+   */
+  boolean getIsHalfProfile();
 }
