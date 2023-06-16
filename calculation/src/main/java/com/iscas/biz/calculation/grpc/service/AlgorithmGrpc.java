@@ -552,21 +552,15 @@ public class AlgorithmGrpc {
      * @return
      */
     public BulkheadCheckResult calBulkheadCheck(Integer bulkheadId, ShipParam shipParam, List<BulkheadCompartment> bulkheadCompartments) {
-        List<Double> deckHeight = Lists.newArrayList();
-        List<Boolean> boolLiquidTank = Lists.newArrayList();
         List<Double> banWidth = Lists.newArrayList();
         List<Double> banThick = Lists.newArrayList();
         List<Double> cangbiBancailiao = Lists.newArrayList();
         for (BulkheadCompartment bulkheadCompartment : bulkheadCompartments) {
-            deckHeight.add(Double.valueOf(bulkheadCompartment.getHeightAbove()));
-            boolLiquidTank.add(Boolean.valueOf(bulkheadCompartment.getLiquid()));
             banWidth.add(Double.valueOf(bulkheadCompartment.getPlateWidth()));
             banThick.add(Double.valueOf(bulkheadCompartment.getPlateThickness()));
             cangbiBancailiao.add(Double.valueOf(bulkheadCompartment.getMaterial()));
         }
         CompartmentBulkheadSheetResponse compartmentBulkheadSheetResponse = grpcHolder.calculationBlockingStub().calCompartmentBulkheadSheet(CompartmentBulkheadSheetRequest.newBuilder()
-                .setAirguanyatou(shipParam.getAirguanyatou())
-                .addAllDeckHeight(deckHeight)
                 .addAllBanWidth(banWidth)
                 .addAllBanThick(banThick)
                 .addAllCangbiBancailiao(cangbiBancailiao)
@@ -574,7 +568,7 @@ public class AlgorithmGrpc {
         BulkheadCheckResult bulkheadCheckResult = new BulkheadCheckResult();
         bulkheadCheckResult.setBulkheadId(bulkheadId);
         bulkheadCheckResult.setProjectId(shipParam.getProjectId());
-        bulkheadCheckResult.setYatou(Lists.newArrayList(compartmentBulkheadSheetResponse.getYatouList()));
+        bulkheadCheckResult.setStrdeckdistrict(Lists.newArrayList(compartmentBulkheadSheetResponse.getStrdeckdistrictList()));
         bulkheadCheckResult.setDisload(Lists.newArrayList(compartmentBulkheadSheetResponse.getDisloadList()));
         bulkheadCheckResult.setLgvList(Lists.newArrayList(compartmentBulkheadSheetResponse.getLgvListList()));
         bulkheadCheckResult.setUList(Lists.newArrayList(compartmentBulkheadSheetResponse.getUListList()));
