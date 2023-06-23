@@ -27,7 +27,7 @@ public class CalSection {
     /**
      * 载重文件路径
      */
-    private String profileFilePath;
+    private String profileFilePathOld;
 
     /**
      * 载重文件名称
@@ -46,22 +46,35 @@ public class CalSection {
     //惯性矩
     private Double interia0;
 
-    //中拱时的中和轴
-    private Double zaxisH;
+    //初始中和轴
+    private Double zaxis0;
 
-    //中拱时静矩
-    private Double firstMomH;
+    //剖面面积
+    private Double area ;
+    //上甲板模数
+    private Double module_uppper ;
+    //底部模数
+    private Double module_lower ;
 
-    //中拱时惯性矩
-    private Double interiaH;
+    //解析后的剖面文件路径
+    private String profileFilePath ;
 
-    //中垂时的中和轴
-    private Double zaxisS;
-
-    //中垂时静矩
-    private Double firstMomS;
-
-    //中垂时惯性矩
-    private Double interiaS;
+//    //中拱时的中和轴
+//    private Double zaxisH;
+//
+//    //中拱时静矩
+//    private Double firstMomH;
+//
+//    //中拱时惯性矩
+//    private Double interiaH;
+//
+//    //中垂时的中和轴
+//    private Double zaxisS;
+//
+//    //中垂时静矩
+//    private Double firstMomS;
+//
+//    //中垂时惯性矩
+//    private Double interiaS;
 
 }

@@ -7,7 +7,7 @@ import java.io.IOException;
 import java.util.List;
 
 public interface StrengthService {
-    List<Sigma1> getSigma1(Integer projectId, Integer sectionId);
+//    List<Sigma1> getSigma1(Integer projectId, Integer sectionId);
 
     List<Sigma2> getSigma2(Integer projectId, Integer sectionId);
 
@@ -28,13 +28,13 @@ public interface StrengthService {
     List<Sigma4> calSigma4(Integer projectId, Integer sectionId) throws IllegalAccessException;
 
     List<ShearingStress> calShearingStress(Integer projectId, Integer sectionId) throws IllegalAccessException;
-    void sigma1Export(Integer projectId, Integer sectionId)throws IOException;
+//    void sigma1Export(Integer projectId, Integer sectionId)throws IOException;
 
-    void sigma2Export(Integer projectId, Integer sectionId)throws IOException;
-
-    void sigma3Export(Integer projectId, Integer sectionId)throws IOException;
-
-    void sigma4Export(Integer projectId, Integer sectionId)throws IOException;
+//    void sigma2Export(Integer projectId, Integer sectionId)throws IOException;
+//
+//    void sigma3Export(Integer projectId, Integer sectionId)throws IOException;
+//
+//    void sigma4Export(Integer projectId, Integer sectionId)throws IOException;
 
     void shearingStressExport(Integer projectId, Integer sectionId)throws IOException;
 }

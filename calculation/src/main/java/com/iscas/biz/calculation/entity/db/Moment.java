@@ -30,6 +30,10 @@ public class Moment {
      */
     private Double midArchShear;
     /**
+     * 中拱-吃水
+     */
+    private Double midArchDraught;
+    /**
      * 中垂-波浪弯矩
      */
     private Double midVerticalWaveMoment;
@@ -41,4 +45,8 @@ public class Moment {
      * 中垂-剪力
      */
     private Double midVerticalShear;
+    /**
+     * 中垂-吃水
+     */
+    private Double midVerticalDraught;
 }

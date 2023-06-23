@@ -51,7 +51,7 @@ public class CalSectionServiceImpl implements CalSectionService {
             return null;
         }
         Section selectById = sectionMapper.selectById(calSectionDTO.getSectionId());
-        calSectionDTO.setProfileFilePath(selectById.getSectionFilePath());
+        calSectionDTO.setProfileFilePathOld(selectById.getSectionFilePath());
         calSectionDTO.setProfileFileName(selectById.getSectionFileName());
         calSectionDTO.setRibNumber(selectById.getRibNumber());
         CalSection calSection = algorithmGrpc.calSection(calSectionDTO);
@@ -82,34 +82,34 @@ public class CalSectionServiceImpl implements CalSectionService {
         return null;
     }
 
-    @Override
-    public void export(Integer projectId) throws IOException {
-        Project project = projectMapper.selectById(projectId);
-        if (null == project) {
-            throw new RuntimeException("当前项目不存在!");
-        }
-        QueryWrapper<CalSection> calSectionQueryWrapper = new QueryWrapper<>();
-        calSectionQueryWrapper.lambda().eq(CalSection::getProjectId, projectId);
-        CalSection calSection = calSectionMapper.selectOne(calSectionQueryWrapper);
-        ExcelWriter excelWriter = EasyExcel.write(SpringUtils.getResponse().getOutputStream())
-                .autoTrim(true).build();
-
-        CalSectionParamExcel calSectionParamExcel = new CalSectionParamExcel();
-        calSectionParamExcel.setCalculationSpecification(project.getCalculationSpecification().getDescCH());
-        calSectionParamExcel.setProfileFileName(calSection.getProfileFileName());
-        calSectionParamExcel.setFirstMoment0(calSection.getFirstMoment0());
-        calSectionParamExcel.setInteria0(calSection.getInteria0());
-        calSectionParamExcel.setZaxisH(calSection.getZaxisH());
-        calSectionParamExcel.setFirstMomH(calSection.getFirstMomH());
-        calSectionParamExcel.setInteriaH(calSection.getInteriaH());
-        calSectionParamExcel.setZaxisS(calSection.getZaxisS());
-        calSectionParamExcel.setFirstMomS(calSection.getFirstMomS());
-        calSectionParamExcel.setInteriaS(calSection.getInteriaS());
-
-        WriteSheet writeSheet = EasyExcel.writerSheet(0).needHead(false).build();
-
-        WriteTable paramTable = EasyExcel.writerTable(0).head(BuoyancyParamExcel.class).needHead(true).build();
-        excelWriter.write(Lists.newArrayList(calSectionParamExcel), writeSheet, paramTable);
-        excelWriter.finish();
-    }
+//    @Override
+//    public void export(Integer projectId) throws IOException {
+//        Project project = projectMapper.selectById(projectId);
+//        if (null == project) {
+//            throw new RuntimeException("当前项目不存在!");
+//        }
+//        QueryWrapper<CalSection> calSectionQueryWrapper = new QueryWrapper<>();
+//        calSectionQueryWrapper.lambda().eq(CalSection::getProjectId, projectId);
+//        CalSection calSection = calSectionMapper.selectOne(calSectionQueryWrapper);
+//        ExcelWriter excelWriter = EasyExcel.write(SpringUtils.getResponse().getOutputStream())
+//                .autoTrim(true).build();
+//
+//        CalSectionParamExcel calSectionParamExcel = new CalSectionParamExcel();
+//        calSectionParamExcel.setCalculationSpecification(project.getCalculationSpecification().getDescCH());
+//        calSectionParamExcel.setProfileFileName(calSection.getProfileFileName());
+//        calSectionParamExcel.setFirstMoment0(calSection.getFirstMoment0());
+//        calSectionParamExcel.setInteria0(calSection.getInteria0());
+//        calSectionParamExcel.setZaxisH(calSection.getZaxisH());
+//        calSectionParamExcel.setFirstMomH(calSection.getFirstMomH());
+//        calSectionParamExcel.setInteriaH(calSection.getInteriaH());
+//        calSectionParamExcel.setZaxisS(calSection.getZaxisS());
+//        calSectionParamExcel.setFirstMomS(calSection.getFirstMomS());
+//        calSectionParamExcel.setInteriaS(calSection.getInteriaS());
+//
+//        WriteSheet writeSheet = EasyExcel.writerSheet(0).needHead(false).build();
+//
+//        WriteTable paramTable = EasyExcel.writerTable(0).head(BuoyancyParamExcel.class).needHead(true).build();
+//        excelWriter.write(Lists.newArrayList(calSectionParamExcel), writeSheet, paramTable);
+//        excelWriter.finish();
+//    }
 }

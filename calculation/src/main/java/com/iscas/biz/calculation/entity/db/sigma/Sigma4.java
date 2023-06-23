@@ -29,8 +29,8 @@ public class Sigma4 {
     //中垂跨中
     private Double zhongchuiKuazhong;
 
-    //许用应力
-    private Double allowStress;
+//    //许用应力
+//    private Double allowStress;
     //合成许用应力
     private Double combineAllowStress;
     //合成中拱支座
