@@ -2,6 +2,8 @@ package com.iscas.biz.calculation.entity.dto;
 
 import lombok.Data;
 
+import java.util.List;
+
 /**
  * @author ch w
  * @version 1.0
@@ -28,4 +30,10 @@ public class CalSectionDTO {
      * 肋位号
      */
     private Double ribNumber;
+    //球扁钢数组
+    private  List bulbFlats;
+    //T型材数组
+    private  List tProfiles;
+    //是否半剖面
+    private boolean isHalfProfile;
 }

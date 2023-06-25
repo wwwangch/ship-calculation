@@ -6,7 +6,8 @@ import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 import com.baomidou.mybatisplus.extension.handlers.JacksonTypeHandler;
 import lombok.Data;
-
+import com.iscas.biz.calculation.grpc.BulbFlat;
+import com.iscas.biz.calculation.grpc.TProfile;
 import java.util.List;
 
 /**
@@ -39,6 +40,11 @@ public class CalSection {
      */
     private Double ribNumber;
 
+    @TableField(typeHandler = JacksonTypeHandler.class)
+    private List<BulbFlat> bulbFlats;
+    @TableField(typeHandler = JacksonTypeHandler.class)
+    private List<TProfile> tProfiles;
+    private boolean isHalfProfile;
 
     //初始静矩
     private Double firstMoment0;
@@ -52,9 +58,9 @@ public class CalSection {
     //剖面面积
     private Double area ;
     //上甲板模数
-    private Double module_uppper ;
+    private Double moduleUppper ;
     //底部模数
-    private Double module_lower ;
+    private Double moduleLower ;
 
     //解析后的剖面文件路径
     private String profileFilePath ;

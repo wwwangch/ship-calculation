@@ -12,6 +12,7 @@ import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.ExampleObject;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
 import java.io.IOException;
@@ -43,7 +44,7 @@ public class CalSectionController {
 
     @Operation(summary = "计算", description = "计算,传入参数")
     @io.swagger.v3.oas.annotations.parameters.RequestBody(required = true, description = "新增的数据",
-            content = @Content(examples = @ExampleObject(value = "{\"projectId\":1,\"profileFilePath\":\"xx\",\"profileFileName\":\"xxx\"}")))
+            content = @Content(examples = @ExampleObject(value = "{\"projectId\":1,\"sectionId\":1,\"profileFilePath\":\"xx\",\"profileFileName\":\"xxx\"}")))
     @PostMapping(value = "/calculate")
     public ResponseEntity saveData(@RequestBody CalSectionDTO calSectionDTO) {
         return ResponseEntity.ok(calSectionService.calculate(calSectionDTO));

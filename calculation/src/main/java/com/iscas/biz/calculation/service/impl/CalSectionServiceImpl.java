@@ -1,25 +1,19 @@
 package com.iscas.biz.calculation.service.impl;
 
-import com.alibaba.excel.EasyExcel;
-import com.alibaba.excel.ExcelWriter;
-import com.alibaba.excel.write.metadata.WriteSheet;
-import com.alibaba.excel.write.metadata.WriteTable;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
-import com.google.common.collect.Lists;
-import com.iscas.base.biz.util.SpringUtils;
 import com.iscas.biz.calculation.entity.db.*;
 import com.iscas.biz.calculation.entity.dto.*;
+import com.iscas.biz.calculation.grpc.SectionRequest;
 import com.iscas.biz.calculation.grpc.service.AlgorithmGrpc;
-import com.iscas.biz.calculation.mapper.CalSectionMapper;
-import com.iscas.biz.calculation.mapper.ProjectMapper;
-import com.iscas.biz.calculation.mapper.SectionMapper;
+import com.iscas.biz.calculation.mapper.*;
 import com.iscas.biz.calculation.service.CalSectionService;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.collections4.CollectionUtils;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.io.IOException;
+
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -32,13 +26,18 @@ import java.util.List;
 public class CalSectionServiceImpl implements CalSectionService {
     private final AlgorithmGrpc algorithmGrpc;
     private final CalSectionMapper calSectionMapper;
-
+    private final TProfileMapper tProfileMapper;
+    private final BulbFlatMapper bulbFlatMapper;
     private final ProjectMapper projectMapper;
     private final SectionMapper sectionMapper;
 
-    public CalSectionServiceImpl(AlgorithmGrpc algorithmGrpc, CalSectionMapper calSectionMapper, ProjectMapper projectMapper, SectionMapper sectionMapper) {
+    public CalSectionServiceImpl(AlgorithmGrpc algorithmGrpc, CalSectionMapper calSectionMapper,
+                                 TProfileMapper tProfileMapper, BulbFlatMapper bulbFlatMapper,
+                                 ProjectMapper projectMapper, SectionMapper sectionMapper) {
         this.algorithmGrpc = algorithmGrpc;
         this.calSectionMapper = calSectionMapper;
+        this.tProfileMapper = tProfileMapper;
+        this.bulbFlatMapper = bulbFlatMapper;
         this.projectMapper = projectMapper;
         this.sectionMapper = sectionMapper;
     }
@@ -54,6 +53,46 @@ public class CalSectionServiceImpl implements CalSectionService {
         calSectionDTO.setProfileFilePathOld(selectById.getSectionFilePath());
         calSectionDTO.setProfileFileName(selectById.getSectionFileName());
         calSectionDTO.setRibNumber(selectById.getRibNumber());
+        String isHalfProfile = selectById.getIsHalfProfile();
+        if (isHalfProfile == null) {
+            return null;
+        }
+        if ("1".equals(isHalfProfile)) {
+            calSectionDTO.setHalfProfile(true);
+        } else {
+            calSectionDTO.setHalfProfile(false);
+        }
+        List<TProfile> tProfiles = tProfileMapper.selectList(null);
+        List<BulbFlat> bulbFlats = bulbFlatMapper.selectList(null);
+        List<com.iscas.biz.calculation.grpc.TProfile> toTProfiles = new ArrayList<>();
+        for (TProfile tProfile : tProfiles) {
+            toTProfiles.add(com.iscas.biz.calculation.grpc.TProfile
+                    .newBuilder()
+                    .setModel(tProfile.getModel())
+                    .setKeelHeight(tProfile.getKeelHeight())
+                    .setKeelThickness(tProfile.getKeelThickness())
+                    .setDeckWidth(tProfile.getDeckWidth())
+                    .setDeckThickness(tProfile.getDeckThickness())
+                    .setSectionalArea(tProfile.getSectionalArea())
+                    .setMomentOfInertia(tProfile.getMomentOfInertia())
+                    .setCentroidPosition(tProfile.getCentroidPosition())
+                    .build());
+        }
+        List<com.iscas.biz.calculation.grpc.BulbFlat> toBulbFlats = new ArrayList<>();
+        for (BulbFlat bulbFlat : bulbFlats) {
+            toBulbFlats.add(com.iscas.biz.calculation.grpc.BulbFlat
+                    .newBuilder()
+                    .setModel(bulbFlat.getModel())
+                    .setHeight(bulbFlat.getHeight())
+                    .setWidth(bulbFlat.getWidth())
+                    .setThickness(bulbFlat.getThickness())
+                    .setSectionalArea(bulbFlat.getSectionalArea())
+                    .setMomentOfInertia(bulbFlat.getMomentOfInertia())
+                    .setCentroidPosition(bulbFlat.getCentroidPosition())
+                    .build());
+        }
+        calSectionDTO.setBulbFlats(toBulbFlats);
+        calSectionDTO.setTProfiles(toTProfiles);
         CalSection calSection = algorithmGrpc.calSection(calSectionDTO);
         CalSection section = listBySectionIdId(calSectionDTO.getSectionId());
         if (null != section) {

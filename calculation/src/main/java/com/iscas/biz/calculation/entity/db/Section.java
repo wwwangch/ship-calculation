@@ -60,6 +60,8 @@ public class Section {
      */
     private Double ribNumber;
 
+    private String isHalfProfile;
+
     /**
      * 纵骨间距
      */

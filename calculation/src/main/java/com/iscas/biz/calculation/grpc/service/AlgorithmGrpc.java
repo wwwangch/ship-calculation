@@ -179,6 +179,9 @@ public class AlgorithmGrpc {
         SectionRequest sectionRequest = SectionRequest.newBuilder()
                 .setProfileFilePath(calSectionDTO.getProfileFilePathOld())
                 .setRibNumber(calSectionDTO.getRibNumber())
+                .addAllBulbFlats(calSectionDTO.getBulbFlats())
+                .addAllTProfiles(calSectionDTO.getTProfiles())
+                .setIsHalfProfile(calSectionDTO.isHalfProfile())
                 .build();
         SectionResponse sectionResponse = grpcHolder.calculationBlockingStub().calSection(sectionRequest);
         if (sectionResponse == null) {
@@ -189,6 +192,9 @@ public class AlgorithmGrpc {
         calSection.setProfileFilePathOld(calSectionDTO.getProfileFilePathOld());
         calSection.setProfileFileName(calSectionDTO.getProfileFileName());
         calSection.setRibNumber(calSectionDTO.getRibNumber());
+        calSection.setBulbFlats(calSectionDTO.getBulbFlats());
+        calSection.setTProfiles(calSectionDTO.getTProfiles());
+        calSection.setHalfProfile(calSectionDTO.isHalfProfile());
         calSection.setFirstMoment0(sectionResponse.getFirstMoment0());
         calSection.setInteria0(sectionResponse.getInteria0());
 //        calSection.setZaxisH(sectionResponse.getZaxisH());
@@ -199,8 +205,8 @@ public class AlgorithmGrpc {
 //        calSection.setInteriaS(sectionResponse.getInteriaS());
         calSection.setZaxis0(sectionResponse.getZaxis0());
         calSection.setArea(sectionResponse.getArea());
-        calSection.setModule_uppper(sectionResponse.getModuleUppper());
-        calSection.setModule_lower(sectionResponse.getModuleLower());
+        calSection.setModuleUppper(sectionResponse.getModuleUppper());
+        calSection.setModuleLower(sectionResponse.getModuleLower());
         calSection.setProfileFilePath(sectionResponse.getProfileFilePath());
         AlgorithmGrpc.section = true;
         return calSection;
@@ -409,7 +415,7 @@ public class AlgorithmGrpc {
                 .setGirderDistance(sigma1DTO.getGirderDistance())
                 .setFrDistance(sigma1DTO.getFrDistance())
                 .setTrusswidth(sigma1DTO.getTrusswidth())
-                .addAllFrGuige(Lists.newArrayList(sigma1DTO.getFrGuige()).stream().map(Object :: toString).collect(Collectors.toList()))
+                .addAllFrGuige(Lists.newArrayList(sigma1DTO.getFrGuige()).stream().map(Object::toString).collect(Collectors.toList()))
                 .addAllPlateThick(Lists.newArrayList(sigma1DTO.getPlateThick()))
                 .setDeviceWeight(sigma1DTO.getDeviceWeight())
                 .addAllGirderWidth(Lists.newArrayList(sigma1DTO.getGirderWidth()))
