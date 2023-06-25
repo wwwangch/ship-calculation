@@ -18,7 +18,7 @@ public interface SectionResponseOrBuilder extends
 
   /**
    * <pre>
-   *惯性矩
+   *初始惯性矩
    * </pre>
    *
    * <code>double interia0 = 2;</code>
@@ -27,55 +27,56 @@ public interface SectionResponseOrBuilder extends
 
   /**
    * <pre>
-   *中拱时的中和轴
+   *初始中和轴
    * </pre>
    *
-   * <code>double zaxisH = 3;</code>
+   * <code>double zaxis0 = 3;</code>
    */
-  double getZaxisH();
+  double getZaxis0();
 
   /**
    * <pre>
-   *中拱时静矩
+   *修改0614 去掉中拱中垂输出，增加面积和底部上甲板模数输出
+   *剖面面积
    * </pre>
    *
-   * <code>double firstMomH = 4;</code>
+   * <code>double area = 4;</code>
    */
-  double getFirstMomH();
+  double getArea();
 
   /**
    * <pre>
-   *中拱时惯性矩
+   *上甲板模数
    * </pre>
    *
-   * <code>double interiaH = 5;</code>
+   * <code>double module_uppper = 5;</code>
    */
-  double getInteriaH();
+  double getModuleUppper();
 
   /**
    * <pre>
-   *中垂时的中和轴
+   *底部模数
    * </pre>
    *
-   * <code>double zaxisS = 6;</code>
+   * <code>double module_lower = 6;</code>
    */
-  double getZaxisS();
+  double getModuleLower();
 
   /**
    * <pre>
-   *中垂时静矩
+   *解析后的剖面文件路径
    * </pre>
    *
-   * <code>double firstMomS = 7;</code>
+   * <code>string profileFilePath = 7;</code>
    */
-  double getFirstMomS();
-
+  java.lang.String getProfileFilePath();
   /**
    * <pre>
-   *中垂时惯性矩
+   *解析后的剖面文件路径
    * </pre>
    *
-   * <code>double interiaS = 8;</code>
+   * <code>string profileFilePath = 7;</code>
    */
-  double getInteriaS();
+  com.google.protobuf.ByteString
+      getProfileFilePathBytes();
 }

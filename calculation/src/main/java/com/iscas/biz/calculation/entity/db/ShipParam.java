@@ -5,6 +5,7 @@ import com.baomidou.mybatisplus.annotation.TableId;
 import com.iscas.biz.calculation.enums.CheckType;
 import com.iscas.biz.calculation.enums.NavigationArea;
 import com.iscas.biz.calculation.enums.ShipType;
+import com.iscas.biz.calculation.enums.UpBuiltForm;
 import lombok.Data;
 
 import java.util.Date;
@@ -71,15 +72,45 @@ public class ShipParam {
     private Double portraitGravity;
 
     /**
-     * 干舷高
-     */
-    private Double freeboard;
-
-    /**
      * 液舱空气管压头
      */
     private Double airguanyatou;
 
+    /**
+     * 上建形式
+     */
+    private UpBuiltForm upBuiltForm;
+
+    /**
+     * 干舷高
+     */
+    private Double freeboard;
+
+
+    /**
+     * 端壁肋位号
+     */
+    private Double ribNumber;
+
+    /**
+     * 首干舷高
+     */
+    private Double foreFreeBoard;
+
+    /**
+     * 尾干舷高
+     */
+    private Double afterFreeBoard;
+    /**
+     * 桥楼首部端壁肋位号
+     */
+    private Double bridgeForePos;
+    //桥楼首部端壁干舷高
+    private Double bridgeForeHeight;
+    //桥楼尾部端壁肋位号；
+    private Double bridgeAftPos;
+    //桥楼尾部端壁干舷高
+    private Double bridgeAftHeight;
 
     private Date createTime;
 

@@ -15,7 +15,7 @@ public  final class CompartmentBulkheadSheetResponse extends
     super(builder);
   }
   private CompartmentBulkheadSheetResponse() {
-    yatou_ = java.util.Collections.emptyList();
+    strdeckdistrict_ = com.google.protobuf.LazyStringArrayList.EMPTY;
     disload_ = java.util.Collections.emptyList();
     lgvList_ = java.util.Collections.emptyList();
     uList_ = java.util.Collections.emptyList();
@@ -52,25 +52,13 @@ public  final class CompartmentBulkheadSheetResponse extends
             }
             break;
           }
-          case 9: {
-            if (!((mutable_bitField0_ & 0x00000001) == 0x00000001)) {
-              yatou_ = new java.util.ArrayList<java.lang.Double>();
-              mutable_bitField0_ |= 0x00000001;
-            }
-            yatou_.add(input.readDouble());
-            break;
-          }
           case 10: {
-            int length = input.readRawVarint32();
-            int limit = input.pushLimit(length);
-            if (!((mutable_bitField0_ & 0x00000001) == 0x00000001) && input.getBytesUntilLimit() > 0) {
-              yatou_ = new java.util.ArrayList<java.lang.Double>();
+            java.lang.String s = input.readStringRequireUtf8();
+            if (!((mutable_bitField0_ & 0x00000001) == 0x00000001)) {
+              strdeckdistrict_ = new com.google.protobuf.LazyStringArrayList();
               mutable_bitField0_ |= 0x00000001;
             }
-            while (input.getBytesUntilLimit() > 0) {
-              yatou_.add(input.readDouble());
-            }
-            input.popLimit(limit);
+            strdeckdistrict_.add(s);
             break;
           }
           case 17: {
@@ -271,7 +259,7 @@ public  final class CompartmentBulkheadSheetResponse extends
           e).setUnfinishedMessage(this);
     } finally {
       if (((mutable_bitField0_ & 0x00000001) == 0x00000001)) {
-        yatou_ = java.util.Collections.unmodifiableList(yatou_);
+        strdeckdistrict_ = strdeckdistrict_.getUnmodifiableView();
       }
       if (((mutable_bitField0_ & 0x00000002) == 0x00000002)) {
         disload_ = java.util.Collections.unmodifiableList(disload_);
@@ -315,40 +303,50 @@ public  final class CompartmentBulkheadSheetResponse extends
             com.iscas.biz.calculation.grpc.CompartmentBulkheadSheetResponse.class, com.iscas.biz.calculation.grpc.CompartmentBulkheadSheetResponse.Builder.class);
   }
 
-  public static final int YATOU_FIELD_NUMBER = 1;
-  private java.util.List<java.lang.Double> yatou_;
+  public static final int STRDECKDISTRICT_FIELD_NUMBER = 1;
+  private com.google.protobuf.LazyStringList strdeckdistrict_;
   /**
    * <pre>
-   *破损压头水压值
+   *层间名称
    * </pre>
    *
-   * <code>repeated double yatou = 1;</code>
+   * <code>repeated string strdeckdistrict = 1;</code>
    */
-  public java.util.List<java.lang.Double>
-      getYatouList() {
-    return yatou_;
+  public com.google.protobuf.ProtocolStringList
+      getStrdeckdistrictList() {
+    return strdeckdistrict_;
   }
   /**
    * <pre>
-   *破损压头水压值
+   *层间名称
    * </pre>
    *
-   * <code>repeated double yatou = 1;</code>
+   * <code>repeated string strdeckdistrict = 1;</code>
    */
-  public int getYatouCount() {
-    return yatou_.size();
+  public int getStrdeckdistrictCount() {
+    return strdeckdistrict_.size();
   }
   /**
    * <pre>
-   *破损压头水压值
+   *层间名称
    * </pre>
    *
-   * <code>repeated double yatou = 1;</code>
+   * <code>repeated string strdeckdistrict = 1;</code>
    */
-  public double getYatou(int index) {
-    return yatou_.get(index);
+  public java.lang.String getStrdeckdistrict(int index) {
+    return strdeckdistrict_.get(index);
   }
-  private int yatouMemoizedSerializedSize = -1;
+  /**
+   * <pre>
+   *层间名称
+   * </pre>
+   *
+   * <code>repeated string strdeckdistrict = 1;</code>
+   */
+  public com.google.protobuf.ByteString
+      getStrdeckdistrictBytes(int index) {
+    return strdeckdistrict_.getByteString(index);
+  }
 
   public static final int DISLOAD_FIELD_NUMBER = 2;
   private java.util.List<java.lang.Double> disload_;
@@ -634,7 +632,7 @@ public  final class CompartmentBulkheadSheetResponse extends
   private java.util.List<java.lang.Double> shearAllow_;
   /**
    * <pre>
-   *许用剪力
+   *许用应力
    * </pre>
    *
    * <code>repeated double shearAllow = 10;</code>
@@ -645,7 +643,7 @@ public  final class CompartmentBulkheadSheetResponse extends
   }
   /**
    * <pre>
-   *许用剪力
+   *许用应力
    * </pre>
    *
    * <code>repeated double shearAllow = 10;</code>
@@ -655,7 +653,7 @@ public  final class CompartmentBulkheadSheetResponse extends
   }
   /**
    * <pre>
-   *许用剪力
+   *许用应力
    * </pre>
    *
    * <code>repeated double shearAllow = 10;</code>
@@ -678,12 +676,8 @@ public  final class CompartmentBulkheadSheetResponse extends
   public void writeTo(com.google.protobuf.CodedOutputStream output)
                       throws java.io.IOException {
     getSerializedSize();
-    if (getYatouList().size() > 0) {
-      output.writeUInt32NoTag(10);
-      output.writeUInt32NoTag(yatouMemoizedSerializedSize);
-    }
-    for (int i = 0; i < yatou_.size(); i++) {
-      output.writeDoubleNoTag(yatou_.get(i));
+    for (int i = 0; i < strdeckdistrict_.size(); i++) {
+      com.google.protobuf.GeneratedMessageV3.writeString(output, 1, strdeckdistrict_.getRaw(i));
     }
     if (getDisloadList().size() > 0) {
       output.writeUInt32NoTag(18);
@@ -757,14 +751,11 @@ public  final class CompartmentBulkheadSheetResponse extends
     size = 0;
     {
       int dataSize = 0;
-      dataSize = 8 * getYatouList().size();
-      size += dataSize;
-      if (!getYatouList().isEmpty()) {
-        size += 1;
-        size += com.google.protobuf.CodedOutputStream
-            .computeInt32SizeNoTag(dataSize);
+      for (int i = 0; i < strdeckdistrict_.size(); i++) {
+        dataSize += computeStringSizeNoTag(strdeckdistrict_.getRaw(i));
       }
-      yatouMemoizedSerializedSize = dataSize;
+      size += dataSize;
+      size += 1 * getStrdeckdistrictList().size();
     }
     {
       int dataSize = 0;
@@ -881,8 +872,8 @@ public  final class CompartmentBulkheadSheetResponse extends
     com.iscas.biz.calculation.grpc.CompartmentBulkheadSheetResponse other = (com.iscas.biz.calculation.grpc.CompartmentBulkheadSheetResponse) obj;
 
     boolean result = true;
-    result = result && getYatouList()
-        .equals(other.getYatouList());
+    result = result && getStrdeckdistrictList()
+        .equals(other.getStrdeckdistrictList());
     result = result && getDisloadList()
         .equals(other.getDisloadList());
     result = result && getLgvListList()
@@ -911,9 +902,9 @@ public  final class CompartmentBulkheadSheetResponse extends
     }
     int hash = 41;
     hash = (19 * hash) + getDescriptor().hashCode();
-    if (getYatouCount() > 0) {
-      hash = (37 * hash) + YATOU_FIELD_NUMBER;
-      hash = (53 * hash) + getYatouList().hashCode();
+    if (getStrdeckdistrictCount() > 0) {
+      hash = (37 * hash) + STRDECKDISTRICT_FIELD_NUMBER;
+      hash = (53 * hash) + getStrdeckdistrictList().hashCode();
     }
     if (getDisloadCount() > 0) {
       hash = (37 * hash) + DISLOAD_FIELD_NUMBER;
@@ -1069,7 +1060,7 @@ public  final class CompartmentBulkheadSheetResponse extends
     }
     public Builder clear() {
       super.clear();
-      yatou_ = java.util.Collections.emptyList();
+      strdeckdistrict_ = com.google.protobuf.LazyStringArrayList.EMPTY;
       bitField0_ = (bitField0_ & ~0x00000001);
       disload_ = java.util.Collections.emptyList();
       bitField0_ = (bitField0_ & ~0x00000002);
@@ -1113,10 +1104,10 @@ public  final class CompartmentBulkheadSheetResponse extends
       com.iscas.biz.calculation.grpc.CompartmentBulkheadSheetResponse result = new com.iscas.biz.calculation.grpc.CompartmentBulkheadSheetResponse(this);
       int from_bitField0_ = bitField0_;
       if (((bitField0_ & 0x00000001) == 0x00000001)) {
-        yatou_ = java.util.Collections.unmodifiableList(yatou_);
+        strdeckdistrict_ = strdeckdistrict_.getUnmodifiableView();
         bitField0_ = (bitField0_ & ~0x00000001);
       }
-      result.yatou_ = yatou_;
+      result.strdeckdistrict_ = strdeckdistrict_;
       if (((bitField0_ & 0x00000002) == 0x00000002)) {
         disload_ = java.util.Collections.unmodifiableList(disload_);
         bitField0_ = (bitField0_ & ~0x00000002);
@@ -1203,13 +1194,13 @@ public  final class CompartmentBulkheadSheetResponse extends
 
     public Builder mergeFrom(com.iscas.biz.calculation.grpc.CompartmentBulkheadSheetResponse other) {
       if (other == com.iscas.biz.calculation.grpc.CompartmentBulkheadSheetResponse.getDefaultInstance()) return this;
-      if (!other.yatou_.isEmpty()) {
-        if (yatou_.isEmpty()) {
-          yatou_ = other.yatou_;
+      if (!other.strdeckdistrict_.isEmpty()) {
+        if (strdeckdistrict_.isEmpty()) {
+          strdeckdistrict_ = other.strdeckdistrict_;
           bitField0_ = (bitField0_ & ~0x00000001);
         } else {
-          ensureYatouIsMutable();
-          yatou_.addAll(other.yatou_);
+          ensureStrdeckdistrictIsMutable();
+          strdeckdistrict_.addAll(other.strdeckdistrict_);
         }
         onChanged();
       }
@@ -1330,96 +1321,132 @@ public  final class CompartmentBulkheadSheetResponse extends
     }
     private int bitField0_;
 
-    private java.util.List<java.lang.Double> yatou_ = java.util.Collections.emptyList();
-    private void ensureYatouIsMutable() {
+    private com.google.protobuf.LazyStringList strdeckdistrict_ = com.google.protobuf.LazyStringArrayList.EMPTY;
+    private void ensureStrdeckdistrictIsMutable() {
       if (!((bitField0_ & 0x00000001) == 0x00000001)) {
-        yatou_ = new java.util.ArrayList<java.lang.Double>(yatou_);
+        strdeckdistrict_ = new com.google.protobuf.LazyStringArrayList(strdeckdistrict_);
         bitField0_ |= 0x00000001;
        }
     }
     /**
      * <pre>
-     *破损压头水压值
+     *层间名称
      * </pre>
      *
-     * <code>repeated double yatou = 1;</code>
+     * <code>repeated string strdeckdistrict = 1;</code>
      */
-    public java.util.List<java.lang.Double>
-        getYatouList() {
-      return java.util.Collections.unmodifiableList(yatou_);
+    public com.google.protobuf.ProtocolStringList
+        getStrdeckdistrictList() {
+      return strdeckdistrict_.getUnmodifiableView();
     }
     /**
      * <pre>
-     *破损压头水压值
+     *层间名称
      * </pre>
      *
-     * <code>repeated double yatou = 1;</code>
+     * <code>repeated string strdeckdistrict = 1;</code>
      */
-    public int getYatouCount() {
-      return yatou_.size();
+    public int getStrdeckdistrictCount() {
+      return strdeckdistrict_.size();
     }
     /**
      * <pre>
-     *破损压头水压值
+     *层间名称
      * </pre>
      *
-     * <code>repeated double yatou = 1;</code>
+     * <code>repeated string strdeckdistrict = 1;</code>
      */
-    public double getYatou(int index) {
-      return yatou_.get(index);
+    public java.lang.String getStrdeckdistrict(int index) {
+      return strdeckdistrict_.get(index);
     }
     /**
      * <pre>
-     *破损压头水压值
+     *层间名称
      * </pre>
      *
-     * <code>repeated double yatou = 1;</code>
+     * <code>repeated string strdeckdistrict = 1;</code>
      */
-    public Builder setYatou(
-        int index, double value) {
-      ensureYatouIsMutable();
-      yatou_.set(index, value);
+    public com.google.protobuf.ByteString
+        getStrdeckdistrictBytes(int index) {
+      return strdeckdistrict_.getByteString(index);
+    }
+    /**
+     * <pre>
+     *层间名称
+     * </pre>
+     *
+     * <code>repeated string strdeckdistrict = 1;</code>
+     */
+    public Builder setStrdeckdistrict(
+        int index, java.lang.String value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  ensureStrdeckdistrictIsMutable();
+      strdeckdistrict_.set(index, value);
       onChanged();
       return this;
     }
     /**
      * <pre>
-     *破损压头水压值
+     *层间名称
      * </pre>
      *
-     * <code>repeated double yatou = 1;</code>
+     * <code>repeated string strdeckdistrict = 1;</code>
      */
-    public Builder addYatou(double value) {
-      ensureYatouIsMutable();
-      yatou_.add(value);
+    public Builder addStrdeckdistrict(
+        java.lang.String value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  ensureStrdeckdistrictIsMutable();
+      strdeckdistrict_.add(value);
       onChanged();
       return this;
     }
     /**
      * <pre>
-     *破损压头水压值
+     *层间名称
      * </pre>
      *
-     * <code>repeated double yatou = 1;</code>
+     * <code>repeated string strdeckdistrict = 1;</code>
      */
-    public Builder addAllYatou(
-        java.lang.Iterable<? extends java.lang.Double> values) {
-      ensureYatouIsMutable();
+    public Builder addAllStrdeckdistrict(
+        java.lang.Iterable<java.lang.String> values) {
+      ensureStrdeckdistrictIsMutable();
       com.google.protobuf.AbstractMessageLite.Builder.addAll(
-          values, yatou_);
+          values, strdeckdistrict_);
       onChanged();
       return this;
     }
     /**
      * <pre>
-     *破损压头水压值
+     *层间名称
      * </pre>
      *
-     * <code>repeated double yatou = 1;</code>
+     * <code>repeated string strdeckdistrict = 1;</code>
      */
-    public Builder clearYatou() {
-      yatou_ = java.util.Collections.emptyList();
+    public Builder clearStrdeckdistrict() {
+      strdeckdistrict_ = com.google.protobuf.LazyStringArrayList.EMPTY;
       bitField0_ = (bitField0_ & ~0x00000001);
+      onChanged();
+      return this;
+    }
+    /**
+     * <pre>
+     *层间名称
+     * </pre>
+     *
+     * <code>repeated string strdeckdistrict = 1;</code>
+     */
+    public Builder addStrdeckdistrictBytes(
+        com.google.protobuf.ByteString value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+      ensureStrdeckdistrictIsMutable();
+      strdeckdistrict_.add(value);
       onChanged();
       return this;
     }
@@ -2185,7 +2212,7 @@ public  final class CompartmentBulkheadSheetResponse extends
     }
     /**
      * <pre>
-     *许用剪力
+     *许用应力
      * </pre>
      *
      * <code>repeated double shearAllow = 10;</code>
@@ -2196,7 +2223,7 @@ public  final class CompartmentBulkheadSheetResponse extends
     }
     /**
      * <pre>
-     *许用剪力
+     *许用应力
      * </pre>
      *
      * <code>repeated double shearAllow = 10;</code>
@@ -2206,7 +2233,7 @@ public  final class CompartmentBulkheadSheetResponse extends
     }
     /**
      * <pre>
-     *许用剪力
+     *许用应力
      * </pre>
      *
      * <code>repeated double shearAllow = 10;</code>
@@ -2216,7 +2243,7 @@ public  final class CompartmentBulkheadSheetResponse extends
     }
     /**
      * <pre>
-     *许用剪力
+     *许用应力
      * </pre>
      *
      * <code>repeated double shearAllow = 10;</code>
@@ -2230,7 +2257,7 @@ public  final class CompartmentBulkheadSheetResponse extends
     }
     /**
      * <pre>
-     *许用剪力
+     *许用应力
      * </pre>
      *
      * <code>repeated double shearAllow = 10;</code>
@@ -2243,7 +2270,7 @@ public  final class CompartmentBulkheadSheetResponse extends
     }
     /**
      * <pre>
-     *许用剪力
+     *许用应力
      * </pre>
      *
      * <code>repeated double shearAllow = 10;</code>
@@ -2258,7 +2285,7 @@ public  final class CompartmentBulkheadSheetResponse extends
     }
     /**
      * <pre>
-     *许用剪力
+     *许用应力
      * </pre>
      *
      * <code>repeated double shearAllow = 10;</code>

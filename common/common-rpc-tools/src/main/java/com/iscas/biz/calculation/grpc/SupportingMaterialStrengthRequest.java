@@ -19,6 +19,9 @@ public  final class SupportingMaterialStrengthRequest extends
     daibanKuan_ = java.util.Collections.emptyList();
     daibanHou_ = java.util.Collections.emptyList();
     zongguKuaju_ = 0D;
+    guicaiTypeUpper_ = com.google.protobuf.LazyStringArrayList.EMPTY;
+    guicaiTypeLower_ = com.google.protobuf.LazyStringArrayList.EMPTY;
+    fuQiangCaiYieldLimit_ = java.util.Collections.emptyList();
   }
 
   @java.lang.Override
@@ -102,6 +105,45 @@ public  final class SupportingMaterialStrengthRequest extends
             zongguKuaju_ = input.readDouble();
             break;
           }
+          case 42: {
+            java.lang.String s = input.readStringRequireUtf8();
+            if (!((mutable_bitField0_ & 0x00000010) == 0x00000010)) {
+              guicaiTypeUpper_ = new com.google.protobuf.LazyStringArrayList();
+              mutable_bitField0_ |= 0x00000010;
+            }
+            guicaiTypeUpper_.add(s);
+            break;
+          }
+          case 50: {
+            java.lang.String s = input.readStringRequireUtf8();
+            if (!((mutable_bitField0_ & 0x00000020) == 0x00000020)) {
+              guicaiTypeLower_ = new com.google.protobuf.LazyStringArrayList();
+              mutable_bitField0_ |= 0x00000020;
+            }
+            guicaiTypeLower_.add(s);
+            break;
+          }
+          case 57: {
+            if (!((mutable_bitField0_ & 0x00000040) == 0x00000040)) {
+              fuQiangCaiYieldLimit_ = new java.util.ArrayList<java.lang.Double>();
+              mutable_bitField0_ |= 0x00000040;
+            }
+            fuQiangCaiYieldLimit_.add(input.readDouble());
+            break;
+          }
+          case 58: {
+            int length = input.readRawVarint32();
+            int limit = input.pushLimit(length);
+            if (!((mutable_bitField0_ & 0x00000040) == 0x00000040) && input.getBytesUntilLimit() > 0) {
+              fuQiangCaiYieldLimit_ = new java.util.ArrayList<java.lang.Double>();
+              mutable_bitField0_ |= 0x00000040;
+            }
+            while (input.getBytesUntilLimit() > 0) {
+              fuQiangCaiYieldLimit_.add(input.readDouble());
+            }
+            input.popLimit(limit);
+            break;
+          }
         }
       }
     } catch (com.google.protobuf.InvalidProtocolBufferException e) {
@@ -118,6 +160,15 @@ public  final class SupportingMaterialStrengthRequest extends
       }
       if (((mutable_bitField0_ & 0x00000004) == 0x00000004)) {
         daibanHou_ = java.util.Collections.unmodifiableList(daibanHou_);
+      }
+      if (((mutable_bitField0_ & 0x00000010) == 0x00000010)) {
+        guicaiTypeUpper_ = guicaiTypeUpper_.getUnmodifiableView();
+      }
+      if (((mutable_bitField0_ & 0x00000020) == 0x00000020)) {
+        guicaiTypeLower_ = guicaiTypeLower_.getUnmodifiableView();
+      }
+      if (((mutable_bitField0_ & 0x00000040) == 0x00000040)) {
+        fuQiangCaiYieldLimit_ = java.util.Collections.unmodifiableList(fuQiangCaiYieldLimit_);
       }
       makeExtensionsImmutable();
     }
@@ -263,6 +314,135 @@ public  final class SupportingMaterialStrengthRequest extends
     return zongguKuaju_;
   }
 
+  public static final int GUICAITYPE_UPPER_FIELD_NUMBER = 5;
+  private com.google.protobuf.LazyStringList guicaiTypeUpper_;
+  /**
+   * <pre>
+   *new614----------------
+   *上部支撑纵骨规格
+   * </pre>
+   *
+   * <code>repeated string guicaiType_upper = 5;</code>
+   */
+  public com.google.protobuf.ProtocolStringList
+      getGuicaiTypeUpperList() {
+    return guicaiTypeUpper_;
+  }
+  /**
+   * <pre>
+   *new614----------------
+   *上部支撑纵骨规格
+   * </pre>
+   *
+   * <code>repeated string guicaiType_upper = 5;</code>
+   */
+  public int getGuicaiTypeUpperCount() {
+    return guicaiTypeUpper_.size();
+  }
+  /**
+   * <pre>
+   *new614----------------
+   *上部支撑纵骨规格
+   * </pre>
+   *
+   * <code>repeated string guicaiType_upper = 5;</code>
+   */
+  public java.lang.String getGuicaiTypeUpper(int index) {
+    return guicaiTypeUpper_.get(index);
+  }
+  /**
+   * <pre>
+   *new614----------------
+   *上部支撑纵骨规格
+   * </pre>
+   *
+   * <code>repeated string guicaiType_upper = 5;</code>
+   */
+  public com.google.protobuf.ByteString
+      getGuicaiTypeUpperBytes(int index) {
+    return guicaiTypeUpper_.getByteString(index);
+  }
+
+  public static final int GUICAITYPE_LOWER_FIELD_NUMBER = 6;
+  private com.google.protobuf.LazyStringList guicaiTypeLower_;
+  /**
+   * <pre>
+   *下部支撑纵骨规格
+   * </pre>
+   *
+   * <code>repeated string guicaiType_lower = 6;</code>
+   */
+  public com.google.protobuf.ProtocolStringList
+      getGuicaiTypeLowerList() {
+    return guicaiTypeLower_;
+  }
+  /**
+   * <pre>
+   *下部支撑纵骨规格
+   * </pre>
+   *
+   * <code>repeated string guicaiType_lower = 6;</code>
+   */
+  public int getGuicaiTypeLowerCount() {
+    return guicaiTypeLower_.size();
+  }
+  /**
+   * <pre>
+   *下部支撑纵骨规格
+   * </pre>
+   *
+   * <code>repeated string guicaiType_lower = 6;</code>
+   */
+  public java.lang.String getGuicaiTypeLower(int index) {
+    return guicaiTypeLower_.get(index);
+  }
+  /**
+   * <pre>
+   *下部支撑纵骨规格
+   * </pre>
+   *
+   * <code>repeated string guicaiType_lower = 6;</code>
+   */
+  public com.google.protobuf.ByteString
+      getGuicaiTypeLowerBytes(int index) {
+    return guicaiTypeLower_.getByteString(index);
+  }
+
+  public static final int FUQIANGCAIYIELDLIMIT_FIELD_NUMBER = 7;
+  private java.util.List<java.lang.Double> fuQiangCaiYieldLimit_;
+  /**
+   * <pre>
+   *扶强材屈服极限
+   * </pre>
+   *
+   * <code>repeated double fuQiangCaiYieldLimit = 7;</code>
+   */
+  public java.util.List<java.lang.Double>
+      getFuQiangCaiYieldLimitList() {
+    return fuQiangCaiYieldLimit_;
+  }
+  /**
+   * <pre>
+   *扶强材屈服极限
+   * </pre>
+   *
+   * <code>repeated double fuQiangCaiYieldLimit = 7;</code>
+   */
+  public int getFuQiangCaiYieldLimitCount() {
+    return fuQiangCaiYieldLimit_.size();
+  }
+  /**
+   * <pre>
+   *扶强材屈服极限
+   * </pre>
+   *
+   * <code>repeated double fuQiangCaiYieldLimit = 7;</code>
+   */
+  public double getFuQiangCaiYieldLimit(int index) {
+    return fuQiangCaiYieldLimit_.get(index);
+  }
+  private int fuQiangCaiYieldLimitMemoizedSerializedSize = -1;
+
   private byte memoizedIsInitialized = -1;
   public final boolean isInitialized() {
     byte isInitialized = memoizedIsInitialized;
@@ -295,6 +475,19 @@ public  final class SupportingMaterialStrengthRequest extends
     }
     if (zongguKuaju_ != 0D) {
       output.writeDouble(4, zongguKuaju_);
+    }
+    for (int i = 0; i < guicaiTypeUpper_.size(); i++) {
+      com.google.protobuf.GeneratedMessageV3.writeString(output, 5, guicaiTypeUpper_.getRaw(i));
+    }
+    for (int i = 0; i < guicaiTypeLower_.size(); i++) {
+      com.google.protobuf.GeneratedMessageV3.writeString(output, 6, guicaiTypeLower_.getRaw(i));
+    }
+    if (getFuQiangCaiYieldLimitList().size() > 0) {
+      output.writeUInt32NoTag(58);
+      output.writeUInt32NoTag(fuQiangCaiYieldLimitMemoizedSerializedSize);
+    }
+    for (int i = 0; i < fuQiangCaiYieldLimit_.size(); i++) {
+      output.writeDoubleNoTag(fuQiangCaiYieldLimit_.get(i));
     }
   }
 
@@ -337,6 +530,33 @@ public  final class SupportingMaterialStrengthRequest extends
       size += com.google.protobuf.CodedOutputStream
         .computeDoubleSize(4, zongguKuaju_);
     }
+    {
+      int dataSize = 0;
+      for (int i = 0; i < guicaiTypeUpper_.size(); i++) {
+        dataSize += computeStringSizeNoTag(guicaiTypeUpper_.getRaw(i));
+      }
+      size += dataSize;
+      size += 1 * getGuicaiTypeUpperList().size();
+    }
+    {
+      int dataSize = 0;
+      for (int i = 0; i < guicaiTypeLower_.size(); i++) {
+        dataSize += computeStringSizeNoTag(guicaiTypeLower_.getRaw(i));
+      }
+      size += dataSize;
+      size += 1 * getGuicaiTypeLowerList().size();
+    }
+    {
+      int dataSize = 0;
+      dataSize = 8 * getFuQiangCaiYieldLimitList().size();
+      size += dataSize;
+      if (!getFuQiangCaiYieldLimitList().isEmpty()) {
+        size += 1;
+        size += com.google.protobuf.CodedOutputStream
+            .computeInt32SizeNoTag(dataSize);
+      }
+      fuQiangCaiYieldLimitMemoizedSerializedSize = dataSize;
+    }
     memoizedSize = size;
     return size;
   }
@@ -363,6 +583,12 @@ public  final class SupportingMaterialStrengthRequest extends
         java.lang.Double.doubleToLongBits(getZongguKuaju())
         == java.lang.Double.doubleToLongBits(
             other.getZongguKuaju()));
+    result = result && getGuicaiTypeUpperList()
+        .equals(other.getGuicaiTypeUpperList());
+    result = result && getGuicaiTypeLowerList()
+        .equals(other.getGuicaiTypeLowerList());
+    result = result && getFuQiangCaiYieldLimitList()
+        .equals(other.getFuQiangCaiYieldLimitList());
     return result;
   }
 
@@ -388,6 +614,18 @@ public  final class SupportingMaterialStrengthRequest extends
     hash = (37 * hash) + ZONGGUKUAJU_FIELD_NUMBER;
     hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
         java.lang.Double.doubleToLongBits(getZongguKuaju()));
+    if (getGuicaiTypeUpperCount() > 0) {
+      hash = (37 * hash) + GUICAITYPE_UPPER_FIELD_NUMBER;
+      hash = (53 * hash) + getGuicaiTypeUpperList().hashCode();
+    }
+    if (getGuicaiTypeLowerCount() > 0) {
+      hash = (37 * hash) + GUICAITYPE_LOWER_FIELD_NUMBER;
+      hash = (53 * hash) + getGuicaiTypeLowerList().hashCode();
+    }
+    if (getFuQiangCaiYieldLimitCount() > 0) {
+      hash = (37 * hash) + FUQIANGCAIYIELDLIMIT_FIELD_NUMBER;
+      hash = (53 * hash) + getFuQiangCaiYieldLimitList().hashCode();
+    }
     hash = (29 * hash) + unknownFields.hashCode();
     memoizedHashCode = hash;
     return hash;
@@ -514,6 +752,12 @@ public  final class SupportingMaterialStrengthRequest extends
       bitField0_ = (bitField0_ & ~0x00000004);
       zongguKuaju_ = 0D;
 
+      guicaiTypeUpper_ = com.google.protobuf.LazyStringArrayList.EMPTY;
+      bitField0_ = (bitField0_ & ~0x00000010);
+      guicaiTypeLower_ = com.google.protobuf.LazyStringArrayList.EMPTY;
+      bitField0_ = (bitField0_ & ~0x00000020);
+      fuQiangCaiYieldLimit_ = java.util.Collections.emptyList();
+      bitField0_ = (bitField0_ & ~0x00000040);
       return this;
     }
 
@@ -554,6 +798,21 @@ public  final class SupportingMaterialStrengthRequest extends
       }
       result.daibanHou_ = daibanHou_;
       result.zongguKuaju_ = zongguKuaju_;
+      if (((bitField0_ & 0x00000010) == 0x00000010)) {
+        guicaiTypeUpper_ = guicaiTypeUpper_.getUnmodifiableView();
+        bitField0_ = (bitField0_ & ~0x00000010);
+      }
+      result.guicaiTypeUpper_ = guicaiTypeUpper_;
+      if (((bitField0_ & 0x00000020) == 0x00000020)) {
+        guicaiTypeLower_ = guicaiTypeLower_.getUnmodifiableView();
+        bitField0_ = (bitField0_ & ~0x00000020);
+      }
+      result.guicaiTypeLower_ = guicaiTypeLower_;
+      if (((bitField0_ & 0x00000040) == 0x00000040)) {
+        fuQiangCaiYieldLimit_ = java.util.Collections.unmodifiableList(fuQiangCaiYieldLimit_);
+        bitField0_ = (bitField0_ & ~0x00000040);
+      }
+      result.fuQiangCaiYieldLimit_ = fuQiangCaiYieldLimit_;
       result.bitField0_ = to_bitField0_;
       onBuilt();
       return result;
@@ -628,6 +887,36 @@ public  final class SupportingMaterialStrengthRequest extends
       }
       if (other.getZongguKuaju() != 0D) {
         setZongguKuaju(other.getZongguKuaju());
+      }
+      if (!other.guicaiTypeUpper_.isEmpty()) {
+        if (guicaiTypeUpper_.isEmpty()) {
+          guicaiTypeUpper_ = other.guicaiTypeUpper_;
+          bitField0_ = (bitField0_ & ~0x00000010);
+        } else {
+          ensureGuicaiTypeUpperIsMutable();
+          guicaiTypeUpper_.addAll(other.guicaiTypeUpper_);
+        }
+        onChanged();
+      }
+      if (!other.guicaiTypeLower_.isEmpty()) {
+        if (guicaiTypeLower_.isEmpty()) {
+          guicaiTypeLower_ = other.guicaiTypeLower_;
+          bitField0_ = (bitField0_ & ~0x00000020);
+        } else {
+          ensureGuicaiTypeLowerIsMutable();
+          guicaiTypeLower_.addAll(other.guicaiTypeLower_);
+        }
+        onChanged();
+      }
+      if (!other.fuQiangCaiYieldLimit_.isEmpty()) {
+        if (fuQiangCaiYieldLimit_.isEmpty()) {
+          fuQiangCaiYieldLimit_ = other.fuQiangCaiYieldLimit_;
+          bitField0_ = (bitField0_ & ~0x00000040);
+        } else {
+          ensureFuQiangCaiYieldLimitIsMutable();
+          fuQiangCaiYieldLimit_.addAll(other.fuQiangCaiYieldLimit_);
+        }
+        onChanged();
       }
       onChanged();
       return this;
@@ -1008,6 +1297,369 @@ public  final class SupportingMaterialStrengthRequest extends
     public Builder clearZongguKuaju() {
       
       zongguKuaju_ = 0D;
+      onChanged();
+      return this;
+    }
+
+    private com.google.protobuf.LazyStringList guicaiTypeUpper_ = com.google.protobuf.LazyStringArrayList.EMPTY;
+    private void ensureGuicaiTypeUpperIsMutable() {
+      if (!((bitField0_ & 0x00000010) == 0x00000010)) {
+        guicaiTypeUpper_ = new com.google.protobuf.LazyStringArrayList(guicaiTypeUpper_);
+        bitField0_ |= 0x00000010;
+       }
+    }
+    /**
+     * <pre>
+     *new614----------------
+     *上部支撑纵骨规格
+     * </pre>
+     *
+     * <code>repeated string guicaiType_upper = 5;</code>
+     */
+    public com.google.protobuf.ProtocolStringList
+        getGuicaiTypeUpperList() {
+      return guicaiTypeUpper_.getUnmodifiableView();
+    }
+    /**
+     * <pre>
+     *new614----------------
+     *上部支撑纵骨规格
+     * </pre>
+     *
+     * <code>repeated string guicaiType_upper = 5;</code>
+     */
+    public int getGuicaiTypeUpperCount() {
+      return guicaiTypeUpper_.size();
+    }
+    /**
+     * <pre>
+     *new614----------------
+     *上部支撑纵骨规格
+     * </pre>
+     *
+     * <code>repeated string guicaiType_upper = 5;</code>
+     */
+    public java.lang.String getGuicaiTypeUpper(int index) {
+      return guicaiTypeUpper_.get(index);
+    }
+    /**
+     * <pre>
+     *new614----------------
+     *上部支撑纵骨规格
+     * </pre>
+     *
+     * <code>repeated string guicaiType_upper = 5;</code>
+     */
+    public com.google.protobuf.ByteString
+        getGuicaiTypeUpperBytes(int index) {
+      return guicaiTypeUpper_.getByteString(index);
+    }
+    /**
+     * <pre>
+     *new614----------------
+     *上部支撑纵骨规格
+     * </pre>
+     *
+     * <code>repeated string guicaiType_upper = 5;</code>
+     */
+    public Builder setGuicaiTypeUpper(
+        int index, java.lang.String value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  ensureGuicaiTypeUpperIsMutable();
+      guicaiTypeUpper_.set(index, value);
+      onChanged();
+      return this;
+    }
+    /**
+     * <pre>
+     *new614----------------
+     *上部支撑纵骨规格
+     * </pre>
+     *
+     * <code>repeated string guicaiType_upper = 5;</code>
+     */
+    public Builder addGuicaiTypeUpper(
+        java.lang.String value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  ensureGuicaiTypeUpperIsMutable();
+      guicaiTypeUpper_.add(value);
+      onChanged();
+      return this;
+    }
+    /**
+     * <pre>
+     *new614----------------
+     *上部支撑纵骨规格
+     * </pre>
+     *
+     * <code>repeated string guicaiType_upper = 5;</code>
+     */
+    public Builder addAllGuicaiTypeUpper(
+        java.lang.Iterable<java.lang.String> values) {
+      ensureGuicaiTypeUpperIsMutable();
+      com.google.protobuf.AbstractMessageLite.Builder.addAll(
+          values, guicaiTypeUpper_);
+      onChanged();
+      return this;
+    }
+    /**
+     * <pre>
+     *new614----------------
+     *上部支撑纵骨规格
+     * </pre>
+     *
+     * <code>repeated string guicaiType_upper = 5;</code>
+     */
+    public Builder clearGuicaiTypeUpper() {
+      guicaiTypeUpper_ = com.google.protobuf.LazyStringArrayList.EMPTY;
+      bitField0_ = (bitField0_ & ~0x00000010);
+      onChanged();
+      return this;
+    }
+    /**
+     * <pre>
+     *new614----------------
+     *上部支撑纵骨规格
+     * </pre>
+     *
+     * <code>repeated string guicaiType_upper = 5;</code>
+     */
+    public Builder addGuicaiTypeUpperBytes(
+        com.google.protobuf.ByteString value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+      ensureGuicaiTypeUpperIsMutable();
+      guicaiTypeUpper_.add(value);
+      onChanged();
+      return this;
+    }
+
+    private com.google.protobuf.LazyStringList guicaiTypeLower_ = com.google.protobuf.LazyStringArrayList.EMPTY;
+    private void ensureGuicaiTypeLowerIsMutable() {
+      if (!((bitField0_ & 0x00000020) == 0x00000020)) {
+        guicaiTypeLower_ = new com.google.protobuf.LazyStringArrayList(guicaiTypeLower_);
+        bitField0_ |= 0x00000020;
+       }
+    }
+    /**
+     * <pre>
+     *下部支撑纵骨规格
+     * </pre>
+     *
+     * <code>repeated string guicaiType_lower = 6;</code>
+     */
+    public com.google.protobuf.ProtocolStringList
+        getGuicaiTypeLowerList() {
+      return guicaiTypeLower_.getUnmodifiableView();
+    }
+    /**
+     * <pre>
+     *下部支撑纵骨规格
+     * </pre>
+     *
+     * <code>repeated string guicaiType_lower = 6;</code>
+     */
+    public int getGuicaiTypeLowerCount() {
+      return guicaiTypeLower_.size();
+    }
+    /**
+     * <pre>
+     *下部支撑纵骨规格
+     * </pre>
+     *
+     * <code>repeated string guicaiType_lower = 6;</code>
+     */
+    public java.lang.String getGuicaiTypeLower(int index) {
+      return guicaiTypeLower_.get(index);
+    }
+    /**
+     * <pre>
+     *下部支撑纵骨规格
+     * </pre>
+     *
+     * <code>repeated string guicaiType_lower = 6;</code>
+     */
+    public com.google.protobuf.ByteString
+        getGuicaiTypeLowerBytes(int index) {
+      return guicaiTypeLower_.getByteString(index);
+    }
+    /**
+     * <pre>
+     *下部支撑纵骨规格
+     * </pre>
+     *
+     * <code>repeated string guicaiType_lower = 6;</code>
+     */
+    public Builder setGuicaiTypeLower(
+        int index, java.lang.String value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  ensureGuicaiTypeLowerIsMutable();
+      guicaiTypeLower_.set(index, value);
+      onChanged();
+      return this;
+    }
+    /**
+     * <pre>
+     *下部支撑纵骨规格
+     * </pre>
+     *
+     * <code>repeated string guicaiType_lower = 6;</code>
+     */
+    public Builder addGuicaiTypeLower(
+        java.lang.String value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  ensureGuicaiTypeLowerIsMutable();
+      guicaiTypeLower_.add(value);
+      onChanged();
+      return this;
+    }
+    /**
+     * <pre>
+     *下部支撑纵骨规格
+     * </pre>
+     *
+     * <code>repeated string guicaiType_lower = 6;</code>
+     */
+    public Builder addAllGuicaiTypeLower(
+        java.lang.Iterable<java.lang.String> values) {
+      ensureGuicaiTypeLowerIsMutable();
+      com.google.protobuf.AbstractMessageLite.Builder.addAll(
+          values, guicaiTypeLower_);
+      onChanged();
+      return this;
+    }
+    /**
+     * <pre>
+     *下部支撑纵骨规格
+     * </pre>
+     *
+     * <code>repeated string guicaiType_lower = 6;</code>
+     */
+    public Builder clearGuicaiTypeLower() {
+      guicaiTypeLower_ = com.google.protobuf.LazyStringArrayList.EMPTY;
+      bitField0_ = (bitField0_ & ~0x00000020);
+      onChanged();
+      return this;
+    }
+    /**
+     * <pre>
+     *下部支撑纵骨规格
+     * </pre>
+     *
+     * <code>repeated string guicaiType_lower = 6;</code>
+     */
+    public Builder addGuicaiTypeLowerBytes(
+        com.google.protobuf.ByteString value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+      ensureGuicaiTypeLowerIsMutable();
+      guicaiTypeLower_.add(value);
+      onChanged();
+      return this;
+    }
+
+    private java.util.List<java.lang.Double> fuQiangCaiYieldLimit_ = java.util.Collections.emptyList();
+    private void ensureFuQiangCaiYieldLimitIsMutable() {
+      if (!((bitField0_ & 0x00000040) == 0x00000040)) {
+        fuQiangCaiYieldLimit_ = new java.util.ArrayList<java.lang.Double>(fuQiangCaiYieldLimit_);
+        bitField0_ |= 0x00000040;
+       }
+    }
+    /**
+     * <pre>
+     *扶强材屈服极限
+     * </pre>
+     *
+     * <code>repeated double fuQiangCaiYieldLimit = 7;</code>
+     */
+    public java.util.List<java.lang.Double>
+        getFuQiangCaiYieldLimitList() {
+      return java.util.Collections.unmodifiableList(fuQiangCaiYieldLimit_);
+    }
+    /**
+     * <pre>
+     *扶强材屈服极限
+     * </pre>
+     *
+     * <code>repeated double fuQiangCaiYieldLimit = 7;</code>
+     */
+    public int getFuQiangCaiYieldLimitCount() {
+      return fuQiangCaiYieldLimit_.size();
+    }
+    /**
+     * <pre>
+     *扶强材屈服极限
+     * </pre>
+     *
+     * <code>repeated double fuQiangCaiYieldLimit = 7;</code>
+     */
+    public double getFuQiangCaiYieldLimit(int index) {
+      return fuQiangCaiYieldLimit_.get(index);
+    }
+    /**
+     * <pre>
+     *扶强材屈服极限
+     * </pre>
+     *
+     * <code>repeated double fuQiangCaiYieldLimit = 7;</code>
+     */
+    public Builder setFuQiangCaiYieldLimit(
+        int index, double value) {
+      ensureFuQiangCaiYieldLimitIsMutable();
+      fuQiangCaiYieldLimit_.set(index, value);
+      onChanged();
+      return this;
+    }
+    /**
+     * <pre>
+     *扶强材屈服极限
+     * </pre>
+     *
+     * <code>repeated double fuQiangCaiYieldLimit = 7;</code>
+     */
+    public Builder addFuQiangCaiYieldLimit(double value) {
+      ensureFuQiangCaiYieldLimitIsMutable();
+      fuQiangCaiYieldLimit_.add(value);
+      onChanged();
+      return this;
+    }
+    /**
+     * <pre>
+     *扶强材屈服极限
+     * </pre>
+     *
+     * <code>repeated double fuQiangCaiYieldLimit = 7;</code>
+     */
+    public Builder addAllFuQiangCaiYieldLimit(
+        java.lang.Iterable<? extends java.lang.Double> values) {
+      ensureFuQiangCaiYieldLimitIsMutable();
+      com.google.protobuf.AbstractMessageLite.Builder.addAll(
+          values, fuQiangCaiYieldLimit_);
+      onChanged();
+      return this;
+    }
+    /**
+     * <pre>
+     *扶强材屈服极限
+     * </pre>
+     *
+     * <code>repeated double fuQiangCaiYieldLimit = 7;</code>
+     */
+    public Builder clearFuQiangCaiYieldLimit() {
+      fuQiangCaiYieldLimit_ = java.util.Collections.emptyList();
+      bitField0_ = (bitField0_ & ~0x00000040);
       onChanged();
       return this;
     }

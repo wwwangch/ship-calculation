@@ -32,6 +32,10 @@ public class BulkheadCheckResult {
     @TableField(typeHandler = JacksonTypeHandler.class)
     private List<Double> yatou;
 
+    //层间名称
+    @TableField(typeHandler = JacksonTypeHandler.class)
+    private List<String> strdeckdistrict;
+
     //均布载荷
     @TableField(typeHandler = JacksonTypeHandler.class)
     private List<Double> disload;

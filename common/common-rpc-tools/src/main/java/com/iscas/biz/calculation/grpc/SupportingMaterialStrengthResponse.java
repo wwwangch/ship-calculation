@@ -33,6 +33,10 @@ public  final class SupportingMaterialStrengthResponse extends
     yingliShangjian_ = java.util.Collections.emptyList();
     yingliXiajian_ = java.util.Collections.emptyList();
     yingliXujian_ = java.util.Collections.emptyList();
+    mMaxEl_ = java.util.Collections.emptyList();
+    nMaxEl_ = java.util.Collections.emptyList();
+    stressMaxEl_ = java.util.Collections.emptyList();
+    shearMaxEl_ = java.util.Collections.emptyList();
   }
 
   @java.lang.Override
@@ -438,6 +442,90 @@ public  final class SupportingMaterialStrengthResponse extends
             input.popLimit(limit);
             break;
           }
+          case 153: {
+            if (!((mutable_bitField0_ & 0x00040000) == 0x00040000)) {
+              mMaxEl_ = new java.util.ArrayList<java.lang.Double>();
+              mutable_bitField0_ |= 0x00040000;
+            }
+            mMaxEl_.add(input.readDouble());
+            break;
+          }
+          case 154: {
+            int length = input.readRawVarint32();
+            int limit = input.pushLimit(length);
+            if (!((mutable_bitField0_ & 0x00040000) == 0x00040000) && input.getBytesUntilLimit() > 0) {
+              mMaxEl_ = new java.util.ArrayList<java.lang.Double>();
+              mutable_bitField0_ |= 0x00040000;
+            }
+            while (input.getBytesUntilLimit() > 0) {
+              mMaxEl_.add(input.readDouble());
+            }
+            input.popLimit(limit);
+            break;
+          }
+          case 161: {
+            if (!((mutable_bitField0_ & 0x00080000) == 0x00080000)) {
+              nMaxEl_ = new java.util.ArrayList<java.lang.Double>();
+              mutable_bitField0_ |= 0x00080000;
+            }
+            nMaxEl_.add(input.readDouble());
+            break;
+          }
+          case 162: {
+            int length = input.readRawVarint32();
+            int limit = input.pushLimit(length);
+            if (!((mutable_bitField0_ & 0x00080000) == 0x00080000) && input.getBytesUntilLimit() > 0) {
+              nMaxEl_ = new java.util.ArrayList<java.lang.Double>();
+              mutable_bitField0_ |= 0x00080000;
+            }
+            while (input.getBytesUntilLimit() > 0) {
+              nMaxEl_.add(input.readDouble());
+            }
+            input.popLimit(limit);
+            break;
+          }
+          case 169: {
+            if (!((mutable_bitField0_ & 0x00100000) == 0x00100000)) {
+              stressMaxEl_ = new java.util.ArrayList<java.lang.Double>();
+              mutable_bitField0_ |= 0x00100000;
+            }
+            stressMaxEl_.add(input.readDouble());
+            break;
+          }
+          case 170: {
+            int length = input.readRawVarint32();
+            int limit = input.pushLimit(length);
+            if (!((mutable_bitField0_ & 0x00100000) == 0x00100000) && input.getBytesUntilLimit() > 0) {
+              stressMaxEl_ = new java.util.ArrayList<java.lang.Double>();
+              mutable_bitField0_ |= 0x00100000;
+            }
+            while (input.getBytesUntilLimit() > 0) {
+              stressMaxEl_.add(input.readDouble());
+            }
+            input.popLimit(limit);
+            break;
+          }
+          case 177: {
+            if (!((mutable_bitField0_ & 0x00200000) == 0x00200000)) {
+              shearMaxEl_ = new java.util.ArrayList<java.lang.Double>();
+              mutable_bitField0_ |= 0x00200000;
+            }
+            shearMaxEl_.add(input.readDouble());
+            break;
+          }
+          case 178: {
+            int length = input.readRawVarint32();
+            int limit = input.pushLimit(length);
+            if (!((mutable_bitField0_ & 0x00200000) == 0x00200000) && input.getBytesUntilLimit() > 0) {
+              shearMaxEl_ = new java.util.ArrayList<java.lang.Double>();
+              mutable_bitField0_ |= 0x00200000;
+            }
+            while (input.getBytesUntilLimit() > 0) {
+              shearMaxEl_.add(input.readDouble());
+            }
+            input.popLimit(limit);
+            break;
+          }
         }
       }
     } catch (com.google.protobuf.InvalidProtocolBufferException e) {
@@ -499,6 +587,18 @@ public  final class SupportingMaterialStrengthResponse extends
       }
       if (((mutable_bitField0_ & 0x00020000) == 0x00020000)) {
         yingliXujian_ = java.util.Collections.unmodifiableList(yingliXujian_);
+      }
+      if (((mutable_bitField0_ & 0x00040000) == 0x00040000)) {
+        mMaxEl_ = java.util.Collections.unmodifiableList(mMaxEl_);
+      }
+      if (((mutable_bitField0_ & 0x00080000) == 0x00080000)) {
+        nMaxEl_ = java.util.Collections.unmodifiableList(nMaxEl_);
+      }
+      if (((mutable_bitField0_ & 0x00100000) == 0x00100000)) {
+        stressMaxEl_ = java.util.Collections.unmodifiableList(stressMaxEl_);
+      }
+      if (((mutable_bitField0_ & 0x00200000) == 0x00200000)) {
+        shearMaxEl_ = java.util.Collections.unmodifiableList(shearMaxEl_);
       }
       makeExtensionsImmutable();
     }
@@ -1145,6 +1245,149 @@ public  final class SupportingMaterialStrengthResponse extends
   }
   private int yingliXujianMemoizedSerializedSize = -1;
 
+  public static final int M_MAX_EL_FIELD_NUMBER = 19;
+  private java.util.List<java.lang.Double> mMaxEl_;
+  /**
+   * <pre>
+   *new614----------------
+   *弹性连续梁最大弯矩
+   * </pre>
+   *
+   * <code>repeated double M_max_el = 19;</code>
+   */
+  public java.util.List<java.lang.Double>
+      getMMaxElList() {
+    return mMaxEl_;
+  }
+  /**
+   * <pre>
+   *new614----------------
+   *弹性连续梁最大弯矩
+   * </pre>
+   *
+   * <code>repeated double M_max_el = 19;</code>
+   */
+  public int getMMaxElCount() {
+    return mMaxEl_.size();
+  }
+  /**
+   * <pre>
+   *new614----------------
+   *弹性连续梁最大弯矩
+   * </pre>
+   *
+   * <code>repeated double M_max_el = 19;</code>
+   */
+  public double getMMaxEl(int index) {
+    return mMaxEl_.get(index);
+  }
+  private int mMaxElMemoizedSerializedSize = -1;
+
+  public static final int N_MAX_EL_FIELD_NUMBER = 20;
+  private java.util.List<java.lang.Double> nMaxEl_;
+  /**
+   * <pre>
+   *弹性连续梁最大支撑力
+   * </pre>
+   *
+   * <code>repeated double N_max_el = 20;</code>
+   */
+  public java.util.List<java.lang.Double>
+      getNMaxElList() {
+    return nMaxEl_;
+  }
+  /**
+   * <pre>
+   *弹性连续梁最大支撑力
+   * </pre>
+   *
+   * <code>repeated double N_max_el = 20;</code>
+   */
+  public int getNMaxElCount() {
+    return nMaxEl_.size();
+  }
+  /**
+   * <pre>
+   *弹性连续梁最大支撑力
+   * </pre>
+   *
+   * <code>repeated double N_max_el = 20;</code>
+   */
+  public double getNMaxEl(int index) {
+    return nMaxEl_.get(index);
+  }
+  private int nMaxElMemoizedSerializedSize = -1;
+
+  public static final int STRESS_MAX_EL_FIELD_NUMBER = 21;
+  private java.util.List<java.lang.Double> stressMaxEl_;
+  /**
+   * <pre>
+   *弹性连续梁最大正应力
+   * </pre>
+   *
+   * <code>repeated double Stress_max_el = 21;</code>
+   */
+  public java.util.List<java.lang.Double>
+      getStressMaxElList() {
+    return stressMaxEl_;
+  }
+  /**
+   * <pre>
+   *弹性连续梁最大正应力
+   * </pre>
+   *
+   * <code>repeated double Stress_max_el = 21;</code>
+   */
+  public int getStressMaxElCount() {
+    return stressMaxEl_.size();
+  }
+  /**
+   * <pre>
+   *弹性连续梁最大正应力
+   * </pre>
+   *
+   * <code>repeated double Stress_max_el = 21;</code>
+   */
+  public double getStressMaxEl(int index) {
+    return stressMaxEl_.get(index);
+  }
+  private int stressMaxElMemoizedSerializedSize = -1;
+
+  public static final int SHEAR_MAX_EL_FIELD_NUMBER = 22;
+  private java.util.List<java.lang.Double> shearMaxEl_;
+  /**
+   * <pre>
+   *弹性连续梁最大剪切力
+   * </pre>
+   *
+   * <code>repeated double Shear_max_el = 22;</code>
+   */
+  public java.util.List<java.lang.Double>
+      getShearMaxElList() {
+    return shearMaxEl_;
+  }
+  /**
+   * <pre>
+   *弹性连续梁最大剪切力
+   * </pre>
+   *
+   * <code>repeated double Shear_max_el = 22;</code>
+   */
+  public int getShearMaxElCount() {
+    return shearMaxEl_.size();
+  }
+  /**
+   * <pre>
+   *弹性连续梁最大剪切力
+   * </pre>
+   *
+   * <code>repeated double Shear_max_el = 22;</code>
+   */
+  public double getShearMaxEl(int index) {
+    return shearMaxEl_.get(index);
+  }
+  private int shearMaxElMemoizedSerializedSize = -1;
+
   private byte memoizedIsInitialized = -1;
   public final boolean isInitialized() {
     byte isInitialized = memoizedIsInitialized;
@@ -1283,6 +1526,34 @@ public  final class SupportingMaterialStrengthResponse extends
     }
     for (int i = 0; i < yingliXujian_.size(); i++) {
       output.writeDoubleNoTag(yingliXujian_.get(i));
+    }
+    if (getMMaxElList().size() > 0) {
+      output.writeUInt32NoTag(154);
+      output.writeUInt32NoTag(mMaxElMemoizedSerializedSize);
+    }
+    for (int i = 0; i < mMaxEl_.size(); i++) {
+      output.writeDoubleNoTag(mMaxEl_.get(i));
+    }
+    if (getNMaxElList().size() > 0) {
+      output.writeUInt32NoTag(162);
+      output.writeUInt32NoTag(nMaxElMemoizedSerializedSize);
+    }
+    for (int i = 0; i < nMaxEl_.size(); i++) {
+      output.writeDoubleNoTag(nMaxEl_.get(i));
+    }
+    if (getStressMaxElList().size() > 0) {
+      output.writeUInt32NoTag(170);
+      output.writeUInt32NoTag(stressMaxElMemoizedSerializedSize);
+    }
+    for (int i = 0; i < stressMaxEl_.size(); i++) {
+      output.writeDoubleNoTag(stressMaxEl_.get(i));
+    }
+    if (getShearMaxElList().size() > 0) {
+      output.writeUInt32NoTag(178);
+      output.writeUInt32NoTag(shearMaxElMemoizedSerializedSize);
+    }
+    for (int i = 0; i < shearMaxEl_.size(); i++) {
+      output.writeDoubleNoTag(shearMaxEl_.get(i));
     }
   }
 
@@ -1489,6 +1760,50 @@ public  final class SupportingMaterialStrengthResponse extends
       }
       yingliXujianMemoizedSerializedSize = dataSize;
     }
+    {
+      int dataSize = 0;
+      dataSize = 8 * getMMaxElList().size();
+      size += dataSize;
+      if (!getMMaxElList().isEmpty()) {
+        size += 2;
+        size += com.google.protobuf.CodedOutputStream
+            .computeInt32SizeNoTag(dataSize);
+      }
+      mMaxElMemoizedSerializedSize = dataSize;
+    }
+    {
+      int dataSize = 0;
+      dataSize = 8 * getNMaxElList().size();
+      size += dataSize;
+      if (!getNMaxElList().isEmpty()) {
+        size += 2;
+        size += com.google.protobuf.CodedOutputStream
+            .computeInt32SizeNoTag(dataSize);
+      }
+      nMaxElMemoizedSerializedSize = dataSize;
+    }
+    {
+      int dataSize = 0;
+      dataSize = 8 * getStressMaxElList().size();
+      size += dataSize;
+      if (!getStressMaxElList().isEmpty()) {
+        size += 2;
+        size += com.google.protobuf.CodedOutputStream
+            .computeInt32SizeNoTag(dataSize);
+      }
+      stressMaxElMemoizedSerializedSize = dataSize;
+    }
+    {
+      int dataSize = 0;
+      dataSize = 8 * getShearMaxElList().size();
+      size += dataSize;
+      if (!getShearMaxElList().isEmpty()) {
+        size += 2;
+        size += com.google.protobuf.CodedOutputStream
+            .computeInt32SizeNoTag(dataSize);
+      }
+      shearMaxElMemoizedSerializedSize = dataSize;
+    }
     memoizedSize = size;
     return size;
   }
@@ -1541,6 +1856,14 @@ public  final class SupportingMaterialStrengthResponse extends
         .equals(other.getYingliXiajianList());
     result = result && getYingliXujianList()
         .equals(other.getYingliXujianList());
+    result = result && getMMaxElList()
+        .equals(other.getMMaxElList());
+    result = result && getNMaxElList()
+        .equals(other.getNMaxElList());
+    result = result && getStressMaxElList()
+        .equals(other.getStressMaxElList());
+    result = result && getShearMaxElList()
+        .equals(other.getShearMaxElList());
     return result;
   }
 
@@ -1622,6 +1945,22 @@ public  final class SupportingMaterialStrengthResponse extends
     if (getYingliXujianCount() > 0) {
       hash = (37 * hash) + YINGLIXUJIAN_FIELD_NUMBER;
       hash = (53 * hash) + getYingliXujianList().hashCode();
+    }
+    if (getMMaxElCount() > 0) {
+      hash = (37 * hash) + M_MAX_EL_FIELD_NUMBER;
+      hash = (53 * hash) + getMMaxElList().hashCode();
+    }
+    if (getNMaxElCount() > 0) {
+      hash = (37 * hash) + N_MAX_EL_FIELD_NUMBER;
+      hash = (53 * hash) + getNMaxElList().hashCode();
+    }
+    if (getStressMaxElCount() > 0) {
+      hash = (37 * hash) + STRESS_MAX_EL_FIELD_NUMBER;
+      hash = (53 * hash) + getStressMaxElList().hashCode();
+    }
+    if (getShearMaxElCount() > 0) {
+      hash = (37 * hash) + SHEAR_MAX_EL_FIELD_NUMBER;
+      hash = (53 * hash) + getShearMaxElList().hashCode();
     }
     hash = (29 * hash) + unknownFields.hashCode();
     memoizedHashCode = hash;
@@ -1777,6 +2116,14 @@ public  final class SupportingMaterialStrengthResponse extends
       bitField0_ = (bitField0_ & ~0x00010000);
       yingliXujian_ = java.util.Collections.emptyList();
       bitField0_ = (bitField0_ & ~0x00020000);
+      mMaxEl_ = java.util.Collections.emptyList();
+      bitField0_ = (bitField0_ & ~0x00040000);
+      nMaxEl_ = java.util.Collections.emptyList();
+      bitField0_ = (bitField0_ & ~0x00080000);
+      stressMaxEl_ = java.util.Collections.emptyList();
+      bitField0_ = (bitField0_ & ~0x00100000);
+      shearMaxEl_ = java.util.Collections.emptyList();
+      bitField0_ = (bitField0_ & ~0x00200000);
       return this;
     }
 
@@ -1890,6 +2237,26 @@ public  final class SupportingMaterialStrengthResponse extends
         bitField0_ = (bitField0_ & ~0x00020000);
       }
       result.yingliXujian_ = yingliXujian_;
+      if (((bitField0_ & 0x00040000) == 0x00040000)) {
+        mMaxEl_ = java.util.Collections.unmodifiableList(mMaxEl_);
+        bitField0_ = (bitField0_ & ~0x00040000);
+      }
+      result.mMaxEl_ = mMaxEl_;
+      if (((bitField0_ & 0x00080000) == 0x00080000)) {
+        nMaxEl_ = java.util.Collections.unmodifiableList(nMaxEl_);
+        bitField0_ = (bitField0_ & ~0x00080000);
+      }
+      result.nMaxEl_ = nMaxEl_;
+      if (((bitField0_ & 0x00100000) == 0x00100000)) {
+        stressMaxEl_ = java.util.Collections.unmodifiableList(stressMaxEl_);
+        bitField0_ = (bitField0_ & ~0x00100000);
+      }
+      result.stressMaxEl_ = stressMaxEl_;
+      if (((bitField0_ & 0x00200000) == 0x00200000)) {
+        shearMaxEl_ = java.util.Collections.unmodifiableList(shearMaxEl_);
+        bitField0_ = (bitField0_ & ~0x00200000);
+      }
+      result.shearMaxEl_ = shearMaxEl_;
       onBuilt();
       return result;
     }
@@ -2108,6 +2475,46 @@ public  final class SupportingMaterialStrengthResponse extends
         } else {
           ensureYingliXujianIsMutable();
           yingliXujian_.addAll(other.yingliXujian_);
+        }
+        onChanged();
+      }
+      if (!other.mMaxEl_.isEmpty()) {
+        if (mMaxEl_.isEmpty()) {
+          mMaxEl_ = other.mMaxEl_;
+          bitField0_ = (bitField0_ & ~0x00040000);
+        } else {
+          ensureMMaxElIsMutable();
+          mMaxEl_.addAll(other.mMaxEl_);
+        }
+        onChanged();
+      }
+      if (!other.nMaxEl_.isEmpty()) {
+        if (nMaxEl_.isEmpty()) {
+          nMaxEl_ = other.nMaxEl_;
+          bitField0_ = (bitField0_ & ~0x00080000);
+        } else {
+          ensureNMaxElIsMutable();
+          nMaxEl_.addAll(other.nMaxEl_);
+        }
+        onChanged();
+      }
+      if (!other.stressMaxEl_.isEmpty()) {
+        if (stressMaxEl_.isEmpty()) {
+          stressMaxEl_ = other.stressMaxEl_;
+          bitField0_ = (bitField0_ & ~0x00100000);
+        } else {
+          ensureStressMaxElIsMutable();
+          stressMaxEl_.addAll(other.stressMaxEl_);
+        }
+        onChanged();
+      }
+      if (!other.shearMaxEl_.isEmpty()) {
+        if (shearMaxEl_.isEmpty()) {
+          shearMaxEl_ = other.shearMaxEl_;
+          bitField0_ = (bitField0_ & ~0x00200000);
+        } else {
+          ensureShearMaxElIsMutable();
+          shearMaxEl_.addAll(other.shearMaxEl_);
         }
         onChanged();
       }
@@ -3826,6 +4233,389 @@ public  final class SupportingMaterialStrengthResponse extends
     public Builder clearYingliXujian() {
       yingliXujian_ = java.util.Collections.emptyList();
       bitField0_ = (bitField0_ & ~0x00020000);
+      onChanged();
+      return this;
+    }
+
+    private java.util.List<java.lang.Double> mMaxEl_ = java.util.Collections.emptyList();
+    private void ensureMMaxElIsMutable() {
+      if (!((bitField0_ & 0x00040000) == 0x00040000)) {
+        mMaxEl_ = new java.util.ArrayList<java.lang.Double>(mMaxEl_);
+        bitField0_ |= 0x00040000;
+       }
+    }
+    /**
+     * <pre>
+     *new614----------------
+     *弹性连续梁最大弯矩
+     * </pre>
+     *
+     * <code>repeated double M_max_el = 19;</code>
+     */
+    public java.util.List<java.lang.Double>
+        getMMaxElList() {
+      return java.util.Collections.unmodifiableList(mMaxEl_);
+    }
+    /**
+     * <pre>
+     *new614----------------
+     *弹性连续梁最大弯矩
+     * </pre>
+     *
+     * <code>repeated double M_max_el = 19;</code>
+     */
+    public int getMMaxElCount() {
+      return mMaxEl_.size();
+    }
+    /**
+     * <pre>
+     *new614----------------
+     *弹性连续梁最大弯矩
+     * </pre>
+     *
+     * <code>repeated double M_max_el = 19;</code>
+     */
+    public double getMMaxEl(int index) {
+      return mMaxEl_.get(index);
+    }
+    /**
+     * <pre>
+     *new614----------------
+     *弹性连续梁最大弯矩
+     * </pre>
+     *
+     * <code>repeated double M_max_el = 19;</code>
+     */
+    public Builder setMMaxEl(
+        int index, double value) {
+      ensureMMaxElIsMutable();
+      mMaxEl_.set(index, value);
+      onChanged();
+      return this;
+    }
+    /**
+     * <pre>
+     *new614----------------
+     *弹性连续梁最大弯矩
+     * </pre>
+     *
+     * <code>repeated double M_max_el = 19;</code>
+     */
+    public Builder addMMaxEl(double value) {
+      ensureMMaxElIsMutable();
+      mMaxEl_.add(value);
+      onChanged();
+      return this;
+    }
+    /**
+     * <pre>
+     *new614----------------
+     *弹性连续梁最大弯矩
+     * </pre>
+     *
+     * <code>repeated double M_max_el = 19;</code>
+     */
+    public Builder addAllMMaxEl(
+        java.lang.Iterable<? extends java.lang.Double> values) {
+      ensureMMaxElIsMutable();
+      com.google.protobuf.AbstractMessageLite.Builder.addAll(
+          values, mMaxEl_);
+      onChanged();
+      return this;
+    }
+    /**
+     * <pre>
+     *new614----------------
+     *弹性连续梁最大弯矩
+     * </pre>
+     *
+     * <code>repeated double M_max_el = 19;</code>
+     */
+    public Builder clearMMaxEl() {
+      mMaxEl_ = java.util.Collections.emptyList();
+      bitField0_ = (bitField0_ & ~0x00040000);
+      onChanged();
+      return this;
+    }
+
+    private java.util.List<java.lang.Double> nMaxEl_ = java.util.Collections.emptyList();
+    private void ensureNMaxElIsMutable() {
+      if (!((bitField0_ & 0x00080000) == 0x00080000)) {
+        nMaxEl_ = new java.util.ArrayList<java.lang.Double>(nMaxEl_);
+        bitField0_ |= 0x00080000;
+       }
+    }
+    /**
+     * <pre>
+     *弹性连续梁最大支撑力
+     * </pre>
+     *
+     * <code>repeated double N_max_el = 20;</code>
+     */
+    public java.util.List<java.lang.Double>
+        getNMaxElList() {
+      return java.util.Collections.unmodifiableList(nMaxEl_);
+    }
+    /**
+     * <pre>
+     *弹性连续梁最大支撑力
+     * </pre>
+     *
+     * <code>repeated double N_max_el = 20;</code>
+     */
+    public int getNMaxElCount() {
+      return nMaxEl_.size();
+    }
+    /**
+     * <pre>
+     *弹性连续梁最大支撑力
+     * </pre>
+     *
+     * <code>repeated double N_max_el = 20;</code>
+     */
+    public double getNMaxEl(int index) {
+      return nMaxEl_.get(index);
+    }
+    /**
+     * <pre>
+     *弹性连续梁最大支撑力
+     * </pre>
+     *
+     * <code>repeated double N_max_el = 20;</code>
+     */
+    public Builder setNMaxEl(
+        int index, double value) {
+      ensureNMaxElIsMutable();
+      nMaxEl_.set(index, value);
+      onChanged();
+      return this;
+    }
+    /**
+     * <pre>
+     *弹性连续梁最大支撑力
+     * </pre>
+     *
+     * <code>repeated double N_max_el = 20;</code>
+     */
+    public Builder addNMaxEl(double value) {
+      ensureNMaxElIsMutable();
+      nMaxEl_.add(value);
+      onChanged();
+      return this;
+    }
+    /**
+     * <pre>
+     *弹性连续梁最大支撑力
+     * </pre>
+     *
+     * <code>repeated double N_max_el = 20;</code>
+     */
+    public Builder addAllNMaxEl(
+        java.lang.Iterable<? extends java.lang.Double> values) {
+      ensureNMaxElIsMutable();
+      com.google.protobuf.AbstractMessageLite.Builder.addAll(
+          values, nMaxEl_);
+      onChanged();
+      return this;
+    }
+    /**
+     * <pre>
+     *弹性连续梁最大支撑力
+     * </pre>
+     *
+     * <code>repeated double N_max_el = 20;</code>
+     */
+    public Builder clearNMaxEl() {
+      nMaxEl_ = java.util.Collections.emptyList();
+      bitField0_ = (bitField0_ & ~0x00080000);
+      onChanged();
+      return this;
+    }
+
+    private java.util.List<java.lang.Double> stressMaxEl_ = java.util.Collections.emptyList();
+    private void ensureStressMaxElIsMutable() {
+      if (!((bitField0_ & 0x00100000) == 0x00100000)) {
+        stressMaxEl_ = new java.util.ArrayList<java.lang.Double>(stressMaxEl_);
+        bitField0_ |= 0x00100000;
+       }
+    }
+    /**
+     * <pre>
+     *弹性连续梁最大正应力
+     * </pre>
+     *
+     * <code>repeated double Stress_max_el = 21;</code>
+     */
+    public java.util.List<java.lang.Double>
+        getStressMaxElList() {
+      return java.util.Collections.unmodifiableList(stressMaxEl_);
+    }
+    /**
+     * <pre>
+     *弹性连续梁最大正应力
+     * </pre>
+     *
+     * <code>repeated double Stress_max_el = 21;</code>
+     */
+    public int getStressMaxElCount() {
+      return stressMaxEl_.size();
+    }
+    /**
+     * <pre>
+     *弹性连续梁最大正应力
+     * </pre>
+     *
+     * <code>repeated double Stress_max_el = 21;</code>
+     */
+    public double getStressMaxEl(int index) {
+      return stressMaxEl_.get(index);
+    }
+    /**
+     * <pre>
+     *弹性连续梁最大正应力
+     * </pre>
+     *
+     * <code>repeated double Stress_max_el = 21;</code>
+     */
+    public Builder setStressMaxEl(
+        int index, double value) {
+      ensureStressMaxElIsMutable();
+      stressMaxEl_.set(index, value);
+      onChanged();
+      return this;
+    }
+    /**
+     * <pre>
+     *弹性连续梁最大正应力
+     * </pre>
+     *
+     * <code>repeated double Stress_max_el = 21;</code>
+     */
+    public Builder addStressMaxEl(double value) {
+      ensureStressMaxElIsMutable();
+      stressMaxEl_.add(value);
+      onChanged();
+      return this;
+    }
+    /**
+     * <pre>
+     *弹性连续梁最大正应力
+     * </pre>
+     *
+     * <code>repeated double Stress_max_el = 21;</code>
+     */
+    public Builder addAllStressMaxEl(
+        java.lang.Iterable<? extends java.lang.Double> values) {
+      ensureStressMaxElIsMutable();
+      com.google.protobuf.AbstractMessageLite.Builder.addAll(
+          values, stressMaxEl_);
+      onChanged();
+      return this;
+    }
+    /**
+     * <pre>
+     *弹性连续梁最大正应力
+     * </pre>
+     *
+     * <code>repeated double Stress_max_el = 21;</code>
+     */
+    public Builder clearStressMaxEl() {
+      stressMaxEl_ = java.util.Collections.emptyList();
+      bitField0_ = (bitField0_ & ~0x00100000);
+      onChanged();
+      return this;
+    }
+
+    private java.util.List<java.lang.Double> shearMaxEl_ = java.util.Collections.emptyList();
+    private void ensureShearMaxElIsMutable() {
+      if (!((bitField0_ & 0x00200000) == 0x00200000)) {
+        shearMaxEl_ = new java.util.ArrayList<java.lang.Double>(shearMaxEl_);
+        bitField0_ |= 0x00200000;
+       }
+    }
+    /**
+     * <pre>
+     *弹性连续梁最大剪切力
+     * </pre>
+     *
+     * <code>repeated double Shear_max_el = 22;</code>
+     */
+    public java.util.List<java.lang.Double>
+        getShearMaxElList() {
+      return java.util.Collections.unmodifiableList(shearMaxEl_);
+    }
+    /**
+     * <pre>
+     *弹性连续梁最大剪切力
+     * </pre>
+     *
+     * <code>repeated double Shear_max_el = 22;</code>
+     */
+    public int getShearMaxElCount() {
+      return shearMaxEl_.size();
+    }
+    /**
+     * <pre>
+     *弹性连续梁最大剪切力
+     * </pre>
+     *
+     * <code>repeated double Shear_max_el = 22;</code>
+     */
+    public double getShearMaxEl(int index) {
+      return shearMaxEl_.get(index);
+    }
+    /**
+     * <pre>
+     *弹性连续梁最大剪切力
+     * </pre>
+     *
+     * <code>repeated double Shear_max_el = 22;</code>
+     */
+    public Builder setShearMaxEl(
+        int index, double value) {
+      ensureShearMaxElIsMutable();
+      shearMaxEl_.set(index, value);
+      onChanged();
+      return this;
+    }
+    /**
+     * <pre>
+     *弹性连续梁最大剪切力
+     * </pre>
+     *
+     * <code>repeated double Shear_max_el = 22;</code>
+     */
+    public Builder addShearMaxEl(double value) {
+      ensureShearMaxElIsMutable();
+      shearMaxEl_.add(value);
+      onChanged();
+      return this;
+    }
+    /**
+     * <pre>
+     *弹性连续梁最大剪切力
+     * </pre>
+     *
+     * <code>repeated double Shear_max_el = 22;</code>
+     */
+    public Builder addAllShearMaxEl(
+        java.lang.Iterable<? extends java.lang.Double> values) {
+      ensureShearMaxElIsMutable();
+      com.google.protobuf.AbstractMessageLite.Builder.addAll(
+          values, shearMaxEl_);
+      onChanged();
+      return this;
+    }
+    /**
+     * <pre>
+     *弹性连续梁最大剪切力
+     * </pre>
+     *
+     * <code>repeated double Shear_max_el = 22;</code>
+     */
+    public Builder clearShearMaxEl() {
+      shearMaxEl_ = java.util.Collections.emptyList();
+      bitField0_ = (bitField0_ & ~0x00200000);
       onChanged();
       return this;
     }

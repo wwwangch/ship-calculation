@@ -37,8 +37,8 @@ public class Sigma2 {
     //中垂跨中下纤维
     private Double zhongchuiKuazhongXia;
 
-    //许用应力
-    private Double allowStress;
+//    //许用应力
+//    private Double allowStress;
     //合成许用应力
     private Double combineAllowStress;
     //合成中拱支座上纤维

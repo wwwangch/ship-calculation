@@ -3,6 +3,8 @@ package com.iscas.biz.calculation.entity.db;
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
+import com.baomidou.mybatisplus.annotation.TableName;
+import com.baomidou.mybatisplus.extension.handlers.JacksonTypeHandler;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Data;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -10,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.util.Date;
+import java.util.List;
 
 /**
  * @author ch w
@@ -18,6 +21,7 @@ import java.util.Date;
  * 剖面-用于总纵强度计算
  */
 @Data
+@TableName(value = "section", autoResultMap = true)
 public class Section {
     @TableId(type = IdType.AUTO)
     private Integer sectionId;
@@ -44,7 +48,8 @@ public class Section {
      * 原先为：剖面构件跨距a  componentSpan
      * 修改为：构件跨距-龙骨跨距 每个的跨距
      */
-    private String kuaChang;
+    @TableField(typeHandler = JacksonTypeHandler.class)
+    private List<Double> kuaChang;
 
     private Date createTime;
 
@@ -60,13 +65,19 @@ public class Section {
      */
     private Double frDistance;
     /**
+     * 板架宽度
+     */
+    private Double trusswidth;
+    /**
      * 纵骨规格 每个的规格
      */
-    private String frGuige;
+    @TableField(typeHandler = JacksonTypeHandler.class)
+    private List<String> frGuige;
     /**
      *板格厚度 每个板材的厚度
      */
-    private String plateThick;
+    @TableField(typeHandler = JacksonTypeHandler.class)
+    private List<Double> plateThick;
     /**
      * 设备重量
      */
@@ -74,11 +85,27 @@ public class Section {
     /**
      * 板格宽度
      */
-    private Double girderWidth;
+    @TableField(typeHandler = JacksonTypeHandler.class)
+    private List<Double> girderWidth;
     /**
-     * 材料类型
+     * 材料类型  改为材料屈服极限
      */
-    private String materialType;
+    private Double materialYieldLimit;
+
+    /**
+     * 是否采用自定义载荷
+     */
+    private Boolean isCustomLoad;
+
+
+    /**
+     * 舷侧中和轴附近板的厚度
+     */
+    @TableField(typeHandler = JacksonTypeHandler.class)
+    private List<Double> xiancethick;
+
+
+
     /**
      * 龙骨数量
      */

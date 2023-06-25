@@ -456,4 +456,107 @@ public interface SupportingMaterialStrengthResponseOrBuilder extends
    * <code>repeated double yingliXujian = 18;</code>
    */
   double getYingliXujian(int index);
+
+  /**
+   * <pre>
+   *new614----------------
+   *弹性连续梁最大弯矩
+   * </pre>
+   *
+   * <code>repeated double M_max_el = 19;</code>
+   */
+  java.util.List<java.lang.Double> getMMaxElList();
+  /**
+   * <pre>
+   *new614----------------
+   *弹性连续梁最大弯矩
+   * </pre>
+   *
+   * <code>repeated double M_max_el = 19;</code>
+   */
+  int getMMaxElCount();
+  /**
+   * <pre>
+   *new614----------------
+   *弹性连续梁最大弯矩
+   * </pre>
+   *
+   * <code>repeated double M_max_el = 19;</code>
+   */
+  double getMMaxEl(int index);
+
+  /**
+   * <pre>
+   *弹性连续梁最大支撑力
+   * </pre>
+   *
+   * <code>repeated double N_max_el = 20;</code>
+   */
+  java.util.List<java.lang.Double> getNMaxElList();
+  /**
+   * <pre>
+   *弹性连续梁最大支撑力
+   * </pre>
+   *
+   * <code>repeated double N_max_el = 20;</code>
+   */
+  int getNMaxElCount();
+  /**
+   * <pre>
+   *弹性连续梁最大支撑力
+   * </pre>
+   *
+   * <code>repeated double N_max_el = 20;</code>
+   */
+  double getNMaxEl(int index);
+
+  /**
+   * <pre>
+   *弹性连续梁最大正应力
+   * </pre>
+   *
+   * <code>repeated double Stress_max_el = 21;</code>
+   */
+  java.util.List<java.lang.Double> getStressMaxElList();
+  /**
+   * <pre>
+   *弹性连续梁最大正应力
+   * </pre>
+   *
+   * <code>repeated double Stress_max_el = 21;</code>
+   */
+  int getStressMaxElCount();
+  /**
+   * <pre>
+   *弹性连续梁最大正应力
+   * </pre>
+   *
+   * <code>repeated double Stress_max_el = 21;</code>
+   */
+  double getStressMaxEl(int index);
+
+  /**
+   * <pre>
+   *弹性连续梁最大剪切力
+   * </pre>
+   *
+   * <code>repeated double Shear_max_el = 22;</code>
+   */
+  java.util.List<java.lang.Double> getShearMaxElList();
+  /**
+   * <pre>
+   *弹性连续梁最大剪切力
+   * </pre>
+   *
+   * <code>repeated double Shear_max_el = 22;</code>
+   */
+  int getShearMaxElCount();
+  /**
+   * <pre>
+   *弹性连续梁最大剪切力
+   * </pre>
+   *
+   * <code>repeated double Shear_max_el = 22;</code>
+   */
+  double getShearMaxEl(int index);
 }

@@ -17,6 +17,8 @@ public  final class AdditionalForceHeadResponse extends
   private AdditionalForceHeadResponse() {
     leiweihao_ = java.util.Collections.emptyList();
     addyatouh_ = java.util.Collections.emptyList();
+    strdeck_ = com.google.protobuf.LazyStringArrayList.EMPTY;
+    deckyatou_ = java.util.Collections.emptyList();
   }
 
   @java.lang.Override
@@ -86,6 +88,36 @@ public  final class AdditionalForceHeadResponse extends
             input.popLimit(limit);
             break;
           }
+          case 26: {
+            java.lang.String s = input.readStringRequireUtf8();
+            if (!((mutable_bitField0_ & 0x00000004) == 0x00000004)) {
+              strdeck_ = new com.google.protobuf.LazyStringArrayList();
+              mutable_bitField0_ |= 0x00000004;
+            }
+            strdeck_.add(s);
+            break;
+          }
+          case 33: {
+            if (!((mutable_bitField0_ & 0x00000008) == 0x00000008)) {
+              deckyatou_ = new java.util.ArrayList<java.lang.Double>();
+              mutable_bitField0_ |= 0x00000008;
+            }
+            deckyatou_.add(input.readDouble());
+            break;
+          }
+          case 34: {
+            int length = input.readRawVarint32();
+            int limit = input.pushLimit(length);
+            if (!((mutable_bitField0_ & 0x00000008) == 0x00000008) && input.getBytesUntilLimit() > 0) {
+              deckyatou_ = new java.util.ArrayList<java.lang.Double>();
+              mutable_bitField0_ |= 0x00000008;
+            }
+            while (input.getBytesUntilLimit() > 0) {
+              deckyatou_.add(input.readDouble());
+            }
+            input.popLimit(limit);
+            break;
+          }
         }
       }
     } catch (com.google.protobuf.InvalidProtocolBufferException e) {
@@ -99,6 +131,12 @@ public  final class AdditionalForceHeadResponse extends
       }
       if (((mutable_bitField0_ & 0x00000002) == 0x00000002)) {
         addyatouh_ = java.util.Collections.unmodifiableList(addyatouh_);
+      }
+      if (((mutable_bitField0_ & 0x00000004) == 0x00000004)) {
+        strdeck_ = strdeck_.getUnmodifiableView();
+      }
+      if (((mutable_bitField0_ & 0x00000008) == 0x00000008)) {
+        deckyatou_ = java.util.Collections.unmodifiableList(deckyatou_);
       }
       makeExtensionsImmutable();
     }
@@ -185,6 +223,86 @@ public  final class AdditionalForceHeadResponse extends
   }
   private int addyatouhMemoizedSerializedSize = -1;
 
+  public static final int STRDECK_FIELD_NUMBER = 3;
+  private com.google.protobuf.LazyStringList strdeck_;
+  /**
+   * <pre>
+   *甲板名称
+   * </pre>
+   *
+   * <code>repeated string strdeck = 3;</code>
+   */
+  public com.google.protobuf.ProtocolStringList
+      getStrdeckList() {
+    return strdeck_;
+  }
+  /**
+   * <pre>
+   *甲板名称
+   * </pre>
+   *
+   * <code>repeated string strdeck = 3;</code>
+   */
+  public int getStrdeckCount() {
+    return strdeck_.size();
+  }
+  /**
+   * <pre>
+   *甲板名称
+   * </pre>
+   *
+   * <code>repeated string strdeck = 3;</code>
+   */
+  public java.lang.String getStrdeck(int index) {
+    return strdeck_.get(index);
+  }
+  /**
+   * <pre>
+   *甲板名称
+   * </pre>
+   *
+   * <code>repeated string strdeck = 3;</code>
+   */
+  public com.google.protobuf.ByteString
+      getStrdeckBytes(int index) {
+    return strdeck_.getByteString(index);
+  }
+
+  public static final int DECKYATOU_FIELD_NUMBER = 4;
+  private java.util.List<java.lang.Double> deckyatou_;
+  /**
+   * <pre>
+   *甲板破损压头水压值
+   * </pre>
+   *
+   * <code>repeated double deckyatou = 4;</code>
+   */
+  public java.util.List<java.lang.Double>
+      getDeckyatouList() {
+    return deckyatou_;
+  }
+  /**
+   * <pre>
+   *甲板破损压头水压值
+   * </pre>
+   *
+   * <code>repeated double deckyatou = 4;</code>
+   */
+  public int getDeckyatouCount() {
+    return deckyatou_.size();
+  }
+  /**
+   * <pre>
+   *甲板破损压头水压值
+   * </pre>
+   *
+   * <code>repeated double deckyatou = 4;</code>
+   */
+  public double getDeckyatou(int index) {
+    return deckyatou_.get(index);
+  }
+  private int deckyatouMemoizedSerializedSize = -1;
+
   private byte memoizedIsInitialized = -1;
   public final boolean isInitialized() {
     byte isInitialized = memoizedIsInitialized;
@@ -211,6 +329,16 @@ public  final class AdditionalForceHeadResponse extends
     }
     for (int i = 0; i < addyatouh_.size(); i++) {
       output.writeDoubleNoTag(addyatouh_.get(i));
+    }
+    for (int i = 0; i < strdeck_.size(); i++) {
+      com.google.protobuf.GeneratedMessageV3.writeString(output, 3, strdeck_.getRaw(i));
+    }
+    if (getDeckyatouList().size() > 0) {
+      output.writeUInt32NoTag(34);
+      output.writeUInt32NoTag(deckyatouMemoizedSerializedSize);
+    }
+    for (int i = 0; i < deckyatou_.size(); i++) {
+      output.writeDoubleNoTag(deckyatou_.get(i));
     }
   }
 
@@ -241,6 +369,25 @@ public  final class AdditionalForceHeadResponse extends
       }
       addyatouhMemoizedSerializedSize = dataSize;
     }
+    {
+      int dataSize = 0;
+      for (int i = 0; i < strdeck_.size(); i++) {
+        dataSize += computeStringSizeNoTag(strdeck_.getRaw(i));
+      }
+      size += dataSize;
+      size += 1 * getStrdeckList().size();
+    }
+    {
+      int dataSize = 0;
+      dataSize = 8 * getDeckyatouList().size();
+      size += dataSize;
+      if (!getDeckyatouList().isEmpty()) {
+        size += 1;
+        size += com.google.protobuf.CodedOutputStream
+            .computeInt32SizeNoTag(dataSize);
+      }
+      deckyatouMemoizedSerializedSize = dataSize;
+    }
     memoizedSize = size;
     return size;
   }
@@ -261,6 +408,10 @@ public  final class AdditionalForceHeadResponse extends
         .equals(other.getLeiweihaoList());
     result = result && getAddyatouhList()
         .equals(other.getAddyatouhList());
+    result = result && getStrdeckList()
+        .equals(other.getStrdeckList());
+    result = result && getDeckyatouList()
+        .equals(other.getDeckyatouList());
     return result;
   }
 
@@ -278,6 +429,14 @@ public  final class AdditionalForceHeadResponse extends
     if (getAddyatouhCount() > 0) {
       hash = (37 * hash) + ADDYATOUH_FIELD_NUMBER;
       hash = (53 * hash) + getAddyatouhList().hashCode();
+    }
+    if (getStrdeckCount() > 0) {
+      hash = (37 * hash) + STRDECK_FIELD_NUMBER;
+      hash = (53 * hash) + getStrdeckList().hashCode();
+    }
+    if (getDeckyatouCount() > 0) {
+      hash = (37 * hash) + DECKYATOU_FIELD_NUMBER;
+      hash = (53 * hash) + getDeckyatouList().hashCode();
     }
     hash = (29 * hash) + unknownFields.hashCode();
     memoizedHashCode = hash;
@@ -401,6 +560,10 @@ public  final class AdditionalForceHeadResponse extends
       bitField0_ = (bitField0_ & ~0x00000001);
       addyatouh_ = java.util.Collections.emptyList();
       bitField0_ = (bitField0_ & ~0x00000002);
+      strdeck_ = com.google.protobuf.LazyStringArrayList.EMPTY;
+      bitField0_ = (bitField0_ & ~0x00000004);
+      deckyatou_ = java.util.Collections.emptyList();
+      bitField0_ = (bitField0_ & ~0x00000008);
       return this;
     }
 
@@ -434,6 +597,16 @@ public  final class AdditionalForceHeadResponse extends
         bitField0_ = (bitField0_ & ~0x00000002);
       }
       result.addyatouh_ = addyatouh_;
+      if (((bitField0_ & 0x00000004) == 0x00000004)) {
+        strdeck_ = strdeck_.getUnmodifiableView();
+        bitField0_ = (bitField0_ & ~0x00000004);
+      }
+      result.strdeck_ = strdeck_;
+      if (((bitField0_ & 0x00000008) == 0x00000008)) {
+        deckyatou_ = java.util.Collections.unmodifiableList(deckyatou_);
+        bitField0_ = (bitField0_ & ~0x00000008);
+      }
+      result.deckyatou_ = deckyatou_;
       onBuilt();
       return result;
     }
@@ -492,6 +665,26 @@ public  final class AdditionalForceHeadResponse extends
         } else {
           ensureAddyatouhIsMutable();
           addyatouh_.addAll(other.addyatouh_);
+        }
+        onChanged();
+      }
+      if (!other.strdeck_.isEmpty()) {
+        if (strdeck_.isEmpty()) {
+          strdeck_ = other.strdeck_;
+          bitField0_ = (bitField0_ & ~0x00000004);
+        } else {
+          ensureStrdeckIsMutable();
+          strdeck_.addAll(other.strdeck_);
+        }
+        onChanged();
+      }
+      if (!other.deckyatou_.isEmpty()) {
+        if (deckyatou_.isEmpty()) {
+          deckyatou_ = other.deckyatou_;
+          bitField0_ = (bitField0_ & ~0x00000008);
+        } else {
+          ensureDeckyatouIsMutable();
+          deckyatou_.addAll(other.deckyatou_);
         }
         onChanged();
       }
@@ -706,6 +899,230 @@ public  final class AdditionalForceHeadResponse extends
     public Builder clearAddyatouh() {
       addyatouh_ = java.util.Collections.emptyList();
       bitField0_ = (bitField0_ & ~0x00000002);
+      onChanged();
+      return this;
+    }
+
+    private com.google.protobuf.LazyStringList strdeck_ = com.google.protobuf.LazyStringArrayList.EMPTY;
+    private void ensureStrdeckIsMutable() {
+      if (!((bitField0_ & 0x00000004) == 0x00000004)) {
+        strdeck_ = new com.google.protobuf.LazyStringArrayList(strdeck_);
+        bitField0_ |= 0x00000004;
+       }
+    }
+    /**
+     * <pre>
+     *甲板名称
+     * </pre>
+     *
+     * <code>repeated string strdeck = 3;</code>
+     */
+    public com.google.protobuf.ProtocolStringList
+        getStrdeckList() {
+      return strdeck_.getUnmodifiableView();
+    }
+    /**
+     * <pre>
+     *甲板名称
+     * </pre>
+     *
+     * <code>repeated string strdeck = 3;</code>
+     */
+    public int getStrdeckCount() {
+      return strdeck_.size();
+    }
+    /**
+     * <pre>
+     *甲板名称
+     * </pre>
+     *
+     * <code>repeated string strdeck = 3;</code>
+     */
+    public java.lang.String getStrdeck(int index) {
+      return strdeck_.get(index);
+    }
+    /**
+     * <pre>
+     *甲板名称
+     * </pre>
+     *
+     * <code>repeated string strdeck = 3;</code>
+     */
+    public com.google.protobuf.ByteString
+        getStrdeckBytes(int index) {
+      return strdeck_.getByteString(index);
+    }
+    /**
+     * <pre>
+     *甲板名称
+     * </pre>
+     *
+     * <code>repeated string strdeck = 3;</code>
+     */
+    public Builder setStrdeck(
+        int index, java.lang.String value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  ensureStrdeckIsMutable();
+      strdeck_.set(index, value);
+      onChanged();
+      return this;
+    }
+    /**
+     * <pre>
+     *甲板名称
+     * </pre>
+     *
+     * <code>repeated string strdeck = 3;</code>
+     */
+    public Builder addStrdeck(
+        java.lang.String value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  ensureStrdeckIsMutable();
+      strdeck_.add(value);
+      onChanged();
+      return this;
+    }
+    /**
+     * <pre>
+     *甲板名称
+     * </pre>
+     *
+     * <code>repeated string strdeck = 3;</code>
+     */
+    public Builder addAllStrdeck(
+        java.lang.Iterable<java.lang.String> values) {
+      ensureStrdeckIsMutable();
+      com.google.protobuf.AbstractMessageLite.Builder.addAll(
+          values, strdeck_);
+      onChanged();
+      return this;
+    }
+    /**
+     * <pre>
+     *甲板名称
+     * </pre>
+     *
+     * <code>repeated string strdeck = 3;</code>
+     */
+    public Builder clearStrdeck() {
+      strdeck_ = com.google.protobuf.LazyStringArrayList.EMPTY;
+      bitField0_ = (bitField0_ & ~0x00000004);
+      onChanged();
+      return this;
+    }
+    /**
+     * <pre>
+     *甲板名称
+     * </pre>
+     *
+     * <code>repeated string strdeck = 3;</code>
+     */
+    public Builder addStrdeckBytes(
+        com.google.protobuf.ByteString value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+      ensureStrdeckIsMutable();
+      strdeck_.add(value);
+      onChanged();
+      return this;
+    }
+
+    private java.util.List<java.lang.Double> deckyatou_ = java.util.Collections.emptyList();
+    private void ensureDeckyatouIsMutable() {
+      if (!((bitField0_ & 0x00000008) == 0x00000008)) {
+        deckyatou_ = new java.util.ArrayList<java.lang.Double>(deckyatou_);
+        bitField0_ |= 0x00000008;
+       }
+    }
+    /**
+     * <pre>
+     *甲板破损压头水压值
+     * </pre>
+     *
+     * <code>repeated double deckyatou = 4;</code>
+     */
+    public java.util.List<java.lang.Double>
+        getDeckyatouList() {
+      return java.util.Collections.unmodifiableList(deckyatou_);
+    }
+    /**
+     * <pre>
+     *甲板破损压头水压值
+     * </pre>
+     *
+     * <code>repeated double deckyatou = 4;</code>
+     */
+    public int getDeckyatouCount() {
+      return deckyatou_.size();
+    }
+    /**
+     * <pre>
+     *甲板破损压头水压值
+     * </pre>
+     *
+     * <code>repeated double deckyatou = 4;</code>
+     */
+    public double getDeckyatou(int index) {
+      return deckyatou_.get(index);
+    }
+    /**
+     * <pre>
+     *甲板破损压头水压值
+     * </pre>
+     *
+     * <code>repeated double deckyatou = 4;</code>
+     */
+    public Builder setDeckyatou(
+        int index, double value) {
+      ensureDeckyatouIsMutable();
+      deckyatou_.set(index, value);
+      onChanged();
+      return this;
+    }
+    /**
+     * <pre>
+     *甲板破损压头水压值
+     * </pre>
+     *
+     * <code>repeated double deckyatou = 4;</code>
+     */
+    public Builder addDeckyatou(double value) {
+      ensureDeckyatouIsMutable();
+      deckyatou_.add(value);
+      onChanged();
+      return this;
+    }
+    /**
+     * <pre>
+     *甲板破损压头水压值
+     * </pre>
+     *
+     * <code>repeated double deckyatou = 4;</code>
+     */
+    public Builder addAllDeckyatou(
+        java.lang.Iterable<? extends java.lang.Double> values) {
+      ensureDeckyatouIsMutable();
+      com.google.protobuf.AbstractMessageLite.Builder.addAll(
+          values, deckyatou_);
+      onChanged();
+      return this;
+    }
+    /**
+     * <pre>
+     *甲板破损压头水压值
+     * </pre>
+     *
+     * <code>repeated double deckyatou = 4;</code>
+     */
+    public Builder clearDeckyatou() {
+      deckyatou_ = java.util.Collections.emptyList();
+      bitField0_ = (bitField0_ & ~0x00000008);
       onChanged();
       return this;
     }

@@ -14,12 +14,12 @@ public class CalSectionDTO {
     private Integer sectionId;
 
     /**
-     * 剖面文件名称
+     * 剖面文件路径
      */
-    private String profileFilePath;
+    private String profileFilePathOld;
 
     /**
-     * 剖面文件路径
+     * 剖面文件名称
      */
 //    @JsonProperty(value = "loadingFilepath")
     private String profileFileName;

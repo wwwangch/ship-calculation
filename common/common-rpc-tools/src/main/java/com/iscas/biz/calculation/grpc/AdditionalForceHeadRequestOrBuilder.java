@@ -9,37 +9,110 @@ public interface AdditionalForceHeadRequestOrBuilder extends
 
   /**
    * <pre>
+   *上建形式
+   * </pre>
+   *
+   * <code>string upbuildstyle = 1;</code>
+   */
+  java.lang.String getUpbuildstyle();
+  /**
+   * <pre>
+   *上建形式
+   * </pre>
+   *
+   * <code>string upbuildstyle = 1;</code>
+   */
+  com.google.protobuf.ByteString
+      getUpbuildstyleBytes();
+
+  /**
+   * <pre>
    *干舷高
    * </pre>
    *
-   * <code>double freeboard = 1;</code>
+   * <code>double freeboard = 2;</code>
    */
   double getFreeboard();
 
   /**
    * <pre>
-   *肋位号
+   *艏楼端壁肋位
    * </pre>
    *
-   * <code>double leiweihao = 2;</code>
+   * <code>double shouloupos = 3;</code>
    */
-  double getLeiweihao();
+  double getShouloupos();
 
   /**
    * <pre>
-   *舱壁位置
+   *new614----------------
+   *首干舷高
    * </pre>
    *
-   * <code>double cangbiWeizhi = 3;</code>
+   * <code>double forefreeboard = 4;</code>
    */
-  double getCangbiWeizhi();
+  double getForefreeboard();
+
+  /**
+   * <pre>
+   *尾干舷高
+   * </pre>
+   *
+   * <code>double aftfreeboard = 5;</code>
+   */
+  double getAftfreeboard();
+
+  /**
+   * <pre>
+   *桥楼首部端壁肋位号；
+   * </pre>
+   *
+   * <code>double bridge_fore_pos = 6;</code>
+   */
+  double getBridgeForePos();
+
+  /**
+   * <pre>
+   *桥楼首部端壁干舷高
+   * </pre>
+   *
+   * <code>double bridge_fore_height = 7;</code>
+   */
+  double getBridgeForeHeight();
+
+  /**
+   * <pre>
+   *桥楼尾部端壁肋位号；
+   * </pre>
+   *
+   * <code>double bridge_aft_pos = 8;</code>
+   */
+  double getBridgeAftPos();
+
+  /**
+   * <pre>
+   *桥楼尾部端壁干舷高
+   * </pre>
+   *
+   * <code>double bridge_aft_height = 9;</code>
+   */
+  double getBridgeAftHeight();
+
+  /**
+   * <pre>
+   *正常排水量时的吃水
+   * </pre>
+   *
+   * <code>double draugthnoraml = 10;</code>
+   */
+  double getDraugthnoraml();
 
   /**
    * <pre>
    *是否防撞舱壁
    * </pre>
    *
-   * <code>bool isCollision = 4;</code>
+   * <code>bool isCollision = 11;</code>
    */
   boolean getIsCollision();
 
@@ -48,7 +121,110 @@ public interface AdditionalForceHeadRequestOrBuilder extends
    *水动压力
    * </pre>
    *
-   * <code>double shuidongYali = 5;</code>
+   * <code>double dynamicyatou = 12;</code>
    */
-  double getShuidongYali();
+  double getDynamicyatou();
+
+  /**
+   * <pre>
+   *校核剖面肋位号
+   * </pre>
+   *
+   * <code>double leiweihao = 13;</code>
+   */
+  double getLeiweihao();
+
+  /**
+   * <pre>
+   *空气管压头
+   * </pre>
+   *
+   * <code>double airguanyatou = 14;</code>
+   */
+  double getAirguanyatou();
+
+  /**
+   * <pre>
+   *甲板名称添加614
+   * </pre>
+   *
+   * <code>repeated string deckName = 15;</code>
+   */
+  java.util.List<java.lang.String>
+      getDeckNameList();
+  /**
+   * <pre>
+   *甲板名称添加614
+   * </pre>
+   *
+   * <code>repeated string deckName = 15;</code>
+   */
+  int getDeckNameCount();
+  /**
+   * <pre>
+   *甲板名称添加614
+   * </pre>
+   *
+   * <code>repeated string deckName = 15;</code>
+   */
+  java.lang.String getDeckName(int index);
+  /**
+   * <pre>
+   *甲板名称添加614
+   * </pre>
+   *
+   * <code>repeated string deckName = 15;</code>
+   */
+  com.google.protobuf.ByteString
+      getDeckNameBytes(int index);
+
+  /**
+   * <pre>
+   *甲板层高
+   * </pre>
+   *
+   * <code>repeated double deckHeight = 16;</code>
+   */
+  java.util.List<java.lang.Double> getDeckHeightList();
+  /**
+   * <pre>
+   *甲板层高
+   * </pre>
+   *
+   * <code>repeated double deckHeight = 16;</code>
+   */
+  int getDeckHeightCount();
+  /**
+   * <pre>
+   *甲板层高
+   * </pre>
+   *
+   * <code>repeated double deckHeight = 16;</code>
+   */
+  double getDeckHeight(int index);
+
+  /**
+   * <pre>
+   *是否液压舱壁  区间excel中的数据
+   * </pre>
+   *
+   * <code>repeated bool boolLiquidTank = 17;</code>
+   */
+  java.util.List<java.lang.Boolean> getBoolLiquidTankList();
+  /**
+   * <pre>
+   *是否液压舱壁  区间excel中的数据
+   * </pre>
+   *
+   * <code>repeated bool boolLiquidTank = 17;</code>
+   */
+  int getBoolLiquidTankCount();
+  /**
+   * <pre>
+   *是否液压舱壁  区间excel中的数据
+   * </pre>
+   *
+   * <code>repeated bool boolLiquidTank = 17;</code>
+   */
+  boolean getBoolLiquidTank(int index);
 }

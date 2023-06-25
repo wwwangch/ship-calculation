@@ -9,7 +9,7 @@ public interface Sigma1RequestOrBuilder extends
 
   /**
    * <pre>
-   *构件跨距-龙骨跨距 每个的跨距
+   *构件跨距-龙骨跨距 跨距
    * </pre>
    *
    * <code>repeated double kuaChang = 1;</code>
@@ -17,7 +17,7 @@ public interface Sigma1RequestOrBuilder extends
   java.util.List<java.lang.Double> getKuaChangList();
   /**
    * <pre>
-   *构件跨距-龙骨跨距 每个的跨距
+   *构件跨距-龙骨跨距 跨距
    * </pre>
    *
    * <code>repeated double kuaChang = 1;</code>
@@ -25,7 +25,7 @@ public interface Sigma1RequestOrBuilder extends
   int getKuaChangCount();
   /**
    * <pre>
-   *构件跨距-龙骨跨距 每个的跨距
+   *构件跨距-龙骨跨距 跨距
    * </pre>
    *
    * <code>repeated double kuaChang = 1;</code>
@@ -34,7 +34,7 @@ public interface Sigma1RequestOrBuilder extends
 
   /**
    * <pre>
-   *剖面位置x-衡量间距
+   *剖面位置x-肋板间距
    * </pre>
    *
    * <code>double girderDistance = 2;</code>
@@ -52,51 +52,74 @@ public interface Sigma1RequestOrBuilder extends
 
   /**
    * <pre>
-   *纵骨规格 每个的规格
+   *板架宽度 添加614
    * </pre>
    *
-   * <code>repeated double frGuige = 4;</code>
+   * <code>double trusswidth = 4;</code>
    */
-  java.util.List<java.lang.Double> getFrGuigeList();
+  double getTrusswidth();
+
   /**
    * <pre>
    *纵骨规格 每个的规格
+   *修改614 double-&gt;string
    * </pre>
    *
-   * <code>repeated double frGuige = 4;</code>
+   * <code>repeated string frGuige = 5;</code>
+   */
+  java.util.List<java.lang.String>
+      getFrGuigeList();
+  /**
+   * <pre>
+   *纵骨规格 每个的规格
+   *修改614 double-&gt;string
+   * </pre>
+   *
+   * <code>repeated string frGuige = 5;</code>
    */
   int getFrGuigeCount();
   /**
    * <pre>
    *纵骨规格 每个的规格
+   *修改614 double-&gt;string
    * </pre>
    *
-   * <code>repeated double frGuige = 4;</code>
+   * <code>repeated string frGuige = 5;</code>
    */
-  double getFrGuige(int index);
+  java.lang.String getFrGuige(int index);
+  /**
+   * <pre>
+   *纵骨规格 每个的规格
+   *修改614 double-&gt;string
+   * </pre>
+   *
+   * <code>repeated string frGuige = 5;</code>
+   */
+  com.google.protobuf.ByteString
+      getFrGuigeBytes(int index);
 
   /**
    * <pre>
-   *板各厚度 每个板材的厚度
+   *外底板厚 每个板材的厚度
    * </pre>
    *
-   * <code>repeated double plateThick = 5;</code>
+   * <code>repeated double plateThick = 6;</code>
    */
   java.util.List<java.lang.Double> getPlateThickList();
   /**
    * <pre>
-   *板各厚度 每个板材的厚度
+   *外底板厚 每个板材的厚度
    * </pre>
    *
-   * <code>repeated double plateThick = 5;</code>
+   * <code>repeated double plateThick = 6;</code>
    */
   int getPlateThickCount();
   /**
    * <pre>
-   *板各厚度 每个板材的厚度
+   *外底板厚 每个板材的厚度
    * </pre>
    *
-   * <code>repeated double plateThick = 5;</code>
+   * <code>repeated double plateThick = 6;</code>
    */
   double getPlateThick(int index);
 
@@ -105,36 +128,54 @@ public interface Sigma1RequestOrBuilder extends
    *设备重量(t)
    * </pre>
    *
-   * <code>double deviceWeight = 6;</code>
+   * <code>double deviceWeight = 7;</code>
    */
   double getDeviceWeight();
 
   /**
    * <pre>
-   *版格宽度
+   *外底板宽度 修改614为数组
    * </pre>
    *
-   * <code>double girderWidth = 7;</code>
+   * <code>repeated double girderWidth = 8;</code>
    */
-  double getGirderWidth();
+  java.util.List<java.lang.Double> getGirderWidthList();
+  /**
+   * <pre>
+   *外底板宽度 修改614为数组
+   * </pre>
+   *
+   * <code>repeated double girderWidth = 8;</code>
+   */
+  int getGirderWidthCount();
+  /**
+   * <pre>
+   *外底板宽度 修改614为数组
+   * </pre>
+   *
+   * <code>repeated double girderWidth = 8;</code>
+   */
+  double getGirderWidth(int index);
 
   /**
    * <pre>
-   *材料类型
+   *new614----------------
+   *材料类型 改为材料屈服极限
    * </pre>
    *
-   * <code>string materialType = 8;</code>
+   * <code>double materialYieldLimit = 9;</code>
    */
-  java.lang.String getMaterialType();
+  double getMaterialYieldLimit();
+
   /**
    * <pre>
-   *材料类型
+   *new614----------------
+   *是否采用自定义载荷
    * </pre>
    *
-   * <code>string materialType = 8;</code>
+   * <code>bool isCustomLoad = 10;</code>
    */
-  com.google.protobuf.ByteString
-      getMaterialTypeBytes();
+  boolean getIsCustomLoad();
 
   /**
    * <pre>
@@ -142,17 +183,17 @@ public interface Sigma1RequestOrBuilder extends
    * 中拱-波浪弯矩
    * </pre>
    *
-   * <code>double midArchWaveMoment = 9;</code>
+   * <code>double midArchWaveMoment = 11;</code>
    */
   double getMidArchWaveMoment();
 
   /**
    * <pre>
    **
-   * 中拱-砰击振动弯矩
+   * 中拱-砰击弯矩
    * </pre>
    *
-   * <code>double midArchImpactMoment = 10;</code>
+   * <code>double midArchImpactMoment = 12;</code>
    */
   double getMidArchImpactMoment();
 
@@ -162,9 +203,19 @@ public interface Sigma1RequestOrBuilder extends
    * 中拱-剪力
    * </pre>
    *
-   * <code>double midArchShear = 11;</code>
+   * <code>double midArchShear = 13;</code>
    */
   double getMidArchShear();
+
+  /**
+   * <pre>
+   **添加614
+   * 中拱-吃水
+   * </pre>
+   *
+   * <code>double midArchDraught = 14;</code>
+   */
+  double getMidArchDraught();
 
   /**
    * <pre>
@@ -172,17 +223,17 @@ public interface Sigma1RequestOrBuilder extends
    * 中垂-波浪弯矩
    * </pre>
    *
-   * <code>double midVerticalWaveMoment = 12;</code>
+   * <code>double midVerticalWaveMoment = 15;</code>
    */
   double getMidVerticalWaveMoment();
 
   /**
    * <pre>
    **
-   * 中垂-砰击振动弯矩
+   * 中垂-砰击弯矩
    * </pre>
    *
-   * <code>double midVerticalImpactMoment = 13;</code>
+   * <code>double midVerticalImpactMoment = 16;</code>
    */
   double getMidVerticalImpactMoment();
 
@@ -192,16 +243,54 @@ public interface Sigma1RequestOrBuilder extends
    * 中垂-剪力
    * </pre>
    *
-   * <code>double midVerticalShear = 14;</code>
+   * <code>double midVerticalShear = 17;</code>
    */
   double getMidVerticalShear();
+
+  /**
+   * <pre>
+   **添加614
+   * 中垂-吃水
+   * </pre>
+   *
+   * <code>double midVerticalDraught = 18;</code>
+   */
+  double getMidVerticalDraught();
+
+  /**
+   * <pre>
+   **添加614
+   * 舷侧中和轴附近板的厚度
+   * </pre>
+   *
+   * <code>repeated double xiancethick = 19;</code>
+   */
+  java.util.List<java.lang.Double> getXiancethickList();
+  /**
+   * <pre>
+   **添加614
+   * 舷侧中和轴附近板的厚度
+   * </pre>
+   *
+   * <code>repeated double xiancethick = 19;</code>
+   */
+  int getXiancethickCount();
+  /**
+   * <pre>
+   **添加614
+   * 舷侧中和轴附近板的厚度
+   * </pre>
+   *
+   * <code>repeated double xiancethick = 19;</code>
+   */
+  double getXiancethick(int index);
 
   /**
    * <pre>
    *龙骨数量
    * </pre>
    *
-   * <code>int32 numGirder = 15;</code>
+   * <code>int32 numGirder = 20;</code>
    */
   int getNumGirder();
 }

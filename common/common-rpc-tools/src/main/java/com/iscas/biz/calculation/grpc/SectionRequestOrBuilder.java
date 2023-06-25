@@ -33,4 +33,102 @@ public interface SectionRequestOrBuilder extends
    * <code>double ribNumber = 2;</code>
    */
   double getRibNumber();
+
+  /**
+   * <pre>
+   *球扁钢数组
+   * </pre>
+   *
+   * <code>repeated .com.iscas.biz.calculation.grpc.BulbFlat bulbFlats = 3;</code>
+   */
+  java.util.List<com.iscas.biz.calculation.grpc.BulbFlat> 
+      getBulbFlatsList();
+  /**
+   * <pre>
+   *球扁钢数组
+   * </pre>
+   *
+   * <code>repeated .com.iscas.biz.calculation.grpc.BulbFlat bulbFlats = 3;</code>
+   */
+  com.iscas.biz.calculation.grpc.BulbFlat getBulbFlats(int index);
+  /**
+   * <pre>
+   *球扁钢数组
+   * </pre>
+   *
+   * <code>repeated .com.iscas.biz.calculation.grpc.BulbFlat bulbFlats = 3;</code>
+   */
+  int getBulbFlatsCount();
+  /**
+   * <pre>
+   *球扁钢数组
+   * </pre>
+   *
+   * <code>repeated .com.iscas.biz.calculation.grpc.BulbFlat bulbFlats = 3;</code>
+   */
+  java.util.List<? extends com.iscas.biz.calculation.grpc.BulbFlatOrBuilder> 
+      getBulbFlatsOrBuilderList();
+  /**
+   * <pre>
+   *球扁钢数组
+   * </pre>
+   *
+   * <code>repeated .com.iscas.biz.calculation.grpc.BulbFlat bulbFlats = 3;</code>
+   */
+  com.iscas.biz.calculation.grpc.BulbFlatOrBuilder getBulbFlatsOrBuilder(
+      int index);
+
+  /**
+   * <pre>
+   *T型材数组
+   * </pre>
+   *
+   * <code>repeated .com.iscas.biz.calculation.grpc.TProfile tProfiles = 4;</code>
+   */
+  java.util.List<com.iscas.biz.calculation.grpc.TProfile> 
+      getTProfilesList();
+  /**
+   * <pre>
+   *T型材数组
+   * </pre>
+   *
+   * <code>repeated .com.iscas.biz.calculation.grpc.TProfile tProfiles = 4;</code>
+   */
+  com.iscas.biz.calculation.grpc.TProfile getTProfiles(int index);
+  /**
+   * <pre>
+   *T型材数组
+   * </pre>
+   *
+   * <code>repeated .com.iscas.biz.calculation.grpc.TProfile tProfiles = 4;</code>
+   */
+  int getTProfilesCount();
+  /**
+   * <pre>
+   *T型材数组
+   * </pre>
+   *
+   * <code>repeated .com.iscas.biz.calculation.grpc.TProfile tProfiles = 4;</code>
+   */
+  java.util.List<? extends com.iscas.biz.calculation.grpc.TProfileOrBuilder> 
+      getTProfilesOrBuilderList();
+  /**
+   * <pre>
+   *T型材数组
+   * </pre>
+   *
+   * <code>repeated .com.iscas.biz.calculation.grpc.TProfile tProfiles = 4;</code>
+   */
+  com.iscas.biz.calculation.grpc.TProfileOrBuilder getTProfilesOrBuilder(
+      int index);
+
+  /**
+   * <pre>
+   *new614----------------
+   *是否半剖面
+   * </pre>
+   *
+   * <code>bool isHalfProfile = 5;</code>
+   */
+  boolean getIsHalfProfile();
 }

@@ -100,4 +100,103 @@ public interface SupportingMaterialStrengthRequestOrBuilder extends
    * <code>double zongguKuaju = 4;</code>
    */
   double getZongguKuaju();
+
+  /**
+   * <pre>
+   *new614----------------
+   *上部支撑纵骨规格
+   * </pre>
+   *
+   * <code>repeated string guicaiType_upper = 5;</code>
+   */
+  java.util.List<java.lang.String>
+      getGuicaiTypeUpperList();
+  /**
+   * <pre>
+   *new614----------------
+   *上部支撑纵骨规格
+   * </pre>
+   *
+   * <code>repeated string guicaiType_upper = 5;</code>
+   */
+  int getGuicaiTypeUpperCount();
+  /**
+   * <pre>
+   *new614----------------
+   *上部支撑纵骨规格
+   * </pre>
+   *
+   * <code>repeated string guicaiType_upper = 5;</code>
+   */
+  java.lang.String getGuicaiTypeUpper(int index);
+  /**
+   * <pre>
+   *new614----------------
+   *上部支撑纵骨规格
+   * </pre>
+   *
+   * <code>repeated string guicaiType_upper = 5;</code>
+   */
+  com.google.protobuf.ByteString
+      getGuicaiTypeUpperBytes(int index);
+
+  /**
+   * <pre>
+   *下部支撑纵骨规格
+   * </pre>
+   *
+   * <code>repeated string guicaiType_lower = 6;</code>
+   */
+  java.util.List<java.lang.String>
+      getGuicaiTypeLowerList();
+  /**
+   * <pre>
+   *下部支撑纵骨规格
+   * </pre>
+   *
+   * <code>repeated string guicaiType_lower = 6;</code>
+   */
+  int getGuicaiTypeLowerCount();
+  /**
+   * <pre>
+   *下部支撑纵骨规格
+   * </pre>
+   *
+   * <code>repeated string guicaiType_lower = 6;</code>
+   */
+  java.lang.String getGuicaiTypeLower(int index);
+  /**
+   * <pre>
+   *下部支撑纵骨规格
+   * </pre>
+   *
+   * <code>repeated string guicaiType_lower = 6;</code>
+   */
+  com.google.protobuf.ByteString
+      getGuicaiTypeLowerBytes(int index);
+
+  /**
+   * <pre>
+   *扶强材屈服极限
+   * </pre>
+   *
+   * <code>repeated double fuQiangCaiYieldLimit = 7;</code>
+   */
+  java.util.List<java.lang.Double> getFuQiangCaiYieldLimitList();
+  /**
+   * <pre>
+   *扶强材屈服极限
+   * </pre>
+   *
+   * <code>repeated double fuQiangCaiYieldLimit = 7;</code>
+   */
+  int getFuQiangCaiYieldLimitCount();
+  /**
+   * <pre>
+   *扶强材屈服极限
+   * </pre>
+   *
+   * <code>repeated double fuQiangCaiYieldLimit = 7;</code>
+   */
+  double getFuQiangCaiYieldLimit(int index);
 }

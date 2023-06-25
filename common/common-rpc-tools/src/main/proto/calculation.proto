@@ -261,32 +261,56 @@ message SectionRequest{
 
   //肋位号
   double ribNumber = 2;
+  //球扁钢数组
+  repeated BulbFlat bulbFlats = 3;
+  //T型材数组
+  repeated TProfile tProfiles = 4;
+  //new614----------------
+  //是否半剖面
+  bool isHalfProfile = 5;
+}
+//球扁钢
+message BulbFlat{
+  string model = 1;   //型号
+  double height = 2;         // 高度(mm)
+  double width = 3;          // 宽度(mm)
+  double thickness = 4;      // 厚度(mm)
+  double sectionalArea = 5;  // 剖面积(cm²)
+  double momentOfInertia = 6;// 惯性矩(cm⁴)
+  double centroidPosition = 7; // 形心位置(cm)
+}
+//T型材
+message TProfile{
+  string model = 1;   //型号
+  double keelHeight = 2;    // 腹板高度(mm)
+  double keelThickness = 3; // 腹板厚度(mm)
+  double deckWidth = 4;     // 面板宽度(mm)
+  double deckThickness = 5; // 面板厚度(mm)
+  double sectionalArea = 6; // 剖面积(cm²)
+  double momentOfInertia = 7; // 惯性矩(cm⁴)
+  double centroidPosition = 8; // 形心位置(cm)
 }
 //剖面计算输出
 message SectionResponse{
   //初始静矩
   double firstMoment0 = 1;
 
-  //惯性矩
+  //初始惯性矩
   double interia0 = 2;
 
-  //中拱时的中和轴
-  double zaxisH = 3;
+  //初始中和轴
+  double zaxis0 = 3;
 
-  //中拱时静矩
-  double firstMomH = 4;
+  //修改0614 去掉中拱中垂输出，增加面积和底部上甲板模数输出
+  //剖面面积
+  double area = 4;
+  //上甲板模数
+  double module_uppper = 5;
+  //底部模数
+  double module_lower = 6;
 
-  //中拱时惯性矩
-  double interiaH = 5;
-
-  //中垂时的中和轴
-  double zaxisS = 6;
-
-  //中垂时静矩
-  double firstMomS = 7;
-
-  //中垂时惯性矩
-  double interiaS = 8;
+  //解析后的剖面文件路径
+  string profileFilePath = 7;
 }
 
 
@@ -313,57 +337,84 @@ message DistResponse{
 }
 message Sigma1Request{
 
-  //构件跨距-龙骨跨距 每个的跨距
+  //构件跨距-龙骨跨距 跨距
   repeated double kuaChang = 1;
 
-  //剖面位置x-衡量间距
+  //剖面位置x-肋板间距
   double girderDistance = 2;
 
   //纵骨间距
   double  frDistance = 3;
 
-  //纵骨规格 每个的规格
-  repeated double frGuige = 4;
+  //板架宽度 添加614
+  double trusswidth = 4;
 
-  //板各厚度 每个板材的厚度
-  repeated double plateThick = 5;
+  //纵骨规格 每个的规格
+  //修改614 double->string
+  repeated string frGuige = 5;
+
+  //外底板厚 每个板材的厚度
+  repeated double plateThick = 6;
 
   //设备重量(t)
-  double deviceWeight = 6;
+  double deviceWeight = 7;
 
-  //版格宽度
-  double girderWidth = 7;
+  //外底板宽度 修改614为数组
+  repeated double girderWidth = 8;
 
-  //材料类型
-  string materialType = 8;
+  //new614----------------
+  //材料类型 改为材料屈服极限
+  double materialYieldLimit = 9;
 
+
+  //new614----------------
+  //是否采用自定义载荷
+  bool isCustomLoad = 10;
+  //---------------------------------
   /**
      * 中拱-波浪弯矩
      */
-  double midArchWaveMoment = 9;
+  double midArchWaveMoment = 11;
   /**
-   * 中拱-砰击振动弯矩
+   * 中拱-砰击弯矩
    */
-  double midArchImpactMoment = 10;
+  double midArchImpactMoment = 12;
   /**
    * 中拱-剪力
    */
-  double midArchShear = 11;
+  double midArchShear = 13;
+
+  /**添加614
+   * 中拱-吃水
+   */
+  double midArchDraught = 14;
+
   /**
    * 中垂-波浪弯矩
    */
-  double midVerticalWaveMoment = 12;
+  double midVerticalWaveMoment = 15;
   /**
-   * 中垂-砰击振动弯矩
+   * 中垂-砰击弯矩
    */
-  double midVerticalImpactMoment = 13;
+  double midVerticalImpactMoment = 16;
   /**
    * 中垂-剪力
    */
-  double midVerticalShear = 14;
+  double midVerticalShear = 17;
+
+  /**添加614
+ * 中垂-吃水
+ */
+  double midVerticalDraught = 18;
+
+  /**添加614
+   * 舷侧中和轴附近板的厚度
+   */
+  repeated double xiancethick = 19;
+
 
   //龙骨数量
-  int32 numGirder = 15;
+  int32 numGirder = 20;
 }
 
 message Sigma1Response{
@@ -411,29 +462,29 @@ message Sigma2Entity{
   double zhongchuiKuazhongShang = 7;
   //中垂跨中下纤维
   double zhongchuiKuazhongXia = 8;
-  //许用应力
-  double allowStress = 9;
-  //合成许用应力
-  double combineAllowStress = 10;
+
+
   //合成中拱支座上纤维
-  double combineZhonggongZhizuoShang = 11;
+  double combineZhonggongZhizuoShang = 9;
   //合成中拱支座下纤维
-  double combineZhonggongZhizuoXia = 12;
+  double combineZhonggongZhizuoXia = 10;
 
   //合成中拱跨中上纤维
-  double combineZhonggongKuazhongShang = 13;
+  double combineZhonggongKuazhongShang = 11;
   //合成中拱跨中下纤维
-  double combineZhonggongKuazhongXia = 14;
+  double combineZhonggongKuazhongXia = 12;
 
   //合成中垂支座上纤维
-  double combineZhongchuiZhizuoShang = 15;
+  double combineZhongchuiZhizuoShang = 13;
   //合成中垂支座下纤维
-  double combineZhongchuiZhizuoXia = 16;
+  double combineZhongchuiZhizuoXia = 14;
 
   //合成中垂跨中上纤维
-  double combineZhongchuiKuazhongShang = 17;
+  double combineZhongchuiKuazhongShang = 15;
   //合成中垂跨中下纤维
-  double combineZhongchuiKuazhongXia = 18;
+  double combineZhongchuiKuazhongXia = 16;
+  //合成许用应力
+  double combineAllowStress = 17;
 }
 
 message Sigma3Request{
@@ -498,20 +549,45 @@ message ShearingStressEntity{
 }
 
 message AdditionalForceHeadRequest{
+  //上建形式
+  string upbuildstyle = 1;
   //干舷高
-  double freeboard = 1;
+  double freeboard = 2;
+  //艏楼端壁肋位
+  double shouloupos = 3;
+  //new614----------------
+  //首干舷高
+  double forefreeboard = 4;
+  //尾干舷高
+  double aftfreeboard = 5;
+  //桥楼首部端壁肋位号；
+  double bridge_fore_pos = 6;
+  //桥楼首部端壁干舷高
+  double bridge_fore_height = 7;
+  //桥楼尾部端壁肋位号；
+  double bridge_aft_pos = 8;
+  //桥楼尾部端壁干舷高
+  double bridge_aft_height = 9;
 
-  //肋位号
-  double leiweihao = 2;
-
-  //舱壁位置
-  double cangbiWeizhi = 3;
-
+  //正常排水量时的吃水
+  double draugthnoraml = 10;
   //是否防撞舱壁
-  bool isCollision = 4;
+  bool isCollision = 11;
 
   //水动压力
-  double shuidongYali = 5;
+  double dynamicyatou = 12;
+  //校核剖面肋位号
+  double leiweihao = 13;
+  //空气管压头
+  double airguanyatou = 14;
+  //甲板名称添加614
+  repeated string deckName = 15;
+  //甲板层高
+  repeated double deckHeight = 16;
+
+  //是否液压舱壁  区间excel中的数据
+  repeated bool boolLiquidTank = 17;
+  //----------------------------------
 }
 message AdditionalForceHeadResponse{
   //肋位号  数组
@@ -519,31 +595,30 @@ message AdditionalForceHeadResponse{
 
   //附加压头  数组
   repeated double addyatouh = 2;
+
+  //甲板名称
+  repeated string strdeck = 3;
+
+  //甲板破损压头水压值
+  repeated double deckyatou = 4;
 }
 
 message CompartmentBulkheadSheetRequest{
-  //液仓空气管压头
-  double airguanyatou = 1;
 
-  //甲板层高 区间excel中的数据
-  repeated double deckHeight = 2;
-
-  //是否液压舱壁  区间excel中的数据
-  repeated bool boolLiquidTank = 3;
 
   //板宽 区间excel中的数据
-  repeated double banWidth = 4;
+  repeated double banWidth = 1;
 
   //板厚 区间excel中的数据
-  repeated double banThick = 5;
+  repeated double banThick = 2;
 
   //舱壁板材料
-  repeated double cangbiBancailiao = 6;
+  repeated double cangbiBancailiao = 3;
 }
 
 message CompartmentBulkheadSheetResponse{
-  //破损压头水压值
-  repeated double yatou = 1;
+  //层间名称
+  repeated string strdeckdistrict = 1;
 
   //均布载荷
   repeated double disload = 2;
@@ -562,7 +637,7 @@ message CompartmentBulkheadSheetResponse{
   repeated double stressKuozhong = 8;
   //支座应力
   repeated double stressZhizuo = 9;
-  //许用剪力
+  //许用应力
   repeated double shearAllow = 10;
 }
 
@@ -576,6 +651,15 @@ message SupportingMaterialStrengthRequest{
   repeated double daibanHou = 3;
   //甲板纵骨跨距
   double zongguKuaju = 4;
+
+  //new614----------------
+  //上部支撑纵骨规格
+  repeated string guicaiType_upper = 5;
+  //下部支撑纵骨规格
+  repeated string guicaiType_lower = 6;
+  //扶强材屈服极限
+  repeated double fuQiangCaiYieldLimit = 7;
+  //---------------------------------
 }
 
 message SupportingMaterialStrengthResponse{
@@ -620,4 +704,15 @@ message SupportingMaterialStrengthResponse{
   repeated double yingliXiajian = 17;
   //应力值许用剪力
   repeated double yingliXujian = 18;
+
+  //new614----------------
+  //弹性连续梁最大弯矩
+  repeated double M_max_el = 19;
+  //弹性连续梁最大支撑力
+  repeated double N_max_el = 20;
+  //弹性连续梁最大正应力
+  repeated double Stress_max_el = 21;
+  //弹性连续梁最大剪切力
+  repeated double Shear_max_el = 22;
+  //---------------------------------
 }

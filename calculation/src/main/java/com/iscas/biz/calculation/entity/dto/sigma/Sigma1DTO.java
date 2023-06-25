@@ -1,6 +1,10 @@
 package com.iscas.biz.calculation.entity.dto.sigma;
 
+import com.baomidou.mybatisplus.annotation.TableField;
+import com.baomidou.mybatisplus.extension.handlers.JacksonTypeHandler;
 import lombok.Data;
+
+import java.util.List;
 
 /**
  * @Author yichuan@iscas.ac.cn
@@ -15,7 +19,8 @@ public class Sigma1DTO {
      * 原先为：剖面构件跨距a  componentSpan
      * 修改为：构件跨距-龙骨跨距 每个的跨距
      */
-    private String kuaChang;
+    @TableField(typeHandler = JacksonTypeHandler.class)
+    private List<Double> kuaChang;
 
     /**
      * 原先为：校核剖面位置X xCoordinate
@@ -28,13 +33,20 @@ public class Sigma1DTO {
      */
     private Double frDistance;
     /**
+     * 板架宽度
+     */
+    private Double trusswidth;
+
+    /**
      * 纵骨规格 每个的规格
      */
-    private String frGuige;
+    @TableField(typeHandler = JacksonTypeHandler.class)
+    private List<String> frGuige;
     /**
      *板格厚度 每个板材的厚度
      */
-    private String plateThick;
+    @TableField(typeHandler = JacksonTypeHandler.class)
+    private List<Double> plateThick;
     /**
      * 设备重量
      */
@@ -42,11 +54,16 @@ public class Sigma1DTO {
     /**
      * 板格宽度
      */
-    private Double girderWidth;
+    @TableField(typeHandler = JacksonTypeHandler.class)
+    private List<Double> girderWidth;
     /**
-     * 材料类型
+     * 材料类型  改为材料屈服极限
      */
-    private String materialType;
+    private Double materialYieldLimit;
+    /**
+     * 是否采用自定义载荷
+     */
+    private Boolean isCustomLoad;
 
     /**
      * 中拱-波浪弯矩
@@ -61,6 +78,10 @@ public class Sigma1DTO {
      */
     private Double midArchShear;
     /**
+     * 中拱-吃水
+     */
+    private Double midArchDraught;
+    /**
      * 中垂-波浪弯矩
      */
     private Double midVerticalWaveMoment;
@@ -72,6 +93,16 @@ public class Sigma1DTO {
      * 中垂-剪力
      */
     private Double midVerticalShear;
+    /**
+     * 中垂-吃水
+     */
+    private Double midVerticalDraught;
+    /**
+     * 舷侧中和轴附近板的厚度
+     */
+    @TableField(typeHandler = JacksonTypeHandler.class)
+    private List<Double> xiancethick;
+
 
     /**
      * 龙骨数量

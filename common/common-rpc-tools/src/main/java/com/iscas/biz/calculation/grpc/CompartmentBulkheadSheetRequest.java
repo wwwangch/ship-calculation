@@ -15,9 +15,6 @@ public  final class CompartmentBulkheadSheetRequest extends
     super(builder);
   }
   private CompartmentBulkheadSheetRequest() {
-    airguanyatou_ = 0D;
-    deckHeight_ = java.util.Collections.emptyList();
-    boolLiquidTank_ = java.util.Collections.emptyList();
     banWidth_ = java.util.Collections.emptyList();
     banThick_ = java.util.Collections.emptyList();
     cangbiBancailiao_ = java.util.Collections.emptyList();
@@ -49,66 +46,19 @@ public  final class CompartmentBulkheadSheetRequest extends
             break;
           }
           case 9: {
-
-            airguanyatou_ = input.readDouble();
-            break;
-          }
-          case 17: {
-            if (!((mutable_bitField0_ & 0x00000002) == 0x00000002)) {
-              deckHeight_ = new java.util.ArrayList<java.lang.Double>();
-              mutable_bitField0_ |= 0x00000002;
-            }
-            deckHeight_.add(input.readDouble());
-            break;
-          }
-          case 18: {
-            int length = input.readRawVarint32();
-            int limit = input.pushLimit(length);
-            if (!((mutable_bitField0_ & 0x00000002) == 0x00000002) && input.getBytesUntilLimit() > 0) {
-              deckHeight_ = new java.util.ArrayList<java.lang.Double>();
-              mutable_bitField0_ |= 0x00000002;
-            }
-            while (input.getBytesUntilLimit() > 0) {
-              deckHeight_.add(input.readDouble());
-            }
-            input.popLimit(limit);
-            break;
-          }
-          case 24: {
-            if (!((mutable_bitField0_ & 0x00000004) == 0x00000004)) {
-              boolLiquidTank_ = new java.util.ArrayList<java.lang.Boolean>();
-              mutable_bitField0_ |= 0x00000004;
-            }
-            boolLiquidTank_.add(input.readBool());
-            break;
-          }
-          case 26: {
-            int length = input.readRawVarint32();
-            int limit = input.pushLimit(length);
-            if (!((mutable_bitField0_ & 0x00000004) == 0x00000004) && input.getBytesUntilLimit() > 0) {
-              boolLiquidTank_ = new java.util.ArrayList<java.lang.Boolean>();
-              mutable_bitField0_ |= 0x00000004;
-            }
-            while (input.getBytesUntilLimit() > 0) {
-              boolLiquidTank_.add(input.readBool());
-            }
-            input.popLimit(limit);
-            break;
-          }
-          case 33: {
-            if (!((mutable_bitField0_ & 0x00000008) == 0x00000008)) {
+            if (!((mutable_bitField0_ & 0x00000001) == 0x00000001)) {
               banWidth_ = new java.util.ArrayList<java.lang.Double>();
-              mutable_bitField0_ |= 0x00000008;
+              mutable_bitField0_ |= 0x00000001;
             }
             banWidth_.add(input.readDouble());
             break;
           }
-          case 34: {
+          case 10: {
             int length = input.readRawVarint32();
             int limit = input.pushLimit(length);
-            if (!((mutable_bitField0_ & 0x00000008) == 0x00000008) && input.getBytesUntilLimit() > 0) {
+            if (!((mutable_bitField0_ & 0x00000001) == 0x00000001) && input.getBytesUntilLimit() > 0) {
               banWidth_ = new java.util.ArrayList<java.lang.Double>();
-              mutable_bitField0_ |= 0x00000008;
+              mutable_bitField0_ |= 0x00000001;
             }
             while (input.getBytesUntilLimit() > 0) {
               banWidth_.add(input.readDouble());
@@ -116,20 +66,20 @@ public  final class CompartmentBulkheadSheetRequest extends
             input.popLimit(limit);
             break;
           }
-          case 41: {
-            if (!((mutable_bitField0_ & 0x00000010) == 0x00000010)) {
+          case 17: {
+            if (!((mutable_bitField0_ & 0x00000002) == 0x00000002)) {
               banThick_ = new java.util.ArrayList<java.lang.Double>();
-              mutable_bitField0_ |= 0x00000010;
+              mutable_bitField0_ |= 0x00000002;
             }
             banThick_.add(input.readDouble());
             break;
           }
-          case 42: {
+          case 18: {
             int length = input.readRawVarint32();
             int limit = input.pushLimit(length);
-            if (!((mutable_bitField0_ & 0x00000010) == 0x00000010) && input.getBytesUntilLimit() > 0) {
+            if (!((mutable_bitField0_ & 0x00000002) == 0x00000002) && input.getBytesUntilLimit() > 0) {
               banThick_ = new java.util.ArrayList<java.lang.Double>();
-              mutable_bitField0_ |= 0x00000010;
+              mutable_bitField0_ |= 0x00000002;
             }
             while (input.getBytesUntilLimit() > 0) {
               banThick_.add(input.readDouble());
@@ -137,20 +87,20 @@ public  final class CompartmentBulkheadSheetRequest extends
             input.popLimit(limit);
             break;
           }
-          case 49: {
-            if (!((mutable_bitField0_ & 0x00000020) == 0x00000020)) {
+          case 25: {
+            if (!((mutable_bitField0_ & 0x00000004) == 0x00000004)) {
               cangbiBancailiao_ = new java.util.ArrayList<java.lang.Double>();
-              mutable_bitField0_ |= 0x00000020;
+              mutable_bitField0_ |= 0x00000004;
             }
             cangbiBancailiao_.add(input.readDouble());
             break;
           }
-          case 50: {
+          case 26: {
             int length = input.readRawVarint32();
             int limit = input.pushLimit(length);
-            if (!((mutable_bitField0_ & 0x00000020) == 0x00000020) && input.getBytesUntilLimit() > 0) {
+            if (!((mutable_bitField0_ & 0x00000004) == 0x00000004) && input.getBytesUntilLimit() > 0) {
               cangbiBancailiao_ = new java.util.ArrayList<java.lang.Double>();
-              mutable_bitField0_ |= 0x00000020;
+              mutable_bitField0_ |= 0x00000004;
             }
             while (input.getBytesUntilLimit() > 0) {
               cangbiBancailiao_.add(input.readDouble());
@@ -166,19 +116,13 @@ public  final class CompartmentBulkheadSheetRequest extends
       throw new com.google.protobuf.InvalidProtocolBufferException(
           e).setUnfinishedMessage(this);
     } finally {
-      if (((mutable_bitField0_ & 0x00000002) == 0x00000002)) {
-        deckHeight_ = java.util.Collections.unmodifiableList(deckHeight_);
-      }
-      if (((mutable_bitField0_ & 0x00000004) == 0x00000004)) {
-        boolLiquidTank_ = java.util.Collections.unmodifiableList(boolLiquidTank_);
-      }
-      if (((mutable_bitField0_ & 0x00000008) == 0x00000008)) {
+      if (((mutable_bitField0_ & 0x00000001) == 0x00000001)) {
         banWidth_ = java.util.Collections.unmodifiableList(banWidth_);
       }
-      if (((mutable_bitField0_ & 0x00000010) == 0x00000010)) {
+      if (((mutable_bitField0_ & 0x00000002) == 0x00000002)) {
         banThick_ = java.util.Collections.unmodifiableList(banThick_);
       }
-      if (((mutable_bitField0_ & 0x00000020) == 0x00000020)) {
+      if (((mutable_bitField0_ & 0x00000004) == 0x00000004)) {
         cangbiBancailiao_ = java.util.Collections.unmodifiableList(cangbiBancailiao_);
       }
       makeExtensionsImmutable();
@@ -196,98 +140,14 @@ public  final class CompartmentBulkheadSheetRequest extends
             com.iscas.biz.calculation.grpc.CompartmentBulkheadSheetRequest.class, com.iscas.biz.calculation.grpc.CompartmentBulkheadSheetRequest.Builder.class);
   }
 
-  private int bitField0_;
-  public static final int AIRGUANYATOU_FIELD_NUMBER = 1;
-  private double airguanyatou_;
-  /**
-   * <pre>
-   *液仓空气管压头
-   * </pre>
-   *
-   * <code>double airguanyatou = 1;</code>
-   */
-  public double getAirguanyatou() {
-    return airguanyatou_;
-  }
-
-  public static final int DECKHEIGHT_FIELD_NUMBER = 2;
-  private java.util.List<java.lang.Double> deckHeight_;
-  /**
-   * <pre>
-   *甲板层高 区间excel中的数据
-   * </pre>
-   *
-   * <code>repeated double deckHeight = 2;</code>
-   */
-  public java.util.List<java.lang.Double>
-      getDeckHeightList() {
-    return deckHeight_;
-  }
-  /**
-   * <pre>
-   *甲板层高 区间excel中的数据
-   * </pre>
-   *
-   * <code>repeated double deckHeight = 2;</code>
-   */
-  public int getDeckHeightCount() {
-    return deckHeight_.size();
-  }
-  /**
-   * <pre>
-   *甲板层高 区间excel中的数据
-   * </pre>
-   *
-   * <code>repeated double deckHeight = 2;</code>
-   */
-  public double getDeckHeight(int index) {
-    return deckHeight_.get(index);
-  }
-  private int deckHeightMemoizedSerializedSize = -1;
-
-  public static final int BOOLLIQUIDTANK_FIELD_NUMBER = 3;
-  private java.util.List<java.lang.Boolean> boolLiquidTank_;
-  /**
-   * <pre>
-   *是否液压舱壁  区间excel中的数据
-   * </pre>
-   *
-   * <code>repeated bool boolLiquidTank = 3;</code>
-   */
-  public java.util.List<java.lang.Boolean>
-      getBoolLiquidTankList() {
-    return boolLiquidTank_;
-  }
-  /**
-   * <pre>
-   *是否液压舱壁  区间excel中的数据
-   * </pre>
-   *
-   * <code>repeated bool boolLiquidTank = 3;</code>
-   */
-  public int getBoolLiquidTankCount() {
-    return boolLiquidTank_.size();
-  }
-  /**
-   * <pre>
-   *是否液压舱壁  区间excel中的数据
-   * </pre>
-   *
-   * <code>repeated bool boolLiquidTank = 3;</code>
-   */
-  public boolean getBoolLiquidTank(int index) {
-    return boolLiquidTank_.get(index);
-  }
-  private int boolLiquidTankMemoizedSerializedSize = -1;
-
-  public static final int BANWIDTH_FIELD_NUMBER = 4;
+  public static final int BANWIDTH_FIELD_NUMBER = 1;
   private java.util.List<java.lang.Double> banWidth_;
   /**
    * <pre>
    *板宽 区间excel中的数据
    * </pre>
    *
-   * <code>repeated double banWidth = 4;</code>
+   * <code>repeated double banWidth = 1;</code>
    */
   public java.util.List<java.lang.Double>
       getBanWidthList() {
@@ -298,7 +158,7 @@ public  final class CompartmentBulkheadSheetRequest extends
    *板宽 区间excel中的数据
    * </pre>
    *
-   * <code>repeated double banWidth = 4;</code>
+   * <code>repeated double banWidth = 1;</code>
    */
   public int getBanWidthCount() {
     return banWidth_.size();
@@ -308,21 +168,21 @@ public  final class CompartmentBulkheadSheetRequest extends
    *板宽 区间excel中的数据
    * </pre>
    *
-   * <code>repeated double banWidth = 4;</code>
+   * <code>repeated double banWidth = 1;</code>
    */
   public double getBanWidth(int index) {
     return banWidth_.get(index);
   }
   private int banWidthMemoizedSerializedSize = -1;
 
-  public static final int BANTHICK_FIELD_NUMBER = 5;
+  public static final int BANTHICK_FIELD_NUMBER = 2;
   private java.util.List<java.lang.Double> banThick_;
   /**
    * <pre>
    *板厚 区间excel中的数据
    * </pre>
    *
-   * <code>repeated double banThick = 5;</code>
+   * <code>repeated double banThick = 2;</code>
    */
   public java.util.List<java.lang.Double>
       getBanThickList() {
@@ -333,7 +193,7 @@ public  final class CompartmentBulkheadSheetRequest extends
    *板厚 区间excel中的数据
    * </pre>
    *
-   * <code>repeated double banThick = 5;</code>
+   * <code>repeated double banThick = 2;</code>
    */
   public int getBanThickCount() {
     return banThick_.size();
@@ -343,21 +203,21 @@ public  final class CompartmentBulkheadSheetRequest extends
    *板厚 区间excel中的数据
    * </pre>
    *
-   * <code>repeated double banThick = 5;</code>
+   * <code>repeated double banThick = 2;</code>
    */
   public double getBanThick(int index) {
     return banThick_.get(index);
   }
   private int banThickMemoizedSerializedSize = -1;
 
-  public static final int CANGBIBANCAILIAO_FIELD_NUMBER = 6;
+  public static final int CANGBIBANCAILIAO_FIELD_NUMBER = 3;
   private java.util.List<java.lang.Double> cangbiBancailiao_;
   /**
    * <pre>
    *舱壁板材料
    * </pre>
    *
-   * <code>repeated double cangbiBancailiao = 6;</code>
+   * <code>repeated double cangbiBancailiao = 3;</code>
    */
   public java.util.List<java.lang.Double>
       getCangbiBancailiaoList() {
@@ -368,7 +228,7 @@ public  final class CompartmentBulkheadSheetRequest extends
    *舱壁板材料
    * </pre>
    *
-   * <code>repeated double cangbiBancailiao = 6;</code>
+   * <code>repeated double cangbiBancailiao = 3;</code>
    */
   public int getCangbiBancailiaoCount() {
     return cangbiBancailiao_.size();
@@ -378,7 +238,7 @@ public  final class CompartmentBulkheadSheetRequest extends
    *舱壁板材料
    * </pre>
    *
-   * <code>repeated double cangbiBancailiao = 6;</code>
+   * <code>repeated double cangbiBancailiao = 3;</code>
    */
   public double getCangbiBancailiao(int index) {
     return cangbiBancailiao_.get(index);
@@ -398,39 +258,22 @@ public  final class CompartmentBulkheadSheetRequest extends
   public void writeTo(com.google.protobuf.CodedOutputStream output)
                       throws java.io.IOException {
     getSerializedSize();
-    if (airguanyatou_ != 0D) {
-      output.writeDouble(1, airguanyatou_);
-    }
-    if (getDeckHeightList().size() > 0) {
-      output.writeUInt32NoTag(18);
-      output.writeUInt32NoTag(deckHeightMemoizedSerializedSize);
-    }
-    for (int i = 0; i < deckHeight_.size(); i++) {
-      output.writeDoubleNoTag(deckHeight_.get(i));
-    }
-    if (getBoolLiquidTankList().size() > 0) {
-      output.writeUInt32NoTag(26);
-      output.writeUInt32NoTag(boolLiquidTankMemoizedSerializedSize);
-    }
-    for (int i = 0; i < boolLiquidTank_.size(); i++) {
-      output.writeBoolNoTag(boolLiquidTank_.get(i));
-    }
     if (getBanWidthList().size() > 0) {
-      output.writeUInt32NoTag(34);
+      output.writeUInt32NoTag(10);
       output.writeUInt32NoTag(banWidthMemoizedSerializedSize);
     }
     for (int i = 0; i < banWidth_.size(); i++) {
       output.writeDoubleNoTag(banWidth_.get(i));
     }
     if (getBanThickList().size() > 0) {
-      output.writeUInt32NoTag(42);
+      output.writeUInt32NoTag(18);
       output.writeUInt32NoTag(banThickMemoizedSerializedSize);
     }
     for (int i = 0; i < banThick_.size(); i++) {
       output.writeDoubleNoTag(banThick_.get(i));
     }
     if (getCangbiBancailiaoList().size() > 0) {
-      output.writeUInt32NoTag(50);
+      output.writeUInt32NoTag(26);
       output.writeUInt32NoTag(cangbiBancailiaoMemoizedSerializedSize);
     }
     for (int i = 0; i < cangbiBancailiao_.size(); i++) {
@@ -443,32 +286,6 @@ public  final class CompartmentBulkheadSheetRequest extends
     if (size != -1) return size;
 
     size = 0;
-    if (airguanyatou_ != 0D) {
-      size += com.google.protobuf.CodedOutputStream
-        .computeDoubleSize(1, airguanyatou_);
-    }
-    {
-      int dataSize = 0;
-      dataSize = 8 * getDeckHeightList().size();
-      size += dataSize;
-      if (!getDeckHeightList().isEmpty()) {
-        size += 1;
-        size += com.google.protobuf.CodedOutputStream
-            .computeInt32SizeNoTag(dataSize);
-      }
-      deckHeightMemoizedSerializedSize = dataSize;
-    }
-    {
-      int dataSize = 0;
-      dataSize = 1 * getBoolLiquidTankList().size();
-      size += dataSize;
-      if (!getBoolLiquidTankList().isEmpty()) {
-        size += 1;
-        size += com.google.protobuf.CodedOutputStream
-            .computeInt32SizeNoTag(dataSize);
-      }
-      boolLiquidTankMemoizedSerializedSize = dataSize;
-    }
     {
       int dataSize = 0;
       dataSize = 8 * getBanWidthList().size();
@@ -518,14 +335,6 @@ public  final class CompartmentBulkheadSheetRequest extends
     com.iscas.biz.calculation.grpc.CompartmentBulkheadSheetRequest other = (com.iscas.biz.calculation.grpc.CompartmentBulkheadSheetRequest) obj;
 
     boolean result = true;
-    result = result && (
-        java.lang.Double.doubleToLongBits(getAirguanyatou())
-        == java.lang.Double.doubleToLongBits(
-            other.getAirguanyatou()));
-    result = result && getDeckHeightList()
-        .equals(other.getDeckHeightList());
-    result = result && getBoolLiquidTankList()
-        .equals(other.getBoolLiquidTankList());
     result = result && getBanWidthList()
         .equals(other.getBanWidthList());
     result = result && getBanThickList()
@@ -542,17 +351,6 @@ public  final class CompartmentBulkheadSheetRequest extends
     }
     int hash = 41;
     hash = (19 * hash) + getDescriptor().hashCode();
-    hash = (37 * hash) + AIRGUANYATOU_FIELD_NUMBER;
-    hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
-        java.lang.Double.doubleToLongBits(getAirguanyatou()));
-    if (getDeckHeightCount() > 0) {
-      hash = (37 * hash) + DECKHEIGHT_FIELD_NUMBER;
-      hash = (53 * hash) + getDeckHeightList().hashCode();
-    }
-    if (getBoolLiquidTankCount() > 0) {
-      hash = (37 * hash) + BOOLLIQUIDTANK_FIELD_NUMBER;
-      hash = (53 * hash) + getBoolLiquidTankList().hashCode();
-    }
     if (getBanWidthCount() > 0) {
       hash = (37 * hash) + BANWIDTH_FIELD_NUMBER;
       hash = (53 * hash) + getBanWidthList().hashCode();
@@ -683,18 +481,12 @@ public  final class CompartmentBulkheadSheetRequest extends
     }
     public Builder clear() {
       super.clear();
-      airguanyatou_ = 0D;
-
-      deckHeight_ = java.util.Collections.emptyList();
-      bitField0_ = (bitField0_ & ~0x00000002);
-      boolLiquidTank_ = java.util.Collections.emptyList();
-      bitField0_ = (bitField0_ & ~0x00000004);
       banWidth_ = java.util.Collections.emptyList();
-      bitField0_ = (bitField0_ & ~0x00000008);
+      bitField0_ = (bitField0_ & ~0x00000001);
       banThick_ = java.util.Collections.emptyList();
-      bitField0_ = (bitField0_ & ~0x00000010);
+      bitField0_ = (bitField0_ & ~0x00000002);
       cangbiBancailiao_ = java.util.Collections.emptyList();
-      bitField0_ = (bitField0_ & ~0x00000020);
+      bitField0_ = (bitField0_ & ~0x00000004);
       return this;
     }
 
@@ -718,34 +510,21 @@ public  final class CompartmentBulkheadSheetRequest extends
     public com.iscas.biz.calculation.grpc.CompartmentBulkheadSheetRequest buildPartial() {
       com.iscas.biz.calculation.grpc.CompartmentBulkheadSheetRequest result = new com.iscas.biz.calculation.grpc.CompartmentBulkheadSheetRequest(this);
       int from_bitField0_ = bitField0_;
-      int to_bitField0_ = 0;
-      result.airguanyatou_ = airguanyatou_;
-      if (((bitField0_ & 0x00000002) == 0x00000002)) {
-        deckHeight_ = java.util.Collections.unmodifiableList(deckHeight_);
-        bitField0_ = (bitField0_ & ~0x00000002);
-      }
-      result.deckHeight_ = deckHeight_;
-      if (((bitField0_ & 0x00000004) == 0x00000004)) {
-        boolLiquidTank_ = java.util.Collections.unmodifiableList(boolLiquidTank_);
-        bitField0_ = (bitField0_ & ~0x00000004);
-      }
-      result.boolLiquidTank_ = boolLiquidTank_;
-      if (((bitField0_ & 0x00000008) == 0x00000008)) {
+      if (((bitField0_ & 0x00000001) == 0x00000001)) {
         banWidth_ = java.util.Collections.unmodifiableList(banWidth_);
-        bitField0_ = (bitField0_ & ~0x00000008);
+        bitField0_ = (bitField0_ & ~0x00000001);
       }
       result.banWidth_ = banWidth_;
-      if (((bitField0_ & 0x00000010) == 0x00000010)) {
+      if (((bitField0_ & 0x00000002) == 0x00000002)) {
         banThick_ = java.util.Collections.unmodifiableList(banThick_);
-        bitField0_ = (bitField0_ & ~0x00000010);
+        bitField0_ = (bitField0_ & ~0x00000002);
       }
       result.banThick_ = banThick_;
-      if (((bitField0_ & 0x00000020) == 0x00000020)) {
+      if (((bitField0_ & 0x00000004) == 0x00000004)) {
         cangbiBancailiao_ = java.util.Collections.unmodifiableList(cangbiBancailiao_);
-        bitField0_ = (bitField0_ & ~0x00000020);
+        bitField0_ = (bitField0_ & ~0x00000004);
       }
       result.cangbiBancailiao_ = cangbiBancailiao_;
-      result.bitField0_ = to_bitField0_;
       onBuilt();
       return result;
     }
@@ -787,33 +566,10 @@ public  final class CompartmentBulkheadSheetRequest extends
 
     public Builder mergeFrom(com.iscas.biz.calculation.grpc.CompartmentBulkheadSheetRequest other) {
       if (other == com.iscas.biz.calculation.grpc.CompartmentBulkheadSheetRequest.getDefaultInstance()) return this;
-      if (other.getAirguanyatou() != 0D) {
-        setAirguanyatou(other.getAirguanyatou());
-      }
-      if (!other.deckHeight_.isEmpty()) {
-        if (deckHeight_.isEmpty()) {
-          deckHeight_ = other.deckHeight_;
-          bitField0_ = (bitField0_ & ~0x00000002);
-        } else {
-          ensureDeckHeightIsMutable();
-          deckHeight_.addAll(other.deckHeight_);
-        }
-        onChanged();
-      }
-      if (!other.boolLiquidTank_.isEmpty()) {
-        if (boolLiquidTank_.isEmpty()) {
-          boolLiquidTank_ = other.boolLiquidTank_;
-          bitField0_ = (bitField0_ & ~0x00000004);
-        } else {
-          ensureBoolLiquidTankIsMutable();
-          boolLiquidTank_.addAll(other.boolLiquidTank_);
-        }
-        onChanged();
-      }
       if (!other.banWidth_.isEmpty()) {
         if (banWidth_.isEmpty()) {
           banWidth_ = other.banWidth_;
-          bitField0_ = (bitField0_ & ~0x00000008);
+          bitField0_ = (bitField0_ & ~0x00000001);
         } else {
           ensureBanWidthIsMutable();
           banWidth_.addAll(other.banWidth_);
@@ -823,7 +579,7 @@ public  final class CompartmentBulkheadSheetRequest extends
       if (!other.banThick_.isEmpty()) {
         if (banThick_.isEmpty()) {
           banThick_ = other.banThick_;
-          bitField0_ = (bitField0_ & ~0x00000010);
+          bitField0_ = (bitField0_ & ~0x00000002);
         } else {
           ensureBanThickIsMutable();
           banThick_.addAll(other.banThick_);
@@ -833,7 +589,7 @@ public  final class CompartmentBulkheadSheetRequest extends
       if (!other.cangbiBancailiao_.isEmpty()) {
         if (cangbiBancailiao_.isEmpty()) {
           cangbiBancailiao_ = other.cangbiBancailiao_;
-          bitField0_ = (bitField0_ & ~0x00000020);
+          bitField0_ = (bitField0_ & ~0x00000004);
         } else {
           ensureCangbiBancailiaoIsMutable();
           cangbiBancailiao_.addAll(other.cangbiBancailiao_);
@@ -867,237 +623,11 @@ public  final class CompartmentBulkheadSheetRequest extends
     }
     private int bitField0_;
 
-    private double airguanyatou_ ;
-    /**
-     * <pre>
-     *液仓空气管压头
-     * </pre>
-     *
-     * <code>double airguanyatou = 1;</code>
-     */
-    public double getAirguanyatou() {
-      return airguanyatou_;
-    }
-    /**
-     * <pre>
-     *液仓空气管压头
-     * </pre>
-     *
-     * <code>double airguanyatou = 1;</code>
-     */
-    public Builder setAirguanyatou(double value) {
-      
-      airguanyatou_ = value;
-      onChanged();
-      return this;
-    }
-    /**
-     * <pre>
-     *液仓空气管压头
-     * </pre>
-     *
-     * <code>double airguanyatou = 1;</code>
-     */
-    public Builder clearAirguanyatou() {
-      
-      airguanyatou_ = 0D;
-      onChanged();
-      return this;
-    }
-
-    private java.util.List<java.lang.Double> deckHeight_ = java.util.Collections.emptyList();
-    private void ensureDeckHeightIsMutable() {
-      if (!((bitField0_ & 0x00000002) == 0x00000002)) {
-        deckHeight_ = new java.util.ArrayList<java.lang.Double>(deckHeight_);
-        bitField0_ |= 0x00000002;
-       }
-    }
-    /**
-     * <pre>
-     *甲板层高 区间excel中的数据
-     * </pre>
-     *
-     * <code>repeated double deckHeight = 2;</code>
-     */
-    public java.util.List<java.lang.Double>
-        getDeckHeightList() {
-      return java.util.Collections.unmodifiableList(deckHeight_);
-    }
-    /**
-     * <pre>
-     *甲板层高 区间excel中的数据
-     * </pre>
-     *
-     * <code>repeated double deckHeight = 2;</code>
-     */
-    public int getDeckHeightCount() {
-      return deckHeight_.size();
-    }
-    /**
-     * <pre>
-     *甲板层高 区间excel中的数据
-     * </pre>
-     *
-     * <code>repeated double deckHeight = 2;</code>
-     */
-    public double getDeckHeight(int index) {
-      return deckHeight_.get(index);
-    }
-    /**
-     * <pre>
-     *甲板层高 区间excel中的数据
-     * </pre>
-     *
-     * <code>repeated double deckHeight = 2;</code>
-     */
-    public Builder setDeckHeight(
-        int index, double value) {
-      ensureDeckHeightIsMutable();
-      deckHeight_.set(index, value);
-      onChanged();
-      return this;
-    }
-    /**
-     * <pre>
-     *甲板层高 区间excel中的数据
-     * </pre>
-     *
-     * <code>repeated double deckHeight = 2;</code>
-     */
-    public Builder addDeckHeight(double value) {
-      ensureDeckHeightIsMutable();
-      deckHeight_.add(value);
-      onChanged();
-      return this;
-    }
-    /**
-     * <pre>
-     *甲板层高 区间excel中的数据
-     * </pre>
-     *
-     * <code>repeated double deckHeight = 2;</code>
-     */
-    public Builder addAllDeckHeight(
-        java.lang.Iterable<? extends java.lang.Double> values) {
-      ensureDeckHeightIsMutable();
-      com.google.protobuf.AbstractMessageLite.Builder.addAll(
-          values, deckHeight_);
-      onChanged();
-      return this;
-    }
-    /**
-     * <pre>
-     *甲板层高 区间excel中的数据
-     * </pre>
-     *
-     * <code>repeated double deckHeight = 2;</code>
-     */
-    public Builder clearDeckHeight() {
-      deckHeight_ = java.util.Collections.emptyList();
-      bitField0_ = (bitField0_ & ~0x00000002);
-      onChanged();
-      return this;
-    }
-
-    private java.util.List<java.lang.Boolean> boolLiquidTank_ = java.util.Collections.emptyList();
-    private void ensureBoolLiquidTankIsMutable() {
-      if (!((bitField0_ & 0x00000004) == 0x00000004)) {
-        boolLiquidTank_ = new java.util.ArrayList<java.lang.Boolean>(boolLiquidTank_);
-        bitField0_ |= 0x00000004;
-       }
-    }
-    /**
-     * <pre>
-     *是否液压舱壁  区间excel中的数据
-     * </pre>
-     *
-     * <code>repeated bool boolLiquidTank = 3;</code>
-     */
-    public java.util.List<java.lang.Boolean>
-        getBoolLiquidTankList() {
-      return java.util.Collections.unmodifiableList(boolLiquidTank_);
-    }
-    /**
-     * <pre>
-     *是否液压舱壁  区间excel中的数据
-     * </pre>
-     *
-     * <code>repeated bool boolLiquidTank = 3;</code>
-     */
-    public int getBoolLiquidTankCount() {
-      return boolLiquidTank_.size();
-    }
-    /**
-     * <pre>
-     *是否液压舱壁  区间excel中的数据
-     * </pre>
-     *
-     * <code>repeated bool boolLiquidTank = 3;</code>
-     */
-    public boolean getBoolLiquidTank(int index) {
-      return boolLiquidTank_.get(index);
-    }
-    /**
-     * <pre>
-     *是否液压舱壁  区间excel中的数据
-     * </pre>
-     *
-     * <code>repeated bool boolLiquidTank = 3;</code>
-     */
-    public Builder setBoolLiquidTank(
-        int index, boolean value) {
-      ensureBoolLiquidTankIsMutable();
-      boolLiquidTank_.set(index, value);
-      onChanged();
-      return this;
-    }
-    /**
-     * <pre>
-     *是否液压舱壁  区间excel中的数据
-     * </pre>
-     *
-     * <code>repeated bool boolLiquidTank = 3;</code>
-     */
-    public Builder addBoolLiquidTank(boolean value) {
-      ensureBoolLiquidTankIsMutable();
-      boolLiquidTank_.add(value);
-      onChanged();
-      return this;
-    }
-    /**
-     * <pre>
-     *是否液压舱壁  区间excel中的数据
-     * </pre>
-     *
-     * <code>repeated bool boolLiquidTank = 3;</code>
-     */
-    public Builder addAllBoolLiquidTank(
-        java.lang.Iterable<? extends java.lang.Boolean> values) {
-      ensureBoolLiquidTankIsMutable();
-      com.google.protobuf.AbstractMessageLite.Builder.addAll(
-          values, boolLiquidTank_);
-      onChanged();
-      return this;
-    }
-    /**
-     * <pre>
-     *是否液压舱壁  区间excel中的数据
-     * </pre>
-     *
-     * <code>repeated bool boolLiquidTank = 3;</code>
-     */
-    public Builder clearBoolLiquidTank() {
-      boolLiquidTank_ = java.util.Collections.emptyList();
-      bitField0_ = (bitField0_ & ~0x00000004);
-      onChanged();
-      return this;
-    }
-
     private java.util.List<java.lang.Double> banWidth_ = java.util.Collections.emptyList();
     private void ensureBanWidthIsMutable() {
-      if (!((bitField0_ & 0x00000008) == 0x00000008)) {
+      if (!((bitField0_ & 0x00000001) == 0x00000001)) {
         banWidth_ = new java.util.ArrayList<java.lang.Double>(banWidth_);
-        bitField0_ |= 0x00000008;
+        bitField0_ |= 0x00000001;
        }
     }
     /**
@@ -1105,7 +635,7 @@ public  final class CompartmentBulkheadSheetRequest extends
      *板宽 区间excel中的数据
      * </pre>
      *
-     * <code>repeated double banWidth = 4;</code>
+     * <code>repeated double banWidth = 1;</code>
      */
     public java.util.List<java.lang.Double>
         getBanWidthList() {
@@ -1116,7 +646,7 @@ public  final class CompartmentBulkheadSheetRequest extends
      *板宽 区间excel中的数据
      * </pre>
      *
-     * <code>repeated double banWidth = 4;</code>
+     * <code>repeated double banWidth = 1;</code>
      */
     public int getBanWidthCount() {
       return banWidth_.size();
@@ -1126,7 +656,7 @@ public  final class CompartmentBulkheadSheetRequest extends
      *板宽 区间excel中的数据
      * </pre>
      *
-     * <code>repeated double banWidth = 4;</code>
+     * <code>repeated double banWidth = 1;</code>
      */
     public double getBanWidth(int index) {
       return banWidth_.get(index);
@@ -1136,7 +666,7 @@ public  final class CompartmentBulkheadSheetRequest extends
      *板宽 区间excel中的数据
      * </pre>
      *
-     * <code>repeated double banWidth = 4;</code>
+     * <code>repeated double banWidth = 1;</code>
      */
     public Builder setBanWidth(
         int index, double value) {
@@ -1150,7 +680,7 @@ public  final class CompartmentBulkheadSheetRequest extends
      *板宽 区间excel中的数据
      * </pre>
      *
-     * <code>repeated double banWidth = 4;</code>
+     * <code>repeated double banWidth = 1;</code>
      */
     public Builder addBanWidth(double value) {
       ensureBanWidthIsMutable();
@@ -1163,7 +693,7 @@ public  final class CompartmentBulkheadSheetRequest extends
      *板宽 区间excel中的数据
      * </pre>
      *
-     * <code>repeated double banWidth = 4;</code>
+     * <code>repeated double banWidth = 1;</code>
      */
     public Builder addAllBanWidth(
         java.lang.Iterable<? extends java.lang.Double> values) {
@@ -1178,20 +708,20 @@ public  final class CompartmentBulkheadSheetRequest extends
      *板宽 区间excel中的数据
      * </pre>
      *
-     * <code>repeated double banWidth = 4;</code>
+     * <code>repeated double banWidth = 1;</code>
      */
     public Builder clearBanWidth() {
       banWidth_ = java.util.Collections.emptyList();
-      bitField0_ = (bitField0_ & ~0x00000008);
+      bitField0_ = (bitField0_ & ~0x00000001);
       onChanged();
       return this;
     }
 
     private java.util.List<java.lang.Double> banThick_ = java.util.Collections.emptyList();
     private void ensureBanThickIsMutable() {
-      if (!((bitField0_ & 0x00000010) == 0x00000010)) {
+      if (!((bitField0_ & 0x00000002) == 0x00000002)) {
         banThick_ = new java.util.ArrayList<java.lang.Double>(banThick_);
-        bitField0_ |= 0x00000010;
+        bitField0_ |= 0x00000002;
        }
     }
     /**
@@ -1199,7 +729,7 @@ public  final class CompartmentBulkheadSheetRequest extends
      *板厚 区间excel中的数据
      * </pre>
      *
-     * <code>repeated double banThick = 5;</code>
+     * <code>repeated double banThick = 2;</code>
      */
     public java.util.List<java.lang.Double>
         getBanThickList() {
@@ -1210,7 +740,7 @@ public  final class CompartmentBulkheadSheetRequest extends
      *板厚 区间excel中的数据
      * </pre>
      *
-     * <code>repeated double banThick = 5;</code>
+     * <code>repeated double banThick = 2;</code>
      */
     public int getBanThickCount() {
       return banThick_.size();
@@ -1220,7 +750,7 @@ public  final class CompartmentBulkheadSheetRequest extends
      *板厚 区间excel中的数据
      * </pre>
      *
-     * <code>repeated double banThick = 5;</code>
+     * <code>repeated double banThick = 2;</code>
      */
     public double getBanThick(int index) {
       return banThick_.get(index);
@@ -1230,7 +760,7 @@ public  final class CompartmentBulkheadSheetRequest extends
      *板厚 区间excel中的数据
      * </pre>
      *
-     * <code>repeated double banThick = 5;</code>
+     * <code>repeated double banThick = 2;</code>
      */
     public Builder setBanThick(
         int index, double value) {
@@ -1244,7 +774,7 @@ public  final class CompartmentBulkheadSheetRequest extends
      *板厚 区间excel中的数据
      * </pre>
      *
-     * <code>repeated double banThick = 5;</code>
+     * <code>repeated double banThick = 2;</code>
      */
     public Builder addBanThick(double value) {
       ensureBanThickIsMutable();
@@ -1257,7 +787,7 @@ public  final class CompartmentBulkheadSheetRequest extends
      *板厚 区间excel中的数据
      * </pre>
      *
-     * <code>repeated double banThick = 5;</code>
+     * <code>repeated double banThick = 2;</code>
      */
     public Builder addAllBanThick(
         java.lang.Iterable<? extends java.lang.Double> values) {
@@ -1272,20 +802,20 @@ public  final class CompartmentBulkheadSheetRequest extends
      *板厚 区间excel中的数据
      * </pre>
      *
-     * <code>repeated double banThick = 5;</code>
+     * <code>repeated double banThick = 2;</code>
      */
     public Builder clearBanThick() {
       banThick_ = java.util.Collections.emptyList();
-      bitField0_ = (bitField0_ & ~0x00000010);
+      bitField0_ = (bitField0_ & ~0x00000002);
       onChanged();
       return this;
     }
 
     private java.util.List<java.lang.Double> cangbiBancailiao_ = java.util.Collections.emptyList();
     private void ensureCangbiBancailiaoIsMutable() {
-      if (!((bitField0_ & 0x00000020) == 0x00000020)) {
+      if (!((bitField0_ & 0x00000004) == 0x00000004)) {
         cangbiBancailiao_ = new java.util.ArrayList<java.lang.Double>(cangbiBancailiao_);
-        bitField0_ |= 0x00000020;
+        bitField0_ |= 0x00000004;
        }
     }
     /**
@@ -1293,7 +823,7 @@ public  final class CompartmentBulkheadSheetRequest extends
      *舱壁板材料
      * </pre>
      *
-     * <code>repeated double cangbiBancailiao = 6;</code>
+     * <code>repeated double cangbiBancailiao = 3;</code>
      */
     public java.util.List<java.lang.Double>
         getCangbiBancailiaoList() {
@@ -1304,7 +834,7 @@ public  final class CompartmentBulkheadSheetRequest extends
      *舱壁板材料
      * </pre>
      *
-     * <code>repeated double cangbiBancailiao = 6;</code>
+     * <code>repeated double cangbiBancailiao = 3;</code>
      */
     public int getCangbiBancailiaoCount() {
       return cangbiBancailiao_.size();
@@ -1314,7 +844,7 @@ public  final class CompartmentBulkheadSheetRequest extends
      *舱壁板材料
      * </pre>
      *
-     * <code>repeated double cangbiBancailiao = 6;</code>
+     * <code>repeated double cangbiBancailiao = 3;</code>
      */
     public double getCangbiBancailiao(int index) {
       return cangbiBancailiao_.get(index);
@@ -1324,7 +854,7 @@ public  final class CompartmentBulkheadSheetRequest extends
      *舱壁板材料
      * </pre>
      *
-     * <code>repeated double cangbiBancailiao = 6;</code>
+     * <code>repeated double cangbiBancailiao = 3;</code>
      */
     public Builder setCangbiBancailiao(
         int index, double value) {
@@ -1338,7 +868,7 @@ public  final class CompartmentBulkheadSheetRequest extends
      *舱壁板材料
      * </pre>
      *
-     * <code>repeated double cangbiBancailiao = 6;</code>
+     * <code>repeated double cangbiBancailiao = 3;</code>
      */
     public Builder addCangbiBancailiao(double value) {
       ensureCangbiBancailiaoIsMutable();
@@ -1351,7 +881,7 @@ public  final class CompartmentBulkheadSheetRequest extends
      *舱壁板材料
      * </pre>
      *
-     * <code>repeated double cangbiBancailiao = 6;</code>
+     * <code>repeated double cangbiBancailiao = 3;</code>
      */
     public Builder addAllCangbiBancailiao(
         java.lang.Iterable<? extends java.lang.Double> values) {
@@ -1366,11 +896,11 @@ public  final class CompartmentBulkheadSheetRequest extends
      *舱壁板材料
      * </pre>
      *
-     * <code>repeated double cangbiBancailiao = 6;</code>
+     * <code>repeated double cangbiBancailiao = 3;</code>
      */
     public Builder clearCangbiBancailiao() {
       cangbiBancailiao_ = java.util.Collections.emptyList();
-      bitField0_ = (bitField0_ & ~0x00000020);
+      bitField0_ = (bitField0_ & ~0x00000004);
       onChanged();
       return this;
     }

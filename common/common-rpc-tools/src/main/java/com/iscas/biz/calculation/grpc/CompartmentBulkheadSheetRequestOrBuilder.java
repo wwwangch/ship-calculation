@@ -9,69 +9,10 @@ public interface CompartmentBulkheadSheetRequestOrBuilder extends
 
   /**
    * <pre>
-   *液仓空气管压头
-   * </pre>
-   *
-   * <code>double airguanyatou = 1;</code>
-   */
-  double getAirguanyatou();
-
-  /**
-   * <pre>
-   *甲板层高 区间excel中的数据
-   * </pre>
-   *
-   * <code>repeated double deckHeight = 2;</code>
-   */
-  java.util.List<java.lang.Double> getDeckHeightList();
-  /**
-   * <pre>
-   *甲板层高 区间excel中的数据
-   * </pre>
-   *
-   * <code>repeated double deckHeight = 2;</code>
-   */
-  int getDeckHeightCount();
-  /**
-   * <pre>
-   *甲板层高 区间excel中的数据
-   * </pre>
-   *
-   * <code>repeated double deckHeight = 2;</code>
-   */
-  double getDeckHeight(int index);
-
-  /**
-   * <pre>
-   *是否液压舱壁  区间excel中的数据
-   * </pre>
-   *
-   * <code>repeated bool boolLiquidTank = 3;</code>
-   */
-  java.util.List<java.lang.Boolean> getBoolLiquidTankList();
-  /**
-   * <pre>
-   *是否液压舱壁  区间excel中的数据
-   * </pre>
-   *
-   * <code>repeated bool boolLiquidTank = 3;</code>
-   */
-  int getBoolLiquidTankCount();
-  /**
-   * <pre>
-   *是否液压舱壁  区间excel中的数据
-   * </pre>
-   *
-   * <code>repeated bool boolLiquidTank = 3;</code>
-   */
-  boolean getBoolLiquidTank(int index);
-
-  /**
-   * <pre>
    *板宽 区间excel中的数据
    * </pre>
    *
-   * <code>repeated double banWidth = 4;</code>
+   * <code>repeated double banWidth = 1;</code>
    */
   java.util.List<java.lang.Double> getBanWidthList();
   /**
@@ -79,7 +20,7 @@ public interface CompartmentBulkheadSheetRequestOrBuilder extends
    *板宽 区间excel中的数据
    * </pre>
    *
-   * <code>repeated double banWidth = 4;</code>
+   * <code>repeated double banWidth = 1;</code>
    */
   int getBanWidthCount();
   /**
@@ -87,7 +28,7 @@ public interface CompartmentBulkheadSheetRequestOrBuilder extends
    *板宽 区间excel中的数据
    * </pre>
    *
-   * <code>repeated double banWidth = 4;</code>
+   * <code>repeated double banWidth = 1;</code>
    */
   double getBanWidth(int index);
 
@@ -96,7 +37,7 @@ public interface CompartmentBulkheadSheetRequestOrBuilder extends
    *板厚 区间excel中的数据
    * </pre>
    *
-   * <code>repeated double banThick = 5;</code>
+   * <code>repeated double banThick = 2;</code>
    */
   java.util.List<java.lang.Double> getBanThickList();
   /**
@@ -104,7 +45,7 @@ public interface CompartmentBulkheadSheetRequestOrBuilder extends
    *板厚 区间excel中的数据
    * </pre>
    *
-   * <code>repeated double banThick = 5;</code>
+   * <code>repeated double banThick = 2;</code>
    */
   int getBanThickCount();
   /**
@@ -112,7 +53,7 @@ public interface CompartmentBulkheadSheetRequestOrBuilder extends
    *板厚 区间excel中的数据
    * </pre>
    *
-   * <code>repeated double banThick = 5;</code>
+   * <code>repeated double banThick = 2;</code>
    */
   double getBanThick(int index);
 
@@ -121,7 +62,7 @@ public interface CompartmentBulkheadSheetRequestOrBuilder extends
    *舱壁板材料
    * </pre>
    *
-   * <code>repeated double cangbiBancailiao = 6;</code>
+   * <code>repeated double cangbiBancailiao = 3;</code>
    */
   java.util.List<java.lang.Double> getCangbiBancailiaoList();
   /**
@@ -129,7 +70,7 @@ public interface CompartmentBulkheadSheetRequestOrBuilder extends
    *舱壁板材料
    * </pre>
    *
-   * <code>repeated double cangbiBancailiao = 6;</code>
+   * <code>repeated double cangbiBancailiao = 3;</code>
    */
   int getCangbiBancailiaoCount();
   /**
@@ -137,7 +78,7 @@ public interface CompartmentBulkheadSheetRequestOrBuilder extends
    *舱壁板材料
    * </pre>
    *
-   * <code>repeated double cangbiBancailiao = 6;</code>
+   * <code>repeated double cangbiBancailiao = 3;</code>
    */
   double getCangbiBancailiao(int index);
 }

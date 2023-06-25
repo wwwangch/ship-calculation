@@ -49,9 +49,9 @@ public class CalSectionController {
         return ResponseEntity.ok(calSectionService.calculate(calSectionDTO));
     }
 
-    @Operation(summary = "导出", description = "导出")
-    @GetMapping("/download/{projectId}")
-    public void export(@PathVariable() Integer projectId) throws IOException {
-        calSectionService.export(projectId);
-    }
+//    @Operation(summary = "导出", description = "导出")
+//    @GetMapping("/download/{projectId}")
+//    public void export(@PathVariable() Integer projectId) throws IOException {
+//        calSectionService.export(projectId);
+//    }
 }

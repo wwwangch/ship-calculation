@@ -19,6 +19,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Objects;
+import java.util.stream.Collectors;
 
 /**
  * @author ch w
@@ -172,11 +173,11 @@ public class AlgorithmGrpc {
 
     public CalSection calSection(CalSectionDTO calSectionDTO) {
         Integer projectId = calSectionDTO.getProjectId();
-        if (calSectionDTO.getProfileFilePath() == null || calSectionDTO.getRibNumber() == null) {
+        if (calSectionDTO.getProfileFilePathOld() == null || calSectionDTO.getRibNumber() == null) {
             throw new RuntimeException("剖面计算参数错误");
         }
         SectionRequest sectionRequest = SectionRequest.newBuilder()
-                .setProfileFilePath(calSectionDTO.getProfileFilePath())
+                .setProfileFilePath(calSectionDTO.getProfileFilePathOld())
                 .setRibNumber(calSectionDTO.getRibNumber())
                 .build();
         SectionResponse sectionResponse = grpcHolder.calculationBlockingStub().calSection(sectionRequest);
@@ -185,49 +186,54 @@ public class AlgorithmGrpc {
         }
         CalSection calSection = new CalSection();
         calSection.setProjectId(projectId);
-        calSection.setProfileFilePath(calSectionDTO.getProfileFilePath());
+        calSection.setProfileFilePathOld(calSectionDTO.getProfileFilePathOld());
         calSection.setProfileFileName(calSectionDTO.getProfileFileName());
         calSection.setRibNumber(calSectionDTO.getRibNumber());
         calSection.setFirstMoment0(sectionResponse.getFirstMoment0());
         calSection.setInteria0(sectionResponse.getInteria0());
-        calSection.setZaxisH(sectionResponse.getZaxisH());
-        calSection.setFirstMomH(sectionResponse.getFirstMomH());
-        calSection.setInteriaH(sectionResponse.getInteriaH());
-        calSection.setZaxisS(sectionResponse.getZaxisS());
-        calSection.setFirstMomS(sectionResponse.getFirstMomS());
-        calSection.setInteriaS(sectionResponse.getInteriaS());
+//        calSection.setZaxisH(sectionResponse.getZaxisH());
+//        calSection.setFirstMomH(sectionResponse.getFirstMomH());
+//        calSection.setInteriaH(sectionResponse.getInteriaH());
+//        calSection.setZaxisS(sectionResponse.getZaxisS());
+//        calSection.setFirstMomS(sectionResponse.getFirstMomS());
+//        calSection.setInteriaS(sectionResponse.getInteriaS());
+        calSection.setZaxis0(sectionResponse.getZaxis0());
+        calSection.setArea(sectionResponse.getArea());
+        calSection.setModule_uppper(sectionResponse.getModuleUppper());
+        calSection.setModule_lower(sectionResponse.getModuleLower());
+        calSection.setProfileFilePath(sectionResponse.getProfileFilePath());
         AlgorithmGrpc.section = true;
         return calSection;
     }
 
-    public CalAddition calAddition(CalAdditionDTO calAdditionDTO) {
-        Integer projectId = calAdditionDTO.getProjectId();
+//    public CalAddition calAddition(CalAdditionDTO calAdditionDTO) {
+//        Integer projectId = calAdditionDTO.getProjectId();
+//
+//        AdditionalForceHeadRequest headRequest = AdditionalForceHeadRequest.newBuilder()
+//                .setCangbiWeizhi(calAdditionDTO.getCangbiWeizhi())
+//                .setLeiweihao(calAdditionDTO.getLeiweihao())
+//                .setFreeboard(calAdditionDTO.getFreeboard())
+//                .setIsCollision(calAdditionDTO.getIsCollision())
+//                .setShuidongYali(calAdditionDTO.getShuidongYali())
+//                .build();
+//        AdditionalForceHeadResponse headResponse = grpcHolder.calculationBlockingStub().calAdditionalForceHead(headRequest);
+//        if (headResponse == null) {
+//            throw new RuntimeException("附加压头计算失败");
+//        }
+//        CalAddition calAddition = new CalAddition();
+//        calAddition.setProjectId(projectId);
+//        calAddition.setFreeboard(calAdditionDTO.getFreeboard());
+//        calAddition.setLeiweihao(calAdditionDTO.getLeiweihao());
+//        calAddition.setCangbiWeizhi(calAdditionDTO.getCangbiWeizhi());
+//        calAddition.setIsCollision(calAdditionDTO.getIsCollision());
+//        calAddition.setShuidongYali(calAdditionDTO.getShuidongYali());
+//        calAddition.setLeiweihaos(headResponse.getLeiweihaoList());
+//        calAddition.setAddyatouh(headResponse.getAddyatouhList());
+//        AlgorithmGrpc.section = true;
+//        return calAddition;
+//    }
 
-        AdditionalForceHeadRequest headRequest = AdditionalForceHeadRequest.newBuilder()
-                .setCangbiWeizhi(calAdditionDTO.getCangbiWeizhi())
-                .setLeiweihao(calAdditionDTO.getLeiweihao())
-                .setFreeboard(calAdditionDTO.getFreeboard())
-                .setIsCollision(calAdditionDTO.getIsCollision())
-                .setShuidongYali(calAdditionDTO.getShuidongYali())
-                .build();
-        AdditionalForceHeadResponse headResponse = grpcHolder.calculationBlockingStub().calAdditionalForceHead(headRequest);
-        if (headResponse == null) {
-            throw new RuntimeException("附加压头计算失败");
-        }
-        CalAddition calAddition = new CalAddition();
-        calAddition.setProjectId(projectId);
-        calAddition.setFreeboard(calAdditionDTO.getFreeboard());
-        calAddition.setLeiweihao(calAdditionDTO.getLeiweihao());
-        calAddition.setCangbiWeizhi(calAdditionDTO.getCangbiWeizhi());
-        calAddition.setIsCollision(calAdditionDTO.getIsCollision());
-        calAddition.setShuidongYali(calAdditionDTO.getShuidongYali());
-        calAddition.setLeiweihaos(headResponse.getLeiweihaoList());
-        calAddition.setAddyatouh(headResponse.getAddyatouhList());
-        AlgorithmGrpc.section = true;
-        return calAddition;
-    }
-
-    public Material material(MaterialDTO materialDTO){
+    public Material material(MaterialDTO materialDTO) {
         Integer projectId = materialDTO.getProjectId();
         SupportingMaterialStrengthRequest strengthRequest = SupportingMaterialStrengthRequest.newBuilder()
                 .addAllGuicaiType(materialDTO.getGuicaiType())
@@ -236,7 +242,7 @@ public class AlgorithmGrpc {
                 .setZongguKuaju(materialDTO.getZongguKuaju())
                 .build();
         SupportingMaterialStrengthResponse strengthResponse = grpcHolder.calculationBlockingStub().calSupportingMaterialStrength(strengthRequest);
-        if (strengthResponse == null){
+        if (strengthResponse == null) {
             throw new RuntimeException("扶强材计算失败");
         }
         Material material = new Material();
@@ -399,20 +405,25 @@ public class AlgorithmGrpc {
 
     public List<Sigma1> calSigma1(Sigma1DTO sigma1DTO) {
         Sigma1Response sigma1Response = grpcHolder.calculationBlockingStub().calSigma1(Sigma1Request.newBuilder()
-                .addAllKuaChang(ListUtils.convertStrToDoubleList(sigma1DTO.getKuaChang()))
+                .addAllKuaChang(Lists.newArrayList(sigma1DTO.getKuaChang()))
                 .setGirderDistance(sigma1DTO.getGirderDistance())
                 .setFrDistance(sigma1DTO.getFrDistance())
-                .addAllFrGuige(ListUtils.convertStrToDoubleList(sigma1DTO.getFrGuige()))
-                .addAllPlateThick(ListUtils.convertStrToDoubleList(sigma1DTO.getPlateThick()))
+                .setTrusswidth(sigma1DTO.getTrusswidth())
+                .addAllFrGuige(Lists.newArrayList(sigma1DTO.getFrGuige()).stream().map(Object :: toString).collect(Collectors.toList()))
+                .addAllPlateThick(Lists.newArrayList(sigma1DTO.getPlateThick()))
                 .setDeviceWeight(sigma1DTO.getDeviceWeight())
-                .setGirderWidth(sigma1DTO.getGirderWidth())
-                .setMaterialType(sigma1DTO.getMaterialType())
+                .addAllGirderWidth(Lists.newArrayList(sigma1DTO.getGirderWidth()))
+                .setMaterialYieldLimit(sigma1DTO.getMaterialYieldLimit())
+                .setIsCustomLoad(sigma1DTO.getIsCustomLoad())
                 .setMidArchWaveMoment(sigma1DTO.getMidArchWaveMoment())
                 .setMidArchImpactMoment(sigma1DTO.getMidArchImpactMoment())
                 .setMidArchShear(sigma1DTO.getMidArchShear())
+                .setMidArchDraught(sigma1DTO.getMidArchDraught())
                 .setMidVerticalWaveMoment(sigma1DTO.getMidVerticalWaveMoment())
                 .setMidVerticalImpactMoment(sigma1DTO.getMidVerticalImpactMoment())
                 .setMidVerticalShear(sigma1DTO.getMidVerticalShear())
+                .setMidVerticalDraught(sigma1DTO.getMidVerticalDraught())
+                .addAllXiancethick(Lists.newArrayList(sigma1DTO.getXiancethick()))
                 .setNumGirder(sigma1DTO.getNumGirders())
                 .build());
 
@@ -451,7 +462,7 @@ public class AlgorithmGrpc {
             sigma2.setZhongchuiKuazhongShang(sigma2Response.getSigma2(i).getZhongchuiKuazhongShang());
             sigma2.setZhongchuiKuazhongXia(sigma2Response.getSigma2(i).getZhongchuiKuazhongXia());
 
-            sigma2.setAllowStress(sigma2Response.getSigma2(i).getAllowStress());
+//            sigma2.setAllowStress(sigma2Response.getSigma2(i).getAllowStress());
             sigma2.setCombineAllowStress(sigma2Response.getSigma2(i).getCombineAllowStress());
             sigma2.setCombineZhonggongZhizuoShang(sigma2Response.getSigma2(i).getCombineZhonggongZhizuoShang());
             sigma2.setCombineZhonggongZhizuoXia(sigma2Response.getSigma2(i).getCombineZhonggongZhizuoXia());
@@ -487,7 +498,7 @@ public class AlgorithmGrpc {
             sigma3.setZhongchuiKuazhongShang(sigma3Response.getSigma3(i).getZhongchuiKuazhongShang());
             sigma3.setZhongchuiKuazhongXia(sigma3Response.getSigma3(i).getZhongchuiKuazhongXia());
 
-            sigma3.setAllowStress(sigma3Response.getSigma3(i).getAllowStress());
+//            sigma3.setAllowStress(sigma3Response.getSigma3(i).getAllowStress());
             sigma3.setCombineAllowStress(sigma3Response.getSigma3(i).getCombineAllowStress());
             sigma3.setCombineZhonggongZhizuoShang(sigma3Response.getSigma3(i).getCombineZhonggongZhizuoShang());
             sigma3.setCombineZhonggongZhizuoXia(sigma3Response.getSigma3(i).getCombineZhonggongZhizuoXia());
@@ -552,21 +563,15 @@ public class AlgorithmGrpc {
      * @return
      */
     public BulkheadCheckResult calBulkheadCheck(Integer bulkheadId, ShipParam shipParam, List<BulkheadCompartment> bulkheadCompartments) {
-        List<Double> deckHeight = Lists.newArrayList();
-        List<Boolean> boolLiquidTank = Lists.newArrayList();
         List<Double> banWidth = Lists.newArrayList();
         List<Double> banThick = Lists.newArrayList();
         List<Double> cangbiBancailiao = Lists.newArrayList();
         for (BulkheadCompartment bulkheadCompartment : bulkheadCompartments) {
-            deckHeight.add(Double.valueOf(bulkheadCompartment.getHeightAbove()));
-            boolLiquidTank.add(Boolean.valueOf(bulkheadCompartment.getLiquid()));
             banWidth.add(Double.valueOf(bulkheadCompartment.getPlateWidth()));
             banThick.add(Double.valueOf(bulkheadCompartment.getPlateThickness()));
             cangbiBancailiao.add(Double.valueOf(bulkheadCompartment.getMaterial()));
         }
         CompartmentBulkheadSheetResponse compartmentBulkheadSheetResponse = grpcHolder.calculationBlockingStub().calCompartmentBulkheadSheet(CompartmentBulkheadSheetRequest.newBuilder()
-                .setAirguanyatou(shipParam.getAirguanyatou())
-                .addAllDeckHeight(deckHeight)
                 .addAllBanWidth(banWidth)
                 .addAllBanThick(banThick)
                 .addAllCangbiBancailiao(cangbiBancailiao)
@@ -574,7 +579,7 @@ public class AlgorithmGrpc {
         BulkheadCheckResult bulkheadCheckResult = new BulkheadCheckResult();
         bulkheadCheckResult.setBulkheadId(bulkheadId);
         bulkheadCheckResult.setProjectId(shipParam.getProjectId());
-        bulkheadCheckResult.setYatou(Lists.newArrayList(compartmentBulkheadSheetResponse.getYatouList()));
+        bulkheadCheckResult.setStrdeckdistrict(Lists.newArrayList(compartmentBulkheadSheetResponse.getStrdeckdistrictList()));
         bulkheadCheckResult.setDisload(Lists.newArrayList(compartmentBulkheadSheetResponse.getDisloadList()));
         bulkheadCheckResult.setLgvList(Lists.newArrayList(compartmentBulkheadSheetResponse.getLgvListList()));
         bulkheadCheckResult.setUList(Lists.newArrayList(compartmentBulkheadSheetResponse.getUListList()));

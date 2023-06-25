@@ -15,11 +15,23 @@ public  final class AdditionalForceHeadRequest extends
     super(builder);
   }
   private AdditionalForceHeadRequest() {
+    upbuildstyle_ = "";
     freeboard_ = 0D;
-    leiweihao_ = 0D;
-    cangbiWeizhi_ = 0D;
+    shouloupos_ = 0D;
+    forefreeboard_ = 0D;
+    aftfreeboard_ = 0D;
+    bridgeForePos_ = 0D;
+    bridgeForeHeight_ = 0D;
+    bridgeAftPos_ = 0D;
+    bridgeAftHeight_ = 0D;
+    draugthnoraml_ = 0D;
     isCollision_ = false;
-    shuidongYali_ = 0D;
+    dynamicyatou_ = 0D;
+    leiweihao_ = 0D;
+    airguanyatou_ = 0D;
+    deckName_ = com.google.protobuf.LazyStringArrayList.EMPTY;
+    deckHeight_ = java.util.Collections.emptyList();
+    boolLiquidTank_ = java.util.Collections.emptyList();
   }
 
   @java.lang.Override
@@ -47,29 +59,126 @@ public  final class AdditionalForceHeadRequest extends
             }
             break;
           }
-          case 9: {
+          case 10: {
+            java.lang.String s = input.readStringRequireUtf8();
 
-            freeboard_ = input.readDouble();
+            upbuildstyle_ = s;
             break;
           }
           case 17: {
 
-            leiweihao_ = input.readDouble();
+            freeboard_ = input.readDouble();
             break;
           }
           case 25: {
 
-            cangbiWeizhi_ = input.readDouble();
+            shouloupos_ = input.readDouble();
             break;
           }
-          case 32: {
+          case 33: {
 
-            isCollision_ = input.readBool();
+            forefreeboard_ = input.readDouble();
             break;
           }
           case 41: {
 
-            shuidongYali_ = input.readDouble();
+            aftfreeboard_ = input.readDouble();
+            break;
+          }
+          case 49: {
+
+            bridgeForePos_ = input.readDouble();
+            break;
+          }
+          case 57: {
+
+            bridgeForeHeight_ = input.readDouble();
+            break;
+          }
+          case 65: {
+
+            bridgeAftPos_ = input.readDouble();
+            break;
+          }
+          case 73: {
+
+            bridgeAftHeight_ = input.readDouble();
+            break;
+          }
+          case 81: {
+
+            draugthnoraml_ = input.readDouble();
+            break;
+          }
+          case 88: {
+
+            isCollision_ = input.readBool();
+            break;
+          }
+          case 97: {
+
+            dynamicyatou_ = input.readDouble();
+            break;
+          }
+          case 105: {
+
+            leiweihao_ = input.readDouble();
+            break;
+          }
+          case 113: {
+
+            airguanyatou_ = input.readDouble();
+            break;
+          }
+          case 122: {
+            java.lang.String s = input.readStringRequireUtf8();
+            if (!((mutable_bitField0_ & 0x00004000) == 0x00004000)) {
+              deckName_ = new com.google.protobuf.LazyStringArrayList();
+              mutable_bitField0_ |= 0x00004000;
+            }
+            deckName_.add(s);
+            break;
+          }
+          case 129: {
+            if (!((mutable_bitField0_ & 0x00008000) == 0x00008000)) {
+              deckHeight_ = new java.util.ArrayList<java.lang.Double>();
+              mutable_bitField0_ |= 0x00008000;
+            }
+            deckHeight_.add(input.readDouble());
+            break;
+          }
+          case 130: {
+            int length = input.readRawVarint32();
+            int limit = input.pushLimit(length);
+            if (!((mutable_bitField0_ & 0x00008000) == 0x00008000) && input.getBytesUntilLimit() > 0) {
+              deckHeight_ = new java.util.ArrayList<java.lang.Double>();
+              mutable_bitField0_ |= 0x00008000;
+            }
+            while (input.getBytesUntilLimit() > 0) {
+              deckHeight_.add(input.readDouble());
+            }
+            input.popLimit(limit);
+            break;
+          }
+          case 136: {
+            if (!((mutable_bitField0_ & 0x00010000) == 0x00010000)) {
+              boolLiquidTank_ = new java.util.ArrayList<java.lang.Boolean>();
+              mutable_bitField0_ |= 0x00010000;
+            }
+            boolLiquidTank_.add(input.readBool());
+            break;
+          }
+          case 138: {
+            int length = input.readRawVarint32();
+            int limit = input.pushLimit(length);
+            if (!((mutable_bitField0_ & 0x00010000) == 0x00010000) && input.getBytesUntilLimit() > 0) {
+              boolLiquidTank_ = new java.util.ArrayList<java.lang.Boolean>();
+              mutable_bitField0_ |= 0x00010000;
+            }
+            while (input.getBytesUntilLimit() > 0) {
+              boolLiquidTank_.add(input.readBool());
+            }
+            input.popLimit(limit);
             break;
           }
         }
@@ -80,6 +189,15 @@ public  final class AdditionalForceHeadRequest extends
       throw new com.google.protobuf.InvalidProtocolBufferException(
           e).setUnfinishedMessage(this);
     } finally {
+      if (((mutable_bitField0_ & 0x00004000) == 0x00004000)) {
+        deckName_ = deckName_.getUnmodifiableView();
+      }
+      if (((mutable_bitField0_ & 0x00008000) == 0x00008000)) {
+        deckHeight_ = java.util.Collections.unmodifiableList(deckHeight_);
+      }
+      if (((mutable_bitField0_ & 0x00010000) == 0x00010000)) {
+        boolLiquidTank_ = java.util.Collections.unmodifiableList(boolLiquidTank_);
+      }
       makeExtensionsImmutable();
     }
   }
@@ -95,70 +213,333 @@ public  final class AdditionalForceHeadRequest extends
             com.iscas.biz.calculation.grpc.AdditionalForceHeadRequest.class, com.iscas.biz.calculation.grpc.AdditionalForceHeadRequest.Builder.class);
   }
 
-  public static final int FREEBOARD_FIELD_NUMBER = 1;
+  private int bitField0_;
+  public static final int UPBUILDSTYLE_FIELD_NUMBER = 1;
+  private volatile java.lang.Object upbuildstyle_;
+  /**
+   * <pre>
+   *上建形式
+   * </pre>
+   *
+   * <code>string upbuildstyle = 1;</code>
+   */
+  public java.lang.String getUpbuildstyle() {
+    java.lang.Object ref = upbuildstyle_;
+    if (ref instanceof java.lang.String) {
+      return (java.lang.String) ref;
+    } else {
+      com.google.protobuf.ByteString bs = 
+          (com.google.protobuf.ByteString) ref;
+      java.lang.String s = bs.toStringUtf8();
+      upbuildstyle_ = s;
+      return s;
+    }
+  }
+  /**
+   * <pre>
+   *上建形式
+   * </pre>
+   *
+   * <code>string upbuildstyle = 1;</code>
+   */
+  public com.google.protobuf.ByteString
+      getUpbuildstyleBytes() {
+    java.lang.Object ref = upbuildstyle_;
+    if (ref instanceof java.lang.String) {
+      com.google.protobuf.ByteString b = 
+          com.google.protobuf.ByteString.copyFromUtf8(
+              (java.lang.String) ref);
+      upbuildstyle_ = b;
+      return b;
+    } else {
+      return (com.google.protobuf.ByteString) ref;
+    }
+  }
+
+  public static final int FREEBOARD_FIELD_NUMBER = 2;
   private double freeboard_;
   /**
    * <pre>
    *干舷高
    * </pre>
    *
-   * <code>double freeboard = 1;</code>
+   * <code>double freeboard = 2;</code>
    */
   public double getFreeboard() {
     return freeboard_;
   }
 
-  public static final int LEIWEIHAO_FIELD_NUMBER = 2;
-  private double leiweihao_;
+  public static final int SHOULOUPOS_FIELD_NUMBER = 3;
+  private double shouloupos_;
   /**
    * <pre>
-   *肋位号
+   *艏楼端壁肋位
    * </pre>
    *
-   * <code>double leiweihao = 2;</code>
+   * <code>double shouloupos = 3;</code>
    */
-  public double getLeiweihao() {
-    return leiweihao_;
+  public double getShouloupos() {
+    return shouloupos_;
   }
 
-  public static final int CANGBIWEIZHI_FIELD_NUMBER = 3;
-  private double cangbiWeizhi_;
+  public static final int FOREFREEBOARD_FIELD_NUMBER = 4;
+  private double forefreeboard_;
   /**
    * <pre>
-   *舱壁位置
+   *new614----------------
+   *首干舷高
    * </pre>
    *
-   * <code>double cangbiWeizhi = 3;</code>
+   * <code>double forefreeboard = 4;</code>
    */
-  public double getCangbiWeizhi() {
-    return cangbiWeizhi_;
+  public double getForefreeboard() {
+    return forefreeboard_;
   }
 
-  public static final int ISCOLLISION_FIELD_NUMBER = 4;
+  public static final int AFTFREEBOARD_FIELD_NUMBER = 5;
+  private double aftfreeboard_;
+  /**
+   * <pre>
+   *尾干舷高
+   * </pre>
+   *
+   * <code>double aftfreeboard = 5;</code>
+   */
+  public double getAftfreeboard() {
+    return aftfreeboard_;
+  }
+
+  public static final int BRIDGE_FORE_POS_FIELD_NUMBER = 6;
+  private double bridgeForePos_;
+  /**
+   * <pre>
+   *桥楼首部端壁肋位号；
+   * </pre>
+   *
+   * <code>double bridge_fore_pos = 6;</code>
+   */
+  public double getBridgeForePos() {
+    return bridgeForePos_;
+  }
+
+  public static final int BRIDGE_FORE_HEIGHT_FIELD_NUMBER = 7;
+  private double bridgeForeHeight_;
+  /**
+   * <pre>
+   *桥楼首部端壁干舷高
+   * </pre>
+   *
+   * <code>double bridge_fore_height = 7;</code>
+   */
+  public double getBridgeForeHeight() {
+    return bridgeForeHeight_;
+  }
+
+  public static final int BRIDGE_AFT_POS_FIELD_NUMBER = 8;
+  private double bridgeAftPos_;
+  /**
+   * <pre>
+   *桥楼尾部端壁肋位号；
+   * </pre>
+   *
+   * <code>double bridge_aft_pos = 8;</code>
+   */
+  public double getBridgeAftPos() {
+    return bridgeAftPos_;
+  }
+
+  public static final int BRIDGE_AFT_HEIGHT_FIELD_NUMBER = 9;
+  private double bridgeAftHeight_;
+  /**
+   * <pre>
+   *桥楼尾部端壁干舷高
+   * </pre>
+   *
+   * <code>double bridge_aft_height = 9;</code>
+   */
+  public double getBridgeAftHeight() {
+    return bridgeAftHeight_;
+  }
+
+  public static final int DRAUGTHNORAML_FIELD_NUMBER = 10;
+  private double draugthnoraml_;
+  /**
+   * <pre>
+   *正常排水量时的吃水
+   * </pre>
+   *
+   * <code>double draugthnoraml = 10;</code>
+   */
+  public double getDraugthnoraml() {
+    return draugthnoraml_;
+  }
+
+  public static final int ISCOLLISION_FIELD_NUMBER = 11;
   private boolean isCollision_;
   /**
    * <pre>
    *是否防撞舱壁
    * </pre>
    *
-   * <code>bool isCollision = 4;</code>
+   * <code>bool isCollision = 11;</code>
    */
   public boolean getIsCollision() {
     return isCollision_;
   }
 
-  public static final int SHUIDONGYALI_FIELD_NUMBER = 5;
-  private double shuidongYali_;
+  public static final int DYNAMICYATOU_FIELD_NUMBER = 12;
+  private double dynamicyatou_;
   /**
    * <pre>
    *水动压力
    * </pre>
    *
-   * <code>double shuidongYali = 5;</code>
+   * <code>double dynamicyatou = 12;</code>
    */
-  public double getShuidongYali() {
-    return shuidongYali_;
+  public double getDynamicyatou() {
+    return dynamicyatou_;
   }
+
+  public static final int LEIWEIHAO_FIELD_NUMBER = 13;
+  private double leiweihao_;
+  /**
+   * <pre>
+   *校核剖面肋位号
+   * </pre>
+   *
+   * <code>double leiweihao = 13;</code>
+   */
+  public double getLeiweihao() {
+    return leiweihao_;
+  }
+
+  public static final int AIRGUANYATOU_FIELD_NUMBER = 14;
+  private double airguanyatou_;
+  /**
+   * <pre>
+   *空气管压头
+   * </pre>
+   *
+   * <code>double airguanyatou = 14;</code>
+   */
+  public double getAirguanyatou() {
+    return airguanyatou_;
+  }
+
+  public static final int DECKNAME_FIELD_NUMBER = 15;
+  private com.google.protobuf.LazyStringList deckName_;
+  /**
+   * <pre>
+   *甲板名称添加614
+   * </pre>
+   *
+   * <code>repeated string deckName = 15;</code>
+   */
+  public com.google.protobuf.ProtocolStringList
+      getDeckNameList() {
+    return deckName_;
+  }
+  /**
+   * <pre>
+   *甲板名称添加614
+   * </pre>
+   *
+   * <code>repeated string deckName = 15;</code>
+   */
+  public int getDeckNameCount() {
+    return deckName_.size();
+  }
+  /**
+   * <pre>
+   *甲板名称添加614
+   * </pre>
+   *
+   * <code>repeated string deckName = 15;</code>
+   */
+  public java.lang.String getDeckName(int index) {
+    return deckName_.get(index);
+  }
+  /**
+   * <pre>
+   *甲板名称添加614
+   * </pre>
+   *
+   * <code>repeated string deckName = 15;</code>
+   */
+  public com.google.protobuf.ByteString
+      getDeckNameBytes(int index) {
+    return deckName_.getByteString(index);
+  }
+
+  public static final int DECKHEIGHT_FIELD_NUMBER = 16;
+  private java.util.List<java.lang.Double> deckHeight_;
+  /**
+   * <pre>
+   *甲板层高
+   * </pre>
+   *
+   * <code>repeated double deckHeight = 16;</code>
+   */
+  public java.util.List<java.lang.Double>
+      getDeckHeightList() {
+    return deckHeight_;
+  }
+  /**
+   * <pre>
+   *甲板层高
+   * </pre>
+   *
+   * <code>repeated double deckHeight = 16;</code>
+   */
+  public int getDeckHeightCount() {
+    return deckHeight_.size();
+  }
+  /**
+   * <pre>
+   *甲板层高
+   * </pre>
+   *
+   * <code>repeated double deckHeight = 16;</code>
+   */
+  public double getDeckHeight(int index) {
+    return deckHeight_.get(index);
+  }
+  private int deckHeightMemoizedSerializedSize = -1;
+
+  public static final int BOOLLIQUIDTANK_FIELD_NUMBER = 17;
+  private java.util.List<java.lang.Boolean> boolLiquidTank_;
+  /**
+   * <pre>
+   *是否液压舱壁  区间excel中的数据
+   * </pre>
+   *
+   * <code>repeated bool boolLiquidTank = 17;</code>
+   */
+  public java.util.List<java.lang.Boolean>
+      getBoolLiquidTankList() {
+    return boolLiquidTank_;
+  }
+  /**
+   * <pre>
+   *是否液压舱壁  区间excel中的数据
+   * </pre>
+   *
+   * <code>repeated bool boolLiquidTank = 17;</code>
+   */
+  public int getBoolLiquidTankCount() {
+    return boolLiquidTank_.size();
+  }
+  /**
+   * <pre>
+   *是否液压舱壁  区间excel中的数据
+   * </pre>
+   *
+   * <code>repeated bool boolLiquidTank = 17;</code>
+   */
+  public boolean getBoolLiquidTank(int index) {
+    return boolLiquidTank_.get(index);
+  }
+  private int boolLiquidTankMemoizedSerializedSize = -1;
 
   private byte memoizedIsInitialized = -1;
   public final boolean isInitialized() {
@@ -172,20 +553,65 @@ public  final class AdditionalForceHeadRequest extends
 
   public void writeTo(com.google.protobuf.CodedOutputStream output)
                       throws java.io.IOException {
+    getSerializedSize();
+    if (!getUpbuildstyleBytes().isEmpty()) {
+      com.google.protobuf.GeneratedMessageV3.writeString(output, 1, upbuildstyle_);
+    }
     if (freeboard_ != 0D) {
-      output.writeDouble(1, freeboard_);
+      output.writeDouble(2, freeboard_);
     }
-    if (leiweihao_ != 0D) {
-      output.writeDouble(2, leiweihao_);
+    if (shouloupos_ != 0D) {
+      output.writeDouble(3, shouloupos_);
     }
-    if (cangbiWeizhi_ != 0D) {
-      output.writeDouble(3, cangbiWeizhi_);
+    if (forefreeboard_ != 0D) {
+      output.writeDouble(4, forefreeboard_);
+    }
+    if (aftfreeboard_ != 0D) {
+      output.writeDouble(5, aftfreeboard_);
+    }
+    if (bridgeForePos_ != 0D) {
+      output.writeDouble(6, bridgeForePos_);
+    }
+    if (bridgeForeHeight_ != 0D) {
+      output.writeDouble(7, bridgeForeHeight_);
+    }
+    if (bridgeAftPos_ != 0D) {
+      output.writeDouble(8, bridgeAftPos_);
+    }
+    if (bridgeAftHeight_ != 0D) {
+      output.writeDouble(9, bridgeAftHeight_);
+    }
+    if (draugthnoraml_ != 0D) {
+      output.writeDouble(10, draugthnoraml_);
     }
     if (isCollision_ != false) {
-      output.writeBool(4, isCollision_);
+      output.writeBool(11, isCollision_);
     }
-    if (shuidongYali_ != 0D) {
-      output.writeDouble(5, shuidongYali_);
+    if (dynamicyatou_ != 0D) {
+      output.writeDouble(12, dynamicyatou_);
+    }
+    if (leiweihao_ != 0D) {
+      output.writeDouble(13, leiweihao_);
+    }
+    if (airguanyatou_ != 0D) {
+      output.writeDouble(14, airguanyatou_);
+    }
+    for (int i = 0; i < deckName_.size(); i++) {
+      com.google.protobuf.GeneratedMessageV3.writeString(output, 15, deckName_.getRaw(i));
+    }
+    if (getDeckHeightList().size() > 0) {
+      output.writeUInt32NoTag(130);
+      output.writeUInt32NoTag(deckHeightMemoizedSerializedSize);
+    }
+    for (int i = 0; i < deckHeight_.size(); i++) {
+      output.writeDoubleNoTag(deckHeight_.get(i));
+    }
+    if (getBoolLiquidTankList().size() > 0) {
+      output.writeUInt32NoTag(138);
+      output.writeUInt32NoTag(boolLiquidTankMemoizedSerializedSize);
+    }
+    for (int i = 0; i < boolLiquidTank_.size(); i++) {
+      output.writeBoolNoTag(boolLiquidTank_.get(i));
     }
   }
 
@@ -194,25 +620,90 @@ public  final class AdditionalForceHeadRequest extends
     if (size != -1) return size;
 
     size = 0;
+    if (!getUpbuildstyleBytes().isEmpty()) {
+      size += com.google.protobuf.GeneratedMessageV3.computeStringSize(1, upbuildstyle_);
+    }
     if (freeboard_ != 0D) {
       size += com.google.protobuf.CodedOutputStream
-        .computeDoubleSize(1, freeboard_);
+        .computeDoubleSize(2, freeboard_);
     }
-    if (leiweihao_ != 0D) {
+    if (shouloupos_ != 0D) {
       size += com.google.protobuf.CodedOutputStream
-        .computeDoubleSize(2, leiweihao_);
+        .computeDoubleSize(3, shouloupos_);
     }
-    if (cangbiWeizhi_ != 0D) {
+    if (forefreeboard_ != 0D) {
       size += com.google.protobuf.CodedOutputStream
-        .computeDoubleSize(3, cangbiWeizhi_);
+        .computeDoubleSize(4, forefreeboard_);
+    }
+    if (aftfreeboard_ != 0D) {
+      size += com.google.protobuf.CodedOutputStream
+        .computeDoubleSize(5, aftfreeboard_);
+    }
+    if (bridgeForePos_ != 0D) {
+      size += com.google.protobuf.CodedOutputStream
+        .computeDoubleSize(6, bridgeForePos_);
+    }
+    if (bridgeForeHeight_ != 0D) {
+      size += com.google.protobuf.CodedOutputStream
+        .computeDoubleSize(7, bridgeForeHeight_);
+    }
+    if (bridgeAftPos_ != 0D) {
+      size += com.google.protobuf.CodedOutputStream
+        .computeDoubleSize(8, bridgeAftPos_);
+    }
+    if (bridgeAftHeight_ != 0D) {
+      size += com.google.protobuf.CodedOutputStream
+        .computeDoubleSize(9, bridgeAftHeight_);
+    }
+    if (draugthnoraml_ != 0D) {
+      size += com.google.protobuf.CodedOutputStream
+        .computeDoubleSize(10, draugthnoraml_);
     }
     if (isCollision_ != false) {
       size += com.google.protobuf.CodedOutputStream
-        .computeBoolSize(4, isCollision_);
+        .computeBoolSize(11, isCollision_);
     }
-    if (shuidongYali_ != 0D) {
+    if (dynamicyatou_ != 0D) {
       size += com.google.protobuf.CodedOutputStream
-        .computeDoubleSize(5, shuidongYali_);
+        .computeDoubleSize(12, dynamicyatou_);
+    }
+    if (leiweihao_ != 0D) {
+      size += com.google.protobuf.CodedOutputStream
+        .computeDoubleSize(13, leiweihao_);
+    }
+    if (airguanyatou_ != 0D) {
+      size += com.google.protobuf.CodedOutputStream
+        .computeDoubleSize(14, airguanyatou_);
+    }
+    {
+      int dataSize = 0;
+      for (int i = 0; i < deckName_.size(); i++) {
+        dataSize += computeStringSizeNoTag(deckName_.getRaw(i));
+      }
+      size += dataSize;
+      size += 1 * getDeckNameList().size();
+    }
+    {
+      int dataSize = 0;
+      dataSize = 8 * getDeckHeightList().size();
+      size += dataSize;
+      if (!getDeckHeightList().isEmpty()) {
+        size += 2;
+        size += com.google.protobuf.CodedOutputStream
+            .computeInt32SizeNoTag(dataSize);
+      }
+      deckHeightMemoizedSerializedSize = dataSize;
+    }
+    {
+      int dataSize = 0;
+      dataSize = 1 * getBoolLiquidTankList().size();
+      size += dataSize;
+      if (!getBoolLiquidTankList().isEmpty()) {
+        size += 2;
+        size += com.google.protobuf.CodedOutputStream
+            .computeInt32SizeNoTag(dataSize);
+      }
+      boolLiquidTankMemoizedSerializedSize = dataSize;
     }
     memoizedSize = size;
     return size;
@@ -230,24 +721,64 @@ public  final class AdditionalForceHeadRequest extends
     com.iscas.biz.calculation.grpc.AdditionalForceHeadRequest other = (com.iscas.biz.calculation.grpc.AdditionalForceHeadRequest) obj;
 
     boolean result = true;
+    result = result && getUpbuildstyle()
+        .equals(other.getUpbuildstyle());
     result = result && (
         java.lang.Double.doubleToLongBits(getFreeboard())
         == java.lang.Double.doubleToLongBits(
             other.getFreeboard()));
     result = result && (
+        java.lang.Double.doubleToLongBits(getShouloupos())
+        == java.lang.Double.doubleToLongBits(
+            other.getShouloupos()));
+    result = result && (
+        java.lang.Double.doubleToLongBits(getForefreeboard())
+        == java.lang.Double.doubleToLongBits(
+            other.getForefreeboard()));
+    result = result && (
+        java.lang.Double.doubleToLongBits(getAftfreeboard())
+        == java.lang.Double.doubleToLongBits(
+            other.getAftfreeboard()));
+    result = result && (
+        java.lang.Double.doubleToLongBits(getBridgeForePos())
+        == java.lang.Double.doubleToLongBits(
+            other.getBridgeForePos()));
+    result = result && (
+        java.lang.Double.doubleToLongBits(getBridgeForeHeight())
+        == java.lang.Double.doubleToLongBits(
+            other.getBridgeForeHeight()));
+    result = result && (
+        java.lang.Double.doubleToLongBits(getBridgeAftPos())
+        == java.lang.Double.doubleToLongBits(
+            other.getBridgeAftPos()));
+    result = result && (
+        java.lang.Double.doubleToLongBits(getBridgeAftHeight())
+        == java.lang.Double.doubleToLongBits(
+            other.getBridgeAftHeight()));
+    result = result && (
+        java.lang.Double.doubleToLongBits(getDraugthnoraml())
+        == java.lang.Double.doubleToLongBits(
+            other.getDraugthnoraml()));
+    result = result && (getIsCollision()
+        == other.getIsCollision());
+    result = result && (
+        java.lang.Double.doubleToLongBits(getDynamicyatou())
+        == java.lang.Double.doubleToLongBits(
+            other.getDynamicyatou()));
+    result = result && (
         java.lang.Double.doubleToLongBits(getLeiweihao())
         == java.lang.Double.doubleToLongBits(
             other.getLeiweihao()));
     result = result && (
-        java.lang.Double.doubleToLongBits(getCangbiWeizhi())
+        java.lang.Double.doubleToLongBits(getAirguanyatou())
         == java.lang.Double.doubleToLongBits(
-            other.getCangbiWeizhi()));
-    result = result && (getIsCollision()
-        == other.getIsCollision());
-    result = result && (
-        java.lang.Double.doubleToLongBits(getShuidongYali())
-        == java.lang.Double.doubleToLongBits(
-            other.getShuidongYali()));
+            other.getAirguanyatou()));
+    result = result && getDeckNameList()
+        .equals(other.getDeckNameList());
+    result = result && getDeckHeightList()
+        .equals(other.getDeckHeightList());
+    result = result && getBoolLiquidTankList()
+        .equals(other.getBoolLiquidTankList());
     return result;
   }
 
@@ -258,21 +789,59 @@ public  final class AdditionalForceHeadRequest extends
     }
     int hash = 41;
     hash = (19 * hash) + getDescriptor().hashCode();
+    hash = (37 * hash) + UPBUILDSTYLE_FIELD_NUMBER;
+    hash = (53 * hash) + getUpbuildstyle().hashCode();
     hash = (37 * hash) + FREEBOARD_FIELD_NUMBER;
     hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
         java.lang.Double.doubleToLongBits(getFreeboard()));
-    hash = (37 * hash) + LEIWEIHAO_FIELD_NUMBER;
+    hash = (37 * hash) + SHOULOUPOS_FIELD_NUMBER;
     hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
-        java.lang.Double.doubleToLongBits(getLeiweihao()));
-    hash = (37 * hash) + CANGBIWEIZHI_FIELD_NUMBER;
+        java.lang.Double.doubleToLongBits(getShouloupos()));
+    hash = (37 * hash) + FOREFREEBOARD_FIELD_NUMBER;
     hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
-        java.lang.Double.doubleToLongBits(getCangbiWeizhi()));
+        java.lang.Double.doubleToLongBits(getForefreeboard()));
+    hash = (37 * hash) + AFTFREEBOARD_FIELD_NUMBER;
+    hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
+        java.lang.Double.doubleToLongBits(getAftfreeboard()));
+    hash = (37 * hash) + BRIDGE_FORE_POS_FIELD_NUMBER;
+    hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
+        java.lang.Double.doubleToLongBits(getBridgeForePos()));
+    hash = (37 * hash) + BRIDGE_FORE_HEIGHT_FIELD_NUMBER;
+    hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
+        java.lang.Double.doubleToLongBits(getBridgeForeHeight()));
+    hash = (37 * hash) + BRIDGE_AFT_POS_FIELD_NUMBER;
+    hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
+        java.lang.Double.doubleToLongBits(getBridgeAftPos()));
+    hash = (37 * hash) + BRIDGE_AFT_HEIGHT_FIELD_NUMBER;
+    hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
+        java.lang.Double.doubleToLongBits(getBridgeAftHeight()));
+    hash = (37 * hash) + DRAUGTHNORAML_FIELD_NUMBER;
+    hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
+        java.lang.Double.doubleToLongBits(getDraugthnoraml()));
     hash = (37 * hash) + ISCOLLISION_FIELD_NUMBER;
     hash = (53 * hash) + com.google.protobuf.Internal.hashBoolean(
         getIsCollision());
-    hash = (37 * hash) + SHUIDONGYALI_FIELD_NUMBER;
+    hash = (37 * hash) + DYNAMICYATOU_FIELD_NUMBER;
     hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
-        java.lang.Double.doubleToLongBits(getShuidongYali()));
+        java.lang.Double.doubleToLongBits(getDynamicyatou()));
+    hash = (37 * hash) + LEIWEIHAO_FIELD_NUMBER;
+    hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
+        java.lang.Double.doubleToLongBits(getLeiweihao()));
+    hash = (37 * hash) + AIRGUANYATOU_FIELD_NUMBER;
+    hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
+        java.lang.Double.doubleToLongBits(getAirguanyatou()));
+    if (getDeckNameCount() > 0) {
+      hash = (37 * hash) + DECKNAME_FIELD_NUMBER;
+      hash = (53 * hash) + getDeckNameList().hashCode();
+    }
+    if (getDeckHeightCount() > 0) {
+      hash = (37 * hash) + DECKHEIGHT_FIELD_NUMBER;
+      hash = (53 * hash) + getDeckHeightList().hashCode();
+    }
+    if (getBoolLiquidTankCount() > 0) {
+      hash = (37 * hash) + BOOLLIQUIDTANK_FIELD_NUMBER;
+      hash = (53 * hash) + getBoolLiquidTankList().hashCode();
+    }
     hash = (29 * hash) + unknownFields.hashCode();
     memoizedHashCode = hash;
     return hash;
@@ -391,16 +960,40 @@ public  final class AdditionalForceHeadRequest extends
     }
     public Builder clear() {
       super.clear();
+      upbuildstyle_ = "";
+
       freeboard_ = 0D;
 
-      leiweihao_ = 0D;
+      shouloupos_ = 0D;
 
-      cangbiWeizhi_ = 0D;
+      forefreeboard_ = 0D;
+
+      aftfreeboard_ = 0D;
+
+      bridgeForePos_ = 0D;
+
+      bridgeForeHeight_ = 0D;
+
+      bridgeAftPos_ = 0D;
+
+      bridgeAftHeight_ = 0D;
+
+      draugthnoraml_ = 0D;
 
       isCollision_ = false;
 
-      shuidongYali_ = 0D;
+      dynamicyatou_ = 0D;
 
+      leiweihao_ = 0D;
+
+      airguanyatou_ = 0D;
+
+      deckName_ = com.google.protobuf.LazyStringArrayList.EMPTY;
+      bitField0_ = (bitField0_ & ~0x00004000);
+      deckHeight_ = java.util.Collections.emptyList();
+      bitField0_ = (bitField0_ & ~0x00008000);
+      boolLiquidTank_ = java.util.Collections.emptyList();
+      bitField0_ = (bitField0_ & ~0x00010000);
       return this;
     }
 
@@ -423,11 +1016,38 @@ public  final class AdditionalForceHeadRequest extends
 
     public com.iscas.biz.calculation.grpc.AdditionalForceHeadRequest buildPartial() {
       com.iscas.biz.calculation.grpc.AdditionalForceHeadRequest result = new com.iscas.biz.calculation.grpc.AdditionalForceHeadRequest(this);
+      int from_bitField0_ = bitField0_;
+      int to_bitField0_ = 0;
+      result.upbuildstyle_ = upbuildstyle_;
       result.freeboard_ = freeboard_;
-      result.leiweihao_ = leiweihao_;
-      result.cangbiWeizhi_ = cangbiWeizhi_;
+      result.shouloupos_ = shouloupos_;
+      result.forefreeboard_ = forefreeboard_;
+      result.aftfreeboard_ = aftfreeboard_;
+      result.bridgeForePos_ = bridgeForePos_;
+      result.bridgeForeHeight_ = bridgeForeHeight_;
+      result.bridgeAftPos_ = bridgeAftPos_;
+      result.bridgeAftHeight_ = bridgeAftHeight_;
+      result.draugthnoraml_ = draugthnoraml_;
       result.isCollision_ = isCollision_;
-      result.shuidongYali_ = shuidongYali_;
+      result.dynamicyatou_ = dynamicyatou_;
+      result.leiweihao_ = leiweihao_;
+      result.airguanyatou_ = airguanyatou_;
+      if (((bitField0_ & 0x00004000) == 0x00004000)) {
+        deckName_ = deckName_.getUnmodifiableView();
+        bitField0_ = (bitField0_ & ~0x00004000);
+      }
+      result.deckName_ = deckName_;
+      if (((bitField0_ & 0x00008000) == 0x00008000)) {
+        deckHeight_ = java.util.Collections.unmodifiableList(deckHeight_);
+        bitField0_ = (bitField0_ & ~0x00008000);
+      }
+      result.deckHeight_ = deckHeight_;
+      if (((bitField0_ & 0x00010000) == 0x00010000)) {
+        boolLiquidTank_ = java.util.Collections.unmodifiableList(boolLiquidTank_);
+        bitField0_ = (bitField0_ & ~0x00010000);
+      }
+      result.boolLiquidTank_ = boolLiquidTank_;
+      result.bitField0_ = to_bitField0_;
       onBuilt();
       return result;
     }
@@ -469,20 +1089,78 @@ public  final class AdditionalForceHeadRequest extends
 
     public Builder mergeFrom(com.iscas.biz.calculation.grpc.AdditionalForceHeadRequest other) {
       if (other == com.iscas.biz.calculation.grpc.AdditionalForceHeadRequest.getDefaultInstance()) return this;
+      if (!other.getUpbuildstyle().isEmpty()) {
+        upbuildstyle_ = other.upbuildstyle_;
+        onChanged();
+      }
       if (other.getFreeboard() != 0D) {
         setFreeboard(other.getFreeboard());
       }
-      if (other.getLeiweihao() != 0D) {
-        setLeiweihao(other.getLeiweihao());
+      if (other.getShouloupos() != 0D) {
+        setShouloupos(other.getShouloupos());
       }
-      if (other.getCangbiWeizhi() != 0D) {
-        setCangbiWeizhi(other.getCangbiWeizhi());
+      if (other.getForefreeboard() != 0D) {
+        setForefreeboard(other.getForefreeboard());
+      }
+      if (other.getAftfreeboard() != 0D) {
+        setAftfreeboard(other.getAftfreeboard());
+      }
+      if (other.getBridgeForePos() != 0D) {
+        setBridgeForePos(other.getBridgeForePos());
+      }
+      if (other.getBridgeForeHeight() != 0D) {
+        setBridgeForeHeight(other.getBridgeForeHeight());
+      }
+      if (other.getBridgeAftPos() != 0D) {
+        setBridgeAftPos(other.getBridgeAftPos());
+      }
+      if (other.getBridgeAftHeight() != 0D) {
+        setBridgeAftHeight(other.getBridgeAftHeight());
+      }
+      if (other.getDraugthnoraml() != 0D) {
+        setDraugthnoraml(other.getDraugthnoraml());
       }
       if (other.getIsCollision() != false) {
         setIsCollision(other.getIsCollision());
       }
-      if (other.getShuidongYali() != 0D) {
-        setShuidongYali(other.getShuidongYali());
+      if (other.getDynamicyatou() != 0D) {
+        setDynamicyatou(other.getDynamicyatou());
+      }
+      if (other.getLeiweihao() != 0D) {
+        setLeiweihao(other.getLeiweihao());
+      }
+      if (other.getAirguanyatou() != 0D) {
+        setAirguanyatou(other.getAirguanyatou());
+      }
+      if (!other.deckName_.isEmpty()) {
+        if (deckName_.isEmpty()) {
+          deckName_ = other.deckName_;
+          bitField0_ = (bitField0_ & ~0x00004000);
+        } else {
+          ensureDeckNameIsMutable();
+          deckName_.addAll(other.deckName_);
+        }
+        onChanged();
+      }
+      if (!other.deckHeight_.isEmpty()) {
+        if (deckHeight_.isEmpty()) {
+          deckHeight_ = other.deckHeight_;
+          bitField0_ = (bitField0_ & ~0x00008000);
+        } else {
+          ensureDeckHeightIsMutable();
+          deckHeight_.addAll(other.deckHeight_);
+        }
+        onChanged();
+      }
+      if (!other.boolLiquidTank_.isEmpty()) {
+        if (boolLiquidTank_.isEmpty()) {
+          boolLiquidTank_ = other.boolLiquidTank_;
+          bitField0_ = (bitField0_ & ~0x00010000);
+        } else {
+          ensureBoolLiquidTankIsMutable();
+          boolLiquidTank_.addAll(other.boolLiquidTank_);
+        }
+        onChanged();
       }
       onChanged();
       return this;
@@ -509,6 +1187,96 @@ public  final class AdditionalForceHeadRequest extends
       }
       return this;
     }
+    private int bitField0_;
+
+    private java.lang.Object upbuildstyle_ = "";
+    /**
+     * <pre>
+     *上建形式
+     * </pre>
+     *
+     * <code>string upbuildstyle = 1;</code>
+     */
+    public java.lang.String getUpbuildstyle() {
+      java.lang.Object ref = upbuildstyle_;
+      if (!(ref instanceof java.lang.String)) {
+        com.google.protobuf.ByteString bs =
+            (com.google.protobuf.ByteString) ref;
+        java.lang.String s = bs.toStringUtf8();
+        upbuildstyle_ = s;
+        return s;
+      } else {
+        return (java.lang.String) ref;
+      }
+    }
+    /**
+     * <pre>
+     *上建形式
+     * </pre>
+     *
+     * <code>string upbuildstyle = 1;</code>
+     */
+    public com.google.protobuf.ByteString
+        getUpbuildstyleBytes() {
+      java.lang.Object ref = upbuildstyle_;
+      if (ref instanceof String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (java.lang.String) ref);
+        upbuildstyle_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
+    }
+    /**
+     * <pre>
+     *上建形式
+     * </pre>
+     *
+     * <code>string upbuildstyle = 1;</code>
+     */
+    public Builder setUpbuildstyle(
+        java.lang.String value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  
+      upbuildstyle_ = value;
+      onChanged();
+      return this;
+    }
+    /**
+     * <pre>
+     *上建形式
+     * </pre>
+     *
+     * <code>string upbuildstyle = 1;</code>
+     */
+    public Builder clearUpbuildstyle() {
+      
+      upbuildstyle_ = getDefaultInstance().getUpbuildstyle();
+      onChanged();
+      return this;
+    }
+    /**
+     * <pre>
+     *上建形式
+     * </pre>
+     *
+     * <code>string upbuildstyle = 1;</code>
+     */
+    public Builder setUpbuildstyleBytes(
+        com.google.protobuf.ByteString value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+      
+      upbuildstyle_ = value;
+      onChanged();
+      return this;
+    }
 
     private double freeboard_ ;
     /**
@@ -516,7 +1284,7 @@ public  final class AdditionalForceHeadRequest extends
      *干舷高
      * </pre>
      *
-     * <code>double freeboard = 1;</code>
+     * <code>double freeboard = 2;</code>
      */
     public double getFreeboard() {
       return freeboard_;
@@ -526,7 +1294,7 @@ public  final class AdditionalForceHeadRequest extends
      *干舷高
      * </pre>
      *
-     * <code>double freeboard = 1;</code>
+     * <code>double freeboard = 2;</code>
      */
     public Builder setFreeboard(double value) {
       
@@ -539,7 +1307,7 @@ public  final class AdditionalForceHeadRequest extends
      *干舷高
      * </pre>
      *
-     * <code>double freeboard = 1;</code>
+     * <code>double freeboard = 2;</code>
      */
     public Builder clearFreeboard() {
       
@@ -548,78 +1316,309 @@ public  final class AdditionalForceHeadRequest extends
       return this;
     }
 
-    private double leiweihao_ ;
+    private double shouloupos_ ;
     /**
      * <pre>
-     *肋位号
+     *艏楼端壁肋位
      * </pre>
      *
-     * <code>double leiweihao = 2;</code>
+     * <code>double shouloupos = 3;</code>
      */
-    public double getLeiweihao() {
-      return leiweihao_;
+    public double getShouloupos() {
+      return shouloupos_;
     }
     /**
      * <pre>
-     *肋位号
+     *艏楼端壁肋位
      * </pre>
      *
-     * <code>double leiweihao = 2;</code>
+     * <code>double shouloupos = 3;</code>
      */
-    public Builder setLeiweihao(double value) {
+    public Builder setShouloupos(double value) {
       
-      leiweihao_ = value;
+      shouloupos_ = value;
       onChanged();
       return this;
     }
     /**
      * <pre>
-     *肋位号
+     *艏楼端壁肋位
      * </pre>
      *
-     * <code>double leiweihao = 2;</code>
+     * <code>double shouloupos = 3;</code>
      */
-    public Builder clearLeiweihao() {
+    public Builder clearShouloupos() {
       
-      leiweihao_ = 0D;
+      shouloupos_ = 0D;
       onChanged();
       return this;
     }
 
-    private double cangbiWeizhi_ ;
+    private double forefreeboard_ ;
     /**
      * <pre>
-     *舱壁位置
+     *new614----------------
+     *首干舷高
      * </pre>
      *
-     * <code>double cangbiWeizhi = 3;</code>
+     * <code>double forefreeboard = 4;</code>
      */
-    public double getCangbiWeizhi() {
-      return cangbiWeizhi_;
+    public double getForefreeboard() {
+      return forefreeboard_;
     }
     /**
      * <pre>
-     *舱壁位置
+     *new614----------------
+     *首干舷高
      * </pre>
      *
-     * <code>double cangbiWeizhi = 3;</code>
+     * <code>double forefreeboard = 4;</code>
      */
-    public Builder setCangbiWeizhi(double value) {
+    public Builder setForefreeboard(double value) {
       
-      cangbiWeizhi_ = value;
+      forefreeboard_ = value;
       onChanged();
       return this;
     }
     /**
      * <pre>
-     *舱壁位置
+     *new614----------------
+     *首干舷高
      * </pre>
      *
-     * <code>double cangbiWeizhi = 3;</code>
+     * <code>double forefreeboard = 4;</code>
      */
-    public Builder clearCangbiWeizhi() {
+    public Builder clearForefreeboard() {
       
-      cangbiWeizhi_ = 0D;
+      forefreeboard_ = 0D;
+      onChanged();
+      return this;
+    }
+
+    private double aftfreeboard_ ;
+    /**
+     * <pre>
+     *尾干舷高
+     * </pre>
+     *
+     * <code>double aftfreeboard = 5;</code>
+     */
+    public double getAftfreeboard() {
+      return aftfreeboard_;
+    }
+    /**
+     * <pre>
+     *尾干舷高
+     * </pre>
+     *
+     * <code>double aftfreeboard = 5;</code>
+     */
+    public Builder setAftfreeboard(double value) {
+      
+      aftfreeboard_ = value;
+      onChanged();
+      return this;
+    }
+    /**
+     * <pre>
+     *尾干舷高
+     * </pre>
+     *
+     * <code>double aftfreeboard = 5;</code>
+     */
+    public Builder clearAftfreeboard() {
+      
+      aftfreeboard_ = 0D;
+      onChanged();
+      return this;
+    }
+
+    private double bridgeForePos_ ;
+    /**
+     * <pre>
+     *桥楼首部端壁肋位号；
+     * </pre>
+     *
+     * <code>double bridge_fore_pos = 6;</code>
+     */
+    public double getBridgeForePos() {
+      return bridgeForePos_;
+    }
+    /**
+     * <pre>
+     *桥楼首部端壁肋位号；
+     * </pre>
+     *
+     * <code>double bridge_fore_pos = 6;</code>
+     */
+    public Builder setBridgeForePos(double value) {
+      
+      bridgeForePos_ = value;
+      onChanged();
+      return this;
+    }
+    /**
+     * <pre>
+     *桥楼首部端壁肋位号；
+     * </pre>
+     *
+     * <code>double bridge_fore_pos = 6;</code>
+     */
+    public Builder clearBridgeForePos() {
+      
+      bridgeForePos_ = 0D;
+      onChanged();
+      return this;
+    }
+
+    private double bridgeForeHeight_ ;
+    /**
+     * <pre>
+     *桥楼首部端壁干舷高
+     * </pre>
+     *
+     * <code>double bridge_fore_height = 7;</code>
+     */
+    public double getBridgeForeHeight() {
+      return bridgeForeHeight_;
+    }
+    /**
+     * <pre>
+     *桥楼首部端壁干舷高
+     * </pre>
+     *
+     * <code>double bridge_fore_height = 7;</code>
+     */
+    public Builder setBridgeForeHeight(double value) {
+      
+      bridgeForeHeight_ = value;
+      onChanged();
+      return this;
+    }
+    /**
+     * <pre>
+     *桥楼首部端壁干舷高
+     * </pre>
+     *
+     * <code>double bridge_fore_height = 7;</code>
+     */
+    public Builder clearBridgeForeHeight() {
+      
+      bridgeForeHeight_ = 0D;
+      onChanged();
+      return this;
+    }
+
+    private double bridgeAftPos_ ;
+    /**
+     * <pre>
+     *桥楼尾部端壁肋位号；
+     * </pre>
+     *
+     * <code>double bridge_aft_pos = 8;</code>
+     */
+    public double getBridgeAftPos() {
+      return bridgeAftPos_;
+    }
+    /**
+     * <pre>
+     *桥楼尾部端壁肋位号；
+     * </pre>
+     *
+     * <code>double bridge_aft_pos = 8;</code>
+     */
+    public Builder setBridgeAftPos(double value) {
+      
+      bridgeAftPos_ = value;
+      onChanged();
+      return this;
+    }
+    /**
+     * <pre>
+     *桥楼尾部端壁肋位号；
+     * </pre>
+     *
+     * <code>double bridge_aft_pos = 8;</code>
+     */
+    public Builder clearBridgeAftPos() {
+      
+      bridgeAftPos_ = 0D;
+      onChanged();
+      return this;
+    }
+
+    private double bridgeAftHeight_ ;
+    /**
+     * <pre>
+     *桥楼尾部端壁干舷高
+     * </pre>
+     *
+     * <code>double bridge_aft_height = 9;</code>
+     */
+    public double getBridgeAftHeight() {
+      return bridgeAftHeight_;
+    }
+    /**
+     * <pre>
+     *桥楼尾部端壁干舷高
+     * </pre>
+     *
+     * <code>double bridge_aft_height = 9;</code>
+     */
+    public Builder setBridgeAftHeight(double value) {
+      
+      bridgeAftHeight_ = value;
+      onChanged();
+      return this;
+    }
+    /**
+     * <pre>
+     *桥楼尾部端壁干舷高
+     * </pre>
+     *
+     * <code>double bridge_aft_height = 9;</code>
+     */
+    public Builder clearBridgeAftHeight() {
+      
+      bridgeAftHeight_ = 0D;
+      onChanged();
+      return this;
+    }
+
+    private double draugthnoraml_ ;
+    /**
+     * <pre>
+     *正常排水量时的吃水
+     * </pre>
+     *
+     * <code>double draugthnoraml = 10;</code>
+     */
+    public double getDraugthnoraml() {
+      return draugthnoraml_;
+    }
+    /**
+     * <pre>
+     *正常排水量时的吃水
+     * </pre>
+     *
+     * <code>double draugthnoraml = 10;</code>
+     */
+    public Builder setDraugthnoraml(double value) {
+      
+      draugthnoraml_ = value;
+      onChanged();
+      return this;
+    }
+    /**
+     * <pre>
+     *正常排水量时的吃水
+     * </pre>
+     *
+     * <code>double draugthnoraml = 10;</code>
+     */
+    public Builder clearDraugthnoraml() {
+      
+      draugthnoraml_ = 0D;
       onChanged();
       return this;
     }
@@ -630,7 +1629,7 @@ public  final class AdditionalForceHeadRequest extends
      *是否防撞舱壁
      * </pre>
      *
-     * <code>bool isCollision = 4;</code>
+     * <code>bool isCollision = 11;</code>
      */
     public boolean getIsCollision() {
       return isCollision_;
@@ -640,7 +1639,7 @@ public  final class AdditionalForceHeadRequest extends
      *是否防撞舱壁
      * </pre>
      *
-     * <code>bool isCollision = 4;</code>
+     * <code>bool isCollision = 11;</code>
      */
     public Builder setIsCollision(boolean value) {
       
@@ -653,7 +1652,7 @@ public  final class AdditionalForceHeadRequest extends
      *是否防撞舱壁
      * </pre>
      *
-     * <code>bool isCollision = 4;</code>
+     * <code>bool isCollision = 11;</code>
      */
     public Builder clearIsCollision() {
       
@@ -662,27 +1661,27 @@ public  final class AdditionalForceHeadRequest extends
       return this;
     }
 
-    private double shuidongYali_ ;
+    private double dynamicyatou_ ;
     /**
      * <pre>
      *水动压力
      * </pre>
      *
-     * <code>double shuidongYali = 5;</code>
+     * <code>double dynamicyatou = 12;</code>
      */
-    public double getShuidongYali() {
-      return shuidongYali_;
+    public double getDynamicyatou() {
+      return dynamicyatou_;
     }
     /**
      * <pre>
      *水动压力
      * </pre>
      *
-     * <code>double shuidongYali = 5;</code>
+     * <code>double dynamicyatou = 12;</code>
      */
-    public Builder setShuidongYali(double value) {
+    public Builder setDynamicyatou(double value) {
       
-      shuidongYali_ = value;
+      dynamicyatou_ = value;
       onChanged();
       return this;
     }
@@ -691,11 +1690,405 @@ public  final class AdditionalForceHeadRequest extends
      *水动压力
      * </pre>
      *
-     * <code>double shuidongYali = 5;</code>
+     * <code>double dynamicyatou = 12;</code>
      */
-    public Builder clearShuidongYali() {
+    public Builder clearDynamicyatou() {
       
-      shuidongYali_ = 0D;
+      dynamicyatou_ = 0D;
+      onChanged();
+      return this;
+    }
+
+    private double leiweihao_ ;
+    /**
+     * <pre>
+     *校核剖面肋位号
+     * </pre>
+     *
+     * <code>double leiweihao = 13;</code>
+     */
+    public double getLeiweihao() {
+      return leiweihao_;
+    }
+    /**
+     * <pre>
+     *校核剖面肋位号
+     * </pre>
+     *
+     * <code>double leiweihao = 13;</code>
+     */
+    public Builder setLeiweihao(double value) {
+      
+      leiweihao_ = value;
+      onChanged();
+      return this;
+    }
+    /**
+     * <pre>
+     *校核剖面肋位号
+     * </pre>
+     *
+     * <code>double leiweihao = 13;</code>
+     */
+    public Builder clearLeiweihao() {
+      
+      leiweihao_ = 0D;
+      onChanged();
+      return this;
+    }
+
+    private double airguanyatou_ ;
+    /**
+     * <pre>
+     *空气管压头
+     * </pre>
+     *
+     * <code>double airguanyatou = 14;</code>
+     */
+    public double getAirguanyatou() {
+      return airguanyatou_;
+    }
+    /**
+     * <pre>
+     *空气管压头
+     * </pre>
+     *
+     * <code>double airguanyatou = 14;</code>
+     */
+    public Builder setAirguanyatou(double value) {
+      
+      airguanyatou_ = value;
+      onChanged();
+      return this;
+    }
+    /**
+     * <pre>
+     *空气管压头
+     * </pre>
+     *
+     * <code>double airguanyatou = 14;</code>
+     */
+    public Builder clearAirguanyatou() {
+      
+      airguanyatou_ = 0D;
+      onChanged();
+      return this;
+    }
+
+    private com.google.protobuf.LazyStringList deckName_ = com.google.protobuf.LazyStringArrayList.EMPTY;
+    private void ensureDeckNameIsMutable() {
+      if (!((bitField0_ & 0x00004000) == 0x00004000)) {
+        deckName_ = new com.google.protobuf.LazyStringArrayList(deckName_);
+        bitField0_ |= 0x00004000;
+       }
+    }
+    /**
+     * <pre>
+     *甲板名称添加614
+     * </pre>
+     *
+     * <code>repeated string deckName = 15;</code>
+     */
+    public com.google.protobuf.ProtocolStringList
+        getDeckNameList() {
+      return deckName_.getUnmodifiableView();
+    }
+    /**
+     * <pre>
+     *甲板名称添加614
+     * </pre>
+     *
+     * <code>repeated string deckName = 15;</code>
+     */
+    public int getDeckNameCount() {
+      return deckName_.size();
+    }
+    /**
+     * <pre>
+     *甲板名称添加614
+     * </pre>
+     *
+     * <code>repeated string deckName = 15;</code>
+     */
+    public java.lang.String getDeckName(int index) {
+      return deckName_.get(index);
+    }
+    /**
+     * <pre>
+     *甲板名称添加614
+     * </pre>
+     *
+     * <code>repeated string deckName = 15;</code>
+     */
+    public com.google.protobuf.ByteString
+        getDeckNameBytes(int index) {
+      return deckName_.getByteString(index);
+    }
+    /**
+     * <pre>
+     *甲板名称添加614
+     * </pre>
+     *
+     * <code>repeated string deckName = 15;</code>
+     */
+    public Builder setDeckName(
+        int index, java.lang.String value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  ensureDeckNameIsMutable();
+      deckName_.set(index, value);
+      onChanged();
+      return this;
+    }
+    /**
+     * <pre>
+     *甲板名称添加614
+     * </pre>
+     *
+     * <code>repeated string deckName = 15;</code>
+     */
+    public Builder addDeckName(
+        java.lang.String value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  ensureDeckNameIsMutable();
+      deckName_.add(value);
+      onChanged();
+      return this;
+    }
+    /**
+     * <pre>
+     *甲板名称添加614
+     * </pre>
+     *
+     * <code>repeated string deckName = 15;</code>
+     */
+    public Builder addAllDeckName(
+        java.lang.Iterable<java.lang.String> values) {
+      ensureDeckNameIsMutable();
+      com.google.protobuf.AbstractMessageLite.Builder.addAll(
+          values, deckName_);
+      onChanged();
+      return this;
+    }
+    /**
+     * <pre>
+     *甲板名称添加614
+     * </pre>
+     *
+     * <code>repeated string deckName = 15;</code>
+     */
+    public Builder clearDeckName() {
+      deckName_ = com.google.protobuf.LazyStringArrayList.EMPTY;
+      bitField0_ = (bitField0_ & ~0x00004000);
+      onChanged();
+      return this;
+    }
+    /**
+     * <pre>
+     *甲板名称添加614
+     * </pre>
+     *
+     * <code>repeated string deckName = 15;</code>
+     */
+    public Builder addDeckNameBytes(
+        com.google.protobuf.ByteString value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+      ensureDeckNameIsMutable();
+      deckName_.add(value);
+      onChanged();
+      return this;
+    }
+
+    private java.util.List<java.lang.Double> deckHeight_ = java.util.Collections.emptyList();
+    private void ensureDeckHeightIsMutable() {
+      if (!((bitField0_ & 0x00008000) == 0x00008000)) {
+        deckHeight_ = new java.util.ArrayList<java.lang.Double>(deckHeight_);
+        bitField0_ |= 0x00008000;
+       }
+    }
+    /**
+     * <pre>
+     *甲板层高
+     * </pre>
+     *
+     * <code>repeated double deckHeight = 16;</code>
+     */
+    public java.util.List<java.lang.Double>
+        getDeckHeightList() {
+      return java.util.Collections.unmodifiableList(deckHeight_);
+    }
+    /**
+     * <pre>
+     *甲板层高
+     * </pre>
+     *
+     * <code>repeated double deckHeight = 16;</code>
+     */
+    public int getDeckHeightCount() {
+      return deckHeight_.size();
+    }
+    /**
+     * <pre>
+     *甲板层高
+     * </pre>
+     *
+     * <code>repeated double deckHeight = 16;</code>
+     */
+    public double getDeckHeight(int index) {
+      return deckHeight_.get(index);
+    }
+    /**
+     * <pre>
+     *甲板层高
+     * </pre>
+     *
+     * <code>repeated double deckHeight = 16;</code>
+     */
+    public Builder setDeckHeight(
+        int index, double value) {
+      ensureDeckHeightIsMutable();
+      deckHeight_.set(index, value);
+      onChanged();
+      return this;
+    }
+    /**
+     * <pre>
+     *甲板层高
+     * </pre>
+     *
+     * <code>repeated double deckHeight = 16;</code>
+     */
+    public Builder addDeckHeight(double value) {
+      ensureDeckHeightIsMutable();
+      deckHeight_.add(value);
+      onChanged();
+      return this;
+    }
+    /**
+     * <pre>
+     *甲板层高
+     * </pre>
+     *
+     * <code>repeated double deckHeight = 16;</code>
+     */
+    public Builder addAllDeckHeight(
+        java.lang.Iterable<? extends java.lang.Double> values) {
+      ensureDeckHeightIsMutable();
+      com.google.protobuf.AbstractMessageLite.Builder.addAll(
+          values, deckHeight_);
+      onChanged();
+      return this;
+    }
+    /**
+     * <pre>
+     *甲板层高
+     * </pre>
+     *
+     * <code>repeated double deckHeight = 16;</code>
+     */
+    public Builder clearDeckHeight() {
+      deckHeight_ = java.util.Collections.emptyList();
+      bitField0_ = (bitField0_ & ~0x00008000);
+      onChanged();
+      return this;
+    }
+
+    private java.util.List<java.lang.Boolean> boolLiquidTank_ = java.util.Collections.emptyList();
+    private void ensureBoolLiquidTankIsMutable() {
+      if (!((bitField0_ & 0x00010000) == 0x00010000)) {
+        boolLiquidTank_ = new java.util.ArrayList<java.lang.Boolean>(boolLiquidTank_);
+        bitField0_ |= 0x00010000;
+       }
+    }
+    /**
+     * <pre>
+     *是否液压舱壁  区间excel中的数据
+     * </pre>
+     *
+     * <code>repeated bool boolLiquidTank = 17;</code>
+     */
+    public java.util.List<java.lang.Boolean>
+        getBoolLiquidTankList() {
+      return java.util.Collections.unmodifiableList(boolLiquidTank_);
+    }
+    /**
+     * <pre>
+     *是否液压舱壁  区间excel中的数据
+     * </pre>
+     *
+     * <code>repeated bool boolLiquidTank = 17;</code>
+     */
+    public int getBoolLiquidTankCount() {
+      return boolLiquidTank_.size();
+    }
+    /**
+     * <pre>
+     *是否液压舱壁  区间excel中的数据
+     * </pre>
+     *
+     * <code>repeated bool boolLiquidTank = 17;</code>
+     */
+    public boolean getBoolLiquidTank(int index) {
+      return boolLiquidTank_.get(index);
+    }
+    /**
+     * <pre>
+     *是否液压舱壁  区间excel中的数据
+     * </pre>
+     *
+     * <code>repeated bool boolLiquidTank = 17;</code>
+     */
+    public Builder setBoolLiquidTank(
+        int index, boolean value) {
+      ensureBoolLiquidTankIsMutable();
+      boolLiquidTank_.set(index, value);
+      onChanged();
+      return this;
+    }
+    /**
+     * <pre>
+     *是否液压舱壁  区间excel中的数据
+     * </pre>
+     *
+     * <code>repeated bool boolLiquidTank = 17;</code>
+     */
+    public Builder addBoolLiquidTank(boolean value) {
+      ensureBoolLiquidTankIsMutable();
+      boolLiquidTank_.add(value);
+      onChanged();
+      return this;
+    }
+    /**
+     * <pre>
+     *是否液压舱壁  区间excel中的数据
+     * </pre>
+     *
+     * <code>repeated bool boolLiquidTank = 17;</code>
+     */
+    public Builder addAllBoolLiquidTank(
+        java.lang.Iterable<? extends java.lang.Boolean> values) {
+      ensureBoolLiquidTankIsMutable();
+      com.google.protobuf.AbstractMessageLite.Builder.addAll(
+          values, boolLiquidTank_);
+      onChanged();
+      return this;
+    }
+    /**
+     * <pre>
+     *是否液压舱壁  区间excel中的数据
+     * </pre>
+     *
+     * <code>repeated bool boolLiquidTank = 17;</code>
+     */
+    public Builder clearBoolLiquidTank() {
+      boolLiquidTank_ = java.util.Collections.emptyList();
+      bitField0_ = (bitField0_ & ~0x00010000);
       onChanged();
       return this;
     }
