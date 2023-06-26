@@ -305,7 +305,7 @@ message SectionResponse{
   //剖面面积
   double area = 4;
   //上甲板模数
-  double module_uppper = 5;
+  double module_upper = 5;
   //底部模数
   double module_lower = 6;
 

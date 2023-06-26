@@ -23,7 +23,7 @@ public  final class SectionResponse extends
     interia0_ = 0D;
     zaxis0_ = 0D;
     area_ = 0D;
-    moduleUppper_ = 0D;
+    moduleUpper_ = 0D;
     moduleLower_ = 0D;
     profileFilePath_ = "";
   }
@@ -75,7 +75,7 @@ public  final class SectionResponse extends
           }
           case 41: {
 
-            moduleUppper_ = input.readDouble();
+            moduleUpper_ = input.readDouble();
             break;
           }
           case 49: {
@@ -165,17 +165,17 @@ public  final class SectionResponse extends
     return area_;
   }
 
-  public static final int MODULE_UPPPER_FIELD_NUMBER = 5;
-  private double moduleUppper_;
+  public static final int MODULE_UPPER_FIELD_NUMBER = 5;
+  private double moduleUpper_;
   /**
    * <pre>
    *上甲板模数
    * </pre>
    *
-   * <code>double module_uppper = 5;</code>
+   * <code>double module_upper = 5;</code>
    */
-  public double getModuleUppper() {
-    return moduleUppper_;
+  public double getModuleUpper() {
+    return moduleUpper_;
   }
 
   public static final int MODULE_LOWER_FIELD_NUMBER = 6;
@@ -257,8 +257,8 @@ public  final class SectionResponse extends
     if (area_ != 0D) {
       output.writeDouble(4, area_);
     }
-    if (moduleUppper_ != 0D) {
-      output.writeDouble(5, moduleUppper_);
+    if (moduleUpper_ != 0D) {
+      output.writeDouble(5, moduleUpper_);
     }
     if (moduleLower_ != 0D) {
       output.writeDouble(6, moduleLower_);
@@ -289,9 +289,9 @@ public  final class SectionResponse extends
       size += com.google.protobuf.CodedOutputStream
         .computeDoubleSize(4, area_);
     }
-    if (moduleUppper_ != 0D) {
+    if (moduleUpper_ != 0D) {
       size += com.google.protobuf.CodedOutputStream
-        .computeDoubleSize(5, moduleUppper_);
+        .computeDoubleSize(5, moduleUpper_);
     }
     if (moduleLower_ != 0D) {
       size += com.google.protobuf.CodedOutputStream
@@ -333,9 +333,9 @@ public  final class SectionResponse extends
         == java.lang.Double.doubleToLongBits(
             other.getArea()));
     result = result && (
-        java.lang.Double.doubleToLongBits(getModuleUppper())
+        java.lang.Double.doubleToLongBits(getModuleUpper())
         == java.lang.Double.doubleToLongBits(
-            other.getModuleUppper()));
+            other.getModuleUpper()));
     result = result && (
         java.lang.Double.doubleToLongBits(getModuleLower())
         == java.lang.Double.doubleToLongBits(
@@ -364,9 +364,9 @@ public  final class SectionResponse extends
     hash = (37 * hash) + AREA_FIELD_NUMBER;
     hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
         java.lang.Double.doubleToLongBits(getArea()));
-    hash = (37 * hash) + MODULE_UPPPER_FIELD_NUMBER;
+    hash = (37 * hash) + MODULE_UPPER_FIELD_NUMBER;
     hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
-        java.lang.Double.doubleToLongBits(getModuleUppper()));
+        java.lang.Double.doubleToLongBits(getModuleUpper()));
     hash = (37 * hash) + MODULE_LOWER_FIELD_NUMBER;
     hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
         java.lang.Double.doubleToLongBits(getModuleLower()));
@@ -502,7 +502,7 @@ public  final class SectionResponse extends
 
       area_ = 0D;
 
-      moduleUppper_ = 0D;
+      moduleUpper_ = 0D;
 
       moduleLower_ = 0D;
 
@@ -534,7 +534,7 @@ public  final class SectionResponse extends
       result.interia0_ = interia0_;
       result.zaxis0_ = zaxis0_;
       result.area_ = area_;
-      result.moduleUppper_ = moduleUppper_;
+      result.moduleUpper_ = moduleUpper_;
       result.moduleLower_ = moduleLower_;
       result.profileFilePath_ = profileFilePath_;
       onBuilt();
@@ -590,8 +590,8 @@ public  final class SectionResponse extends
       if (other.getArea() != 0D) {
         setArea(other.getArea());
       }
-      if (other.getModuleUppper() != 0D) {
-        setModuleUppper(other.getModuleUppper());
+      if (other.getModuleUpper() != 0D) {
+        setModuleUpper(other.getModuleUpper());
       }
       if (other.getModuleLower() != 0D) {
         setModuleLower(other.getModuleLower());
@@ -781,27 +781,27 @@ public  final class SectionResponse extends
       return this;
     }
 
-    private double moduleUppper_ ;
+    private double moduleUpper_ ;
     /**
      * <pre>
      *上甲板模数
      * </pre>
      *
-     * <code>double module_uppper = 5;</code>
+     * <code>double module_upper = 5;</code>
      */
-    public double getModuleUppper() {
-      return moduleUppper_;
+    public double getModuleUpper() {
+      return moduleUpper_;
     }
     /**
      * <pre>
      *上甲板模数
      * </pre>
      *
-     * <code>double module_uppper = 5;</code>
+     * <code>double module_upper = 5;</code>
      */
-    public Builder setModuleUppper(double value) {
+    public Builder setModuleUpper(double value) {
       
-      moduleUppper_ = value;
+      moduleUpper_ = value;
       onChanged();
       return this;
     }
@@ -810,11 +810,11 @@ public  final class SectionResponse extends
      *上甲板模数
      * </pre>
      *
-     * <code>double module_uppper = 5;</code>
+     * <code>double module_upper = 5;</code>
      */
-    public Builder clearModuleUppper() {
+    public Builder clearModuleUpper() {
       
-      moduleUppper_ = 0D;
+      moduleUpper_ = 0D;
       onChanged();
       return this;
     }

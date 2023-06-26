@@ -59,7 +59,7 @@ public class CalSection {
     //剖面面积
     private Double area ;
     //上甲板模数
-    private Double moduleUppper ;
+    private Double moduleUpper ;
     //底部模数
     private Double moduleLower ;
 

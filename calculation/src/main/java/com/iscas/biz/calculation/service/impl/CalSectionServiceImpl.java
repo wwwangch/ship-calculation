@@ -100,7 +100,7 @@ public class CalSectionServiceImpl implements CalSectionService {
             calSection.setCalSectionId(sectionId);
             calSectionMapper.deleteById(sectionId);
         }
-        calSection.setSectionId(calSectionDTO.getSectionId());
+        calSection.setCalSectionId(calSectionDTO.getSectionId());
         calSectionMapper.insert(calSection);
         return calSection;
     }

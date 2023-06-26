@@ -205,7 +205,7 @@ public class AlgorithmGrpc {
 //        calSection.setInteriaS(sectionResponse.getInteriaS());
         calSection.setZaxis0(sectionResponse.getZaxis0());
         calSection.setArea(sectionResponse.getArea());
-        calSection.setModuleUppper(sectionResponse.getModuleUppper());
+        calSection.setModuleUpper(sectionResponse.getModuleUpper());
         calSection.setModuleLower(sectionResponse.getModuleLower());
         calSection.setProfileFilePath(sectionResponse.getProfileFilePath());
         AlgorithmGrpc.section = true;

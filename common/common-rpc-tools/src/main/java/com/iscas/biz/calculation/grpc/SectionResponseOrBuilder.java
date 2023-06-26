@@ -49,9 +49,9 @@ public interface SectionResponseOrBuilder extends
    *上甲板模数
    * </pre>
    *
-   * <code>double module_uppper = 5;</code>
+   * <code>double module_upper = 5;</code>
    */
-  double getModuleUppper();
+  double getModuleUpper();
 
   /**
    * <pre>
