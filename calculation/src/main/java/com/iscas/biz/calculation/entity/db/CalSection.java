@@ -44,6 +44,7 @@ public class CalSection {
     private List<BulbFlat> bulbFlats;
     @TableField(typeHandler = JacksonTypeHandler.class)
     private List<TProfile> tProfiles;
+
     private boolean isHalfProfile;
 
     //初始静矩
@@ -65,6 +66,7 @@ public class CalSection {
     //解析后的剖面文件路径
     private String profileFilePath ;
 
+
 //    //中拱时的中和轴
 //    private Double zaxisH;
 //
@@ -82,5 +84,4 @@ public class CalSection {
 //
 //    //中垂时惯性矩
 //    private Double interiaS;
-
 }

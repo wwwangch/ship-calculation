@@ -1,11 +1,11 @@
 package com.iscas.biz.calculation.controller;
 
 import com.google.common.collect.ImmutableMap;
-import com.iscas.biz.calculation.entity.db.Project;
 import com.iscas.biz.calculation.entity.db.Section;
 import com.iscas.biz.calculation.service.SectionService;
 import com.iscas.biz.mp.table.service.TableDefinitionService;
 import com.iscas.common.tools.core.date.DateSafeUtils;
+import com.iscas.common.web.tools.json.JsonUtils;
 import com.iscas.templet.common.ResponseEntity;
 import com.iscas.templet.exception.BaseException;
 import com.iscas.templet.exception.ValidDataException;
@@ -16,6 +16,7 @@ import io.swagger.v3.oas.annotations.media.ExampleObject;
 import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.collections4.MapUtils;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
@@ -73,6 +74,16 @@ public class SectionController {
     @PostMapping(value = "/data")
     public ResponseEntity saveData(@RequestBody Map<String, Object> data) throws ValidDataException {
         ImmutableMap<String, Object> forceItem = ImmutableMap.of("create_time", DateSafeUtils.format(new Date()), "update_time", DateSafeUtils.format(new Date()), "project_id", data.get("project_id"));
+        if (MapUtils.isNotEmpty(data)) {
+            for (String key : data.keySet()) {
+                data.compute(key, (k, v) -> {
+                    if (v instanceof List) {
+                        v = JsonUtils.toJson(v);
+                    }
+                    return v;
+                });
+            }
+        }
         return tableDefinitionService.saveData(TABLE_IDENTITY, data, true, Section.class, forceItem);
     }
 
@@ -82,8 +93,17 @@ public class SectionController {
     @PutMapping("/data")
     public ResponseEntity editData(@RequestBody Map<String, Object> data) throws ValidDataException {
         ImmutableMap<String, Object> forceItem = ImmutableMap.of("update_time", DateSafeUtils.format(new Date()));
+        if (MapUtils.isNotEmpty(data)) {
+            for (String key : data.keySet()) {
+                data.compute(key, (k, v) -> {
+                    if (v instanceof List) {
+                        v = JsonUtils.toJson(v);
+                    }
+                    return v;
+                });
+            }
+        }
         return tableDefinitionService.saveData(TABLE_IDENTITY, data, false, Section.class, forceItem);
-
     }
 
 }

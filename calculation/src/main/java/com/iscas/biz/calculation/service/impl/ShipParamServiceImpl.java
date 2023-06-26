@@ -19,6 +19,7 @@ import com.iscas.templet.view.table.ComboboxData;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.collections4.CollectionUtils;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Date;
 import java.util.List;
@@ -50,6 +51,7 @@ public class ShipParamServiceImpl implements ShipParamService {
     }
 
     @Override
+    @Transactional(rollbackFor = Exception.class)
     public int save(Map<String, Object> shipParam) throws ValidDataException {
         checkParam(shipParam);
         QueryWrapper<ShipParam> queryWrapper = new QueryWrapper<>();

@@ -5,11 +5,7 @@ import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 import com.baomidou.mybatisplus.extension.handlers.JacksonTypeHandler;
-import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Data;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.multipart.MultipartFile;
 
 import java.util.Date;
 import java.util.List;
@@ -44,7 +40,6 @@ public class Section {
      */
     private String sectionFilePath;
     /**
-     *
      * 原先为：剖面构件跨距a  componentSpan
      * 修改为：构件跨距-龙骨跨距 每个的跨距
      */
@@ -69,14 +64,14 @@ public class Section {
     /**
      * 板架宽度
      */
-    private Double trusswidth;
+    private Double trussWidth;
     /**
      * 纵骨规格 每个的规格
      */
     @TableField(typeHandler = JacksonTypeHandler.class)
     private List<String> frGuige;
     /**
-     *板格厚度 每个板材的厚度
+     * 板格厚度 每个板材的厚度
      */
     @TableField(typeHandler = JacksonTypeHandler.class)
     private List<Double> plateThick;
@@ -85,10 +80,11 @@ public class Section {
      */
     private Double deviceWeight;
     /**
-     * 板格宽度
+     * 外底板宽度
      */
     @TableField(typeHandler = JacksonTypeHandler.class)
     private List<Double> girderWidth;
+
     /**
      * 材料类型  改为材料屈服极限
      */
@@ -106,13 +102,16 @@ public class Section {
     @TableField(typeHandler = JacksonTypeHandler.class)
     private List<Double> xiancethick;
 
-
-
     /**
      * 龙骨数量
      */
     private Integer numGirders;
 
+    public Boolean getIsCustomLoad() {
+        return isCustomLoad;
+    }
 
-
+    public void setIsCustomLoad(Boolean customLoad) {
+        isCustomLoad = customLoad;
+    }
 }

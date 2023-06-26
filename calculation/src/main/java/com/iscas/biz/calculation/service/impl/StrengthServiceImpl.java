@@ -2,12 +2,10 @@ package com.iscas.biz.calculation.service.impl;
 
 import com.alibaba.excel.EasyExcel;
 import com.alibaba.excel.annotation.ExcelProperty;
-import com.alibaba.excel.metadata.property.ColumnWidthProperty;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.conditions.update.UpdateWrapper;
 import com.iscas.base.biz.util.SpringUtils;
 import com.iscas.biz.calculation.entity.db.Moment;
-import com.iscas.biz.calculation.entity.db.Project;
 import com.iscas.biz.calculation.entity.db.Section;
 import com.iscas.biz.calculation.entity.db.sigma.*;
 import com.iscas.biz.calculation.entity.dto.sigma.Sigma1DTO;
@@ -15,14 +13,11 @@ import com.iscas.biz.calculation.grpc.service.AlgorithmGrpc;
 import com.iscas.biz.calculation.mapper.*;
 import com.iscas.biz.calculation.service.StrengthService;
 import com.iscas.biz.calculation.util.ExcelWidthStyleStrategy;
-import org.apache.commons.collections4.CollectionUtils;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 import java.io.IOException;
 import java.lang.reflect.Field;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -127,7 +122,7 @@ public class StrengthServiceImpl implements StrengthService {
         sigma1DTO.setXiancethick(section.getXiancethick());
         sigma1DTO.setGirderWidth(section.getGirderWidth());
         sigma1DTO.setPlateThick(section.getPlateThick());
-        sigma1DTO.setTrusswidth(section.getTrusswidth());
+        sigma1DTO.setTrusswidth(section.getTrussWidth());
         sigma1DTO.setKuaChang(section.getKuaChang());
         sigma1DTO.setFrGuige(section.getFrGuige());
         List<Sigma1> calSigma1List = algorithmGrpc.calSigma1(sigma1DTO);

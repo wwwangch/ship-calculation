@@ -17,6 +17,8 @@ public class Moment {
     private Integer projectId;
 
     private Integer sectionId;
+
+    private Boolean isCustomLoad;
     /**
      * 中拱-波浪弯矩
      */

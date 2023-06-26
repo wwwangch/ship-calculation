@@ -40,5 +40,9 @@ public class GrpcHolder {
             }
         }
         return calculationBlockingStub;
+//        ManagedChannel managedChannel = GrpcClientUtils.getManagedChannel(ip, port);
+//        calculationBlockingStub = CalculationGrpc.newBlockingStub(managedChannel);
+//        return calculationBlockingStub;
     }
+
 }

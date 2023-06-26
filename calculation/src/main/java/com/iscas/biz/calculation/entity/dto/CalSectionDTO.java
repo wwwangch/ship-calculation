@@ -1,5 +1,6 @@
 package com.iscas.biz.calculation.entity.dto;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Data;
 
 import java.util.List;
@@ -11,29 +12,28 @@ import java.util.List;
  */
 @Data
 public class CalSectionDTO {
-//    @JsonProperty(value = "project_id")
     private Integer projectId;
     private Integer sectionId;
-
     /**
      * 剖面文件路径
      */
+    @JsonProperty(value = "profile_file_path")
     private String profileFilePathOld;
 
     /**
      * 剖面文件名称
      */
-//    @JsonProperty(value = "loadingFilepath")
     private String profileFileName;
 
     /**
      * 肋位号
      */
     private Double ribNumber;
-    //球扁钢数组
-    private  List bulbFlats;
-    //T型材数组
-    private  List tProfiles;
     //是否半剖面
     private boolean isHalfProfile;
+
+    //球扁钢数组
+    private List bulbFlats;
+    //T型材数组
+    private List tProfiles;
 }
