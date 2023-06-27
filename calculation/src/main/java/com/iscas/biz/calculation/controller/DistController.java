@@ -66,8 +66,8 @@ public class DistController {
     }
 
     @Operation(summary = "计算", description = "计算,应力分布计算不需要传入参数")
-    @io.swagger.v3.oas.annotations.parameters.RequestBody(required = true, description = "新增的数据")
-    @PostMapping("/calculate/{projectId}/{sectionId}}")
+//    @io.swagger.v3.oas.annotations.parameters.RequestBody(required = true, description = "新增的数据")
+    @PostMapping("/calculate/{projectId}/{sectionId}")
     public ResponseEntity saveData(@PathVariable Integer projectId, @PathVariable Integer sectionId) throws ValidDataException {
         return ResponseEntity.ok(distService.calculateAndSave(projectId, sectionId));
     }

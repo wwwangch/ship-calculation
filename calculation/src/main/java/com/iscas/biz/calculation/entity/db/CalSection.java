@@ -40,10 +40,10 @@ public class CalSection {
      */
     private Double ribNumber;
 
-    @TableField(typeHandler = JacksonTypeHandler.class)
-    private List<BulbFlat> bulbFlats;
-    @TableField(typeHandler = JacksonTypeHandler.class)
-    private List<TProfile> tProfiles;
+//    @TableField(typeHandler = JacksonTypeHandler.class)
+//    private List<BulbFlat> bulbFlats;
+//    @TableField(typeHandler = JacksonTypeHandler.class)
+//    private List<TProfile> tProfiles;
 
     private boolean isHalfProfile;
 

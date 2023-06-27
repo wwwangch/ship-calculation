@@ -53,15 +53,14 @@ public class StrengthServiceImpl implements StrengthService {
         this.momentMapper = momentMapper;
     }
 
-//    @Override
-//    @Transactional(rollbackFor = Exception.class)
-//    public List<Sigma1> getSigma1(Integer projectId, Integer sectionId) {
-//        QueryWrapper<Sigma1> queryWrapper = new QueryWrapper();
-//        queryWrapper.eq("project_id", projectId);
-//        queryWrapper.eq("section_id", sectionId);
-//        List<Sigma1> sigma1List = sigma1Mapper.selectList(queryWrapper);
-//        return sigma1List;
-//    }
+    @Override
+    public List<Sigma1> getSigma1(Integer projectId, Integer sectionId) {
+        QueryWrapper<Sigma1> queryWrapper = new QueryWrapper();
+        queryWrapper.eq("project_id", projectId);
+        queryWrapper.eq("section_id", sectionId);
+        List<Sigma1> sigma1List = sigma1Mapper.selectList(queryWrapper);
+        return sigma1List;
+    }
 
     @Override
     public List<Sigma2> getSigma2(Integer projectId, Integer sectionId) {

@@ -34,17 +34,17 @@ public class StrengthController {
         this.strengthService = strengthService;
     }
 
-//    @Operation(summary = "sigma1查询表格数据,多条", description = "传项目id,剖面id，带计算结果返回")
-//    @GetMapping(value = "/sigma1/getData/{projectId}/{sectionId}")
-//    public TableResponse getSigma1Data(@PathVariable Integer projectId, @PathVariable Integer sectionId) {
-//        TableResponse tableResponse = new TableResponse();
-//        TableResponseData tableResponseData = new TableResponseData();
-//        List<Sigma1> sigma1List = strengthService.getSigma1(projectId, sectionId);
-//        tableResponseData.setRows((long) sigma1List.size());
-//        tableResponseData.setData(sigma1List);
-//        tableResponse.setValue(tableResponseData);
-//        return tableResponse;
-//    }
+    @Operation(summary = "sigma1查询表格数据,多条", description = "传项目id,剖面id，带计算结果返回")
+    @GetMapping(value = "/sigma1/getData/{projectId}/{sectionId}")
+    public TableResponse getSigma1Data(@PathVariable Integer projectId, @PathVariable Integer sectionId) {
+        TableResponse tableResponse = new TableResponse();
+        TableResponseData tableResponseData = new TableResponseData();
+        List<Sigma1> sigma1List = strengthService.getSigma1(projectId, sectionId);
+        tableResponseData.setRows((long) sigma1List.size());
+        tableResponseData.setData(sigma1List);
+        tableResponse.setValue(tableResponseData);
+        return tableResponse;
+    }
 
     @Operation(summary = "sigma2查询表格数据,仅一条", description = "传项目id,剖面id，带计算结果返回")
     @GetMapping(value = "/sigma2/getData/{projectId}/{sectionId}")
@@ -120,7 +120,7 @@ public class StrengthController {
     }
 
     @Operation(summary = "计算ShearingStress", description = "计算,传入参数")
-    @GetMapping(value = "/ShearingStress/calculate/{projectId}/{sectionId}")
+    @GetMapping(value = "/shearingStress/calculate/{projectId}/{sectionId}")
     public ResponseEntity calShearingStress(@PathVariable Integer projectId, @PathVariable Integer sectionId) throws IllegalAccessException {
         return ResponseEntity.ok(strengthService.calShearingStress(projectId,sectionId));
     }

@@ -192,8 +192,8 @@ public class AlgorithmGrpc {
         calSection.setProfileFilePathOld(calSectionDTO.getProfileFilePathOld());
         calSection.setProfileFileName(calSectionDTO.getProfileFileName());
         calSection.setRibNumber(calSectionDTO.getRibNumber());
-        calSection.setBulbFlats(calSectionDTO.getBulbFlats());
-        calSection.setTProfiles(calSectionDTO.getTProfiles());
+//        calSection.setBulbFlats(calSectionDTO.getBulbFlats());
+//        calSection.setTProfiles(calSectionDTO.getTProfiles());
         calSection.setHalfProfile(calSectionDTO.isHalfProfile());
         calSection.setFirstMoment0(sectionResponse.getFirstMoment0());
         calSection.setInteria0(sectionResponse.getInteria0());
@@ -410,12 +410,18 @@ public class AlgorithmGrpc {
     }
 
     public List<Sigma1> calSigma1(Sigma1DTO sigma1DTO) {
+        List old = sigma1DTO.getFrGuige();
+        List newFr = new java.util.ArrayList<>();
+        for (int i = 0; i < old.size(); i++) {
+            List tmp = (List) old.get(i);
+            newFr.add(tmp.get(1));
+        }
         Sigma1Response sigma1Response = grpcHolder.calculationBlockingStub().calSigma1(Sigma1Request.newBuilder()
                 .addAllKuaChang(Lists.newArrayList(sigma1DTO.getKuaChang()))
                 .setGirderDistance(sigma1DTO.getGirderDistance())
                 .setFrDistance(sigma1DTO.getFrDistance())
                 .setTrusswidth(sigma1DTO.getTrusswidth())
-                .addAllFrGuige(Lists.newArrayList(sigma1DTO.getFrGuige()).stream().map(Object::toString).collect(Collectors.toList()))
+                .addAllFrGuige(newFr)
                 .addAllPlateThick(Lists.newArrayList(sigma1DTO.getPlateThick()))
                 .setDeviceWeight(sigma1DTO.getDeviceWeight())
                 .addAllGirderWidth(Lists.newArrayList(sigma1DTO.getGirderWidth()))

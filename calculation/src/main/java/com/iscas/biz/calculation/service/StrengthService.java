@@ -7,7 +7,7 @@ import java.io.IOException;
 import java.util.List;
 
 public interface StrengthService {
-//    List<Sigma1> getSigma1(Integer projectId, Integer sectionId);
+    List<Sigma1> getSigma1(Integer projectId, Integer sectionId);
 
     List<Sigma2> getSigma2(Integer projectId, Integer sectionId);
 
