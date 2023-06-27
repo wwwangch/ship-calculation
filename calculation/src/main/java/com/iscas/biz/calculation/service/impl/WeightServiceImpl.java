@@ -12,6 +12,7 @@ import com.iscas.biz.calculation.entity.dto.BuoyancyParamExcel;
 import com.iscas.biz.calculation.entity.dto.WeightDTO;
 import com.iscas.biz.calculation.grpc.service.AlgorithmGrpc;
 import com.iscas.biz.calculation.mapper.ProjectMapper;
+import com.iscas.biz.calculation.mapper.ShipParamMapper;
 import com.iscas.biz.calculation.mapper.WeightMapper;
 import com.iscas.biz.calculation.service.WeightService;
 import lombok.extern.slf4j.Slf4j;
@@ -36,10 +37,13 @@ public class WeightServiceImpl implements WeightService {
 
     private final ProjectMapper projectMapper;
 
-    public WeightServiceImpl(AlgorithmGrpc algorithmGrpc, WeightMapper weightMapper, ProjectMapper projectMapper) {
+    private final ShipParamMapper shipParamMapper;
+
+    public WeightServiceImpl(AlgorithmGrpc algorithmGrpc, WeightMapper weightMapper, ProjectMapper projectMapper, ShipParamMapper shipParamMapper) {
         this.algorithmGrpc = algorithmGrpc;
         this.weightMapper = weightMapper;
         this.projectMapper = projectMapper;
+        this.shipParamMapper = shipParamMapper;
     }
 
     @Override
@@ -49,7 +53,12 @@ public class WeightServiceImpl implements WeightService {
         if (null == projectId || null == projectMapper.selectById(projectId)) {
             return null;
         }
-        Weight calledWeight = algorithmGrpc.callWeight(weight);
+        //首先初始化船舶参数
+        QueryWrapper<ShipParam> shipParamQueryWrapper = new QueryWrapper<>();
+        shipParamQueryWrapper.eq("project_id", projectId);
+        ShipParam shipParam = shipParamMapper.selectOne(shipParamQueryWrapper);
+
+        Weight calledWeight = algorithmGrpc.callWeight(shipParam,weight);
         Weight dbWeight = listByProjectId(projectId);
         if (null != dbWeight) {
             Integer weightId = dbWeight.getWeightId();

@@ -110,7 +110,14 @@ public class AlgorithmGrpc {
         return buoyancyResponse;
     }
 
-    public Weight callWeight(WeightDTO weightDTO) {
+    public Weight callWeight(ShipParam shipParamTmp,WeightDTO weightDTO) {
+//        if (Objects.equals(shipParamTmp.getProjectId(), AlgorithmGrpc.currentProjectId)) {
+            ShipParamResponse tmp = callShipParam(projectMapper.selectById(shipParamTmp.getProjectId()), shipParamTmp);
+            if (0 != tmp.getCode()) {
+                throw new RuntimeException("船舶参数配置失败:" + tmp.getMessage());
+            }
+//        }
+
         Integer projectId = weightDTO.getProjectId();
         if (!Objects.equals(projectId, AlgorithmGrpc.currentProjectId)) {
             QueryWrapper<ShipParam> queryWrapper = new QueryWrapper<>();
