@@ -5,6 +5,7 @@ import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 import com.baomidou.mybatisplus.extension.handlers.JacksonTypeHandler;
+import com.iscas.biz.calculation.enums.CheckType;
 import lombok.Data;
 
 import java.util.List;
@@ -21,6 +22,11 @@ public class WaveLoad {
     private Integer waveLoadId;
 
     private Integer projectId;
+
+    /**
+     * 所属校验类型
+     */
+    private CheckType checkType;
 
     private Double waveHeight;
 

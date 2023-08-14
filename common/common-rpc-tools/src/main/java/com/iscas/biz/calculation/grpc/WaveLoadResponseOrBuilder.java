@@ -256,4 +256,13 @@ public interface WaveLoadResponseOrBuilder extends
    * <code>repeated double mwvecMS = 10;</code>
    */
   double getMwvecMS(int index);
+
+  /**
+   * <pre>
+   *0-正常 1-异常[增0731]
+   * </pre>
+   *
+   * <code>int32 code = 11;</code>
+   */
+  int getCode();
 }

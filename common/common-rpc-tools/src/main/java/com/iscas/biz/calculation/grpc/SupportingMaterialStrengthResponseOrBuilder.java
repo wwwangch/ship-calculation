@@ -559,4 +559,13 @@ public interface SupportingMaterialStrengthResponseOrBuilder extends
    * <code>repeated double Shear_max_el = 22;</code>
    */
   double getShearMaxEl(int index);
+
+  /**
+   * <pre>
+   *0-正常 1-异常
+   * </pre>
+   *
+   * <code>int32 code = 23;</code>
+   */
+  int getCode();
 }

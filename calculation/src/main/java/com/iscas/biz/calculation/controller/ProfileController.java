@@ -21,6 +21,7 @@ import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.io.IOException;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
@@ -147,5 +148,15 @@ public class ProfileController {
             throws ValidDataException {
         ImmutableMap<String, Object> forceItem = ImmutableMap.of("update_time", DateSafeUtils.format(new Date()));
         return tableDefinitionService.saveData(T_TABLE_IDENTITY, data, false, TProfile.class, forceItem);
+    }
+
+    @Operation(summary = "模板下载", description = "下载模板文件,T型材传t，球扁钢传b")
+    @GetMapping("/template/{type}")
+    public void downloadTemplates(@PathVariable(name = "type") String type) throws IOException {
+        if ("t".equals(type)) {
+            tProfileService.downloadTemplate();
+        } else {
+            bulbFlatService.downloadTemplate();
+        }
     }
 }

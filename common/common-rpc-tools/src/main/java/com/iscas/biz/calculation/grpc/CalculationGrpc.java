@@ -514,6 +514,68 @@ public final class CalculationGrpc {
     return getCalSupportingMaterialStrengthMethod;
   }
 
+  private static volatile io.grpc.MethodDescriptor<com.iscas.biz.calculation.grpc.BulbRequest,
+      com.iscas.biz.calculation.grpc.BulbResponse> getCalBulbPropertyMethod;
+
+  @io.grpc.stub.annotations.RpcMethod(
+      fullMethodName = SERVICE_NAME + '/' + "calBulbProperty",
+      requestType = com.iscas.biz.calculation.grpc.BulbRequest.class,
+      responseType = com.iscas.biz.calculation.grpc.BulbResponse.class,
+      methodType = io.grpc.MethodDescriptor.MethodType.UNARY)
+  public static io.grpc.MethodDescriptor<com.iscas.biz.calculation.grpc.BulbRequest,
+      com.iscas.biz.calculation.grpc.BulbResponse> getCalBulbPropertyMethod() {
+    io.grpc.MethodDescriptor<com.iscas.biz.calculation.grpc.BulbRequest, com.iscas.biz.calculation.grpc.BulbResponse> getCalBulbPropertyMethod;
+    if ((getCalBulbPropertyMethod = CalculationGrpc.getCalBulbPropertyMethod) == null) {
+      synchronized (CalculationGrpc.class) {
+        if ((getCalBulbPropertyMethod = CalculationGrpc.getCalBulbPropertyMethod) == null) {
+          CalculationGrpc.getCalBulbPropertyMethod = getCalBulbPropertyMethod =
+              io.grpc.MethodDescriptor.<com.iscas.biz.calculation.grpc.BulbRequest, com.iscas.biz.calculation.grpc.BulbResponse>newBuilder()
+              .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
+              .setFullMethodName(generateFullMethodName(SERVICE_NAME, "calBulbProperty"))
+              .setSampledToLocalTracing(true)
+              .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  com.iscas.biz.calculation.grpc.BulbRequest.getDefaultInstance()))
+              .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  com.iscas.biz.calculation.grpc.BulbResponse.getDefaultInstance()))
+              .setSchemaDescriptor(new CalculationMethodDescriptorSupplier("calBulbProperty"))
+              .build();
+        }
+      }
+    }
+    return getCalBulbPropertyMethod;
+  }
+
+  private static volatile io.grpc.MethodDescriptor<com.iscas.biz.calculation.grpc.TProfileRequest,
+      com.iscas.biz.calculation.grpc.TProfileResponse> getCalTProfilePropertyMethod;
+
+  @io.grpc.stub.annotations.RpcMethod(
+      fullMethodName = SERVICE_NAME + '/' + "calTProfileProperty",
+      requestType = com.iscas.biz.calculation.grpc.TProfileRequest.class,
+      responseType = com.iscas.biz.calculation.grpc.TProfileResponse.class,
+      methodType = io.grpc.MethodDescriptor.MethodType.UNARY)
+  public static io.grpc.MethodDescriptor<com.iscas.biz.calculation.grpc.TProfileRequest,
+      com.iscas.biz.calculation.grpc.TProfileResponse> getCalTProfilePropertyMethod() {
+    io.grpc.MethodDescriptor<com.iscas.biz.calculation.grpc.TProfileRequest, com.iscas.biz.calculation.grpc.TProfileResponse> getCalTProfilePropertyMethod;
+    if ((getCalTProfilePropertyMethod = CalculationGrpc.getCalTProfilePropertyMethod) == null) {
+      synchronized (CalculationGrpc.class) {
+        if ((getCalTProfilePropertyMethod = CalculationGrpc.getCalTProfilePropertyMethod) == null) {
+          CalculationGrpc.getCalTProfilePropertyMethod = getCalTProfilePropertyMethod =
+              io.grpc.MethodDescriptor.<com.iscas.biz.calculation.grpc.TProfileRequest, com.iscas.biz.calculation.grpc.TProfileResponse>newBuilder()
+              .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
+              .setFullMethodName(generateFullMethodName(SERVICE_NAME, "calTProfileProperty"))
+              .setSampledToLocalTracing(true)
+              .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  com.iscas.biz.calculation.grpc.TProfileRequest.getDefaultInstance()))
+              .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  com.iscas.biz.calculation.grpc.TProfileResponse.getDefaultInstance()))
+              .setSchemaDescriptor(new CalculationMethodDescriptorSupplier("calTProfileProperty"))
+              .build();
+        }
+      }
+    }
+    return getCalTProfilePropertyMethod;
+  }
+
   /**
    * Creates a new async stub that supports all call types for the service
    */
@@ -711,6 +773,26 @@ public final class CalculationGrpc {
     default void calSupportingMaterialStrength(com.iscas.biz.calculation.grpc.SupportingMaterialStrengthRequest request,
         io.grpc.stub.StreamObserver<com.iscas.biz.calculation.grpc.SupportingMaterialStrengthResponse> responseObserver) {
       io.grpc.stub.ServerCalls.asyncUnimplementedUnaryCall(getCalSupportingMaterialStrengthMethod(), responseObserver);
+    }
+
+    /**
+     * <pre>
+     *球扁钢计算
+     * </pre>
+     */
+    default void calBulbProperty(com.iscas.biz.calculation.grpc.BulbRequest request,
+        io.grpc.stub.StreamObserver<com.iscas.biz.calculation.grpc.BulbResponse> responseObserver) {
+      io.grpc.stub.ServerCalls.asyncUnimplementedUnaryCall(getCalBulbPropertyMethod(), responseObserver);
+    }
+
+    /**
+     * <pre>
+     *T型材计算
+     * </pre>
+     */
+    default void calTProfileProperty(com.iscas.biz.calculation.grpc.TProfileRequest request,
+        io.grpc.stub.StreamObserver<com.iscas.biz.calculation.grpc.TProfileResponse> responseObserver) {
+      io.grpc.stub.ServerCalls.asyncUnimplementedUnaryCall(getCalTProfilePropertyMethod(), responseObserver);
     }
   }
 
@@ -910,6 +992,28 @@ public final class CalculationGrpc {
       io.grpc.stub.ClientCalls.asyncUnaryCall(
           getChannel().newCall(getCalSupportingMaterialStrengthMethod(), getCallOptions()), request, responseObserver);
     }
+
+    /**
+     * <pre>
+     *球扁钢计算
+     * </pre>
+     */
+    public void calBulbProperty(com.iscas.biz.calculation.grpc.BulbRequest request,
+        io.grpc.stub.StreamObserver<com.iscas.biz.calculation.grpc.BulbResponse> responseObserver) {
+      io.grpc.stub.ClientCalls.asyncUnaryCall(
+          getChannel().newCall(getCalBulbPropertyMethod(), getCallOptions()), request, responseObserver);
+    }
+
+    /**
+     * <pre>
+     *T型材计算
+     * </pre>
+     */
+    public void calTProfileProperty(com.iscas.biz.calculation.grpc.TProfileRequest request,
+        io.grpc.stub.StreamObserver<com.iscas.biz.calculation.grpc.TProfileResponse> responseObserver) {
+      io.grpc.stub.ClientCalls.asyncUnaryCall(
+          getChannel().newCall(getCalTProfilePropertyMethod(), getCallOptions()), request, responseObserver);
+    }
   }
 
   /**
@@ -1077,6 +1181,26 @@ public final class CalculationGrpc {
     public com.iscas.biz.calculation.grpc.SupportingMaterialStrengthResponse calSupportingMaterialStrength(com.iscas.biz.calculation.grpc.SupportingMaterialStrengthRequest request) {
       return io.grpc.stub.ClientCalls.blockingUnaryCall(
           getChannel(), getCalSupportingMaterialStrengthMethod(), getCallOptions(), request);
+    }
+
+    /**
+     * <pre>
+     *球扁钢计算
+     * </pre>
+     */
+    public com.iscas.biz.calculation.grpc.BulbResponse calBulbProperty(com.iscas.biz.calculation.grpc.BulbRequest request) {
+      return io.grpc.stub.ClientCalls.blockingUnaryCall(
+          getChannel(), getCalBulbPropertyMethod(), getCallOptions(), request);
+    }
+
+    /**
+     * <pre>
+     *T型材计算
+     * </pre>
+     */
+    public com.iscas.biz.calculation.grpc.TProfileResponse calTProfileProperty(com.iscas.biz.calculation.grpc.TProfileRequest request) {
+      return io.grpc.stub.ClientCalls.blockingUnaryCall(
+          getChannel(), getCalTProfilePropertyMethod(), getCallOptions(), request);
     }
   }
 
@@ -1262,6 +1386,28 @@ public final class CalculationGrpc {
       return io.grpc.stub.ClientCalls.futureUnaryCall(
           getChannel().newCall(getCalSupportingMaterialStrengthMethod(), getCallOptions()), request);
     }
+
+    /**
+     * <pre>
+     *球扁钢计算
+     * </pre>
+     */
+    public com.google.common.util.concurrent.ListenableFuture<com.iscas.biz.calculation.grpc.BulbResponse> calBulbProperty(
+        com.iscas.biz.calculation.grpc.BulbRequest request) {
+      return io.grpc.stub.ClientCalls.futureUnaryCall(
+          getChannel().newCall(getCalBulbPropertyMethod(), getCallOptions()), request);
+    }
+
+    /**
+     * <pre>
+     *T型材计算
+     * </pre>
+     */
+    public com.google.common.util.concurrent.ListenableFuture<com.iscas.biz.calculation.grpc.TProfileResponse> calTProfileProperty(
+        com.iscas.biz.calculation.grpc.TProfileRequest request) {
+      return io.grpc.stub.ClientCalls.futureUnaryCall(
+          getChannel().newCall(getCalTProfilePropertyMethod(), getCallOptions()), request);
+    }
   }
 
   private static final int METHODID_SHIP_PARAM = 0;
@@ -1280,6 +1426,8 @@ public final class CalculationGrpc {
   private static final int METHODID_CAL_ADDITIONAL_FORCE_HEAD = 13;
   private static final int METHODID_CAL_COMPARTMENT_BULKHEAD_SHEET = 14;
   private static final int METHODID_CAL_SUPPORTING_MATERIAL_STRENGTH = 15;
+  private static final int METHODID_CAL_BULB_PROPERTY = 16;
+  private static final int METHODID_CAL_TPROFILE_PROPERTY = 17;
 
   private static final class MethodHandlers<Req, Resp> implements
       io.grpc.stub.ServerCalls.UnaryMethod<Req, Resp>,
@@ -1361,6 +1509,14 @@ public final class CalculationGrpc {
         case METHODID_CAL_SUPPORTING_MATERIAL_STRENGTH:
           serviceImpl.calSupportingMaterialStrength((com.iscas.biz.calculation.grpc.SupportingMaterialStrengthRequest) request,
               (io.grpc.stub.StreamObserver<com.iscas.biz.calculation.grpc.SupportingMaterialStrengthResponse>) responseObserver);
+          break;
+        case METHODID_CAL_BULB_PROPERTY:
+          serviceImpl.calBulbProperty((com.iscas.biz.calculation.grpc.BulbRequest) request,
+              (io.grpc.stub.StreamObserver<com.iscas.biz.calculation.grpc.BulbResponse>) responseObserver);
+          break;
+        case METHODID_CAL_TPROFILE_PROPERTY:
+          serviceImpl.calTProfileProperty((com.iscas.biz.calculation.grpc.TProfileRequest) request,
+              (io.grpc.stub.StreamObserver<com.iscas.biz.calculation.grpc.TProfileResponse>) responseObserver);
           break;
         default:
           throw new AssertionError();
@@ -1492,6 +1648,20 @@ public final class CalculationGrpc {
               com.iscas.biz.calculation.grpc.SupportingMaterialStrengthRequest,
               com.iscas.biz.calculation.grpc.SupportingMaterialStrengthResponse>(
                 service, METHODID_CAL_SUPPORTING_MATERIAL_STRENGTH)))
+        .addMethod(
+          getCalBulbPropertyMethod(),
+          io.grpc.stub.ServerCalls.asyncUnaryCall(
+            new MethodHandlers<
+              com.iscas.biz.calculation.grpc.BulbRequest,
+              com.iscas.biz.calculation.grpc.BulbResponse>(
+                service, METHODID_CAL_BULB_PROPERTY)))
+        .addMethod(
+          getCalTProfilePropertyMethod(),
+          io.grpc.stub.ServerCalls.asyncUnaryCall(
+            new MethodHandlers<
+              com.iscas.biz.calculation.grpc.TProfileRequest,
+              com.iscas.biz.calculation.grpc.TProfileResponse>(
+                service, METHODID_CAL_TPROFILE_PROPERTY)))
         .build();
   }
 
@@ -1556,6 +1726,8 @@ public final class CalculationGrpc {
               .addMethod(getCalAdditionalForceHeadMethod())
               .addMethod(getCalCompartmentBulkheadSheetMethod())
               .addMethod(getCalSupportingMaterialStrengthMethod())
+              .addMethod(getCalBulbPropertyMethod())
+              .addMethod(getCalTProfilePropertyMethod())
               .build();
         }
       }

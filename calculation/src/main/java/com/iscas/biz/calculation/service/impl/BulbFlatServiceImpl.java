@@ -3,14 +3,19 @@ package com.iscas.biz.calculation.service.impl;
 import com.alibaba.excel.EasyExcel;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.google.common.collect.Lists;
+import com.iscas.base.biz.util.SpringUtils;
 import com.iscas.biz.calculation.entity.db.BulbFlat;
 import com.iscas.biz.calculation.mapper.BulbFlatMapper;
 import com.iscas.biz.calculation.service.BulbFlatService;
+import com.iscas.common.web.tools.file.FileDownloadUtils;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.collections4.CollectionUtils;
 import org.springframework.stereotype.Service;
+import org.springframework.util.ResourceUtils;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.List;
 
 /**
@@ -51,5 +56,13 @@ public class BulbFlatServiceImpl extends ServiceImpl<BulbFlatMapper, BulbFlat> i
             this.saveBatch(bulbFlats);
         }
         return bulbFlats.size();
+    }
+
+    /**
+     * 下载球扁钢模板
+     */
+    @Override
+    public void downloadTemplate() throws IOException {
+        FileDownloadUtils.downFile(SpringUtils.getRequest(), SpringUtils.getResponse(), ResourceUtils.getFile("classpath:profile/templates/BulbFlat.xlsx"), "球扁钢模板.xlsx");
     }
 }

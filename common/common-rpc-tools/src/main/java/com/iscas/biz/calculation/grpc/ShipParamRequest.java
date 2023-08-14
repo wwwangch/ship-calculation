@@ -29,6 +29,8 @@ public  final class ShipParamRequest extends
     portraitGravity_ = 0D;
     principle_ = 0;
     type_ = "";
+    vmax_ = 0D;
+    speed_ = 0D;
   }
 
   @java.lang.Override
@@ -105,6 +107,16 @@ public  final class ShipParamRequest extends
             java.lang.String s = input.readStringRequireUtf8();
 
             type_ = s;
+            break;
+          }
+          case 97: {
+
+            vmax_ = input.readDouble();
+            break;
+          }
+          case 105: {
+
+            speed_ = input.readDouble();
             break;
           }
         }
@@ -289,6 +301,32 @@ public  final class ShipParamRequest extends
     }
   }
 
+  public static final int VMAX_FIELD_NUMBER = 12;
+  private double vmax_;
+  /**
+   * <pre>
+   *静水中最大航数[增0728]
+   * </pre>
+   *
+   * <code>double vmax = 12;</code>
+   */
+  public double getVmax() {
+    return vmax_;
+  }
+
+  public static final int SPEED_FIELD_NUMBER = 13;
+  private double speed_;
+  /**
+   * <pre>
+   *航速[增0728]
+   * </pre>
+   *
+   * <code>double speed = 13;</code>
+   */
+  public double getSpeed() {
+    return speed_;
+  }
+
   private byte memoizedIsInitialized = -1;
   public final boolean isInitialized() {
     byte isInitialized = memoizedIsInitialized;
@@ -330,6 +368,12 @@ public  final class ShipParamRequest extends
     }
     if (!getTypeBytes().isEmpty()) {
       com.google.protobuf.GeneratedMessageV3.writeString(output, 11, type_);
+    }
+    if (vmax_ != 0D) {
+      output.writeDouble(12, vmax_);
+    }
+    if (speed_ != 0D) {
+      output.writeDouble(13, speed_);
     }
   }
 
@@ -376,6 +420,14 @@ public  final class ShipParamRequest extends
     }
     if (!getTypeBytes().isEmpty()) {
       size += com.google.protobuf.GeneratedMessageV3.computeStringSize(11, type_);
+    }
+    if (vmax_ != 0D) {
+      size += com.google.protobuf.CodedOutputStream
+        .computeDoubleSize(12, vmax_);
+    }
+    if (speed_ != 0D) {
+      size += com.google.protobuf.CodedOutputStream
+        .computeDoubleSize(13, speed_);
     }
     memoizedSize = size;
     return size;
@@ -425,6 +477,14 @@ public  final class ShipParamRequest extends
         == other.getPrinciple());
     result = result && getType()
         .equals(other.getType());
+    result = result && (
+        java.lang.Double.doubleToLongBits(getVmax())
+        == java.lang.Double.doubleToLongBits(
+            other.getVmax()));
+    result = result && (
+        java.lang.Double.doubleToLongBits(getSpeed())
+        == java.lang.Double.doubleToLongBits(
+            other.getSpeed()));
     return result;
   }
 
@@ -461,6 +521,12 @@ public  final class ShipParamRequest extends
     hash = (53 * hash) + getPrinciple();
     hash = (37 * hash) + TYPE_FIELD_NUMBER;
     hash = (53 * hash) + getType().hashCode();
+    hash = (37 * hash) + VMAX_FIELD_NUMBER;
+    hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
+        java.lang.Double.doubleToLongBits(getVmax()));
+    hash = (37 * hash) + SPEED_FIELD_NUMBER;
+    hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
+        java.lang.Double.doubleToLongBits(getSpeed()));
     hash = (29 * hash) + unknownFields.hashCode();
     memoizedHashCode = hash;
     return hash;
@@ -603,6 +669,10 @@ public  final class ShipParamRequest extends
 
       type_ = "";
 
+      vmax_ = 0D;
+
+      speed_ = 0D;
+
       return this;
     }
 
@@ -635,6 +705,8 @@ public  final class ShipParamRequest extends
       result.portraitGravity_ = portraitGravity_;
       result.principle_ = principle_;
       result.type_ = type_;
+      result.vmax_ = vmax_;
+      result.speed_ = speed_;
       onBuilt();
       return result;
     }
@@ -706,6 +778,12 @@ public  final class ShipParamRequest extends
       if (!other.getType().isEmpty()) {
         type_ = other.type_;
         onChanged();
+      }
+      if (other.getVmax() != 0D) {
+        setVmax(other.getVmax());
+      }
+      if (other.getSpeed() != 0D) {
+        setSpeed(other.getSpeed());
       }
       onChanged();
       return this;
@@ -1160,6 +1238,82 @@ public  final class ShipParamRequest extends
   checkByteStringIsUtf8(value);
       
       type_ = value;
+      onChanged();
+      return this;
+    }
+
+    private double vmax_ ;
+    /**
+     * <pre>
+     *静水中最大航数[增0728]
+     * </pre>
+     *
+     * <code>double vmax = 12;</code>
+     */
+    public double getVmax() {
+      return vmax_;
+    }
+    /**
+     * <pre>
+     *静水中最大航数[增0728]
+     * </pre>
+     *
+     * <code>double vmax = 12;</code>
+     */
+    public Builder setVmax(double value) {
+      
+      vmax_ = value;
+      onChanged();
+      return this;
+    }
+    /**
+     * <pre>
+     *静水中最大航数[增0728]
+     * </pre>
+     *
+     * <code>double vmax = 12;</code>
+     */
+    public Builder clearVmax() {
+      
+      vmax_ = 0D;
+      onChanged();
+      return this;
+    }
+
+    private double speed_ ;
+    /**
+     * <pre>
+     *航速[增0728]
+     * </pre>
+     *
+     * <code>double speed = 13;</code>
+     */
+    public double getSpeed() {
+      return speed_;
+    }
+    /**
+     * <pre>
+     *航速[增0728]
+     * </pre>
+     *
+     * <code>double speed = 13;</code>
+     */
+    public Builder setSpeed(double value) {
+      
+      speed_ = value;
+      onChanged();
+      return this;
+    }
+    /**
+     * <pre>
+     *航速[增0728]
+     * </pre>
+     *
+     * <code>double speed = 13;</code>
+     */
+    public Builder clearSpeed() {
+      
+      speed_ = 0D;
       onChanged();
       return this;
     }

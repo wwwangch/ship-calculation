@@ -266,4 +266,13 @@ public interface CompartmentBulkheadSheetResponseOrBuilder extends
    * <code>repeated double shearAllow = 10;</code>
    */
   double getShearAllow(int index);
+
+  /**
+   * <pre>
+   *0-正常 1-异常
+   * </pre>
+   *
+   * <code>int32 code = 11;</code>
+   */
+  int getCode();
 }

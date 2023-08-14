@@ -1,14 +1,9 @@
 package com.iscas.biz.calculation.entity.db;
 
 import com.baomidou.mybatisplus.annotation.IdType;
-import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
-import com.baomidou.mybatisplus.extension.handlers.JacksonTypeHandler;
 import lombok.Data;
-import com.iscas.biz.calculation.grpc.BulbFlat;
-import com.iscas.biz.calculation.grpc.TProfile;
-import java.util.List;
 
 /**
  * @author ch w
@@ -57,14 +52,14 @@ public class CalSection {
     private Double zaxis0;
 
     //剖面面积
-    private Double area ;
+    private Double area;
     //上甲板模数
-    private Double moduleUpper ;
+    private Double moduleUpper;
     //底部模数
-    private Double moduleLower ;
+    private Double moduleLower;
 
     //解析后的剖面文件路径
-    private String profileFilePath ;
+    private String profileFilePath;
 
 
 //    //中拱时的中和轴

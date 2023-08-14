@@ -684,7 +684,7 @@ public  final class Sigma1Request extends
       output.writeUInt32NoTag(kuaChangMemoizedSerializedSize);
     }
     for (int i = 0; i < kuaChang_.size(); i++) {
-      output.writeDoubleNoTag(kuaChang_.get(i).doubleValue());
+      output.writeDoubleNoTag(kuaChang_.get(i));
     }
     if (girderDistance_ != 0D) {
       output.writeDouble(2, girderDistance_);
@@ -703,7 +703,7 @@ public  final class Sigma1Request extends
       output.writeUInt32NoTag(plateThickMemoizedSerializedSize);
     }
     for (int i = 0; i < plateThick_.size(); i++) {
-      output.writeDoubleNoTag(plateThick_.get(i).doubleValue());
+      output.writeDoubleNoTag(plateThick_.get(i));
     }
     if (deviceWeight_ != 0D) {
       output.writeDouble(7, deviceWeight_);
@@ -713,7 +713,7 @@ public  final class Sigma1Request extends
       output.writeUInt32NoTag(girderWidthMemoizedSerializedSize);
     }
     for (int i = 0; i < girderWidth_.size(); i++) {
-      output.writeDoubleNoTag(girderWidth_.get(i).doubleValue());
+      output.writeDoubleNoTag(girderWidth_.get(i));
     }
     if (materialYieldLimit_ != 0D) {
       output.writeDouble(9, materialYieldLimit_);

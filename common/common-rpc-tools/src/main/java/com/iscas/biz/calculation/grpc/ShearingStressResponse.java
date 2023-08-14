@@ -16,6 +16,7 @@ public  final class ShearingStressResponse extends
   }
   private ShearingStressResponse() {
     shearingStress_ = java.util.Collections.emptyList();
+    code_ = 0;
   }
 
   @java.lang.Override
@@ -52,6 +53,11 @@ public  final class ShearingStressResponse extends
                 input.readMessage(com.iscas.biz.calculation.grpc.ShearingStressEntity.parser(), extensionRegistry));
             break;
           }
+          case 16: {
+
+            code_ = input.readInt32();
+            break;
+          }
         }
       }
     } catch (com.google.protobuf.InvalidProtocolBufferException e) {
@@ -78,6 +84,7 @@ public  final class ShearingStressResponse extends
             com.iscas.biz.calculation.grpc.ShearingStressResponse.class, com.iscas.biz.calculation.grpc.ShearingStressResponse.Builder.class);
   }
 
+  private int bitField0_;
   public static final int SHEARINGSTRESS_FIELD_NUMBER = 1;
   private java.util.List<com.iscas.biz.calculation.grpc.ShearingStressEntity> shearingStress_;
   /**
@@ -113,6 +120,19 @@ public  final class ShearingStressResponse extends
     return shearingStress_.get(index);
   }
 
+  public static final int CODE_FIELD_NUMBER = 2;
+  private int code_;
+  /**
+   * <pre>
+   *0-正常 1-异常
+   * </pre>
+   *
+   * <code>int32 code = 2;</code>
+   */
+  public int getCode() {
+    return code_;
+  }
+
   private byte memoizedIsInitialized = -1;
   public final boolean isInitialized() {
     byte isInitialized = memoizedIsInitialized;
@@ -128,6 +148,9 @@ public  final class ShearingStressResponse extends
     for (int i = 0; i < shearingStress_.size(); i++) {
       output.writeMessage(1, shearingStress_.get(i));
     }
+    if (code_ != 0) {
+      output.writeInt32(2, code_);
+    }
   }
 
   public int getSerializedSize() {
@@ -138,6 +161,10 @@ public  final class ShearingStressResponse extends
     for (int i = 0; i < shearingStress_.size(); i++) {
       size += com.google.protobuf.CodedOutputStream
         .computeMessageSize(1, shearingStress_.get(i));
+    }
+    if (code_ != 0) {
+      size += com.google.protobuf.CodedOutputStream
+        .computeInt32Size(2, code_);
     }
     memoizedSize = size;
     return size;
@@ -157,6 +184,8 @@ public  final class ShearingStressResponse extends
     boolean result = true;
     result = result && getShearingStressList()
         .equals(other.getShearingStressList());
+    result = result && (getCode()
+        == other.getCode());
     return result;
   }
 
@@ -171,6 +200,8 @@ public  final class ShearingStressResponse extends
       hash = (37 * hash) + SHEARINGSTRESS_FIELD_NUMBER;
       hash = (53 * hash) + getShearingStressList().hashCode();
     }
+    hash = (37 * hash) + CODE_FIELD_NUMBER;
+    hash = (53 * hash) + getCode();
     hash = (29 * hash) + unknownFields.hashCode();
     memoizedHashCode = hash;
     return hash;
@@ -296,6 +327,8 @@ public  final class ShearingStressResponse extends
       } else {
         shearingStressBuilder_.clear();
       }
+      code_ = 0;
+
       return this;
     }
 
@@ -319,6 +352,7 @@ public  final class ShearingStressResponse extends
     public com.iscas.biz.calculation.grpc.ShearingStressResponse buildPartial() {
       com.iscas.biz.calculation.grpc.ShearingStressResponse result = new com.iscas.biz.calculation.grpc.ShearingStressResponse(this);
       int from_bitField0_ = bitField0_;
+      int to_bitField0_ = 0;
       if (shearingStressBuilder_ == null) {
         if (((bitField0_ & 0x00000001) == 0x00000001)) {
           shearingStress_ = java.util.Collections.unmodifiableList(shearingStress_);
@@ -328,6 +362,8 @@ public  final class ShearingStressResponse extends
       } else {
         result.shearingStress_ = shearingStressBuilder_.build();
       }
+      result.code_ = code_;
+      result.bitField0_ = to_bitField0_;
       onBuilt();
       return result;
     }
@@ -394,6 +430,9 @@ public  final class ShearingStressResponse extends
             shearingStressBuilder_.addAllMessages(other.shearingStress_);
           }
         }
+      }
+      if (other.getCode() != 0) {
+        setCode(other.getCode());
       }
       onChanged();
       return this;
@@ -660,6 +699,44 @@ public  final class ShearingStressResponse extends
         shearingStress_ = null;
       }
       return shearingStressBuilder_;
+    }
+
+    private int code_ ;
+    /**
+     * <pre>
+     *0-正常 1-异常
+     * </pre>
+     *
+     * <code>int32 code = 2;</code>
+     */
+    public int getCode() {
+      return code_;
+    }
+    /**
+     * <pre>
+     *0-正常 1-异常
+     * </pre>
+     *
+     * <code>int32 code = 2;</code>
+     */
+    public Builder setCode(int value) {
+      
+      code_ = value;
+      onChanged();
+      return this;
+    }
+    /**
+     * <pre>
+     *0-正常 1-异常
+     * </pre>
+     *
+     * <code>int32 code = 2;</code>
+     */
+    public Builder clearCode() {
+      
+      code_ = 0;
+      onChanged();
+      return this;
     }
     public final Builder setUnknownFields(
         final com.google.protobuf.UnknownFieldSet unknownFields) {

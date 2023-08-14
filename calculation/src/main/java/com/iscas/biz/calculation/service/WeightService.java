@@ -2,6 +2,7 @@ package com.iscas.biz.calculation.service;
 
 import com.iscas.biz.calculation.entity.db.Weight;
 import com.iscas.biz.calculation.entity.dto.WeightDTO;
+import com.iscas.biz.calculation.enums.CheckType;
 
 import java.io.IOException;
 
@@ -12,6 +13,7 @@ import java.io.IOException;
  */
 public interface WeightService {
     Weight calculate(WeightDTO weight);
+
     Weight listByProjectId(Integer projectId);
 
     void export(Integer projectId) throws IOException;

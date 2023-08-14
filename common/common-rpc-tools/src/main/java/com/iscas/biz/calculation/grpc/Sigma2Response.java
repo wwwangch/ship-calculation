@@ -16,6 +16,7 @@ public  final class Sigma2Response extends
   }
   private Sigma2Response() {
     sigma2_ = java.util.Collections.emptyList();
+    code_ = 0;
   }
 
   @java.lang.Override
@@ -52,6 +53,11 @@ public  final class Sigma2Response extends
                 input.readMessage(com.iscas.biz.calculation.grpc.Sigma2Entity.parser(), extensionRegistry));
             break;
           }
+          case 16: {
+
+            code_ = input.readInt32();
+            break;
+          }
         }
       }
     } catch (com.google.protobuf.InvalidProtocolBufferException e) {
@@ -78,6 +84,7 @@ public  final class Sigma2Response extends
             com.iscas.biz.calculation.grpc.Sigma2Response.class, com.iscas.biz.calculation.grpc.Sigma2Response.Builder.class);
   }
 
+  private int bitField0_;
   public static final int SIGMA2_FIELD_NUMBER = 1;
   private java.util.List<com.iscas.biz.calculation.grpc.Sigma2Entity> sigma2_;
   /**
@@ -113,6 +120,19 @@ public  final class Sigma2Response extends
     return sigma2_.get(index);
   }
 
+  public static final int CODE_FIELD_NUMBER = 2;
+  private int code_;
+  /**
+   * <pre>
+   *0-正常 1-异常
+   * </pre>
+   *
+   * <code>int32 code = 2;</code>
+   */
+  public int getCode() {
+    return code_;
+  }
+
   private byte memoizedIsInitialized = -1;
   public final boolean isInitialized() {
     byte isInitialized = memoizedIsInitialized;
@@ -128,6 +148,9 @@ public  final class Sigma2Response extends
     for (int i = 0; i < sigma2_.size(); i++) {
       output.writeMessage(1, sigma2_.get(i));
     }
+    if (code_ != 0) {
+      output.writeInt32(2, code_);
+    }
   }
 
   public int getSerializedSize() {
@@ -138,6 +161,10 @@ public  final class Sigma2Response extends
     for (int i = 0; i < sigma2_.size(); i++) {
       size += com.google.protobuf.CodedOutputStream
         .computeMessageSize(1, sigma2_.get(i));
+    }
+    if (code_ != 0) {
+      size += com.google.protobuf.CodedOutputStream
+        .computeInt32Size(2, code_);
     }
     memoizedSize = size;
     return size;
@@ -157,6 +184,8 @@ public  final class Sigma2Response extends
     boolean result = true;
     result = result && getSigma2List()
         .equals(other.getSigma2List());
+    result = result && (getCode()
+        == other.getCode());
     return result;
   }
 
@@ -171,6 +200,8 @@ public  final class Sigma2Response extends
       hash = (37 * hash) + SIGMA2_FIELD_NUMBER;
       hash = (53 * hash) + getSigma2List().hashCode();
     }
+    hash = (37 * hash) + CODE_FIELD_NUMBER;
+    hash = (53 * hash) + getCode();
     hash = (29 * hash) + unknownFields.hashCode();
     memoizedHashCode = hash;
     return hash;
@@ -296,6 +327,8 @@ public  final class Sigma2Response extends
       } else {
         sigma2Builder_.clear();
       }
+      code_ = 0;
+
       return this;
     }
 
@@ -319,6 +352,7 @@ public  final class Sigma2Response extends
     public com.iscas.biz.calculation.grpc.Sigma2Response buildPartial() {
       com.iscas.biz.calculation.grpc.Sigma2Response result = new com.iscas.biz.calculation.grpc.Sigma2Response(this);
       int from_bitField0_ = bitField0_;
+      int to_bitField0_ = 0;
       if (sigma2Builder_ == null) {
         if (((bitField0_ & 0x00000001) == 0x00000001)) {
           sigma2_ = java.util.Collections.unmodifiableList(sigma2_);
@@ -328,6 +362,8 @@ public  final class Sigma2Response extends
       } else {
         result.sigma2_ = sigma2Builder_.build();
       }
+      result.code_ = code_;
+      result.bitField0_ = to_bitField0_;
       onBuilt();
       return result;
     }
@@ -394,6 +430,9 @@ public  final class Sigma2Response extends
             sigma2Builder_.addAllMessages(other.sigma2_);
           }
         }
+      }
+      if (other.getCode() != 0) {
+        setCode(other.getCode());
       }
       onChanged();
       return this;
@@ -660,6 +699,44 @@ public  final class Sigma2Response extends
         sigma2_ = null;
       }
       return sigma2Builder_;
+    }
+
+    private int code_ ;
+    /**
+     * <pre>
+     *0-正常 1-异常
+     * </pre>
+     *
+     * <code>int32 code = 2;</code>
+     */
+    public int getCode() {
+      return code_;
+    }
+    /**
+     * <pre>
+     *0-正常 1-异常
+     * </pre>
+     *
+     * <code>int32 code = 2;</code>
+     */
+    public Builder setCode(int value) {
+      
+      code_ = value;
+      onChanged();
+      return this;
+    }
+    /**
+     * <pre>
+     *0-正常 1-异常
+     * </pre>
+     *
+     * <code>int32 code = 2;</code>
+     */
+    public Builder clearCode() {
+      
+      code_ = 0;
+      onChanged();
+      return this;
     }
     public final Builder setUnknownFields(
         final com.google.protobuf.UnknownFieldSet unknownFields) {

@@ -25,6 +25,7 @@ public  final class CompartmentBulkheadSheetResponse extends
     stressKuozhong_ = java.util.Collections.emptyList();
     stressZhizuo_ = java.util.Collections.emptyList();
     shearAllow_ = java.util.Collections.emptyList();
+    code_ = 0;
   }
 
   @java.lang.Override
@@ -250,6 +251,11 @@ public  final class CompartmentBulkheadSheetResponse extends
             input.popLimit(limit);
             break;
           }
+          case 88: {
+
+            code_ = input.readInt32();
+            break;
+          }
         }
       }
     } catch (com.google.protobuf.InvalidProtocolBufferException e) {
@@ -303,6 +309,7 @@ public  final class CompartmentBulkheadSheetResponse extends
             com.iscas.biz.calculation.grpc.CompartmentBulkheadSheetResponse.class, com.iscas.biz.calculation.grpc.CompartmentBulkheadSheetResponse.Builder.class);
   }
 
+  private int bitField0_;
   public static final int STRDECKDISTRICT_FIELD_NUMBER = 1;
   private com.google.protobuf.LazyStringList strdeckdistrict_;
   /**
@@ -663,6 +670,19 @@ public  final class CompartmentBulkheadSheetResponse extends
   }
   private int shearAllowMemoizedSerializedSize = -1;
 
+  public static final int CODE_FIELD_NUMBER = 11;
+  private int code_;
+  /**
+   * <pre>
+   *0-正常 1-异常
+   * </pre>
+   *
+   * <code>int32 code = 11;</code>
+   */
+  public int getCode() {
+    return code_;
+  }
+
   private byte memoizedIsInitialized = -1;
   public final boolean isInitialized() {
     byte isInitialized = memoizedIsInitialized;
@@ -741,6 +761,9 @@ public  final class CompartmentBulkheadSheetResponse extends
     }
     for (int i = 0; i < shearAllow_.size(); i++) {
       output.writeDoubleNoTag(shearAllow_.get(i));
+    }
+    if (code_ != 0) {
+      output.writeInt32(11, code_);
     }
   }
 
@@ -856,6 +879,10 @@ public  final class CompartmentBulkheadSheetResponse extends
       }
       shearAllowMemoizedSerializedSize = dataSize;
     }
+    if (code_ != 0) {
+      size += com.google.protobuf.CodedOutputStream
+        .computeInt32Size(11, code_);
+    }
     memoizedSize = size;
     return size;
   }
@@ -892,6 +919,8 @@ public  final class CompartmentBulkheadSheetResponse extends
         .equals(other.getStressZhizuoList());
     result = result && getShearAllowList()
         .equals(other.getShearAllowList());
+    result = result && (getCode()
+        == other.getCode());
     return result;
   }
 
@@ -942,6 +971,8 @@ public  final class CompartmentBulkheadSheetResponse extends
       hash = (37 * hash) + SHEARALLOW_FIELD_NUMBER;
       hash = (53 * hash) + getShearAllowList().hashCode();
     }
+    hash = (37 * hash) + CODE_FIELD_NUMBER;
+    hash = (53 * hash) + getCode();
     hash = (29 * hash) + unknownFields.hashCode();
     memoizedHashCode = hash;
     return hash;
@@ -1080,6 +1111,8 @@ public  final class CompartmentBulkheadSheetResponse extends
       bitField0_ = (bitField0_ & ~0x00000100);
       shearAllow_ = java.util.Collections.emptyList();
       bitField0_ = (bitField0_ & ~0x00000200);
+      code_ = 0;
+
       return this;
     }
 
@@ -1103,6 +1136,7 @@ public  final class CompartmentBulkheadSheetResponse extends
     public com.iscas.biz.calculation.grpc.CompartmentBulkheadSheetResponse buildPartial() {
       com.iscas.biz.calculation.grpc.CompartmentBulkheadSheetResponse result = new com.iscas.biz.calculation.grpc.CompartmentBulkheadSheetResponse(this);
       int from_bitField0_ = bitField0_;
+      int to_bitField0_ = 0;
       if (((bitField0_ & 0x00000001) == 0x00000001)) {
         strdeckdistrict_ = strdeckdistrict_.getUnmodifiableView();
         bitField0_ = (bitField0_ & ~0x00000001);
@@ -1153,6 +1187,8 @@ public  final class CompartmentBulkheadSheetResponse extends
         bitField0_ = (bitField0_ & ~0x00000200);
       }
       result.shearAllow_ = shearAllow_;
+      result.code_ = code_;
+      result.bitField0_ = to_bitField0_;
       onBuilt();
       return result;
     }
@@ -1293,6 +1329,9 @@ public  final class CompartmentBulkheadSheetResponse extends
           shearAllow_.addAll(other.shearAllow_);
         }
         onChanged();
+      }
+      if (other.getCode() != 0) {
+        setCode(other.getCode());
       }
       onChanged();
       return this;
@@ -2293,6 +2332,44 @@ public  final class CompartmentBulkheadSheetResponse extends
     public Builder clearShearAllow() {
       shearAllow_ = java.util.Collections.emptyList();
       bitField0_ = (bitField0_ & ~0x00000200);
+      onChanged();
+      return this;
+    }
+
+    private int code_ ;
+    /**
+     * <pre>
+     *0-正常 1-异常
+     * </pre>
+     *
+     * <code>int32 code = 11;</code>
+     */
+    public int getCode() {
+      return code_;
+    }
+    /**
+     * <pre>
+     *0-正常 1-异常
+     * </pre>
+     *
+     * <code>int32 code = 11;</code>
+     */
+    public Builder setCode(int value) {
+      
+      code_ = value;
+      onChanged();
+      return this;
+    }
+    /**
+     * <pre>
+     *0-正常 1-异常
+     * </pre>
+     *
+     * <code>int32 code = 11;</code>
+     */
+    public Builder clearCode() {
+      
+      code_ = 0;
       onChanged();
       return this;
     }

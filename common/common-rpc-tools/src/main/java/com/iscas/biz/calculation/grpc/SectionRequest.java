@@ -21,9 +21,7 @@ public  final class SectionRequest extends
   private SectionRequest() {
     profileFilePath_ = "";
     ribNumber_ = 0D;
-    bulbFlats_ = java.util.Collections.emptyList();
-    tProfiles_ = java.util.Collections.emptyList();
-    isHalfProfile_ = false;
+    executeAutoCadPath_ = "";
   }
 
   @java.lang.Override
@@ -63,26 +61,9 @@ public  final class SectionRequest extends
             break;
           }
           case 26: {
-            if (!((mutable_bitField0_ & 0x00000004) == 0x00000004)) {
-              bulbFlats_ = new java.util.ArrayList<com.iscas.biz.calculation.grpc.BulbFlat>();
-              mutable_bitField0_ |= 0x00000004;
-            }
-            bulbFlats_.add(
-                input.readMessage(com.iscas.biz.calculation.grpc.BulbFlat.parser(), extensionRegistry));
-            break;
-          }
-          case 34: {
-            if (!((mutable_bitField0_ & 0x00000008) == 0x00000008)) {
-              tProfiles_ = new java.util.ArrayList<com.iscas.biz.calculation.grpc.TProfile>();
-              mutable_bitField0_ |= 0x00000008;
-            }
-            tProfiles_.add(
-                input.readMessage(com.iscas.biz.calculation.grpc.TProfile.parser(), extensionRegistry));
-            break;
-          }
-          case 40: {
+            java.lang.String s = input.readStringRequireUtf8();
 
-            isHalfProfile_ = input.readBool();
+            executeAutoCadPath_ = s;
             break;
           }
         }
@@ -93,12 +74,6 @@ public  final class SectionRequest extends
       throw new com.google.protobuf.InvalidProtocolBufferException(
           e).setUnfinishedMessage(this);
     } finally {
-      if (((mutable_bitField0_ & 0x00000004) == 0x00000004)) {
-        bulbFlats_ = java.util.Collections.unmodifiableList(bulbFlats_);
-      }
-      if (((mutable_bitField0_ & 0x00000008) == 0x00000008)) {
-        tProfiles_ = java.util.Collections.unmodifiableList(tProfiles_);
-      }
       makeExtensionsImmutable();
     }
   }
@@ -114,7 +89,6 @@ public  final class SectionRequest extends
             com.iscas.biz.calculation.grpc.SectionRequest.class, com.iscas.biz.calculation.grpc.SectionRequest.Builder.class);
   }
 
-  private int bitField0_;
   public static final int PROFILEFILEPATH_FIELD_NUMBER = 1;
   private volatile java.lang.Object profileFilePath_;
   /**
@@ -170,128 +144,46 @@ public  final class SectionRequest extends
     return ribNumber_;
   }
 
-  public static final int BULBFLATS_FIELD_NUMBER = 3;
-  private java.util.List<com.iscas.biz.calculation.grpc.BulbFlat> bulbFlats_;
+  public static final int EXECUTEAUTOCADPATH_FIELD_NUMBER = 3;
+  private volatile java.lang.Object executeAutoCadPath_;
   /**
    * <pre>
-   *球扁钢数组
+   *CAD执行路径[增0728]
    * </pre>
    *
-   * <code>repeated .com.iscas.biz.calculation.grpc.BulbFlat bulbFlats = 3;</code>
+   * <code>string executeAutoCadPath = 3;</code>
    */
-  public java.util.List<com.iscas.biz.calculation.grpc.BulbFlat> getBulbFlatsList() {
-    return bulbFlats_;
+  public java.lang.String getExecuteAutoCadPath() {
+    java.lang.Object ref = executeAutoCadPath_;
+    if (ref instanceof java.lang.String) {
+      return (java.lang.String) ref;
+    } else {
+      com.google.protobuf.ByteString bs = 
+          (com.google.protobuf.ByteString) ref;
+      java.lang.String s = bs.toStringUtf8();
+      executeAutoCadPath_ = s;
+      return s;
+    }
   }
   /**
    * <pre>
-   *球扁钢数组
+   *CAD执行路径[增0728]
    * </pre>
    *
-   * <code>repeated .com.iscas.biz.calculation.grpc.BulbFlat bulbFlats = 3;</code>
+   * <code>string executeAutoCadPath = 3;</code>
    */
-  public java.util.List<? extends com.iscas.biz.calculation.grpc.BulbFlatOrBuilder> 
-      getBulbFlatsOrBuilderList() {
-    return bulbFlats_;
-  }
-  /**
-   * <pre>
-   *球扁钢数组
-   * </pre>
-   *
-   * <code>repeated .com.iscas.biz.calculation.grpc.BulbFlat bulbFlats = 3;</code>
-   */
-  public int getBulbFlatsCount() {
-    return bulbFlats_.size();
-  }
-  /**
-   * <pre>
-   *球扁钢数组
-   * </pre>
-   *
-   * <code>repeated .com.iscas.biz.calculation.grpc.BulbFlat bulbFlats = 3;</code>
-   */
-  public com.iscas.biz.calculation.grpc.BulbFlat getBulbFlats(int index) {
-    return bulbFlats_.get(index);
-  }
-  /**
-   * <pre>
-   *球扁钢数组
-   * </pre>
-   *
-   * <code>repeated .com.iscas.biz.calculation.grpc.BulbFlat bulbFlats = 3;</code>
-   */
-  public com.iscas.biz.calculation.grpc.BulbFlatOrBuilder getBulbFlatsOrBuilder(
-      int index) {
-    return bulbFlats_.get(index);
-  }
-
-  public static final int TPROFILES_FIELD_NUMBER = 4;
-  private java.util.List<com.iscas.biz.calculation.grpc.TProfile> tProfiles_;
-  /**
-   * <pre>
-   *T型材数组
-   * </pre>
-   *
-   * <code>repeated .com.iscas.biz.calculation.grpc.TProfile tProfiles = 4;</code>
-   */
-  public java.util.List<com.iscas.biz.calculation.grpc.TProfile> getTProfilesList() {
-    return tProfiles_;
-  }
-  /**
-   * <pre>
-   *T型材数组
-   * </pre>
-   *
-   * <code>repeated .com.iscas.biz.calculation.grpc.TProfile tProfiles = 4;</code>
-   */
-  public java.util.List<? extends com.iscas.biz.calculation.grpc.TProfileOrBuilder> 
-      getTProfilesOrBuilderList() {
-    return tProfiles_;
-  }
-  /**
-   * <pre>
-   *T型材数组
-   * </pre>
-   *
-   * <code>repeated .com.iscas.biz.calculation.grpc.TProfile tProfiles = 4;</code>
-   */
-  public int getTProfilesCount() {
-    return tProfiles_.size();
-  }
-  /**
-   * <pre>
-   *T型材数组
-   * </pre>
-   *
-   * <code>repeated .com.iscas.biz.calculation.grpc.TProfile tProfiles = 4;</code>
-   */
-  public com.iscas.biz.calculation.grpc.TProfile getTProfiles(int index) {
-    return tProfiles_.get(index);
-  }
-  /**
-   * <pre>
-   *T型材数组
-   * </pre>
-   *
-   * <code>repeated .com.iscas.biz.calculation.grpc.TProfile tProfiles = 4;</code>
-   */
-  public com.iscas.biz.calculation.grpc.TProfileOrBuilder getTProfilesOrBuilder(
-      int index) {
-    return tProfiles_.get(index);
-  }
-
-  public static final int ISHALFPROFILE_FIELD_NUMBER = 5;
-  private boolean isHalfProfile_;
-  /**
-   * <pre>
-   *new614----------------
-   *是否半剖面
-   * </pre>
-   *
-   * <code>bool isHalfProfile = 5;</code>
-   */
-  public boolean getIsHalfProfile() {
-    return isHalfProfile_;
+  public com.google.protobuf.ByteString
+      getExecuteAutoCadPathBytes() {
+    java.lang.Object ref = executeAutoCadPath_;
+    if (ref instanceof java.lang.String) {
+      com.google.protobuf.ByteString b = 
+          com.google.protobuf.ByteString.copyFromUtf8(
+              (java.lang.String) ref);
+      executeAutoCadPath_ = b;
+      return b;
+    } else {
+      return (com.google.protobuf.ByteString) ref;
+    }
   }
 
   private byte memoizedIsInitialized = -1;
@@ -312,14 +204,8 @@ public  final class SectionRequest extends
     if (ribNumber_ != 0D) {
       output.writeDouble(2, ribNumber_);
     }
-    for (int i = 0; i < bulbFlats_.size(); i++) {
-      output.writeMessage(3, bulbFlats_.get(i));
-    }
-    for (int i = 0; i < tProfiles_.size(); i++) {
-      output.writeMessage(4, tProfiles_.get(i));
-    }
-    if (isHalfProfile_ != false) {
-      output.writeBool(5, isHalfProfile_);
+    if (!getExecuteAutoCadPathBytes().isEmpty()) {
+      com.google.protobuf.GeneratedMessageV3.writeString(output, 3, executeAutoCadPath_);
     }
   }
 
@@ -335,17 +221,8 @@ public  final class SectionRequest extends
       size += com.google.protobuf.CodedOutputStream
         .computeDoubleSize(2, ribNumber_);
     }
-    for (int i = 0; i < bulbFlats_.size(); i++) {
-      size += com.google.protobuf.CodedOutputStream
-        .computeMessageSize(3, bulbFlats_.get(i));
-    }
-    for (int i = 0; i < tProfiles_.size(); i++) {
-      size += com.google.protobuf.CodedOutputStream
-        .computeMessageSize(4, tProfiles_.get(i));
-    }
-    if (isHalfProfile_ != false) {
-      size += com.google.protobuf.CodedOutputStream
-        .computeBoolSize(5, isHalfProfile_);
+    if (!getExecuteAutoCadPathBytes().isEmpty()) {
+      size += com.google.protobuf.GeneratedMessageV3.computeStringSize(3, executeAutoCadPath_);
     }
     memoizedSize = size;
     return size;
@@ -369,12 +246,8 @@ public  final class SectionRequest extends
         java.lang.Double.doubleToLongBits(getRibNumber())
         == java.lang.Double.doubleToLongBits(
             other.getRibNumber()));
-    result = result && getBulbFlatsList()
-        .equals(other.getBulbFlatsList());
-    result = result && getTProfilesList()
-        .equals(other.getTProfilesList());
-    result = result && (getIsHalfProfile()
-        == other.getIsHalfProfile());
+    result = result && getExecuteAutoCadPath()
+        .equals(other.getExecuteAutoCadPath());
     return result;
   }
 
@@ -390,17 +263,8 @@ public  final class SectionRequest extends
     hash = (37 * hash) + RIBNUMBER_FIELD_NUMBER;
     hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
         java.lang.Double.doubleToLongBits(getRibNumber()));
-    if (getBulbFlatsCount() > 0) {
-      hash = (37 * hash) + BULBFLATS_FIELD_NUMBER;
-      hash = (53 * hash) + getBulbFlatsList().hashCode();
-    }
-    if (getTProfilesCount() > 0) {
-      hash = (37 * hash) + TPROFILES_FIELD_NUMBER;
-      hash = (53 * hash) + getTProfilesList().hashCode();
-    }
-    hash = (37 * hash) + ISHALFPROFILE_FIELD_NUMBER;
-    hash = (53 * hash) + com.google.protobuf.Internal.hashBoolean(
-        getIsHalfProfile());
+    hash = (37 * hash) + EXECUTEAUTOCADPATH_FIELD_NUMBER;
+    hash = (53 * hash) + getExecuteAutoCadPath().hashCode();
     hash = (29 * hash) + unknownFields.hashCode();
     memoizedHashCode = hash;
     return hash;
@@ -519,8 +383,6 @@ public  final class SectionRequest extends
     private void maybeForceBuilderInitialization() {
       if (com.google.protobuf.GeneratedMessageV3
               .alwaysUseFieldBuilders) {
-        getBulbFlatsFieldBuilder();
-        getTProfilesFieldBuilder();
       }
     }
     public Builder clear() {
@@ -529,19 +391,7 @@ public  final class SectionRequest extends
 
       ribNumber_ = 0D;
 
-      if (bulbFlatsBuilder_ == null) {
-        bulbFlats_ = java.util.Collections.emptyList();
-        bitField0_ = (bitField0_ & ~0x00000004);
-      } else {
-        bulbFlatsBuilder_.clear();
-      }
-      if (tProfilesBuilder_ == null) {
-        tProfiles_ = java.util.Collections.emptyList();
-        bitField0_ = (bitField0_ & ~0x00000008);
-      } else {
-        tProfilesBuilder_.clear();
-      }
-      isHalfProfile_ = false;
+      executeAutoCadPath_ = "";
 
       return this;
     }
@@ -565,30 +415,9 @@ public  final class SectionRequest extends
 
     public com.iscas.biz.calculation.grpc.SectionRequest buildPartial() {
       com.iscas.biz.calculation.grpc.SectionRequest result = new com.iscas.biz.calculation.grpc.SectionRequest(this);
-      int from_bitField0_ = bitField0_;
-      int to_bitField0_ = 0;
       result.profileFilePath_ = profileFilePath_;
       result.ribNumber_ = ribNumber_;
-      if (bulbFlatsBuilder_ == null) {
-        if (((bitField0_ & 0x00000004) == 0x00000004)) {
-          bulbFlats_ = java.util.Collections.unmodifiableList(bulbFlats_);
-          bitField0_ = (bitField0_ & ~0x00000004);
-        }
-        result.bulbFlats_ = bulbFlats_;
-      } else {
-        result.bulbFlats_ = bulbFlatsBuilder_.build();
-      }
-      if (tProfilesBuilder_ == null) {
-        if (((bitField0_ & 0x00000008) == 0x00000008)) {
-          tProfiles_ = java.util.Collections.unmodifiableList(tProfiles_);
-          bitField0_ = (bitField0_ & ~0x00000008);
-        }
-        result.tProfiles_ = tProfiles_;
-      } else {
-        result.tProfiles_ = tProfilesBuilder_.build();
-      }
-      result.isHalfProfile_ = isHalfProfile_;
-      result.bitField0_ = to_bitField0_;
+      result.executeAutoCadPath_ = executeAutoCadPath_;
       onBuilt();
       return result;
     }
@@ -637,60 +466,9 @@ public  final class SectionRequest extends
       if (other.getRibNumber() != 0D) {
         setRibNumber(other.getRibNumber());
       }
-      if (bulbFlatsBuilder_ == null) {
-        if (!other.bulbFlats_.isEmpty()) {
-          if (bulbFlats_.isEmpty()) {
-            bulbFlats_ = other.bulbFlats_;
-            bitField0_ = (bitField0_ & ~0x00000004);
-          } else {
-            ensureBulbFlatsIsMutable();
-            bulbFlats_.addAll(other.bulbFlats_);
-          }
-          onChanged();
-        }
-      } else {
-        if (!other.bulbFlats_.isEmpty()) {
-          if (bulbFlatsBuilder_.isEmpty()) {
-            bulbFlatsBuilder_.dispose();
-            bulbFlatsBuilder_ = null;
-            bulbFlats_ = other.bulbFlats_;
-            bitField0_ = (bitField0_ & ~0x00000004);
-            bulbFlatsBuilder_ = 
-              com.google.protobuf.GeneratedMessageV3.alwaysUseFieldBuilders ?
-                 getBulbFlatsFieldBuilder() : null;
-          } else {
-            bulbFlatsBuilder_.addAllMessages(other.bulbFlats_);
-          }
-        }
-      }
-      if (tProfilesBuilder_ == null) {
-        if (!other.tProfiles_.isEmpty()) {
-          if (tProfiles_.isEmpty()) {
-            tProfiles_ = other.tProfiles_;
-            bitField0_ = (bitField0_ & ~0x00000008);
-          } else {
-            ensureTProfilesIsMutable();
-            tProfiles_.addAll(other.tProfiles_);
-          }
-          onChanged();
-        }
-      } else {
-        if (!other.tProfiles_.isEmpty()) {
-          if (tProfilesBuilder_.isEmpty()) {
-            tProfilesBuilder_.dispose();
-            tProfilesBuilder_ = null;
-            tProfiles_ = other.tProfiles_;
-            bitField0_ = (bitField0_ & ~0x00000008);
-            tProfilesBuilder_ = 
-              com.google.protobuf.GeneratedMessageV3.alwaysUseFieldBuilders ?
-                 getTProfilesFieldBuilder() : null;
-          } else {
-            tProfilesBuilder_.addAllMessages(other.tProfiles_);
-          }
-        }
-      }
-      if (other.getIsHalfProfile() != false) {
-        setIsHalfProfile(other.getIsHalfProfile());
+      if (!other.getExecuteAutoCadPath().isEmpty()) {
+        executeAutoCadPath_ = other.executeAutoCadPath_;
+        onChanged();
       }
       onChanged();
       return this;
@@ -717,7 +495,6 @@ public  final class SectionRequest extends
       }
       return this;
     }
-    private int bitField0_;
 
     private java.lang.Object profileFilePath_ = "";
     /**
@@ -846,667 +623,91 @@ public  final class SectionRequest extends
       return this;
     }
 
-    private java.util.List<com.iscas.biz.calculation.grpc.BulbFlat> bulbFlats_ =
-      java.util.Collections.emptyList();
-    private void ensureBulbFlatsIsMutable() {
-      if (!((bitField0_ & 0x00000004) == 0x00000004)) {
-        bulbFlats_ = new java.util.ArrayList<com.iscas.biz.calculation.grpc.BulbFlat>(bulbFlats_);
-        bitField0_ |= 0x00000004;
-       }
-    }
-
-    private com.google.protobuf.RepeatedFieldBuilderV3<
-        com.iscas.biz.calculation.grpc.BulbFlat, com.iscas.biz.calculation.grpc.BulbFlat.Builder, com.iscas.biz.calculation.grpc.BulbFlatOrBuilder> bulbFlatsBuilder_;
-
+    private java.lang.Object executeAutoCadPath_ = "";
     /**
      * <pre>
-     *球扁钢数组
+     *CAD执行路径[增0728]
      * </pre>
      *
-     * <code>repeated .com.iscas.biz.calculation.grpc.BulbFlat bulbFlats = 3;</code>
+     * <code>string executeAutoCadPath = 3;</code>
      */
-    public java.util.List<com.iscas.biz.calculation.grpc.BulbFlat> getBulbFlatsList() {
-      if (bulbFlatsBuilder_ == null) {
-        return java.util.Collections.unmodifiableList(bulbFlats_);
+    public java.lang.String getExecuteAutoCadPath() {
+      java.lang.Object ref = executeAutoCadPath_;
+      if (!(ref instanceof java.lang.String)) {
+        com.google.protobuf.ByteString bs =
+            (com.google.protobuf.ByteString) ref;
+        java.lang.String s = bs.toStringUtf8();
+        executeAutoCadPath_ = s;
+        return s;
       } else {
-        return bulbFlatsBuilder_.getMessageList();
+        return (java.lang.String) ref;
       }
     }
     /**
      * <pre>
-     *球扁钢数组
+     *CAD执行路径[增0728]
      * </pre>
      *
-     * <code>repeated .com.iscas.biz.calculation.grpc.BulbFlat bulbFlats = 3;</code>
+     * <code>string executeAutoCadPath = 3;</code>
      */
-    public int getBulbFlatsCount() {
-      if (bulbFlatsBuilder_ == null) {
-        return bulbFlats_.size();
+    public com.google.protobuf.ByteString
+        getExecuteAutoCadPathBytes() {
+      java.lang.Object ref = executeAutoCadPath_;
+      if (ref instanceof String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (java.lang.String) ref);
+        executeAutoCadPath_ = b;
+        return b;
       } else {
-        return bulbFlatsBuilder_.getCount();
+        return (com.google.protobuf.ByteString) ref;
       }
     }
     /**
      * <pre>
-     *球扁钢数组
+     *CAD执行路径[增0728]
      * </pre>
      *
-     * <code>repeated .com.iscas.biz.calculation.grpc.BulbFlat bulbFlats = 3;</code>
+     * <code>string executeAutoCadPath = 3;</code>
      */
-    public com.iscas.biz.calculation.grpc.BulbFlat getBulbFlats(int index) {
-      if (bulbFlatsBuilder_ == null) {
-        return bulbFlats_.get(index);
-      } else {
-        return bulbFlatsBuilder_.getMessage(index);
-      }
-    }
-    /**
-     * <pre>
-     *球扁钢数组
-     * </pre>
-     *
-     * <code>repeated .com.iscas.biz.calculation.grpc.BulbFlat bulbFlats = 3;</code>
-     */
-    public Builder setBulbFlats(
-        int index, com.iscas.biz.calculation.grpc.BulbFlat value) {
-      if (bulbFlatsBuilder_ == null) {
-        if (value == null) {
-          throw new NullPointerException();
-        }
-        ensureBulbFlatsIsMutable();
-        bulbFlats_.set(index, value);
-        onChanged();
-      } else {
-        bulbFlatsBuilder_.setMessage(index, value);
-      }
-      return this;
-    }
-    /**
-     * <pre>
-     *球扁钢数组
-     * </pre>
-     *
-     * <code>repeated .com.iscas.biz.calculation.grpc.BulbFlat bulbFlats = 3;</code>
-     */
-    public Builder setBulbFlats(
-        int index, com.iscas.biz.calculation.grpc.BulbFlat.Builder builderForValue) {
-      if (bulbFlatsBuilder_ == null) {
-        ensureBulbFlatsIsMutable();
-        bulbFlats_.set(index, builderForValue.build());
-        onChanged();
-      } else {
-        bulbFlatsBuilder_.setMessage(index, builderForValue.build());
-      }
-      return this;
-    }
-    /**
-     * <pre>
-     *球扁钢数组
-     * </pre>
-     *
-     * <code>repeated .com.iscas.biz.calculation.grpc.BulbFlat bulbFlats = 3;</code>
-     */
-    public Builder addBulbFlats(com.iscas.biz.calculation.grpc.BulbFlat value) {
-      if (bulbFlatsBuilder_ == null) {
-        if (value == null) {
-          throw new NullPointerException();
-        }
-        ensureBulbFlatsIsMutable();
-        bulbFlats_.add(value);
-        onChanged();
-      } else {
-        bulbFlatsBuilder_.addMessage(value);
-      }
-      return this;
-    }
-    /**
-     * <pre>
-     *球扁钢数组
-     * </pre>
-     *
-     * <code>repeated .com.iscas.biz.calculation.grpc.BulbFlat bulbFlats = 3;</code>
-     */
-    public Builder addBulbFlats(
-        int index, com.iscas.biz.calculation.grpc.BulbFlat value) {
-      if (bulbFlatsBuilder_ == null) {
-        if (value == null) {
-          throw new NullPointerException();
-        }
-        ensureBulbFlatsIsMutable();
-        bulbFlats_.add(index, value);
-        onChanged();
-      } else {
-        bulbFlatsBuilder_.addMessage(index, value);
-      }
-      return this;
-    }
-    /**
-     * <pre>
-     *球扁钢数组
-     * </pre>
-     *
-     * <code>repeated .com.iscas.biz.calculation.grpc.BulbFlat bulbFlats = 3;</code>
-     */
-    public Builder addBulbFlats(
-        com.iscas.biz.calculation.grpc.BulbFlat.Builder builderForValue) {
-      if (bulbFlatsBuilder_ == null) {
-        ensureBulbFlatsIsMutable();
-        bulbFlats_.add(builderForValue.build());
-        onChanged();
-      } else {
-        bulbFlatsBuilder_.addMessage(builderForValue.build());
-      }
-      return this;
-    }
-    /**
-     * <pre>
-     *球扁钢数组
-     * </pre>
-     *
-     * <code>repeated .com.iscas.biz.calculation.grpc.BulbFlat bulbFlats = 3;</code>
-     */
-    public Builder addBulbFlats(
-        int index, com.iscas.biz.calculation.grpc.BulbFlat.Builder builderForValue) {
-      if (bulbFlatsBuilder_ == null) {
-        ensureBulbFlatsIsMutable();
-        bulbFlats_.add(index, builderForValue.build());
-        onChanged();
-      } else {
-        bulbFlatsBuilder_.addMessage(index, builderForValue.build());
-      }
-      return this;
-    }
-    /**
-     * <pre>
-     *球扁钢数组
-     * </pre>
-     *
-     * <code>repeated .com.iscas.biz.calculation.grpc.BulbFlat bulbFlats = 3;</code>
-     */
-    public Builder addAllBulbFlats(
-        java.lang.Iterable<? extends com.iscas.biz.calculation.grpc.BulbFlat> values) {
-      if (bulbFlatsBuilder_ == null) {
-        ensureBulbFlatsIsMutable();
-        com.google.protobuf.AbstractMessageLite.Builder.addAll(
-            values, bulbFlats_);
-        onChanged();
-      } else {
-        bulbFlatsBuilder_.addAllMessages(values);
-      }
-      return this;
-    }
-    /**
-     * <pre>
-     *球扁钢数组
-     * </pre>
-     *
-     * <code>repeated .com.iscas.biz.calculation.grpc.BulbFlat bulbFlats = 3;</code>
-     */
-    public Builder clearBulbFlats() {
-      if (bulbFlatsBuilder_ == null) {
-        bulbFlats_ = java.util.Collections.emptyList();
-        bitField0_ = (bitField0_ & ~0x00000004);
-        onChanged();
-      } else {
-        bulbFlatsBuilder_.clear();
-      }
-      return this;
-    }
-    /**
-     * <pre>
-     *球扁钢数组
-     * </pre>
-     *
-     * <code>repeated .com.iscas.biz.calculation.grpc.BulbFlat bulbFlats = 3;</code>
-     */
-    public Builder removeBulbFlats(int index) {
-      if (bulbFlatsBuilder_ == null) {
-        ensureBulbFlatsIsMutable();
-        bulbFlats_.remove(index);
-        onChanged();
-      } else {
-        bulbFlatsBuilder_.remove(index);
-      }
-      return this;
-    }
-    /**
-     * <pre>
-     *球扁钢数组
-     * </pre>
-     *
-     * <code>repeated .com.iscas.biz.calculation.grpc.BulbFlat bulbFlats = 3;</code>
-     */
-    public com.iscas.biz.calculation.grpc.BulbFlat.Builder getBulbFlatsBuilder(
-        int index) {
-      return getBulbFlatsFieldBuilder().getBuilder(index);
-    }
-    /**
-     * <pre>
-     *球扁钢数组
-     * </pre>
-     *
-     * <code>repeated .com.iscas.biz.calculation.grpc.BulbFlat bulbFlats = 3;</code>
-     */
-    public com.iscas.biz.calculation.grpc.BulbFlatOrBuilder getBulbFlatsOrBuilder(
-        int index) {
-      if (bulbFlatsBuilder_ == null) {
-        return bulbFlats_.get(index);  } else {
-        return bulbFlatsBuilder_.getMessageOrBuilder(index);
-      }
-    }
-    /**
-     * <pre>
-     *球扁钢数组
-     * </pre>
-     *
-     * <code>repeated .com.iscas.biz.calculation.grpc.BulbFlat bulbFlats = 3;</code>
-     */
-    public java.util.List<? extends com.iscas.biz.calculation.grpc.BulbFlatOrBuilder> 
-         getBulbFlatsOrBuilderList() {
-      if (bulbFlatsBuilder_ != null) {
-        return bulbFlatsBuilder_.getMessageOrBuilderList();
-      } else {
-        return java.util.Collections.unmodifiableList(bulbFlats_);
-      }
-    }
-    /**
-     * <pre>
-     *球扁钢数组
-     * </pre>
-     *
-     * <code>repeated .com.iscas.biz.calculation.grpc.BulbFlat bulbFlats = 3;</code>
-     */
-    public com.iscas.biz.calculation.grpc.BulbFlat.Builder addBulbFlatsBuilder() {
-      return getBulbFlatsFieldBuilder().addBuilder(
-          com.iscas.biz.calculation.grpc.BulbFlat.getDefaultInstance());
-    }
-    /**
-     * <pre>
-     *球扁钢数组
-     * </pre>
-     *
-     * <code>repeated .com.iscas.biz.calculation.grpc.BulbFlat bulbFlats = 3;</code>
-     */
-    public com.iscas.biz.calculation.grpc.BulbFlat.Builder addBulbFlatsBuilder(
-        int index) {
-      return getBulbFlatsFieldBuilder().addBuilder(
-          index, com.iscas.biz.calculation.grpc.BulbFlat.getDefaultInstance());
-    }
-    /**
-     * <pre>
-     *球扁钢数组
-     * </pre>
-     *
-     * <code>repeated .com.iscas.biz.calculation.grpc.BulbFlat bulbFlats = 3;</code>
-     */
-    public java.util.List<com.iscas.biz.calculation.grpc.BulbFlat.Builder> 
-         getBulbFlatsBuilderList() {
-      return getBulbFlatsFieldBuilder().getBuilderList();
-    }
-    private com.google.protobuf.RepeatedFieldBuilderV3<
-        com.iscas.biz.calculation.grpc.BulbFlat, com.iscas.biz.calculation.grpc.BulbFlat.Builder, com.iscas.biz.calculation.grpc.BulbFlatOrBuilder> 
-        getBulbFlatsFieldBuilder() {
-      if (bulbFlatsBuilder_ == null) {
-        bulbFlatsBuilder_ = new com.google.protobuf.RepeatedFieldBuilderV3<
-            com.iscas.biz.calculation.grpc.BulbFlat, com.iscas.biz.calculation.grpc.BulbFlat.Builder, com.iscas.biz.calculation.grpc.BulbFlatOrBuilder>(
-                bulbFlats_,
-                ((bitField0_ & 0x00000004) == 0x00000004),
-                getParentForChildren(),
-                isClean());
-        bulbFlats_ = null;
-      }
-      return bulbFlatsBuilder_;
-    }
-
-    private java.util.List<com.iscas.biz.calculation.grpc.TProfile> tProfiles_ =
-      java.util.Collections.emptyList();
-    private void ensureTProfilesIsMutable() {
-      if (!((bitField0_ & 0x00000008) == 0x00000008)) {
-        tProfiles_ = new java.util.ArrayList<com.iscas.biz.calculation.grpc.TProfile>(tProfiles_);
-        bitField0_ |= 0x00000008;
-       }
-    }
-
-    private com.google.protobuf.RepeatedFieldBuilderV3<
-        com.iscas.biz.calculation.grpc.TProfile, com.iscas.biz.calculation.grpc.TProfile.Builder, com.iscas.biz.calculation.grpc.TProfileOrBuilder> tProfilesBuilder_;
-
-    /**
-     * <pre>
-     *T型材数组
-     * </pre>
-     *
-     * <code>repeated .com.iscas.biz.calculation.grpc.TProfile tProfiles = 4;</code>
-     */
-    public java.util.List<com.iscas.biz.calculation.grpc.TProfile> getTProfilesList() {
-      if (tProfilesBuilder_ == null) {
-        return java.util.Collections.unmodifiableList(tProfiles_);
-      } else {
-        return tProfilesBuilder_.getMessageList();
-      }
-    }
-    /**
-     * <pre>
-     *T型材数组
-     * </pre>
-     *
-     * <code>repeated .com.iscas.biz.calculation.grpc.TProfile tProfiles = 4;</code>
-     */
-    public int getTProfilesCount() {
-      if (tProfilesBuilder_ == null) {
-        return tProfiles_.size();
-      } else {
-        return tProfilesBuilder_.getCount();
-      }
-    }
-    /**
-     * <pre>
-     *T型材数组
-     * </pre>
-     *
-     * <code>repeated .com.iscas.biz.calculation.grpc.TProfile tProfiles = 4;</code>
-     */
-    public com.iscas.biz.calculation.grpc.TProfile getTProfiles(int index) {
-      if (tProfilesBuilder_ == null) {
-        return tProfiles_.get(index);
-      } else {
-        return tProfilesBuilder_.getMessage(index);
-      }
-    }
-    /**
-     * <pre>
-     *T型材数组
-     * </pre>
-     *
-     * <code>repeated .com.iscas.biz.calculation.grpc.TProfile tProfiles = 4;</code>
-     */
-    public Builder setTProfiles(
-        int index, com.iscas.biz.calculation.grpc.TProfile value) {
-      if (tProfilesBuilder_ == null) {
-        if (value == null) {
-          throw new NullPointerException();
-        }
-        ensureTProfilesIsMutable();
-        tProfiles_.set(index, value);
-        onChanged();
-      } else {
-        tProfilesBuilder_.setMessage(index, value);
-      }
-      return this;
-    }
-    /**
-     * <pre>
-     *T型材数组
-     * </pre>
-     *
-     * <code>repeated .com.iscas.biz.calculation.grpc.TProfile tProfiles = 4;</code>
-     */
-    public Builder setTProfiles(
-        int index, com.iscas.biz.calculation.grpc.TProfile.Builder builderForValue) {
-      if (tProfilesBuilder_ == null) {
-        ensureTProfilesIsMutable();
-        tProfiles_.set(index, builderForValue.build());
-        onChanged();
-      } else {
-        tProfilesBuilder_.setMessage(index, builderForValue.build());
-      }
-      return this;
-    }
-    /**
-     * <pre>
-     *T型材数组
-     * </pre>
-     *
-     * <code>repeated .com.iscas.biz.calculation.grpc.TProfile tProfiles = 4;</code>
-     */
-    public Builder addTProfiles(com.iscas.biz.calculation.grpc.TProfile value) {
-      if (tProfilesBuilder_ == null) {
-        if (value == null) {
-          throw new NullPointerException();
-        }
-        ensureTProfilesIsMutable();
-        tProfiles_.add(value);
-        onChanged();
-      } else {
-        tProfilesBuilder_.addMessage(value);
-      }
-      return this;
-    }
-    /**
-     * <pre>
-     *T型材数组
-     * </pre>
-     *
-     * <code>repeated .com.iscas.biz.calculation.grpc.TProfile tProfiles = 4;</code>
-     */
-    public Builder addTProfiles(
-        int index, com.iscas.biz.calculation.grpc.TProfile value) {
-      if (tProfilesBuilder_ == null) {
-        if (value == null) {
-          throw new NullPointerException();
-        }
-        ensureTProfilesIsMutable();
-        tProfiles_.add(index, value);
-        onChanged();
-      } else {
-        tProfilesBuilder_.addMessage(index, value);
-      }
-      return this;
-    }
-    /**
-     * <pre>
-     *T型材数组
-     * </pre>
-     *
-     * <code>repeated .com.iscas.biz.calculation.grpc.TProfile tProfiles = 4;</code>
-     */
-    public Builder addTProfiles(
-        com.iscas.biz.calculation.grpc.TProfile.Builder builderForValue) {
-      if (tProfilesBuilder_ == null) {
-        ensureTProfilesIsMutable();
-        tProfiles_.add(builderForValue.build());
-        onChanged();
-      } else {
-        tProfilesBuilder_.addMessage(builderForValue.build());
-      }
-      return this;
-    }
-    /**
-     * <pre>
-     *T型材数组
-     * </pre>
-     *
-     * <code>repeated .com.iscas.biz.calculation.grpc.TProfile tProfiles = 4;</code>
-     */
-    public Builder addTProfiles(
-        int index, com.iscas.biz.calculation.grpc.TProfile.Builder builderForValue) {
-      if (tProfilesBuilder_ == null) {
-        ensureTProfilesIsMutable();
-        tProfiles_.add(index, builderForValue.build());
-        onChanged();
-      } else {
-        tProfilesBuilder_.addMessage(index, builderForValue.build());
-      }
-      return this;
-    }
-    /**
-     * <pre>
-     *T型材数组
-     * </pre>
-     *
-     * <code>repeated .com.iscas.biz.calculation.grpc.TProfile tProfiles = 4;</code>
-     */
-    public Builder addAllTProfiles(
-        java.lang.Iterable<? extends com.iscas.biz.calculation.grpc.TProfile> values) {
-      if (tProfilesBuilder_ == null) {
-        ensureTProfilesIsMutable();
-        com.google.protobuf.AbstractMessageLite.Builder.addAll(
-            values, tProfiles_);
-        onChanged();
-      } else {
-        tProfilesBuilder_.addAllMessages(values);
-      }
-      return this;
-    }
-    /**
-     * <pre>
-     *T型材数组
-     * </pre>
-     *
-     * <code>repeated .com.iscas.biz.calculation.grpc.TProfile tProfiles = 4;</code>
-     */
-    public Builder clearTProfiles() {
-      if (tProfilesBuilder_ == null) {
-        tProfiles_ = java.util.Collections.emptyList();
-        bitField0_ = (bitField0_ & ~0x00000008);
-        onChanged();
-      } else {
-        tProfilesBuilder_.clear();
-      }
-      return this;
-    }
-    /**
-     * <pre>
-     *T型材数组
-     * </pre>
-     *
-     * <code>repeated .com.iscas.biz.calculation.grpc.TProfile tProfiles = 4;</code>
-     */
-    public Builder removeTProfiles(int index) {
-      if (tProfilesBuilder_ == null) {
-        ensureTProfilesIsMutable();
-        tProfiles_.remove(index);
-        onChanged();
-      } else {
-        tProfilesBuilder_.remove(index);
-      }
-      return this;
-    }
-    /**
-     * <pre>
-     *T型材数组
-     * </pre>
-     *
-     * <code>repeated .com.iscas.biz.calculation.grpc.TProfile tProfiles = 4;</code>
-     */
-    public com.iscas.biz.calculation.grpc.TProfile.Builder getTProfilesBuilder(
-        int index) {
-      return getTProfilesFieldBuilder().getBuilder(index);
-    }
-    /**
-     * <pre>
-     *T型材数组
-     * </pre>
-     *
-     * <code>repeated .com.iscas.biz.calculation.grpc.TProfile tProfiles = 4;</code>
-     */
-    public com.iscas.biz.calculation.grpc.TProfileOrBuilder getTProfilesOrBuilder(
-        int index) {
-      if (tProfilesBuilder_ == null) {
-        return tProfiles_.get(index);  } else {
-        return tProfilesBuilder_.getMessageOrBuilder(index);
-      }
-    }
-    /**
-     * <pre>
-     *T型材数组
-     * </pre>
-     *
-     * <code>repeated .com.iscas.biz.calculation.grpc.TProfile tProfiles = 4;</code>
-     */
-    public java.util.List<? extends com.iscas.biz.calculation.grpc.TProfileOrBuilder> 
-         getTProfilesOrBuilderList() {
-      if (tProfilesBuilder_ != null) {
-        return tProfilesBuilder_.getMessageOrBuilderList();
-      } else {
-        return java.util.Collections.unmodifiableList(tProfiles_);
-      }
-    }
-    /**
-     * <pre>
-     *T型材数组
-     * </pre>
-     *
-     * <code>repeated .com.iscas.biz.calculation.grpc.TProfile tProfiles = 4;</code>
-     */
-    public com.iscas.biz.calculation.grpc.TProfile.Builder addTProfilesBuilder() {
-      return getTProfilesFieldBuilder().addBuilder(
-          com.iscas.biz.calculation.grpc.TProfile.getDefaultInstance());
-    }
-    /**
-     * <pre>
-     *T型材数组
-     * </pre>
-     *
-     * <code>repeated .com.iscas.biz.calculation.grpc.TProfile tProfiles = 4;</code>
-     */
-    public com.iscas.biz.calculation.grpc.TProfile.Builder addTProfilesBuilder(
-        int index) {
-      return getTProfilesFieldBuilder().addBuilder(
-          index, com.iscas.biz.calculation.grpc.TProfile.getDefaultInstance());
-    }
-    /**
-     * <pre>
-     *T型材数组
-     * </pre>
-     *
-     * <code>repeated .com.iscas.biz.calculation.grpc.TProfile tProfiles = 4;</code>
-     */
-    public java.util.List<com.iscas.biz.calculation.grpc.TProfile.Builder> 
-         getTProfilesBuilderList() {
-      return getTProfilesFieldBuilder().getBuilderList();
-    }
-    private com.google.protobuf.RepeatedFieldBuilderV3<
-        com.iscas.biz.calculation.grpc.TProfile, com.iscas.biz.calculation.grpc.TProfile.Builder, com.iscas.biz.calculation.grpc.TProfileOrBuilder> 
-        getTProfilesFieldBuilder() {
-      if (tProfilesBuilder_ == null) {
-        tProfilesBuilder_ = new com.google.protobuf.RepeatedFieldBuilderV3<
-            com.iscas.biz.calculation.grpc.TProfile, com.iscas.biz.calculation.grpc.TProfile.Builder, com.iscas.biz.calculation.grpc.TProfileOrBuilder>(
-                tProfiles_,
-                ((bitField0_ & 0x00000008) == 0x00000008),
-                getParentForChildren(),
-                isClean());
-        tProfiles_ = null;
-      }
-      return tProfilesBuilder_;
-    }
-
-    private boolean isHalfProfile_ ;
-    /**
-     * <pre>
-     *new614----------------
-     *是否半剖面
-     * </pre>
-     *
-     * <code>bool isHalfProfile = 5;</code>
-     */
-    public boolean getIsHalfProfile() {
-      return isHalfProfile_;
-    }
-    /**
-     * <pre>
-     *new614----------------
-     *是否半剖面
-     * </pre>
-     *
-     * <code>bool isHalfProfile = 5;</code>
-     */
-    public Builder setIsHalfProfile(boolean value) {
-      
-      isHalfProfile_ = value;
+    public Builder setExecuteAutoCadPath(
+        java.lang.String value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  
+      executeAutoCadPath_ = value;
       onChanged();
       return this;
     }
     /**
      * <pre>
-     *new614----------------
-     *是否半剖面
+     *CAD执行路径[增0728]
      * </pre>
      *
-     * <code>bool isHalfProfile = 5;</code>
+     * <code>string executeAutoCadPath = 3;</code>
      */
-    public Builder clearIsHalfProfile() {
+    public Builder clearExecuteAutoCadPath() {
       
-      isHalfProfile_ = false;
+      executeAutoCadPath_ = getDefaultInstance().getExecuteAutoCadPath();
+      onChanged();
+      return this;
+    }
+    /**
+     * <pre>
+     *CAD执行路径[增0728]
+     * </pre>
+     *
+     * <code>string executeAutoCadPath = 3;</code>
+     */
+    public Builder setExecuteAutoCadPathBytes(
+        com.google.protobuf.ByteString value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+      
+      executeAutoCadPath_ = value;
       onChanged();
       return this;
     }

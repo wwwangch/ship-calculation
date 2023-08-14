@@ -21,6 +21,11 @@ public class BuoyancyParam {
     private Integer projectId;
 
     /**
+     * 所属校验类型
+     */
+    private CheckType checkType;
+
+    /**
      * 静水力文件
      */
     private String buoyancyCurveFileName;

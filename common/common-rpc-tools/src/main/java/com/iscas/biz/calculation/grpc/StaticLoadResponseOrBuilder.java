@@ -106,4 +106,13 @@ public interface StaticLoadResponseOrBuilder extends
    * <code>repeated double mvecM = 4;</code>
    */
   double getMvecM(int index);
+
+  /**
+   * <pre>
+   *0-正常 1-异常
+   * </pre>
+   *
+   * <code>int32 code = 5;</code>
+   */
+  int getCode();
 }

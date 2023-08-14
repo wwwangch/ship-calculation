@@ -7,6 +7,8 @@ import com.google.common.collect.Lists;
 import com.iscas.base.biz.service.fileserver.FileServerService;
 import com.iscas.biz.calculation.entity.db.Project;
 import com.iscas.biz.calculation.entity.db.ShipParam;
+import com.iscas.biz.calculation.enums.CalculationSpecification;
+import com.iscas.biz.calculation.enums.CheckType;
 import com.iscas.biz.calculation.enums.NavigationArea;
 import com.iscas.biz.calculation.enums.ShipType;
 import com.iscas.biz.calculation.mapper.ProjectMapper;
@@ -48,6 +50,28 @@ public class ShipParamServiceImpl implements ShipParamService {
         this.projectMapper = projectMapper;
         this.fileServerService = fileServerService;
         this.tableDefinitionService = tableDefinitionService;
+    }
+
+    /**
+     * 根据项目Id查询船舶参数
+     *
+     * @param projectId
+     * @return
+     */
+    @Override
+    @Transactional
+    public ShipParam listByProjectId(Integer projectId) {
+        QueryWrapper<ShipParam> queryWrapper = new QueryWrapper<>();
+        queryWrapper.eq("project_id", projectId);
+        List<ShipParam> shipParams = shipParamMapper.selectList(queryWrapper);
+        ShipParam shipParam = null;
+        if (CollectionUtils.isNotEmpty(shipParams)) {
+            shipParam = shipParams.remove(0);
+            if (CollectionUtils.isNotEmpty(shipParams)) {
+                shipParamMapper.deleteBatchIds(shipParams.stream().map(ShipParam::getParamId).toList());
+            }
+        }
+        return shipParam;
     }
 
     @Override
@@ -95,30 +119,23 @@ public class ShipParamServiceImpl implements ShipParamService {
             throw new RuntimeException(String.format("项目:[%s]不存在!!!", String.valueOf(projectId)));
         }
 
-/*        Double cruisingDisplacement = (Double) shipParam.get("cruising_displacement");
-        Double cruisingPortraitGravity = (Double) shipParam.get("cruising_portrait_gravity");
-        Double extremeDisplacement = (Double) shipParam.get("extreme_displacement");
-        Double extremePortraitGravity = (Double) shipParam.get("extreme_portrait_gravity");
-        //校验为空
-        if (null == cruisingDisplacement || null == cruisingPortraitGravity || null == extremeDisplacement || null == extremePortraitGravity) {
-            throw new RuntimeException("当前校核准则校验工况必填");
-        }*/
-
-        /*if (CalculationSpecification.COMMON_SPECIFICATION.equals(project.getCalculationSpecification())) {
-            shipParam.put("extreme_displacement", null);
-            shipParam.put("extreme_portrait_gravity", null);
+        //校验工况
+        if (CalculationSpecification.COMMON_SPECIFICATION.equals(project.getCalculationSpecification())) {
+            shipParam.put("displacement", null);
+            shipParam.put("portrait_gravity", null);
             shipParam.put("cruising_displacement", null);
             shipParam.put("cruising_portrait_gravity", null);
         } else {
+            Double extremeDisplacement = (Double) shipParam.get("displacement");
+            Double extremePortraitGravity = (Double) shipParam.get("portrait_gravity");
             Double cruisingDisplacement = (Double) shipParam.get("cruising_displacement");
-            String cruisingPortraitGravity = (String) shipParam.get("cruising_portrait_gravity");
-            Double extremeDisplacement = (Double) shipParam.get("extreme_displacement");
-            String extremePortraitGravity = (String) shipParam.get("extreme_portrait_gravity");
+            Double cruisingPortraitGravity = (Double) shipParam.get("cruising_portrait_gravity");
+            CheckType currentType = CheckType.getByValueStr((String) shipParam.get("current_type"));
             //校验为空
-            if (null == cruisingDisplacement || null == cruisingPortraitGravity || null == extremeDisplacement || null == extremePortraitGravity) {
+            if (null == cruisingDisplacement || null == cruisingPortraitGravity || null == extremeDisplacement || null == extremePortraitGravity || null == currentType) {
                 throw new RuntimeException("当前校核准则校验工况必填");
             }
-        }*/
+        }
     }
 
     @Override
@@ -169,5 +186,18 @@ public class ShipParamServiceImpl implements ShipParamService {
         }
         return result;
 
+    }
+
+    @Override
+    public void addCheckTypeCondition(QueryWrapper queryWrapper, Integer projectId) {
+        Project project = projectMapper.selectById(projectId);
+        if (null == project || CalculationSpecification.COMMON_SPECIFICATION.equals(project.getCalculationSpecification())) {
+            return;
+        }
+        ShipParam shipParam = this.listByProjectId(projectId);
+        if (null == shipParam || null == shipParam.getCurrentType()) {
+            throw new RuntimeException("船舶参数异常");
+        }
+        queryWrapper.eq("check_type", shipParam.getCurrentType().getValue());
     }
 }

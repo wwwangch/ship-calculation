@@ -30,4 +30,13 @@ public interface Sigma4ResponseOrBuilder extends
    */
   com.iscas.biz.calculation.grpc.Sigma4EntityOrBuilder getSigma4OrBuilder(
       int index);
+
+  /**
+   * <pre>
+   *0-正常 1-异常
+   * </pre>
+   *
+   * <code>int32 code = 2;</code>
+   */
+  int getCode();
 }

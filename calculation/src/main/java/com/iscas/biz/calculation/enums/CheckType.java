@@ -1,6 +1,7 @@
 package com.iscas.biz.calculation.enums;
 
 import com.baomidou.mybatisplus.annotation.EnumValue;
+import com.fasterxml.jackson.annotation.JsonValue;
 
 /**
  * @author ch w
@@ -23,11 +24,21 @@ public enum CheckType {
         this.descCH = descCH;
     }
 
+    @JsonValue
     public String getValue() {
         return value;
     }
 
     public String getDescCH() {
         return descCH;
+    }
+
+    public static CheckType getByValueStr(String valueStr) {
+        for (CheckType checkType : CheckType.values()) {
+            if (checkType.getValue().equals(valueStr)) {
+                return checkType;
+            }
+        }
+        return null;
     }
 }

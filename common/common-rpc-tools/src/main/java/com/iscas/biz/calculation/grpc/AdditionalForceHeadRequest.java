@@ -15,7 +15,7 @@ public  final class AdditionalForceHeadRequest extends
     super(builder);
   }
   private AdditionalForceHeadRequest() {
-    upbuildstyle_ = "";
+    upbuildstyle_ = 0;
     freeboard_ = 0D;
     shouloupos_ = 0D;
     forefreeboard_ = 0D;
@@ -59,10 +59,9 @@ public  final class AdditionalForceHeadRequest extends
             }
             break;
           }
-          case 10: {
-            java.lang.String s = input.readStringRequireUtf8();
+          case 8: {
 
-            upbuildstyle_ = s;
+            upbuildstyle_ = input.readInt32();
             break;
           }
           case 17: {
@@ -215,45 +214,16 @@ public  final class AdditionalForceHeadRequest extends
 
   private int bitField0_;
   public static final int UPBUILDSTYLE_FIELD_NUMBER = 1;
-  private volatile java.lang.Object upbuildstyle_;
+  private int upbuildstyle_;
   /**
    * <pre>
-   *上建形式
+   *上建形式[改0728]string upbuildstyle = 1;
    * </pre>
    *
-   * <code>string upbuildstyle = 1;</code>
+   * <code>int32 upbuildstyle = 1;</code>
    */
-  public java.lang.String getUpbuildstyle() {
-    java.lang.Object ref = upbuildstyle_;
-    if (ref instanceof java.lang.String) {
-      return (java.lang.String) ref;
-    } else {
-      com.google.protobuf.ByteString bs = 
-          (com.google.protobuf.ByteString) ref;
-      java.lang.String s = bs.toStringUtf8();
-      upbuildstyle_ = s;
-      return s;
-    }
-  }
-  /**
-   * <pre>
-   *上建形式
-   * </pre>
-   *
-   * <code>string upbuildstyle = 1;</code>
-   */
-  public com.google.protobuf.ByteString
-      getUpbuildstyleBytes() {
-    java.lang.Object ref = upbuildstyle_;
-    if (ref instanceof java.lang.String) {
-      com.google.protobuf.ByteString b = 
-          com.google.protobuf.ByteString.copyFromUtf8(
-              (java.lang.String) ref);
-      upbuildstyle_ = b;
-      return b;
-    } else {
-      return (com.google.protobuf.ByteString) ref;
-    }
+  public int getUpbuildstyle() {
+    return upbuildstyle_;
   }
 
   public static final int FREEBOARD_FIELD_NUMBER = 2;
@@ -554,8 +524,8 @@ public  final class AdditionalForceHeadRequest extends
   public void writeTo(com.google.protobuf.CodedOutputStream output)
                       throws java.io.IOException {
     getSerializedSize();
-    if (!getUpbuildstyleBytes().isEmpty()) {
-      com.google.protobuf.GeneratedMessageV3.writeString(output, 1, upbuildstyle_);
+    if (upbuildstyle_ != 0) {
+      output.writeInt32(1, upbuildstyle_);
     }
     if (freeboard_ != 0D) {
       output.writeDouble(2, freeboard_);
@@ -620,8 +590,9 @@ public  final class AdditionalForceHeadRequest extends
     if (size != -1) return size;
 
     size = 0;
-    if (!getUpbuildstyleBytes().isEmpty()) {
-      size += com.google.protobuf.GeneratedMessageV3.computeStringSize(1, upbuildstyle_);
+    if (upbuildstyle_ != 0) {
+      size += com.google.protobuf.CodedOutputStream
+        .computeInt32Size(1, upbuildstyle_);
     }
     if (freeboard_ != 0D) {
       size += com.google.protobuf.CodedOutputStream
@@ -721,8 +692,8 @@ public  final class AdditionalForceHeadRequest extends
     com.iscas.biz.calculation.grpc.AdditionalForceHeadRequest other = (com.iscas.biz.calculation.grpc.AdditionalForceHeadRequest) obj;
 
     boolean result = true;
-    result = result && getUpbuildstyle()
-        .equals(other.getUpbuildstyle());
+    result = result && (getUpbuildstyle()
+        == other.getUpbuildstyle());
     result = result && (
         java.lang.Double.doubleToLongBits(getFreeboard())
         == java.lang.Double.doubleToLongBits(
@@ -790,7 +761,7 @@ public  final class AdditionalForceHeadRequest extends
     int hash = 41;
     hash = (19 * hash) + getDescriptor().hashCode();
     hash = (37 * hash) + UPBUILDSTYLE_FIELD_NUMBER;
-    hash = (53 * hash) + getUpbuildstyle().hashCode();
+    hash = (53 * hash) + getUpbuildstyle();
     hash = (37 * hash) + FREEBOARD_FIELD_NUMBER;
     hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
         java.lang.Double.doubleToLongBits(getFreeboard()));
@@ -960,7 +931,7 @@ public  final class AdditionalForceHeadRequest extends
     }
     public Builder clear() {
       super.clear();
-      upbuildstyle_ = "";
+      upbuildstyle_ = 0;
 
       freeboard_ = 0D;
 
@@ -1089,9 +1060,8 @@ public  final class AdditionalForceHeadRequest extends
 
     public Builder mergeFrom(com.iscas.biz.calculation.grpc.AdditionalForceHeadRequest other) {
       if (other == com.iscas.biz.calculation.grpc.AdditionalForceHeadRequest.getDefaultInstance()) return this;
-      if (!other.getUpbuildstyle().isEmpty()) {
-        upbuildstyle_ = other.upbuildstyle_;
-        onChanged();
+      if (other.getUpbuildstyle() != 0) {
+        setUpbuildstyle(other.getUpbuildstyle());
       }
       if (other.getFreeboard() != 0D) {
         setFreeboard(other.getFreeboard());
@@ -1189,91 +1159,40 @@ public  final class AdditionalForceHeadRequest extends
     }
     private int bitField0_;
 
-    private java.lang.Object upbuildstyle_ = "";
+    private int upbuildstyle_ ;
     /**
      * <pre>
-     *上建形式
+     *上建形式[改0728]string upbuildstyle = 1;
      * </pre>
      *
-     * <code>string upbuildstyle = 1;</code>
+     * <code>int32 upbuildstyle = 1;</code>
      */
-    public java.lang.String getUpbuildstyle() {
-      java.lang.Object ref = upbuildstyle_;
-      if (!(ref instanceof java.lang.String)) {
-        com.google.protobuf.ByteString bs =
-            (com.google.protobuf.ByteString) ref;
-        java.lang.String s = bs.toStringUtf8();
-        upbuildstyle_ = s;
-        return s;
-      } else {
-        return (java.lang.String) ref;
-      }
+    public int getUpbuildstyle() {
+      return upbuildstyle_;
     }
     /**
      * <pre>
-     *上建形式
+     *上建形式[改0728]string upbuildstyle = 1;
      * </pre>
      *
-     * <code>string upbuildstyle = 1;</code>
+     * <code>int32 upbuildstyle = 1;</code>
      */
-    public com.google.protobuf.ByteString
-        getUpbuildstyleBytes() {
-      java.lang.Object ref = upbuildstyle_;
-      if (ref instanceof String) {
-        com.google.protobuf.ByteString b = 
-            com.google.protobuf.ByteString.copyFromUtf8(
-                (java.lang.String) ref);
-        upbuildstyle_ = b;
-        return b;
-      } else {
-        return (com.google.protobuf.ByteString) ref;
-      }
-    }
-    /**
-     * <pre>
-     *上建形式
-     * </pre>
-     *
-     * <code>string upbuildstyle = 1;</code>
-     */
-    public Builder setUpbuildstyle(
-        java.lang.String value) {
-      if (value == null) {
-    throw new NullPointerException();
-  }
-  
+    public Builder setUpbuildstyle(int value) {
+      
       upbuildstyle_ = value;
       onChanged();
       return this;
     }
     /**
      * <pre>
-     *上建形式
+     *上建形式[改0728]string upbuildstyle = 1;
      * </pre>
      *
-     * <code>string upbuildstyle = 1;</code>
+     * <code>int32 upbuildstyle = 1;</code>
      */
     public Builder clearUpbuildstyle() {
       
-      upbuildstyle_ = getDefaultInstance().getUpbuildstyle();
-      onChanged();
-      return this;
-    }
-    /**
-     * <pre>
-     *上建形式
-     * </pre>
-     *
-     * <code>string upbuildstyle = 1;</code>
-     */
-    public Builder setUpbuildstyleBytes(
-        com.google.protobuf.ByteString value) {
-      if (value == null) {
-    throw new NullPointerException();
-  }
-  checkByteStringIsUtf8(value);
-      
-      upbuildstyle_ = value;
+      upbuildstyle_ = 0;
       onChanged();
       return this;
     }

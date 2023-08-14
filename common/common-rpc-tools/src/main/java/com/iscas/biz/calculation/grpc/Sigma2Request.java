@@ -15,6 +15,8 @@ public  final class Sigma2Request extends
     super(builder);
   }
   private Sigma2Request() {
+    userfined_ = false;
+    sigma2_ = java.util.Collections.emptyList();
   }
 
   @java.lang.Override
@@ -27,6 +29,7 @@ public  final class Sigma2Request extends
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)
       throws com.google.protobuf.InvalidProtocolBufferException {
     this();
+    int mutable_bitField0_ = 0;
     try {
       boolean done = false;
       while (!done) {
@@ -41,6 +44,20 @@ public  final class Sigma2Request extends
             }
             break;
           }
+          case 8: {
+
+            userfined_ = input.readBool();
+            break;
+          }
+          case 18: {
+            if (!((mutable_bitField0_ & 0x00000002) == 0x00000002)) {
+              sigma2_ = new java.util.ArrayList<com.iscas.biz.calculation.grpc.Sigma2Entity>();
+              mutable_bitField0_ |= 0x00000002;
+            }
+            sigma2_.add(
+                input.readMessage(com.iscas.biz.calculation.grpc.Sigma2Entity.parser(), extensionRegistry));
+            break;
+          }
         }
       }
     } catch (com.google.protobuf.InvalidProtocolBufferException e) {
@@ -49,6 +66,9 @@ public  final class Sigma2Request extends
       throw new com.google.protobuf.InvalidProtocolBufferException(
           e).setUnfinishedMessage(this);
     } finally {
+      if (((mutable_bitField0_ & 0x00000002) == 0x00000002)) {
+        sigma2_ = java.util.Collections.unmodifiableList(sigma2_);
+      }
       makeExtensionsImmutable();
     }
   }
@@ -64,6 +84,55 @@ public  final class Sigma2Request extends
             com.iscas.biz.calculation.grpc.Sigma2Request.class, com.iscas.biz.calculation.grpc.Sigma2Request.Builder.class);
   }
 
+  private int bitField0_;
+  public static final int USERFINED_FIELD_NUMBER = 1;
+  private boolean userfined_;
+  /**
+   * <pre>
+   *用户输入自定义标志[增0728]
+   * </pre>
+   *
+   * <code>bool userfined = 1;</code>
+   */
+  public boolean getUserfined() {
+    return userfined_;
+  }
+
+  public static final int SIGMA2_FIELD_NUMBER = 2;
+  private java.util.List<com.iscas.biz.calculation.grpc.Sigma2Entity> sigma2_;
+  /**
+   * <code>repeated .com.iscas.biz.calculation.grpc.Sigma2Entity sigma2 = 2;</code>
+   */
+  public java.util.List<com.iscas.biz.calculation.grpc.Sigma2Entity> getSigma2List() {
+    return sigma2_;
+  }
+  /**
+   * <code>repeated .com.iscas.biz.calculation.grpc.Sigma2Entity sigma2 = 2;</code>
+   */
+  public java.util.List<? extends com.iscas.biz.calculation.grpc.Sigma2EntityOrBuilder> 
+      getSigma2OrBuilderList() {
+    return sigma2_;
+  }
+  /**
+   * <code>repeated .com.iscas.biz.calculation.grpc.Sigma2Entity sigma2 = 2;</code>
+   */
+  public int getSigma2Count() {
+    return sigma2_.size();
+  }
+  /**
+   * <code>repeated .com.iscas.biz.calculation.grpc.Sigma2Entity sigma2 = 2;</code>
+   */
+  public com.iscas.biz.calculation.grpc.Sigma2Entity getSigma2(int index) {
+    return sigma2_.get(index);
+  }
+  /**
+   * <code>repeated .com.iscas.biz.calculation.grpc.Sigma2Entity sigma2 = 2;</code>
+   */
+  public com.iscas.biz.calculation.grpc.Sigma2EntityOrBuilder getSigma2OrBuilder(
+      int index) {
+    return sigma2_.get(index);
+  }
+
   private byte memoizedIsInitialized = -1;
   public final boolean isInitialized() {
     byte isInitialized = memoizedIsInitialized;
@@ -76,6 +145,12 @@ public  final class Sigma2Request extends
 
   public void writeTo(com.google.protobuf.CodedOutputStream output)
                       throws java.io.IOException {
+    if (userfined_ != false) {
+      output.writeBool(1, userfined_);
+    }
+    for (int i = 0; i < sigma2_.size(); i++) {
+      output.writeMessage(2, sigma2_.get(i));
+    }
   }
 
   public int getSerializedSize() {
@@ -83,6 +158,14 @@ public  final class Sigma2Request extends
     if (size != -1) return size;
 
     size = 0;
+    if (userfined_ != false) {
+      size += com.google.protobuf.CodedOutputStream
+        .computeBoolSize(1, userfined_);
+    }
+    for (int i = 0; i < sigma2_.size(); i++) {
+      size += com.google.protobuf.CodedOutputStream
+        .computeMessageSize(2, sigma2_.get(i));
+    }
     memoizedSize = size;
     return size;
   }
@@ -99,6 +182,10 @@ public  final class Sigma2Request extends
     com.iscas.biz.calculation.grpc.Sigma2Request other = (com.iscas.biz.calculation.grpc.Sigma2Request) obj;
 
     boolean result = true;
+    result = result && (getUserfined()
+        == other.getUserfined());
+    result = result && getSigma2List()
+        .equals(other.getSigma2List());
     return result;
   }
 
@@ -109,6 +196,13 @@ public  final class Sigma2Request extends
     }
     int hash = 41;
     hash = (19 * hash) + getDescriptor().hashCode();
+    hash = (37 * hash) + USERFINED_FIELD_NUMBER;
+    hash = (53 * hash) + com.google.protobuf.Internal.hashBoolean(
+        getUserfined());
+    if (getSigma2Count() > 0) {
+      hash = (37 * hash) + SIGMA2_FIELD_NUMBER;
+      hash = (53 * hash) + getSigma2List().hashCode();
+    }
     hash = (29 * hash) + unknownFields.hashCode();
     memoizedHashCode = hash;
     return hash;
@@ -223,10 +317,19 @@ public  final class Sigma2Request extends
     private void maybeForceBuilderInitialization() {
       if (com.google.protobuf.GeneratedMessageV3
               .alwaysUseFieldBuilders) {
+        getSigma2FieldBuilder();
       }
     }
     public Builder clear() {
       super.clear();
+      userfined_ = false;
+
+      if (sigma2Builder_ == null) {
+        sigma2_ = java.util.Collections.emptyList();
+        bitField0_ = (bitField0_ & ~0x00000002);
+      } else {
+        sigma2Builder_.clear();
+      }
       return this;
     }
 
@@ -249,6 +352,19 @@ public  final class Sigma2Request extends
 
     public com.iscas.biz.calculation.grpc.Sigma2Request buildPartial() {
       com.iscas.biz.calculation.grpc.Sigma2Request result = new com.iscas.biz.calculation.grpc.Sigma2Request(this);
+      int from_bitField0_ = bitField0_;
+      int to_bitField0_ = 0;
+      result.userfined_ = userfined_;
+      if (sigma2Builder_ == null) {
+        if (((bitField0_ & 0x00000002) == 0x00000002)) {
+          sigma2_ = java.util.Collections.unmodifiableList(sigma2_);
+          bitField0_ = (bitField0_ & ~0x00000002);
+        }
+        result.sigma2_ = sigma2_;
+      } else {
+        result.sigma2_ = sigma2Builder_.build();
+      }
+      result.bitField0_ = to_bitField0_;
       onBuilt();
       return result;
     }
@@ -290,6 +406,35 @@ public  final class Sigma2Request extends
 
     public Builder mergeFrom(com.iscas.biz.calculation.grpc.Sigma2Request other) {
       if (other == com.iscas.biz.calculation.grpc.Sigma2Request.getDefaultInstance()) return this;
+      if (other.getUserfined() != false) {
+        setUserfined(other.getUserfined());
+      }
+      if (sigma2Builder_ == null) {
+        if (!other.sigma2_.isEmpty()) {
+          if (sigma2_.isEmpty()) {
+            sigma2_ = other.sigma2_;
+            bitField0_ = (bitField0_ & ~0x00000002);
+          } else {
+            ensureSigma2IsMutable();
+            sigma2_.addAll(other.sigma2_);
+          }
+          onChanged();
+        }
+      } else {
+        if (!other.sigma2_.isEmpty()) {
+          if (sigma2Builder_.isEmpty()) {
+            sigma2Builder_.dispose();
+            sigma2Builder_ = null;
+            sigma2_ = other.sigma2_;
+            bitField0_ = (bitField0_ & ~0x00000002);
+            sigma2Builder_ = 
+              com.google.protobuf.GeneratedMessageV3.alwaysUseFieldBuilders ?
+                 getSigma2FieldBuilder() : null;
+          } else {
+            sigma2Builder_.addAllMessages(other.sigma2_);
+          }
+        }
+      }
       onChanged();
       return this;
     }
@@ -314,6 +459,285 @@ public  final class Sigma2Request extends
         }
       }
       return this;
+    }
+    private int bitField0_;
+
+    private boolean userfined_ ;
+    /**
+     * <pre>
+     *用户输入自定义标志[增0728]
+     * </pre>
+     *
+     * <code>bool userfined = 1;</code>
+     */
+    public boolean getUserfined() {
+      return userfined_;
+    }
+    /**
+     * <pre>
+     *用户输入自定义标志[增0728]
+     * </pre>
+     *
+     * <code>bool userfined = 1;</code>
+     */
+    public Builder setUserfined(boolean value) {
+      
+      userfined_ = value;
+      onChanged();
+      return this;
+    }
+    /**
+     * <pre>
+     *用户输入自定义标志[增0728]
+     * </pre>
+     *
+     * <code>bool userfined = 1;</code>
+     */
+    public Builder clearUserfined() {
+      
+      userfined_ = false;
+      onChanged();
+      return this;
+    }
+
+    private java.util.List<com.iscas.biz.calculation.grpc.Sigma2Entity> sigma2_ =
+      java.util.Collections.emptyList();
+    private void ensureSigma2IsMutable() {
+      if (!((bitField0_ & 0x00000002) == 0x00000002)) {
+        sigma2_ = new java.util.ArrayList<com.iscas.biz.calculation.grpc.Sigma2Entity>(sigma2_);
+        bitField0_ |= 0x00000002;
+       }
+    }
+
+    private com.google.protobuf.RepeatedFieldBuilderV3<
+        com.iscas.biz.calculation.grpc.Sigma2Entity, com.iscas.biz.calculation.grpc.Sigma2Entity.Builder, com.iscas.biz.calculation.grpc.Sigma2EntityOrBuilder> sigma2Builder_;
+
+    /**
+     * <code>repeated .com.iscas.biz.calculation.grpc.Sigma2Entity sigma2 = 2;</code>
+     */
+    public java.util.List<com.iscas.biz.calculation.grpc.Sigma2Entity> getSigma2List() {
+      if (sigma2Builder_ == null) {
+        return java.util.Collections.unmodifiableList(sigma2_);
+      } else {
+        return sigma2Builder_.getMessageList();
+      }
+    }
+    /**
+     * <code>repeated .com.iscas.biz.calculation.grpc.Sigma2Entity sigma2 = 2;</code>
+     */
+    public int getSigma2Count() {
+      if (sigma2Builder_ == null) {
+        return sigma2_.size();
+      } else {
+        return sigma2Builder_.getCount();
+      }
+    }
+    /**
+     * <code>repeated .com.iscas.biz.calculation.grpc.Sigma2Entity sigma2 = 2;</code>
+     */
+    public com.iscas.biz.calculation.grpc.Sigma2Entity getSigma2(int index) {
+      if (sigma2Builder_ == null) {
+        return sigma2_.get(index);
+      } else {
+        return sigma2Builder_.getMessage(index);
+      }
+    }
+    /**
+     * <code>repeated .com.iscas.biz.calculation.grpc.Sigma2Entity sigma2 = 2;</code>
+     */
+    public Builder setSigma2(
+        int index, com.iscas.biz.calculation.grpc.Sigma2Entity value) {
+      if (sigma2Builder_ == null) {
+        if (value == null) {
+          throw new NullPointerException();
+        }
+        ensureSigma2IsMutable();
+        sigma2_.set(index, value);
+        onChanged();
+      } else {
+        sigma2Builder_.setMessage(index, value);
+      }
+      return this;
+    }
+    /**
+     * <code>repeated .com.iscas.biz.calculation.grpc.Sigma2Entity sigma2 = 2;</code>
+     */
+    public Builder setSigma2(
+        int index, com.iscas.biz.calculation.grpc.Sigma2Entity.Builder builderForValue) {
+      if (sigma2Builder_ == null) {
+        ensureSigma2IsMutable();
+        sigma2_.set(index, builderForValue.build());
+        onChanged();
+      } else {
+        sigma2Builder_.setMessage(index, builderForValue.build());
+      }
+      return this;
+    }
+    /**
+     * <code>repeated .com.iscas.biz.calculation.grpc.Sigma2Entity sigma2 = 2;</code>
+     */
+    public Builder addSigma2(com.iscas.biz.calculation.grpc.Sigma2Entity value) {
+      if (sigma2Builder_ == null) {
+        if (value == null) {
+          throw new NullPointerException();
+        }
+        ensureSigma2IsMutable();
+        sigma2_.add(value);
+        onChanged();
+      } else {
+        sigma2Builder_.addMessage(value);
+      }
+      return this;
+    }
+    /**
+     * <code>repeated .com.iscas.biz.calculation.grpc.Sigma2Entity sigma2 = 2;</code>
+     */
+    public Builder addSigma2(
+        int index, com.iscas.biz.calculation.grpc.Sigma2Entity value) {
+      if (sigma2Builder_ == null) {
+        if (value == null) {
+          throw new NullPointerException();
+        }
+        ensureSigma2IsMutable();
+        sigma2_.add(index, value);
+        onChanged();
+      } else {
+        sigma2Builder_.addMessage(index, value);
+      }
+      return this;
+    }
+    /**
+     * <code>repeated .com.iscas.biz.calculation.grpc.Sigma2Entity sigma2 = 2;</code>
+     */
+    public Builder addSigma2(
+        com.iscas.biz.calculation.grpc.Sigma2Entity.Builder builderForValue) {
+      if (sigma2Builder_ == null) {
+        ensureSigma2IsMutable();
+        sigma2_.add(builderForValue.build());
+        onChanged();
+      } else {
+        sigma2Builder_.addMessage(builderForValue.build());
+      }
+      return this;
+    }
+    /**
+     * <code>repeated .com.iscas.biz.calculation.grpc.Sigma2Entity sigma2 = 2;</code>
+     */
+    public Builder addSigma2(
+        int index, com.iscas.biz.calculation.grpc.Sigma2Entity.Builder builderForValue) {
+      if (sigma2Builder_ == null) {
+        ensureSigma2IsMutable();
+        sigma2_.add(index, builderForValue.build());
+        onChanged();
+      } else {
+        sigma2Builder_.addMessage(index, builderForValue.build());
+      }
+      return this;
+    }
+    /**
+     * <code>repeated .com.iscas.biz.calculation.grpc.Sigma2Entity sigma2 = 2;</code>
+     */
+    public Builder addAllSigma2(
+        java.lang.Iterable<? extends com.iscas.biz.calculation.grpc.Sigma2Entity> values) {
+      if (sigma2Builder_ == null) {
+        ensureSigma2IsMutable();
+        com.google.protobuf.AbstractMessageLite.Builder.addAll(
+            values, sigma2_);
+        onChanged();
+      } else {
+        sigma2Builder_.addAllMessages(values);
+      }
+      return this;
+    }
+    /**
+     * <code>repeated .com.iscas.biz.calculation.grpc.Sigma2Entity sigma2 = 2;</code>
+     */
+    public Builder clearSigma2() {
+      if (sigma2Builder_ == null) {
+        sigma2_ = java.util.Collections.emptyList();
+        bitField0_ = (bitField0_ & ~0x00000002);
+        onChanged();
+      } else {
+        sigma2Builder_.clear();
+      }
+      return this;
+    }
+    /**
+     * <code>repeated .com.iscas.biz.calculation.grpc.Sigma2Entity sigma2 = 2;</code>
+     */
+    public Builder removeSigma2(int index) {
+      if (sigma2Builder_ == null) {
+        ensureSigma2IsMutable();
+        sigma2_.remove(index);
+        onChanged();
+      } else {
+        sigma2Builder_.remove(index);
+      }
+      return this;
+    }
+    /**
+     * <code>repeated .com.iscas.biz.calculation.grpc.Sigma2Entity sigma2 = 2;</code>
+     */
+    public com.iscas.biz.calculation.grpc.Sigma2Entity.Builder getSigma2Builder(
+        int index) {
+      return getSigma2FieldBuilder().getBuilder(index);
+    }
+    /**
+     * <code>repeated .com.iscas.biz.calculation.grpc.Sigma2Entity sigma2 = 2;</code>
+     */
+    public com.iscas.biz.calculation.grpc.Sigma2EntityOrBuilder getSigma2OrBuilder(
+        int index) {
+      if (sigma2Builder_ == null) {
+        return sigma2_.get(index);  } else {
+        return sigma2Builder_.getMessageOrBuilder(index);
+      }
+    }
+    /**
+     * <code>repeated .com.iscas.biz.calculation.grpc.Sigma2Entity sigma2 = 2;</code>
+     */
+    public java.util.List<? extends com.iscas.biz.calculation.grpc.Sigma2EntityOrBuilder> 
+         getSigma2OrBuilderList() {
+      if (sigma2Builder_ != null) {
+        return sigma2Builder_.getMessageOrBuilderList();
+      } else {
+        return java.util.Collections.unmodifiableList(sigma2_);
+      }
+    }
+    /**
+     * <code>repeated .com.iscas.biz.calculation.grpc.Sigma2Entity sigma2 = 2;</code>
+     */
+    public com.iscas.biz.calculation.grpc.Sigma2Entity.Builder addSigma2Builder() {
+      return getSigma2FieldBuilder().addBuilder(
+          com.iscas.biz.calculation.grpc.Sigma2Entity.getDefaultInstance());
+    }
+    /**
+     * <code>repeated .com.iscas.biz.calculation.grpc.Sigma2Entity sigma2 = 2;</code>
+     */
+    public com.iscas.biz.calculation.grpc.Sigma2Entity.Builder addSigma2Builder(
+        int index) {
+      return getSigma2FieldBuilder().addBuilder(
+          index, com.iscas.biz.calculation.grpc.Sigma2Entity.getDefaultInstance());
+    }
+    /**
+     * <code>repeated .com.iscas.biz.calculation.grpc.Sigma2Entity sigma2 = 2;</code>
+     */
+    public java.util.List<com.iscas.biz.calculation.grpc.Sigma2Entity.Builder> 
+         getSigma2BuilderList() {
+      return getSigma2FieldBuilder().getBuilderList();
+    }
+    private com.google.protobuf.RepeatedFieldBuilderV3<
+        com.iscas.biz.calculation.grpc.Sigma2Entity, com.iscas.biz.calculation.grpc.Sigma2Entity.Builder, com.iscas.biz.calculation.grpc.Sigma2EntityOrBuilder> 
+        getSigma2FieldBuilder() {
+      if (sigma2Builder_ == null) {
+        sigma2Builder_ = new com.google.protobuf.RepeatedFieldBuilderV3<
+            com.iscas.biz.calculation.grpc.Sigma2Entity, com.iscas.biz.calculation.grpc.Sigma2Entity.Builder, com.iscas.biz.calculation.grpc.Sigma2EntityOrBuilder>(
+                sigma2_,
+                ((bitField0_ & 0x00000002) == 0x00000002),
+                getParentForChildren(),
+                isClean());
+        sigma2_ = null;
+      }
+      return sigma2Builder_;
     }
     public final Builder setUnknownFields(
         final com.google.protobuf.UnknownFieldSet unknownFields) {

@@ -5,7 +5,6 @@ import com.alibaba.excel.ExcelWriter;
 import com.alibaba.excel.write.metadata.WriteSheet;
 import com.alibaba.excel.write.metadata.WriteTable;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
-import com.fasterxml.jackson.core.type.TypeReference;
 import com.google.common.collect.ImmutableMap;
 import com.google.common.collect.Lists;
 import com.iscas.base.biz.util.SpringUtils;
@@ -16,16 +15,18 @@ import com.iscas.biz.calculation.entity.db.Project;
 import com.iscas.biz.calculation.entity.db.ShipParam;
 import com.iscas.biz.calculation.entity.dto.BuoyancyParamExcel;
 import com.iscas.biz.calculation.entity.dto.Buoyant;
-import com.iscas.biz.calculation.grpc.*;
+import com.iscas.biz.calculation.enums.CalculationSpecification;
+import com.iscas.biz.calculation.grpc.BuoyancyResponse;
+import com.iscas.biz.calculation.grpc.GrpcHolder;
 import com.iscas.biz.calculation.grpc.service.AlgorithmGrpc;
 import com.iscas.biz.calculation.mapper.BuoyancyParamMapper;
 import com.iscas.biz.calculation.mapper.BuoyancyResultMapper;
 import com.iscas.biz.calculation.mapper.ProjectMapper;
 import com.iscas.biz.calculation.mapper.ShipParamMapper;
 import com.iscas.biz.calculation.service.BuoyancyCalculationService;
+import com.iscas.biz.calculation.service.ShipParamService;
 import com.iscas.biz.mp.table.service.TableDefinitionService;
 import com.iscas.common.tools.core.date.DateSafeUtils;
-import com.iscas.common.web.tools.json.JsonUtils;
 import com.iscas.templet.exception.ValidDataException;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.collections4.CollectionUtils;
@@ -54,6 +55,8 @@ public class BuoyancyCalculationServiceImpl implements BuoyancyCalculationServic
 
     private final ShipParamMapper shipParamMapper;
 
+    private final ShipParamService shipParamService;
+
     private final BuoyancyResultMapper buoyancyResultMapper;
 
     private final ProjectMapper projectMapper;
@@ -62,10 +65,11 @@ public class BuoyancyCalculationServiceImpl implements BuoyancyCalculationServic
 
     private final GrpcHolder grpcHolder;
 
-    public BuoyancyCalculationServiceImpl(TableDefinitionService tableDefinitionService, BuoyancyParamMapper buoyancyParamMapper, ShipParamMapper shipParamMapper, BuoyancyResultMapper buoyancyResultMapper, ProjectMapper projectMapper, AlgorithmGrpc algorithmGrpc, GrpcHolder grpcHolder) {
+    public BuoyancyCalculationServiceImpl(TableDefinitionService tableDefinitionService, BuoyancyParamMapper buoyancyParamMapper, ShipParamMapper shipParamMapper, ShipParamService shipParamService, BuoyancyResultMapper buoyancyResultMapper, ProjectMapper projectMapper, AlgorithmGrpc algorithmGrpc, GrpcHolder grpcHolder) {
         this.tableDefinitionService = tableDefinitionService;
         this.buoyancyParamMapper = buoyancyParamMapper;
         this.shipParamMapper = shipParamMapper;
+        this.shipParamService = shipParamService;
         this.buoyancyResultMapper = buoyancyResultMapper;
         this.projectMapper = projectMapper;
         this.algorithmGrpc = algorithmGrpc;
@@ -76,14 +80,21 @@ public class BuoyancyCalculationServiceImpl implements BuoyancyCalculationServic
     @Transactional(rollbackFor = Exception.class)
     public Integer save(Map<String, Object> data) throws ValidDataException {
         Integer projectId = (Integer) data.get("project_id");
-        if (null == projectId) {
-            throw new RuntimeException("项目id不存在");
+        Project project = projectMapper.selectById(projectId);
+        if (null == projectId || null == project) {
+            throw new RuntimeException("所属项目不存在");
         }
-
         ImmutableMap.Builder<String, Object> forceItemBuilder = ImmutableMap.builder();
         forceItemBuilder.put("create_time", DateSafeUtils.format(new Date()));
         forceItemBuilder.put("update_time", DateSafeUtils.format(new Date()));
         forceItemBuilder.put("project_id", projectId);
+        if (!CalculationSpecification.COMMON_SPECIFICATION.equals(project.getCalculationSpecification())) {
+            ShipParam shipParam = shipParamService.listByProjectId(projectId);
+            if (null == shipParam || null == shipParam.getCurrentType()) {
+                throw new RuntimeException("船舶参数配置异常");
+            }
+            forceItemBuilder.put("check_type", shipParam.getCurrentType().getValue());
+        }
 
         BuoyancyParam buoyancyParam = this.listParamByProjectId(projectId);
         if (null != buoyancyParam) {
@@ -102,22 +113,26 @@ public class BuoyancyCalculationServiceImpl implements BuoyancyCalculationServic
         }
         QueryWrapper<BuoyancyParam> queryWrapper = new QueryWrapper<>();
         queryWrapper.eq("project_id", projectId);
+        //增加工况查询条件
+        shipParamService.addCheckTypeCondition(queryWrapper, projectId);
+
         List<BuoyancyParam> buoyancyParams = buoyancyParamMapper.selectList(queryWrapper);
-        if (CollectionUtils.isNotEmpty(buoyancyParams)) {
-            if (buoyancyParams.size() > 1) {
-                for (int i = 1; i < buoyancyParams.size(); i++) {
-                    buoyancyParamMapper.deleteById(buoyancyParams.get(i));
-                }
-            }
-            return buoyancyParams.get(0);
+        if (CollectionUtils.isEmpty(buoyancyParams)) {
+            return null;
         }
-        return null;
+        BuoyancyParam buoyancyParam = buoyancyParams.remove(0);
+        if (CollectionUtils.isNotEmpty(buoyancyParams)) {
+            buoyancyParamMapper.deleteBatchIds(buoyancyParams.stream().map(BuoyancyParam::getParamId).toList());
+        }
+        return buoyancyParam;
     }
 
     @Override
     public int remove(Integer projectId) {
         QueryWrapper<BuoyancyParam> queryWrapper = new QueryWrapper<>();
         queryWrapper.eq("project_id", projectId);
+        //增加工况查询条件
+        shipParamService.addCheckTypeCondition(queryWrapper, projectId);
         return buoyancyParamMapper.delete(queryWrapper);
     }
 
@@ -125,14 +140,10 @@ public class BuoyancyCalculationServiceImpl implements BuoyancyCalculationServic
     public BuoyancyResult saveAndCalculate(Map<String, Object> data) throws ValidDataException {
         this.save(data);
         Integer projectId = (Integer) data.get("project_id");
-        QueryWrapper<BuoyancyParam> queryWrapper = new QueryWrapper<>();
-        queryWrapper.eq("project_id", projectId);
-        BuoyancyParam buoyancyParam = buoyancyParamMapper.selectOne(queryWrapper);
+        BuoyancyParam buoyancyParam = this.listParamByProjectId(projectId);
 
         //首先初始化船舶参数
-        QueryWrapper<ShipParam> shipParamQueryWrapper = new QueryWrapper<>();
-        shipParamQueryWrapper.eq("project_id", projectId);
-        ShipParam shipParam = shipParamMapper.selectOne(shipParamQueryWrapper);
+        ShipParam shipParam = shipParamService.listByProjectId(projectId);
 
         BuoyancyResponse buoyancyResponse = algorithmGrpc.callBuoyancy(shipParam, buoyancyParam);
         if (0 != buoyancyResponse.getCode()) {
@@ -223,11 +234,17 @@ public class BuoyancyCalculationServiceImpl implements BuoyancyCalculationServic
 
     @Override
     public BuoyancyVO getData(Integer projectId) {
+
+        Project project;
         if (null == projectId) {
             return null;
         }
         QueryWrapper<BuoyancyParam> queryWrapper = new QueryWrapper<>();
         queryWrapper.eq("project_id", projectId);
+
+        //增加工况查询条件
+        shipParamService.addCheckTypeCondition(queryWrapper, projectId);
+
         BuoyancyParam buoyancyParam = buoyancyParamMapper.selectOne(queryWrapper);
         if (null != buoyancyParam) {
             BuoyancyVO buoyancyVO = new BuoyancyVO();

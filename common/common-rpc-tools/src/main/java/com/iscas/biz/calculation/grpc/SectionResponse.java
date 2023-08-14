@@ -23,9 +23,10 @@ public  final class SectionResponse extends
     interia0_ = 0D;
     zaxis0_ = 0D;
     area_ = 0D;
-    moduleUpper_ = 0D;
+    moduleUppper_ = 0D;
     moduleLower_ = 0D;
     profileFilePath_ = "";
+    code_ = 0;
   }
 
   @java.lang.Override
@@ -75,7 +76,7 @@ public  final class SectionResponse extends
           }
           case 41: {
 
-            moduleUpper_ = input.readDouble();
+            moduleUppper_ = input.readDouble();
             break;
           }
           case 49: {
@@ -87,6 +88,11 @@ public  final class SectionResponse extends
             java.lang.String s = input.readStringRequireUtf8();
 
             profileFilePath_ = s;
+            break;
+          }
+          case 64: {
+
+            code_ = input.readInt32();
             break;
           }
         }
@@ -165,17 +171,17 @@ public  final class SectionResponse extends
     return area_;
   }
 
-  public static final int MODULE_UPPER_FIELD_NUMBER = 5;
-  private double moduleUpper_;
+  public static final int MODULE_UPPPER_FIELD_NUMBER = 5;
+  private double moduleUppper_;
   /**
    * <pre>
    *上甲板模数
    * </pre>
    *
-   * <code>double module_upper = 5;</code>
+   * <code>double module_uppper = 5;</code>
    */
-  public double getModuleUpper() {
-    return moduleUpper_;
+  public double getModuleUppper() {
+    return moduleUppper_;
   }
 
   public static final int MODULE_LOWER_FIELD_NUMBER = 6;
@@ -233,6 +239,19 @@ public  final class SectionResponse extends
     }
   }
 
+  public static final int CODE_FIELD_NUMBER = 8;
+  private int code_;
+  /**
+   * <pre>
+   *0-正常 1-异常
+   * </pre>
+   *
+   * <code>int32 code = 8;</code>
+   */
+  public int getCode() {
+    return code_;
+  }
+
   private byte memoizedIsInitialized = -1;
   public final boolean isInitialized() {
     byte isInitialized = memoizedIsInitialized;
@@ -257,14 +276,17 @@ public  final class SectionResponse extends
     if (area_ != 0D) {
       output.writeDouble(4, area_);
     }
-    if (moduleUpper_ != 0D) {
-      output.writeDouble(5, moduleUpper_);
+    if (moduleUppper_ != 0D) {
+      output.writeDouble(5, moduleUppper_);
     }
     if (moduleLower_ != 0D) {
       output.writeDouble(6, moduleLower_);
     }
     if (!getProfileFilePathBytes().isEmpty()) {
       com.google.protobuf.GeneratedMessageV3.writeString(output, 7, profileFilePath_);
+    }
+    if (code_ != 0) {
+      output.writeInt32(8, code_);
     }
   }
 
@@ -289,9 +311,9 @@ public  final class SectionResponse extends
       size += com.google.protobuf.CodedOutputStream
         .computeDoubleSize(4, area_);
     }
-    if (moduleUpper_ != 0D) {
+    if (moduleUppper_ != 0D) {
       size += com.google.protobuf.CodedOutputStream
-        .computeDoubleSize(5, moduleUpper_);
+        .computeDoubleSize(5, moduleUppper_);
     }
     if (moduleLower_ != 0D) {
       size += com.google.protobuf.CodedOutputStream
@@ -299,6 +321,10 @@ public  final class SectionResponse extends
     }
     if (!getProfileFilePathBytes().isEmpty()) {
       size += com.google.protobuf.GeneratedMessageV3.computeStringSize(7, profileFilePath_);
+    }
+    if (code_ != 0) {
+      size += com.google.protobuf.CodedOutputStream
+        .computeInt32Size(8, code_);
     }
     memoizedSize = size;
     return size;
@@ -333,15 +359,17 @@ public  final class SectionResponse extends
         == java.lang.Double.doubleToLongBits(
             other.getArea()));
     result = result && (
-        java.lang.Double.doubleToLongBits(getModuleUpper())
+        java.lang.Double.doubleToLongBits(getModuleUppper())
         == java.lang.Double.doubleToLongBits(
-            other.getModuleUpper()));
+            other.getModuleUppper()));
     result = result && (
         java.lang.Double.doubleToLongBits(getModuleLower())
         == java.lang.Double.doubleToLongBits(
             other.getModuleLower()));
     result = result && getProfileFilePath()
         .equals(other.getProfileFilePath());
+    result = result && (getCode()
+        == other.getCode());
     return result;
   }
 
@@ -364,14 +392,16 @@ public  final class SectionResponse extends
     hash = (37 * hash) + AREA_FIELD_NUMBER;
     hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
         java.lang.Double.doubleToLongBits(getArea()));
-    hash = (37 * hash) + MODULE_UPPER_FIELD_NUMBER;
+    hash = (37 * hash) + MODULE_UPPPER_FIELD_NUMBER;
     hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
-        java.lang.Double.doubleToLongBits(getModuleUpper()));
+        java.lang.Double.doubleToLongBits(getModuleUppper()));
     hash = (37 * hash) + MODULE_LOWER_FIELD_NUMBER;
     hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
         java.lang.Double.doubleToLongBits(getModuleLower()));
     hash = (37 * hash) + PROFILEFILEPATH_FIELD_NUMBER;
     hash = (53 * hash) + getProfileFilePath().hashCode();
+    hash = (37 * hash) + CODE_FIELD_NUMBER;
+    hash = (53 * hash) + getCode();
     hash = (29 * hash) + unknownFields.hashCode();
     memoizedHashCode = hash;
     return hash;
@@ -502,11 +532,13 @@ public  final class SectionResponse extends
 
       area_ = 0D;
 
-      moduleUpper_ = 0D;
+      moduleUppper_ = 0D;
 
       moduleLower_ = 0D;
 
       profileFilePath_ = "";
+
+      code_ = 0;
 
       return this;
     }
@@ -534,9 +566,10 @@ public  final class SectionResponse extends
       result.interia0_ = interia0_;
       result.zaxis0_ = zaxis0_;
       result.area_ = area_;
-      result.moduleUpper_ = moduleUpper_;
+      result.moduleUppper_ = moduleUppper_;
       result.moduleLower_ = moduleLower_;
       result.profileFilePath_ = profileFilePath_;
+      result.code_ = code_;
       onBuilt();
       return result;
     }
@@ -590,8 +623,8 @@ public  final class SectionResponse extends
       if (other.getArea() != 0D) {
         setArea(other.getArea());
       }
-      if (other.getModuleUpper() != 0D) {
-        setModuleUpper(other.getModuleUpper());
+      if (other.getModuleUppper() != 0D) {
+        setModuleUppper(other.getModuleUppper());
       }
       if (other.getModuleLower() != 0D) {
         setModuleLower(other.getModuleLower());
@@ -599,6 +632,9 @@ public  final class SectionResponse extends
       if (!other.getProfileFilePath().isEmpty()) {
         profileFilePath_ = other.profileFilePath_;
         onChanged();
+      }
+      if (other.getCode() != 0) {
+        setCode(other.getCode());
       }
       onChanged();
       return this;
@@ -781,27 +817,27 @@ public  final class SectionResponse extends
       return this;
     }
 
-    private double moduleUpper_ ;
+    private double moduleUppper_ ;
     /**
      * <pre>
      *上甲板模数
      * </pre>
      *
-     * <code>double module_upper = 5;</code>
+     * <code>double module_uppper = 5;</code>
      */
-    public double getModuleUpper() {
-      return moduleUpper_;
+    public double getModuleUppper() {
+      return moduleUppper_;
     }
     /**
      * <pre>
      *上甲板模数
      * </pre>
      *
-     * <code>double module_upper = 5;</code>
+     * <code>double module_uppper = 5;</code>
      */
-    public Builder setModuleUpper(double value) {
+    public Builder setModuleUppper(double value) {
       
-      moduleUpper_ = value;
+      moduleUppper_ = value;
       onChanged();
       return this;
     }
@@ -810,11 +846,11 @@ public  final class SectionResponse extends
      *上甲板模数
      * </pre>
      *
-     * <code>double module_upper = 5;</code>
+     * <code>double module_uppper = 5;</code>
      */
-    public Builder clearModuleUpper() {
+    public Builder clearModuleUppper() {
       
-      moduleUpper_ = 0D;
+      moduleUppper_ = 0D;
       onChanged();
       return this;
     }
@@ -942,6 +978,44 @@ public  final class SectionResponse extends
   checkByteStringIsUtf8(value);
       
       profileFilePath_ = value;
+      onChanged();
+      return this;
+    }
+
+    private int code_ ;
+    /**
+     * <pre>
+     *0-正常 1-异常
+     * </pre>
+     *
+     * <code>int32 code = 8;</code>
+     */
+    public int getCode() {
+      return code_;
+    }
+    /**
+     * <pre>
+     *0-正常 1-异常
+     * </pre>
+     *
+     * <code>int32 code = 8;</code>
+     */
+    public Builder setCode(int value) {
+      
+      code_ = value;
+      onChanged();
+      return this;
+    }
+    /**
+     * <pre>
+     *0-正常 1-异常
+     * </pre>
+     *
+     * <code>int32 code = 8;</code>
+     */
+    public Builder clearCode() {
+      
+      code_ = 0;
       onChanged();
       return this;
     }

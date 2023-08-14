@@ -2,24 +2,26 @@ package com.iscas.biz.calculation.grpc.service;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.google.common.collect.Lists;
+import com.iscas.biz.calculation.entity.db.TProfile;
 import com.iscas.biz.calculation.entity.db.*;
 import com.iscas.biz.calculation.entity.db.sigma.*;
 import com.iscas.biz.calculation.entity.dto.*;
 import com.iscas.biz.calculation.entity.dto.sigma.Sigma1DTO;
+import com.iscas.biz.calculation.enums.CalculationSpecification;
+import com.iscas.biz.calculation.enums.CheckType;
 import com.iscas.biz.calculation.grpc.Gravity;
 import com.iscas.biz.calculation.grpc.SubGravity;
 import com.iscas.biz.calculation.grpc.WeightDistribution;
 import com.iscas.biz.calculation.grpc.*;
 import com.iscas.biz.calculation.mapper.ProjectMapper;
 import com.iscas.biz.calculation.mapper.ShipParamMapper;
-import com.iscas.biz.calculation.util.ListUtils;
 import com.spire.ms.System.Collections.ArrayList;
 import org.apache.commons.collections4.CollectionUtils;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Objects;
-import java.util.stream.Collectors;
+import java.util.Optional;
 
 /**
  * @author ch w
@@ -66,19 +68,24 @@ public class AlgorithmGrpc {
                     .build();
         }
 
-        ShipParamRequest shipParamRequest = ShipParamRequest.newBuilder()
+        ShipParamRequest.Builder builder = ShipParamRequest.newBuilder()
                 .setLWl(shipParam.getWaterlineLength())
                 .setWidth(shipParam.getMouldedBreadth())
                 .setDepth(shipParam.getMouldedDepth())
                 .setDraught(shipParam.getDesignedDraft())
                 .setArea(Integer.parseInt(shipParam.getNavigationArea().getValue()))
-                .setCheckType(Integer.parseInt(shipParam.getCheckType().getValue()))
-                .setDisplacement(shipParam.getDisplacement())
-                .setPortraitGravity(shipParam.getPortraitGravity())
                 .setPrinciple(Integer.parseInt(project.getCalculationSpecification().getValue()))
                 .setType(shipParam.getShipType().getValue())
-                .build();
+                .setVmax(shipParam.getVmax())
+                .setSpeed(shipParam.getSpeed());
+        //通规不需要工况
+        if (!CalculationSpecification.COMMON_SPECIFICATION.equals(project.getCalculationSpecification())) {
+            builder.setDisplacement(shipParam.getDisplacement())
+                    .setPortraitGravity(shipParam.getPortraitGravity())
+                    .setCheckType(Integer.parseInt(shipParam.getCurrentType().getValue()));
+        }
 
+        ShipParamRequest shipParamRequest = builder.build();
         ShipParamResponse response = grpcHolder.calculationBlockingStub().shipParam(shipParamRequest);
         AlgorithmGrpc.currentProjectId = project.getProjectId();
         AlgorithmGrpc.shipParam = true;
@@ -101,7 +108,7 @@ public class AlgorithmGrpc {
                 .setBrojeanFilePath(buoyancyParam.getBonjungCurveFilePath())
                 .addPrecision(buoyancyParam.getPrecisionDisplacement())
                 .addPrecision(buoyancyParam.getPrecisionGravity())
-                .setTarget(Integer.parseInt(shipParam.getCheckType().getValue()))
+                .setTarget(Integer.parseInt(Optional.ofNullable(shipParam.getCurrentType()).orElse(CheckType.EXTREME).getValue()))
                 .setTm(buoyancyParam.getDraftMean())
                 .setTa(buoyancyParam.getDraftAft())
                 .setTf(buoyancyParam.getDraftForward()).build();
@@ -110,15 +117,16 @@ public class AlgorithmGrpc {
         return buoyancyResponse;
     }
 
-    public Weight callWeight(ShipParam shipParamTmp,WeightDTO weightDTO) {
-//        if (Objects.equals(shipParamTmp.getProjectId(), AlgorithmGrpc.currentProjectId)) {
-            ShipParamResponse tmp = callShipParam(projectMapper.selectById(shipParamTmp.getProjectId()), shipParamTmp);
-            if (0 != tmp.getCode()) {
-                throw new RuntimeException("船舶参数配置失败:" + tmp.getMessage());
-            }
-//        }
+    public Weight callWeight(ShipParam shipParamTmp, WeightDTO weightDTO) {
 
-        Integer projectId = weightDTO.getProjectId();
+        Project project = projectMapper.selectById(shipParamTmp.getProjectId());
+        ShipParamResponse tmp = callShipParam(project, shipParamTmp);
+        if (0 != tmp.getCode()) {
+            throw new RuntimeException("船舶参数配置失败:" + tmp.getMessage());
+        }
+
+
+/*        Integer projectId = weightDTO.getProjectId();
         if (!Objects.equals(projectId, AlgorithmGrpc.currentProjectId)) {
             QueryWrapper<ShipParam> queryWrapper = new QueryWrapper<>();
             queryWrapper.eq("project_id", projectId);
@@ -127,7 +135,7 @@ public class AlgorithmGrpc {
             if (0 != shipParamResponse.getCode()) {
                 throw new RuntimeException("船舶参数配置失败" + shipParamResponse.getMessage());
             }
-        }
+        }*/
         WeightRequest weightRequest = WeightRequest.newBuilder()
                 .setLoadingFilePath(weightDTO.getLoadingFilePath())
                 .build();
@@ -138,7 +146,14 @@ public class AlgorithmGrpc {
         Weight weight = new Weight();
         weight.setLoadingFileName(weightDTO.getLoadingFileName());
         weight.setLoadingFilePath(weightDTO.getLoadingFilePath());
-        weight.setProjectId(projectId);
+        weight.setProjectId(shipParamTmp.getProjectId());
+
+        //非通规设置工况类型
+        if (CalculationSpecification.COMMON_SPECIFICATION.equals(project.getCalculationSpecification())) {
+            weight.setCheckType(null);
+        } else {
+            weight.setCheckType(shipParamTmp.getCurrentType());
+        }
         List<WeightDistribution> weightDistributionsList = weightResponse.getWeightDistributionsList();
         if (CollectionUtils.isNotEmpty(weightDistributionsList)) {
             List<com.iscas.biz.calculation.entity.db.WeightDistribution> dbList = Lists.newArrayList();
@@ -186,9 +201,10 @@ public class AlgorithmGrpc {
         SectionRequest sectionRequest = SectionRequest.newBuilder()
                 .setProfileFilePath(calSectionDTO.getProfileFilePathOld())
                 .setRibNumber(calSectionDTO.getRibNumber())
-                .addAllBulbFlats(calSectionDTO.getBulbFlats())
-                .addAllTProfiles(calSectionDTO.getTProfiles())
-                .setIsHalfProfile(calSectionDTO.isHalfProfile())
+                .setExecuteAutoCadPath("")
+//                .addAllBulbFlats(calSectionDTO.getBulbFlats())
+//                .addAllTProfiles(calSectionDTO.getTProfiles())
+//                .setIsHalfProfile(calSectionDTO.isHalfProfile())
                 .build();
         SectionResponse sectionResponse = grpcHolder.calculationBlockingStub().calSection(sectionRequest);
         if (sectionResponse == null) {
@@ -212,7 +228,7 @@ public class AlgorithmGrpc {
 //        calSection.setInteriaS(sectionResponse.getInteriaS());
         calSection.setZaxis0(sectionResponse.getZaxis0());
         calSection.setArea(sectionResponse.getArea());
-        calSection.setModuleUpper(sectionResponse.getModuleUpper());
+//        calSection.setModuleUpper(sectionResponse.getModuleUpper());
         calSection.setModuleLower(sectionResponse.getModuleLower());
         calSection.setProfileFilePath(sectionResponse.getProfileFilePath());
         AlgorithmGrpc.section = true;
@@ -405,7 +421,7 @@ public class AlgorithmGrpc {
 //            throw new RuntimeException("前置计算尚未完成!");
 //        }
         SlamLoadResponse slamLoadResponse = grpcHolder.calculationBlockingStub().calSlamLoad(SlamLoadRequest.newBuilder()
-                .setSpeed(slamLoadDTO.getSpeed())
+//                .setSpeed(slamLoadDTO.getSpeed())
                 .build());
         SlamLoad dbSlamLoad = new SlamLoad();
         dbSlamLoad.setProjectId(slamLoadDTO.getProjectId());
@@ -609,6 +625,41 @@ public class AlgorithmGrpc {
         bulkheadCheckResult.setStressKuozhong(Lists.newArrayList(compartmentBulkheadSheetResponse.getStressKuozhongList()));
         bulkheadCheckResult.setShearAllow(Lists.newArrayList(compartmentBulkheadSheetResponse.getShearAllowList()));
         return bulkheadCheckResult;
+    }
+
+    /**
+     * 计算T型材信息
+     *
+     * @param tProfiles
+     * @return
+     */
+    public List<TProfile> calTProfileProperty(List<TProfile> tProfiles) {
+        List<TProfile> result = Lists.newArrayList();
+        List<String> list = tProfiles.stream().map(TProfile::getModel).toList();
+        TProfileResponse tProfileResponse = grpcHolder.calculationBlockingStub().calTProfileProperty(TProfileRequest
+                .newBuilder()
+                .addAllTProfilesTypeList(list)
+                .build());
+        if (tProfileResponse.getCode() == 1) {
+            throw new RuntimeException("T型材信息计算异常");
+        }
+        List<com.iscas.biz.calculation.grpc.TProfile> tProfilesList = tProfileResponse.getTProfilesList();
+        if (CollectionUtils.isEmpty(tProfilesList)) {
+            return result;
+        }
+        result.addAll(tProfilesList.stream().map(tProfile -> {
+            TProfile dbTProfile = new TProfile();
+            dbTProfile.setModel(tProfile.getModel());
+            dbTProfile.setKeelHeight(tProfile.getKeelHeight());
+            dbTProfile.setKeelThickness(tProfile.getKeelThickness());
+            dbTProfile.setDeckWidth(tProfile.getDeckWidth());
+            dbTProfile.setDeckThickness(tProfile.getDeckThickness());
+            dbTProfile.setSectionalArea(tProfile.getSectionalArea());
+            dbTProfile.setMomentOfInertia(tProfile.getMomentOfInertia());
+            dbTProfile.setCentroidPosition(tProfile.getCentroidPosition());
+            return dbTProfile;
+        }).toList());
+        return result;
     }
 
 }

@@ -60,4 +60,31 @@ public interface DistResponseOrBuilder extends
    * <code>double overloadS2 = 6;</code>
    */
   double getOverloadS2();
+
+  /**
+   * <pre>
+   *应力图片路径
+   * </pre>
+   *
+   * <code>string stressdisPath = 7;</code>
+   */
+  java.lang.String getStressdisPath();
+  /**
+   * <pre>
+   *应力图片路径
+   * </pre>
+   *
+   * <code>string stressdisPath = 7;</code>
+   */
+  com.google.protobuf.ByteString
+      getStressdisPathBytes();
+
+  /**
+   * <pre>
+   *0-正常 1-异常
+   * </pre>
+   *
+   * <code>int32 code = 8;</code>
+   */
+  int getCode();
 }

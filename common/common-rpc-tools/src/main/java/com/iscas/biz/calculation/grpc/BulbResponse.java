@@ -4,21 +4,18 @@
 package com.iscas.biz.calculation.grpc;
 
 /**
- * <pre>
- *砰击载荷 请求体
- * </pre>
- *
- * Protobuf type {@code com.iscas.biz.calculation.grpc.SlamLoadRequest}
+ * Protobuf type {@code com.iscas.biz.calculation.grpc.BulbResponse}
  */
-public  final class SlamLoadRequest extends
+public  final class BulbResponse extends
     com.google.protobuf.GeneratedMessageV3 implements
-    // @@protoc_insertion_point(message_implements:com.iscas.biz.calculation.grpc.SlamLoadRequest)
-    SlamLoadRequestOrBuilder {
-  // Use SlamLoadRequest.newBuilder() to construct.
-  private SlamLoadRequest(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
+    // @@protoc_insertion_point(message_implements:com.iscas.biz.calculation.grpc.BulbResponse)
+    BulbResponseOrBuilder {
+  // Use BulbResponse.newBuilder() to construct.
+  private BulbResponse(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
     super(builder);
   }
-  private SlamLoadRequest() {
+  private BulbResponse() {
+    code_ = 0;
   }
 
   @java.lang.Override
@@ -26,11 +23,12 @@ public  final class SlamLoadRequest extends
   getUnknownFields() {
     return com.google.protobuf.UnknownFieldSet.getDefaultInstance();
   }
-  private SlamLoadRequest(
+  private BulbResponse(
       com.google.protobuf.CodedInputStream input,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)
       throws com.google.protobuf.InvalidProtocolBufferException {
     this();
+    int mutable_bitField0_ = 0;
     try {
       boolean done = false;
       while (!done) {
@@ -43,6 +41,11 @@ public  final class SlamLoadRequest extends
             if (!input.skipField(tag)) {
               done = true;
             }
+            break;
+          }
+          case 8: {
+
+            code_ = input.readInt32();
             break;
           }
         }
@@ -58,14 +61,27 @@ public  final class SlamLoadRequest extends
   }
   public static final com.google.protobuf.Descriptors.Descriptor
       getDescriptor() {
-    return com.iscas.biz.calculation.grpc.CalculationProto.internal_static_com_iscas_biz_calculation_grpc_SlamLoadRequest_descriptor;
+    return com.iscas.biz.calculation.grpc.CalculationProto.internal_static_com_iscas_biz_calculation_grpc_BulbResponse_descriptor;
   }
 
   protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
       internalGetFieldAccessorTable() {
-    return com.iscas.biz.calculation.grpc.CalculationProto.internal_static_com_iscas_biz_calculation_grpc_SlamLoadRequest_fieldAccessorTable
+    return com.iscas.biz.calculation.grpc.CalculationProto.internal_static_com_iscas_biz_calculation_grpc_BulbResponse_fieldAccessorTable
         .ensureFieldAccessorsInitialized(
-            com.iscas.biz.calculation.grpc.SlamLoadRequest.class, com.iscas.biz.calculation.grpc.SlamLoadRequest.Builder.class);
+            com.iscas.biz.calculation.grpc.BulbResponse.class, com.iscas.biz.calculation.grpc.BulbResponse.Builder.class);
+  }
+
+  public static final int CODE_FIELD_NUMBER = 1;
+  private int code_;
+  /**
+   * <pre>
+   *0-正常 1-异常
+   * </pre>
+   *
+   * <code>int32 code = 1;</code>
+   */
+  public int getCode() {
+    return code_;
   }
 
   private byte memoizedIsInitialized = -1;
@@ -80,6 +96,9 @@ public  final class SlamLoadRequest extends
 
   public void writeTo(com.google.protobuf.CodedOutputStream output)
                       throws java.io.IOException {
+    if (code_ != 0) {
+      output.writeInt32(1, code_);
+    }
   }
 
   public int getSerializedSize() {
@@ -87,6 +106,10 @@ public  final class SlamLoadRequest extends
     if (size != -1) return size;
 
     size = 0;
+    if (code_ != 0) {
+      size += com.google.protobuf.CodedOutputStream
+        .computeInt32Size(1, code_);
+    }
     memoizedSize = size;
     return size;
   }
@@ -97,12 +120,14 @@ public  final class SlamLoadRequest extends
     if (obj == this) {
      return true;
     }
-    if (!(obj instanceof com.iscas.biz.calculation.grpc.SlamLoadRequest)) {
+    if (!(obj instanceof com.iscas.biz.calculation.grpc.BulbResponse)) {
       return super.equals(obj);
     }
-    com.iscas.biz.calculation.grpc.SlamLoadRequest other = (com.iscas.biz.calculation.grpc.SlamLoadRequest) obj;
+    com.iscas.biz.calculation.grpc.BulbResponse other = (com.iscas.biz.calculation.grpc.BulbResponse) obj;
 
     boolean result = true;
+    result = result && (getCode()
+        == other.getCode());
     return result;
   }
 
@@ -113,63 +138,65 @@ public  final class SlamLoadRequest extends
     }
     int hash = 41;
     hash = (19 * hash) + getDescriptor().hashCode();
+    hash = (37 * hash) + CODE_FIELD_NUMBER;
+    hash = (53 * hash) + getCode();
     hash = (29 * hash) + unknownFields.hashCode();
     memoizedHashCode = hash;
     return hash;
   }
 
-  public static com.iscas.biz.calculation.grpc.SlamLoadRequest parseFrom(
+  public static com.iscas.biz.calculation.grpc.BulbResponse parseFrom(
       com.google.protobuf.ByteString data)
       throws com.google.protobuf.InvalidProtocolBufferException {
     return PARSER.parseFrom(data);
   }
-  public static com.iscas.biz.calculation.grpc.SlamLoadRequest parseFrom(
+  public static com.iscas.biz.calculation.grpc.BulbResponse parseFrom(
       com.google.protobuf.ByteString data,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)
       throws com.google.protobuf.InvalidProtocolBufferException {
     return PARSER.parseFrom(data, extensionRegistry);
   }
-  public static com.iscas.biz.calculation.grpc.SlamLoadRequest parseFrom(byte[] data)
+  public static com.iscas.biz.calculation.grpc.BulbResponse parseFrom(byte[] data)
       throws com.google.protobuf.InvalidProtocolBufferException {
     return PARSER.parseFrom(data);
   }
-  public static com.iscas.biz.calculation.grpc.SlamLoadRequest parseFrom(
+  public static com.iscas.biz.calculation.grpc.BulbResponse parseFrom(
       byte[] data,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)
       throws com.google.protobuf.InvalidProtocolBufferException {
     return PARSER.parseFrom(data, extensionRegistry);
   }
-  public static com.iscas.biz.calculation.grpc.SlamLoadRequest parseFrom(java.io.InputStream input)
+  public static com.iscas.biz.calculation.grpc.BulbResponse parseFrom(java.io.InputStream input)
       throws java.io.IOException {
     return com.google.protobuf.GeneratedMessageV3
         .parseWithIOException(PARSER, input);
   }
-  public static com.iscas.biz.calculation.grpc.SlamLoadRequest parseFrom(
+  public static com.iscas.biz.calculation.grpc.BulbResponse parseFrom(
       java.io.InputStream input,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)
       throws java.io.IOException {
     return com.google.protobuf.GeneratedMessageV3
         .parseWithIOException(PARSER, input, extensionRegistry);
   }
-  public static com.iscas.biz.calculation.grpc.SlamLoadRequest parseDelimitedFrom(java.io.InputStream input)
+  public static com.iscas.biz.calculation.grpc.BulbResponse parseDelimitedFrom(java.io.InputStream input)
       throws java.io.IOException {
     return com.google.protobuf.GeneratedMessageV3
         .parseDelimitedWithIOException(PARSER, input);
   }
-  public static com.iscas.biz.calculation.grpc.SlamLoadRequest parseDelimitedFrom(
+  public static com.iscas.biz.calculation.grpc.BulbResponse parseDelimitedFrom(
       java.io.InputStream input,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)
       throws java.io.IOException {
     return com.google.protobuf.GeneratedMessageV3
         .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
   }
-  public static com.iscas.biz.calculation.grpc.SlamLoadRequest parseFrom(
+  public static com.iscas.biz.calculation.grpc.BulbResponse parseFrom(
       com.google.protobuf.CodedInputStream input)
       throws java.io.IOException {
     return com.google.protobuf.GeneratedMessageV3
         .parseWithIOException(PARSER, input);
   }
-  public static com.iscas.biz.calculation.grpc.SlamLoadRequest parseFrom(
+  public static com.iscas.biz.calculation.grpc.BulbResponse parseFrom(
       com.google.protobuf.CodedInputStream input,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)
       throws java.io.IOException {
@@ -181,7 +208,7 @@ public  final class SlamLoadRequest extends
   public static Builder newBuilder() {
     return DEFAULT_INSTANCE.toBuilder();
   }
-  public static Builder newBuilder(com.iscas.biz.calculation.grpc.SlamLoadRequest prototype) {
+  public static Builder newBuilder(com.iscas.biz.calculation.grpc.BulbResponse prototype) {
     return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
   }
   public Builder toBuilder() {
@@ -196,29 +223,25 @@ public  final class SlamLoadRequest extends
     return builder;
   }
   /**
-   * <pre>
-   *砰击载荷 请求体
-   * </pre>
-   *
-   * Protobuf type {@code com.iscas.biz.calculation.grpc.SlamLoadRequest}
+   * Protobuf type {@code com.iscas.biz.calculation.grpc.BulbResponse}
    */
   public static final class Builder extends
       com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
-      // @@protoc_insertion_point(builder_implements:com.iscas.biz.calculation.grpc.SlamLoadRequest)
-      com.iscas.biz.calculation.grpc.SlamLoadRequestOrBuilder {
+      // @@protoc_insertion_point(builder_implements:com.iscas.biz.calculation.grpc.BulbResponse)
+      com.iscas.biz.calculation.grpc.BulbResponseOrBuilder {
     public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
-      return com.iscas.biz.calculation.grpc.CalculationProto.internal_static_com_iscas_biz_calculation_grpc_SlamLoadRequest_descriptor;
+      return com.iscas.biz.calculation.grpc.CalculationProto.internal_static_com_iscas_biz_calculation_grpc_BulbResponse_descriptor;
     }
 
     protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
         internalGetFieldAccessorTable() {
-      return com.iscas.biz.calculation.grpc.CalculationProto.internal_static_com_iscas_biz_calculation_grpc_SlamLoadRequest_fieldAccessorTable
+      return com.iscas.biz.calculation.grpc.CalculationProto.internal_static_com_iscas_biz_calculation_grpc_BulbResponse_fieldAccessorTable
           .ensureFieldAccessorsInitialized(
-              com.iscas.biz.calculation.grpc.SlamLoadRequest.class, com.iscas.biz.calculation.grpc.SlamLoadRequest.Builder.class);
+              com.iscas.biz.calculation.grpc.BulbResponse.class, com.iscas.biz.calculation.grpc.BulbResponse.Builder.class);
     }
 
-    // Construct using com.iscas.biz.calculation.grpc.SlamLoadRequest.newBuilder()
+    // Construct using com.iscas.biz.calculation.grpc.BulbResponse.newBuilder()
     private Builder() {
       maybeForceBuilderInitialization();
     }
@@ -235,28 +258,31 @@ public  final class SlamLoadRequest extends
     }
     public Builder clear() {
       super.clear();
+      code_ = 0;
+
       return this;
     }
 
     public com.google.protobuf.Descriptors.Descriptor
         getDescriptorForType() {
-      return com.iscas.biz.calculation.grpc.CalculationProto.internal_static_com_iscas_biz_calculation_grpc_SlamLoadRequest_descriptor;
+      return com.iscas.biz.calculation.grpc.CalculationProto.internal_static_com_iscas_biz_calculation_grpc_BulbResponse_descriptor;
     }
 
-    public com.iscas.biz.calculation.grpc.SlamLoadRequest getDefaultInstanceForType() {
-      return com.iscas.biz.calculation.grpc.SlamLoadRequest.getDefaultInstance();
+    public com.iscas.biz.calculation.grpc.BulbResponse getDefaultInstanceForType() {
+      return com.iscas.biz.calculation.grpc.BulbResponse.getDefaultInstance();
     }
 
-    public com.iscas.biz.calculation.grpc.SlamLoadRequest build() {
-      com.iscas.biz.calculation.grpc.SlamLoadRequest result = buildPartial();
+    public com.iscas.biz.calculation.grpc.BulbResponse build() {
+      com.iscas.biz.calculation.grpc.BulbResponse result = buildPartial();
       if (!result.isInitialized()) {
         throw newUninitializedMessageException(result);
       }
       return result;
     }
 
-    public com.iscas.biz.calculation.grpc.SlamLoadRequest buildPartial() {
-      com.iscas.biz.calculation.grpc.SlamLoadRequest result = new com.iscas.biz.calculation.grpc.SlamLoadRequest(this);
+    public com.iscas.biz.calculation.grpc.BulbResponse buildPartial() {
+      com.iscas.biz.calculation.grpc.BulbResponse result = new com.iscas.biz.calculation.grpc.BulbResponse(this);
+      result.code_ = code_;
       onBuilt();
       return result;
     }
@@ -288,16 +314,19 @@ public  final class SlamLoadRequest extends
       return (Builder) super.addRepeatedField(field, value);
     }
     public Builder mergeFrom(com.google.protobuf.Message other) {
-      if (other instanceof com.iscas.biz.calculation.grpc.SlamLoadRequest) {
-        return mergeFrom((com.iscas.biz.calculation.grpc.SlamLoadRequest)other);
+      if (other instanceof com.iscas.biz.calculation.grpc.BulbResponse) {
+        return mergeFrom((com.iscas.biz.calculation.grpc.BulbResponse)other);
       } else {
         super.mergeFrom(other);
         return this;
       }
     }
 
-    public Builder mergeFrom(com.iscas.biz.calculation.grpc.SlamLoadRequest other) {
-      if (other == com.iscas.biz.calculation.grpc.SlamLoadRequest.getDefaultInstance()) return this;
+    public Builder mergeFrom(com.iscas.biz.calculation.grpc.BulbResponse other) {
+      if (other == com.iscas.biz.calculation.grpc.BulbResponse.getDefaultInstance()) return this;
+      if (other.getCode() != 0) {
+        setCode(other.getCode());
+      }
       onChanged();
       return this;
     }
@@ -310,17 +339,55 @@ public  final class SlamLoadRequest extends
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
-      com.iscas.biz.calculation.grpc.SlamLoadRequest parsedMessage = null;
+      com.iscas.biz.calculation.grpc.BulbResponse parsedMessage = null;
       try {
         parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
       } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-        parsedMessage = (com.iscas.biz.calculation.grpc.SlamLoadRequest) e.getUnfinishedMessage();
+        parsedMessage = (com.iscas.biz.calculation.grpc.BulbResponse) e.getUnfinishedMessage();
         throw e.unwrapIOException();
       } finally {
         if (parsedMessage != null) {
           mergeFrom(parsedMessage);
         }
       }
+      return this;
+    }
+
+    private int code_ ;
+    /**
+     * <pre>
+     *0-正常 1-异常
+     * </pre>
+     *
+     * <code>int32 code = 1;</code>
+     */
+    public int getCode() {
+      return code_;
+    }
+    /**
+     * <pre>
+     *0-正常 1-异常
+     * </pre>
+     *
+     * <code>int32 code = 1;</code>
+     */
+    public Builder setCode(int value) {
+      
+      code_ = value;
+      onChanged();
+      return this;
+    }
+    /**
+     * <pre>
+     *0-正常 1-异常
+     * </pre>
+     *
+     * <code>int32 code = 1;</code>
+     */
+    public Builder clearCode() {
+      
+      code_ = 0;
+      onChanged();
       return this;
     }
     public final Builder setUnknownFields(
@@ -334,39 +401,39 @@ public  final class SlamLoadRequest extends
     }
 
 
-    // @@protoc_insertion_point(builder_scope:com.iscas.biz.calculation.grpc.SlamLoadRequest)
+    // @@protoc_insertion_point(builder_scope:com.iscas.biz.calculation.grpc.BulbResponse)
   }
 
-  // @@protoc_insertion_point(class_scope:com.iscas.biz.calculation.grpc.SlamLoadRequest)
-  private static final com.iscas.biz.calculation.grpc.SlamLoadRequest DEFAULT_INSTANCE;
+  // @@protoc_insertion_point(class_scope:com.iscas.biz.calculation.grpc.BulbResponse)
+  private static final com.iscas.biz.calculation.grpc.BulbResponse DEFAULT_INSTANCE;
   static {
-    DEFAULT_INSTANCE = new com.iscas.biz.calculation.grpc.SlamLoadRequest();
+    DEFAULT_INSTANCE = new com.iscas.biz.calculation.grpc.BulbResponse();
   }
 
-  public static com.iscas.biz.calculation.grpc.SlamLoadRequest getDefaultInstance() {
+  public static com.iscas.biz.calculation.grpc.BulbResponse getDefaultInstance() {
     return DEFAULT_INSTANCE;
   }
 
-  private static final com.google.protobuf.Parser<SlamLoadRequest>
-      PARSER = new com.google.protobuf.AbstractParser<SlamLoadRequest>() {
-    public SlamLoadRequest parsePartialFrom(
+  private static final com.google.protobuf.Parser<BulbResponse>
+      PARSER = new com.google.protobuf.AbstractParser<BulbResponse>() {
+    public BulbResponse parsePartialFrom(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
-        return new SlamLoadRequest(input, extensionRegistry);
+        return new BulbResponse(input, extensionRegistry);
     }
   };
 
-  public static com.google.protobuf.Parser<SlamLoadRequest> parser() {
+  public static com.google.protobuf.Parser<BulbResponse> parser() {
     return PARSER;
   }
 
   @java.lang.Override
-  public com.google.protobuf.Parser<SlamLoadRequest> getParserForType() {
+  public com.google.protobuf.Parser<BulbResponse> getParserForType() {
     return PARSER;
   }
 
-  public com.iscas.biz.calculation.grpc.SlamLoadRequest getDefaultInstanceForType() {
+  public com.iscas.biz.calculation.grpc.BulbResponse getDefaultInstanceForType() {
     return DEFAULT_INSTANCE;
   }
 

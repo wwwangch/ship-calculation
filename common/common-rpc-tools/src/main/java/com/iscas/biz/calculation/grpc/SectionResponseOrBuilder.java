@@ -49,9 +49,9 @@ public interface SectionResponseOrBuilder extends
    *上甲板模数
    * </pre>
    *
-   * <code>double module_upper = 5;</code>
+   * <code>double module_uppper = 5;</code>
    */
-  double getModuleUpper();
+  double getModuleUppper();
 
   /**
    * <pre>
@@ -79,4 +79,13 @@ public interface SectionResponseOrBuilder extends
    */
   com.google.protobuf.ByteString
       getProfileFilePathBytes();
+
+  /**
+   * <pre>
+   *0-正常 1-异常
+   * </pre>
+   *
+   * <code>int32 code = 8;</code>
+   */
+  int getCode();
 }

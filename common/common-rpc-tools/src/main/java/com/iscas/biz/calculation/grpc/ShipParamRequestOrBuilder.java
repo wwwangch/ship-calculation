@@ -105,4 +105,22 @@ public interface ShipParamRequestOrBuilder extends
    */
   com.google.protobuf.ByteString
       getTypeBytes();
+
+  /**
+   * <pre>
+   *静水中最大航数[增0728]
+   * </pre>
+   *
+   * <code>double vmax = 12;</code>
+   */
+  double getVmax();
+
+  /**
+   * <pre>
+   *航速[增0728]
+   * </pre>
+   *
+   * <code>double speed = 13;</code>
+   */
+  double getSpeed();
 }

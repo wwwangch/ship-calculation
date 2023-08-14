@@ -25,6 +25,8 @@ public  final class DistResponse extends
     overloadH2_ = 0D;
     overloadS1_ = 0D;
     overloadS2_ = 0D;
+    stressdisPath_ = "";
+    code_ = 0;
   }
 
   @java.lang.Override
@@ -80,6 +82,17 @@ public  final class DistResponse extends
           case 49: {
 
             overloadS2_ = input.readDouble();
+            break;
+          }
+          case 58: {
+            java.lang.String s = input.readStringRequireUtf8();
+
+            stressdisPath_ = s;
+            break;
+          }
+          case 64: {
+
+            code_ = input.readInt32();
             break;
           }
         }
@@ -183,6 +196,61 @@ public  final class DistResponse extends
     return overloadS2_;
   }
 
+  public static final int STRESSDISPATH_FIELD_NUMBER = 7;
+  private volatile java.lang.Object stressdisPath_;
+  /**
+   * <pre>
+   *应力图片路径
+   * </pre>
+   *
+   * <code>string stressdisPath = 7;</code>
+   */
+  public java.lang.String getStressdisPath() {
+    java.lang.Object ref = stressdisPath_;
+    if (ref instanceof java.lang.String) {
+      return (java.lang.String) ref;
+    } else {
+      com.google.protobuf.ByteString bs = 
+          (com.google.protobuf.ByteString) ref;
+      java.lang.String s = bs.toStringUtf8();
+      stressdisPath_ = s;
+      return s;
+    }
+  }
+  /**
+   * <pre>
+   *应力图片路径
+   * </pre>
+   *
+   * <code>string stressdisPath = 7;</code>
+   */
+  public com.google.protobuf.ByteString
+      getStressdisPathBytes() {
+    java.lang.Object ref = stressdisPath_;
+    if (ref instanceof java.lang.String) {
+      com.google.protobuf.ByteString b = 
+          com.google.protobuf.ByteString.copyFromUtf8(
+              (java.lang.String) ref);
+      stressdisPath_ = b;
+      return b;
+    } else {
+      return (com.google.protobuf.ByteString) ref;
+    }
+  }
+
+  public static final int CODE_FIELD_NUMBER = 8;
+  private int code_;
+  /**
+   * <pre>
+   *0-正常 1-异常
+   * </pre>
+   *
+   * <code>int32 code = 8;</code>
+   */
+  public int getCode() {
+    return code_;
+  }
+
   private byte memoizedIsInitialized = -1;
   public final boolean isInitialized() {
     byte isInitialized = memoizedIsInitialized;
@@ -212,6 +280,12 @@ public  final class DistResponse extends
     }
     if (overloadS2_ != 0D) {
       output.writeDouble(6, overloadS2_);
+    }
+    if (!getStressdisPathBytes().isEmpty()) {
+      com.google.protobuf.GeneratedMessageV3.writeString(output, 7, stressdisPath_);
+    }
+    if (code_ != 0) {
+      output.writeInt32(8, code_);
     }
   }
 
@@ -243,6 +317,13 @@ public  final class DistResponse extends
     if (overloadS2_ != 0D) {
       size += com.google.protobuf.CodedOutputStream
         .computeDoubleSize(6, overloadS2_);
+    }
+    if (!getStressdisPathBytes().isEmpty()) {
+      size += com.google.protobuf.GeneratedMessageV3.computeStringSize(7, stressdisPath_);
+    }
+    if (code_ != 0) {
+      size += com.google.protobuf.CodedOutputStream
+        .computeInt32Size(8, code_);
     }
     memoizedSize = size;
     return size;
@@ -284,6 +365,10 @@ public  final class DistResponse extends
         java.lang.Double.doubleToLongBits(getOverloadS2())
         == java.lang.Double.doubleToLongBits(
             other.getOverloadS2()));
+    result = result && getStressdisPath()
+        .equals(other.getStressdisPath());
+    result = result && (getCode()
+        == other.getCode());
     return result;
   }
 
@@ -312,6 +397,10 @@ public  final class DistResponse extends
     hash = (37 * hash) + OVERLOADS2_FIELD_NUMBER;
     hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
         java.lang.Double.doubleToLongBits(getOverloadS2()));
+    hash = (37 * hash) + STRESSDISPATH_FIELD_NUMBER;
+    hash = (53 * hash) + getStressdisPath().hashCode();
+    hash = (37 * hash) + CODE_FIELD_NUMBER;
+    hash = (53 * hash) + getCode();
     hash = (29 * hash) + unknownFields.hashCode();
     memoizedHashCode = hash;
     return hash;
@@ -446,6 +535,10 @@ public  final class DistResponse extends
 
       overloadS2_ = 0D;
 
+      stressdisPath_ = "";
+
+      code_ = 0;
+
       return this;
     }
 
@@ -474,6 +567,8 @@ public  final class DistResponse extends
       result.overloadH2_ = overloadH2_;
       result.overloadS1_ = overloadS1_;
       result.overloadS2_ = overloadS2_;
+      result.stressdisPath_ = stressdisPath_;
+      result.code_ = code_;
       onBuilt();
       return result;
     }
@@ -532,6 +627,13 @@ public  final class DistResponse extends
       }
       if (other.getOverloadS2() != 0D) {
         setOverloadS2(other.getOverloadS2());
+      }
+      if (!other.getStressdisPath().isEmpty()) {
+        stressdisPath_ = other.stressdisPath_;
+        onChanged();
+      }
+      if (other.getCode() != 0) {
+        setCode(other.getCode());
       }
       onChanged();
       return this;
@@ -783,6 +885,133 @@ public  final class DistResponse extends
     public Builder clearOverloadS2() {
       
       overloadS2_ = 0D;
+      onChanged();
+      return this;
+    }
+
+    private java.lang.Object stressdisPath_ = "";
+    /**
+     * <pre>
+     *应力图片路径
+     * </pre>
+     *
+     * <code>string stressdisPath = 7;</code>
+     */
+    public java.lang.String getStressdisPath() {
+      java.lang.Object ref = stressdisPath_;
+      if (!(ref instanceof java.lang.String)) {
+        com.google.protobuf.ByteString bs =
+            (com.google.protobuf.ByteString) ref;
+        java.lang.String s = bs.toStringUtf8();
+        stressdisPath_ = s;
+        return s;
+      } else {
+        return (java.lang.String) ref;
+      }
+    }
+    /**
+     * <pre>
+     *应力图片路径
+     * </pre>
+     *
+     * <code>string stressdisPath = 7;</code>
+     */
+    public com.google.protobuf.ByteString
+        getStressdisPathBytes() {
+      java.lang.Object ref = stressdisPath_;
+      if (ref instanceof String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (java.lang.String) ref);
+        stressdisPath_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
+    }
+    /**
+     * <pre>
+     *应力图片路径
+     * </pre>
+     *
+     * <code>string stressdisPath = 7;</code>
+     */
+    public Builder setStressdisPath(
+        java.lang.String value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  
+      stressdisPath_ = value;
+      onChanged();
+      return this;
+    }
+    /**
+     * <pre>
+     *应力图片路径
+     * </pre>
+     *
+     * <code>string stressdisPath = 7;</code>
+     */
+    public Builder clearStressdisPath() {
+      
+      stressdisPath_ = getDefaultInstance().getStressdisPath();
+      onChanged();
+      return this;
+    }
+    /**
+     * <pre>
+     *应力图片路径
+     * </pre>
+     *
+     * <code>string stressdisPath = 7;</code>
+     */
+    public Builder setStressdisPathBytes(
+        com.google.protobuf.ByteString value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+      
+      stressdisPath_ = value;
+      onChanged();
+      return this;
+    }
+
+    private int code_ ;
+    /**
+     * <pre>
+     *0-正常 1-异常
+     * </pre>
+     *
+     * <code>int32 code = 8;</code>
+     */
+    public int getCode() {
+      return code_;
+    }
+    /**
+     * <pre>
+     *0-正常 1-异常
+     * </pre>
+     *
+     * <code>int32 code = 8;</code>
+     */
+    public Builder setCode(int value) {
+      
+      code_ = value;
+      onChanged();
+      return this;
+    }
+    /**
+     * <pre>
+     *0-正常 1-异常
+     * </pre>
+     *
+     * <code>int32 code = 8;</code>
+     */
+    public Builder clearCode() {
+      
+      code_ = 0;
       onChanged();
       return this;
     }

@@ -19,6 +19,7 @@ public  final class AdditionalForceHeadResponse extends
     addyatouh_ = java.util.Collections.emptyList();
     strdeck_ = com.google.protobuf.LazyStringArrayList.EMPTY;
     deckyatou_ = java.util.Collections.emptyList();
+    code_ = 0;
   }
 
   @java.lang.Override
@@ -118,6 +119,11 @@ public  final class AdditionalForceHeadResponse extends
             input.popLimit(limit);
             break;
           }
+          case 40: {
+
+            code_ = input.readInt32();
+            break;
+          }
         }
       }
     } catch (com.google.protobuf.InvalidProtocolBufferException e) {
@@ -153,6 +159,7 @@ public  final class AdditionalForceHeadResponse extends
             com.iscas.biz.calculation.grpc.AdditionalForceHeadResponse.class, com.iscas.biz.calculation.grpc.AdditionalForceHeadResponse.Builder.class);
   }
 
+  private int bitField0_;
   public static final int LEIWEIHAO_FIELD_NUMBER = 1;
   private java.util.List<java.lang.Double> leiweihao_;
   /**
@@ -303,6 +310,19 @@ public  final class AdditionalForceHeadResponse extends
   }
   private int deckyatouMemoizedSerializedSize = -1;
 
+  public static final int CODE_FIELD_NUMBER = 5;
+  private int code_;
+  /**
+   * <pre>
+   *0-正常 1-异常
+   * </pre>
+   *
+   * <code>int32 code = 5;</code>
+   */
+  public int getCode() {
+    return code_;
+  }
+
   private byte memoizedIsInitialized = -1;
   public final boolean isInitialized() {
     byte isInitialized = memoizedIsInitialized;
@@ -339,6 +359,9 @@ public  final class AdditionalForceHeadResponse extends
     }
     for (int i = 0; i < deckyatou_.size(); i++) {
       output.writeDoubleNoTag(deckyatou_.get(i));
+    }
+    if (code_ != 0) {
+      output.writeInt32(5, code_);
     }
   }
 
@@ -388,6 +411,10 @@ public  final class AdditionalForceHeadResponse extends
       }
       deckyatouMemoizedSerializedSize = dataSize;
     }
+    if (code_ != 0) {
+      size += com.google.protobuf.CodedOutputStream
+        .computeInt32Size(5, code_);
+    }
     memoizedSize = size;
     return size;
   }
@@ -412,6 +439,8 @@ public  final class AdditionalForceHeadResponse extends
         .equals(other.getStrdeckList());
     result = result && getDeckyatouList()
         .equals(other.getDeckyatouList());
+    result = result && (getCode()
+        == other.getCode());
     return result;
   }
 
@@ -438,6 +467,8 @@ public  final class AdditionalForceHeadResponse extends
       hash = (37 * hash) + DECKYATOU_FIELD_NUMBER;
       hash = (53 * hash) + getDeckyatouList().hashCode();
     }
+    hash = (37 * hash) + CODE_FIELD_NUMBER;
+    hash = (53 * hash) + getCode();
     hash = (29 * hash) + unknownFields.hashCode();
     memoizedHashCode = hash;
     return hash;
@@ -564,6 +595,8 @@ public  final class AdditionalForceHeadResponse extends
       bitField0_ = (bitField0_ & ~0x00000004);
       deckyatou_ = java.util.Collections.emptyList();
       bitField0_ = (bitField0_ & ~0x00000008);
+      code_ = 0;
+
       return this;
     }
 
@@ -587,6 +620,7 @@ public  final class AdditionalForceHeadResponse extends
     public com.iscas.biz.calculation.grpc.AdditionalForceHeadResponse buildPartial() {
       com.iscas.biz.calculation.grpc.AdditionalForceHeadResponse result = new com.iscas.biz.calculation.grpc.AdditionalForceHeadResponse(this);
       int from_bitField0_ = bitField0_;
+      int to_bitField0_ = 0;
       if (((bitField0_ & 0x00000001) == 0x00000001)) {
         leiweihao_ = java.util.Collections.unmodifiableList(leiweihao_);
         bitField0_ = (bitField0_ & ~0x00000001);
@@ -607,6 +641,8 @@ public  final class AdditionalForceHeadResponse extends
         bitField0_ = (bitField0_ & ~0x00000008);
       }
       result.deckyatou_ = deckyatou_;
+      result.code_ = code_;
+      result.bitField0_ = to_bitField0_;
       onBuilt();
       return result;
     }
@@ -687,6 +723,9 @@ public  final class AdditionalForceHeadResponse extends
           deckyatou_.addAll(other.deckyatou_);
         }
         onChanged();
+      }
+      if (other.getCode() != 0) {
+        setCode(other.getCode());
       }
       onChanged();
       return this;
@@ -1123,6 +1162,44 @@ public  final class AdditionalForceHeadResponse extends
     public Builder clearDeckyatou() {
       deckyatou_ = java.util.Collections.emptyList();
       bitField0_ = (bitField0_ & ~0x00000008);
+      onChanged();
+      return this;
+    }
+
+    private int code_ ;
+    /**
+     * <pre>
+     *0-正常 1-异常
+     * </pre>
+     *
+     * <code>int32 code = 5;</code>
+     */
+    public int getCode() {
+      return code_;
+    }
+    /**
+     * <pre>
+     *0-正常 1-异常
+     * </pre>
+     *
+     * <code>int32 code = 5;</code>
+     */
+    public Builder setCode(int value) {
+      
+      code_ = value;
+      onChanged();
+      return this;
+    }
+    /**
+     * <pre>
+     *0-正常 1-异常
+     * </pre>
+     *
+     * <code>int32 code = 5;</code>
+     */
+    public Builder clearCode() {
+      
+      code_ = 0;
       onChanged();
       return this;
     }

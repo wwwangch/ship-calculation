@@ -58,18 +58,46 @@ public class ShipParam {
      */
     private NavigationArea navigationArea;
 
+    /**
+     * 校验工况(已经弃用,通规不需要这个类型，其他两个规范同时有两个核校工况)
+     */
     private CheckType checkType;
 
     /**
-     * 排水量
+     * 排水量(默认是极限)
      */
 
     private Double displacement;
 
     /**
-     * 重心纵向位置
+     * 重心纵向位置(默认是极限)
      */
     private Double portraitGravity;
+
+    //========new 8.3=============
+    /**
+     * 排水量(此处是巡航工况)
+     */
+
+    private Double cruisingDisplacement;
+
+    /**
+     * 重心纵向位置(此处是巡航工况)
+     */
+    private Double cruisingPortraitGravity;
+
+    /**
+     * 当前校验工况
+     */
+    private CheckType currentType;
+
+    //静水中最大航数
+    private Double vmax;
+
+    //航速
+    private Double speed;
+
+    //========new 8.3=============
 
     /**
      * 液舱空气管压头

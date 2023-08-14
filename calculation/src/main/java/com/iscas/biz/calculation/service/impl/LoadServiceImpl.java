@@ -1,10 +1,7 @@
 package com.iscas.biz.calculation.service.impl;
 
 import com.alibaba.excel.EasyExcel;
-import com.alibaba.fastjson.JSON;
-import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
-import com.baomidou.mybatisplus.extension.handlers.JacksonTypeHandler;
 import com.iscas.base.biz.util.SpringUtils;
 import com.iscas.biz.calculation.entity.db.*;
 import com.iscas.biz.calculation.entity.dto.SlamLoadDTO;
@@ -16,6 +13,7 @@ import com.iscas.biz.calculation.mapper.SlamLoadMapper;
 import com.iscas.biz.calculation.mapper.StaticLoadMapper;
 import com.iscas.biz.calculation.mapper.WaveLoadMapper;
 import com.iscas.biz.calculation.service.LoadService;
+import com.iscas.biz.calculation.service.ShipParamService;
 import org.apache.commons.collections4.CollectionUtils;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -36,13 +34,16 @@ public class LoadServiceImpl implements LoadService {
     private final SlamLoadMapper slamLoadMapper;
     private final ProjectMapper projectMapper;
 
+    private final ShipParamService shipParamService;
+
     private final AlgorithmGrpc algorithmGrpc;
 
-    public LoadServiceImpl(StaticLoadMapper staticLoadMapper, WaveLoadMapper waveLoadMapper, SlamLoadMapper slamLoadMapper, ProjectMapper projectMapper, AlgorithmGrpc algorithmGrpc) {
+    public LoadServiceImpl(StaticLoadMapper staticLoadMapper, WaveLoadMapper waveLoadMapper, SlamLoadMapper slamLoadMapper, ProjectMapper projectMapper, ShipParamService shipParamService, AlgorithmGrpc algorithmGrpc) {
         this.staticLoadMapper = staticLoadMapper;
         this.waveLoadMapper = waveLoadMapper;
         this.slamLoadMapper = slamLoadMapper;
         this.projectMapper = projectMapper;
+        this.shipParamService = shipParamService;
         this.algorithmGrpc = algorithmGrpc;
     }
 
@@ -51,16 +52,19 @@ public class LoadServiceImpl implements LoadService {
     public StaticLoad getStaticData(Integer projectId) {
         QueryWrapper<StaticLoad> queryWrapper = new QueryWrapper<>();
         queryWrapper.eq("project_id", projectId);
+
+        //增加工况条件
+        shipParamService.addCheckTypeCondition(queryWrapper, projectId);
+
         List<StaticLoad> staticLoads = staticLoadMapper.selectList(queryWrapper);
-        if (CollectionUtils.isNotEmpty(staticLoads)) {
-            if (staticLoads.size() > 1) {
-                for (int i = 1; i < staticLoads.size(); i++) {
-                    staticLoadMapper.deleteById(staticLoads.get(i));
-                }
-            }
-            return staticLoads.get(0);
+        if (CollectionUtils.isEmpty(staticLoads)) {
+            return null;
         }
-        return null;
+        StaticLoad staticLoad = staticLoads.remove(0);
+        if (CollectionUtils.isNotEmpty(staticLoads)) {
+            staticLoadMapper.deleteBatchIds(staticLoads.stream().map(StaticLoad::getStaticLoadId).toList());
+        }
+        return staticLoad;
     }
 
     @Override
@@ -68,16 +72,19 @@ public class LoadServiceImpl implements LoadService {
     public WaveLoad getWaveData(Integer projectId) {
         QueryWrapper<WaveLoad> queryWrapper = new QueryWrapper<>();
         queryWrapper.eq("project_id", projectId);
+        //增加工况条件
+        shipParamService.addCheckTypeCondition(queryWrapper, projectId);
+
         List<WaveLoad> waveLoads = waveLoadMapper.selectList(queryWrapper);
-        if (CollectionUtils.isNotEmpty(waveLoads)) {
-            if (waveLoads.size() > 1) {
-                for (int i = 1; i < waveLoads.size(); i++) {
-                    waveLoadMapper.deleteById(waveLoads.get(i));
-                }
-            }
-            return waveLoads.get(0);
+
+        if (CollectionUtils.isEmpty(waveLoads)) {
+            return null;
         }
-        return null;
+        WaveLoad waveLoad = waveLoads.remove(0);
+        if (CollectionUtils.isNotEmpty(waveLoads)) {
+            waveLoadMapper.deleteBatchIds(waveLoads.stream().map(WaveLoad::getWaveLoadId).toList());
+        }
+        return waveLoad;
     }
 
     @Override
@@ -85,16 +92,18 @@ public class LoadServiceImpl implements LoadService {
     public SlamLoad getSlamData(Integer projectId) {
         QueryWrapper<SlamLoad> queryWrapper = new QueryWrapper<>();
         queryWrapper.eq("project_id", projectId);
+        //增加工况条件
+        shipParamService.addCheckTypeCondition(queryWrapper, projectId);
         List<SlamLoad> slamLoads = slamLoadMapper.selectList(queryWrapper);
-        if (CollectionUtils.isNotEmpty(slamLoads)) {
-            if (slamLoads.size() > 1) {
-                for (int i = 1; i < slamLoads.size(); i++) {
-                    slamLoadMapper.deleteById(slamLoads.get(i));
-                }
-            }
-            return slamLoads.get(0);
+
+        if (CollectionUtils.isEmpty(slamLoads)) {
+            return null;
         }
-        return null;
+        SlamLoad slamLoad = slamLoads.remove(0);
+        if (CollectionUtils.isNotEmpty(slamLoads)) {
+            slamLoadMapper.deleteBatchIds(slamLoads.stream().map(SlamLoad::getSlamLoadId).toList());
+        }
+        return slamLoad;
     }
 
     @Override
@@ -105,6 +114,11 @@ public class LoadServiceImpl implements LoadService {
             throw new RuntimeException("参数[projectId]不可为空");
         }
         StaticLoad calStaticLoad = algorithmGrpc.calStaticLoad(staticLoadDTO);
+
+        //填充所属工况
+        ShipParam shipParam = shipParamService.listByProjectId(projectId);
+        calStaticLoad.setCheckType(shipParam.getCurrentType());
+
         StaticLoad dbStaticLoad = getStaticData(projectId);
         if (null != dbStaticLoad) {
             Integer staticLoadId = dbStaticLoad.getStaticLoadId();
@@ -123,6 +137,11 @@ public class LoadServiceImpl implements LoadService {
             throw new RuntimeException("参数[projectId]不可为空");
         }
         WaveLoad calWaveLoad = algorithmGrpc.calWaveLoad(waveLoadDTO);
+
+        //填充所属工况
+        ShipParam shipParam = shipParamService.listByProjectId(projectId);
+        calWaveLoad.setCheckType(shipParam.getCurrentType());
+
         WaveLoad dbWaveLoad = getWaveData(projectId);
         if (null != dbWaveLoad) {
             Integer waveLoadId = dbWaveLoad.getWaveLoadId();
@@ -141,6 +160,11 @@ public class LoadServiceImpl implements LoadService {
             throw new RuntimeException("参数[projectId]不可为空");
         }
         SlamLoad calSlamLoad = algorithmGrpc.calSlamLoad(slamLoadDTO);
+
+        //填充所属工况
+        ShipParam shipParam = shipParamService.listByProjectId(projectId);
+        calSlamLoad.setCheckType(shipParam.getCurrentType());
+
         SlamLoad dbSlamLoad = getSlamData(projectId);
         if (null != dbSlamLoad) {
             Integer slamLoadId = dbSlamLoad.getSlamLoadId();

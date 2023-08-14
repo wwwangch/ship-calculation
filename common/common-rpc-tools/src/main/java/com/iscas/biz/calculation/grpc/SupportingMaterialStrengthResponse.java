@@ -37,6 +37,7 @@ public  final class SupportingMaterialStrengthResponse extends
     nMaxEl_ = java.util.Collections.emptyList();
     stressMaxEl_ = java.util.Collections.emptyList();
     shearMaxEl_ = java.util.Collections.emptyList();
+    code_ = 0;
   }
 
   @java.lang.Override
@@ -526,6 +527,11 @@ public  final class SupportingMaterialStrengthResponse extends
             input.popLimit(limit);
             break;
           }
+          case 184: {
+
+            code_ = input.readInt32();
+            break;
+          }
         }
       }
     } catch (com.google.protobuf.InvalidProtocolBufferException e) {
@@ -615,6 +621,7 @@ public  final class SupportingMaterialStrengthResponse extends
             com.iscas.biz.calculation.grpc.SupportingMaterialStrengthResponse.class, com.iscas.biz.calculation.grpc.SupportingMaterialStrengthResponse.Builder.class);
   }
 
+  private int bitField0_;
   public static final int UPPERLOAD_FIELD_NUMBER = 1;
   private java.util.List<java.lang.Double> upperLoad_;
   /**
@@ -1388,6 +1395,19 @@ public  final class SupportingMaterialStrengthResponse extends
   }
   private int shearMaxElMemoizedSerializedSize = -1;
 
+  public static final int CODE_FIELD_NUMBER = 23;
+  private int code_;
+  /**
+   * <pre>
+   *0-正常 1-异常
+   * </pre>
+   *
+   * <code>int32 code = 23;</code>
+   */
+  public int getCode() {
+    return code_;
+  }
+
   private byte memoizedIsInitialized = -1;
   public final boolean isInitialized() {
     byte isInitialized = memoizedIsInitialized;
@@ -1554,6 +1574,9 @@ public  final class SupportingMaterialStrengthResponse extends
     }
     for (int i = 0; i < shearMaxEl_.size(); i++) {
       output.writeDoubleNoTag(shearMaxEl_.get(i));
+    }
+    if (code_ != 0) {
+      output.writeInt32(23, code_);
     }
   }
 
@@ -1804,6 +1827,10 @@ public  final class SupportingMaterialStrengthResponse extends
       }
       shearMaxElMemoizedSerializedSize = dataSize;
     }
+    if (code_ != 0) {
+      size += com.google.protobuf.CodedOutputStream
+        .computeInt32Size(23, code_);
+    }
     memoizedSize = size;
     return size;
   }
@@ -1864,6 +1891,8 @@ public  final class SupportingMaterialStrengthResponse extends
         .equals(other.getStressMaxElList());
     result = result && getShearMaxElList()
         .equals(other.getShearMaxElList());
+    result = result && (getCode()
+        == other.getCode());
     return result;
   }
 
@@ -1962,6 +1991,8 @@ public  final class SupportingMaterialStrengthResponse extends
       hash = (37 * hash) + SHEAR_MAX_EL_FIELD_NUMBER;
       hash = (53 * hash) + getShearMaxElList().hashCode();
     }
+    hash = (37 * hash) + CODE_FIELD_NUMBER;
+    hash = (53 * hash) + getCode();
     hash = (29 * hash) + unknownFields.hashCode();
     memoizedHashCode = hash;
     return hash;
@@ -2124,6 +2155,8 @@ public  final class SupportingMaterialStrengthResponse extends
       bitField0_ = (bitField0_ & ~0x00100000);
       shearMaxEl_ = java.util.Collections.emptyList();
       bitField0_ = (bitField0_ & ~0x00200000);
+      code_ = 0;
+
       return this;
     }
 
@@ -2147,6 +2180,7 @@ public  final class SupportingMaterialStrengthResponse extends
     public com.iscas.biz.calculation.grpc.SupportingMaterialStrengthResponse buildPartial() {
       com.iscas.biz.calculation.grpc.SupportingMaterialStrengthResponse result = new com.iscas.biz.calculation.grpc.SupportingMaterialStrengthResponse(this);
       int from_bitField0_ = bitField0_;
+      int to_bitField0_ = 0;
       if (((bitField0_ & 0x00000001) == 0x00000001)) {
         upperLoad_ = java.util.Collections.unmodifiableList(upperLoad_);
         bitField0_ = (bitField0_ & ~0x00000001);
@@ -2257,6 +2291,8 @@ public  final class SupportingMaterialStrengthResponse extends
         bitField0_ = (bitField0_ & ~0x00200000);
       }
       result.shearMaxEl_ = shearMaxEl_;
+      result.code_ = code_;
+      result.bitField0_ = to_bitField0_;
       onBuilt();
       return result;
     }
@@ -2517,6 +2553,9 @@ public  final class SupportingMaterialStrengthResponse extends
           shearMaxEl_.addAll(other.shearMaxEl_);
         }
         onChanged();
+      }
+      if (other.getCode() != 0) {
+        setCode(other.getCode());
       }
       onChanged();
       return this;
@@ -4616,6 +4655,44 @@ public  final class SupportingMaterialStrengthResponse extends
     public Builder clearShearMaxEl() {
       shearMaxEl_ = java.util.Collections.emptyList();
       bitField0_ = (bitField0_ & ~0x00200000);
+      onChanged();
+      return this;
+    }
+
+    private int code_ ;
+    /**
+     * <pre>
+     *0-正常 1-异常
+     * </pre>
+     *
+     * <code>int32 code = 23;</code>
+     */
+    public int getCode() {
+      return code_;
+    }
+    /**
+     * <pre>
+     *0-正常 1-异常
+     * </pre>
+     *
+     * <code>int32 code = 23;</code>
+     */
+    public Builder setCode(int value) {
+      
+      code_ = value;
+      onChanged();
+      return this;
+    }
+    /**
+     * <pre>
+     *0-正常 1-异常
+     * </pre>
+     *
+     * <code>int32 code = 23;</code>
+     */
+    public Builder clearCode() {
+      
+      code_ = 0;
       onChanged();
       return this;
     }

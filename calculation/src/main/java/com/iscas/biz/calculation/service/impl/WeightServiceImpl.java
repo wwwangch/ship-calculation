@@ -1,28 +1,30 @@
 package com.iscas.biz.calculation.service.impl;
 
 import com.alibaba.excel.EasyExcel;
-import com.alibaba.excel.ExcelWriter;
-import com.alibaba.excel.write.metadata.WriteSheet;
-import com.alibaba.excel.write.metadata.WriteTable;
+import com.alibaba.excel.write.builder.ExcelWriterSheetBuilder;
 import com.alibaba.fastjson.JSON;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.iscas.base.biz.util.SpringUtils;
-import com.iscas.biz.calculation.entity.db.*;
-import com.iscas.biz.calculation.entity.dto.BuoyancyParamExcel;
+import com.iscas.biz.calculation.entity.db.Project;
+import com.iscas.biz.calculation.entity.db.ShipParam;
+import com.iscas.biz.calculation.entity.db.Weight;
+import com.iscas.biz.calculation.entity.db.WeightDistribution;
 import com.iscas.biz.calculation.entity.dto.WeightDTO;
+import com.iscas.biz.calculation.enums.CalculationSpecification;
 import com.iscas.biz.calculation.grpc.service.AlgorithmGrpc;
 import com.iscas.biz.calculation.mapper.ProjectMapper;
 import com.iscas.biz.calculation.mapper.ShipParamMapper;
 import com.iscas.biz.calculation.mapper.WeightMapper;
+import com.iscas.biz.calculation.service.ShipParamService;
 import com.iscas.biz.calculation.service.WeightService;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.collections4.CollectionUtils;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.io.File;
 import java.io.IOException;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * @author ch w
@@ -39,11 +41,14 @@ public class WeightServiceImpl implements WeightService {
 
     private final ShipParamMapper shipParamMapper;
 
-    public WeightServiceImpl(AlgorithmGrpc algorithmGrpc, WeightMapper weightMapper, ProjectMapper projectMapper, ShipParamMapper shipParamMapper) {
+    private final ShipParamService shipParamService;
+
+    public WeightServiceImpl(AlgorithmGrpc algorithmGrpc, WeightMapper weightMapper, ProjectMapper projectMapper, ShipParamMapper shipParamMapper, ShipParamService shipParamService) {
         this.algorithmGrpc = algorithmGrpc;
         this.weightMapper = weightMapper;
         this.projectMapper = projectMapper;
         this.shipParamMapper = shipParamMapper;
+        this.shipParamService = shipParamService;
     }
 
     @Override
@@ -58,7 +63,7 @@ public class WeightServiceImpl implements WeightService {
         shipParamQueryWrapper.eq("project_id", projectId);
         ShipParam shipParam = shipParamMapper.selectOne(shipParamQueryWrapper);
 
-        Weight calledWeight = algorithmGrpc.callWeight(shipParam,weight);
+        Weight calledWeight = algorithmGrpc.callWeight(shipParam, weight);
         Weight dbWeight = listByProjectId(projectId);
         if (null != dbWeight) {
             Integer weightId = dbWeight.getWeightId();
@@ -72,8 +77,20 @@ public class WeightServiceImpl implements WeightService {
     @Override
     @Transactional
     public Weight listByProjectId(Integer projectId) {
+        Project project = projectMapper.selectById(projectId);
+        if (null == project) {
+            return null;
+        }
+
         QueryWrapper<Weight> queryWrapper = new QueryWrapper<>();
         queryWrapper.eq("project_id", projectId);
+        if (!CalculationSpecification.COMMON_SPECIFICATION.equals(project.getCalculationSpecification())) {
+            ShipParam shipParam = shipParamService.listByProjectId(projectId);
+            if (null == shipParam || shipParam.getCurrentType() == null) {
+                throw new RuntimeException("当前项目船舶参数异常");
+            }
+            queryWrapper.eq("check_type", shipParam.getCurrentType().getValue());
+        }
         List<Weight> weights = weightMapper.selectList(queryWrapper);
         if (CollectionUtils.isNotEmpty(weights)) {
             if (weights.size() > 1) {

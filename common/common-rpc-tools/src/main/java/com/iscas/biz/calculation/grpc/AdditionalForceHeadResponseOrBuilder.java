@@ -116,4 +116,13 @@ public interface AdditionalForceHeadResponseOrBuilder extends
    * <code>repeated double deckyatou = 4;</code>
    */
   double getDeckyatou(int index);
+
+  /**
+   * <pre>
+   *0-正常 1-异常
+   * </pre>
+   *
+   * <code>int32 code = 5;</code>
+   */
+  int getCode();
 }

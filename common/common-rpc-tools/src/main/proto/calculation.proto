@@ -47,6 +47,13 @@ service Calculation {
 
   //扶强材计算
   rpc calSupportingMaterialStrength(SupportingMaterialStrengthRequest) returns(SupportingMaterialStrengthResponse){}
+
+  //球扁钢计算
+  rpc calBulbProperty(BulbRequest) returns(BulbResponse){}
+
+  //T型材计算
+  rpc  calTProfileProperty(TProfileRequest) returns(TProfileResponse){}
+
 }
 
 //浮力计算参数值
@@ -130,6 +137,12 @@ message ShipParamRequest {
 
   //船舶类型 ZQJ HM
   string type = 11;
+
+  //静水中最大航数[增0728]
+  double vmax = 12;
+
+  //航速[增0728]
+  double speed = 13;
 }
 //船舶参数响应
 message ShipParamResponse{
@@ -205,6 +218,8 @@ message StaticLoadResponse{
   repeated double nvecM = 3;
   //  修正的弯矩 目前返回21个
   repeated double mvecM = 4;
+  //0-正常 1-异常
+  int32 code = 5;
 }
 
 //波浪载荷计算请求体
@@ -239,11 +254,13 @@ message WaveLoadResponse{
   repeated double nwvecMS = 9;
   //波谷修正的弯矩 目前返回21个
   repeated double mwvecMS = 10;
+  //0-正常 1-异常[增0731]
+  int32 code = 11;
 }
 //砰击载荷 请求体
 message SlamLoadRequest{
-  //航速
-  double speed = 1;
+  //航速[删除0728]
+  //double speed = 1;
 }
 
 //砰击载荷 返回体
@@ -253,21 +270,8 @@ message SlamLoadResponse{
 
   //波谷抨击弯矩  数组  21个
   repeated double nwb = 2;
-}
-//剖面计算输入
-message SectionRequest{
-  //剖面文件路径
-  string profileFilePath = 1;
-
-  //肋位号
-  double ribNumber = 2;
-  //球扁钢数组
-  repeated BulbFlat bulbFlats = 3;
-  //T型材数组
-  repeated TProfile tProfiles = 4;
-  //new614----------------
-  //是否半剖面
-  bool isHalfProfile = 5;
+  //0-正常 1-异常[增0731]
+  int32 code = 3;
 }
 //球扁钢
 message BulbFlat{
@@ -290,6 +294,38 @@ message TProfile{
   double momentOfInertia = 7; // 惯性矩(cm⁴)
   double centroidPosition = 8; // 形心位置(cm)
 }
+//T型材输入[增0731]
+message  TProfileRequest{
+  //T型材数组[改0728]
+  repeated string tProfilesTypeList = 1;
+}
+message TProfileResponse{
+  //T型材属性计算[增0728]
+  repeated TProfile tProfiles = 1;
+  //0-正常 1-异常[增0731]
+  int32 code = 2;
+}
+//球扁钢输入[增0731]
+message  BulbRequest{
+  //球扁钢数组
+  repeated BulbFlat bulbFlats = 1;
+}
+message BulbResponse{
+  //0-正常 1-异常
+  int32 code = 1;
+}
+
+//剖面计算输入
+message SectionRequest{
+  //剖面文件路径
+  string profileFilePath = 1;
+  //肋位号
+  double ribNumber = 2;
+  //CAD执行路径[增0728]
+  string executeAutoCadPath = 3;
+
+}
+
 //剖面计算输出
 message SectionResponse{
   //初始静矩
@@ -305,12 +341,16 @@ message SectionResponse{
   //剖面面积
   double area = 4;
   //上甲板模数
-  double module_upper = 5;
+  double module_uppper = 5;
   //底部模数
   double module_lower = 6;
 
   //解析后的剖面文件路径
   string profileFilePath = 7;
+
+  //0-正常 1-异常
+  int32 code = 8;
+
 }
 
 
@@ -333,7 +373,10 @@ message DistResponse{
   double overloadS1 = 5;
   //中垂过载系数2
   double overloadS2 = 6;
-
+  //应力图片路径
+  string stressdisPath = 7;
+  //0-正常 1-异常
+  int32 code = 8;
 }
 message Sigma1Request{
 
@@ -419,6 +462,8 @@ message Sigma1Request{
 
 message Sigma1Response{
   repeated Sigma1Entity sigma1 = 1;
+  //0-正常 1-异常
+  int32 code = 2;
 }
 
 message Sigma1Entity{
@@ -435,11 +480,15 @@ message Sigma1Entity{
 }
 
 message Sigma2Request{
-
+  //用户输入自定义标志[增0728]
+  bool userfined = 1;
+  repeated Sigma2Entity sigma2 = 2;
 }
 
 message Sigma2Response{
   repeated Sigma2Entity sigma2 = 1;
+  //0-正常 1-异常
+  int32 code = 2;
 }
 
 message Sigma2Entity{
@@ -493,6 +542,8 @@ message Sigma3Request{
 
 message Sigma3Response{
   repeated Sigma2Entity sigma3 = 1;
+  //0-正常 1-异常
+  int32 code = 2;
 }
 
 message Sigma4Request{
@@ -501,6 +552,8 @@ message Sigma4Request{
 
 message Sigma4Response{
   repeated Sigma4Entity sigma4 = 1;
+  //0-正常 1-异常
+  int32 code = 2;
 }
 
 message Sigma4Entity{
@@ -538,6 +591,8 @@ message ShearingStressRequest{
 }
 message ShearingStressResponse{
   repeated ShearingStressEntity shearingStress = 1;
+  //0-正常 1-异常
+  int32 code = 2;
 }
 message ShearingStressEntity{
   //中垂剖面最大剪力值τ
@@ -549,8 +604,8 @@ message ShearingStressEntity{
 }
 
 message AdditionalForceHeadRequest{
-  //上建形式
-  string upbuildstyle = 1;
+  //上建形式[改0728]string upbuildstyle = 1;
+  int32 upbuildstyle = 1;
   //干舷高
   double freeboard = 2;
   //艏楼端壁肋位
@@ -601,6 +656,9 @@ message AdditionalForceHeadResponse{
 
   //甲板破损压头水压值
   repeated double deckyatou = 4;
+
+  //0-正常 1-异常
+  int32 code = 5;
 }
 
 message CompartmentBulkheadSheetRequest{
@@ -639,6 +697,8 @@ message CompartmentBulkheadSheetResponse{
   repeated double stressZhizuo = 9;
   //许用应力
   repeated double shearAllow = 10;
+  //0-正常 1-异常
+  int32 code = 11;
 }
 
 message SupportingMaterialStrengthRequest{
@@ -714,5 +774,7 @@ message SupportingMaterialStrengthResponse{
   repeated double Stress_max_el = 21;
   //弹性连续梁最大剪切力
   repeated double Shear_max_el = 22;
+  //0-正常 1-异常
+  int32 code = 23;
   //---------------------------------
 }

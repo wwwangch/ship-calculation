@@ -29,6 +29,7 @@ public  final class WaveLoadResponse extends
     mwvecS_ = java.util.Collections.emptyList();
     nwvecMS_ = java.util.Collections.emptyList();
     mwvecMS_ = java.util.Collections.emptyList();
+    code_ = 0;
   }
 
   @java.lang.Override
@@ -266,6 +267,11 @@ public  final class WaveLoadResponse extends
             input.popLimit(limit);
             break;
           }
+          case 88: {
+
+            code_ = input.readInt32();
+            break;
+          }
         }
       }
     } catch (com.google.protobuf.InvalidProtocolBufferException e) {
@@ -319,6 +325,7 @@ public  final class WaveLoadResponse extends
             com.iscas.biz.calculation.grpc.WaveLoadResponse.class, com.iscas.biz.calculation.grpc.WaveLoadResponse.Builder.class);
   }
 
+  private int bitField0_;
   public static final int MBB_FIELD_NUMBER = 1;
   private java.util.List<java.lang.Double> mbb_;
   /**
@@ -669,6 +676,19 @@ public  final class WaveLoadResponse extends
   }
   private int mwvecMSMemoizedSerializedSize = -1;
 
+  public static final int CODE_FIELD_NUMBER = 11;
+  private int code_;
+  /**
+   * <pre>
+   *0-正常 1-异常[增0731]
+   * </pre>
+   *
+   * <code>int32 code = 11;</code>
+   */
+  public int getCode() {
+    return code_;
+  }
+
   private byte memoizedIsInitialized = -1;
   public final boolean isInitialized() {
     byte isInitialized = memoizedIsInitialized;
@@ -751,6 +771,9 @@ public  final class WaveLoadResponse extends
     }
     for (int i = 0; i < mwvecMS_.size(); i++) {
       output.writeDoubleNoTag(mwvecMS_.get(i));
+    }
+    if (code_ != 0) {
+      output.writeInt32(11, code_);
     }
   }
 
@@ -869,6 +892,10 @@ public  final class WaveLoadResponse extends
       }
       mwvecMSMemoizedSerializedSize = dataSize;
     }
+    if (code_ != 0) {
+      size += com.google.protobuf.CodedOutputStream
+        .computeInt32Size(11, code_);
+    }
     memoizedSize = size;
     return size;
   }
@@ -905,6 +932,8 @@ public  final class WaveLoadResponse extends
         .equals(other.getNwvecMSList());
     result = result && getMwvecMSList()
         .equals(other.getMwvecMSList());
+    result = result && (getCode()
+        == other.getCode());
     return result;
   }
 
@@ -955,6 +984,8 @@ public  final class WaveLoadResponse extends
       hash = (37 * hash) + MWVECMS_FIELD_NUMBER;
       hash = (53 * hash) + getMwvecMSList().hashCode();
     }
+    hash = (37 * hash) + CODE_FIELD_NUMBER;
+    hash = (53 * hash) + getCode();
     hash = (29 * hash) + unknownFields.hashCode();
     memoizedHashCode = hash;
     return hash;
@@ -1097,6 +1128,8 @@ public  final class WaveLoadResponse extends
       bitField0_ = (bitField0_ & ~0x00000100);
       mwvecMS_ = java.util.Collections.emptyList();
       bitField0_ = (bitField0_ & ~0x00000200);
+      code_ = 0;
+
       return this;
     }
 
@@ -1120,6 +1153,7 @@ public  final class WaveLoadResponse extends
     public com.iscas.biz.calculation.grpc.WaveLoadResponse buildPartial() {
       com.iscas.biz.calculation.grpc.WaveLoadResponse result = new com.iscas.biz.calculation.grpc.WaveLoadResponse(this);
       int from_bitField0_ = bitField0_;
+      int to_bitField0_ = 0;
       if (((bitField0_ & 0x00000001) == 0x00000001)) {
         mbb_ = java.util.Collections.unmodifiableList(mbb_);
         bitField0_ = (bitField0_ & ~0x00000001);
@@ -1170,6 +1204,8 @@ public  final class WaveLoadResponse extends
         bitField0_ = (bitField0_ & ~0x00000200);
       }
       result.mwvecMS_ = mwvecMS_;
+      result.code_ = code_;
+      result.bitField0_ = to_bitField0_;
       onBuilt();
       return result;
     }
@@ -1310,6 +1346,9 @@ public  final class WaveLoadResponse extends
           mwvecMS_.addAll(other.mwvecMS_);
         }
         onChanged();
+      }
+      if (other.getCode() != 0) {
+        setCode(other.getCode());
       }
       onChanged();
       return this;
@@ -2274,6 +2313,44 @@ public  final class WaveLoadResponse extends
     public Builder clearMwvecMS() {
       mwvecMS_ = java.util.Collections.emptyList();
       bitField0_ = (bitField0_ & ~0x00000200);
+      onChanged();
+      return this;
+    }
+
+    private int code_ ;
+    /**
+     * <pre>
+     *0-正常 1-异常[增0731]
+     * </pre>
+     *
+     * <code>int32 code = 11;</code>
+     */
+    public int getCode() {
+      return code_;
+    }
+    /**
+     * <pre>
+     *0-正常 1-异常[增0731]
+     * </pre>
+     *
+     * <code>int32 code = 11;</code>
+     */
+    public Builder setCode(int value) {
+      
+      code_ = value;
+      onChanged();
+      return this;
+    }
+    /**
+     * <pre>
+     *0-正常 1-异常[增0731]
+     * </pre>
+     *
+     * <code>int32 code = 11;</code>
+     */
+    public Builder clearCode() {
+      
+      code_ = 0;
       onChanged();
       return this;
     }

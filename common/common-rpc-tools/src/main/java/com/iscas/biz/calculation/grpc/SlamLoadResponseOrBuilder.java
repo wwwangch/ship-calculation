@@ -56,4 +56,13 @@ public interface SlamLoadResponseOrBuilder extends
    * <code>repeated double nwb = 2;</code>
    */
   double getNwb(int index);
+
+  /**
+   * <pre>
+   *0-正常 1-异常[增0731]
+   * </pre>
+   *
+   * <code>int32 code = 3;</code>
+   */
+  int getCode();
 }

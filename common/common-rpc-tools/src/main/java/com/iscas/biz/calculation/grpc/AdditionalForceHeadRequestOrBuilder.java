@@ -9,21 +9,12 @@ public interface AdditionalForceHeadRequestOrBuilder extends
 
   /**
    * <pre>
-   *上建形式
+   *上建形式[改0728]string upbuildstyle = 1;
    * </pre>
    *
-   * <code>string upbuildstyle = 1;</code>
+   * <code>int32 upbuildstyle = 1;</code>
    */
-  java.lang.String getUpbuildstyle();
-  /**
-   * <pre>
-   *上建形式
-   * </pre>
-   *
-   * <code>string upbuildstyle = 1;</code>
-   */
-  com.google.protobuf.ByteString
-      getUpbuildstyleBytes();
+  int getUpbuildstyle();
 
   /**
    * <pre>

@@ -3,7 +3,6 @@ package com.iscas.biz.calculation.service.impl;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.iscas.biz.calculation.entity.db.*;
 import com.iscas.biz.calculation.entity.dto.*;
-import com.iscas.biz.calculation.grpc.SectionRequest;
 import com.iscas.biz.calculation.grpc.service.AlgorithmGrpc;
 import com.iscas.biz.calculation.mapper.*;
 import com.iscas.biz.calculation.service.CalSectionService;

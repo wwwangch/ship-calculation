@@ -4,6 +4,8 @@ import com.baomidou.mybatisplus.extension.service.IService;
 import com.iscas.biz.calculation.entity.db.TProfile;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.List;
 
 /**
@@ -15,4 +17,6 @@ public interface TProfileService extends IService<TProfile> {
     boolean deleteByIds(List<Integer> ids);
 
     int uploadFile(MultipartFile file);
+
+    void downloadTemplate() throws IOException;
 }

@@ -6,13 +6,4 @@ package com.iscas.biz.calculation.grpc;
 public interface SlamLoadRequestOrBuilder extends
     // @@protoc_insertion_point(interface_extends:com.iscas.biz.calculation.grpc.SlamLoadRequest)
     com.google.protobuf.MessageOrBuilder {
-
-  /**
-   * <pre>
-   *航速
-   * </pre>
-   *
-   * <code>double speed = 1;</code>
-   */
-  double getSpeed();
 }
