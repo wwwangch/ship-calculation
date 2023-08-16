@@ -67,6 +67,7 @@ public class StrengthServiceImpl implements StrengthService {
         QueryWrapper<Sigma1> queryWrapper = new QueryWrapper();
         queryWrapper.eq("project_id", projectId);
         queryWrapper.eq("section_id", sectionId);
+        shipParamService.addCheckTypeCondition(queryWrapper, projectId);
         List<Sigma1> sigma1List = sigma1Mapper.selectList(queryWrapper);
         return sigma1List;
     }
@@ -76,6 +77,7 @@ public class StrengthServiceImpl implements StrengthService {
         QueryWrapper<Sigma2> queryWrapper = new QueryWrapper();
         queryWrapper.eq("project_id", projectId);
         queryWrapper.eq("section_id", sectionId);
+        shipParamService.addCheckTypeCondition(queryWrapper, projectId);
         List<Sigma2> sigma2List = sigma2Mapper.selectList(queryWrapper);
         return sigma2List;
     }
@@ -85,6 +87,7 @@ public class StrengthServiceImpl implements StrengthService {
         QueryWrapper<Sigma3> queryWrapper = new QueryWrapper();
         queryWrapper.eq("project_id", projectId);
         queryWrapper.eq("section_id", sectionId);
+        shipParamService.addCheckTypeCondition(queryWrapper, projectId);
         List<Sigma3> sigma3List = sigma3Mapper.selectList(queryWrapper);
         return sigma3List;
     }
@@ -94,6 +97,7 @@ public class StrengthServiceImpl implements StrengthService {
         QueryWrapper<Sigma4> queryWrapper = new QueryWrapper();
         queryWrapper.eq("project_id", projectId);
         queryWrapper.eq("section_id", sectionId);
+        shipParamService.addCheckTypeCondition(queryWrapper, projectId);
         List<Sigma4> sigma4List = sigma4Mapper.selectList(queryWrapper);
         return sigma4List;
     }

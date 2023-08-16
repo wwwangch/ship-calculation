@@ -12,13 +12,17 @@ import com.iscas.base.biz.util.SpringUtils;
 import com.iscas.biz.calculation.entity.db.Dist;
 import com.iscas.biz.calculation.entity.db.Project;
 import com.iscas.biz.calculation.entity.db.Section;
+import com.iscas.biz.calculation.entity.db.ShipParam;
 import com.iscas.biz.calculation.entity.db.sigma.ShearingStress;
+import com.iscas.biz.calculation.entity.db.sigma.Sigma1;
 import com.iscas.biz.calculation.entity.dto.DistExcel;
 import com.iscas.biz.calculation.grpc.service.AlgorithmGrpc;
 import com.iscas.biz.calculation.mapper.DistMapper;
 import com.iscas.biz.calculation.mapper.ProjectMapper;
 import com.iscas.biz.calculation.mapper.SectionMapper;
+import com.iscas.biz.calculation.mapper.ShipParamMapper;
 import com.iscas.biz.calculation.service.DistService;
+import com.iscas.biz.calculation.service.ShipParamService;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.collections4.CollectionUtils;
 import org.springframework.stereotype.Service;
@@ -46,11 +50,17 @@ public class DistServiceImpl implements DistService {
 
     private final AlgorithmGrpc algorithmGrpc;
 
-    public DistServiceImpl(DistMapper distMapper, ProjectMapper projectMapper, SectionMapper sectionMapper, AlgorithmGrpc algorithmGrpc) {
+    private final ShipParamService shipParamService;
+
+    private final ShipParamMapper shipParamMapper;
+
+    public DistServiceImpl(DistMapper distMapper, ProjectMapper projectMapper, SectionMapper sectionMapper, AlgorithmGrpc algorithmGrpc, ShipParamService shipParamService, ShipParamMapper shipParamMapper) {
         this.distMapper = distMapper;
         this.projectMapper = projectMapper;
         this.sectionMapper = sectionMapper;
         this.algorithmGrpc = algorithmGrpc;
+        this.shipParamService = shipParamService;
+        this.shipParamMapper = shipParamMapper;
     }
 
     @Override
@@ -62,17 +72,17 @@ public class DistServiceImpl implements DistService {
 
     @Override
     public Dist calculateAndSave(Integer projectId, Integer sectionId) {
+        Dist dist = algorithmGrpc.calDist(projectId, sectionId);
+        //填充所属工况
+        ShipParam shipParam = shipParamMapper.selectById(projectId);
         //清空该项目该剖面历史数据
         UpdateWrapper<Dist> updateWrapper = new UpdateWrapper<>();
         updateWrapper.eq("project_id", projectId);
         updateWrapper.eq("section_id", sectionId);
+        shipParamService.addCheckTypeCondition(updateWrapper, projectId);
         distMapper.delete(updateWrapper);
-
-        distMapper.delete(null);
-        Dist dist = algorithmGrpc.calDist(projectId, sectionId);
-        if (null != dist) {
-            distMapper.insert(dist);
-        }
+        dist.setCheckType(shipParam.getCheckType());
+        distMapper.insert(dist);
         return dist;
     }
 
@@ -135,6 +145,7 @@ public class DistServiceImpl implements DistService {
         QueryWrapper<Dist> queryWrapper = new QueryWrapper<>();
         queryWrapper.eq("project_id", projectId);
         queryWrapper.eq("section_id", sectionId);
+        shipParamService.addCheckTypeCondition(queryWrapper, projectId);
         Dist dist = distMapper.selectOne(queryWrapper);
         return dist;
     }
