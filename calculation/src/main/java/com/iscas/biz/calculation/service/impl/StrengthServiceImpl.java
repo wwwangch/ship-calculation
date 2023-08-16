@@ -7,10 +7,13 @@ import com.baomidou.mybatisplus.core.conditions.update.UpdateWrapper;
 import com.iscas.base.biz.util.SpringUtils;
 import com.iscas.biz.calculation.entity.db.Moment;
 import com.iscas.biz.calculation.entity.db.Section;
+import com.iscas.biz.calculation.entity.db.ShipParam;
 import com.iscas.biz.calculation.entity.db.sigma.*;
 import com.iscas.biz.calculation.entity.dto.sigma.Sigma1DTO;
+import com.iscas.biz.calculation.enums.CheckType;
 import com.iscas.biz.calculation.grpc.service.AlgorithmGrpc;
 import com.iscas.biz.calculation.mapper.*;
+import com.iscas.biz.calculation.service.ShipParamService;
 import com.iscas.biz.calculation.service.StrengthService;
 import com.iscas.biz.calculation.util.ExcelWidthStyleStrategy;
 import org.springframework.stereotype.Service;
@@ -42,7 +45,11 @@ public class StrengthServiceImpl implements StrengthService {
 
     private final MomentMapper momentMapper;
 
-    public StrengthServiceImpl(Sigma1Mapper sigma1Mapper, Sigma2Mapper sigma2Mapper, Sigma3Mapper sigma3Mapper, Sigma4Mapper sigma4Mapper, ShearingStressMapper shearingStressMapper, AlgorithmGrpc algorithmGrpc, SectionMapper sectionMapper, MomentMapper momentMapper) {
+    private final ShipParamMapper shipParamMapper;
+
+    private final ShipParamService shipParamService;
+
+    public StrengthServiceImpl(Sigma1Mapper sigma1Mapper, Sigma2Mapper sigma2Mapper, Sigma3Mapper sigma3Mapper, Sigma4Mapper sigma4Mapper, ShearingStressMapper shearingStressMapper, AlgorithmGrpc algorithmGrpc, SectionMapper sectionMapper, MomentMapper momentMapper, ShipParamMapper shipParamMapper, ShipParamService shipParamService) {
         this.sigma1Mapper = sigma1Mapper;
         this.sigma2Mapper = sigma2Mapper;
         this.sigma3Mapper = sigma3Mapper;
@@ -51,6 +58,8 @@ public class StrengthServiceImpl implements StrengthService {
         this.algorithmGrpc = algorithmGrpc;
         this.sectionMapper = sectionMapper;
         this.momentMapper = momentMapper;
+        this.shipParamMapper = shipParamMapper;
+        this.shipParamService = shipParamService;
     }
 
     @Override
@@ -125,14 +134,19 @@ public class StrengthServiceImpl implements StrengthService {
         sigma1DTO.setKuaChang(section.getKuaChang());
         sigma1DTO.setFrGuige(section.getFrGuige());
         List<Sigma1> calSigma1List = algorithmGrpc.calSigma1(sigma1DTO);
+        //填充所属工况
+        ShipParam shipParam = shipParamMapper.selectById(projectId);
         //清空该项目该剖面历史数据
         UpdateWrapper<Sigma1> updateWrapper = new UpdateWrapper<>();
         updateWrapper.eq("project_id", projectId);
         updateWrapper.eq("section_id", sectionId);
+        shipParamService.addCheckTypeCondition(updateWrapper, projectId);
         sigma1Mapper.delete(updateWrapper);
         //插入新数据
         for (int i = 0; i < calSigma1List.size(); i++) {
-            sigma1Mapper.insert(calSigma1List.get(i));
+            Sigma1 sigma1 = calSigma1List.get(i);
+            sigma1.setCheckType(shipParam.getCheckType());
+            sigma1Mapper.insert(sigma1);
         }
         return calSigma1List;
     }
@@ -147,14 +161,19 @@ public class StrengthServiceImpl implements StrengthService {
             throw new RuntimeException("参数[sectionId]不可为空");
         }
         List<Sigma2> calSigma2List = algorithmGrpc.calSigma2(projectId, sectionId);
+        //填充所属工况
+        ShipParam shipParam = shipParamMapper.selectById(projectId);
         //清空该项目该剖面历史数据
         UpdateWrapper<Sigma2> updateWrapper = new UpdateWrapper<>();
         updateWrapper.eq("project_id", projectId);
         updateWrapper.eq("section_id", sectionId);
+        shipParamService.addCheckTypeCondition(updateWrapper, projectId);
         sigma2Mapper.delete(updateWrapper);
         //插入新数据
         for (int i = 0; i < calSigma2List.size(); i++) {
-            sigma2Mapper.insert(calSigma2List.get(i));
+            Sigma2 sigma2 = calSigma2List.get(i);
+            sigma2.setCheckType(shipParam.getCheckType());
+            sigma2Mapper.insert(sigma2);
         }
         return calSigma2List;
     }
@@ -168,14 +187,19 @@ public class StrengthServiceImpl implements StrengthService {
             throw new RuntimeException("参数[sectionId]不可为空");
         }
         List<Sigma3> calSigma3List = algorithmGrpc.calSigma3(projectId, sectionId);
+        //填充所属工况
+        ShipParam shipParam = shipParamMapper.selectById(projectId);
         //清空该项目该剖面历史数据
         UpdateWrapper<Sigma3> updateWrapper = new UpdateWrapper<>();
         updateWrapper.eq("project_id", projectId);
         updateWrapper.eq("section_id", sectionId);
+        shipParamService.addCheckTypeCondition(updateWrapper, projectId);
         sigma3Mapper.delete(updateWrapper);
         //插入新数据
         for (int i = 0; i < calSigma3List.size(); i++) {
-            sigma3Mapper.insert(calSigma3List.get(i));
+            Sigma3 sigma3 = calSigma3List.get(i);
+            sigma3.setCheckType(shipParam.getCheckType());
+            sigma3Mapper.insert(sigma3);
         }
         return calSigma3List;
     }
@@ -189,14 +213,19 @@ public class StrengthServiceImpl implements StrengthService {
             throw new RuntimeException("参数[sectionId]不可为空");
         }
         List<Sigma4> calSigma4List = algorithmGrpc.calSigma4(projectId, sectionId);
+        //填充所属工况
+        ShipParam shipParam = shipParamMapper.selectById(projectId);
         //清空该项目该剖面历史数据
         UpdateWrapper<Sigma4> updateWrapper = new UpdateWrapper<>();
         updateWrapper.eq("project_id", projectId);
         updateWrapper.eq("section_id", sectionId);
+        shipParamService.addCheckTypeCondition(updateWrapper, projectId);
         sigma4Mapper.delete(updateWrapper);
         //插入新数据
         for (int i = 0; i < calSigma4List.size(); i++) {
-            sigma4Mapper.insert(calSigma4List.get(i));
+            Sigma4 sigma4 = calSigma4List.get(i);
+            sigma4.setCheckType(shipParam.getCheckType());
+            sigma4Mapper.insert(sigma4);
         }
         return calSigma4List;
     }
@@ -210,14 +239,19 @@ public class StrengthServiceImpl implements StrengthService {
             throw new RuntimeException("参数[sectionId]不可为空");
         }
         List<ShearingStress> calShearingStressList = algorithmGrpc.calShearingStress(projectId, sectionId);
+        //填充所属工况
+        ShipParam shipParam = shipParamMapper.selectById(projectId);
         //清空该项目该剖面历史数据
         UpdateWrapper<ShearingStress> updateWrapper = new UpdateWrapper<>();
         updateWrapper.eq("project_id", projectId);
         updateWrapper.eq("section_id", sectionId);
+        shipParamService.addCheckTypeCondition(updateWrapper, projectId);
         shearingStressMapper.delete(updateWrapper);
         //插入新数据
         for (int i = 0; i < calShearingStressList.size(); i++) {
-            shearingStressMapper.insert(calShearingStressList.get(i));
+            ShearingStress shearingStress = calShearingStressList.get(i);
+            shearingStress.setCheckType(shipParam.getCheckType());
+            shearingStressMapper.insert(shearingStress);
         }
         return calShearingStressList;
     }
