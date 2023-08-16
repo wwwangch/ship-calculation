@@ -4,6 +4,7 @@ import com.alibaba.excel.annotation.ExcelIgnore;
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
+import com.iscas.biz.calculation.enums.CheckType;
 import lombok.Data;
 
 /**
@@ -33,5 +34,7 @@ public class Sigma1 {
     //许用应力
     private Double allowStress;
 
+    //工况类型
+    private CheckType checkType;
 
 }

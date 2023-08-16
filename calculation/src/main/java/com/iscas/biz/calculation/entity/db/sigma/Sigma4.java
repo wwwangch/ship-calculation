@@ -3,6 +3,7 @@ package com.iscas.biz.calculation.entity.db.sigma;
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
+import com.iscas.biz.calculation.enums.CheckType;
 import lombok.Data;
 
 /**
@@ -42,4 +43,6 @@ public class Sigma4 {
     //合成中垂跨中
     private Double combineZhongchuiKuazhong;
 
+    //工况类型
+    private CheckType checkType;
 }

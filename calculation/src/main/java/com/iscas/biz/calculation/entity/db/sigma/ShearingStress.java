@@ -3,6 +3,7 @@ package com.iscas.biz.calculation.entity.db.sigma;
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
+import com.iscas.biz.calculation.enums.CheckType;
 import lombok.Data;
 
 /**
@@ -23,4 +24,6 @@ public class ShearingStress {
     private Double zhonggongMax;
     //许用剪应力[τ]
     private Double shearingStress;
+    //工况类型
+    private CheckType checkType;
 }

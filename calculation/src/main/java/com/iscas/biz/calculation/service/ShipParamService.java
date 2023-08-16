@@ -1,6 +1,7 @@
 package com.iscas.biz.calculation.service;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.baomidou.mybatisplus.core.conditions.update.UpdateWrapper;
 import com.iscas.biz.calculation.entity.db.ShipParam;
 import com.iscas.templet.exception.ValidDataException;
 import com.iscas.templet.view.table.ComboboxData;
@@ -30,4 +31,6 @@ public interface ShipParamService {
     List<ComboboxData> listNavigationAreaCombobox();
 
     void addCheckTypeCondition(QueryWrapper queryWrapper,Integer projectId);
+
+    void addCheckTypeCondition(UpdateWrapper queryWrapper, Integer projectId);
 }

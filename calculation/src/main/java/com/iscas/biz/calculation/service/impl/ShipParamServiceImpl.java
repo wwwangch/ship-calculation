@@ -1,6 +1,7 @@
 package com.iscas.biz.calculation.service.impl;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.baomidou.mybatisplus.core.conditions.update.UpdateWrapper;
 import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 import com.google.common.collect.ImmutableMap;
 import com.google.common.collect.Lists;
@@ -190,6 +191,20 @@ public class ShipParamServiceImpl implements ShipParamService {
 
     @Override
     public void addCheckTypeCondition(QueryWrapper queryWrapper, Integer projectId) {
+        Project project = projectMapper.selectById(projectId);
+        //通用规范中是不区分工况的
+        if (null == project || CalculationSpecification.COMMON_SPECIFICATION.equals(project.getCalculationSpecification())) {
+            return;
+        }
+        ShipParam shipParam = this.listByProjectId(projectId);
+        if (null == shipParam || null == shipParam.getCurrentType()) {
+            throw new RuntimeException("船舶参数异常");
+        }
+        queryWrapper.eq("check_type", shipParam.getCurrentType().getValue());
+    }
+
+    @Override
+    public void addCheckTypeCondition(UpdateWrapper queryWrapper, Integer projectId) {
         Project project = projectMapper.selectById(projectId);
         //通用规范中是不区分工况的
         if (null == project || CalculationSpecification.COMMON_SPECIFICATION.equals(project.getCalculationSpecification())) {
