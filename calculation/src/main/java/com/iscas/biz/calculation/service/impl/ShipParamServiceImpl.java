@@ -191,6 +191,7 @@ public class ShipParamServiceImpl implements ShipParamService {
     @Override
     public void addCheckTypeCondition(QueryWrapper queryWrapper, Integer projectId) {
         Project project = projectMapper.selectById(projectId);
+        //通用规范中是不区分工况的
         if (null == project || CalculationSpecification.COMMON_SPECIFICATION.equals(project.getCalculationSpecification())) {
             return;
         }

@@ -1,6 +1,7 @@
 package com.iscas.biz.calculation.entity.dto;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.iscas.biz.calculation.enums.CheckType;
 import lombok.Data;
 
 import java.util.List;
@@ -36,4 +37,5 @@ public class CalSectionDTO {
     private List bulbFlats;
     //T型材数组
     private List tProfiles;
+
 }

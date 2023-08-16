@@ -6,6 +6,7 @@ import com.iscas.biz.calculation.entity.dto.*;
 import com.iscas.biz.calculation.grpc.service.AlgorithmGrpc;
 import com.iscas.biz.calculation.mapper.*;
 import com.iscas.biz.calculation.service.CalSectionService;
+import com.iscas.biz.calculation.service.ShipParamService;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.collections4.CollectionUtils;
 import org.springframework.stereotype.Service;
@@ -30,15 +31,21 @@ public class CalSectionServiceImpl implements CalSectionService {
     private final ProjectMapper projectMapper;
     private final SectionMapper sectionMapper;
 
+    private final ShipParamMapper shipParamMapper;
+    private final ShipParamService shipParamService;
+
     public CalSectionServiceImpl(AlgorithmGrpc algorithmGrpc, CalSectionMapper calSectionMapper,
                                  TProfileMapper tProfileMapper, BulbFlatMapper bulbFlatMapper,
-                                 ProjectMapper projectMapper, SectionMapper sectionMapper) {
+                                 ProjectMapper projectMapper, SectionMapper sectionMapper,
+                                 ShipParamMapper shipParamMapper ,ShipParamService shipParamService) {
         this.algorithmGrpc = algorithmGrpc;
         this.calSectionMapper = calSectionMapper;
         this.tProfileMapper = tProfileMapper;
         this.bulbFlatMapper = bulbFlatMapper;
         this.projectMapper = projectMapper;
         this.sectionMapper = sectionMapper;
+        this.shipParamMapper = shipParamMapper;
+        this.shipParamService = shipParamService;
     }
 
     @Override
@@ -93,7 +100,12 @@ public class CalSectionServiceImpl implements CalSectionService {
         calSectionDTO.setBulbFlats(toBulbFlats);
         calSectionDTO.setTProfiles(toTProfiles);
         CalSection calSection = algorithmGrpc.calSection(calSectionDTO);
+        //填充所属工况
+        ShipParam shipParam = shipParamMapper.selectById(projectId);
+        calSection.setCheckType(shipParam.getCurrentType());
+        //查询当前工况下有无数据
         CalSection section = listBySectionIdId(calSectionDTO.getSectionId());
+        //删除当前工况下数据
         if (null != section) {
             Integer sectionId = section.getCalSectionId();
             calSection.setCalSectionId(sectionId);
@@ -107,17 +119,20 @@ public class CalSectionServiceImpl implements CalSectionService {
     @Override
     public CalSection listBySectionIdId(Integer sectionId) {
         QueryWrapper<CalSection> queryWrapper = new QueryWrapper<>();
-        queryWrapper.lambda().eq(CalSection::getSectionId, sectionId);
-        List<CalSection> calSections = calSectionMapper.selectList(queryWrapper);
-        if (CollectionUtils.isNotEmpty(calSections)) {
-            if (calSections.size() > 1) {
-                for (int i = 1; i < calSections.size(); i++) {
-                    calSectionMapper.deleteById(calSections.get(i));
-                }
-            }
-            return calSections.get(0);
+        queryWrapper.eq("section_id",sectionId);
+        CalSection searchProjectId = calSectionMapper.selectById(queryWrapper);
+        //增加工况查询条件
+        shipParamService.addCheckTypeCondition(queryWrapper, searchProjectId.getProjectId());
+        List<CalSection> calSections =calSectionMapper.selectList(queryWrapper);
+        if (CollectionUtils.isEmpty(calSections)){
+            return null;
         }
-        return null;
+        //提取出第一个数据放回显示，其余的都删除，此处已经做了工况筛选的处理
+        CalSection calSection = calSections.remove(0);
+        if(CollectionUtils.isNotEmpty(calSections)){
+            calSectionMapper.deleteBatchIds(calSections.stream().map(CalSection::getCalSectionId).toList());
+        }
+        return calSection;
     }
 
 //    @Override

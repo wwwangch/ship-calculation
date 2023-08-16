@@ -3,6 +3,7 @@ package com.iscas.biz.calculation.entity.db;
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
+import com.iscas.biz.calculation.enums.CheckType;
 import lombok.Data;
 
 /**
@@ -60,6 +61,9 @@ public class CalSection {
 
     //解析后的剖面文件路径
     private String profileFilePath;
+
+    //工况类型
+    private CheckType checkType;
 
 
 //    //中拱时的中和轴
