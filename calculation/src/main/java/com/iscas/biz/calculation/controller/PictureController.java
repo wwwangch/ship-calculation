@@ -28,23 +28,27 @@ import java.io.*;
 @RestController
 @RequestMapping("/picture")
 @Slf4j
-@Tag(name = "预览SVG图片")
+@Tag(name = "预览图片")
 public class PictureController {
     @Value("${file.server.path}")
     private String filePath;
 
-    @GetMapping(value = "/svg/{fileName}")
-    @Operation(summary = "输入svg文件名，返回svg文件")
-    @io.swagger.v3.oas.annotations.parameters.RequestBody(required = true, description = "输入svg文件名，返回svg文件",
+    @GetMapping(value = "/preview/{fileName}")
+    @Operation(summary = "预览图片,输入svg文件名，返回svg文件")
+    @io.swagger.v3.oas.annotations.parameters.RequestBody(required = true, description = "输入图片名，返回图片，支持jpeg,png,svg",
             content = @Content(examples = @ExampleObject(value = "ceshi.svg")))
-    public void getImage(@PathVariable String fileName) throws IOException {
+    public void getSvgImage(@PathVariable String fileName) throws IOException {
         try {
             // 获取图片文件
             File imageFile = ResourceUtils.getFile(filePath + fileName);
             if (imageFile.exists()) {
                 // 如果图片存在，返回图片
                 ServletOutputStream os = SpringUtils.getResponse().getOutputStream();
-                SpringUtils.getResponse().setContentType("image/svg+xml");
+                if (fileName.endsWith(".svg")){
+                    SpringUtils.getResponse().setContentType("image/svg+xml");
+                } else if (fileName.endsWith(".jpeg")||fileName.endsWith(".png")) {
+                    SpringUtils.getResponse().setContentType("image/jpeg");
+                }
                 new FileInputStream(imageFile).transferTo(os);
             } else {
                 // 如果图片不存在，返回文字提示
@@ -59,4 +63,7 @@ public class PictureController {
             writer.println("服务器错误");
         }
     }
+
+
+
 }
