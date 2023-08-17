@@ -120,7 +120,7 @@ public class CalSectionServiceImpl implements CalSectionService {
     public CalSection listBySectionIdId(Integer sectionId) {
         QueryWrapper<CalSection> queryWrapper = new QueryWrapper<>();
         queryWrapper.eq("section_id",sectionId);
-        CalSection searchProjectId = calSectionMapper.selectById(queryWrapper);
+        CalSection searchProjectId = calSectionMapper.selectOne(queryWrapper);
         //增加工况查询条件
         shipParamService.addCheckTypeCondition(queryWrapper, searchProjectId.getProjectId());
         List<CalSection> calSections =calSectionMapper.selectList(queryWrapper);

@@ -284,53 +284,54 @@ public class StrengthServiceImpl implements StrengthService {
     }
 
 
-//    @Override
-//    public void sigma1Export(Integer projectId, Integer sectionId) throws IOException {
-//        QueryWrapper<Sigma1> sigma1QueryWrapper = new QueryWrapper<>();
-//        sigma1QueryWrapper.eq("project_id", projectId);
-//        sigma1QueryWrapper.eq("section_id", sectionId);
-//        List<Sigma1> sigma1List = sigma1Mapper.selectList(sigma1QueryWrapper);
-//        if (null == sigma1List || sigma1List.size() == 0) {
-//            throw new RuntimeException("当前数据不存在!");
-//        }
-//        List<List<String>> headList = new ArrayList<>();
-//        if (sigma1List.size() > 0) {
-//            List<String> head0 = new ArrayList<>();
-//            head0.add("");
-//            headList.add(head0);
-//            List<String> head1 = new ArrayList<>();
-//            head1.add("中拱");
-//            headList.add(head1);
-//            List<String> head2 = new ArrayList<>();
-//            head2.add("中垂");
-//            headList.add(head2);
-//        }
-//
-//        List<Sigma1Export> sigma1ExportList = new ArrayList<>();
-//        if (sigma1List.size() > 0) {
-//            Sigma1Export xuyong = new Sigma1Export();
-//            xuyong.setName("许用应力");
-//            xuyong.setZhonggong(sigma1List.get(0).getAllowStress());
-//            xuyong.setZhongchui(sigma1List.get(0).getAllowStress());
-//            sigma1ExportList.add(xuyong);
-//        }
-//
-//        for (int i = 0; i < sigma1List.size(); i++) {
-//            int number = i + 1;
-//            Sigma1Export sigma1Export1 = new Sigma1Export();
-//            sigma1Export1.setName("龙骨" + number + "上纤维（σ1）");
-//            sigma1Export1.setZhonggong(sigma1List.get(i).getSigma1HUp());
-//            sigma1Export1.setZhongchui(sigma1List.get(i).getSigma1SUp());
-//            Sigma1Export sigma1Export2 = new Sigma1Export();
-//            sigma1Export2.setName("龙骨" + number + "下纤维（σ1）");
-//            sigma1Export2.setZhonggong(sigma1List.get(i).getSigma1Down());
-//            sigma1Export2.setZhongchui(sigma1List.get(i).getSigma1SDown());
-//            sigma1ExportList.add(sigma1Export1);
-//            sigma1ExportList.add(sigma1Export2);
-//        }
-//        EasyExcel.write(SpringUtils.getResponse().getOutputStream(), Sigma1Export.class)
-//                .head(headList).sheet("0").registerWriteHandler(new ExcelWidthStyleStrategy()).doWrite(sigma1ExportList);
-//    }
+    @Override
+    public void sigma1Export(Integer projectId, Integer sectionId) throws IOException {
+        QueryWrapper<Sigma1> sigma1QueryWrapper = new QueryWrapper<>();
+        sigma1QueryWrapper.eq("project_id", projectId);
+        sigma1QueryWrapper.eq("section_id", sectionId);
+        shipParamService.addCheckTypeCondition(sigma1QueryWrapper, projectId);
+        List<Sigma1> sigma1List = sigma1Mapper.selectList(sigma1QueryWrapper);
+        if (null == sigma1List || sigma1List.size() == 0) {
+            throw new RuntimeException("当前数据不存在!");
+        }
+        List<List<String>> headList = new ArrayList<>();
+        if (sigma1List.size() > 0) {
+            List<String> head0 = new ArrayList<>();
+            head0.add("");
+            headList.add(head0);
+            List<String> head1 = new ArrayList<>();
+            head1.add("中拱");
+            headList.add(head1);
+            List<String> head2 = new ArrayList<>();
+            head2.add("中垂");
+            headList.add(head2);
+        }
+
+        List<Sigma1Export> sigma1ExportList = new ArrayList<>();
+        if (sigma1List.size() > 0) {
+            Sigma1Export xuyong = new Sigma1Export();
+            xuyong.setName("许用应力");
+            xuyong.setZhonggong(sigma1List.get(0).getAllowStress());
+            xuyong.setZhongchui(sigma1List.get(0).getAllowStress());
+            sigma1ExportList.add(xuyong);
+        }
+
+        for (int i = 0; i < sigma1List.size(); i++) {
+            int number = i + 1;
+            Sigma1Export sigma1Export1 = new Sigma1Export();
+            sigma1Export1.setName("龙骨" + number + "上纤维（σ1）");
+            sigma1Export1.setZhonggong(sigma1List.get(i).getSigma1HUp());
+            sigma1Export1.setZhongchui(sigma1List.get(i).getSigma1SUp());
+            Sigma1Export sigma1Export2 = new Sigma1Export();
+            sigma1Export2.setName("龙骨" + number + "下纤维（σ1）");
+            sigma1Export2.setZhonggong(sigma1List.get(i).getSigma1Down());
+            sigma1Export2.setZhongchui(sigma1List.get(i).getSigma1SDown());
+            sigma1ExportList.add(sigma1Export1);
+            sigma1ExportList.add(sigma1Export2);
+        }
+        EasyExcel.write(SpringUtils.getResponse().getOutputStream(), Sigma1Export.class)
+                .head(headList).sheet("0").registerWriteHandler(new ExcelWidthStyleStrategy()).doWrite(sigma1ExportList);
+    }
 
     private static class Sigma1Export {
         @ExcelProperty("")
