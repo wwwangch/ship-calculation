@@ -32,8 +32,8 @@ public class SlamLoad {
     private Double speed;
     //波峰抨击弯矩  数组  21个
     @TableField(typeHandler = JacksonTypeHandler.class)
-    private List<Double> pwbm;
+    private List<Number> pwbm;
     //波谷抨击弯矩  数组  21个
     @TableField(typeHandler = JacksonTypeHandler.class)
-    private List<Double> nwb;
+    private List<Number> nwb;
 }

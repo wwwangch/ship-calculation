@@ -22,6 +22,7 @@ import com.iscas.templet.view.table.ComboboxData;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.collections4.CollectionUtils;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Date;
@@ -65,14 +66,11 @@ public class ShipParamServiceImpl implements ShipParamService {
         QueryWrapper<ShipParam> queryWrapper = new QueryWrapper<>();
         queryWrapper.eq("project_id", projectId);
         List<ShipParam> shipParams = shipParamMapper.selectList(queryWrapper);
-        ShipParam shipParam = null;
-        if (CollectionUtils.isNotEmpty(shipParams)) {
-            shipParam = shipParams.remove(0);
-            if (CollectionUtils.isNotEmpty(shipParams)) {
-                shipParamMapper.deleteBatchIds(shipParams.stream().map(ShipParam::getParamId).toList());
-            }
+
+        if (CollectionUtils.isEmpty(shipParams)) {
+            return null;
         }
-        return shipParam;
+        return shipParams.get(0);
     }
 
     @Override
@@ -127,10 +125,10 @@ public class ShipParamServiceImpl implements ShipParamService {
             shipParam.put("cruising_displacement", null);
             shipParam.put("cruising_portrait_gravity", null);
         } else {
-            Double extremeDisplacement = Double.parseDouble( shipParam.get("displacement").toString());
+            Double extremeDisplacement = Double.parseDouble(shipParam.get("displacement").toString());
             Double extremePortraitGravity = Double.parseDouble(shipParam.get("portrait_gravity").toString());
             Double cruisingDisplacement = Double.parseDouble(shipParam.get("cruising_displacement").toString());
-            Double cruisingPortraitGravity =Double.parseDouble(shipParam.get("cruising_portrait_gravity").toString());
+            Double cruisingPortraitGravity = Double.parseDouble(shipParam.get("cruising_portrait_gravity").toString());
             CheckType currentType = CheckType.getByValueStr((String) shipParam.get("current_type"));
             //校验为空
             if (null == cruisingDisplacement || null == cruisingPortraitGravity || null == extremeDisplacement || null == extremePortraitGravity || null == currentType) {
@@ -190,6 +188,7 @@ public class ShipParamServiceImpl implements ShipParamService {
     }
 
     @Override
+    @Transactional(propagation = Propagation.SUPPORTS)
     public void addCheckTypeCondition(QueryWrapper queryWrapper, Integer projectId) {
         Project project = projectMapper.selectById(projectId);
         //通用规范中是不区分工况的

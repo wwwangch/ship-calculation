@@ -32,40 +32,40 @@ public class WaveLoad {
 
     //中拱附加浮力
     @TableField(typeHandler = JacksonTypeHandler.class)
-    private List<Double> mbb;
+    private List<Number> mbb;
 
     //波峰未修正的静水剪力
     @TableField(typeHandler = JacksonTypeHandler.class)
-    private List<Double> nwvecH;
+    private List<Number> nwvecH;
 
     //波峰未修正的弯矩
     @TableField(typeHandler = JacksonTypeHandler.class)
-    private List<Double> mwvecH;
+    private List<Number> mwvecH;
 
     //波峰修正的静水剪力
     @TableField(typeHandler = JacksonTypeHandler.class)
-    private List<Double> nwvecMH;
+    private List<Number> nwvecMH;
 
     //波峰修正的弯矩
     @TableField(typeHandler = JacksonTypeHandler.class)
-    private List<Double> mwvecMH;
+    private List<Number> mwvecMH;
 
     //中垂附加浮力
     @TableField(typeHandler = JacksonTypeHandler.class)
-    private List<Double> bdeltaS;
+    private List<Number> bdeltaS;
 
     //波谷未修正的静水剪力
     @TableField(typeHandler = JacksonTypeHandler.class)
-    private List<Double> nwvecS;
+    private List<Number> nwvecS;
 
     //波谷未修正的弯矩
     @TableField(typeHandler = JacksonTypeHandler.class)
-    private List<Double> mwvecS;
+    private List<Number> mwvecS;
     //波谷修正的静水剪力
     @TableField(typeHandler = JacksonTypeHandler.class)
-    private List<Double> nwvecMS;
+    private List<Number> nwvecMS;
 
     //波谷修正的弯矩
     @TableField(typeHandler = JacksonTypeHandler.class)
-    private List<Double> mwvecMS;
+    private List<Number> mwvecMS;
 }

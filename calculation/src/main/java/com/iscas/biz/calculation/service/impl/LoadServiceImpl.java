@@ -60,11 +60,7 @@ public class LoadServiceImpl implements LoadService {
         if (CollectionUtils.isEmpty(staticLoads)) {
             return null;
         }
-        StaticLoad staticLoad = staticLoads.remove(0);
-        if (CollectionUtils.isNotEmpty(staticLoads)) {
-            staticLoadMapper.deleteBatchIds(staticLoads.stream().map(StaticLoad::getStaticLoadId).toList());
-        }
-        return staticLoad;
+        return staticLoads.get(0);
     }
 
     @Override
@@ -80,11 +76,7 @@ public class LoadServiceImpl implements LoadService {
         if (CollectionUtils.isEmpty(waveLoads)) {
             return null;
         }
-        WaveLoad waveLoad = waveLoads.remove(0);
-        if (CollectionUtils.isNotEmpty(waveLoads)) {
-            waveLoadMapper.deleteBatchIds(waveLoads.stream().map(WaveLoad::getWaveLoadId).toList());
-        }
-        return waveLoad;
+        return waveLoads.get(0);
     }
 
     @Override
@@ -99,11 +91,7 @@ public class LoadServiceImpl implements LoadService {
         if (CollectionUtils.isEmpty(slamLoads)) {
             return null;
         }
-        SlamLoad slamLoad = slamLoads.remove(0);
-        if (CollectionUtils.isNotEmpty(slamLoads)) {
-            slamLoadMapper.deleteBatchIds(slamLoads.stream().map(SlamLoad::getSlamLoadId).toList());
-        }
-        return slamLoad;
+        return slamLoads.get(0);
     }
 
     @Override
@@ -203,10 +191,10 @@ public class LoadServiceImpl implements LoadService {
             headList.add(head4);
         }
         List<List<Object>> dataList = new ArrayList<>();
-        List<Double> nvec = staticLoad.getNvec();
-        List<Double> nvecM = staticLoad.getNvecM();
-        List<Double> mvec = staticLoad.getMvec();
-        List<Double> mvecM = staticLoad.getMvecM();
+        List<Number> nvec = staticLoad.getNvec();
+        List<Number> nvecM = staticLoad.getNvecM();
+        List<Number> mvec = staticLoad.getMvec();
+        List<Number> mvecM = staticLoad.getMvecM();
         if (CollectionUtils.isNotEmpty(nvec)) {
             for (int i = 0; i < nvec.size(); i++) {
                 List<Object> data = new ArrayList<>();
@@ -267,16 +255,16 @@ public class LoadServiceImpl implements LoadService {
             headList.add(head10);
         }
         List<List<Object>> dataList = new ArrayList<>();
-        List<Double> nwvecH = waveLoad.getNwvecH();
-        List<Double> nwvecMH = waveLoad.getNwvecMH();
-        List<Double> nwvecS = waveLoad.getNwvecS();
-        List<Double> nwvecMS = waveLoad.getNwvecMS();
-        List<Double> mwvecH = waveLoad.getMwvecH();
-        List<Double> mwvecMH = waveLoad.getMwvecMH();
-        List<Double> mwvecS = waveLoad.getMwvecS();
-        List<Double> mwvecMS = waveLoad.getMwvecMS();
-        List<Double> mbb = waveLoad.getMbb();
-        List<Double> bdeltaS = waveLoad.getBdeltaS();
+        List<Number> nwvecH = waveLoad.getNwvecH();
+        List<Number> nwvecMH = waveLoad.getNwvecMH();
+        List<Number> nwvecS = waveLoad.getNwvecS();
+        List<Number> nwvecMS = waveLoad.getNwvecMS();
+        List<Number> mwvecH = waveLoad.getMwvecH();
+        List<Number> mwvecMH = waveLoad.getMwvecMH();
+        List<Number> mwvecS = waveLoad.getMwvecS();
+        List<Number> mwvecMS = waveLoad.getMwvecMS();
+        List<Number> mbb = waveLoad.getMbb();
+        List<Number> bdeltaS = waveLoad.getBdeltaS();
         if (CollectionUtils.isNotEmpty(nwvecH)) {
             for (int i = 0; i < nwvecH.size(); i++) {
                 List<Object> data = new ArrayList<>();
@@ -319,8 +307,8 @@ public class LoadServiceImpl implements LoadService {
             headList.add(head2);
         }
         List<List<Object>> dataList = new ArrayList<>();
-        List<Double> pwbm = slamLoad.getPwbm();
-        List<Double> nwb = slamLoad.getNwb();
+        List<Number> pwbm = slamLoad.getPwbm();
+        List<Number> nwb = slamLoad.getNwb();
         if (CollectionUtils.isNotEmpty(pwbm)) {
             for (int i = 0; i < pwbm.size(); i++) {
                 List<Object> data = new ArrayList<>();

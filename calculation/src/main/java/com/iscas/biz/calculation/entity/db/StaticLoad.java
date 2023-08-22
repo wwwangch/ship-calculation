@@ -30,17 +30,17 @@ public class StaticLoad {
 
     //未修正的静水剪力
     @TableField(typeHandler = JacksonTypeHandler.class)
-    private List<Double> nvec;
+    private List<Number> nvec;
 
     //未修正的弯矩
     @TableField(typeHandler = JacksonTypeHandler.class)
-    private List<Double> mvec;
+    private List<Number> mvec;
 
     //修正的静水剪力
     @TableField(typeHandler = JacksonTypeHandler.class)
-    private List<Double> nvecM;
+    private List<Number> nvecM;
 
     //修正的弯矩
     @TableField(typeHandler = JacksonTypeHandler.class)
-    private List<Double> mvecM;
+    private List<Number> mvecM;
 }
