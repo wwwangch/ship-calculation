@@ -1,6 +1,8 @@
 package com.iscas.biz.calculation.entity.db;
 
+import com.baomidou.mybatisplus.annotation.EnumValue;
 import com.baomidou.mybatisplus.annotation.IdType;
+import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.iscas.biz.calculation.enums.CheckType;
 import com.iscas.biz.calculation.enums.NavigationArea;
@@ -26,6 +28,7 @@ public class ShipParam {
     /**
      * 船类型 ZQJ HM
      */
+    @EnumValue
     private ShipType shipType;
 
     /**

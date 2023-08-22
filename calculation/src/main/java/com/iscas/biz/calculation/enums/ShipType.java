@@ -10,6 +10,7 @@ import com.baomidou.mybatisplus.annotation.EnumValue;
 public enum ShipType {
     QZJ("QZJ"),
     HM("HM"),
+    DQ("DQ")
     ;
 
     ShipType(String value) {
