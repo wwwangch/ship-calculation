@@ -58,10 +58,10 @@ public class ShipParam {
      */
     private NavigationArea navigationArea;
 
-    /**
-     * 校验工况(已经弃用,通规不需要这个类型，其他两个规范同时有两个核校工况)
-     */
-    private CheckType checkType;
+//    /**
+//     * 校验工况(已经弃用,通规不需要这个类型，其他两个规范同时有两个核校工况)
+//     */
+//    private CheckType checkType;
 
     /**
      * 排水量(默认是极限)

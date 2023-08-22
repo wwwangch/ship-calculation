@@ -150,7 +150,7 @@ public class StrengthServiceImpl implements StrengthService {
         //插入新数据
         for (int i = 0; i < calSigma1List.size(); i++) {
             Sigma1 sigma1 = calSigma1List.get(i);
-            sigma1.setCheckType(shipParam.getCheckType());
+            sigma1.setCheckType(shipParam.getCurrentType());
             sigma1Mapper.insert(sigma1);
         }
         return calSigma1List;
@@ -177,7 +177,7 @@ public class StrengthServiceImpl implements StrengthService {
         //插入新数据
         for (int i = 0; i < calSigma2List.size(); i++) {
             Sigma2 sigma2 = calSigma2List.get(i);
-            sigma2.setCheckType(shipParam.getCheckType());
+            sigma2.setCheckType(shipParam.getCurrentType());
             sigma2Mapper.insert(sigma2);
         }
         return calSigma2List;
@@ -203,7 +203,7 @@ public class StrengthServiceImpl implements StrengthService {
         //插入新数据
         for (int i = 0; i < calSigma3List.size(); i++) {
             Sigma3 sigma3 = calSigma3List.get(i);
-            sigma3.setCheckType(shipParam.getCheckType());
+            sigma3.setCheckType(shipParam.getCurrentType());
             sigma3Mapper.insert(sigma3);
         }
         return calSigma3List;
@@ -229,7 +229,7 @@ public class StrengthServiceImpl implements StrengthService {
         //插入新数据
         for (int i = 0; i < calSigma4List.size(); i++) {
             Sigma4 sigma4 = calSigma4List.get(i);
-            sigma4.setCheckType(shipParam.getCheckType());
+            sigma4.setCheckType(shipParam.getCurrentType());
             sigma4Mapper.insert(sigma4);
         }
         return calSigma4List;
@@ -255,7 +255,7 @@ public class StrengthServiceImpl implements StrengthService {
         //插入新数据
         for (int i = 0; i < calShearingStressList.size(); i++) {
             ShearingStress shearingStress = calShearingStressList.get(i);
-            shearingStress.setCheckType(shipParam.getCheckType());
+            shearingStress.setCheckType(shipParam.getCurrentType());
             shearingStressMapper.insert(shearingStress);
         }
         return calShearingStressList;

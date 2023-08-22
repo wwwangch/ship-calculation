@@ -81,7 +81,7 @@ public class DistServiceImpl implements DistService {
         updateWrapper.eq("section_id", sectionId);
         shipParamService.addCheckTypeCondition(updateWrapper, projectId);
         distMapper.delete(updateWrapper);
-        dist.setCheckType(shipParam.getCheckType());
+        dist.setCheckType(shipParam.getCurrentType());
         distMapper.insert(dist);
         return dist;
     }
