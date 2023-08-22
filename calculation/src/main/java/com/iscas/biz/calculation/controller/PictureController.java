@@ -44,9 +44,9 @@ public class PictureController {
             if (imageFile.exists()) {
                 // 如果图片存在，返回图片
                 ServletOutputStream os = SpringUtils.getResponse().getOutputStream();
-                if (fileName.endsWith(".svg")){
+                if (fileName.endsWith(".svg")) {
                     SpringUtils.getResponse().setContentType("image/svg+xml");
-                } else if (fileName.endsWith(".jpeg")||fileName.endsWith(".png")) {
+                } else if (fileName.endsWith(".jpeg") || fileName.endsWith(".png")) {
                     SpringUtils.getResponse().setContentType("image/jpeg");
                 }
                 new FileInputStream(imageFile).transferTo(os);
@@ -63,7 +63,4 @@ public class PictureController {
             writer.println("服务器错误");
         }
     }
-
-
-
 }

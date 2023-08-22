@@ -127,10 +127,10 @@ public class ShipParamServiceImpl implements ShipParamService {
             shipParam.put("cruising_displacement", null);
             shipParam.put("cruising_portrait_gravity", null);
         } else {
-            Double extremeDisplacement = (Double) shipParam.get("displacement");
-            Double extremePortraitGravity = (Double) shipParam.get("portrait_gravity");
-            Double cruisingDisplacement = (Double) shipParam.get("cruising_displacement");
-            Double cruisingPortraitGravity = (Double) shipParam.get("cruising_portrait_gravity");
+            Double extremeDisplacement = Double.parseDouble( shipParam.get("displacement").toString());
+            Double extremePortraitGravity = Double.parseDouble(shipParam.get("portrait_gravity").toString());
+            Double cruisingDisplacement = Double.parseDouble(shipParam.get("cruising_displacement").toString());
+            Double cruisingPortraitGravity =Double.parseDouble(shipParam.get("cruising_portrait_gravity").toString());
             CheckType currentType = CheckType.getByValueStr((String) shipParam.get("current_type"));
             //校验为空
             if (null == cruisingDisplacement || null == cruisingPortraitGravity || null == extremeDisplacement || null == extremePortraitGravity || null == currentType) {

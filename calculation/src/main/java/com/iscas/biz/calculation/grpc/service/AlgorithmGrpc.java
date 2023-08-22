@@ -373,6 +373,8 @@ public class AlgorithmGrpc {
         dist.setOverloadH2(distResponse.getOverloadH2());
         dist.setOverloadS1(distResponse.getOverloadS1());
         dist.setOverloadS2(distResponse.getOverloadS2());
+        //todo 后期如果有了图片返回，将图片复制到指定的文件目录下，此处存储文件名，调用公共的picture/preview进行返回预览
+        dist.setStressdisPath(distResponse.getStressdisPath());
         AlgorithmGrpc.dist = true;
         return dist;
     }

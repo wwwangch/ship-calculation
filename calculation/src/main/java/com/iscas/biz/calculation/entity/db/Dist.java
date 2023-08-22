@@ -43,6 +43,9 @@ public class Dist {
     //中垂过载系数2
     private Double overloadS2 ;
 
+    //应力图片路径
+    private String stressdisPath;
+
     //工况类型
     private CheckType checkType;
 }
