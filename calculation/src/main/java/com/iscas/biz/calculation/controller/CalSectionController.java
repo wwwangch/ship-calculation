@@ -1,21 +1,15 @@
 package com.iscas.biz.calculation.controller;
 
 import com.iscas.biz.calculation.entity.db.CalSection;
-import com.iscas.biz.calculation.entity.db.Weight;
 import com.iscas.biz.calculation.entity.dto.CalSectionDTO;
-import com.iscas.biz.calculation.entity.dto.WeightDTO;
 import com.iscas.biz.calculation.service.CalSectionService;
-import com.iscas.biz.calculation.service.WeightService;
 import com.iscas.templet.common.ResponseEntity;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.ExampleObject;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
-
-import java.io.IOException;
 
 /**
  * @author ch w
@@ -37,9 +31,9 @@ public class CalSectionController {
 
 
     @Operation(summary = "查询表格数据,仅一条", description = "传剖面id，带计算结果返回")
-    @PostMapping(value = "/getData/{sectionId}")
-    public CalSection getData(@PathVariable Integer sectionId) {
-        return calSectionService.listBySectionIdId(sectionId);
+    @PostMapping(value = "/getData/{projectId}/{sectionId}")
+    public CalSection getData(@PathVariable Integer projectId, @PathVariable Integer sectionId) {
+        return calSectionService.listBySectionIdId(projectId, sectionId);
     }
 
     @Operation(summary = "计算", description = "计算,传入参数")

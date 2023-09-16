@@ -2,7 +2,7 @@ package com.iscas.biz.calculation.service.impl;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.iscas.biz.calculation.entity.db.*;
-import com.iscas.biz.calculation.entity.dto.*;
+import com.iscas.biz.calculation.entity.dto.CalSectionDTO;
 import com.iscas.biz.calculation.grpc.service.AlgorithmGrpc;
 import com.iscas.biz.calculation.mapper.*;
 import com.iscas.biz.calculation.service.CalSectionService;
@@ -11,7 +11,6 @@ import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.collections4.CollectionUtils;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
 
 import java.util.ArrayList;
 import java.util.List;
@@ -37,7 +36,7 @@ public class CalSectionServiceImpl implements CalSectionService {
     public CalSectionServiceImpl(AlgorithmGrpc algorithmGrpc, CalSectionMapper calSectionMapper,
                                  TProfileMapper tProfileMapper, BulbFlatMapper bulbFlatMapper,
                                  ProjectMapper projectMapper, SectionMapper sectionMapper,
-                                 ShipParamMapper shipParamMapper ,ShipParamService shipParamService) {
+                                 ShipParamMapper shipParamMapper, ShipParamService shipParamService) {
         this.algorithmGrpc = algorithmGrpc;
         this.calSectionMapper = calSectionMapper;
         this.tProfileMapper = tProfileMapper;
@@ -104,7 +103,7 @@ public class CalSectionServiceImpl implements CalSectionService {
         ShipParam shipParam = shipParamMapper.selectById(projectId);
         calSection.setCheckType(shipParam.getCurrentType());
         //查询当前工况下有无数据
-        CalSection section = listBySectionIdId(calSectionDTO.getSectionId());
+        CalSection section = listBySectionIdId(projectId, calSectionDTO.getSectionId());
         //删除当前工况下数据
         if (null != section) {
             Integer sectionId = section.getCalSectionId();
@@ -117,19 +116,18 @@ public class CalSectionServiceImpl implements CalSectionService {
     }
 
     @Override
-    public CalSection listBySectionIdId(Integer sectionId) {
+    public CalSection listBySectionIdId(Integer projectId, Integer sectionId) {
         QueryWrapper<CalSection> queryWrapper = new QueryWrapper<>();
-        queryWrapper.eq("section_id",sectionId);
-        CalSection searchProjectId = calSectionMapper.selectOne(queryWrapper);
+        queryWrapper.eq("section_id", sectionId);
         //增加工况查询条件
-        shipParamService.addCheckTypeCondition(queryWrapper, searchProjectId.getProjectId());
-        List<CalSection> calSections =calSectionMapper.selectList(queryWrapper);
-        if (CollectionUtils.isEmpty(calSections)){
+        shipParamService.addCheckTypeCondition(queryWrapper, projectId);
+        List<CalSection> calSections = calSectionMapper.selectList(queryWrapper);
+        if (CollectionUtils.isEmpty(calSections)) {
             return null;
         }
         //提取出第一个数据放回显示，其余的都删除，此处已经做了工况筛选的处理
         CalSection calSection = calSections.remove(0);
-        if(CollectionUtils.isNotEmpty(calSections)){
+        if (CollectionUtils.isNotEmpty(calSections)) {
             calSectionMapper.deleteBatchIds(calSections.stream().map(CalSection::getCalSectionId).toList());
         }
         return calSection;
