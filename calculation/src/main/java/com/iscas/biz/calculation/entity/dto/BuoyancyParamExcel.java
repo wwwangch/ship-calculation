@@ -39,5 +39,5 @@ public class BuoyancyParamExcel {
     @ExcelProperty("站号")
     private Integer code;
     @ExcelProperty("校核b(x)")
-    private Double blist;
+    private Number blist;
 }

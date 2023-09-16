@@ -1,8 +1,6 @@
 package com.iscas.biz.calculation.service;
 
-import com.iscas.biz.calculation.entity.db.CalAddition;
 import com.iscas.biz.calculation.entity.db.Material;
-import com.iscas.biz.calculation.entity.dto.CalAdditionDTO;
 import com.iscas.biz.calculation.entity.dto.MaterialDTO;
 
 import java.io.IOException;
@@ -14,9 +12,9 @@ import java.io.IOException;
  */
 public interface MaterialService {
 
-    Material listBybulkheadId(Integer bulkheadId);
+    Material listBybulkheadId(Integer projectId, Integer bulkheadId);
 
-    void export(MaterialDTO materialDTO) throws IOException;
+    void export(Integer projectId,Integer bulkheadId) throws IOException;
 
     Material calMaterial(MaterialDTO materialDTO);
 }

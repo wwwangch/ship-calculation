@@ -5,6 +5,7 @@ import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 import com.baomidou.mybatisplus.extension.handlers.JacksonTypeHandler;
+import com.iscas.biz.calculation.enums.CheckType;
 import lombok.Data;
 
 import java.util.List;
@@ -12,8 +13,7 @@ import java.util.List;
 /**
  * @author wujiyue
  * @date 2023-06-03
- * @apiNote
- * 附加压头计算
+ * @apiNote 附加压头计算
  */
 
 @Data
@@ -33,44 +33,32 @@ public class CalAddition {
      */
     private Integer bulkheadId;
 
-    /**
-     * 干舷高
-     */
-    private Double freeboard;
+    //工况类型
+    private CheckType checkType;
 
     /**
-     *舱壁肋位号
-     */
-    private Double leiweihao;
-
-    /**
-     *舱壁位置
-     */
-    private Double cangbiWeizhi;
-
-    /**
-     *是否防撞舱壁
-     */
-    private Boolean isCollision;
-
-    /**
-     *水动压力
-     */
-    private Double shuidongYali;
-
-    /**
-     *肋位号数组
+     * 肋位号数组
      */
     @TableField(typeHandler = JacksonTypeHandler.class)
-    private List<Double> leiweihaos;
+    private List<Number> leiweihaos;
 
     /**
-     *附加压头数组
+     * 附加压头数组
      */
     @TableField(typeHandler = JacksonTypeHandler.class)
-    private List<Double> addyatouh;
+    private List<Number> addyatous;
 
+    /**
+     * 甲板名称
+     */
+    @TableField(typeHandler = JacksonTypeHandler.class)
+    private List<String> strDecks;
 
+    /**
+     * 甲板破损压头水压值
+     */
+    @TableField(typeHandler = JacksonTypeHandler.class)
+    private List<Number> deckYatous;
 
 
 }

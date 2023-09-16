@@ -171,6 +171,7 @@ public class LoadServiceImpl implements LoadService {
         }
         QueryWrapper<StaticLoad> queryWrapper = new QueryWrapper<>();
         queryWrapper.eq("project_id", projectId);
+        shipParamService.addCheckTypeCondition(queryWrapper, projectId);
         StaticLoad staticLoad = staticLoadMapper.selectOne(queryWrapper);
         List<List<String>> headList = new ArrayList<>();
         if (staticLoad != null) {
@@ -217,6 +218,7 @@ public class LoadServiceImpl implements LoadService {
         }
         QueryWrapper<WaveLoad> queryWrapper = new QueryWrapper<>();
         queryWrapper.eq("project_id", projectId);
+        shipParamService.addCheckTypeCondition(queryWrapper, projectId);
         WaveLoad waveLoad = waveLoadMapper.selectOne(queryWrapper);
         List<List<String>> headList = new ArrayList<>();
         if (waveLoad != null) {
@@ -293,6 +295,7 @@ public class LoadServiceImpl implements LoadService {
         }
         QueryWrapper<SlamLoad> queryWrapper = new QueryWrapper<>();
         queryWrapper.eq("project_id", projectId);
+        shipParamService.addCheckTypeCondition(queryWrapper, projectId);
         SlamLoad slamLoad = slamLoadMapper.selectOne(queryWrapper);
         List<List<String>> headList = new ArrayList<>();
         if (slamLoad != null) {

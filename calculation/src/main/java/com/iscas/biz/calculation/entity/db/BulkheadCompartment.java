@@ -19,18 +19,22 @@ public class BulkheadCompartment {
 
     private Integer projectId;
     /**
+     * 甲板名称
+     */
+    private String name;
+    /**
      * 横舱壁id
      */
     private Integer bulkheadId;
     /**
      * 距基线高度
      */
-    private String heightAbove;
+    private Double heightAbove;
 
     /**
      * 带板宽度
      */
-    private String stripPlateWidth;
+    private Double stripPlateWidth;
 
     /**
      * 扶强材规格
@@ -40,11 +44,11 @@ public class BulkheadCompartment {
     /**
      * 是否液舱
      */
-    private String liquid;
+    private Boolean liquid;
     /**
      * 板厚
      */
-    private String plateThickness;
+    private Double plateThickness;
     /**
      * 材料
      */
@@ -52,7 +56,7 @@ public class BulkheadCompartment {
     /**
      * 板宽
      */
-    private String plateWidth;
+    private Double plateWidth;
     /**
      * 区间
      */
@@ -65,5 +69,15 @@ public class BulkheadCompartment {
     /**
      * 带板厚度
      */
-    private String daibanhou;
+    private Double daibanhou;
+
+    /**
+     * 上部支撑纵骨规格
+     */
+    private String guicaiTypeUpper;
+
+    /**
+     * 下部支撑纵骨规格
+     */
+    private String guicaiTypeLower;
 }

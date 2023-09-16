@@ -152,7 +152,7 @@ public class BuoyancyCalculationServiceImpl implements BuoyancyCalculationServic
 
         BuoyancyResult buoyancyResult = new BuoyancyResult();
         buoyancyResult.setParamId(buoyancyParam.getParamId());
-        buoyancyResult.setBlist(buoyancyResponse.getBlistList());
+        buoyancyResult.setBlist(Lists.newArrayList(buoyancyResponse.getBlistList()));
         List<Buoyant> buoyants = Lists.newArrayList();
         List<com.iscas.biz.calculation.grpc.Buoyant> calrstList = buoyancyResponse.getCalrstList();
         if (CollectionUtils.isNotEmpty(calrstList)) {
@@ -196,15 +196,17 @@ public class BuoyancyCalculationServiceImpl implements BuoyancyCalculationServic
         }
         QueryWrapper<BuoyancyParam> buoyancyParamQueryWrapper = new QueryWrapper<>();
         buoyancyParamQueryWrapper.eq("project_id", projectId);
+        shipParamService.addCheckTypeCondition(buoyancyParamQueryWrapper,projectId);
         BuoyancyParam buoyancyParam = buoyancyParamMapper.selectOne(buoyancyParamQueryWrapper);
         ExcelWriter excelWriter = EasyExcel.write(SpringUtils.getResponse().getOutputStream())
                 .autoTrim(true).build();
         QueryWrapper<BuoyancyResult> buoyancyResultQueryWrapper = new QueryWrapper<>();
         buoyancyResultQueryWrapper.eq("param_id", buoyancyParam.getParamId());
+        shipParamService.addCheckTypeCondition(buoyancyResultQueryWrapper, projectId);
         BuoyancyResult buoyancyResult = buoyancyResultMapper.selectOne(buoyancyResultQueryWrapper);
         List<BuoyancyParamExcel> dataList = new ArrayList<>();
         if (buoyancyResult != null) {
-            List<Double> blist = buoyancyResult.getBlist();
+            List<Number> blist = buoyancyResult.getBlist();
             if (blist != null) {
                 for (int i = 0; i < blist.size(); i++) {
                     BuoyancyParamExcel buoyancyParamExcel = new BuoyancyParamExcel();

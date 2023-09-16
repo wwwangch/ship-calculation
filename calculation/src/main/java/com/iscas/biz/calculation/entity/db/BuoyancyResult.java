@@ -25,7 +25,7 @@ public class BuoyancyResult {
 
     //校核b(x)
     @TableField(typeHandler = JacksonTypeHandler.class)
-    private List<Double> blist;
+    private List<Number> blist;
 
     //每次校核计算的结果
     @TableField(typeHandler =JacksonTypeHandler.class)

@@ -1,8 +1,6 @@
 package com.iscas.biz.calculation.controller;
 
-import com.iscas.biz.calculation.entity.db.CalAddition;
 import com.iscas.biz.calculation.entity.db.Material;
-import com.iscas.biz.calculation.entity.dto.CalAdditionDTO;
 import com.iscas.biz.calculation.entity.dto.MaterialDTO;
 import com.iscas.biz.calculation.service.MaterialService;
 import com.iscas.templet.common.ResponseEntity;
@@ -34,9 +32,9 @@ public class MaterialController {
     }
 
     @Operation(summary = "查询表格数据,仅一条", description = "传项目id，带计算结果返回")
-    @PostMapping(value = "/getData/{bulkheadId}")
-    public Material getData(@PathVariable Integer bulkheadId) {
-        return materialService.listBybulkheadId(bulkheadId);
+    @PostMapping(value = "/getData/{projectId}/{bulkheadId}")
+    public Material getData(@PathVariable Integer projectId, @PathVariable Integer bulkheadId) {
+        return materialService.listBybulkheadId(projectId, bulkheadId);
     }
 
     @Operation(summary = "计算", description = "计算,传入参数")
@@ -48,10 +46,8 @@ public class MaterialController {
     }
 
     @Operation(summary = "导出", description = "导出")
-    @io.swagger.v3.oas.annotations.parameters.RequestBody(required = true, description = "导出数据",
-            content = @Content(examples = @ExampleObject(value = "{\"projectId\":1,\"bulkheadId\":1}")))
-    @PostMapping("/download")
-    public void export(@RequestBody MaterialDTO materialDTO) throws IOException {
-        materialService.export(materialDTO);
+    @GetMapping("/export/{projectId}/{bulkheadId}")
+    public void export(@PathVariable Integer projectId, @PathVariable Integer bulkheadId) throws IOException {
+        materialService.export(projectId, bulkheadId);
     }
 }

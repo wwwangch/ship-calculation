@@ -1,7 +1,6 @@
 package com.iscas.biz.calculation.service.impl;
 
 import com.alibaba.excel.EasyExcel;
-import com.alibaba.excel.write.builder.ExcelWriterSheetBuilder;
 import com.alibaba.fastjson.JSON;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.iscas.base.biz.util.SpringUtils;
@@ -111,6 +110,7 @@ public class WeightServiceImpl implements WeightService {
         }
         QueryWrapper<Weight> weightQueryWrapper = new QueryWrapper<>();
         weightQueryWrapper.eq("project_id", projectId);
+        shipParamService.addCheckTypeCondition(weightQueryWrapper, projectId);
         Weight weight = weightMapper.selectOne(weightQueryWrapper);
         List<WeightDistribution> weightDistributions = weight.getWeightDistributions();
         weightDistributions = JSON.parseArray(JSON.toJSONString(weightDistributions), WeightDistribution.class);
@@ -126,7 +126,7 @@ public class WeightServiceImpl implements WeightService {
                 List<String> head = new ArrayList<>();
                 head.add(name);
                 headList.add(head);
-                List<Double> weightItems = weightDistribution.getWeightItems();
+                List<Number> weightItems = weightDistribution.getWeightItems();
                 for (int i = 0; i < weightItems.size(); i++) {
                     if (mapB) {
                         List list = new ArrayList<>();

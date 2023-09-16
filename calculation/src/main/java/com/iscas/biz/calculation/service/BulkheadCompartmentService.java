@@ -24,5 +24,9 @@ public interface BulkheadCompartmentService extends IService<BulkheadCompartment
 
     BulkheadCheckResult checkBulkhead(BulkheadDTO bulkheadDTO);
 
-    BulkheadCheckResult listResultByBulkheadId(Integer bulkheadId);
+    BulkheadCheckResult listResultByBulkheadId(Integer projectId, Integer bulkheadId);
+
+    List<BulkheadCompartment> listByBulkHeadId(Integer bulkHeadId);
+
+    void export(Integer projectId, Integer bulkheadId) throws IOException;
 }

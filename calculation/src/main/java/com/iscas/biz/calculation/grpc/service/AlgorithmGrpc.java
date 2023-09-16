@@ -235,32 +235,48 @@ public class AlgorithmGrpc {
         return calSection;
     }
 
-//    public CalAddition calAddition(CalAdditionDTO calAdditionDTO) {
-//        Integer projectId = calAdditionDTO.getProjectId();
-//
-//        AdditionalForceHeadRequest headRequest = AdditionalForceHeadRequest.newBuilder()
-//                .setCangbiWeizhi(calAdditionDTO.getCangbiWeizhi())
-//                .setLeiweihao(calAdditionDTO.getLeiweihao())
-//                .setFreeboard(calAdditionDTO.getFreeboard())
-//                .setIsCollision(calAdditionDTO.getIsCollision())
-//                .setShuidongYali(calAdditionDTO.getShuidongYali())
-//                .build();
-//        AdditionalForceHeadResponse headResponse = grpcHolder.calculationBlockingStub().calAdditionalForceHead(headRequest);
-//        if (headResponse == null) {
-//            throw new RuntimeException("附加压头计算失败");
-//        }
-//        CalAddition calAddition = new CalAddition();
-//        calAddition.setProjectId(projectId);
-//        calAddition.setFreeboard(calAdditionDTO.getFreeboard());
-//        calAddition.setLeiweihao(calAdditionDTO.getLeiweihao());
-//        calAddition.setCangbiWeizhi(calAdditionDTO.getCangbiWeizhi());
-//        calAddition.setIsCollision(calAdditionDTO.getIsCollision());
-//        calAddition.setShuidongYali(calAdditionDTO.getShuidongYali());
-//        calAddition.setLeiweihaos(headResponse.getLeiweihaoList());
-//        calAddition.setAddyatouh(headResponse.getAddyatouhList());
+    /**
+     * 附加丫头计算
+     *
+     * @param calAdditionDTO
+     * @return
+     */
+    public CalAddition calAddition(CalAdditionDTO calAdditionDTO) {
+        Integer projectId = calAdditionDTO.getProjectId();
+
+        AdditionalForceHeadRequest headRequest = AdditionalForceHeadRequest.newBuilder()
+                .setUpbuildstyle(calAdditionDTO.getUpBuiltForm())
+                .setFreeboard(calAdditionDTO.getFreeboard())
+                .setShouloupos(calAdditionDTO.getRibNumber())
+                .setForefreeboard(Optional.ofNullable(calAdditionDTO.getForeFreeBoard()).orElse(0d))
+                .setAftfreeboard(Optional.ofNullable(calAdditionDTO.getAfterFreeBoard()).orElse(0d))
+                .setBridgeForePos(Optional.ofNullable(calAdditionDTO.getBridgeForePos()).orElse(0d))
+                .setBridgeForeHeight(Optional.ofNullable(calAdditionDTO.getBridgeForeHeight()).orElse(0d))
+                .setBridgeAftPos(Optional.ofNullable(calAdditionDTO.getBridgeAftPos()).orElse(0d))
+                .setBridgeAftHeight(Optional.ofNullable(calAdditionDTO.getBridgeAftHeight()).orElse(0d))
+                .setDraugthnoraml(calAdditionDTO.getDraugthnoraml())
+                .setIsCollision(calAdditionDTO.getCollisionBulkhead())
+                .setDynamicyatou(calAdditionDTO.getShuidongyali())
+                .setLeiweihao(calAdditionDTO.getLeiweihao())
+                .setAirguanyatou(calAdditionDTO.getAirguanyatou())
+                .addAllDeckName(calAdditionDTO.getDeckName())
+                .addAllDeckHeight(calAdditionDTO.getDeckHeight())
+                .addAllBoolLiquidTank(calAdditionDTO.getLiquidTanks())
+                .build();
+        AdditionalForceHeadResponse headResponse = grpcHolder.calculationBlockingStub().calAdditionalForceHead(headRequest);
+        if (headResponse == null) {
+            throw new RuntimeException("附加压头计算失败");
+        }
+
+        CalAddition calAddition = new CalAddition();
+        calAddition.setProjectId(projectId);
+        calAddition.setLeiweihaos(Lists.newArrayList(headResponse.getLeiweihaoList()));
+        calAddition.setAddyatous(Lists.newArrayList(headResponse.getAddyatouhList()));
+        calAddition.setStrDecks(Lists.newArrayList(headResponse.getStrdeckList()));
+        calAddition.setDeckYatous(Lists.newArrayList(headResponse.getDeckyatouList()));
 //        AlgorithmGrpc.section = true;
-//        return calAddition;
-//    }
+        return calAddition;
+    }
 
     public Material material(MaterialDTO materialDTO) {
         Integer projectId = materialDTO.getProjectId();
@@ -269,6 +285,9 @@ public class AlgorithmGrpc {
                 .addAllDaibanHou(materialDTO.getDaibanHou())
                 .addAllDaibanKuan(materialDTO.getDaibanKuan())
                 .setZongguKuaju(materialDTO.getZongguKuaju())
+                .addAllGuicaiTypeUpper(materialDTO.getGuicaiTypeUppers())
+                .addAllGuicaiTypeLower(materialDTO.getGuicaiTypeLowers())
+                .addAllFuQiangCaiYieldLimit(materialDTO.getFuQiangCaiYieldLimits())
                 .build();
         SupportingMaterialStrengthResponse strengthResponse = grpcHolder.calculationBlockingStub().calSupportingMaterialStrength(strengthRequest);
         if (strengthResponse == null) {
@@ -276,28 +295,28 @@ public class AlgorithmGrpc {
         }
         Material material = new Material();
         material.setProjectId(projectId);
-        material.setGuicaiType(materialDTO.getGuicaiType());
-        material.setDaibanHou(materialDTO.getDaibanHou());
-        material.setDaibanKuan(materialDTO.getDaibanKuan());
-        material.setZongguKuaju(materialDTO.getZongguKuaju());
-        material.setLowerLoad(strengthResponse.getLowerLoadList());
-        material.setUpperLoad(strengthResponse.getUpperLoadList());
-        material.setZiyouZhongwan(strengthResponse.getZiyouZhongwanList());
-        material.setZiyouShangwan(strengthResponse.getZiyouShangwanList());
-        material.setZiyouXiawan(strengthResponse.getZiyouXiawanList());
-        material.setZiyouShangjian(strengthResponse.getZiyouShangjianList());
-        material.setZiyouXiajian(strengthResponse.getZiyouXiajianList());
-        material.setGangxingShangwan(strengthResponse.getGangxingShangwanList());
-        material.setGangxingXiawan(strengthResponse.getGangxingXiawanList());
-        material.setGangxingShangjian(strengthResponse.getGangxingShangjianList());
-        material.setGangxingXiajian(strengthResponse.getGangxingXiajianList());
-        material.setYingliZhongying(strengthResponse.getYingliZhongyingList());
-        material.setYingliShangying(strengthResponse.getYingliShangyingList());
-        material.setYingliXiaying(strengthResponse.getYingliXiayingList());
-        material.setYingliXuying(strengthResponse.getYingliXuyingList());
-        material.setYingliShangjian(strengthResponse.getYingliShangjianList());
-        material.setYingliXiajian(strengthResponse.getYingliXiajianList());
-        material.setYingliXujian(strengthResponse.getYingliXujianList());
+        material.setLowerLoad(Lists.newArrayList(strengthResponse.getLowerLoadList()));
+        material.setUpperLoad(Lists.newArrayList(strengthResponse.getUpperLoadList()));
+        material.setZiyouZhongwan(Lists.newArrayList(strengthResponse.getZiyouZhongwanList()));
+        material.setZiyouShangwan(Lists.newArrayList(strengthResponse.getZiyouShangwanList()));
+        material.setZiyouXiawan(Lists.newArrayList(strengthResponse.getZiyouXiawanList()));
+        material.setZiyouShangjian(Lists.newArrayList(strengthResponse.getZiyouShangjianList()));
+        material.setZiyouXiajian(Lists.newArrayList(strengthResponse.getZiyouXiajianList()));
+        material.setGangxingShangwan(Lists.newArrayList(strengthResponse.getGangxingShangwanList()));
+        material.setGangxingXiawan(Lists.newArrayList(strengthResponse.getGangxingXiawanList()));
+        material.setGangxingShangjian(Lists.newArrayList(strengthResponse.getGangxingShangjianList()));
+        material.setGangxingXiajian(Lists.newArrayList(strengthResponse.getGangxingXiajianList()));
+        material.setYingliZhongying(Lists.newArrayList(strengthResponse.getYingliZhongyingList()));
+        material.setYingliShangying(Lists.newArrayList(strengthResponse.getYingliShangyingList()));
+        material.setYingliXiaying(Lists.newArrayList(strengthResponse.getYingliXiayingList()));
+        material.setYingliXuying(Lists.newArrayList(strengthResponse.getYingliXuyingList()));
+        material.setYingliShangjian(Lists.newArrayList(strengthResponse.getYingliShangjianList()));
+        material.setYingliXiajian(Lists.newArrayList(strengthResponse.getYingliXiajianList()));
+        material.setYingliXujian(Lists.newArrayList(strengthResponse.getYingliXujianList()));
+        material.setMMaxEl(Lists.newArrayList(strengthResponse.getMMaxElList()));
+        material.setNMaxEl(Lists.newArrayList(strengthResponse.getNMaxElList()));
+        material.setStressMaxEl(Lists.newArrayList(strengthResponse.getStressMaxElList()));
+        material.setShearMaxEl(Lists.newArrayList(strengthResponse.getShearMaxElList()));
         AlgorithmGrpc.section = true;
 
         return material;
@@ -604,9 +623,9 @@ public class AlgorithmGrpc {
         List<Double> banThick = Lists.newArrayList();
         List<Double> cangbiBancailiao = Lists.newArrayList();
         for (BulkheadCompartment bulkheadCompartment : bulkheadCompartments) {
-            banWidth.add(Double.valueOf(bulkheadCompartment.getPlateWidth()));
-            banThick.add(Double.valueOf(bulkheadCompartment.getPlateThickness()));
-            cangbiBancailiao.add(Double.valueOf(bulkheadCompartment.getMaterial()));
+            banWidth.add(bulkheadCompartment.getPlateWidth());
+            banThick.add(bulkheadCompartment.getPlateThickness());
+            cangbiBancailiao.add(Double.parseDouble(bulkheadCompartment.getMaterial()));
         }
         CompartmentBulkheadSheetResponse compartmentBulkheadSheetResponse = grpcHolder.calculationBlockingStub().calCompartmentBulkheadSheet(CompartmentBulkheadSheetRequest.newBuilder()
                 .addAllBanWidth(banWidth)
@@ -623,8 +642,8 @@ public class AlgorithmGrpc {
         bulkheadCheckResult.setChi1List(Lists.newArrayList(compartmentBulkheadSheetResponse.getChi1ListList()));
         bulkheadCheckResult.setChi2List(Lists.newArrayList(compartmentBulkheadSheetResponse.getChi2ListList()));
         bulkheadCheckResult.setStressXlList(Lists.newArrayList(compartmentBulkheadSheetResponse.getStressXlListList()));
-        bulkheadCheckResult.setStressZhizuo(Lists.newArrayList(compartmentBulkheadSheetResponse.getStressZhizuoList()));
         bulkheadCheckResult.setStressKuozhong(Lists.newArrayList(compartmentBulkheadSheetResponse.getStressKuozhongList()));
+        bulkheadCheckResult.setStressZhizuo(Lists.newArrayList(compartmentBulkheadSheetResponse.getStressZhizuoList()));
         bulkheadCheckResult.setShearAllow(Lists.newArrayList(compartmentBulkheadSheetResponse.getShearAllowList()));
         return bulkheadCheckResult;
     }

@@ -13,8 +13,6 @@ import com.iscas.datasong.connector.util.CollectionUtils;
 import org.springframework.stereotype.Service;
 
 import java.io.File;
-import java.io.FileInputStream;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -69,7 +67,7 @@ public class BulkheadServiceImpl extends ServiceImpl<BulkheadMapper, Bulkhead> i
                             throw new RuntimeException(e);
                         }
 
-
+                        int index = 1;
                         for (Map.Entry<String, List> entry : resultMap.entrySet()) {
                             List<Map<String, Object>> valueList = entry.getValue();
                             Integer k1 = null;
@@ -85,10 +83,11 @@ public class BulkheadServiceImpl extends ServiceImpl<BulkheadMapper, Bulkhead> i
                                         Integer k2 = Double.valueOf(entryList.get(0).getValue().toString()).intValue();
                                         Double v2 = Double.parseDouble(entryList.get(1).getValue().toString());
                                         BulkheadCompartment bulkheadCompartment = new BulkheadCompartment();
+                                        bulkheadCompartment.setName("甲板" + index++);
                                         bulkheadCompartment.setProjectId(bulkhead.getProjectId());
                                         bulkheadCompartment.setBulkheadId(bulkhead.getBulkheadId());
                                         bulkheadCompartment.setCompartment(k1 + "-" + k2);
-                                        bulkheadCompartment.setHeightAbove("" + (v1 - v2));
+                                        bulkheadCompartment.setHeightAbove((v1 - v2));
                                         compartmentMapper.insert(bulkheadCompartment);
                                         k1 = k2;
                                         v1 = v2;

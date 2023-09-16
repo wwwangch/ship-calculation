@@ -5,6 +5,7 @@ import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 import com.baomidou.mybatisplus.extension.handlers.JacksonTypeHandler;
+import com.iscas.biz.calculation.enums.CheckType;
 import lombok.Data;
 
 import java.util.List;
@@ -28,9 +29,8 @@ public class BulkheadCheckResult {
     //项目id
     private Integer projectId;
 
-    //破损压头水压值
-    @TableField(typeHandler = JacksonTypeHandler.class)
-    private List<Double> yatou;
+    //工况类型
+    private CheckType checkType;
 
     //层间名称
     @TableField(typeHandler = JacksonTypeHandler.class)
@@ -38,30 +38,30 @@ public class BulkheadCheckResult {
 
     //均布载荷
     @TableField(typeHandler = JacksonTypeHandler.class)
-    private List<Double> disload;
+    private List<Number> disload;
     //lgv
     @TableField(typeHandler = JacksonTypeHandler.class)
-    private List<Double> lgvList;
+    private List<Number> lgvList;
 
     //u输出
     @TableField(typeHandler = JacksonTypeHandler.class)
-    private List<Double> uList;
+    private List<Number> uList;
     //chi1 输出
     @TableField(typeHandler = JacksonTypeHandler.class)
-    private List<Double> chi1List;
+    private List<Number> chi1List;
     //chi2 输出
     @TableField(typeHandler = JacksonTypeHandler.class)
-    private List<Double> chi2List;
+    private List<Number> chi2List;
     //悬链应力
     @TableField(typeHandler = JacksonTypeHandler.class)
-    private List<Double> stressXlList;
+    private List<Number> stressXlList;
     //跨中应力
     @TableField(typeHandler = JacksonTypeHandler.class)
-    private List<Double> stressKuozhong;
+    private List<Number> stressKuozhong;
     //支座应力
     @TableField(typeHandler = JacksonTypeHandler.class)
-    private List<Double> stressZhizuo;
+    private List<Number> stressZhizuo;
     //许用剪力
     @TableField(typeHandler = JacksonTypeHandler.class)
-    private List<Double> shearAllow;
+    private List<Number> shearAllow;
 }

@@ -94,7 +94,7 @@ public class ShipParam {
      */
     private CheckType currentType;
 
-    //静水中最大航数
+    //静水中最大航速
     private Double vmax;
 
     //航速

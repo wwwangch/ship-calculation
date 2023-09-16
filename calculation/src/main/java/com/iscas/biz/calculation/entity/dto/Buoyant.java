@@ -14,23 +14,23 @@ public class Buoyant {
     private Integer index;
     //浮力
     @ExcelProperty("浮力")
-    private double floatforce;
+    private Double floatforce;
     //浮力位置
     @ExcelProperty("浮力位置")
-    private double floatxpos;
+    private Double floatxpos;
     //船尾吃水
     @ExcelProperty("船艉吃水")
-    private double da;
+    private Double da;
     //船中吃水
     @ExcelProperty("船中吃水")
-    private double dm;
+    private Double dm;
     //船首吃水
     @ExcelProperty("船艏吃水")
-    private double df;
+    private Double df;
     //浮力偏差 重心平衡精度
     @ExcelProperty("浮力偏差-重量平衡精度")
-    private double biasf;
+    private Double biasf;
     //浮力位置偏差
     @ExcelProperty("浮力位置偏差-重心平衡精度")
-    private double biasx;
+    private Double biasx;
 }

@@ -13,5 +13,5 @@ import java.util.List;
 public class WeightDistribution {
     private String name;
 
-    private List<Double> weightItems;
+    private List<Number> weightItems;
 }

@@ -53,7 +53,7 @@ public class Weight {
      * 当前校核工况下的站间重量分布
      */
     @TableField(typeHandler = JacksonTypeHandler.class)
-    private List<Double> allDirs;
+    private List<Number> allDirs;
 
     /**
      * 总体重量分布 排水量和重心纵向坐标

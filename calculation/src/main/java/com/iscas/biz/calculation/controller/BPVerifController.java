@@ -9,6 +9,8 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.*;
 
+import java.io.IOException;
+
 /**
  * @Author yichuan@iscas.ac.cn
  * @Date 2023/6/4 11:44
@@ -27,15 +29,20 @@ public class BPVerifController {
 
 
     @Operation(summary = "舱壁板材校核结果查询,仅一条", description = "传舱壁id，仅返回计算结果")
-    @GetMapping(value = "/getData/{bulkheadId}")
-    public BulkheadCheckResult getCheckData(@PathVariable Integer bulkheadId) {
-        return compartmentService.listResultByBulkheadId(bulkheadId);
+    @PostMapping(value = "/getData/{projectId}/{bulkheadId}")
+    public BulkheadCheckResult getCheckData(@PathVariable Integer projectId, @PathVariable Integer bulkheadId) {
+        return compartmentService.listResultByBulkheadId(projectId, bulkheadId);
     }
 
     @Operation(summary = "舱壁板材校核", description = "舱壁板材校核")
     @PostMapping(value = "/check")
     public ResponseEntity checkBulkheadPlate(@RequestBody BulkheadDTO bulkheadDTO) {
         return ResponseEntity.ok(compartmentService.checkBulkhead(bulkheadDTO));
+    }
+    @Operation(summary = "舱壁板材校核结果导出", description = "舱壁板材校核结果导出")
+    @GetMapping(value = "/export/{projectId}/{bulkheadId}")
+    public void export(@PathVariable Integer projectId, @PathVariable Integer bulkheadId) throws IOException {
+        compartmentService.export(projectId,bulkheadId);
     }
 
 }
