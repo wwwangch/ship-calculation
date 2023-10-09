@@ -32,6 +32,8 @@ public  final class AdditionalForceHeadRequest extends
     deckName_ = com.google.protobuf.LazyStringArrayList.EMPTY;
     deckHeight_ = java.util.Collections.emptyList();
     boolLiquidTank_ = java.util.Collections.emptyList();
+    chuanzhongPos_ = 0D;
+    leiguJianju_ = 0D;
   }
 
   @java.lang.Override
@@ -180,6 +182,16 @@ public  final class AdditionalForceHeadRequest extends
             input.popLimit(limit);
             break;
           }
+          case 145: {
+
+            chuanzhongPos_ = input.readDouble();
+            break;
+          }
+          case 153: {
+
+            leiguJianju_ = input.readDouble();
+            break;
+          }
         }
       }
     } catch (com.google.protobuf.InvalidProtocolBufferException e) {
@@ -322,7 +334,7 @@ public  final class AdditionalForceHeadRequest extends
   private double bridgeAftHeight_;
   /**
    * <pre>
-   *桥楼尾部端壁干舷高
+   *桥楼尾部端壁干舷高    艏楼端壁干舷高  船中干舷高
    * </pre>
    *
    * <code>double bridge_aft_height = 9;</code>
@@ -511,6 +523,32 @@ public  final class AdditionalForceHeadRequest extends
   }
   private int boolLiquidTankMemoizedSerializedSize = -1;
 
+  public static final int CHUANZHONGPOS_FIELD_NUMBER = 18;
+  private double chuanzhongPos_;
+  /**
+   * <pre>
+   *船中肋位号
+   * </pre>
+   *
+   * <code>double chuanzhongPos = 18;</code>
+   */
+  public double getChuanzhongPos() {
+    return chuanzhongPos_;
+  }
+
+  public static final int LEIGUJIANJU_FIELD_NUMBER = 19;
+  private double leiguJianju_;
+  /**
+   * <pre>
+   *肋骨间距
+   * </pre>
+   *
+   * <code>double leiguJianju = 19;</code>
+   */
+  public double getLeiguJianju() {
+    return leiguJianju_;
+  }
+
   private byte memoizedIsInitialized = -1;
   public final boolean isInitialized() {
     byte isInitialized = memoizedIsInitialized;
@@ -582,6 +620,12 @@ public  final class AdditionalForceHeadRequest extends
     }
     for (int i = 0; i < boolLiquidTank_.size(); i++) {
       output.writeBoolNoTag(boolLiquidTank_.get(i));
+    }
+    if (chuanzhongPos_ != 0D) {
+      output.writeDouble(18, chuanzhongPos_);
+    }
+    if (leiguJianju_ != 0D) {
+      output.writeDouble(19, leiguJianju_);
     }
   }
 
@@ -676,6 +720,14 @@ public  final class AdditionalForceHeadRequest extends
       }
       boolLiquidTankMemoizedSerializedSize = dataSize;
     }
+    if (chuanzhongPos_ != 0D) {
+      size += com.google.protobuf.CodedOutputStream
+        .computeDoubleSize(18, chuanzhongPos_);
+    }
+    if (leiguJianju_ != 0D) {
+      size += com.google.protobuf.CodedOutputStream
+        .computeDoubleSize(19, leiguJianju_);
+    }
     memoizedSize = size;
     return size;
   }
@@ -750,6 +802,14 @@ public  final class AdditionalForceHeadRequest extends
         .equals(other.getDeckHeightList());
     result = result && getBoolLiquidTankList()
         .equals(other.getBoolLiquidTankList());
+    result = result && (
+        java.lang.Double.doubleToLongBits(getChuanzhongPos())
+        == java.lang.Double.doubleToLongBits(
+            other.getChuanzhongPos()));
+    result = result && (
+        java.lang.Double.doubleToLongBits(getLeiguJianju())
+        == java.lang.Double.doubleToLongBits(
+            other.getLeiguJianju()));
     return result;
   }
 
@@ -813,6 +873,12 @@ public  final class AdditionalForceHeadRequest extends
       hash = (37 * hash) + BOOLLIQUIDTANK_FIELD_NUMBER;
       hash = (53 * hash) + getBoolLiquidTankList().hashCode();
     }
+    hash = (37 * hash) + CHUANZHONGPOS_FIELD_NUMBER;
+    hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
+        java.lang.Double.doubleToLongBits(getChuanzhongPos()));
+    hash = (37 * hash) + LEIGUJIANJU_FIELD_NUMBER;
+    hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
+        java.lang.Double.doubleToLongBits(getLeiguJianju()));
     hash = (29 * hash) + unknownFields.hashCode();
     memoizedHashCode = hash;
     return hash;
@@ -965,6 +1031,10 @@ public  final class AdditionalForceHeadRequest extends
       bitField0_ = (bitField0_ & ~0x00008000);
       boolLiquidTank_ = java.util.Collections.emptyList();
       bitField0_ = (bitField0_ & ~0x00010000);
+      chuanzhongPos_ = 0D;
+
+      leiguJianju_ = 0D;
+
       return this;
     }
 
@@ -1018,6 +1088,8 @@ public  final class AdditionalForceHeadRequest extends
         bitField0_ = (bitField0_ & ~0x00010000);
       }
       result.boolLiquidTank_ = boolLiquidTank_;
+      result.chuanzhongPos_ = chuanzhongPos_;
+      result.leiguJianju_ = leiguJianju_;
       result.bitField0_ = to_bitField0_;
       onBuilt();
       return result;
@@ -1131,6 +1203,12 @@ public  final class AdditionalForceHeadRequest extends
           boolLiquidTank_.addAll(other.boolLiquidTank_);
         }
         onChanged();
+      }
+      if (other.getChuanzhongPos() != 0D) {
+        setChuanzhongPos(other.getChuanzhongPos());
+      }
+      if (other.getLeiguJianju() != 0D) {
+        setLeiguJianju(other.getLeiguJianju());
       }
       onChanged();
       return this;
@@ -1469,7 +1547,7 @@ public  final class AdditionalForceHeadRequest extends
     private double bridgeAftHeight_ ;
     /**
      * <pre>
-     *桥楼尾部端壁干舷高
+     *桥楼尾部端壁干舷高    艏楼端壁干舷高  船中干舷高
      * </pre>
      *
      * <code>double bridge_aft_height = 9;</code>
@@ -1479,7 +1557,7 @@ public  final class AdditionalForceHeadRequest extends
     }
     /**
      * <pre>
-     *桥楼尾部端壁干舷高
+     *桥楼尾部端壁干舷高    艏楼端壁干舷高  船中干舷高
      * </pre>
      *
      * <code>double bridge_aft_height = 9;</code>
@@ -1492,7 +1570,7 @@ public  final class AdditionalForceHeadRequest extends
     }
     /**
      * <pre>
-     *桥楼尾部端壁干舷高
+     *桥楼尾部端壁干舷高    艏楼端壁干舷高  船中干舷高
      * </pre>
      *
      * <code>double bridge_aft_height = 9;</code>
@@ -2008,6 +2086,82 @@ public  final class AdditionalForceHeadRequest extends
     public Builder clearBoolLiquidTank() {
       boolLiquidTank_ = java.util.Collections.emptyList();
       bitField0_ = (bitField0_ & ~0x00010000);
+      onChanged();
+      return this;
+    }
+
+    private double chuanzhongPos_ ;
+    /**
+     * <pre>
+     *船中肋位号
+     * </pre>
+     *
+     * <code>double chuanzhongPos = 18;</code>
+     */
+    public double getChuanzhongPos() {
+      return chuanzhongPos_;
+    }
+    /**
+     * <pre>
+     *船中肋位号
+     * </pre>
+     *
+     * <code>double chuanzhongPos = 18;</code>
+     */
+    public Builder setChuanzhongPos(double value) {
+      
+      chuanzhongPos_ = value;
+      onChanged();
+      return this;
+    }
+    /**
+     * <pre>
+     *船中肋位号
+     * </pre>
+     *
+     * <code>double chuanzhongPos = 18;</code>
+     */
+    public Builder clearChuanzhongPos() {
+      
+      chuanzhongPos_ = 0D;
+      onChanged();
+      return this;
+    }
+
+    private double leiguJianju_ ;
+    /**
+     * <pre>
+     *肋骨间距
+     * </pre>
+     *
+     * <code>double leiguJianju = 19;</code>
+     */
+    public double getLeiguJianju() {
+      return leiguJianju_;
+    }
+    /**
+     * <pre>
+     *肋骨间距
+     * </pre>
+     *
+     * <code>double leiguJianju = 19;</code>
+     */
+    public Builder setLeiguJianju(double value) {
+      
+      leiguJianju_ = value;
+      onChanged();
+      return this;
+    }
+    /**
+     * <pre>
+     *肋骨间距
+     * </pre>
+     *
+     * <code>double leiguJianju = 19;</code>
+     */
+    public Builder clearLeiguJianju() {
+      
+      leiguJianju_ = 0D;
       onChanged();
       return this;
     }

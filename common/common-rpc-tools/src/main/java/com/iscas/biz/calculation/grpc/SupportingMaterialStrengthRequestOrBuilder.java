@@ -69,35 +69,60 @@ public interface SupportingMaterialStrengthRequestOrBuilder extends
 
   /**
    * <pre>
-   *带板厚
+   *上带板厚
    * </pre>
    *
-   * <code>repeated double daibanHou = 3;</code>
+   * <code>repeated double daibanHouUpper = 3;</code>
    */
-  java.util.List<java.lang.Double> getDaibanHouList();
+  java.util.List<java.lang.Double> getDaibanHouUpperList();
   /**
    * <pre>
-   *带板厚
+   *上带板厚
    * </pre>
    *
-   * <code>repeated double daibanHou = 3;</code>
+   * <code>repeated double daibanHouUpper = 3;</code>
    */
-  int getDaibanHouCount();
+  int getDaibanHouUpperCount();
   /**
    * <pre>
-   *带板厚
+   *上带板厚
    * </pre>
    *
-   * <code>repeated double daibanHou = 3;</code>
+   * <code>repeated double daibanHouUpper = 3;</code>
    */
-  double getDaibanHou(int index);
+  double getDaibanHouUpper(int index);
+
+  /**
+   * <pre>
+   *下带板厚
+   * </pre>
+   *
+   * <code>repeated double daibanHouLower = 4;</code>
+   */
+  java.util.List<java.lang.Double> getDaibanHouLowerList();
+  /**
+   * <pre>
+   *下带板厚
+   * </pre>
+   *
+   * <code>repeated double daibanHouLower = 4;</code>
+   */
+  int getDaibanHouLowerCount();
+  /**
+   * <pre>
+   *下带板厚
+   * </pre>
+   *
+   * <code>repeated double daibanHouLower = 4;</code>
+   */
+  double getDaibanHouLower(int index);
 
   /**
    * <pre>
    *甲板纵骨跨距
    * </pre>
    *
-   * <code>double zongguKuaju = 4;</code>
+   * <code>double zongguKuaju = 5;</code>
    */
   double getZongguKuaju();
 
@@ -107,7 +132,7 @@ public interface SupportingMaterialStrengthRequestOrBuilder extends
    *上部支撑纵骨规格
    * </pre>
    *
-   * <code>repeated string guicaiType_upper = 5;</code>
+   * <code>repeated string guicaiType_upper = 6;</code>
    */
   java.util.List<java.lang.String>
       getGuicaiTypeUpperList();
@@ -117,7 +142,7 @@ public interface SupportingMaterialStrengthRequestOrBuilder extends
    *上部支撑纵骨规格
    * </pre>
    *
-   * <code>repeated string guicaiType_upper = 5;</code>
+   * <code>repeated string guicaiType_upper = 6;</code>
    */
   int getGuicaiTypeUpperCount();
   /**
@@ -126,7 +151,7 @@ public interface SupportingMaterialStrengthRequestOrBuilder extends
    *上部支撑纵骨规格
    * </pre>
    *
-   * <code>repeated string guicaiType_upper = 5;</code>
+   * <code>repeated string guicaiType_upper = 6;</code>
    */
   java.lang.String getGuicaiTypeUpper(int index);
   /**
@@ -135,7 +160,7 @@ public interface SupportingMaterialStrengthRequestOrBuilder extends
    *上部支撑纵骨规格
    * </pre>
    *
-   * <code>repeated string guicaiType_upper = 5;</code>
+   * <code>repeated string guicaiType_upper = 6;</code>
    */
   com.google.protobuf.ByteString
       getGuicaiTypeUpperBytes(int index);
@@ -145,7 +170,7 @@ public interface SupportingMaterialStrengthRequestOrBuilder extends
    *下部支撑纵骨规格
    * </pre>
    *
-   * <code>repeated string guicaiType_lower = 6;</code>
+   * <code>repeated string guicaiType_lower = 7;</code>
    */
   java.util.List<java.lang.String>
       getGuicaiTypeLowerList();
@@ -154,7 +179,7 @@ public interface SupportingMaterialStrengthRequestOrBuilder extends
    *下部支撑纵骨规格
    * </pre>
    *
-   * <code>repeated string guicaiType_lower = 6;</code>
+   * <code>repeated string guicaiType_lower = 7;</code>
    */
   int getGuicaiTypeLowerCount();
   /**
@@ -162,7 +187,7 @@ public interface SupportingMaterialStrengthRequestOrBuilder extends
    *下部支撑纵骨规格
    * </pre>
    *
-   * <code>repeated string guicaiType_lower = 6;</code>
+   * <code>repeated string guicaiType_lower = 7;</code>
    */
   java.lang.String getGuicaiTypeLower(int index);
   /**
@@ -170,7 +195,7 @@ public interface SupportingMaterialStrengthRequestOrBuilder extends
    *下部支撑纵骨规格
    * </pre>
    *
-   * <code>repeated string guicaiType_lower = 6;</code>
+   * <code>repeated string guicaiType_lower = 7;</code>
    */
   com.google.protobuf.ByteString
       getGuicaiTypeLowerBytes(int index);
@@ -180,7 +205,7 @@ public interface SupportingMaterialStrengthRequestOrBuilder extends
    *扶强材屈服极限
    * </pre>
    *
-   * <code>repeated double fuQiangCaiYieldLimit = 7;</code>
+   * <code>repeated double fuQiangCaiYieldLimit = 8;</code>
    */
   java.util.List<java.lang.Double> getFuQiangCaiYieldLimitList();
   /**
@@ -188,7 +213,7 @@ public interface SupportingMaterialStrengthRequestOrBuilder extends
    *扶强材屈服极限
    * </pre>
    *
-   * <code>repeated double fuQiangCaiYieldLimit = 7;</code>
+   * <code>repeated double fuQiangCaiYieldLimit = 8;</code>
    */
   int getFuQiangCaiYieldLimitCount();
   /**
@@ -196,7 +221,7 @@ public interface SupportingMaterialStrengthRequestOrBuilder extends
    *扶强材屈服极限
    * </pre>
    *
-   * <code>repeated double fuQiangCaiYieldLimit = 7;</code>
+   * <code>repeated double fuQiangCaiYieldLimit = 8;</code>
    */
   double getFuQiangCaiYieldLimit(int index);
 }

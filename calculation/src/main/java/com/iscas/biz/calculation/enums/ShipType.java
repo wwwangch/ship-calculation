@@ -8,10 +8,10 @@ import com.baomidou.mybatisplus.annotation.EnumValue;
  * @since 2023/4/11 15:42
  */
 public enum ShipType {
-    QZJ("QZJ"),
-    HM("HM"),
-    DQ("DQ")
-    ;
+    QZJ("GJB4000-2000"),
+    QZJ2("QZJ"),
+    DC("DC"),
+    DQ("DQ");
 
     ShipType(String value) {
         this.value = value;

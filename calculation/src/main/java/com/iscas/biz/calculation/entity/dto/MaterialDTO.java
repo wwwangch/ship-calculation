@@ -24,12 +24,17 @@ public class MaterialDTO {
     /**
      * 带板宽
      */
-    private List<Double> daibanKuan;
+    private List<Double> stripPlateWidth;
 
     /**
-     * 带板厚
+     * 上带板厚度
      */
-    private List<Double> daibanHou;
+    private List<Double> stripPlateThicknessUpper;
+
+    /**
+     * 下带板厚度
+     */
+    private List<Double> stripPlateThicknessLower;
 
     /**
      * 甲板纵骨跨距

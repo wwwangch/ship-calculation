@@ -37,6 +37,16 @@ public class BulkheadCompartment {
     private Double stripPlateWidth;
 
     /**
+     * 上带板厚度
+     */
+    private Double stripPlateThicknessUpper;
+
+    /**
+     * 下带板厚度
+     */
+    private Double stripPlateThicknessLower;
+
+    /**
      * 扶强材规格
      */
     private String strengthMaterialSpecification;
@@ -66,10 +76,7 @@ public class BulkheadCompartment {
 
     private Date updateTime;
 
-    /**
-     * 带板厚度
-     */
-    private Double daibanhou;
+
 
     /**
      * 上部支撑纵骨规格

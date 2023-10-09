@@ -173,6 +173,8 @@ public class CalAdditionServiceImpl implements CalAdditionService {
         calAdditionDTO.setUpBuiltForm(Optional.ofNullable(shipParam.getUpBuiltForm()).orElse(UpBuiltForm.Bow).getValue());
         calAdditionDTO.setFreeboard(shipParam.getFreeboard());
         calAdditionDTO.setRibNumber(shipParam.getRibNumber());
+        calAdditionDTO.setMidRibNumber(shipParam.getMidRibNumber());
+        calAdditionDTO.setRibSpacing(shipParam.getRibSpacing());
         calAdditionDTO.setForeFreeBoard(shipParam.getForeFreeBoard());
         calAdditionDTO.setAfterFreeBoard(shipParam.getAfterFreeBoard());
         calAdditionDTO.setBridgeForePos(shipParam.getBridgeForePos());
@@ -197,8 +199,8 @@ public class CalAdditionServiceImpl implements CalAdditionService {
             deckHeight.add(Optional.ofNullable(bulkheadCompartment.getHeightAbove()).orElse(0D));
             liquidTanks.add(Optional.ofNullable(bulkheadCompartment.getLiquid()).orElse(false));
         }
-        calAdditionDTO.setDeckName(deckName);
-        calAdditionDTO.setDeckHeight(deckHeight);
+        calAdditionDTO.setDeckName(bulkhead.getDeckNames());
+        calAdditionDTO.setDeckHeight(bulkhead.getDeckHeights());
         calAdditionDTO.setLiquidTanks(liquidTanks);
 
         CalAddition calAddition = algorithmGrpc.calAddition(calAdditionDTO);

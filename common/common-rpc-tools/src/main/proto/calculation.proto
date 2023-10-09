@@ -608,6 +608,7 @@ message AdditionalForceHeadRequest{
   int32 upbuildstyle = 1;
   //干舷高
   double freeboard = 2;
+
   //艏楼端壁肋位
   double shouloupos = 3;
   //new614----------------
@@ -621,7 +622,7 @@ message AdditionalForceHeadRequest{
   double bridge_fore_height = 7;
   //桥楼尾部端壁肋位号；
   double bridge_aft_pos = 8;
-  //桥楼尾部端壁干舷高
+  //桥楼尾部端壁干舷高    艏楼端壁干舷高  船中干舷高
   double bridge_aft_height = 9;
 
   //正常排水量时的吃水
@@ -643,6 +644,12 @@ message AdditionalForceHeadRequest{
   //是否液压舱壁  区间excel中的数据
   repeated bool boolLiquidTank = 17;
   //----------------------------------
+
+  //船中肋位号
+  double chuanzhongPos=18;
+
+  //肋骨间距
+  double leiguJianju=19;
 }
 message AdditionalForceHeadResponse{
   //肋位号  数组
@@ -707,18 +714,21 @@ message SupportingMaterialStrengthRequest{
 
   //带板宽
   repeated double daibanKuan = 2;
-  //带板厚
-  repeated double daibanHou = 3;
+  //上带板厚
+  repeated double daibanHouUpper = 3;
+
+  //下带板厚
+  repeated double daibanHouLower = 4;
   //甲板纵骨跨距
-  double zongguKuaju = 4;
+  double zongguKuaju = 5;
 
   //new614----------------
   //上部支撑纵骨规格
-  repeated string guicaiType_upper = 5;
+  repeated string guicaiType_upper = 6;
   //下部支撑纵骨规格
-  repeated string guicaiType_lower = 6;
+  repeated string guicaiType_lower = 7;
   //扶强材屈服极限
-  repeated double fuQiangCaiYieldLimit = 7;
+  repeated double fuQiangCaiYieldLimit = 8;
   //---------------------------------
 }
 

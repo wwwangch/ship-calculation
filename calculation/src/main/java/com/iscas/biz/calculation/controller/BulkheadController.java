@@ -1,13 +1,10 @@
 package com.iscas.biz.calculation.controller;
 
-import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.google.common.collect.ImmutableMap;
 import com.iscas.biz.calculation.entity.db.Bulkhead;
-import com.iscas.biz.calculation.entity.db.BulkheadCompartment;
 import com.iscas.biz.calculation.entity.db.Section;
 import com.iscas.biz.calculation.mapper.BulkheadCompartmentMapper;
 import com.iscas.biz.calculation.service.BulkheadService;
-import com.iscas.biz.calculation.service.SectionService;
 import com.iscas.biz.mp.table.service.TableDefinitionService;
 import com.iscas.common.tools.core.date.DateSafeUtils;
 import com.iscas.templet.common.ResponseEntity;
@@ -23,6 +20,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
+import java.io.IOException;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
@@ -91,17 +89,16 @@ public class BulkheadController {
     @PutMapping("/data")
     public ResponseEntity editData(@RequestBody Map<String, Object> data) throws ValidDataException, InterruptedException {
         ImmutableMap<String, Object> forceItem = ImmutableMap.of("update_time", DateSafeUtils.format(new Date()));
-        QueryWrapper<BulkheadCompartment> bulkheadCompartmentQueryWrapper = new QueryWrapper<>();
-        QueryWrapper<Bulkhead> bulkheadQueryWrapper = new QueryWrapper<>();
-        bulkheadQueryWrapper.eq("project_id", data.get("project_id"));
-        Bulkhead bulkhead = bulkheadService.getOne(bulkheadQueryWrapper);
-        bulkheadCompartmentQueryWrapper.eq("bulkhead_id", bulkhead.getBulkheadId());
-        if (bulkheadCompartmentMapper.exists(bulkheadCompartmentQueryWrapper)) {
-            bulkheadCompartmentMapper.delete(bulkheadCompartmentQueryWrapper);
-        }
+//        Bulkhead bulkhead = bulkheadService.getById((Integer) data.get("bulkhead_id"));
         tableDefinitionService.saveData(TABLE_IDENTITY, data, false, Section.class, forceItem);
         bulkheadService.saveCompartment(data.get("bulkhead_file_path"));
         return new ResponseEntity();
+    }
+
+    @Operation(summary = "舱壁高度模板下载", description = "下载模板文件")
+    @GetMapping("/template")
+    public void downloadTemplates() throws IOException {
+        bulkheadService.downloadTemplate();
     }
 
 }

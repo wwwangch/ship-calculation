@@ -295,7 +295,8 @@ public class MaterialServiceImpl implements MaterialService {
 
         List<String> guicaitype = new ArrayList<>();
         List<Double> daibankuan = new ArrayList<>();
-        List<Double> daibanhou = new ArrayList<>();
+        List<Double> stripPlateThicknessUppers = new ArrayList<>();
+        List<Double> stripPlateThicknessLowers = new ArrayList<>();
         List<String> guicaiTypeUppers = new ArrayList<>();
         List<String> guicaiTypeLowers = new ArrayList<>();
         List<Double> fuQiangCaiYieldLimits = new ArrayList<>();
@@ -303,7 +304,8 @@ public class MaterialServiceImpl implements MaterialService {
         for (BulkheadCompartment compartment : bulkheadCompartments) {
             guicaitype.add(Optional.ofNullable(compartment.getStrengthMaterialSpecification()).orElse(""));
             daibankuan.add(Optional.ofNullable(compartment.getStripPlateWidth()).orElse(0D));
-            daibanhou.add(Optional.ofNullable(compartment.getDaibanhou()).orElse(0D));
+            stripPlateThicknessUppers.add(Optional.ofNullable(compartment.getStripPlateThicknessUpper()).orElse(0D));
+            stripPlateThicknessLowers.add(Optional.ofNullable(compartment.getStripPlateThicknessLower()).orElse(0D));
             guicaiTypeUppers.add(Optional.ofNullable(compartment.getGuicaiTypeUpper()).orElse(""));
             guicaiTypeLowers.add(Optional.ofNullable(compartment.getGuicaiTypeLower()).orElse(""));
             fuQiangCaiYieldLimits.add(Double.parseDouble(Optional.ofNullable(compartment.getMaterial()).orElse("595")));
@@ -311,8 +313,9 @@ public class MaterialServiceImpl implements MaterialService {
 
 
         materialDTO.setGuicaiType(guicaitype);
-        materialDTO.setDaibanHou(daibanhou);
-        materialDTO.setDaibanKuan(daibankuan);
+        materialDTO.setStripPlateThicknessUpper(stripPlateThicknessUppers);
+        materialDTO.setStripPlateThicknessLower(stripPlateThicknessLowers);
+        materialDTO.setStripPlateWidth(daibankuan);
         materialDTO.setGuicaiTypeUppers(guicaiTypeUppers);
         materialDTO.setGuicaiTypeLowers(guicaiTypeLowers);
         materialDTO.setFuQiangCaiYieldLimits(fuQiangCaiYieldLimits);

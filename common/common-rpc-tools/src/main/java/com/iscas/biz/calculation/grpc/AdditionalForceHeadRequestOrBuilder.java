@@ -82,7 +82,7 @@ public interface AdditionalForceHeadRequestOrBuilder extends
 
   /**
    * <pre>
-   *桥楼尾部端壁干舷高
+   *桥楼尾部端壁干舷高    艏楼端壁干舷高  船中干舷高
    * </pre>
    *
    * <code>double bridge_aft_height = 9;</code>
@@ -218,4 +218,22 @@ public interface AdditionalForceHeadRequestOrBuilder extends
    * <code>repeated bool boolLiquidTank = 17;</code>
    */
   boolean getBoolLiquidTank(int index);
+
+  /**
+   * <pre>
+   *船中肋位号
+   * </pre>
+   *
+   * <code>double chuanzhongPos = 18;</code>
+   */
+  double getChuanzhongPos();
+
+  /**
+   * <pre>
+   *肋骨间距
+   * </pre>
+   *
+   * <code>double leiguJianju = 19;</code>
+   */
+  double getLeiguJianju();
 }

@@ -9,8 +9,10 @@ import com.fasterxml.jackson.annotation.JsonValue;
  * @since 2023/6/16 16:21
  */
 public enum UpBuiltForm {
-    Bow(0,"艏楼"),
-    BRIDGE_TOWER(1,"桥楼")
+    NO_BOW_RIDGE(1,"无艏楼无脊弧"),
+    Bow(2,"艏楼"),
+    BRIDGE_TOWER(3,"桥楼"),
+    RIDGE(4,"脊弧"),
     ;
     @EnumValue
     private Integer value;

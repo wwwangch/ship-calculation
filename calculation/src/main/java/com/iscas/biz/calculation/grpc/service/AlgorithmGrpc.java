@@ -22,6 +22,7 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 /**
  * @author ch w
@@ -248,6 +249,8 @@ public class AlgorithmGrpc {
                 .setUpbuildstyle(calAdditionDTO.getUpBuiltForm())
                 .setFreeboard(calAdditionDTO.getFreeboard())
                 .setShouloupos(calAdditionDTO.getRibNumber())
+                .setChuanzhongPos(calAdditionDTO.getMidRibNumber())
+                .setLeiguJianju(calAdditionDTO.getRibSpacing())
                 .setForefreeboard(Optional.ofNullable(calAdditionDTO.getForeFreeBoard()).orElse(0d))
                 .setAftfreeboard(Optional.ofNullable(calAdditionDTO.getAfterFreeBoard()).orElse(0d))
                 .setBridgeForePos(Optional.ofNullable(calAdditionDTO.getBridgeForePos()).orElse(0d))
@@ -259,8 +262,8 @@ public class AlgorithmGrpc {
                 .setDynamicyatou(calAdditionDTO.getShuidongyali())
                 .setLeiweihao(calAdditionDTO.getLeiweihao())
                 .setAirguanyatou(calAdditionDTO.getAirguanyatou())
-                .addAllDeckName(calAdditionDTO.getDeckName())
-                .addAllDeckHeight(calAdditionDTO.getDeckHeight())
+                .addAllDeckName(Optional.ofNullable(calAdditionDTO.getDeckName()).orElse(Lists.newArrayList()))
+                .addAllDeckHeight(Optional.ofNullable(calAdditionDTO.getDeckHeight()).orElse(Lists.newArrayList()).stream().map(number -> Double.parseDouble(number.toString())).collect(Collectors.toList()))
                 .addAllBoolLiquidTank(calAdditionDTO.getLiquidTanks())
                 .build();
         AdditionalForceHeadResponse headResponse = grpcHolder.calculationBlockingStub().calAdditionalForceHead(headRequest);
@@ -282,8 +285,9 @@ public class AlgorithmGrpc {
         Integer projectId = materialDTO.getProjectId();
         SupportingMaterialStrengthRequest strengthRequest = SupportingMaterialStrengthRequest.newBuilder()
                 .addAllGuicaiType(materialDTO.getGuicaiType())
-                .addAllDaibanHou(materialDTO.getDaibanHou())
-                .addAllDaibanKuan(materialDTO.getDaibanKuan())
+                .addAllDaibanHouUpper(materialDTO.getStripPlateThicknessUpper())
+                .addAllDaibanHouLower(materialDTO.getStripPlateThicknessLower())
+                .addAllDaibanKuan(materialDTO.getStripPlateWidth())
                 .setZongguKuaju(materialDTO.getZongguKuaju())
                 .addAllGuicaiTypeUpper(materialDTO.getGuicaiTypeUppers())
                 .addAllGuicaiTypeLower(materialDTO.getGuicaiTypeLowers())

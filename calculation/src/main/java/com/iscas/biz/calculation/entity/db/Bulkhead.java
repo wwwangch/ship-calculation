@@ -1,10 +1,14 @@
 package com.iscas.biz.calculation.entity.db;
 
 import com.baomidou.mybatisplus.annotation.IdType;
+import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
+import com.baomidou.mybatisplus.annotation.TableName;
+import com.baomidou.mybatisplus.extension.handlers.JacksonTypeHandler;
 import lombok.Data;
 
 import java.util.Date;
+import java.util.List;
 
 /**
  * @author ch w
@@ -13,6 +17,7 @@ import java.util.Date;
  * 横舱壁-用于局部强度计算
  */
 @Data
+@TableName(value = "bulkhead",autoResultMap = true)
 public class Bulkhead {
     @TableId(type = IdType.AUTO)
     private Integer bulkheadId;
@@ -55,4 +60,11 @@ public class Bulkhead {
     private Double zonggukuaju;
 
 
+    private Integer deckNum;
+
+    @TableField(typeHandler = JacksonTypeHandler.class)
+    private List<String> deckNames;
+
+    @TableField(typeHandler = JacksonTypeHandler.class)
+    private List<Number> deckHeights;
 }

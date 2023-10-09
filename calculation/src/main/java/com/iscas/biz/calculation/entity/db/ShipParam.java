@@ -117,6 +117,15 @@ public class ShipParam {
      */
     private Double freeboard;
 
+    /**
+     * 船中肋位号
+     */
+    private Double midRibNumber;
+
+    /**
+     * 肋骨间距
+     */
+    private Double ribSpacing;
 
     /**
      * 端壁肋位号

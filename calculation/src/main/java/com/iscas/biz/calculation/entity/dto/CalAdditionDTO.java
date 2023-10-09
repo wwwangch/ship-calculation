@@ -27,6 +27,15 @@ public class CalAdditionDTO {
      */
     private Double freeboard;
 
+    /**
+     * 船中肋位号
+     */
+    private Double midRibNumber;
+
+    /**
+     * 肋骨间距
+     */
+    private Double ribSpacing;
 
     /**
      * 端壁肋位号
@@ -75,7 +84,7 @@ public class CalAdditionDTO {
 
     private List<String> deckName;
 
-    private List<Double> deckHeight;
+    private List<Number> deckHeight;
 
     private List<Boolean> liquidTanks;
 }

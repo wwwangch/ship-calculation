@@ -19,4 +19,6 @@ public interface BulkheadService extends IService<Bulkhead> {
     Integer update(Bulkhead bulkhead) throws IOException;
 
     void saveCompartment(Object bulkheadFilePath);
+
+    void downloadTemplate() throws IOException;
 }
